@@ -3,7 +3,7 @@
  const tool=item=>item.path?.[item.path.length-1]||item.need;
  function opening(item){
   if(item.id==='AV-007')return 'Entendi. Vamos registrar o problema com o cabo HDMI para a equipe verificar.';
-  if(item.area==='Audiovisual')return 'Vamos combinar os detalhes para a equipe preparar os equipamentos no dia certo.';
+  if(item.area==='Audiovisual')return 'Certo! Vou pegar os detalhes de quando você vai precisar dos equipamentos.';
   if(item.area==='Impressora')return item.id==='IMP-010'?'Vamos separar as informações do toner ou da tinta que você precisa.':'Vamos olhar essa questão da impressora. Primeiro, preciso de alguns detalhes para a equipe saber por onde começar.';
   if(item.area==='Google')return 'Vamos ver essa questão no '+tool(item)+'. Me passe alguns detalhes para a equipe encontrar o que está acontecendo.';
   if(desk.requestPolicy.asksEquipmentIntent(item))return 'Certo. Antes dos detalhes, me ajuda a entender o que você precisa com esse equipamento.';
@@ -13,7 +13,7 @@
  const prompts={
  'descricao-do-problema':'O que acontece quando você usa o cabo HDMI? Conte também em qual sala ou equipamento ele está conectado.',
  modelo:'Qual é o modelo da impressora? Se não souber, pode escrever “não sei”.',
- cor:'Qual cor de toner ou tinta você precisa?',data:'Em qual dia você vai precisar? Digite a data ou use o calendário, como preferir.',horario:'E a que horas? Pode digitar o horário, por exemplo 09:30.',evento:'Você vai usar os equipamentos em um evento?',roteiro:'Você tem o link do roteiro do evento? Cole aqui para a equipe se preparar.',
+ cor:'Qual cor de toner ou tinta você precisa?',data:'Para qual dia você precisa do atendimento?',horario:'E qual horário funciona para você?',evento:'Você vai usar os equipamentos em um evento?',roteiro:'Você tem o link do roteiro do evento? Cole aqui para a equipe se preparar.',
  'mensagem-do-visor':'O que aparece no visor da impressora? Se não aparecer nada, pode me dizer isso.',
  'mensagem-de-erro':'Aparece alguma mensagem de erro? Me conte o que ela diz; se não aparecer, escreva “não aparece”.',
  'erro-apresentado':'O que acontece quando você tenta usar? Se aparecer um erro, me diga o texto da mensagem.',erro:'Que erro você está vendo? Pode descrever com suas palavras.',
@@ -29,7 +29,7 @@
  perfil:'Qual perfil de acesso essa pessoa precisa?',relatorio:'Qual relatório está envolvido?', 'descricao-do-relatorio':'Que informações você precisa nesse relatório?',usuario:'Qual usuário está com essa dificuldade? Informe o login, sem enviar a senha.',
  'aluno-turma':'Qual é o aluno e a turma envolvidos?',aluno:'Qual é o nome do aluno?',disciplina:'Qual é a disciplina?', 'turma-atual':'Em qual turma o aluno está agora?', 'turma-destino':'Para qual turma ele vai?',responsavel:'Qual é o nome do responsável?', 'email-responsavel':'Qual é o e-mail do responsável?', 'contato-responsavel':'Qual telefone a equipe pode usar para falar com o responsável?'
  };
- function field(item,f){if(f.id==='data'&&item.area==='Audiovisual')return 'Para qual dia vamos preparar os equipamentos? Digite a data ou escolha no calendário.';return prompts[f.id]||'Pode me informar '+f.label.charAt(0).toLowerCase()+f.label.slice(1)+'?';}
+ function field(item,f){return prompts[f.id]||'Pode me informar '+f.label.charAt(0).toLowerCase()+f.label.slice(1)+'?';}
  function description(item,intent=''){if(intent==='purchase')return 'Qual item você quer solicitar e para qual atividade? Conte o que ele precisa ter para te ajudar no trabalho.';if(intent==='repair')return 'O que deixou de funcionar nesse equipamento? Me conte desde quando e o que acontece quando você tenta usar.';if(item.id==='AV-007')return 'Quer ajustar o relato? Conte o que acontece com o cabo HDMI e onde ele está conectado.';
   if(item.id==='IMP-010')return 'Há algum detalhe sobre essa solicitação de toner ou tinta que a equipe precisa saber? Conte aqui.';
   if(item.need.includes('Reserva')||item.area==='Audiovisual')return 'Como você pretende usar os equipamentos? Conte o que a equipe precisa preparar para te atender.';

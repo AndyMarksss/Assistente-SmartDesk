@@ -179,3 +179,11 @@ Próxima coleta sugerida: confirmação de envio no próprio chat, com dados fic
 - [x] Trilha horizontal, resumo HDMI sem autorização e sem descrição duplicada conferidos.
 - [x] Mouse defeituoso dispensa autorização; pedido novo mantém a pergunta.
 - [ ] Próximo print: manutenção versus pedido novo testados pelo usuário.
+
+- EVID-069 — EVID-069_feedback-agendamento-e-controles.png: Print do usuário: trilha e resposta grandes, data de 1997 aceita no fluxo audiovisual; feedback para revisão.
+
+- EVID-070 — EVID-070_feedback-areas-sem-explicacao.png: Print do usuário: quatro áreas sem exemplos explicativos, antes da revisão compacta.
+
+- EVID-071 — EVID-071_chat-compacto-areas-explicadas.png: Verificação técnica: trilha fina, quatro áreas com exemplos e resposta compacta.
+
+- EVID-072 — EVID-072_horario-digitavel-mobile.png: Verificação técnica em largura móvel: horário digitável corrigido 09:30, formato e seletor opcional. Não prova teclado em aparelho real.

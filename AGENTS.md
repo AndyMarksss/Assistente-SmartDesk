@@ -58,3 +58,6 @@ Troca de cabo HDMI é problema de manutenção, não pedido de compra: nunca ped
 ## Formato de entrega solicitado pelo usuário
 
 Sempre finalizar informando explicitamente: (1) o que foi mudado; (2) o que o usuário precisa fazer, inclusive quando não há ação necessária; (3) onde e como conferir cada mudança na interface, com passos concretos. Manter o relatório de arquivos e a próxima evidência quando houver alterações no projeto. Não apenas listar arquivos ou dizer que está pronto; indicar os pontos visuais/funcionais a verificar.
+
+## Revisão 0.8.2
+Manter trilha compacta e explicações nas quatro áreas. Data/hora devem permitir digitação com teclado numérico e seletor opcional. Datas de novo atendimento não podem ser passadas/inexistentes; horários 00:00–23:59. Relato só numérico não explica chamado. Teclado físico/virtual real depende de conferência no aparelho; não afirmar teste em dispositivo real por emulação.

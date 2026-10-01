@@ -209,3 +209,11 @@ Conferência do teste técnico #001 concluída: linha/estado/link em EVID-033, c
 - EVID-067: [EVID-067_hdmi-autorizacao-indevida.png](EVID-067_hdmi-autorizacao-indevida.png) — Feedback do usuário: troca de cabo HDMI recebia pergunta de autorização e duas perguntas de descrição; trilha ainda na lateral.
 
 - EVID-068: [EVID-068_trilha-horizontal-hdmi-sem-autorizacao.png](EVID-068_trilha-horizontal-hdmi-sem-autorizacao.png) — Verificação técnica: trilha horizontal abaixo do cabeçalho, resumo lateral e revisão do chamado fictício HDMI com uma descrição e sem autorização. Não enviado ao Google.
+
+- EVID-069 — EVID-069_feedback-agendamento-e-controles.png: Print do usuário: trilha e resposta grandes, data de 1997 aceita no fluxo audiovisual; feedback para revisão.
+
+- EVID-070 — EVID-070_feedback-areas-sem-explicacao.png: Print do usuário: quatro áreas sem exemplos explicativos, antes da revisão compacta.
+
+- EVID-071 — EVID-071_chat-compacto-areas-explicadas.png: Verificação técnica: trilha fina, quatro áreas com exemplos e resposta compacta.
+
+- EVID-072 — EVID-072_horario-digitavel-mobile.png: Verificação técnica em largura móvel: horário digitável corrigido 09:30, formato e seletor opcional. Não prova teclado em aparelho real.

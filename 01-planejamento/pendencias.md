@@ -54,3 +54,5 @@ Visual, modal, favicon, nome/sobrenome, erro persistente de e-mail, reinício, p
 ## 0.8.1 — Revisão de contexto e navegação
 
 HDMI dispensa autorização, descrição duplicada removida, periféricos distinguem defeito de pedido novo, trilha horizontal concluída. Futuro: Meus chamados com acesso do solicitante, avisos do TI e ajuda rápida. Autorização remota em O continua aguardando publicação/verificação 0.8 caso o usuário ainda não tenha feito.
+
+- 0.8.2: conferir teclado de data/horário em celular real e escolhas com exemplos; próxima evidência 73. Emulação não confirma comportamento do teclado físico.

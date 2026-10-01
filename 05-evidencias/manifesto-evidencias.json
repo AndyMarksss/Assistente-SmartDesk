@@ -2,7 +2,7 @@
   "versao": 1,
   "projeto": "SmartDesk",
   "atualizado_em": "2026-10-01",
-  "proximo_numero": 69,
+  "proximo_numero": 73,
   "evidencias": [
     {
       "numero": "EVID-001",
@@ -824,6 +824,54 @@
       "data_inclusao": "2026-10-01",
       "origem": "Captura feita no navegador nesta sessão — C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\trilha-horizontal-hdmi-v081.png",
       "sha256": "05B46B60A21B6BA7B5889FFE4997B5F4C5F51A3475B9A61E2F6DDBBA15E30F7F",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-069",
+      "arquivo": "EVID-069_feedback-agendamento-e-controles.png",
+      "etapa": "Passo 4 — Revisão 0.8.2",
+      "descricao": "Print do usuário: trilha e resposta grandes, data de 1997 aceita no fluxo audiovisual; feedback para revisão.",
+      "data_aproximada": "2026-10-01",
+      "fundamento_data": "Envio/captura na sessão; data do temporário não usada",
+      "data_inclusao": "2026-10-01",
+      "origem": "C:/Users/ander/AppData/Local/Temp/codex-clipboard-c83a8925-8659-40c0-874c-e259ad0f4ed9.png",
+      "sha256": "047F7097D9F67A9F605AFB8E2E729A61045745A1616E4229795186EF5C69C251",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-070",
+      "arquivo": "EVID-070_feedback-areas-sem-explicacao.png",
+      "etapa": "Passo 4 — Revisão 0.8.2",
+      "descricao": "Print do usuário: quatro áreas sem exemplos explicativos, antes da revisão compacta.",
+      "data_aproximada": "2026-10-01",
+      "fundamento_data": "Envio/captura na sessão; data do temporário não usada",
+      "data_inclusao": "2026-10-01",
+      "origem": "C:/Users/ander/AppData/Local/Temp/codex-clipboard-550f35b5-b587-4f73-a3b3-10b627ef2431.png",
+      "sha256": "D9623DDE1FD531DBA20B911526F33427E50F0A50D397B33CF7580FB78322B1A8",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-071",
+      "arquivo": "EVID-071_chat-compacto-areas-explicadas.png",
+      "etapa": "Passo 4 — Revisão 0.8.2",
+      "descricao": "Verificação técnica: trilha fina, quatro áreas com exemplos e resposta compacta.",
+      "data_aproximada": "2026-10-01",
+      "fundamento_data": "Envio/captura na sessão; data do temporário não usada",
+      "data_inclusao": "2026-10-01",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\chat-compacto-areas-v082.png",
+      "sha256": "D61BC82604909710302E80EBC2EF7AC0A58E3EFF9593787909C94C16BDE9A1D3",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-072",
+      "arquivo": "EVID-072_horario-digitavel-mobile.png",
+      "etapa": "Passo 4 — Revisão 0.8.2",
+      "descricao": "Verificação técnica em largura móvel: horário digitável corrigido 09:30, formato e seletor opcional. Não prova teclado em aparelho real.",
+      "data_aproximada": "2026-10-01",
+      "fundamento_data": "Envio/captura na sessão; data do temporário não usada",
+      "data_inclusao": "2026-10-01",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\horario-mobile-v082.png",
+      "sha256": "145619FFB8AE03D3AA5DB96F2A20FCF23B08D62E26AD3977CBB7194789E216F0",
       "status": "salvo e conferido visualmente"
     }
   ]

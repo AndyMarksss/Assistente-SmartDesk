@@ -134,3 +134,6 @@ Modal fecha por clique externo e Escape; botão de fechar compacto; dashboard co
 ## 0.8.1 — Contexto e trilha horizontal
 
 HDMI sem autorização e sem descrição duplicada. Periféricos distinguem defeito de item novo/diferente antes dos detalhes. Prompts contextualizados por serviço/campo. Trilha horizontal sob cabeçalho, resumo e orientação na lateral. Regra de autorização alinhada entre navegador e servidor.
+
+## 0.8.2 — Chat compacto e agendamento intuitivo
+Trilha mais fina; painel de resposta compacto, sem caixa pausada redundante; exemplos nas quatro áreas; data/hora digitáveis com teclado numérico e seletor opcional. Validação de datas reais e não passadas, horários e relato só numérico no cliente e servidor. Categorias canônicas preservadas.
