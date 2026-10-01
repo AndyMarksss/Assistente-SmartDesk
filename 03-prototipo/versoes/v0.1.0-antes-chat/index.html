@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>SmartDesk — Suporte inteligente</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script defer src="assets/js/knowledge-base.js"></script>
+  <script defer src="assets/js/classifier.js"></script>
+  <script defer src="assets/js/flows.js"></script>
+  <script defer src="assets/js/app.js"></script>
+</head>
+<body>
+  <div class="shell">
+    <header class="header">
+      <a class="brand" href="index.html" aria-label="SmartDesk, início"><span class="brand-mark" aria-hidden="true">S</span>SmartDesk</a>
+      <span class="badge">Protótipo acadêmico</span>
+    </header>
+    <main>
+      <section class="intro">
+        <p class="eyebrow">SUPORTE, DO SEU JEITO</p>
+        <h1>Conte o problema.<br>A gente encontra o caminho.</h1>
+        <p class="lead">Suporte inteligente, antes mesmo do chamado. Você não precisa saber qual categoria escolher.</p>
+      </section>
+      <ol class="steps" aria-label="Etapas desta versão">
+        <li id="step-entry" aria-current="step"><span>1</span>Seu relato</li>
+        <li id="step-analysis"><span>2</span>Análise</li>
+        <li id="step-result"><span>3</span>Classificação</li>
+      </ol>
+      <section id="entry-screen" class="panel" aria-labelledby="entry-title">
+        <div class="panel-heading"><h2 id="entry-title" tabindex="-1">Como podemos ajudar?</h2><p>Identifique-se e explique o que está acontecendo.</p></div>
+        <form id="request-form" novalidate>
+          <div class="grid">
+            <div class="field"><label for="name">Seu nome <span aria-hidden="true">*</span></label><input id="name" name="name" autocomplete="name" maxlength="100" required aria-describedby="name-error"><p class="error" id="name-error"></p></div>
+            <div class="field"><label for="email">E-mail institucional <span aria-hidden="true">*</span></label><input id="email" name="email" type="email" autocomplete="email" maxlength="160" placeholder="voce@instituicao.com.br" required aria-describedby="email-error"><p class="error" id="email-error"></p></div>
+            <div class="field"><label for="unit">Unidade organizacional <span aria-hidden="true">*</span></label><select id="unit" name="unit" required aria-describedby="unit-error"><option value="">Selecione sua unidade</option></select><p class="error" id="unit-error"></p></div>
+            <div class="field"><label for="sector">Setor <span aria-hidden="true">*</span></label><input id="sector" name="sector" list="sector-options" maxlength="100" placeholder="Digite ou selecione seu setor" required aria-describedby="sector-help sector-error"><datalist id="sector-options"></datalist><p class="hint" id="sector-help">Se não encontrar seu setor, digite o nome.</p><p class="error" id="sector-error"></p></div>
+          </div>
+          <div class="field"><label for="description">O que está acontecendo? <span aria-hidden="true">*</span></label><textarea id="description" name="description" rows="4" maxlength="2000" placeholder="Ex.: Minha impressora está prendendo as folhas e não consigo imprimir." required aria-describedby="description-help description-error"></textarea><p class="hint" id="description-help">Conte o que tentou fazer e o que aconteceu.</p><p class="error" id="description-error"></p></div>
+          <div class="attachment"><label for="attachment">Adicionar imagem ou arquivo <span>(opcional)</span></label><input id="attachment" name="attachment" type="file" aria-describedby="attachment-help"><p class="hint" id="attachment-help">Nesta versão, o arquivo fica somente no seu dispositivo e não é enviado.</p></div>
+          <div class="form-footer"><span class="hint">* Campos obrigatórios</span><button type="submit" class="button primary">Analisar solicitação <span aria-hidden="true">→</span></button></div>
+        </form>
+      </section>
+      <section id="analysis-screen" class="panel analysis" hidden aria-labelledby="analysis-title" aria-busy="true">
+        <div class="spinner" aria-hidden="true"></div><h2 id="analysis-title" tabindex="-1">Analisando sua solicitação…</h2>
+        <p>Identificando o assunto e comparando com a base inicial.</p>
+      </section>
+      <section id="result-screen" class="panel" hidden aria-labelledby="result-title">
+        <p class="eyebrow">VAMOS CONFERIR JUNTOS</p><h2 id="result-title" tabindex="-1">Esta classificação faz sentido?</h2>
+        <p id="result-description"></p>
+        <div id="suggestion" class="suggestion" hidden><span class="hint">Área sugerida</span><h3 id="suggested-area"></h3><span class="hint">Necessidade</span><p id="suggested-need"></p></div>
+        <div id="choices" class="field" hidden><label for="classification-choice" id="choice-label">Escolha a necessidade que melhor descreve o problema</label><select id="classification-choice"><option value="">Selecione uma opção</option></select></div>
+        <p class="hint" id="base-note">Sugestão baseada em regras e palavras-chave de uma base inicial de demonstração.</p>
+        <p id="confirmation" class="notice" hidden></p>
+        <div class="result-actions"><button id="confirm" type="button" class="button primary">Sim, está correta</button><button id="correct" type="button" class="button secondary">Quero corrigir</button><button id="back" type="button" class="text-button">Editar relato</button></div>
+      </section>
+      <p class="status" id="status" role="status" aria-live="polite"></p>
+    </main>
+    <footer>SmartDesk <span aria-hidden="true">·</span> MVP inicial: relato, análise e classificação</footer>
+  </div>
+</body>
+</html>

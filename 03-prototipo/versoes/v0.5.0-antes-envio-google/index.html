@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SmartDesk — Assistente de suporte</title>
+  <script src="assets/js/theme.js"></script>
+  <link rel="stylesheet" href="assets/vendor/fontawesome/css/fontawesome.min.css">
+  <link rel="stylesheet" href="assets/vendor/fontawesome/css/solid.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script defer src="assets/js/knowledge-base.js"></script>
+  <script defer src="assets/js/classifier.js"></script>
+  <script defer src="assets/js/flows.js"></script>
+  <script defer src="assets/js/app.js"></script>
+</head>
+
+<body>
+  <div class="workspace">
+    <aside class="sidebar" aria-label="Acompanhamento do atendimento">
+      <a class="brand" href="index.html" aria-label="SmartDesk, início"><span class="logo">S<span
+            class="logo-dot"></span></span>SmartDesk<span class="brand-dot">.</span></a>
+      <div class="workspace-label">SEU ESPAÇO DE SUPORTE</div>
+      <button class="new-conversation" id="new-chat" type="button"><span aria-hidden="true"><i
+            class="fa-solid fa-plus"></i></span> Novo atendimento</button>
+      <div class="sidebar-section">ESTE ATENDIMENTO</div>
+      <ol class="journey">
+        <li data-stage="context" aria-current="step"><span class="journey-dot">1</span>
+          <div>Boas-vindas<small>Vamos nos conhecer</small></div>
+        </li>
+        <li data-stage="report"><span class="journey-dot">2</span>
+          <div>Escolhas<small>Área, necessidade e detalhes</small></div>
+        </li>
+        <li data-stage="classification"><span class="journey-dot">3</span>
+          <div>Assunto<small>Uma sugestão curta da IA</small></div>
+        </li>
+        <li data-stage="summary"><span class="journey-dot">4</span>
+          <div>Resumo<small>Pronto para revisar</small></div>
+        </li>
+      </ol>
+      <div class="session-info">
+        <div class="sidebar-section">CONTEXTO DA CONVERSA</div>
+        <dl>
+          <dt>Como te chamar</dt>
+          <dd id="context-name">Vamos nos conhecer</dd>
+          <dt>Setor</dt>
+          <dd id="context-sector">Ainda não informado</dd>
+          <dt>Necessidade</dt>
+          <dd id="context-need">Vamos descobrir juntos</dd>
+        </dl>
+      </div>
+      <div class="sidebar-footer"><span class="shield" aria-hidden="true"><i
+            class="fa-solid fa-shield-halved"></i></span>
+        <div>Protótipo acadêmico<small>Salve seu rascunho ao concluir.</small></div>
+      </div>
+    </aside>
+    <main class="chat-shell">
+      <header class="chat-header">
+        <div class="assistant-identity"><span class="assistant-avatar" aria-hidden="true"><i
+              class="fa-solid fa-robot"></i></span>
+          <div>
+            <h1>Assistente SmartDesk</h1>
+            <p><span class="online-dot"></span> Vamos encontrar o melhor caminho</p>
+          </div>
+        </div>
+        <div class="header-actions"><span class="engine-badge" id="engine-badge">Base local · demonstração</span><button
+            id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false" aria-label="Ativar tema escuro"><i
+              class="fa-solid fa-moon" aria-hidden="true"></i><span>Tema escuro</span></button><button
+            id="mobile-new-chat" class="mobile-new" type="button" aria-label="Novo atendimento"><i
+              class="fa-solid fa-plus" aria-hidden="true"></i></button></div>
+      </header>
+      <div class="conversation" id="conversation" role="log" aria-label="Conversa com o SmartDesk" aria-live="polite"
+        aria-relevant="additions">
+        <div class="conversation-date">SEU ATENDIMENTO COMEÇA AQUI</div>
+        <div class="welcome" id="welcome"><span class="welcome-icon" aria-hidden="true"><i
+              class="fa-solid fa-robot"></i></span>
+          <p class="eyebrow">UM POUCO DE AJUDA. MAIS TRANQUILIDADE.</p>
+          <h2>Seu suporte,<br><span>de um jeito mais leve.</span></h2>
+          <p>Conte com o SmartDesk para entender sua necessidade<br class="desktop-break"> e organizar o próximo passo.
+          </p>
+          <div class="welcome-tags"><span><i class="fa-solid fa-bolt" aria-hidden="true"></i> Escolhas
+              rápidas</span><span><i class="fa-solid fa-comment" aria-hidden="true"></i> Uma pergunta por
+              vez</span><span><i class="fa-solid fa-heart" aria-hidden="true"></i> No seu ritmo</span></div>
+        </div>
+        <div id="messages" class="messages"></div>
+      </div>
+      <section class="interaction-dock" aria-label="Responder ao assistente">
+        <div class="choice-header"><span id="prompt-caption">ESCOLHA UMA OPÇÃO PARA CONTINUAR</span><button
+            type="button" id="edit-context" class="small-action" hidden>Alterar contexto</button></div>
+        <div class="choices" id="choices" aria-label="Respostas disponíveis"></div>
+        <div id="structured-field" class="structured-field"></div>
+        <section id="attachment-panel" class="attachment-panel" hidden></section>
+        <input id="attachment-input" type="file" multiple hidden
+          accept=".png,.jpg,.jpeg,.webp,.gif,.pdf,.txt,.docx,.xlsx">
+        <form id="composer" class="composer" novalidate><label class="sr-only" for="chat-input">Sua
+            resposta</label><textarea id="chat-input" rows="2" maxlength="2000" disabled
+            placeholder="Escolha uma das opções acima para continuar."
+            aria-describedby="composer-hint input-error"></textarea><button type="submit" class="send-button" id="send"
+            disabled aria-label="Enviar resposta"><span aria-hidden="true"><i
+                class="fa-solid fa-arrow-up"></i></span></button></form>
+        <div class="composer-bottom"><span id="composer-hint">A digitação é liberada quando precisamos de mais
+            detalhes.</span><span id="char-count" hidden>0 / 2000</span></div>
+        <p id="input-error" class="error" role="alert"></p>
+        <p class="engine-note" id="engine-note">IA ainda não conectada. Este percurso usa a base inicial de
+          demonstração.</p>
+      </section>
+    </main>
+  </div>
+</body>
+
+</html>
