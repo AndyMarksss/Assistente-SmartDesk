@@ -58,3 +58,5 @@ HDMI dispensa autorização, descrição duplicada removida, periféricos distin
 - 0.8.2: conferir teclado de data/horário em celular real e escolhas com exemplos; próxima evidência 73. Emulação não confirma comportamento do teclado físico.
 
 - 0.8.3: conferir calendário/relógio único e indicador de envio em uso real. Próxima evidência 87; testes locais não gravaram no Google.
+
+- 0.8.4: retestar em Android real pergunta atual e troca calendário/relógio com teclado aberto. Sem nova implantação Apps Script. Próxima evidência 95.

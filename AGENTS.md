@@ -64,3 +64,6 @@ Manter trilha compacta e explicações nas quatro áreas. Data/hora devem permit
 
 ## Revisão 0.8.3
 Uma caixa por data/horário, alternando digitação e seletor. Feedback de envio imediato e contínuo até resposta, sem progresso percentual inventado. Etapas anteriores com confirmação e anúncio acessível. Não apresentar envio simulado #TESTE-LOCAL como chamado real.
+
+## Revisão 0.8.4
+Preservar distinção visual entre conversa e resposta, vidro discreto e decorativos sem capturar toque. Adaptar viewport móvel e manter pergunta/alternância calendário-relógio acessíveis com teclado. Os anexos confirmam teclado real aberto, mas a nova adaptação foi testada por redução de viewport e precisa de conferência no aparelho.

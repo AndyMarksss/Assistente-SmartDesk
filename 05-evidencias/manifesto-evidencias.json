@@ -2,7 +2,7 @@
   "versao": 1,
   "projeto": "SmartDesk",
   "atualizado_em": "2026-10-01",
-  "proximo_numero": 87,
+  "proximo_numero": 95,
   "evidencias": [
     {
       "numero": "EVID-001",
@@ -1040,6 +1040,102 @@
       "data_inclusao": "2026-10-01",
       "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\trilha-concluida-mobile-v083.png",
       "sha256": "D4CDC00B47ADF3EDF589A513BBC888DB7263F173D96D25EB94F03E3FC575A47E",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-087",
+      "arquivo": "EVID-087_feedback-mobile-1.png",
+      "etapa": "Passo 4 — Revisão móvel 0.8.4",
+      "descricao": "Tema escuro móvel: mensagens e controles pouco distintos.",
+      "data_aproximada": "2026-10-01",
+      "fundamento_data": "Anexo/captura nesta sessão; data do temporário não usada",
+      "data_inclusao": "2026-10-01",
+      "origem": "C:/Users/ander/AppData/Local/Temp/codex-clipboard-dd9ea2c0-2d0e-468c-ba30-b8dc389685e4.png",
+      "sha256": "3B2343A858C802521E2FAE56EF66FE5649A8DBC67155F9AF54408437C2906EAC",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-088",
+      "arquivo": "EVID-088_feedback-mobile-2.png",
+      "etapa": "Passo 4 — Revisão móvel 0.8.4",
+      "descricao": "Calendário desktop na mesma caixa; comportamento aprovado.",
+      "data_aproximada": "2026-10-01",
+      "fundamento_data": "Anexo/captura nesta sessão; data do temporário não usada",
+      "data_inclusao": "2026-10-01",
+      "origem": "C:/Users/ander/AppData/Local/Temp/codex-clipboard-809c9150-0026-444c-a9d1-14dd17966dea.png",
+      "sha256": "4E186FAA148EABB7D8A061BD64373B09ABF23C6F118F5FC059DCABCE4D5D3B65",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-089",
+      "arquivo": "EVID-089_feedback-mobile-3.jpg",
+      "etapa": "Passo 4 — Revisão móvel 0.8.4",
+      "descricao": "Teclado numérico real abre, mas corta troca para calendário.",
+      "data_aproximada": "2026-10-01",
+      "fundamento_data": "Anexo/captura nesta sessão; data do temporário não usada",
+      "data_inclusao": "2026-10-01",
+      "origem": "C:/Users/ander/AppData/Local/Temp/codex-clipboard-6a6e93fd-fb02-4894-87a4-d0072ad9c736.jpg",
+      "sha256": "768C2F588314167AD76A95C131F38A6C073F10EE786793A5E2A431AC96B6595B",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-090",
+      "arquivo": "EVID-090_feedback-mobile-4.jpg",
+      "etapa": "Passo 4 — Revisão móvel 0.8.4",
+      "descricao": "Teclado real de texto abre, mas pergunta atual fica cortada.",
+      "data_aproximada": "2026-10-01",
+      "fundamento_data": "Anexo/captura nesta sessão; data do temporário não usada",
+      "data_inclusao": "2026-10-01",
+      "origem": "C:/Users/ander/AppData/Local/Temp/codex-clipboard-8142c45a-f02f-420f-85c8-c2c15a23be60.jpg",
+      "sha256": "BFF51D12DAF4869E6D3C65D7C15A53AB21C189413995B8EF4181B064BFDE0725",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-091",
+      "arquivo": "EVID-091_viewport-reduzido-texto.png",
+      "etapa": "Passo 4 — Revisão móvel 0.8.4",
+      "descricao": "Teste técnico em viewport 390×400, simulando espaço restante com teclado; pergunta atual e resposta visíveis. Não é teste com teclado virtual real.",
+      "data_aproximada": "2026-10-01",
+      "fundamento_data": "Anexo/captura nesta sessão; data do temporário não usada",
+      "data_inclusao": "2026-10-01",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\teclado-texto-v084.png",
+      "sha256": "8ED605D0BBCA61405DC8876CC706BE471E6B66F06577DD948F5C9708AE7C7CC0",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-092",
+      "arquivo": "EVID-092_viewport-reduzido-data.png",
+      "etapa": "Passo 4 — Revisão móvel 0.8.4",
+      "descricao": "Teste técnico em viewport 390×400, simulando espaço restante com teclado; pergunta atual e resposta visíveis. Não é teste com teclado virtual real.",
+      "data_aproximada": "2026-10-01",
+      "fundamento_data": "Anexo/captura nesta sessão; data do temporário não usada",
+      "data_inclusao": "2026-10-01",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\teclado-data-v084.png",
+      "sha256": "F5DA0F725E6E8EFC27F27FA6D13943515D914160B4D28F3D8DED466BC0FE7102",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-093",
+      "arquivo": "EVID-093_viewport-reduzido-horario.png",
+      "etapa": "Passo 4 — Revisão móvel 0.8.4",
+      "descricao": "Teste técnico em viewport 390×400, simulando espaço restante com teclado; pergunta atual e resposta visíveis. Não é teste com teclado virtual real.",
+      "data_aproximada": "2026-10-01",
+      "fundamento_data": "Anexo/captura nesta sessão; data do temporário não usada",
+      "data_inclusao": "2026-10-01",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\teclado-horario-v084.png",
+      "sha256": "F7611914F164AFA1626E64A709FB01FEA396D497E5E2BF7FC4115A4981F7BD90",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-094",
+      "arquivo": "EVID-094_mobile-escuro-glass.png",
+      "etapa": "Passo 4 — Revisão móvel 0.8.4",
+      "descricao": "Novo contraste móvel: mensagem ameixa, resposta distinta, fundo com elementos difusos; trilha restaurada em 390×844.",
+      "data_aproximada": "2026-10-01",
+      "fundamento_data": "Anexo/captura nesta sessão; data do temporário não usada",
+      "data_inclusao": "2026-10-01",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\mobile-escuro-v084.png",
+      "sha256": "A33509FC59CE2FE32B41965248DA19C3BA6A2C63BFE2CCB929FBF4E432A3E1A0",
       "status": "salvo e conferido visualmente"
     }
   ]

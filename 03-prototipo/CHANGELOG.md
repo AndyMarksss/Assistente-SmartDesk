@@ -140,3 +140,6 @@ Trilha mais fina; painel de resposta compacto, sem caixa pausada redundante; exe
 
 ## 0.8.3 — Feedback de envio e trilha
 Calendário/relógio alternam o tipo da mesma caixa preservando o valor. Indicador animado imediato durante envio, com texto acessível, movimento reduzido respeitado e bloqueio de nova submissão. Etapas concluídas recebem ✓, mantendo etapa atual em destaque; reinício limpa marcações.
+
+## 0.8.4 — Visual móvel e teclado
+Tema escuro com conversa em fundo neutro, mensagens ameixa e campo de resposta mais claro. Elementos decorativos difusos e superfícies com vidro/blur. VisualViewport ajusta altura móvel; cabeçalho e trilha recolhem durante teclado, restauram ao fechar. Calendário/relógio ficam acima da caixa. Mantidos campo único, ✓ e feedback de envio.
