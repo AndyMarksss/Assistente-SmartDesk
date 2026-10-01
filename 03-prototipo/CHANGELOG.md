@@ -137,3 +137,6 @@ HDMI sem autorização e sem descrição duplicada. Periféricos distinguem defe
 
 ## 0.8.2 — Chat compacto e agendamento intuitivo
 Trilha mais fina; painel de resposta compacto, sem caixa pausada redundante; exemplos nas quatro áreas; data/hora digitáveis com teclado numérico e seletor opcional. Validação de datas reais e não passadas, horários e relato só numérico no cliente e servidor. Categorias canônicas preservadas.
+
+## 0.8.3 — Feedback de envio e trilha
+Calendário/relógio alternam o tipo da mesma caixa preservando o valor. Indicador animado imediato durante envio, com texto acessível, movimento reduzido respeitado e bloqueio de nova submissão. Etapas concluídas recebem ✓, mantendo etapa atual em destaque; reinício limpa marcações.

@@ -61,3 +61,6 @@ Sempre finalizar informando explicitamente: (1) o que foi mudado; (2) o que o us
 
 ## Revisão 0.8.2
 Manter trilha compacta e explicações nas quatro áreas. Data/hora devem permitir digitação com teclado numérico e seletor opcional. Datas de novo atendimento não podem ser passadas/inexistentes; horários 00:00–23:59. Relato só numérico não explica chamado. Teclado físico/virtual real depende de conferência no aparelho; não afirmar teste em dispositivo real por emulação.
+
+## Revisão 0.8.3
+Uma caixa por data/horário, alternando digitação e seletor. Feedback de envio imediato e contínuo até resposta, sem progresso percentual inventado. Etapas anteriores com confirmação e anúncio acessível. Não apresentar envio simulado #TESTE-LOCAL como chamado real.

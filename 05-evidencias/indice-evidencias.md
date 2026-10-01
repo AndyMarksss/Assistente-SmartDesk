@@ -217,3 +217,18 @@ Conferência do teste técnico #001 concluída: linha/estado/link em EVID-033, c
 - EVID-071 — EVID-071_chat-compacto-areas-explicadas.png: Verificação técnica: trilha fina, quatro áreas com exemplos e resposta compacta.
 
 - EVID-072 — EVID-072_horario-digitavel-mobile.png: Verificação técnica em largura móvel: horário digitável corrigido 09:30, formato e seletor opcional. Não prova teclado em aparelho real.
+
+- EVID-073 — EVID-073_feedback-envio-seletores-01.png: Feedback: calendário criou duas caixas de data.
+- EVID-074 — EVID-074_feedback-envio-seletores-02.png: Feedback: pergunta de horário antes de abrir o seletor; semelhante ao próximo print.
+- EVID-075 — EVID-075_feedback-envio-seletores-04.png: Feedback: relógio criou duas caixas de horário.
+- EVID-076 — EVID-076_feedback-envio-seletores-05.png: Interface confirma chamado #005; etapas anteriores ainda numeradas. Não comprova escrita remota por si só.
+- EVID-077 — EVID-077_feedback-envio-seletores-06.png: Histórico de conversa rolado ao início após envio, com trilha ainda numerada.
+- EVID-078 — EVID-078_feedback-envio-seletores-07.png: Histórico de nome/e-mail rolado após envio; validação estrutural permite nomes curtos, sem afirmar identidade.
+- EVID-079 — EVID-079_feedback-envio-seletores-08.png: Histórico de seleção TI e sugestão de melhoria, após envio.
+- EVID-080 — EVID-080_feedback-envio-seletores-09.png: Histórico de relato e anexos para sugestão de melhoria, após envio.
+- EVID-081 — EVID-081_feedback-envio-seletores-10.png: Histórico de edição da descrição, após envio.
+- EVID-082 — EVID-082_feedback-envio-seletores-11.png: Resumo fictício da sugestão de melhoria, após envio.
+- EVID-083 — EVID-083_feedback-envio-seletores-12.png: Interface confirma chamado #006; etapas anteriores ainda numeradas. Não comprova escrita remota por si só.
+- EVID-084 — EVID-084_horario-campo-unico.png: Teste técnico local: horário 16:20 preservado ao alternar relógio/digitação, uma caixa e etapa anterior com confirmação.
+- EVID-085 — EVID-085_envio-com-indicador.png: Teste técnico com armazenamento simulado: indicador imediato de envio e duas etapas com confirmação. Nenhum chamado enviado ao Google.
+- EVID-086 — EVID-086_trilha-concluida-mobile.png: Teste técnico móvel: falha simulada seguida de confirmação #TESTE-LOCAL e três etapas concluídas. Nenhum chamado enviado ao Google.
