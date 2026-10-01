@@ -50,3 +50,7 @@ Publicação versão 2 enviada pelo usuário; leitura real e visualização do #
 ## Refinamento 0.8 — 2026-10-01
 
 Visual, modal, favicon, nome/sobrenome, erro persistente de e-mail, reinício, proprietário do computador, conversação e autorização implementados. Print do usuário confirma e-mail no #002. Pendente: publicar Code.gs/Gestao.gs 0.8 e conferir autorização na coluna O, sem recriar planilha/token. Validação acadêmica permanece pendente.
+
+## 0.8.1 — Revisão de contexto e navegação
+
+HDMI dispensa autorização, descrição duplicada removida, periféricos distinguem defeito de pedido novo, trilha horizontal concluída. Futuro: Meus chamados com acesso do solicitante, avisos do TI e ajuda rápida. Autorização remota em O continua aguardando publicação/verificação 0.8 caso o usuário ainda não tenha feito.

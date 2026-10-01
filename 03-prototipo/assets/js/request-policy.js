@@ -1,6 +1,14 @@
 "use strict";
 (function(desk){
 const fullName=value=>typeof value==='string'&&value.trim().length<=100&&/^[\p{L}\p{M}]+(?:[’'\-][\p{L}\p{M}]+)*(?:\s+[\p{L}\p{M}]+(?:[’'\-][\p{L}\p{M}]+)*)+$/u.test(value.trim())&&value.trim().split(/\s+/).filter(p=>!['de','da','do','das','dos','e'].includes(p.toLowerCase())).length>=2;
-const needsAuthorization=(item,description='')=>/troca|compra|aquisiç|novo|nova/i.test(item.need)||/\b(comprar|compra|adquirir|aquisição)\b/i.test(description)||/\b(teclado|mouse|headset|fone|notebook|computador|monitor|equipamento|kit)\b.{0,50}\b(novo|nova|novos|novas|sem fio)\b/i.test(description);
-desk.requestPolicy={fullName,needsAuthorization};
+const isRoutineMaintenance=item=>item.id==='AV-007'||/cabo\s+hdmi/i.test(item.need);
+const asksEquipmentIntent=item=>['TI-COMP-001','TI-COMP-007','TI-COMP-008'].includes(item.id);
+const needsAuthorization=(item,description='',intent='')=>{
+ if(isRoutineMaintenance(item)||intent==='repair')return false;
+ if(intent==='purchase')return true;
+ const text=description.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+ if(/\b(nao|sem)\s+(preciso|quero|necessidade de)?\s*(comprar|compra|adquirir|aquisicao)\b/.test(text))return false;
+ return /\b(comprar|compra|adquirir|aquisicao)\b/.test(text)||/\b(quero|preciso|solicito|solicitar)\b.{0,50}\b(teclado|mouse|headset|fone|notebook|computador|monitor|equipamento|kit)\b.{0,40}\b(novo|nova|novos|novas|sem fio)\b/.test(text);
+};
+desk.requestPolicy={fullName,needsAuthorization,asksEquipmentIntent,isRoutineMaintenance};
 })(window.SmartDesk=window.SmartDesk||{});

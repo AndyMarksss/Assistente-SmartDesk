@@ -14,7 +14,6 @@
   <script defer src="assets/js/classifier.js"></script>
   <script defer src="assets/js/flows.js"></script>
   <script defer src="assets/js/request-policy.js"></script>
-  <script defer src="assets/js/conversation-copy.js"></script>
   <script defer src="assets/js/app.js"></script>
 <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
 </head>
@@ -27,19 +26,28 @@
       <div class="workspace-label">SEU ESPAÇO DE SUPORTE</div>
       <button class="new-conversation" id="new-chat" type="button"><span aria-hidden="true"><i
             class="fa-solid fa-plus"></i></span> Novo atendimento</button>
+      <div class="sidebar-section">ESTE ATENDIMENTO</div>
+      <ol class="journey">
+        <li data-stage="context" aria-current="step"><span class="journey-dot">1</span>
+          <div>Boas-vindas<small>Vamos nos conhecer</small></div>
+        </li>
+        <li data-stage="report"><span class="journey-dot">2</span>
+          <div>Escolhas<small>Área, necessidade e detalhes</small></div>
+        </li>
+        <li data-stage="summary"><span class="journey-dot">3</span><div>Revisão<small>Confira seus dados</small></div></li>
+        <li data-stage="sent"><span class="journey-dot">4</span><div>Enviado<small>Número do chamado</small></div></li>
+      </ol>
       <div class="session-info">
-        <div class="sidebar-section">SEU ATENDIMENTO</div>
+        <div class="sidebar-section">CONTEXTO DA CONVERSA</div>
         <dl>
-          <dt>Solicitante</dt>
+          <dt>Como te chamar</dt>
           <dd id="context-name">Vamos nos conhecer</dd>
-          <dt>E-mail para contato</dt><dd id="context-email">Ainda não informado</dd>
           <dt>Setor</dt>
           <dd id="context-sector">Ainda não informado</dd>
           <dt>Necessidade</dt>
           <dd id="context-need">Vamos descobrir juntos</dd>
         </dl>
       </div>
-      <section class="sidebar-tip"><span class="sidebar-tip-icon" aria-hidden="true"><i class="fa-solid fa-lightbulb"></i></span><h2>Sem complicação</h2><p>Não precisa conhecer termos técnicos. Conte o que aconteceu com suas palavras; você pode voltar e corrigir antes de enviar.</p></section>
       <a class="panel-link" href="admin.html"><i class="fa-solid fa-table-columns" aria-hidden="true"></i> Painel de gestão</a>
       <div class="sidebar-footer"><span class="shield" aria-hidden="true"><i
             class="fa-solid fa-shield-halved"></i></span>
@@ -61,16 +69,6 @@
             id="mobile-new-chat" class="mobile-new" type="button" aria-label="Novo atendimento"><i
               class="fa-solid fa-plus" aria-hidden="true"></i></button></div>
       </header>
-      <nav class="journey-bar" aria-label="Etapas do atendimento"><ol class="journey">
-        <li data-stage="context" aria-current="step"><span class="journey-dot">1</span>
-          <div>Boas-vindas<small>Vamos nos conhecer</small></div>
-        </li>
-        <li data-stage="report"><span class="journey-dot">2</span>
-          <div>Escolhas<small>Área, necessidade e detalhes</small></div>
-        </li>
-        <li data-stage="summary"><span class="journey-dot">3</span><div>Revisão<small>Confira seus dados</small></div></li>
-        <li data-stage="sent"><span class="journey-dot">4</span><div>Enviado<small>Número do chamado</small></div></li>
-      </ol></nav>
       <div class="conversation" id="conversation" role="log" aria-label="Conversa com o SmartDesk" aria-live="polite"
         aria-relevant="additions">
         <div class="conversation-date">SEU ATENDIMENTO COMEÇA AQUI</div>

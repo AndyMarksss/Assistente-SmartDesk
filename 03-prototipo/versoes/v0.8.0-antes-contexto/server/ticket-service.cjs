@@ -86,14 +86,12 @@ function createTicketService({root,desk,provider,json,storageRoot=path.join(root
         return {name:path.basename(file.name.replaceAll("\\","/")),stored:String(index+1).padStart(2,"0")+"_anexo"+extension,size:data.length,data};
       });
       if(url.pathname==="/api/tickets") {
-        if(body.equipmentIntent!==undefined&&!['','repair','purchase'].includes(body.equipmentIntent))throw new InvalidRequest('Confira o tipo de solicitação do equipamento.');
-        if(policy.asksEquipmentIntent(item)&&!['repair','purchase'].includes(body.equipmentIntent))throw new InvalidRequest('Informe se o item está com defeito ou se é um pedido novo.');
         if(!policy.fullName(body.name))throw new InvalidRequest('Informe seu nome e sobrenome.');
-        if(policy.needsAuthorization(item,description,body.equipmentIntent)&&(!body.authorization||!['pending','reported'].includes(body.authorization.status)||body.authorization.status==='reported'&&!policy.fullName(body.authorization.by)))throw new InvalidRequest('Informe a autorização da liderança ou marque que está pendente.');
+        if(policy.needsAuthorization(item,description)&&(!body.authorization||!['pending','reported'].includes(body.authorization.status)||body.authorization.status==='reported'&&!policy.fullName(body.authorization.by)))throw new InvalidRequest('Informe a autorização da liderança ou marque que está pendente.');
         if(!body.email || !body.email.trim()) throw new InvalidRequest("Informe seu e-mail institucional.");
         if(!googleStorage.ready())throw new InvalidRequest("O recebimento no Google ainda não foi configurado. Seu atendimento continua aqui.",503);
         if(typeof body.requestId!=="string"||! /^[a-f0-9-]{36}$/i.test(body.requestId))throw new InvalidRequest("Identificação de envio inválida.");
-        const authorization=policy.needsAuthorization(item,description,body.equipmentIntent)?{status:body.authorization.status,by:body.authorization.status==='reported'?body.authorization.by.trim():''}:null;
+        const authorization=policy.needsAuthorization(item,description)?{status:body.authorization.status,by:body.authorization.status==='reported'?body.authorization.by.trim():''}:null;
         const ticket={authorization,requestId:body.requestId,name:body.name.trim(),email:body.email||"",sector:body.sector,selectionId:item.id,area:item.area,need:item.need,answers,subject,description,attachments:files.map(file=>({name:file.name,base64:file.data.toString("base64")}))};
         try{const receipt=await googleStorage.submit(ticket);json(res,201,receipt);}catch(error){if(error.requiresUpgrade){json(res,503,{error:error.message});return true;}json(res,502,{error:"Não consegui confirmar o recebimento no Google. Seus dados foram mantidos; tente enviar novamente."});}return true;
       }

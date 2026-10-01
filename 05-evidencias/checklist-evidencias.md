@@ -174,3 +174,8 @@ Próxima coleta sugerida: confirmação de envio no próprio chat, com dados fic
 - [x] EVID-046–062: feedback visual do usuário preservado e indexado.
 - [x] EVID-063–066: capturas de verificação técnica 0.8.
 - [ ] Próximo print: autorização da liderança no modal Google e coluna O após publicação.
+
+- [x] Feedback de HDMI indevidamente solicitando aval arquivado.
+- [x] Trilha horizontal, resumo HDMI sem autorização e sem descrição duplicada conferidos.
+- [x] Mouse defeituoso dispensa autorização; pedido novo mantém a pergunta.
+- [ ] Próximo print: manutenção versus pedido novo testados pelo usuário.

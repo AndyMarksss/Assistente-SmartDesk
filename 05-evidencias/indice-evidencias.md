@@ -205,3 +205,7 @@ Conferência do teste técnico #001 concluída: linha/estado/link em EVID-033, c
 - EVID-065: [EVID-065_modal-v8.png](EVID-065_modal-v8.png) — Modal escuro redesenhado com botão compacto e separação de detalhes/etapa; fechamento externo e Escape verificados.
 
 - EVID-066: [EVID-066_painel-claro-v8.png](EVID-066_painel-claro-v8.png) — Dashboard no tema claro com fundos discretos, indicadores e kanban.
+
+- EVID-067: [EVID-067_hdmi-autorizacao-indevida.png](EVID-067_hdmi-autorizacao-indevida.png) — Feedback do usuário: troca de cabo HDMI recebia pergunta de autorização e duas perguntas de descrição; trilha ainda na lateral.
+
+- EVID-068: [EVID-068_trilha-horizontal-hdmi-sem-autorizacao.png](EVID-068_trilha-horizontal-hdmi-sem-autorizacao.png) — Verificação técnica: trilha horizontal abaixo do cabeçalho, resumo lateral e revisão do chamado fictício HDMI com uma descrição e sem autorização. Não enviado ao Google.

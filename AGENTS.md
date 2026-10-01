@@ -50,3 +50,11 @@
 ## Refinamento 0.8 autorizado em 2026-10-01
 
 Exigir nome e sobrenome estruturalmente, aceitando Unicode, acentos, hífens e apóstrofos, sem afirmar veracidade de identidade. Recomeçar ao lado de Voltar durante o atendimento. E-mail inválido mantém borda vermelha até corrigir. Campo computador indica quem utiliza. Pedidos de compra/troca devem registrar liderança declarada ou autorização pendente, nunca aprovar compra automaticamente. Nome da liderança não entra no modelo. IA configurada sem resposta recente fica pronta (âmbar); resposta válida verde; falha vermelho. Sem requisições artificiais de disponibilidade. Autorização em O exige publicar Code.gs/Gestao.gs 0.8, mantendo token/endereço/dados. Evidências 046–062 são feedback enviado, não resultados de validação acadêmica.
+
+## Revisão 0.8.1 — instrução direta de 2026-10-01
+
+Troca de cabo HDMI é problema de manutenção, não pedido de compra: nunca pedir autorização nesse caminho. Não exigir autorização só por conter a palavra troca. Mouse/teclado/headset distinguem defeito no item existente de pedido novo/diferente; defeito/reposição vai para triagem sem aval de compra, pedido novo coleta liderança/pêndencia. Trilha do cliente exclusivamente horizontal abaixo de Assistente SmartDesk, em quatro etapas responsivas. Lateral: resumo do atendimento, contato e ajuda curta. Não duplicar descrição em HDMI; preservar chaves canônicas. Textos contextualizados sem transmitir contatos à IA. Esta revisão não muda arquivos Apps Script.
+
+## Formato de entrega solicitado pelo usuário
+
+Sempre finalizar informando explicitamente: (1) o que foi mudado; (2) o que o usuário precisa fazer, inclusive quando não há ação necessária; (3) onde e como conferir cada mudança na interface, com passos concretos. Manter o relatório de arquivos e a próxima evidência quando houver alterações no projeto. Não apenas listar arquivos ou dizer que está pronto; indicar os pontos visuais/funcionais a verificar.

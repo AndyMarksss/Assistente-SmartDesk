@@ -2,7 +2,7 @@
   "versao": 1,
   "projeto": "SmartDesk",
   "atualizado_em": "2026-10-01",
-  "proximo_numero": 67,
+  "proximo_numero": 69,
   "evidencias": [
     {
       "numero": "EVID-001",
@@ -801,6 +801,30 @@
       "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\painel-claro-v8.png",
       "sha256": "263C4611204F6669B181E610B8DCCB666658CA56E0C437F2077E9290B51B7725",
       "status": "verificação técnica, sem validação acadêmica de usuário"
+    },
+    {
+      "numero": "EVID-067",
+      "arquivo": "EVID-067_hdmi-autorizacao-indevida.png",
+      "etapa": "Passo 4 — Revisão contextual 0.8.1",
+      "descricao": "Feedback do usuário: troca de cabo HDMI recebia pergunta de autorização e duas perguntas de descrição; trilha ainda na lateral.",
+      "data_aproximada": "2026-10-01",
+      "fundamento_data": "Contexto da conversa e captura desta sessão; data do temporário não usada",
+      "data_inclusao": "2026-10-01",
+      "origem": "Print enviado pelo usuário — C:/Users/ander/AppData/Local/Temp/codex-clipboard-7d68719b-5df7-4e38-9304-6c69bfff2b88.png",
+      "sha256": "1F4FE732D3F92FAAA5445F21229455FE943FDA3611DEC395C6BBD3252DEC031F",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-068",
+      "arquivo": "EVID-068_trilha-horizontal-hdmi-sem-autorizacao.png",
+      "etapa": "Passo 4 — Revisão contextual 0.8.1",
+      "descricao": "Verificação técnica: trilha horizontal abaixo do cabeçalho, resumo lateral e revisão do chamado fictício HDMI com uma descrição e sem autorização. Não enviado ao Google.",
+      "data_aproximada": "2026-10-01",
+      "fundamento_data": "Contexto da conversa e captura desta sessão; data do temporário não usada",
+      "data_inclusao": "2026-10-01",
+      "origem": "Captura feita no navegador nesta sessão — C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\trilha-horizontal-hdmi-v081.png",
+      "sha256": "05B46B60A21B6BA7B5889FFE4997B5F4C5F51A3475B9A61E2F6DDBBA15E30F7F",
+      "status": "salvo e conferido visualmente"
     }
   ]
 }

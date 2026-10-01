@@ -7,3 +7,5 @@ Modal fecha por clique fora e Escape; foco inicial no fechar. Tela móvel 360x78
 Os prints enviados do usuário confirmam #002 e e-mail exibido no Google, resolvendo a pendência anterior de e-mail. Autorização em O ainda precisa de publicação e teste remoto. Nomes são validados estruturalmente, sem verificar identidade. Domínio institucional não restringido.
 
 Próxima evidência EVID-067: após atualizar Apps Script conforme ATUALIZAR-v0.8.md, envie uma troca fictícia e capture o modal mostrando autorização e a coluna O.
+
+Verificação final: indicador circular medido em 8×8 px e âmbar no estado pronto. Cliente em 320, 768, 1366 e 3840 px apresentou largura do documento igual à tela, sem transbordamento horizontal. Teste HTTP adicional bloqueou troca sem autorização, liderança com nome incompleto e solicitante sem sobrenome; autorização pendente foi preservada em armazenamento simulado. Nenhum chamado real foi enviado neste teste.

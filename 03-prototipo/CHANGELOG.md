@@ -130,3 +130,7 @@ Referência: [preços oficiais](https://ai.google.dev/gemini-api/docs/pricing#ge
 ## 0.8.0 — Refinamento de experiência
 
 Modal fecha por clique externo e Escape; botão de fechar compacto; dashboard com fundos discretos e temas refinados; favicon SVG. Nome e sobrenome com Unicode, e-mail destacado até correção, Recomeçar, instruções e respostas acolhedoras. Computador identificado por quem utiliza. Pergunta imediata de descrição sem espera por IA. Autorização declarada ou pendente para compra/troca, servidor valida e Apps Script armazena em O. IA distingue pronta, processando, conectada e indisponível sem chamadas artificiais.
+
+## 0.8.1 — Contexto e trilha horizontal
+
+HDMI sem autorização e sem descrição duplicada. Periféricos distinguem defeito de item novo/diferente antes dos detalhes. Prompts contextualizados por serviço/campo. Trilha horizontal sob cabeçalho, resumo e orientação na lateral. Regra de autorização alinhada entre navegador e servidor.
