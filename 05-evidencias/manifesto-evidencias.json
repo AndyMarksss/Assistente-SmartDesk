@@ -2,7 +2,7 @@
   "versao": 1,
   "projeto": "SmartDesk",
   "atualizado_em": "2026-10-01",
-  "proximo_numero": 151,
+  "proximo_numero": 161,
   "evidencias": [
     {
       "numero": "EVID-001",
@@ -1808,6 +1808,126 @@
       "data_inclusao": "2026-10-02",
       "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\avatar-claro-v0813.png",
       "sha256": "6F893387BCEBC4C88AD0AC8904591FD01118D4D7FA540D02BF82B75A9D246C11",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-151",
+      "arquivo": "EVID-151_feedback-acompanhamento-1.png",
+      "etapa": "Passo 4 — Acompanhamento 0.8.14",
+      "descricao": "Anexo recebido: abertura, ajuda ou pergunta cortada pela área de resposta na versão anterior.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo/captura desta sessão",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:/Users/ander/AppData/Local/Temp/codex-clipboard-503d6cbf-c0df-46f1-8407-9f0222a23c85.png",
+      "sha256": "CDE55AA95A7B45E83C61EB33B15FAF1626CB40CBA92652EAC45B7108EFDE8428",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-152",
+      "arquivo": "EVID-152_feedback-acompanhamento-2.png",
+      "etapa": "Passo 4 — Acompanhamento 0.8.14",
+      "descricao": "Anexo recebido: abertura, ajuda ou pergunta cortada pela área de resposta na versão anterior.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo/captura desta sessão",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:/Users/ander/AppData/Local/Temp/codex-clipboard-145a3508-0761-487d-a7a2-959276badd7f.png",
+      "sha256": "0798DDA38B6E2C7EC76F2ABCA5F8C6918658872CA2D04EAB7D395F4AEFA9B019",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-153",
+      "arquivo": "EVID-153_feedback-acompanhamento-3.png",
+      "etapa": "Passo 4 — Acompanhamento 0.8.14",
+      "descricao": "Anexo recebido: abertura, ajuda ou pergunta cortada pela área de resposta na versão anterior.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo/captura desta sessão",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:/Users/ander/AppData/Local/Temp/codex-clipboard-e3325629-2267-4548-9806-8b9bf32a135d.png",
+      "sha256": "B5A3EC9FE8E9E2167C276F59ABA74B4A8FD97710EDB74CBF9BE90E5517CB8CA6",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-154",
+      "arquivo": "EVID-154_feedback-acompanhamento-4.png",
+      "etapa": "Passo 4 — Acompanhamento 0.8.14",
+      "descricao": "Anexo recebido: abertura, ajuda ou pergunta cortada pela área de resposta na versão anterior.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo/captura desta sessão",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:/Users/ander/AppData/Local/Temp/codex-clipboard-68e2d6cc-d06f-4bfe-bb74-78aec9fa8e09.png",
+      "sha256": "6F70E64B686345FA8015901E060143795AD9B72F1126B56C677DB10EC17932B8",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-155",
+      "arquivo": "EVID-155_feedback-acompanhamento-5.png",
+      "etapa": "Passo 4 — Acompanhamento 0.8.14",
+      "descricao": "Anexo recebido: abertura, ajuda ou pergunta cortada pela área de resposta na versão anterior.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo/captura desta sessão",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:/Users/ander/AppData/Local/Temp/codex-clipboard-ed225046-6296-4b38-be32-81fcb4777f83.png",
+      "sha256": "8751E4B2978C0D3F28713C64E326C601E60479A51211A2E25E968E3B000C424A",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-156",
+      "arquivo": "EVID-156_acompanhamento-ajuda.png",
+      "etapa": "Passo 4 — Acompanhamento 0.8.14",
+      "descricao": "Captura 0.8.14: explicação/pergunta inteira após atualização do layout; desktop.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo/captura desta sessão",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\acompanhamento-ajuda-v0814.png",
+      "sha256": "CDE624DB82BE68CE4BCF548284E0D7E6E2E7C56C30D2197D8AFA381D7D4A7F28",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-157",
+      "arquivo": "EVID-157_acompanhamento-campo.png",
+      "etapa": "Passo 4 — Acompanhamento 0.8.14",
+      "descricao": "Captura 0.8.14: explicação/pergunta inteira após atualização do layout; desktop.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo/captura desta sessão",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\acompanhamento-campo-v0814.png",
+      "sha256": "9AC4D482C2DE7BDF92DC591B5E3A3514346DE2D6DE6D08BADAE24CACFCDC1B4C",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-158",
+      "arquivo": "EVID-158_acompanhamento-opcoes.png",
+      "etapa": "Passo 4 — Acompanhamento 0.8.14",
+      "descricao": "Captura 0.8.14: explicação/pergunta inteira após atualização do layout; desktop.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo/captura desta sessão",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\acompanhamento-opcoes-v0814.png",
+      "sha256": "5075672B56EF9D5C2DCB999C9411B627A1493C7905120045F28C4D1FD8B2158F",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-159",
+      "arquivo": "EVID-159_acompanhamento-mobile.png",
+      "etapa": "Passo 4 — Acompanhamento 0.8.14",
+      "descricao": "Captura 0.8.14: explicação/pergunta inteira após atualização do layout; viewport 390×844, sem teclado real.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo/captura desta sessão",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\acompanhamento-mobile-v0814.png",
+      "sha256": "4171FCDCBD0777429DE5A623E99335195635BDE28F1AC103815DD009BC2E0A44",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-160",
+      "arquivo": "EVID-160_acompanhamento-mobile-campo.png",
+      "etapa": "Passo 4 — Acompanhamento 0.8.14",
+      "descricao": "Captura 0.8.14: explicação/pergunta inteira após atualização do layout; viewport 390×844, sem teclado real.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo/captura desta sessão",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\acompanhamento-mobile-campo-v0814.png",
+      "sha256": "CEBA9C64C763267410A16A7C8051BCB82055706D9F0853845A813128BB29374F",
       "status": "salvo e conferido visualmente"
     }
   ]

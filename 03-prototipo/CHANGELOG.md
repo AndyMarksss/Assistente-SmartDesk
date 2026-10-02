@@ -175,3 +175,7 @@ Chat e gestão exibem SmartDesk · v0.8.12 no rodapé, incluindo mobile. Comando
 ## 0.8.13 — Robô e conexões coerentes
 
 Rodapé centralizado pela caixa e texto. Sinal luminoso segue exatamente as linhas computador → robô → som/imagem, com comprimento normalizado. Mesmo personagem SVG no cabeçalho e avatar das mensagens, com tamanho móvel e moldura suave; bolhas do assistente refinadas.
+
+## 0.8.14 — Conversa acompanha respostas
+
+Rolagem acompanha Como funciona mesmo com abertura visível e reajusta após mudança de altura dos controles/conversa. Área de resposta preserva altura durante fila de digitação; libera após renderizar controles. Recomeçar preserva abertura no topo. Circuito luminoso sequencial: computador, impressão, conexão e som/imagem → robô, sem trecho de saída.

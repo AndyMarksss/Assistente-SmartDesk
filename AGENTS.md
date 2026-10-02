@@ -94,3 +94,6 @@ Sempre mostrar a versão atual nos rodapés do chat e gestão, inclusive mobile.
 
 ## Refinamento 0.8.13
 Rodapé deve centralizar a caixa com margens automáticas, não apenas o texto. Trajeto luminoso deve coincidir com o circuito estático; usar pathLength=100 com dasharray/offset compatíveis. Cabeçalho e mensagens usam assets/img/assistente.svg como personagem decorativo, sem rótulos duplicados ou animação infinita nos avatares.
+
+## Acompanhamento 0.8.14
+Abertura fica no topo apenas até a primeira interação. Como funciona deve acompanhar cada resposta. Reajustar rolagem após layout/ResizeObserver e renderização de controles para não cortar pergunta; preservar altura do dock durante fila e liberar após controles. Reiniciar deve cancelar fila e voltar ao topo. Circuito em quatro entradas sequenciais até robô, sem saída, finito e reduzido conforme preferência.

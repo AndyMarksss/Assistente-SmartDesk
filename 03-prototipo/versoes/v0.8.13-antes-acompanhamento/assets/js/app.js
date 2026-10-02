@@ -16,11 +16,7 @@
     const token = controlVersion,
       g = generation;
     messages.whenReady(() => {
-      if (g === generation && token === controlVersion) {
-        render();
-        dock.style.removeProperty("min-height");
-        scroll();
-      }
+      if (g === generation && token === controlVersion) render();
     });
   };
   function checkpoint(render) {
@@ -41,22 +37,16 @@
     previous.render();
   }
 
-  const dock = choices.closest(".interaction-dock");
-  const follower = desk.chatView.createScrollFollower({
-    viewport: byId("conversation"),
-    content: byId("messages"),
-    dock,
-  });
-  const scroll = follower.schedule;
+  const scroll = () => {
+    const log = byId("conversation");
+    log.scrollTop = byId("welcome").hidden ? log.scrollHeight : 0;
+  };
   const messages = desk.chatView.createMessageStream({
     container: byId("messages"),
     scroll,
     reducedMotion: reduced,
   });
-  const message = (text, role) => {
-    if (role === "user") follower.follow();
-    return messages.append(text, role);
-  };
+  const message = (text, role) => messages.append(text, role);
   function stage(value) {
     state.stage = value;
     const index = desk.flows.stages.indexOf(value);
@@ -86,12 +76,6 @@
     byId("edit-context").hidden = !state.sector;
   }
   function lock(caption = "ESCOLHA UMA OPÇÃO PARA CONTINUAR") {
-    // Keep the response area stable while replies are queued; release after controls render.
-    dock.style.minHeight =
-      Math.min(
-        dock.getBoundingClientRect().height,
-        byId("chat-shell")?.clientHeight * 0.48 || window.innerHeight * 0.48,
-      ) + "px";
     byId("choices").closest(".interaction-dock").setAttribute("aria-busy", "false");
     document.querySelector(".submission-error")?.remove();
     controlVersion++;
@@ -234,8 +218,6 @@
   }
   function start() {
     if (saving) return;
-    follower.reset();
-    dock.style.removeProperty("min-height");
     generation++;
     messages.cancel();
     history = [];

@@ -1184,7 +1184,3 @@ dialog .dialog-header {
 .interaction-dock {
   scrollbar-gutter: stable both-edges;
 }
-
-.scene-connections .connection-signal {
-  opacity: 0;
-}

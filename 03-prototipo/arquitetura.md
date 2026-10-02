@@ -1,4 +1,4 @@
-# Estrutura do SmartDesk — 0.8.13
+# Estrutura do SmartDesk — 0.8.14
 
 ## Cliente
 Os scripts são carregados com defer na ordem declarada em index.html. Não há ferramenta de compilação: os arquivos continuam funcionando no servidor local e a apresentação estática no GitHub Pages.
@@ -33,3 +33,6 @@ A fonte única é package.json. Use npm run version:update -- NOVA_VERSAO em tod
 
 ## Personagem e circuito
 Cabeçalho, ilustração e avatares do assistente compartilham assets/img/assistente.svg. O avatar é decorativo (alt vazio e contêiner aria-hidden), pois a mensagem já identifica SmartDesk. O sinal luminoso deve seguir exatamente o circuito estático, com comprimento normalizado. A área de resposta reserva espaço simétrico de rolagem para manter o rodapé no eixo central.
+
+## Acompanhamento da conversa
+chat-view.createScrollFollower mantém a abertura no topo antes da interação e acompanha respostas depois dela. Observa altura do log, mensagens e área de resposta. Atualizações são agrupadas em requestAnimationFrame após layout. readyControls libera a altura reservada do dock e reagenda rolagem; isso evita perguntas cortadas após campos/opções mudarem de altura. Recomeçar reseta o acompanhamento. Circuito ilustrado usa quatro paths dirigidos ao centro, com delays independentes e término invisível.

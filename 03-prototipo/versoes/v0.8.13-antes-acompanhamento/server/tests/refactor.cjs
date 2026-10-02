@@ -138,49 +138,6 @@ const { api, attachments } = context.window.SmartDesk;
   assert.equal(ordered.children[0].children[1].children[1].textContent, "primeira");
   assert.equal(ordered.children[1].children[1].children[1].textContent, "segunda");
 
-  // Follow content and viewport resize after interaction, but preserve the initial welcome.
-  const frames = [],
-    observed = [],
-    viewport = { scrollTop: 0, scrollHeight: 1000 };
-  let notify;
-  class Observer {
-    constructor(callback) {
-      notify = callback;
-    }
-    observe(element) {
-      observed.push(element);
-    }
-  }
-  const follower = streamContext.window.SmartDesk.chatView.createScrollFollower({
-    viewport,
-    content: {},
-    dock: {},
-    frame: (callback) => frames.push(callback),
-    Observer,
-  });
-  assert.equal(observed.length, 3);
-  follower.schedule();
-  frames.shift()();
-  assert.equal(viewport.scrollTop, 0);
-  follower.follow();
-  frames.shift()();
-  assert.equal(viewport.scrollTop, 1000);
-  viewport.scrollHeight = 1400;
-  notify();
-  frames.shift()();
-  assert.equal(viewport.scrollTop, 1400);
-  follower.schedule();
-  follower.reset();
-  assert.equal(frames.length, 1);
-  frames.shift()();
-  assert.equal(viewport.scrollTop, 0);
-  notify();
-  assert.equal(frames.length, 0);
-  // All four lights terminate at the robot, using one staggered pass each.
-  const html = fs.readFileSync(path.join(proto, "index.html"), "utf8");
-  const signals = [...html.matchAll(/class="connection-signal from-[^"]+"[^>]*d="([^"]+)"/g)];
-  assert.equal(signals.length, 4);
-  signals.forEach((signal) => assert(signal[1].endsWith("L190 140")));
   // Data topology and policy must remain byte-for-byte equivalent as evaluated data.
   function base(folder) {
     const c = vm.createContext({ window: {} });

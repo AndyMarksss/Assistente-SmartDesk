@@ -38,16 +38,7 @@
     animation: mascot-float 2200ms ease-in-out 2;
   }
   .connection-signal {
-    animation: connection-flow 1100ms linear 1 both;
-  }
-  .connection-signal.from-printer {
-    animation-delay: 1100ms;
-  }
-  .connection-signal.from-network {
-    animation-delay: 2200ms;
-  }
-  .connection-signal.from-audio {
-    animation-delay: 3300ms;
+    animation: connection-flow 2200ms linear 2;
   }
   .journey-bar .journey li.done .journey-dot {
     animation: stage-done 320ms var(--motion-ease);
@@ -182,19 +173,8 @@
   }
 }
 @keyframes connection-flow {
-  0% {
-    stroke-dashoffset: 0;
-    opacity: 0;
-  }
-  5% {
-    opacity: 0.9;
-  }
-  90% {
-    opacity: 0.9;
-  }
-  100% {
+  to {
     stroke-dashoffset: -100;
-    opacity: 0;
   }
 }
 @keyframes stage-done {

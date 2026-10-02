@@ -61,38 +61,5 @@
     }
     return { append, cancel, whenReady };
   }
-  function createScrollFollower({
-    viewport,
-    content,
-    dock,
-    frame = requestAnimationFrame,
-    Observer = window.ResizeObserver,
-  }) {
-    let following = false,
-      scheduled = false;
-    function schedule() {
-      if (scheduled) return;
-      scheduled = true;
-      frame(() => {
-        scheduled = false;
-        viewport.scrollTop = following ? viewport.scrollHeight : 0;
-      });
-    }
-    function follow() {
-      following = true;
-      schedule();
-    }
-    function reset() {
-      following = false;
-      schedule();
-    }
-    if (Observer) {
-      const observer = new Observer(() => {
-        if (following) schedule();
-      });
-      [viewport, content, dock].forEach((element) => observer.observe(element));
-    }
-    return { schedule, follow, reset };
-  }
-  desk.chatView = { createMessageStream, createScrollFollower };
+  desk.chatView = { createMessageStream };
 })(window.SmartDesk);

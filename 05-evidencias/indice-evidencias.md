@@ -319,3 +319,16 @@ Incluídas em 2026-10-02:
 - EVID-148 — EVID-148_avatar-desktop.png: Captura da versão 0.8.13: robô próprio e rodapé centralizado; desktop. SHA-256 72AABB0CC2FD9D28B6A06391CBC35017B7E31B68A0FE04D3FD5FCB4017DBE760
 - EVID-149 — EVID-149_avatar-mobile.png: Captura da versão 0.8.13: robô próprio e rodapé centralizado; viewport móvel, sem teste de teclado real. SHA-256 8C16CB9D20DD94524BD0F2DA10994006BB9DB2717656F39564B79A80968F9F26
 - EVID-150 — EVID-150_avatar-claro.png: Captura da versão 0.8.13: robô próprio e rodapé centralizado; viewport móvel, sem teste de teclado real. SHA-256 6F893387BCEBC4C88AD0AC8904591FD01118D4D7FA540D02BF82B75A9D246C11
+
+## Acompanhamento 0.8.14
+
+- EVID-151 — EVID-151_feedback-acompanhamento-1.png: Anexo recebido: abertura, ajuda ou pergunta cortada pela área de resposta na versão anterior. SHA-256 CDE55AA95A7B45E83C61EB33B15FAF1626CB40CBA92652EAC45B7108EFDE8428
+- EVID-152 — EVID-152_feedback-acompanhamento-2.png: Anexo recebido: abertura, ajuda ou pergunta cortada pela área de resposta na versão anterior. SHA-256 0798DDA38B6E2C7EC76F2ABCA5F8C6918658872CA2D04EAB7D395F4AEFA9B019
+- EVID-153 — EVID-153_feedback-acompanhamento-3.png: Anexo recebido: abertura, ajuda ou pergunta cortada pela área de resposta na versão anterior. SHA-256 B5A3EC9FE8E9E2167C276F59ABA74B4A8FD97710EDB74CBF9BE90E5517CB8CA6
+- EVID-154 — EVID-154_feedback-acompanhamento-4.png: Anexo recebido: abertura, ajuda ou pergunta cortada pela área de resposta na versão anterior. SHA-256 6F70E64B686345FA8015901E060143795AD9B72F1126B56C677DB10EC17932B8
+- EVID-155 — EVID-155_feedback-acompanhamento-5.png: Anexo recebido: abertura, ajuda ou pergunta cortada pela área de resposta na versão anterior. SHA-256 8751E4B2978C0D3F28713C64E326C601E60479A51211A2E25E968E3B000C424A
+- EVID-156 — EVID-156_acompanhamento-ajuda.png: Captura 0.8.14: explicação/pergunta inteira após atualização do layout; desktop. SHA-256 CDE624DB82BE68CE4BCF548284E0D7E6E2E7C56C30D2197D8AFA381D7D4A7F28
+- EVID-157 — EVID-157_acompanhamento-campo.png: Captura 0.8.14: explicação/pergunta inteira após atualização do layout; desktop. SHA-256 9AC4D482C2DE7BDF92DC591B5E3A3514346DE2D6DE6D08BADAE24CACFCDC1B4C
+- EVID-158 — EVID-158_acompanhamento-opcoes.png: Captura 0.8.14: explicação/pergunta inteira após atualização do layout; desktop. SHA-256 5075672B56EF9D5C2DCB999C9411B627A1493C7905120045F28C4D1FD8B2158F
+- EVID-159 — EVID-159_acompanhamento-mobile.png: Captura 0.8.14: explicação/pergunta inteira após atualização do layout; viewport 390×844, sem teclado real. SHA-256 4171FCDCBD0777429DE5A623E99335195635BDE28F1AC103815DD009BC2E0A44
+- EVID-160 — EVID-160_acompanhamento-mobile-campo.png: Captura 0.8.14: explicação/pergunta inteira após atualização do layout; viewport 390×844, sem teclado real. SHA-256 CEBA9C64C763267410A16A7C8051BCB82055706D9F0853845A813128BB29374F
