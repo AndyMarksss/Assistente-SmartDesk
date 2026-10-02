@@ -2,7 +2,7 @@
   "versao": 1,
   "projeto": "SmartDesk",
   "atualizado_em": "2026-10-01",
-  "proximo_numero": 138,
+  "proximo_numero": 143,
   "evidencias": [
     {
       "numero": "EVID-001",
@@ -1652,6 +1652,66 @@
       "data_inclusao": "2026-10-02",
       "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\planos-gestao-v0810.png",
       "sha256": "210085847510E632F10DF95A9DD8C3751FFB3582BE943A5BC84A90173F60D249",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-138",
+      "arquivo": "EVID-138_refatoracao-escolhas.png",
+      "etapa": "Passo 4 — Refatoração 0.8.11",
+      "descricao": "Opções de atendimento no cliente refatorado; captura estática não comprova animação.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Captura desta sessão de verificação",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\refatoracao-escolhas-v0811.png",
+      "sha256": "BB130C06E4A022B8E92813BA1546ED554A002E7A9190E4DA6982295983814477",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-139",
+      "arquivo": "EVID-139_refatoracao-detalhes.png",
+      "etapa": "Passo 4 — Refatoração 0.8.11",
+      "descricao": "Detalhes do chamado de demonstração; animação de abertura conferida pelo estilo computado.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Captura desta sessão de verificação",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\refatoracao-detalhes-v0811.png",
+      "sha256": "07100D326E9A0AAE8187044021653E33968AB5596DD41089FDB4DE136AEE322F",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-140",
+      "arquivo": "EVID-140_refatoracao-confirmacao.png",
+      "etapa": "Passo 4 — Refatoração 0.8.11",
+      "descricao": "Recibo #TESTE-LOCAL do adaptador fictício depois de falha e nova tentativa; nenhum chamado real.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Captura desta sessão de verificação",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\refatoracao-confirmacao-v0811.png",
+      "sha256": "D568F87FE7134693728E4D901FD18202130781E311D5B998C4EF1CD4291E0EAF",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-141",
+      "arquivo": "EVID-141_refatoracao-mobile.png",
+      "etapa": "Passo 4 — Refatoração 0.8.11",
+      "descricao": "Chat escuro em viewport 390×844, sem overflow lateral; sem teste de teclado real.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Captura desta sessão de verificação",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\refatoracao-mobile-v0811.png",
+      "sha256": "52CF2094BB24C77CDDD94AE2BC18BEEDD64BCD48268ABA57F50E148FEE61AFA3",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-142",
+      "arquivo": "EVID-142_refatoracao-gestao-mobile.png",
+      "etapa": "Passo 4 — Refatoração 0.8.11",
+      "descricao": "Painel de demonstração em viewport 390×844, sem overflow lateral.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Captura desta sessão de verificação",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\refatoracao-gestao-mobile-v0811.png",
+      "sha256": "1A046F834BA1B8539A9A0C0BF53E42BFB7FA5E463C4FCF5B13ABFC748C79C294",
       "status": "salvo e conferido visualmente"
     }
   ]

@@ -1,0 +1,251 @@
+/* Single motion layer. Decorative effects finish; loading stays active until confirmed. */
+:root {
+  --motion-fast: 160ms;
+  --motion-enter: 280ms;
+  --motion-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.chart-bar {
+  transform-origin: left;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .message {
+    animation: message-arrive var(--motion-enter) var(--motion-ease);
+  }
+  .message.user {
+    animation-name: reply-arrive;
+  }
+  #choices .choice {
+    animation: choice-arrive var(--motion-enter) var(--motion-ease) var(--option-delay, 0ms)
+      backwards;
+  }
+  .welcome,
+  .admin-header {
+    animation: surface-enter 400ms var(--motion-ease);
+  }
+  .scene-device {
+    animation: surface-enter 400ms var(--motion-ease) backwards;
+  }
+  .scene-device.network {
+    animation-delay: 60ms;
+  }
+  .scene-device.printer {
+    animation-delay: 120ms;
+  }
+  .scene-device.audio {
+    animation-delay: 180ms;
+  }
+  .desk-mascot img {
+    animation: mascot-float 2200ms ease-in-out 2;
+  }
+  .connection-signal {
+    animation: connection-flow 2200ms linear 2;
+  }
+  .journey-bar .journey li.done .journey-dot {
+    animation: stage-done 320ms var(--motion-ease);
+  }
+  .journey-bar .journey li[aria-current] {
+    animation: surface-enter var(--motion-enter) var(--motion-ease);
+  }
+  .is-loading .fa-check {
+    animation: busy-pulse 850ms ease-in-out infinite;
+  }
+  .typing span {
+    animation: typing-pulse 900ms ease-in-out infinite;
+  }
+  .typing span:nth-child(2) {
+    animation-delay: 120ms;
+  }
+  .typing span:nth-child(3) {
+    animation-delay: 240ms;
+  }
+  .sending-spinner,
+  .is-loading .fa-rotate {
+    animation: sending-turn 850ms linear infinite;
+  }
+  .summary-card,
+  .submission-error,
+  .sending-status,
+  .structured-field:not(:empty),
+  #attachment-panel:not([hidden]),
+  dialog[open] {
+    animation: surface-enter var(--motion-enter) var(--motion-ease);
+  }
+  .message.sent .message-avatar {
+    animation: stage-done 400ms var(--motion-ease);
+  }
+  .metrics article {
+    animation: surface-enter 360ms var(--motion-ease);
+  }
+  .chart-bar {
+    animation: chart-grow 400ms var(--motion-ease);
+  }
+  .ticket-card.motion-enter {
+    animation: surface-enter var(--motion-enter) var(--motion-ease) var(--option-delay, 0ms)
+      backwards;
+  }
+  dialog[open]::backdrop {
+    animation: backdrop-enter 180ms ease-out;
+  }
+  .choice,
+  .send-button,
+  .ticket-card {
+    transition:
+      background var(--motion-fast),
+      border-color var(--motion-fast),
+      transform var(--motion-fast) var(--motion-ease);
+  }
+  .journey-dot,
+  .composer,
+  .theme-toggle {
+    transition:
+      background var(--motion-fast),
+      border-color var(--motion-fast),
+      color var(--motion-fast);
+  }
+  .area-choice::after {
+    transition: transform var(--motion-fast);
+  }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .choice:hover:not(:disabled),
+  .send-button:hover:not(:disabled),
+  .ticket-card:hover {
+    transform: translateY(-2px);
+  }
+  .area-choice:hover::after {
+    transform: translateX(3px) rotate(45deg);
+  }
+}
+.choice:active:not(:disabled),
+.send-button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+.choice.primary::after {
+  display: none;
+} /* Remove the old sweeping highlight/layout animation. */
+@keyframes message-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes reply-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(6px) translateX(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes choice-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes surface-enter {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes mascot-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(2deg);
+  }
+}
+@keyframes connection-flow {
+  to {
+    stroke-dashoffset: -350;
+  }
+}
+@keyframes stage-done {
+  0% {
+    transform: scale(0.85);
+  }
+  65% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes typing-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: none;
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+}
+@keyframes sending-turn {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes chart-grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes backdrop-enter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+  .choice:active:not(:disabled),
+  .choice:hover:not(:disabled),
+  .send-button:hover:not(:disabled),
+  .send-button:active:not(:disabled),
+  .ticket-card:hover {
+    transform: none;
+  }
+  .area-choice:hover::after {
+    transform: rotate(45deg);
+  }
+}
+
+@keyframes busy-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}

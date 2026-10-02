@@ -267,3 +267,11 @@ Incluídas em 2026-10-02:
 - EVID-135 — EVID-135_planos-falha.png: Recebimento simulado indisponível: envio não confirmado e ação de tentar novamente, dados fictícios.; SHA-256 77C9177B937D3952750E69301D04C6DEBB4C56FB7C5C92541581BC3A7B31920C
 - EVID-136 — EVID-136_planos-confirmacao-teste.png: Nova tentativa aceita pelo adaptador fictício #TESTE-LOCAL. Não criou chamado no Google.; SHA-256 5DF5F84F6DCF254C6160375FF176E050C8FE42EC039F22BBFC2A4609523C6D6B
 - EVID-137 — EVID-137_planos-gestao.png: Gestão com a mesma separação de superfícies; origem Demonstração.; SHA-256 210085847510E632F10DF95A9DD8C3751FFB3582BE943A5BC84A90173F60D249
+
+## Refatoração 0.8.11 — 2026-10-02
+
+- EVID-138 — EVID-138_refatoracao-escolhas.png: Opções de atendimento no cliente refatorado; captura estática não comprova animação. SHA-256 BB130C06E4A022B8E92813BA1546ED554A002E7A9190E4DA6982295983814477
+- EVID-139 — EVID-139_refatoracao-detalhes.png: Detalhes do chamado de demonstração; animação de abertura conferida pelo estilo computado. SHA-256 07100D326E9A0AAE8187044021653E33968AB5596DD41089FDB4DE136AEE322F
+- EVID-140 — EVID-140_refatoracao-confirmacao.png: Recibo #TESTE-LOCAL do adaptador fictício depois de falha e nova tentativa; nenhum chamado real. SHA-256 D568F87FE7134693728E4D901FD18202130781E311D5B998C4EF1CD4291E0EAF
+- EVID-141 — EVID-141_refatoracao-mobile.png: Chat escuro em viewport 390×844, sem overflow lateral; sem teste de teclado real. SHA-256 52CF2094BB24C77CDDD94AE2BC18BEEDD64BCD48268ABA57F50E148FEE61AFA3
+- EVID-142 — EVID-142_refatoracao-gestao-mobile.png: Painel de demonstração em viewport 390×844, sem overflow lateral. SHA-256 1A046F834BA1B8539A9A0C0BF53E42BFB7FA5E463C4FCF5B13ABFC748C79C294

@@ -85,3 +85,6 @@ Composição ilustrada própria com vidro localizado, cores por função e satur
 
 ## Planos e envio 0.8.10
 Assunto gerado localmente deve passar safeSubject nos 57 caminhos; nunca exigir edição do assunto oculto pelo usuário. Categorias canônicas permanecem intactas. Falhas não podem parecer envio concluído; preservar ID/dados e oferecer nova tentativa. Separar cenário, conversa e resposta por luminosidade, mantendo azul orientativo, violeta de ação e rótulos.
+
+## Estrutura e movimento 0.8.11
+Comunicação, fila cancelável, campos e anexos têm módulos próprios; alterações de animação devem ficar em motion.css. Efeitos decorativos finitos, indicadores funcionais enquanto operação pendente e prefers-reduced-motion obrigatório. Não reanimar quadro em cada tecla da busca. Executar npm test e conferir navegador antes de entregar mudanças de fluxo.

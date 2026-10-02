@@ -1,19 +1,9 @@
 "use strict";
-window.SmartDesk.flows={
-  "version": "0.6.0",
-  "stages": [
-    "context",
-    "report",
-    "summary",
-    "sent"
-  ],
-  "areas": [
-    "Audiovisual",
-    "Impressora",
-    "Google",
-    "TI"
-  ],
-  "sectors": [
+window.SmartDesk.flows = {
+  version: "0.6.0",
+  stages: ["context", "report", "summary", "sent"],
+  areas: ["Audiovisual", "Impressora", "Google", "TI"],
+  sectors: [
     "Cobrança",
     "Compras",
     "Coordenação",
@@ -38,10 +28,7 @@ window.SmartDesk.flows={
     "Secretaria",
     "Setor de Provas",
     "TE",
-    "TI"
+    "TI",
   ],
-  "planned": [
-    "triage",
-    "evaluation"
-  ]
+  planned: ["triage", "evaluation"],
 };
