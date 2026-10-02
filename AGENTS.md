@@ -70,3 +70,6 @@ Preservar distinção visual entre conversa e resposta, vidro discreto e decorat
 
 ## Revisão visual 0.8.5 — 2026-10-02
 Priorizar profundidade por planos de cor: cenário recuado, conversa suave, resposta distinta e ação principal lavanda. Vidro discreto; evitar sombras fortes, cartões excessivos e animação de destaque em todas as opções. Preservar distinção também por posição, rótulos e foco, sem depender somente da cor. Tema visual do cliente em assets/css/visual-depth.css.
+
+## Direção escolhida 0.8.6 — 2026-10-02
+Usuário escolheu explicitamente tecnológico e preciso: grafite, neutros frios e violeta. Esta preferência substitui a base ameixa/rosa anterior nas superfícies do cliente. Preservar identidade violeta, saturação concentrada em interação e papéis em sistema-de-cores.md. Não afirmar auditoria WCAG completa pelos 22 pares medidos.

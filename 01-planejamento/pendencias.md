@@ -62,3 +62,5 @@ HDMI dispensa autorização, descrição duplicada removida, periféricos distin
 - 0.8.4: retestar em Android real pergunta atual e troca calendário/relógio com teclado aberto. Sem nova implantação Apps Script. Próxima evidência 95.
 
 - 0.8.5: conferir no celular real os dois temas e teclado após atualização; próximos prints EVID-99 em diante. Sem atualização Apps Script.
+
+- 0.8.6: conferir a nova direção em celular real nos dois temas. Próxima evidência EVID-103. Sem nova implantação Apps Script.

@@ -146,3 +146,6 @@ Tema escuro com conversa em fundo neutro, mensagens ameixa e campo de resposta m
 
 ## 0.8.5 — Profundidade pela cor
 Planos de cor para cenário, conversa e resposta; vidro translúcido no cabeçalho e na área de resposta; histórico em ameixa suave e lavanda reservada para ação principal. Lateral integrada ao cenário, menos bordas e cartões, selo de IA duplicado e instrução repetida removidos visualmente. Mensagem atual com detalhe lavanda; iniciar atendimento recebe destaque principal. Mantidos ✓, alternância data/hora, estado de envio e adaptação ao teclado.
+
+## 0.8.6 — Paleta por função
+Direção tecnológica escolhida pelo usuário: grafite e neutros frios estruturam planos; violeta indica ação, foco e etapa atual. Histórico do usuário azul acinzentado; mensagens do bot neutras, cores sólidas para legibilidade. Vidro somente no cabeçalho/dock, grade discreta, proporções e texto inicial mais precisos. Mantidos os fluxos e os controles móveis. 22 pares de contraste aprovados; sistema documentado com fontes.
