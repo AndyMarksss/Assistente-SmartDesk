@@ -70,3 +70,5 @@ HDMI dispensa autorização, descrição duplicada removida, periféricos distin
 - 0.8.8: conferir abertura móvel e gestão no celular real; sem atualização Apps Script. Próxima evidência: EVID-120.
 
 - 0.8.9: avaliar abertura e escolhas no celular real; captar os dois prints nos temas preferidos. Próxima EVID-129. Sem atualização Apps Script.
+
+- 0.8.10: conferir tema preferido no celular real e um envio de Wi-Fi pelo servidor local. Sem nova implantação Apps Script. Próximo print: área de resposta junto à pergunta atual no mobile; próxima EVID-138.

@@ -82,3 +82,6 @@ Instrução direta: remover botão de pausa; respeitar prefers-reduced-motion au
 
 ## Central de apoio 0.8.9
 Composição ilustrada própria com vidro localizado, cores por função e saturação contida. Manter azul de orientação, violeta de ação, mensagens neutras, rótulos/ícones e texto legível. Decoração não pode parecer seleção de área nem estado real da IA. Manter abertura compacta em 360px e movimento reduzido do sistema; sem botão de pausa por instrução direta.
+
+## Planos e envio 0.8.10
+Assunto gerado localmente deve passar safeSubject nos 57 caminhos; nunca exigir edição do assunto oculto pelo usuário. Categorias canônicas permanecem intactas. Falhas não podem parecer envio concluído; preservar ID/dados e oferecer nova tentativa. Separar cenário, conversa e resposta por luminosidade, mantendo azul orientativo, violeta de ação e rótulos.

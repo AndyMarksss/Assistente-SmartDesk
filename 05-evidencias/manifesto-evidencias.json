@@ -2,7 +2,7 @@
   "versao": 1,
   "projeto": "SmartDesk",
   "atualizado_em": "2026-10-01",
-  "proximo_numero": 129,
+  "proximo_numero": 138,
   "evidencias": [
     {
       "numero": "EVID-001",
@@ -1544,6 +1544,114 @@
       "data_inclusao": "2026-10-02",
       "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\studio-gestao-mobile-v089.png",
       "sha256": "DFBB5DE8EF78A6B2CD89A002A78EBED68E539432FB784F0B8879105FA18DBB22",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-129",
+      "arquivo": "EVID-129_feedback-envio.png",
+      "etapa": "Passo 4 — Planos e envio 0.8.10",
+      "descricao": "Print recebido: validação do assunto oculto bloqueia envio; não houve confirmação.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo/captura desta sessão; sem inferência pela data do temporário",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:/Users/ander/AppData/Local/Temp/codex-clipboard-4d343bf8-b6e4-4934-aa91-7da1c30d54fb.png",
+      "sha256": "076C7E109EB1FAB18CB5A5C6A2AB15EEF4268BE42EAC1F4E455F739ABCAABF19",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-130",
+      "arquivo": "EVID-130_feedback-claro.png",
+      "etapa": "Passo 4 — Planos e envio 0.8.10",
+      "descricao": "Print recebido da abertura clara anterior; pedido de maior separação de planos.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo/captura desta sessão; sem inferência pela data do temporário",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:/Users/ander/AppData/Local/Temp/codex-clipboard-59f1c31b-80de-42bc-befe-6b8fa56774c1.png",
+      "sha256": "AF1D97319EB63DC52A28091B0D1C174D7C810494B3D8EB684F3F19091CBBFB73",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-131",
+      "arquivo": "EVID-131_feedback-escuro.png",
+      "etapa": "Passo 4 — Planos e envio 0.8.10",
+      "descricao": "Print recebido da abertura escura anterior; pedido de profundidade por cor.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo/captura desta sessão; sem inferência pela data do temporário",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:/Users/ander/AppData/Local/Temp/codex-clipboard-d9d1fe4f-0672-4672-a934-e03a2dea7b2f.png",
+      "sha256": "D763AC4D246D8A75AF65AF7F8938D6184CF7AB778CFB719E90BDA2DC2DE7462C",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-132",
+      "arquivo": "EVID-132_planos-escuro.png",
+      "etapa": "Passo 4 — Planos e envio 0.8.10",
+      "descricao": "Abertura escura: cenário recuado, painel elevado por luminosidade e área de resposta violeta.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo/captura desta sessão; sem inferência pela data do temporário",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\planos-escuro-v0810.png",
+      "sha256": "9418D8928E9D978CE60BBE3B7CBE0A0031624789000FEBD1D013D26B9278B514",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-133",
+      "arquivo": "EVID-133_planos-claro.png",
+      "etapa": "Passo 4 — Planos e envio 0.8.10",
+      "descricao": "Abertura clara: cenário azul cinza, painel branco e resposta lavanda.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo/captura desta sessão; sem inferência pela data do temporário",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\planos-claro-v0810.png",
+      "sha256": "CC667A0F1073235C0250BDDD250242CA4ED661F5285472717BF4628B64560F7F",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-134",
+      "arquivo": "EVID-134_planos-mobile.png",
+      "etapa": "Passo 4 — Planos e envio 0.8.10",
+      "descricao": "Abertura escura em viewport 390×844, sem overflow lateral. Não é teste de teclado real.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo/captura desta sessão; sem inferência pela data do temporário",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\planos-mobile-v0810.png",
+      "sha256": "41A640BABB9A75153D8A9BB5EFA034272B5219F68940A611C4BC3F2ACE4CD2DA",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-135",
+      "arquivo": "EVID-135_planos-falha.png",
+      "etapa": "Passo 4 — Planos e envio 0.8.10",
+      "descricao": "Recebimento simulado indisponível: envio não confirmado e ação de tentar novamente, dados fictícios.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo/captura desta sessão; sem inferência pela data do temporário",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\planos-falha-v0810.png",
+      "sha256": "77C9177B937D3952750E69301D04C6DEBB4C56FB7C5C92541581BC3A7B31920C",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-136",
+      "arquivo": "EVID-136_planos-confirmacao-teste.png",
+      "etapa": "Passo 4 — Planos e envio 0.8.10",
+      "descricao": "Nova tentativa aceita pelo adaptador fictício #TESTE-LOCAL. Não criou chamado no Google.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo/captura desta sessão; sem inferência pela data do temporário",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\planos-confirmacao-teste-v0810.png",
+      "sha256": "5DF5F84F6DCF254C6160375FF176E050C8FE42EC039F22BBFC2A4609523C6D6B",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-137",
+      "arquivo": "EVID-137_planos-gestao.png",
+      "etapa": "Passo 4 — Planos e envio 0.8.10",
+      "descricao": "Gestão com a mesma separação de superfícies; origem Demonstração.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo/captura desta sessão; sem inferência pela data do temporário",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\planos-gestao-v0810.png",
+      "sha256": "210085847510E632F10DF95A9DD8C3751FFB3582BE943A5BC84A90173F60D249",
       "status": "salvo e conferido visualmente"
     }
   ]

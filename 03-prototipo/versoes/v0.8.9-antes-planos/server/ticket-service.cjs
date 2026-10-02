@@ -29,7 +29,7 @@ function safeSubject(value) {
   if(!subject||subject.length>80||/[\r\n<>\x00-\x1f]/.test(subject)||/https?:\/\//i.test(subject))return null;
   return subject;
 }
-function localSubject(item) { return (item.area+" — "+item.need.replace(/\s*[—–]\s*confirmar.*$/i,"").replace(/\s*>\s*/g," — ")).slice(0,80); }
+function localSubject(item) { return (item.area+" — "+item.need.replace(/\s*[—–]\s*confirmar.*$/i,"")).slice(0,80); }
 function validateAnswers(input,item) {
   const answers=input||{};
   if(typeof answers!=="object"||Array.isArray(answers)||Object.keys(answers).some(key=>!item.fields?.some(field=>field.id===key)))throw new InvalidRequest("Confira os detalhes da solicitação.");

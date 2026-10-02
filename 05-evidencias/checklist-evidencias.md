@@ -256,3 +256,14 @@ Incluídas em 2026-10-02:
 - EVID-126 — EVID-126_studio-gestao.png: Gestão escura com cabeçalho e planos de cor atualizados; dados simulados. Print estático não comprova movimento. Origem: C:\Users\ander\Documents\Codex\2026-09-30\referenced-chatgpt-conversation-this-is-an-2\outputs\studio-gestao-v089.png; SHA-256: EC73567702CF3D7F1E766F9768B4AD075C35B996D2F5A206C7FD8C59E7E13A3E
 - EVID-127 — EVID-127_studio-gestao-claro.png: Gestão clara com contraste entre origem, indicadores e orientação. Print estático não comprova movimento. Origem: C:\Users\ander\Documents\Codex\2026-09-30\referenced-chatgpt-conversation-this-is-an-2\outputs\studio-gestao-claro-v089.png; SHA-256: A28A90F2CCE0946F4B2073F5F5EB82050BA9C64BB13DAE18BDDA4CD20A0E46C3
 - EVID-128 — EVID-128_studio-gestao-mobile.png: Gestão móvel 390×844; indicadores responsivos e cabeçalho. Print estático não comprova movimento. Origem: C:\Users\ander\Documents\Codex\2026-09-30\referenced-chatgpt-conversation-this-is-an-2\outputs\studio-gestao-mobile-v089.png; SHA-256: DFBB5DE8EF78A6B2CD89A002A78EBED68E539432FB784F0B8879105FA18DBB22
+
+## Planos e envio 0.8.10 — 2026-10-02
+- EVID-129 — EVID-129_feedback-envio.png: Print recebido: validação do assunto oculto bloqueia envio; não houve confirmação.; SHA-256 076C7E109EB1FAB18CB5A5C6A2AB15EEF4268BE42EAC1F4E455F739ABCAABF19
+- EVID-130 — EVID-130_feedback-claro.png: Print recebido da abertura clara anterior; pedido de maior separação de planos.; SHA-256 AF1D97319EB63DC52A28091B0D1C174D7C810494B3D8EB684F3F19091CBBFB73
+- EVID-131 — EVID-131_feedback-escuro.png: Print recebido da abertura escura anterior; pedido de profundidade por cor.; SHA-256 D763AC4D246D8A75AF65AF7F8938D6184CF7AB778CFB719E90BDA2DC2DE7462C
+- EVID-132 — EVID-132_planos-escuro.png: Abertura escura: cenário recuado, painel elevado por luminosidade e área de resposta violeta.; SHA-256 9418D8928E9D978CE60BBE3B7CBE0A0031624789000FEBD1D013D26B9278B514
+- EVID-133 — EVID-133_planos-claro.png: Abertura clara: cenário azul cinza, painel branco e resposta lavanda.; SHA-256 CC667A0F1073235C0250BDDD250242CA4ED661F5285472717BF4628B64560F7F
+- EVID-134 — EVID-134_planos-mobile.png: Abertura escura em viewport 390×844, sem overflow lateral. Não é teste de teclado real.; SHA-256 41A640BABB9A75153D8A9BB5EFA034272B5219F68940A611C4BC3F2ACE4CD2DA
+- EVID-135 — EVID-135_planos-falha.png: Recebimento simulado indisponível: envio não confirmado e ação de tentar novamente, dados fictícios.; SHA-256 77C9177B937D3952750E69301D04C6DEBB4C56FB7C5C92541581BC3A7B31920C
+- EVID-136 — EVID-136_planos-confirmacao-teste.png: Nova tentativa aceita pelo adaptador fictício #TESTE-LOCAL. Não criou chamado no Google.; SHA-256 5DF5F84F6DCF254C6160375FF176E050C8FE42EC039F22BBFC2A4609523C6D6B
+- EVID-137 — EVID-137_planos-gestao.png: Gestão com a mesma separação de superfícies; origem Demonstração.; SHA-256 210085847510E632F10DF95A9DD8C3751FFB3582BE943A5BC84A90173F60D249
