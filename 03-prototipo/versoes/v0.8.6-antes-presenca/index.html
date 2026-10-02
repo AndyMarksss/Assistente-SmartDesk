@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/responsive.css">
   <link rel="stylesheet" href="assets/css/visual-depth.css">
-  <link rel="stylesheet" href="assets/css/personality.css">
   <script defer src="assets/js/knowledge-base.js"></script>
   <script defer src="assets/js/classifier.js"></script>
   <script defer src="assets/js/flows.js"></script>
@@ -19,7 +18,6 @@
   <script defer src="assets/js/conversation-copy.js"></script>
   <script defer src="assets/js/app.js"></script>
   <script defer src="assets/js/mobile-viewport.js"></script>
-  <script defer src="assets/js/personality.js"></script>
 <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
 </head>
 
@@ -51,7 +49,6 @@
       </div>
     </aside>
     <main class="chat-shell">
-      <div class="ambient-scene" aria-hidden="true"><div class="ambient-orbit"><span></span></div><div class="ambient-glow"></div><div class="ambient-glow secondary"></div></div>
       <header class="chat-header">
         <div class="assistant-identity"><span class="assistant-avatar" aria-hidden="true"><i
               class="fa-solid fa-robot"></i></span>
@@ -60,7 +57,7 @@
             <p><span id="ai-dot" class="online-dot offline"></span> <span id="ai-status" role="status">IA ausente</span></p>
           </div>
         </div>
-        <div class="header-actions"><button id="motion-toggle" class="motion-toggle" type="button" aria-label="Pausar efeitos visuais" aria-pressed="false" title="Pausar efeitos visuais"><i class="fa-solid fa-pause" aria-hidden="true"></i></button><a class="small-action" href="admin.html" aria-label="Abrir painel de gestão"><i class="fa-solid fa-table-columns"></i></a><span class="engine-badge" id="engine-badge">Base local · demonstração</span><button
+        <div class="header-actions"><a class="small-action" href="admin.html" aria-label="Abrir painel de gestão"><i class="fa-solid fa-table-columns"></i></a><span class="engine-badge" id="engine-badge">Base local · demonstração</span><button
             id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false" aria-label="Ativar tema escuro"><i
               class="fa-solid fa-moon" aria-hidden="true"></i><span>Tema escuro</span></button><button
             id="mobile-new-chat" class="mobile-new" type="button" aria-label="Novo atendimento"><i
@@ -79,7 +76,7 @@
       <div class="conversation" id="conversation" role="log" aria-label="Conversa com o SmartDesk" aria-live="polite"
         aria-relevant="additions">
         <div class="conversation-date">SEU ATENDIMENTO COMEÇA AQUI</div>
-        <div class="welcome" id="welcome"><div class="desk-mascot" aria-hidden="true"><img src="assets/img/assistente.svg" alt="" width="145" height="145"><span class="mascot-note">Uma pergunta por vez. Vamos juntos.</span></div><span class="welcome-icon" aria-hidden="true"><i
+        <div class="welcome" id="welcome"><span class="welcome-icon" aria-hidden="true"><i
               class="fa-solid fa-robot"></i></span>
           <p class="eyebrow">SUPORTE SEM COMPLICAÇÃO</p>
           <h2>Suporte claro.<br><span>Próximo passo certo.</span></h2>

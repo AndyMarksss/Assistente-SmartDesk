@@ -36,3 +36,6 @@ Direção explicitamente escolhida: tecnológico e preciso, grafite, neutros fri
 - [W3C: contraste mínimo de texto](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum)
 - [W3C: uso da cor acompanhado de outros sinais](https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html)
 - [W3C: contraste de componentes](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html)
+
+## Presença e movimento 0.8.7
+A paleta por função permanece. A personalidade vem de ilustração própria, órbitas, superfícies translúcidas e avatares. Movimento de entrada é breve (0,36–0,38s); flutuação de 5s e rotação de 30s são opcionais, com botão de pausa persistente. Movimento reduzido tem prioridade. Decorações não interceptam toque nem entram na leitura assistiva.

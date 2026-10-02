@@ -2,7 +2,7 @@
   "versao": 1,
   "projeto": "SmartDesk",
   "atualizado_em": "2026-10-01",
-  "proximo_numero": 103,
+  "proximo_numero": 109,
   "evidencias": [
     {
       "numero": "EVID-001",
@@ -1232,6 +1232,78 @@
       "data_inclusao": "2026-10-02",
       "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\paleta-opcoes-mobile-v086.png",
       "sha256": "33C3857C477EE99A48C640F8ACFF544D9FD7D8743D8EE2F0F758E2EACAAA6F9A",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-103",
+      "arquivo": "EVID-103_feedback-cru-claro.png",
+      "etapa": "Passo 4 — Personalidade 0.8.7",
+      "descricao": "Feedback recebido: conversa clara sem personalidade percebida; usuário pede elementos e animações.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo/captura nesta sessão; data do temporário não usada",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:/Users/ander/AppData/Local/Temp/codex-clipboard-aae877e4-c47a-46ea-a8ca-b876fce37646.png",
+      "sha256": "86658834D0B73EF9841958F39F11B2D3E244C729CAC3B958C3DE350EF359439C",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-104",
+      "arquivo": "EVID-104_feedback-cru-escuro.png",
+      "etapa": "Passo 4 — Personalidade 0.8.7",
+      "descricao": "Feedback recebido: conversa escura pouco expressiva; referência anterior ao refinamento.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo/captura nesta sessão; data do temporário não usada",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:/Users/ander/AppData/Local/Temp/codex-clipboard-8d32ce2b-a0df-4540-b76c-69f85b465090.png",
+      "sha256": "201B68414F21A2BE632A3F7B7B0476581562C25039CCEB36D906F48FF77BEF94",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-105",
+      "arquivo": "EVID-105_presenca-inicio-escuro.png",
+      "etapa": "Passo 4 — Personalidade 0.8.7",
+      "descricao": "Abertura escura com assistente ilustrado SVG próprio, órbitas, vidro e botão de pausa. Imagem estática não comprova movimento.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo/captura nesta sessão; data do temporário não usada",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\presenca-inicio-escuro-v087.png",
+      "sha256": "7D4E00ABBBD53B0E0E053AC073F7518AE0B5B2DE2A97256086D445F56F47AA6E",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-106",
+      "arquivo": "EVID-106_presenca-inicio-claro.png",
+      "etapa": "Passo 4 — Personalidade 0.8.7",
+      "descricao": "Abertura clara com assistente e elementos próprios; preserva papéis da paleta tecnológica.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo/captura nesta sessão; data do temporário não usada",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\presenca-inicio-claro-v087.png",
+      "sha256": "0C2DE3F54BC4C743F1A545C74B8480A5DADC9E6581165E2335F1BB466424D0E9",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-107",
+      "arquivo": "EVID-107_presenca-opcoes-desktop.png",
+      "etapa": "Passo 4 — Personalidade 0.8.7",
+      "descricao": "Quatro cartões desktop com ícones, contexto e indicação visual de seleção; avatares maiores e órbitas durante conversa.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo/captura nesta sessão; data do temporário não usada",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\presenca-opcoes-desktop-v087.png",
+      "sha256": "A8355848C99795919D26C8A961B82EDBE303FC4FDD12CA162880B7C725EDB64C",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-108",
+      "arquivo": "EVID-108_presenca-mobile.png",
+      "etapa": "Passo 4 — Personalidade 0.8.7",
+      "descricao": "Layout móvel em 390×844: duas colunas, pergunta atual, cartões e botão de pausa sem overflow lateral.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo/captura nesta sessão; data do temporário não usada",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\presenca-mobile-v087.png",
+      "sha256": "E9DD1894A4321C6488B568CA967E7A5D2BEF3BE3797404271447DD10EE897624",
       "status": "salvo e conferido visualmente"
     }
   ]

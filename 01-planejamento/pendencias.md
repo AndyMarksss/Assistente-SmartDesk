@@ -64,3 +64,5 @@ HDMI dispensa autorização, descrição duplicada removida, periféricos distin
 - 0.8.5: conferir no celular real os dois temas e teclado após atualização; próximos prints EVID-99 em diante. Sem atualização Apps Script.
 
 - 0.8.6: conferir a nova direção em celular real nos dois temas. Próxima evidência EVID-103. Sem nova implantação Apps Script.
+
+- 0.8.7: conferir presença e movimento no celular real, incluindo pausa. Próximas evidências a partir de EVID-109. Sem atualização Apps Script.

@@ -73,3 +73,6 @@ Priorizar profundidade por planos de cor: cenário recuado, conversa suave, resp
 
 ## Direção escolhida 0.8.6 — 2026-10-02
 Usuário escolheu explicitamente tecnológico e preciso: grafite, neutros frios e violeta. Esta preferência substitui a base ameixa/rosa anterior nas superfícies do cliente. Preservar identidade violeta, saturação concentrada em interação e papéis em sistema-de-cores.md. Não afirmar auditoria WCAG completa pelos 22 pares medidos.
+
+## Personalidade 0.8.7
+Usuário pediu explicitamente mais elementos, vida, personalidade e animações. Preservar personagem SVG próprio, cenário discreto durante conversa e microinterações. Não confundir animação decorativa com IA online. Manter pausa de efeitos e prefers-reduced-motion, sem bloquear cliques ou foco por animações.

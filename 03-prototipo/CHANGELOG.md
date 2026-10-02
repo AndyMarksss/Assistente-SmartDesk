@@ -149,3 +149,6 @@ Planos de cor para cenário, conversa e resposta; vidro translúcido no cabeçal
 
 ## 0.8.6 — Paleta por função
 Direção tecnológica escolhida pelo usuário: grafite e neutros frios estruturam planos; violeta indica ação, foco e etapa atual. Histórico do usuário azul acinzentado; mensagens do bot neutras, cores sólidas para legibilidade. Vidro somente no cabeçalho/dock, grade discreta, proporções e texto inicial mais precisos. Mantidos os fluxos e os controles móveis. 22 pares de contraste aprovados; sistema documentado com fontes.
+
+## 0.8.7 — Personalidade e movimento
+Assistente ilustrado vetorial próprio na abertura, órbitas e luzes discretas no cenário, vidro no cabeçalho e resposta, avatares maiores e cartão de ajuda. Quatro áreas em cartões com ícones e seta decorativa; quatro colunas desktop e duas mobile. Entradas curtas de mensagens e opções, retorno em hover/toque, flutuação do assistente, rotação do aro e transição de ✓. Botão para pausar efeitos, preferência salva localmente; movimento reduzido desativa animações decorativas e entradas.
