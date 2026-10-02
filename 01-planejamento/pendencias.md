@@ -76,3 +76,5 @@ HDMI dispensa autorização, descrição duplicada removida, periféricos distin
 - 0.8.11: conferir teclado real no mobile, alternância calendário/relógio e visibilidade da pergunta. Próximo print: pergunta atual e área de resposta com teclado aberto. Próxima EVID-143. Sem nova publicação de Apps Script.
 
 - 0.8.12: versão visível no rodapé do chat e gestão. Próxima entrega deve incrementar e sincronizar versão. Próximo print: campo com teclado aberto no aparelho real, EVID-145.
+
+- 0.8.13: conferir circuito luminoso ao recarregar, robô nas mensagens e rodapé central no aparelho real. Próximo print: pergunta/campo com teclado aberto; EVID-151.

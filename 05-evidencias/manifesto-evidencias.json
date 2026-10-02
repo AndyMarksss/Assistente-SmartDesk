@@ -2,7 +2,7 @@
   "versao": 1,
   "projeto": "SmartDesk",
   "atualizado_em": "2026-10-01",
-  "proximo_numero": 145,
+  "proximo_numero": 151,
   "evidencias": [
     {
       "numero": "EVID-001",
@@ -1736,6 +1736,78 @@
       "data_inclusao": "2026-10-02",
       "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\versao-mobile-v0812.png",
       "sha256": "843C5237F12600F0E7E105AC7DAF366ABB4B59896C1257A9CF2F1C60EA540CAA",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-145",
+      "arquivo": "EVID-145_feedback-rodape.png",
+      "etapa": "Passo 4 — Robô e rodapé 0.8.13",
+      "descricao": "Anexo recebido: rodapé anterior fora do eixo central.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo/captura desta sessão",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:/Users/ander/Pictures/Screenshots/Screenshot 2026-10-02 151252.png",
+      "sha256": "822C4C73F65B3EA01A817B7FC1D58E32771A1B9BD3EF250A082DDA50E1B627E5",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-146",
+      "arquivo": "EVID-146_feedback-circuito.png",
+      "etapa": "Passo 4 — Robô e rodapé 0.8.13",
+      "descricao": "Anexo recebido: trecho luminoso fora do circuito após o robô.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo/captura desta sessão",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:/Users/ander/AppData/Local/Temp/codex-clipboard-e46ceac5-573e-4ea5-be32-f3291baed208.png",
+      "sha256": "452BCE0898FD3B5D34A5F3E84C50C79C0506BEB8C5E0F5C7C704B1DAB6153800",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-147",
+      "arquivo": "EVID-147_feedback-avatar.png",
+      "etapa": "Passo 4 — Robô e rodapé 0.8.13",
+      "descricao": "Anexo recebido: ícone anterior do assistente na mensagem.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo/captura desta sessão",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:/Users/ander/AppData/Local/Temp/codex-clipboard-35d353d5-890f-4bdd-9855-2234f45da909.png",
+      "sha256": "621FBA4D14241D4E8CEE50036B51DCCC37A3086680C806437221E42CAEFCBE26",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-148",
+      "arquivo": "EVID-148_avatar-desktop.png",
+      "etapa": "Passo 4 — Robô e rodapé 0.8.13",
+      "descricao": "Captura da versão 0.8.13: robô próprio e rodapé centralizado; desktop.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo/captura desta sessão",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\avatar-desktop-v0813.png",
+      "sha256": "72AABB0CC2FD9D28B6A06391CBC35017B7E31B68A0FE04D3FD5FCB4017DBE760",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-149",
+      "arquivo": "EVID-149_avatar-mobile.png",
+      "etapa": "Passo 4 — Robô e rodapé 0.8.13",
+      "descricao": "Captura da versão 0.8.13: robô próprio e rodapé centralizado; viewport móvel, sem teste de teclado real.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo/captura desta sessão",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\avatar-mobile-v0813.png",
+      "sha256": "8C16CB9D20DD94524BD0F2DA10994006BB9DB2717656F39564B79A80968F9F26",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-150",
+      "arquivo": "EVID-150_avatar-claro.png",
+      "etapa": "Passo 4 — Robô e rodapé 0.8.13",
+      "descricao": "Captura da versão 0.8.13: robô próprio e rodapé centralizado; viewport móvel, sem teste de teclado real.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo/captura desta sessão",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\avatar-claro-v0813.png",
+      "sha256": "6F893387BCEBC4C88AD0AC8904591FD01118D4D7FA540D02BF82B75A9D246C11",
       "status": "salvo e conferido visualmente"
     }
   ]

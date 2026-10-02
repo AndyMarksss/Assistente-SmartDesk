@@ -24,7 +24,7 @@
       article.className = "message " + role;
       const avatar = document.createElement("span");
       avatar.className = "message-avatar";
-      avatar.innerHTML = '<img src="assets/img/assistente.svg" alt="" width="32" height="32" />';
+      avatar.innerHTML = '<i class="fa-solid fa-robot"></i>';
       avatar.setAttribute("aria-hidden", "true");
       const body = document.createElement("div");
       body.className = "message-body";

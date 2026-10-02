@@ -310,3 +310,12 @@ Incluídas em 2026-10-02:
 
 - EVID-143 — EVID-143_versao-rodape.png: Rodapé SmartDesk · v0.8.12 em desktop. SHA-256 F97BC0062969F66F33C4E0A24E134A40DAC9EE3A19D95AF93CD13B978A195352
 - EVID-144 — EVID-144_versao-mobile.png: Rodapé SmartDesk · v0.8.12 em viewport 390×844; sem teste de teclado real. SHA-256 843C5237F12600F0E7E105AC7DAF366ABB4B59896C1257A9CF2F1C60EA540CAA
+
+## Robô e rodapé 0.8.13
+
+- EVID-145 — EVID-145_feedback-rodape.png: Anexo recebido: rodapé anterior fora do eixo central. SHA-256 822C4C73F65B3EA01A817B7FC1D58E32771A1B9BD3EF250A082DDA50E1B627E5
+- EVID-146 — EVID-146_feedback-circuito.png: Anexo recebido: trecho luminoso fora do circuito após o robô. SHA-256 452BCE0898FD3B5D34A5F3E84C50C79C0506BEB8C5E0F5C7C704B1DAB6153800
+- EVID-147 — EVID-147_feedback-avatar.png: Anexo recebido: ícone anterior do assistente na mensagem. SHA-256 621FBA4D14241D4E8CEE50036B51DCCC37A3086680C806437221E42CAEFCBE26
+- EVID-148 — EVID-148_avatar-desktop.png: Captura da versão 0.8.13: robô próprio e rodapé centralizado; desktop. SHA-256 72AABB0CC2FD9D28B6A06391CBC35017B7E31B68A0FE04D3FD5FCB4017DBE760
+- EVID-149 — EVID-149_avatar-mobile.png: Captura da versão 0.8.13: robô próprio e rodapé centralizado; viewport móvel, sem teste de teclado real. SHA-256 8C16CB9D20DD94524BD0F2DA10994006BB9DB2717656F39564B79A80968F9F26
+- EVID-150 — EVID-150_avatar-claro.png: Captura da versão 0.8.13: robô próprio e rodapé centralizado; viewport móvel, sem teste de teclado real. SHA-256 6F893387BCEBC4C88AD0AC8904591FD01118D4D7FA540D02BF82B75A9D246C11

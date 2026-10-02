@@ -91,3 +91,6 @@ Comunicação, fila cancelável, campos e anexos têm módulos próprios; altera
 
 ## Versão permanente — instrução direta do usuário
 Sempre mostrar a versão atual nos rodapés do chat e gestão, inclusive mobile. Toda entrega com alteração no código/interface deve incrementar package.json usando npm run version:update -- NOVA_VERSAO, sincronizar rodapés, package-lock.json e VERSAO.md, atualizar CHANGELOG e relatório de verificação; executar npm run version:check antes do commit. Documentos históricos mantêm sua versão original.
+
+## Refinamento 0.8.13
+Rodapé deve centralizar a caixa com margens automáticas, não apenas o texto. Trajeto luminoso deve coincidir com o circuito estático; usar pathLength=100 com dasharray/offset compatíveis. Cabeçalho e mensagens usam assets/img/assistente.svg como personagem decorativo, sem rótulos duplicados ou animação infinita nos avatares.

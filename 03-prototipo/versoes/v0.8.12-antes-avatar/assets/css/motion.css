@@ -174,7 +174,7 @@
 }
 @keyframes connection-flow {
   to {
-    stroke-dashoffset: -100;
+    stroke-dashoffset: -350;
   }
 }
 @keyframes stage-done {

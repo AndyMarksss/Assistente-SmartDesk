@@ -1,4 +1,4 @@
-# Estrutura do SmartDesk — 0.8.12
+# Estrutura do SmartDesk — 0.8.13
 
 ## Cliente
 Os scripts são carregados com defer na ordem declarada em index.html. Não há ferramenta de compilação: os arquivos continuam funcionando no servidor local e a apresentação estática no GitHub Pages.
@@ -30,3 +30,6 @@ A cópia anterior está em versoes/v0.8.10-antes-refatoracao, sem credenciais ou
 
 ## Versão visível e documentação
 A fonte única é package.json. Use npm run version:update -- NOVA_VERSAO em toda entrega que alterar código/interface; o comando sincroniza pacote, lock, rodapés e VERSAO.md. Execute npm run version:check antes do commit. Atualize também CHANGELOG.md e o relatório da entrega, preservando documentos históricos.
+
+## Personagem e circuito
+Cabeçalho, ilustração e avatares do assistente compartilham assets/img/assistente.svg. O avatar é decorativo (alt vazio e contêiner aria-hidden), pois a mensagem já identifica SmartDesk. O sinal luminoso deve seguir exatamente o circuito estático, com comprimento normalizado. A área de resposta reserva espaço simétrico de rolagem para manter o rodapé no eixo central.

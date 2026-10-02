@@ -171,3 +171,7 @@ Sete suítes aprovadas, incluindo 211 verificações de integração, comparaç�
 ## 0.8.12 — Versão nos rodapés
 
 Chat e gestão exibem SmartDesk · v0.8.12 no rodapé, incluindo mobile. Comando único sincroniza versão do pacote, lock, páginas e documentação atual. Regra de incremento registrada para as próximas entregas.
+
+## 0.8.13 — Robô e conexões coerentes
+
+Rodapé centralizado pela caixa e texto. Sinal luminoso segue exatamente as linhas computador → robô → som/imagem, com comprimento normalizado. Mesmo personagem SVG no cabeçalho e avatar das mensagens, com tamanho móvel e moldura suave; bolhas do assistente refinadas.
