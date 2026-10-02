@@ -143,3 +143,6 @@ Calendário/relógio alternam o tipo da mesma caixa preservando o valor. Indicad
 
 ## 0.8.4 — Visual móvel e teclado
 Tema escuro com conversa em fundo neutro, mensagens ameixa e campo de resposta mais claro. Elementos decorativos difusos e superfícies com vidro/blur. VisualViewport ajusta altura móvel; cabeçalho e trilha recolhem durante teclado, restauram ao fechar. Calendário/relógio ficam acima da caixa. Mantidos campo único, ✓ e feedback de envio.
+
+## 0.8.5 — Profundidade pela cor
+Planos de cor para cenário, conversa e resposta; vidro translúcido no cabeçalho e na área de resposta; histórico em ameixa suave e lavanda reservada para ação principal. Lateral integrada ao cenário, menos bordas e cartões, selo de IA duplicado e instrução repetida removidos visualmente. Mensagem atual com detalhe lavanda; iniciar atendimento recebe destaque principal. Mantidos ✓, alternância data/hora, estado de envio e adaptação ao teclado.

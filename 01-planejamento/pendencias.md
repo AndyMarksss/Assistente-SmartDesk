@@ -60,3 +60,5 @@ HDMI dispensa autorização, descrição duplicada removida, periféricos distin
 - 0.8.3: conferir calendário/relógio único e indicador de envio em uso real. Próxima evidência 87; testes locais não gravaram no Google.
 
 - 0.8.4: retestar em Android real pergunta atual e troca calendário/relógio com teclado aberto. Sem nova implantação Apps Script. Próxima evidência 95.
+
+- 0.8.5: conferir no celular real os dois temas e teclado após atualização; próximos prints EVID-99 em diante. Sem atualização Apps Script.

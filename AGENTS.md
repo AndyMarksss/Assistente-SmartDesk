@@ -67,3 +67,6 @@ Uma caixa por data/horário, alternando digitação e seletor. Feedback de envio
 
 ## Revisão 0.8.4
 Preservar distinção visual entre conversa e resposta, vidro discreto e decorativos sem capturar toque. Adaptar viewport móvel e manter pergunta/alternância calendário-relógio acessíveis com teclado. Os anexos confirmam teclado real aberto, mas a nova adaptação foi testada por redução de viewport e precisa de conferência no aparelho.
+
+## Revisão visual 0.8.5 — 2026-10-02
+Priorizar profundidade por planos de cor: cenário recuado, conversa suave, resposta distinta e ação principal lavanda. Vidro discreto; evitar sombras fortes, cartões excessivos e animação de destaque em todas as opções. Preservar distinção também por posição, rótulos e foco, sem depender somente da cor. Tema visual do cliente em assets/css/visual-depth.css.

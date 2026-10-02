@@ -2,7 +2,7 @@
   "versao": 1,
   "projeto": "SmartDesk",
   "atualizado_em": "2026-10-01",
-  "proximo_numero": 95,
+  "proximo_numero": 99,
   "evidencias": [
     {
       "numero": "EVID-001",
@@ -1136,6 +1136,54 @@
       "data_inclusao": "2026-10-01",
       "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\mobile-escuro-v084.png",
       "sha256": "A33509FC59CE2FE32B41965248DA19C3BA6A2C63BFE2CCB929FBF4E432A3E1A0",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-095",
+      "arquivo": "EVID-095_camadas-desktop-escuro.png",
+      "etapa": "Passo 4 — Aparência 0.8.5",
+      "descricao": "Tema escuro desktop: cenário ameixa, lateral recuada, conversa e resposta com planos de cor distintos.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Captura nesta sessão",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\camadas-desktop-escuro-v085.png",
+      "sha256": "557667D0646CDC75978232BA596AC75B5BAD50F66B1EB27B4D68597B95AD91DF",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-096",
+      "arquivo": "EVID-096_camadas-desktop-claro.png",
+      "etapa": "Passo 4 — Aparência 0.8.5",
+      "descricao": "Tema claro desktop: cenário lavanda, conversa clara, vidro e ação principal violeta.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Captura nesta sessão",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\camadas-desktop-claro-v085.png",
+      "sha256": "59C134C10EFCE1A5E902AD1E4DDC4C2CA0BC24485FED933ECF1D9D85B9D978A4",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-097",
+      "arquivo": "EVID-097_camadas-mobile-escuro.png",
+      "etapa": "Passo 4 — Aparência 0.8.5",
+      "descricao": "Tema escuro móvel: histórico discreto, mensagem atual com detalhe lavanda, campo de resposta em área própria.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Captura nesta sessão",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\camadas-mobile-escuro-v085.png",
+      "sha256": "84DCAA2104670B74DC726EF6ECD5CD8997EDD2439AE65EB97F02175410B26E16",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-098",
+      "arquivo": "EVID-098_camadas-teclado.png",
+      "etapa": "Passo 4 — Aparência 0.8.5",
+      "descricao": "Viewport reduzido 390×400 com foco em texto: pergunta atual e campo totalmente visíveis. Emulação de espaço disponível, sem teclado real.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Captura nesta sessão",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\camadas-teclado-v085.png",
+      "sha256": "C82ACF32943F3FA8F4D35BD9277D2F8E86F4CB7BF0B14A98928BFB4E139933A5",
       "status": "salvo e conferido visualmente"
     }
   ]
