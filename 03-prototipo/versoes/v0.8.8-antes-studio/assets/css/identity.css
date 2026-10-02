@@ -1,0 +1,34 @@
+/* 0.8.8 — Suporte de TI, sinais e planos de vidro. */
+:root{--bg:var(--scene);--surface:var(--bot);--shadow:none}
+.logo{background:none!important;box-shadow:none!important;flex-shrink:0;border:0!important}.logo img{display:block;width:100%;height:100%}
+.workspace,.admin-layout{background:radial-gradient(ellipse at 85% 12%,#7457d52b,transparent 45%),radial-gradient(ellipse at 14% 90%,#4b91c72b,transparent 45%),var(--scene)}
+.chat-shell,:root[data-theme=dark] .chat-shell{background:radial-gradient(ellipse at 90% 8%,#8062dd28,transparent 50%),radial-gradient(ellipse at 10% 92%,#458bb92a,transparent 50%),var(--canvas);isolation:isolate}
+.ambient-scene{z-index:0;opacity:.9}.chat-header,.journey-bar,.conversation,.interaction-dock{position:relative;z-index:1}
+.ambient-scene::before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 25%,#9682df15 45%,transparent 60%);pointer-events:none}
+.ambient-glow{top:-120px;right:-60px;width:600px;height:600px;background:radial-gradient(circle,#9172e945,transparent 68%)}
+.ambient-glow.secondary{left:-80px;bottom:-150px;width:540px;height:540px;background:radial-gradient(circle,#509dc844,transparent 68%)}
+.chat-header,:root[data-theme=dark] .chat-header,.journey-bar,:root[data-theme=dark] .journey-bar{background:color-mix(in srgb,var(--canvas) 64%,transparent);backdrop-filter:blur(24px) saturate(130%);-webkit-backdrop-filter:blur(24px) saturate(130%)}
+.interaction-dock,:root[data-theme=dark] .interaction-dock{background:color-mix(in srgb,var(--bot) 72%,transparent);backdrop-filter:blur(28px) saturate(140%);-webkit-backdrop-filter:blur(28px) saturate(140%);border-top-color:color-mix(in srgb,var(--accent) 30%,var(--line))}
+.welcome-tags{display:flex;align-items:center;gap:8px}.welcome-tags span,.welcome-tags span:last-child{display:inline-flex;align-items:center;gap:6px;min-height:30px;padding:6px 10px;border:1px solid var(--bot-line);background:color-mix(in srgb,var(--bot) 72%,transparent);border-radius:20px;font-size:11px;line-height:1.2}
+.welcome-tags i{line-height:1;flex-shrink:0}.mascot-note{bottom:-18px;right:50%;transform:translateX(50%);white-space:nowrap;background:color-mix(in srgb,var(--bot) 80%,transparent);backdrop-filter:blur(14px)}
+.desk-mascot img{filter:none}.desk-mascot::before{background:radial-gradient(circle,#a18bea30,transparent 70%)}
+.admin-layout{isolation:isolate}.admin-sidebar{background:color-mix(in srgb,var(--canvas) 68%,transparent);backdrop-filter:blur(24px);border-color:var(--side-line)}
+.admin-main{position:relative}.admin-header{padding:24px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(120deg,color-mix(in srgb,var(--soft) 70%,transparent),color-mix(in srgb,var(--bot) 65%,transparent));backdrop-filter:blur(24px)}
+.admin-header .eyebrow{color:var(--accent)}
+.data-toolbar,.metrics article,.insights article{background:color-mix(in srgb,var(--bot) 72%,transparent);backdrop-filter:blur(20px) saturate(130%);-webkit-backdrop-filter:blur(20px) saturate(130%);box-shadow:none}
+.metrics article:nth-child(2){background:color-mix(in srgb,var(--soft) 75%,transparent)}
+.metrics article:after{border-width:1px;right:-24px;top:-30px;width:120px;height:120px;border-color:color-mix(in srgb,var(--accent) 32%,transparent)}
+.metrics strong{font-variant-numeric:tabular-nums}.metrics article:nth-child(3){border-top:3px solid #6499d4}.metrics article:nth-child(4){border-top:3px solid #73b8a6}
+.insight-tag{background:var(--soft);color:var(--ink)}
+.chart-bar{background:linear-gradient(90deg,#7761d5,#8da9db)}
+.kanban-column{background:color-mix(in srgb,var(--canvas) 75%,transparent);border-color:var(--line);border-top-color:#9480d9;backdrop-filter:blur(18px)}
+.kanban-column:nth-child(2){border-top-color:#74a4dc}.kanban-column:nth-child(3){border-top-color:#d6af74}.kanban-column:nth-child(6){background:color-mix(in srgb,var(--canvas) 75%,transparent);border-top-color:#73b8a6}.kanban-column:nth-child(7){border-top-color:#a68b9b}
+.ticket-card{background:var(--bot);box-shadow:none;border-radius:12px}.area-tag{background:var(--soft)}
+dialog{background:var(--bot)}dialog .dialog-header{background:linear-gradient(120deg,var(--soft),var(--bot))}
+@media(prefers-reduced-motion:no-preference){.admin-header,.metrics article,.insights article{animation:panel-arrive .4s ease-out backwards}.metrics article:nth-child(2){animation-delay:.06s}.metrics article:nth-child(3){animation-delay:.12s}.metrics article:nth-child(4){animation-delay:.18s}.chart-bar{animation:bar-arrive .55s ease-out}.ambient-glow{animation:signal-breathe 8s ease-in-out infinite}.desk-mascot img{animation:mascot-float 5s ease-in-out infinite}}
+@keyframes panel-arrive{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}@keyframes bar-arrive{from{transform:scaleX(0);transform-origin:left}to{transform:scaleX(1);transform-origin:left}}@keyframes signal-breathe{50%{opacity:.55;transform:translateY(15px)}}
+@media(max-width:900px){.desk-mascot{width:110px;height:110px;margin:0 auto 40px}.desk-mascot img{width:82px;height:82px}.mascot-note{bottom:-22px;right:50%;font-size:10px;padding:7px 10px}.welcome h2{font-size:30px;line-height:1.12}.welcome-tags{gap:6px}.welcome-tags span,.welcome-tags span:last-child{font-size:9px;padding:5px 7px;min-height:27px}.ambient-orbit{opacity:.35}.welcome{margin-top:10px}}
+@media(max-width:800px){.admin-header{padding:18px;flex-wrap:wrap}.admin-header-actions{margin-left:auto}.admin-sidebar{backdrop-filter:blur(16px)}.admin-header h1{font-size:27px}.admin-sidebar .logo{width:32px;height:32px}.admin-sidebar nav a{font-size:11px}.admin-main{padding-top:16px}}
+@media(max-height:650px){.desk-mascot{display:none}}
+@media(prefers-reduced-motion:reduce){.ambient-glow,.desk-mascot img{animation:none!important}}
+:root[data-theme=dark]{--bg:var(--scene);--surface:var(--bot);--shadow:none}

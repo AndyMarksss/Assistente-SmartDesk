@@ -79,3 +79,6 @@ Usuário pediu explicitamente mais elementos, vida, personalidade e animações.
 
 ## Identidade TI 0.8.8
 Instrução direta: remover botão de pausa; respeitar prefers-reduced-motion automaticamente. Marca com conversa/terminal, vidro visível e identidade coerente no chat e gestão. Robô móvel e destaques alinhados.
+
+## Central de apoio 0.8.9
+Composição ilustrada própria com vidro localizado, cores por função e saturação contida. Manter azul de orientação, violeta de ação, mensagens neutras, rótulos/ícones e texto legível. Decoração não pode parecer seleção de área nem estado real da IA. Manter abertura compacta em 360px e movimento reduzido do sistema; sem botão de pausa por instrução direta.

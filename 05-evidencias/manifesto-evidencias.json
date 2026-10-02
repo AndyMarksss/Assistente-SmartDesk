@@ -2,7 +2,7 @@
   "versao": 1,
   "projeto": "SmartDesk",
   "atualizado_em": "2026-10-01",
-  "proximo_numero": 120,
+  "proximo_numero": 129,
   "evidencias": [
     {
       "numero": "EVID-001",
@@ -1436,6 +1436,114 @@
       "data_inclusao": "2026-10-02",
       "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\ti-gestao-mobile-v088.png",
       "sha256": "98512FFFCAF75A601B367CEB1D281D1B43352F78DB72A70A2468C5355368B680",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-120",
+      "arquivo": "EVID-120_feedback-repaginada.png",
+      "etapa": "Passo 4 — Central de apoio 0.8.9",
+      "descricao": "Feedback recebido da abertura 0.8.8: usuário pede maior criatividade e respeito à teoria de cores.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo/captura nesta sessão; sem inferência por horário do arquivo temporário",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:/Users/ander/AppData/Local/Temp/codex-clipboard-a0c1cbdf-6a06-44f9-aef5-cf116471969d.png",
+      "sha256": "F9053EA4FF97CC98B699AE30DF982FFF8BA6EB0CF23AEB008E9CD4DE611CEF28",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-121",
+      "arquivo": "EVID-121_studio-desktop.png",
+      "etapa": "Passo 4 — Central de apoio 0.8.9",
+      "descricao": "Abertura escura com painel ilustrado próprio, dispositivos conectados ao robô e hierarquia de ação. Print estático não comprova movimento.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo/captura nesta sessão; sem inferência por horário do arquivo temporário",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\studio-desktop-v089.png",
+      "sha256": "98101613B59AF3EBB273C97F8DCD0E7F4DDDF24E321F8EECB1324797F9C18D73",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-122",
+      "arquivo": "EVID-122_studio-claro.png",
+      "etapa": "Passo 4 — Central de apoio 0.8.9",
+      "descricao": "Abertura clara com cena de vidro e paleta por função. Print estático não comprova movimento.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo/captura nesta sessão; sem inferência por horário do arquivo temporário",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\studio-claro-v089.png",
+      "sha256": "75F38AFF12046B84756670B5A583BC42A6C83606BAED40B4E80EB11C51B7FAAC",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-123",
+      "arquivo": "EVID-123_studio-mobile.png",
+      "etapa": "Passo 4 — Central de apoio 0.8.9",
+      "descricao": "Abertura móvel escura em 390×844: cena, pergunta e botões. Print estático não comprova movimento.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo/captura nesta sessão; sem inferência por horário do arquivo temporário",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\studio-mobile-v089.png",
+      "sha256": "523B3703128602F77113668AC00D83F7311086FCEE636F0DFD4566F97BD08056",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-124",
+      "arquivo": "EVID-124_studio-mobile-menor.png",
+      "etapa": "Passo 4 — Central de apoio 0.8.9",
+      "descricao": "Abertura escura em 360×740: título e dois botões visíveis; ilustração compacta. Print estático não comprova movimento.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo/captura nesta sessão; sem inferência por horário do arquivo temporário",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\studio-mobile-menor-v089.png",
+      "sha256": "7C2CE49065CE0D0F62543376EA767A1412708D14CC65C5AD8AC4CDEF739BC585",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-125",
+      "arquivo": "EVID-125_studio-escolhas-mobile.png",
+      "etapa": "Passo 4 — Central de apoio 0.8.9",
+      "descricao": "Conversa móvel clara com pergunta atual e quatro áreas; dados fictícios. Print estático não comprova movimento.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo/captura nesta sessão; sem inferência por horário do arquivo temporário",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\studio-escolhas-mobile-v089.png",
+      "sha256": "EA92B5D3A11F9939D34465AE084286187763F46465A666E14F73FFE5D5B8C5B3",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-126",
+      "arquivo": "EVID-126_studio-gestao.png",
+      "etapa": "Passo 4 — Central de apoio 0.8.9",
+      "descricao": "Gestão escura com cabeçalho e planos de cor atualizados; dados simulados. Print estático não comprova movimento.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo/captura nesta sessão; sem inferência por horário do arquivo temporário",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\studio-gestao-v089.png",
+      "sha256": "EC73567702CF3D7F1E766F9768B4AD075C35B996D2F5A206C7FD8C59E7E13A3E",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-127",
+      "arquivo": "EVID-127_studio-gestao-claro.png",
+      "etapa": "Passo 4 — Central de apoio 0.8.9",
+      "descricao": "Gestão clara com contraste entre origem, indicadores e orientação. Print estático não comprova movimento.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo/captura nesta sessão; sem inferência por horário do arquivo temporário",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\studio-gestao-claro-v089.png",
+      "sha256": "A28A90F2CCE0946F4B2073F5F5EB82050BA9C64BB13DAE18BDDA4CD20A0E46C3",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-128",
+      "arquivo": "EVID-128_studio-gestao-mobile.png",
+      "etapa": "Passo 4 — Central de apoio 0.8.9",
+      "descricao": "Gestão móvel 390×844; indicadores responsivos e cabeçalho. Print estático não comprova movimento.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo/captura nesta sessão; sem inferência por horário do arquivo temporário",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\studio-gestao-mobile-v089.png",
+      "sha256": "DFBB5DE8EF78A6B2CD89A002A78EBED68E539432FB784F0B8879105FA18DBB22",
       "status": "salvo e conferido visualmente"
     }
   ]

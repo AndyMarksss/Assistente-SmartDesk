@@ -155,3 +155,6 @@ Assistente ilustrado vetorial próprio na abertura, órbitas e luzes discretas n
 
 ## 0.8.8 — Identidade de suporte TI
 Marca própria de conversa/terminal substitui S no chat, gestão e favicon. Abertura focada no suporte de TI. Robô centralizado no mobile com legenda abaixo; três destaques alinhados. Botão de pausa retirado; movimento reduzido do sistema segue respeitado. Luzes violeta/azul atrás de superfícies translúcidas tornam o vidro perceptível. Gestão recebe a paleta grafite/fria, cabeçalho de TI, indicadores, cores de etapas com rótulos, gráfico e entradas curtas animadas. Backend, matriz e política de chamados preservados.
+
+## 0.8.9 — Central de apoio
+Abertura redesenhada como uma central de apoio: painel com título, texto e ilustração do assistente conectado a computador, conexão, impressão e som. Cena com formas geométricas, vidro nos dispositivos e sinais curtos animados; decoração sem cliques ou anúncios assistivos. Fundo com textura de pontos discreta substitui órbitas grandes. Resumo lateral usa linha de acompanhamento; ajuda azul, ação violeta e mensagens neutras. Composição centralizada no desktop e compacta no mobile, incluindo 360×740. Painel recebe o mesmo vocabulário visual, novos planos de cor e indicadores com menos decoração.
