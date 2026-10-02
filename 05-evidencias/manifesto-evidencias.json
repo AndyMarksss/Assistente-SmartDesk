@@ -2,7 +2,7 @@
   "versao": 1,
   "projeto": "SmartDesk",
   "atualizado_em": "2026-10-01",
-  "proximo_numero": 109,
+  "proximo_numero": 120,
   "evidencias": [
     {
       "numero": "EVID-001",
@@ -1304,6 +1304,138 @@
       "data_inclusao": "2026-10-02",
       "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\presenca-mobile-v087.png",
       "sha256": "E9DD1894A4321C6488B568CA967E7A5D2BEF3BE3797404271447DD10EE897624",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-109",
+      "arquivo": "EVID-109_feedback-abertura-desktop.png",
+      "etapa": "Passo 4 — Identidade TI 0.8.8",
+      "descricao": "Feedback: abertura desktop 0.8.7 com marca S, pausa e fundo discreto.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo ou captura nesta sessão; sem inferência pelo horário do temporário",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:/Users/ander/AppData/Local/Temp/codex-clipboard-ee98b6d4-2060-4652-a7dd-8aa939318c8a.png",
+      "sha256": "752CD66A4CC2AF06A5F99F6B5355DA12E6D80B703DEF10B2823852FCEFD3FE9F",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-110",
+      "arquivo": "EVID-110_feedback-robo-mobile.png",
+      "etapa": "Passo 4 — Identidade TI 0.8.8",
+      "descricao": "Feedback: legenda sobreposta ao personagem no mobile.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo ou captura nesta sessão; sem inferência pelo horário do temporário",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:/Users/ander/AppData/Local/Temp/codex-clipboard-f1d26975-f175-4bfa-83e6-9d01efe9dfa1.png",
+      "sha256": "AEE6888BB11C01C51C1664BD6C199598CD9B89BD577B0A6BDD5824E16D26A96E",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-111",
+      "arquivo": "EVID-111_feedback-robo-detalhe.png",
+      "etapa": "Passo 4 — Identidade TI 0.8.8",
+      "descricao": "Detalhe móvel da sobreposição no personagem.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo ou captura nesta sessão; sem inferência pelo horário do temporário",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:/Users/ander/AppData/Local/Temp/codex-clipboard-b2dbf9de-1d7b-4616-98ba-f92c72a145e1.png",
+      "sha256": "870DCFF21858BCED1E58F5A04839B9CF20C26BE3542B38AD7E223E9C394E99DF",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-112",
+      "arquivo": "EVID-112_feedback-destaques.png",
+      "etapa": "Passo 4 — Identidade TI 0.8.8",
+      "descricao": "Feedback: No seu ritmo fora do alinhamento dos demais destaques.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo ou captura nesta sessão; sem inferência pelo horário do temporário",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:/Users/ander/AppData/Local/Temp/codex-clipboard-9cd6bb47-4b64-41d6-8754-46f8911cd72a.png",
+      "sha256": "47EA3F6E662AFFE670DD7FC8B7C08A3D846D10A0200E5B13537CFE47400BCE73",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-113",
+      "arquivo": "EVID-113_feedback-chamado-enviado.png",
+      "etapa": "Passo 4 — Identidade TI 0.8.8",
+      "descricao": "Print recebido mostra confirmação #009 no chat; não é novo envio feito pelo agente.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo ou captura nesta sessão; sem inferência pelo horário do temporário",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:/Users/ander/AppData/Local/Temp/codex-clipboard-4c60ef5f-5904-40fd-a2f1-7a50211f211f.png",
+      "sha256": "A765AF49250890A191001189B404023CA9CE5B3C830ED31AE2DA03B99037CAF3",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-114",
+      "arquivo": "EVID-114_feedback-gestao-anterior.png",
+      "etapa": "Passo 4 — Identidade TI 0.8.8",
+      "descricao": "Feedback: painel com aparência anterior, demonstrações exibidas.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo ou captura nesta sessão; sem inferência pelo horário do temporário",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:/Users/ander/AppData/Local/Temp/codex-clipboard-988003b9-2408-4cc7-a15a-7e2be4f451c1.png",
+      "sha256": "3DF468AC9A1DAEA4F8851D2C9B115AB86D385DEEFF6BD022776732F4AC2A3254",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-115",
+      "arquivo": "EVID-115_ti-mobile.png",
+      "etapa": "Passo 4 — Identidade TI 0.8.8",
+      "descricao": "Chat escuro 390×844: robô centralizado, legenda abaixo e destaques alinhados; sem pausa. Imagem estática não comprova animação.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo ou captura nesta sessão; sem inferência pelo horário do temporário",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\ti-mobile-v088.png",
+      "sha256": "B8A01974B280805AD40FD4B8D4379646AE2CC27F410BC0B05C9DC40AFDC457E7",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-116",
+      "arquivo": "EVID-116_ti-desktop.png",
+      "etapa": "Passo 4 — Identidade TI 0.8.8",
+      "descricao": "Chat desktop escuro: marca conversa/terminal, foco em TI e luzes atrás do vidro. Imagem estática não comprova animação.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo ou captura nesta sessão; sem inferência pelo horário do temporário",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\ti-desktop-v088.png",
+      "sha256": "4CD192192EDE2E41ACA27E2D12BCB5BF3A35E449A42107F6B0780450FF6DC2A0",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-117",
+      "arquivo": "EVID-117_ti-claro.png",
+      "etapa": "Passo 4 — Identidade TI 0.8.8",
+      "descricao": "Abertura clara com identidade TI e camadas de vidro. Imagem estática não comprova animação.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo ou captura nesta sessão; sem inferência pelo horário do temporário",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\ti-claro-v088.png",
+      "sha256": "C56820512875C586400A441CD84EDC2C37652B2E0BBFC9032DFCEDF03E0195EE",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-118",
+      "arquivo": "EVID-118_ti-gestao.png",
+      "etapa": "Passo 4 — Identidade TI 0.8.8",
+      "descricao": "Gestão escura: nova marca, indicadores e cores de etapas, dados simulados. Imagem estática não comprova animação.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo ou captura nesta sessão; sem inferência pelo horário do temporário",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\ti-gestao-v088.png",
+      "sha256": "3EF5912189C5D0198E622F9D30BD4B230D47652BF6B35F79A612524A2E764BEB",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-119",
+      "arquivo": "EVID-119_ti-gestao-mobile.png",
+      "etapa": "Passo 4 — Identidade TI 0.8.8",
+      "descricao": "Gestão 390×844: cabeçalho, origem e métricas responsivos. Imagem estática não comprova animação.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Anexo ou captura nesta sessão; sem inferência pelo horário do temporário",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\ti-gestao-mobile-v088.png",
+      "sha256": "98512FFFCAF75A601B367CEB1D281D1B43352F78DB72A70A2468C5355368B680",
       "status": "salvo e conferido visualmente"
     }
   ]

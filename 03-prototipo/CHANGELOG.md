@@ -152,3 +152,6 @@ Direção tecnológica escolhida pelo usuário: grafite e neutros frios estrutur
 
 ## 0.8.7 — Personalidade e movimento
 Assistente ilustrado vetorial próprio na abertura, órbitas e luzes discretas no cenário, vidro no cabeçalho e resposta, avatares maiores e cartão de ajuda. Quatro áreas em cartões com ícones e seta decorativa; quatro colunas desktop e duas mobile. Entradas curtas de mensagens e opções, retorno em hover/toque, flutuação do assistente, rotação do aro e transição de ✓. Botão para pausar efeitos, preferência salva localmente; movimento reduzido desativa animações decorativas e entradas.
+
+## 0.8.8 — Identidade de suporte TI
+Marca própria de conversa/terminal substitui S no chat, gestão e favicon. Abertura focada no suporte de TI. Robô centralizado no mobile com legenda abaixo; três destaques alinhados. Botão de pausa retirado; movimento reduzido do sistema segue respeitado. Luzes violeta/azul atrás de superfícies translúcidas tornam o vidro perceptível. Gestão recebe a paleta grafite/fria, cabeçalho de TI, indicadores, cores de etapas com rótulos, gráfico e entradas curtas animadas. Backend, matriz e política de chamados preservados.

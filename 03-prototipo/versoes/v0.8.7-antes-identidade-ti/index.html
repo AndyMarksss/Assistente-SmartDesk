@@ -19,16 +19,16 @@
   <script defer src="assets/js/conversation-copy.js"></script>
   <script defer src="assets/js/app.js"></script>
   <script defer src="assets/js/mobile-viewport.js"></script>
-
+  <script defer src="assets/js/personality.js"></script>
 <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
-<link rel="stylesheet" href="assets/css/identity.css">
 </head>
 
 <body>
   <div class="workspace">
     <aside class="sidebar" aria-label="Acompanhamento do atendimento">
-      <a class="brand" href="index.html" aria-label="SmartDesk, início"><span class="logo"><img src="assets/img/smartdesk-mark.svg" width="40" height="40" alt=""></span>SmartDesk<span class="brand-dot">.</span></a>
-      <div class="workspace-label">SEU PONTO DE APOIO · TI</div>
+      <a class="brand" href="index.html" aria-label="SmartDesk, início"><span class="logo">S<span
+            class="logo-dot"></span></span>SmartDesk<span class="brand-dot">.</span></a>
+      <div class="workspace-label">SEU ESPAÇO DE SUPORTE</div>
       <button class="new-conversation" id="new-chat" type="button"><span aria-hidden="true"><i
             class="fa-solid fa-plus"></i></span> Novo atendimento</button>
       <div class="session-info">
@@ -60,7 +60,7 @@
             <p><span id="ai-dot" class="online-dot offline"></span> <span id="ai-status" role="status">IA ausente</span></p>
           </div>
         </div>
-        <div class="header-actions"><a class="small-action" href="admin.html" aria-label="Abrir painel de gestão"><i class="fa-solid fa-table-columns"></i></a><span class="engine-badge" id="engine-badge">Base local · demonstração</span><button
+        <div class="header-actions"><button id="motion-toggle" class="motion-toggle" type="button" aria-label="Pausar efeitos visuais" aria-pressed="false" title="Pausar efeitos visuais"><i class="fa-solid fa-pause" aria-hidden="true"></i></button><a class="small-action" href="admin.html" aria-label="Abrir painel de gestão"><i class="fa-solid fa-table-columns"></i></a><span class="engine-badge" id="engine-badge">Base local · demonstração</span><button
             id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false" aria-label="Ativar tema escuro"><i
               class="fa-solid fa-moon" aria-hidden="true"></i><span>Tema escuro</span></button><button
             id="mobile-new-chat" class="mobile-new" type="button" aria-label="Novo atendimento"><i
@@ -79,11 +79,11 @@
       <div class="conversation" id="conversation" role="log" aria-label="Conversa com o SmartDesk" aria-live="polite"
         aria-relevant="additions">
         <div class="conversation-date">SEU ATENDIMENTO COMEÇA AQUI</div>
-        <div class="welcome" id="welcome"><div class="desk-mascot" aria-hidden="true"><img src="assets/img/assistente.svg" alt="" width="145" height="145"><span class="mascot-note">Seu ponto de apoio na TI.</span></div><span class="welcome-icon" aria-hidden="true"><i
+        <div class="welcome" id="welcome"><div class="desk-mascot" aria-hidden="true"><img src="assets/img/assistente.svg" alt="" width="145" height="145"><span class="mascot-note">Uma pergunta por vez. Vamos juntos.</span></div><span class="welcome-icon" aria-hidden="true"><i
               class="fa-solid fa-robot"></i></span>
-          <p class="eyebrow">SEU ATALHO PARA O SUPORTE DE TI</p>
-          <h2>A tecnologia para.<br><span>Seu trabalho não.</span></h2>
-          <p>Computador, conexão, impressão ou som? Conte com a TI.<br class="desktop-break"> Vamos organizar seu chamado, uma pergunta por vez.
+          <p class="eyebrow">SUPORTE SEM COMPLICAÇÃO</p>
+          <h2>Suporte claro.<br><span>Próximo passo certo.</span></h2>
+          <p>Conte o que precisa. O SmartDesk organiza os detalhes<br class="desktop-break"> e encaminha seu chamado para a equipe.
           </p>
           <div class="welcome-tags"><span><i class="fa-solid fa-bolt" aria-hidden="true"></i> Escolhas
               rápidas</span><span><i class="fa-solid fa-comment" aria-hidden="true"></i> Uma pergunta por

@@ -76,3 +76,6 @@ Usuário escolheu explicitamente tecnológico e preciso: grafite, neutros frios 
 
 ## Personalidade 0.8.7
 Usuário pediu explicitamente mais elementos, vida, personalidade e animações. Preservar personagem SVG próprio, cenário discreto durante conversa e microinterações. Não confundir animação decorativa com IA online. Manter pausa de efeitos e prefers-reduced-motion, sem bloquear cliques ou foco por animações.
+
+## Identidade TI 0.8.8
+Instrução direta: remover botão de pausa; respeitar prefers-reduced-motion automaticamente. Marca com conversa/terminal, vidro visível e identidade coerente no chat e gestão. Robô móvel e destaques alinhados.

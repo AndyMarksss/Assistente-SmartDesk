@@ -39,3 +39,6 @@ Direção explicitamente escolhida: tecnológico e preciso, grafite, neutros fri
 
 ## Presença e movimento 0.8.7
 A paleta por função permanece. A personalidade vem de ilustração própria, órbitas, superfícies translúcidas e avatares. Movimento de entrada é breve (0,36–0,38s); flutuação de 5s e rotação de 30s são opcionais, com botão de pausa persistente. Movimento reduzido tem prioridade. Decorações não interceptam toque nem entram na leitura assistiva.
+
+## 0.8.8 — Planos e gestão
+Cenário grafite com luz violeta e azul; vidro de 64–75% de superfície sobre cenário visível. Mensagens ficam sólidas para leitura. Cor de etapa acompanha rótulo: azul em atendimento, âmbar aguardando, verde discreto finalizado. Animações do cenário, entradas e gráfico respeitam movimento reduzido; pausa removida por instrução direta.
