@@ -1120,18 +1120,3 @@ dialog .dialog-header {
     justify-content: flex-start;
   }
 }
-
-/* Project version: a quiet footer, visible on desktop and mobile. */
-.project-version {
-  margin: 4px 0 0;
-  padding: 0;
-  color: var(--muted);
-  font-size: 11px;
-  line-height: 1.4;
-  text-align: center;
-  flex-shrink: 0;
-}
-.admin-main > .project-version {
-  margin-top: 24px;
-  padding-bottom: 8px;
-}

@@ -275,3 +275,8 @@ Incluídas em 2026-10-02:
 - EVID-140 — EVID-140_refatoracao-confirmacao.png: Recibo #TESTE-LOCAL do adaptador fictício depois de falha e nova tentativa; nenhum chamado real. SHA-256 D568F87FE7134693728E4D901FD18202130781E311D5B998C4EF1CD4291E0EAF
 - EVID-141 — EVID-141_refatoracao-mobile.png: Chat escuro em viewport 390×844, sem overflow lateral; sem teste de teclado real. SHA-256 52CF2094BB24C77CDDD94AE2BC18BEEDD64BCD48268ABA57F50E148FEE61AFA3
 - EVID-142 — EVID-142_refatoracao-gestao-mobile.png: Painel de demonstração em viewport 390×844, sem overflow lateral. SHA-256 1A046F834BA1B8539A9A0C0BF53E42BFB7FA5E463C4FCF5B13ABFC748C79C294
+
+## Versão 0.8.12
+
+- EVID-143 — EVID-143_versao-rodape.png: Rodapé SmartDesk · v0.8.12 em desktop. SHA-256 F97BC0062969F66F33C4E0A24E134A40DAC9EE3A19D95AF93CD13B978A195352
+- EVID-144 — EVID-144_versao-mobile.png: Rodapé SmartDesk · v0.8.12 em viewport 390×844; sem teste de teclado real. SHA-256 843C5237F12600F0E7E105AC7DAF366ABB4B59896C1257A9CF2F1C60EA540CAA

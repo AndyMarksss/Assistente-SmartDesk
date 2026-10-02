@@ -2,7 +2,7 @@
   "versao": 1,
   "projeto": "SmartDesk",
   "atualizado_em": "2026-10-01",
-  "proximo_numero": 143,
+  "proximo_numero": 145,
   "evidencias": [
     {
       "numero": "EVID-001",
@@ -1712,6 +1712,30 @@
       "data_inclusao": "2026-10-02",
       "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\refatoracao-gestao-mobile-v0811.png",
       "sha256": "1A046F834BA1B8539A9A0C0BF53E42BFB7FA5E463C4FCF5B13ABFC748C79C294",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-143",
+      "arquivo": "EVID-143_versao-rodape.png",
+      "etapa": "Passo 4 — Versão 0.8.12",
+      "descricao": "Rodapé SmartDesk · v0.8.12 em desktop.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Captura desta sessão",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\versao-rodape-v0812.png",
+      "sha256": "F97BC0062969F66F33C4E0A24E134A40DAC9EE3A19D95AF93CD13B978A195352",
+      "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-144",
+      "arquivo": "EVID-144_versao-mobile.png",
+      "etapa": "Passo 4 — Versão 0.8.12",
+      "descricao": "Rodapé SmartDesk · v0.8.12 em viewport 390×844; sem teste de teclado real.",
+      "data_aproximada": "2026-10-02",
+      "fundamento_data": "Captura desta sessão",
+      "data_inclusao": "2026-10-02",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\versao-mobile-v0812.png",
+      "sha256": "843C5237F12600F0E7E105AC7DAF366ABB4B59896C1257A9CF2F1C60EA540CAA",
       "status": "salvo e conferido visualmente"
     }
   ]

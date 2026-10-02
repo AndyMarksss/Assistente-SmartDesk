@@ -88,3 +88,6 @@ Assunto gerado localmente deve passar safeSubject nos 57 caminhos; nunca exigir 
 
 ## Estrutura e movimento 0.8.11
 Comunicação, fila cancelável, campos e anexos têm módulos próprios; alterações de animação devem ficar em motion.css. Efeitos decorativos finitos, indicadores funcionais enquanto operação pendente e prefers-reduced-motion obrigatório. Não reanimar quadro em cada tecla da busca. Executar npm test e conferir navegador antes de entregar mudanças de fluxo.
+
+## Versão permanente — instrução direta do usuário
+Sempre mostrar a versão atual nos rodapés do chat e gestão, inclusive mobile. Toda entrega com alteração no código/interface deve incrementar package.json usando npm run version:update -- NOVA_VERSAO, sincronizar rodapés, package-lock.json e VERSAO.md, atualizar CHANGELOG e relatório de verificação; executar npm run version:check antes do commit. Documentos históricos mantêm sua versão original.

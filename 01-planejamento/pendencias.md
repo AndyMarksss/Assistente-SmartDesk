@@ -74,3 +74,5 @@ HDMI dispensa autorização, descrição duplicada removida, periféricos distin
 - 0.8.10: conferir tema preferido no celular real e um envio de Wi-Fi pelo servidor local. Sem nova implantação Apps Script. Próximo print: área de resposta junto à pergunta atual no mobile; próxima EVID-138.
 
 - 0.8.11: conferir teclado real no mobile, alternância calendário/relógio e visibilidade da pergunta. Próximo print: pergunta atual e área de resposta com teclado aberto. Próxima EVID-143. Sem nova publicação de Apps Script.
+
+- 0.8.12: versão visível no rodapé do chat e gestão. Próxima entrega deve incrementar e sincronizar versão. Próximo print: campo com teclado aberto no aparelho real, EVID-145.
