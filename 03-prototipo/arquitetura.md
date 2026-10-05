@@ -1,4 +1,4 @@
-# Estrutura do SmartDesk — 0.8.14
+# Estrutura do SmartDesk — 0.8.15
 
 ## Cliente
 Os scripts são carregados com defer na ordem declarada em index.html. Não há ferramenta de compilação: os arquivos continuam funcionando no servidor local e a apresentação estática no GitHub Pages.
@@ -36,3 +36,6 @@ Cabeçalho, ilustração e avatares do assistente compartilham assets/img/assist
 
 ## Acompanhamento da conversa
 chat-view.createScrollFollower mantém a abertura no topo antes da interação e acompanha respostas depois dela. Observa altura do log, mensagens e área de resposta. Atualizações são agrupadas em requestAnimationFrame após layout. readyControls libera a altura reservada do dock e reagenda rolagem; isso evita perguntas cortadas após campos/opções mudarem de altura. Recomeçar reseta o acompanhamento. Circuito ilustrado usa quatro paths dirigidos ao centro, com delays independentes e término invisível.
+
+## Hospedagem real 0.8.15
+server/hosting.cjs valida origem pública e exige acesso de avaliação na nuvem. Servidor usa PORT e 0.0.0.0 quando hospedado; local mantém 127.0.0.1:4173. scripts/build-pages.cjs gera apenas dois documentos de entrada e .nojekyll. Workflow publica pages-dist, não a árvore do protótipo. Integrações continuam no servidor; guia em hospedagem.md.

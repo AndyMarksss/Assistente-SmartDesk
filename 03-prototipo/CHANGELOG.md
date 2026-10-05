@@ -179,3 +179,10 @@ Rodapé centralizado pela caixa e texto. Sinal luminoso segue exatamente as linh
 ## 0.8.14 — Conversa acompanha respostas
 
 Rolagem acompanha Como funciona mesmo com abertura visível e reajusta após mudança de altura dos controles/conversa. Área de resposta preserva altura durante fila de digitação; libera após renderizar controles. Recomeçar preserva abertura no topo. Circuito luminoso sequencial: computador, impressão, conexão e som/imagem → robô, sem trecho de saída.
+
+## 2026-10-05 — 0.8.15: preparação da entrega online real
+
+- Servidor compatível com PORT, host público e origem HTTPS de hospedagem. Acesso de avaliação obrigatório na nuvem; saúde pública sem chamadas externas.
+- Blueprint Render Free e guia de primeira hospedagem, sem configuração de faturamento.
+- Pages gera somente entrada/encaminhamento público, sem publicar arquivos do servidor, histórico ou credenciais. URL pública configurada por variável de Actions.
+- Publicação e teste remoto ainda dependem da conta gratuita/ambiente privado. Não afirmar integração online antes de conferir.

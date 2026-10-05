@@ -1,0 +1,274 @@
+[
+  {
+    "theme": "light",
+    "fg": "--ink",
+    "bg": "--hero-panel",
+    "ratio": 14.28,
+    "min": 4.5,
+    "pass": true
+  },
+  {
+    "theme": "light",
+    "fg": "--muted",
+    "bg": "--hero-panel",
+    "ratio": 6.72,
+    "min": 4.5,
+    "pass": true
+  },
+  {
+    "theme": "light",
+    "fg": "--ink",
+    "bg": "--soft",
+    "ratio": 10.76,
+    "min": 4.5,
+    "pass": true
+  },
+  {
+    "theme": "light",
+    "fg": "--muted",
+    "bg": "--soft",
+    "ratio": 5.06,
+    "min": 4.5,
+    "pass": true
+  },
+  {
+    "theme": "light",
+    "fg": "--info",
+    "bg": "--info-surface",
+    "ratio": 5.63,
+    "min": 4.5,
+    "pass": true
+  },
+  {
+    "theme": "light",
+    "fg": "--ink",
+    "bg": "--info-surface",
+    "ratio": 11.1,
+    "min": 4.5,
+    "pass": true
+  },
+  {
+    "theme": "light",
+    "fg": "--muted",
+    "bg": "--info-surface",
+    "ratio": 5.22,
+    "min": 4.5,
+    "pass": true
+  },
+  {
+    "theme": "light",
+    "fg": "--accent-ink",
+    "bg": "--accent",
+    "ratio": 6.76,
+    "min": 4.5,
+    "pass": true
+  },
+  {
+    "theme": "light",
+    "fg": "--ink",
+    "bg": "--bot",
+    "ratio": 14.28,
+    "min": 4.5,
+    "pass": true
+  },
+  {
+    "theme": "light",
+    "fg": "--muted",
+    "bg": "--canvas",
+    "ratio": 5.39,
+    "min": 4.5,
+    "pass": true
+  },
+  {
+    "theme": "light",
+    "fg": "--user-ink",
+    "bg": "--reply",
+    "ratio": 8.78,
+    "min": 4.5,
+    "pass": true
+  },
+  {
+    "theme": "light",
+    "fg": "--ink",
+    "bg": "--option",
+    "ratio": 14.28,
+    "min": 4.5,
+    "pass": true
+  },
+  {
+    "theme": "light",
+    "fg": "--muted",
+    "bg": "--option",
+    "ratio": 6.72,
+    "min": 4.5,
+    "pass": true
+  },
+  {
+    "theme": "light",
+    "fg": "--ink",
+    "bg": "--dock",
+    "ratio": 12.47,
+    "min": 4.5,
+    "pass": true
+  },
+  {
+    "theme": "light",
+    "fg": "--muted",
+    "bg": "--dock",
+    "ratio": 5.87,
+    "min": 4.5,
+    "pass": true
+  },
+  {
+    "theme": "light",
+    "fg": "--error",
+    "bg": "--error-panel",
+    "ratio": 7.01,
+    "min": 4.5,
+    "pass": true
+  },
+  {
+    "theme": "light",
+    "fg": "--option-line",
+    "bg": "--option",
+    "ratio": 3.56,
+    "min": 3,
+    "pass": true
+  },
+  {
+    "theme": "dark",
+    "fg": "--ink",
+    "bg": "--hero-panel",
+    "ratio": 10.8,
+    "min": 4.5,
+    "pass": true
+  },
+  {
+    "theme": "dark",
+    "fg": "--muted",
+    "bg": "--hero-panel",
+    "ratio": 7.28,
+    "min": 4.5,
+    "pass": true
+  },
+  {
+    "theme": "dark",
+    "fg": "--ink",
+    "bg": "--soft",
+    "ratio": 9.56,
+    "min": 4.5,
+    "pass": true
+  },
+  {
+    "theme": "dark",
+    "fg": "--muted",
+    "bg": "--soft",
+    "ratio": 6.45,
+    "min": 4.5,
+    "pass": true
+  },
+  {
+    "theme": "dark",
+    "fg": "--info",
+    "bg": "--info-surface",
+    "ratio": 7,
+    "min": 4.5,
+    "pass": true
+  },
+  {
+    "theme": "dark",
+    "fg": "--ink",
+    "bg": "--info-surface",
+    "ratio": 9.75,
+    "min": 4.5,
+    "pass": true
+  },
+  {
+    "theme": "dark",
+    "fg": "--muted",
+    "bg": "--info-surface",
+    "ratio": 6.57,
+    "min": 4.5,
+    "pass": true
+  },
+  {
+    "theme": "dark",
+    "fg": "--accent-ink",
+    "bg": "--accent",
+    "ratio": 7.98,
+    "min": 4.5,
+    "pass": true
+  },
+  {
+    "theme": "dark",
+    "fg": "--ink",
+    "bg": "--bot",
+    "ratio": 10.18,
+    "min": 4.5,
+    "pass": true
+  },
+  {
+    "theme": "dark",
+    "fg": "--muted",
+    "bg": "--canvas",
+    "ratio": 10.39,
+    "min": 4.5,
+    "pass": true
+  },
+  {
+    "theme": "dark",
+    "fg": "--user-ink",
+    "bg": "--reply",
+    "ratio": 10.27,
+    "min": 4.5,
+    "pass": true
+  },
+  {
+    "theme": "dark",
+    "fg": "--ink",
+    "bg": "--option",
+    "ratio": 12.31,
+    "min": 4.5,
+    "pass": true
+  },
+  {
+    "theme": "dark",
+    "fg": "--muted",
+    "bg": "--option",
+    "ratio": 8.3,
+    "min": 4.5,
+    "pass": true
+  },
+  {
+    "theme": "dark",
+    "fg": "--ink",
+    "bg": "--dock",
+    "ratio": 11.92,
+    "min": 4.5,
+    "pass": true
+  },
+  {
+    "theme": "dark",
+    "fg": "--muted",
+    "bg": "--dock",
+    "ratio": 8.04,
+    "min": 4.5,
+    "pass": true
+  },
+  {
+    "theme": "dark",
+    "fg": "--error",
+    "bg": "--error-panel",
+    "ratio": 8.98,
+    "min": 4.5,
+    "pass": true
+  },
+  {
+    "theme": "dark",
+    "fg": "--option-line",
+    "bg": "--option",
+    "ratio": 5.22,
+    "min": 3,
+    "pass": true
+  }
+]

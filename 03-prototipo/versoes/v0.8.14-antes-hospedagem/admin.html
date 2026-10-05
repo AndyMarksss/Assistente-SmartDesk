@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>SmartDesk — Gestão de chamados</title>
+    <script src="assets/js/runtime.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <link rel="stylesheet" href="assets/vendor/fontawesome/css/fontawesome.min.css" />
+    <link rel="stylesheet" href="assets/vendor/fontawesome/css/solid.min.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/admin.css" />
+    <link rel="stylesheet" href="assets/css/visual-depth.css" />
+    <script defer src="assets/js/client-api.js"></script>
+    <script defer src="assets/js/admin.js"></script>
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+    <link rel="stylesheet" href="assets/css/identity.css" />
+    <link rel="stylesheet" href="assets/css/motion.css" />
+  </head>
+  <body>
+    <div class="admin-layout">
+      <aside class="admin-sidebar">
+        <a href="index.html" class="brand"
+          ><span class="logo"
+            ><img src="assets/img/smartdesk-mark.svg" width="40" height="40" alt="" /></span
+          >SmartDesk<span class="brand-dot">.</span></a
+        >
+        <p class="workspace-label">CENTRAL DE ATENDIMENTO</p>
+        <nav aria-label="Navegação de gestão">
+          <a class="nav-active" href="admin.html"
+            ><i class="fa-solid fa-table-columns"></i> Visão geral</a
+          ><a href="index.html"><i class="fa-solid fa-comments"></i> Abrir chamado</a>
+        </nav>
+        <div class="admin-foot">
+          <i class="fa-solid fa-shield-halved"></i>
+          <p>Protótipo acadêmico<small>Gestão disponível neste computador.</small></p>
+        </div>
+      </aside>
+      <main class="admin-main">
+        <header class="admin-header">
+          <div>
+            <span class="eyebrow">CENTRAL DE SUPORTE · TI</span>
+            <h1>Cada chamado, um próximo passo<span>.</span></h1>
+            <p>Uma central para tirar os obstáculos do caminho da sua equipe.</p>
+          </div>
+          <div class="admin-header-actions">
+            <a href="index.html" class="choice"><i class="fa-solid fa-plus"></i> Abrir chamado</a
+            ><button id="theme-toggle" class="theme-toggle">
+              <i class="fa-solid fa-moon"></i><span>Tema escuro</span>
+            </button>
+          </div>
+        </header>
+        <section class="data-toolbar" aria-label="Origem dos chamados">
+          <div>
+            <label for="data-mode">Origem dos dados</label
+            ><select id="data-mode">
+              <option value="demo">Demonstração</option>
+              <option value="google">Chamados do Google</option>
+            </select>
+          </div>
+          <p id="source-note">Simulações separadas dos chamados reais.</p>
+          <button class="choice" id="seed">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> Criar simulações</button
+          ><button class="choice" id="refresh"><i class="fa-solid fa-rotate"></i> Atualizar</button>
+        </section>
+        <p id="admin-error" role="alert" class="error"></p>
+        <p id="sync-status" class="sync-status" role="status"></p>
+        <section class="metrics" aria-label="Indicadores de chamados">
+          <article>
+            <span>Total de chamados</span><strong id="metric-total">0</strong
+            ><small>Na origem selecionada</small>
+          </article>
+          <article>
+            <span>Chamados abertos</span><strong id="metric-open">0</strong
+            ><small>Etapas ainda em andamento</small>
+          </article>
+          <article>
+            <span>Em atendimento</span><strong id="metric-active">0</strong
+            ><small>Suporte trabalhando agora</small>
+          </article>
+          <article>
+            <span>Finalizados</span><strong id="metric-done">0</strong
+            ><small>Atendimentos concluídos</small>
+          </article>
+        </section>
+        <section class="insights">
+          <article>
+            <h2>Distribuição por área</h2>
+            <div id="area-chart" class="area-chart"></div>
+          </article>
+          <article>
+            <h2>Pulso do atendimento</h2>
+            <p id="queue-insight">Os chamados aparecerão aqui após carregar os dados.</p>
+            <span class="insight-tag"
+              ><i class="fa-solid fa-network-wired"></i> Equipe conectada</span
+            >
+          </article>
+        </section>
+        <section class="board-shell">
+          <header class="board-toolbar">
+            <div>
+              <h2>Quadro de atendimento</h2>
+              <p>Abra um cartão para ver detalhes e atualizar a etapa.</p>
+            </div>
+            <div class="filters">
+              <label class="search"
+                ><i class="fa-solid fa-magnifying-glass"></i
+                ><input
+                  id="search"
+                  type="search"
+                  placeholder="Buscar chamado, pessoa ou setor"
+                  aria-label="Buscar chamados" /></label
+              ><select id="area-filter" aria-label="Filtrar por área">
+                <option value="">Todas as áreas</option>
+                <option>Audiovisual</option>
+                <option>Impressora</option>
+                <option>Google</option>
+                <option>TI</option></select
+              ><select id="sector-filter" aria-label="Filtrar por setor">
+                <option value="">Todos os setores</option>
+              </select>
+            </div>
+          </header>
+          <p class="board-hint">
+            Arraste entre colunas no computador ou altere a etapa nos detalhes. Deslize o quadro nas
+            telas menores.
+          </p>
+          <div id="kanban" class="kanban" aria-label="Kanban de chamados"></div>
+        </section>
+        <footer class="project-version" aria-label="Versão do projeto">
+          SmartDesk · v<span data-project-version>0.8.14</span>
+        </footer>
+      </main>
+    </div>
+    <dialog id="ticket-dialog">
+      <div class="dialog-header">
+        <div>
+          <span id="detail-number" class="eyebrow"></span>
+          <h2 id="detail-title"></h2>
+        </div>
+        <button id="close-dialog" class="theme-toggle" aria-label="Fechar detalhes">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <dl id="detail-data"></dl>
+      <section id="detail-files"></section>
+      <label for="detail-stage">Etapa do atendimento</label
+      ><select id="detail-stage"></select
+      ><button id="save-stage" class="choice primary">
+        <i class="fa-solid fa-check"></i><span>Salvar etapa</span>
+      </button>
+      <p id="detail-error" class="error" role="alert"></p>
+    </dialog>
+  </body>
+</html>

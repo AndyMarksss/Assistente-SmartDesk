@@ -1,0 +1,850 @@
+"use strict";
+(function (desk) {
+  if (window.smartdeskWrongRuntime) return;
+  const byId = (id) => document.getElementById(id),
+    input = byId("chat-input"),
+    choices = byId("choices");
+  let state,
+    generation = 0,
+    textHandler = null,
+    validator = null,
+    saving = false,
+    controlVersion = 0,
+    history = [];
+  const reduced = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const readyControls = (render) => {
+    const token = controlVersion,
+      g = generation;
+    messages.whenReady(() => {
+      if (g === generation && token === controlVersion) {
+        render();
+        dock.style.removeProperty("min-height");
+        scroll();
+      }
+    });
+  };
+  function checkpoint(render) {
+    history.push({
+      render,
+      state: { ...state, answers: { ...state.answers }, attachments: [...state.attachments] },
+    });
+  }
+  function back() {
+    if (saving || history.length < 2) return;
+    generation++;
+    messages.cancel();
+
+    history.pop();
+    const previous = history.pop();
+    state = previous.state;
+    context();
+    previous.render();
+  }
+
+  const dock = choices.closest(".interaction-dock");
+  const follower = desk.chatView.createScrollFollower({
+    viewport: byId("conversation"),
+    content: byId("messages"),
+    dock,
+  });
+  const scroll = follower.schedule;
+  const messages = desk.chatView.createMessageStream({
+    container: byId("messages"),
+    scroll,
+    reducedMotion: reduced,
+  });
+  const message = (text, role) => {
+    if (role === "user") follower.follow();
+    return messages.append(text, role);
+  };
+  function stage(value) {
+    state.stage = value;
+    const index = desk.flows.stages.indexOf(value);
+    desk.flows.stages.forEach((name, i) => {
+      const el = document.querySelector('[data-stage="' + name + '"]');
+      el.classList.toggle("done", i < index);
+      const dot = el.querySelector(".journey-dot");
+      dot.textContent = i < index ? "✓" : String(i + 1);
+      dot.setAttribute("aria-hidden", "true");
+      el.setAttribute(
+        "aria-label",
+        i +
+          1 +
+          ". " +
+          ["Boas-vindas", "Escolhas", "Revisão", "Enviado"][i] +
+          (i < index ? " — concluída" : name === value ? " — etapa atual" : " — próxima etapa"),
+      );
+      if (name === value) el.setAttribute("aria-current", "step");
+      else el.removeAttribute("aria-current");
+    });
+  }
+  function context() {
+    byId("context-name").textContent = state.name || "Vamos nos conhecer";
+    byId("context-email").textContent = state.email || "Ainda não informado";
+    byId("context-sector").textContent = state.sector || "Ainda não informado";
+    byId("context-need").textContent = state.item?.need || state.area || "Vamos descobrir juntos";
+    byId("edit-context").hidden = !state.sector;
+  }
+  function lock(caption = "ESCOLHA UMA OPÇÃO PARA CONTINUAR") {
+    // Keep the response area stable while replies are queued; release after controls render.
+    dock.style.minHeight =
+      Math.min(
+        dock.getBoundingClientRect().height,
+        byId("chat-shell")?.clientHeight * 0.48 || window.innerHeight * 0.48,
+      ) + "px";
+    byId("choices").closest(".interaction-dock").setAttribute("aria-busy", "false");
+    document.querySelector(".submission-error")?.remove();
+    controlVersion++;
+    textHandler = null;
+    validator = null;
+    choices.replaceChildren();
+    byId("structured-field").replaceChildren();
+    byId("structured-field").classList.remove("structured-temporal");
+    byId("attachment-panel").hidden = true;
+    input.disabled = true;
+    input.value = "";
+    input.placeholder = "Campo pausado — use as opções acima.";
+    byId("frozen-label").hidden = false;
+    byId("edit-context").hidden = history.length < 2 || saving || state.stage === "sent";
+    byId("composer").classList.add("locked");
+    byId("send").disabled = true;
+    byId("prompt-caption").textContent = caption;
+    byId("composer-hint").textContent = "A digitação é liberada apenas para os dados do chamado.";
+    byId("char-count").hidden = true;
+    byId("input-error").textContent = "";
+    byId("composer").classList.remove("invalid");
+    input.setAttribute("aria-invalid", "false");
+    byId("restart-chat").hidden = !history.length || saving || state.stage === "sent";
+  }
+  function choose(options, callback, caption) {
+    lock(caption);
+    readyControls(() => {
+      options.forEach((entry, index) => {
+        const item = typeof entry === "string" ? { label: entry, value: entry } : entry;
+        const button = document.createElement("button");
+        button.type = "button";
+        button.style.setProperty("--option-delay", index * 70 + "ms");
+        button.className = "choice" + (item.primary ? " primary" : "");
+        const icon = document.createElement("i");
+        icon.className = "fa-solid " + (item.icon || "fa-arrow-right");
+        icon.setAttribute("aria-hidden", "true");
+        const text = document.createElement("span");
+        text.textContent = item.label;
+        if (item.description) {
+          button.classList.add("area-choice");
+          const detail = document.createElement("small");
+          detail.textContent = item.description;
+          text.append(detail);
+        }
+        button.append(icon, text);
+        button.addEventListener("click", () => {
+          if (saving) return;
+          [...choices.children].forEach((el) => (el.disabled = true));
+          message(item.label, "user");
+          callback(item.value);
+        });
+        choices.append(button);
+      });
+      requestAnimationFrame(scroll);
+    });
+  }
+  function freeText(placeholder, callback, max = 1000, validation = null, prefill = "") {
+    lock("PREENCHA ESTE DADO DO CHAMADO");
+    readyControls(() => {
+      byId("frozen-label").hidden = true;
+      input.disabled = false;
+      input.inputMode = placeholder.includes("e-mail") ? "email" : "text";
+      input.setAttribute("autocapitalize", placeholder.includes("e-mail") ? "none" : "sentences");
+      input.maxLength = max;
+      input.placeholder = placeholder;
+      input.value = prefill;
+      byId("composer").classList.remove("locked");
+      byId("send").disabled = !prefill.trim();
+      byId("composer-hint").textContent = "Enter para enviar · Shift + Enter para uma nova linha";
+      byId("char-count").hidden = false;
+      byId("char-count").textContent = input.value.length + " / " + max;
+      textHandler = callback;
+      validator = validation;
+      input.focus();
+    });
+  }
+  const { structured } = desk.formControls.create({
+    policy: desk.requestPolicy,
+    byId,
+    lock,
+    readyControls,
+    message,
+    scroll,
+  });
+  async function api(route, data) {
+    const token = generation;
+    const result = await desk.api.request(route, {
+      body: data,
+      timeout: route === "/api/tickets" ? 65000 : 15000,
+    });
+    if (token === generation && ["/api/subject", "/api/next-prompt"].includes(route))
+      setAiStatus(result.source === "ai");
+    return result;
+  }
+  const selectionPayload = () => ({
+    sector: state.sector,
+    selectionId: state.item.id,
+    answers: state.answers,
+    description: state.description,
+    equipmentIntent: state.equipmentIntent || "",
+  });
+  function setAiStatus(value) {
+    const status = value === true ? "online" : value === false ? "unavailable" : value;
+    byId("ai-dot").className =
+      "online-dot ai-dot " +
+      (status === "online"
+        ? "online"
+        : ["busy", "standby"].includes(status)
+          ? "standby"
+          : "offline");
+    const label =
+      {
+        online: "IA conectada",
+        busy: "IA organizando seu chamado",
+        standby: "IA pronta para ajudar",
+        unavailable: "IA indisponível",
+        absent: "IA ausente",
+      }[status] || "IA ausente";
+    byId("ai-status").textContent = label;
+    byId("engine-badge").textContent = label;
+  }
+  async function refreshStatus() {
+    const token = generation;
+    try {
+      const res = await fetch("/api/status");
+      const status = await res.json();
+      if (token !== generation) return;
+      setAiStatus(
+        status.aiState || (status.aiOnline ? "online" : status.aiReady ? "standby" : "absent"),
+      );
+      state.ticketsReady = status.ticketsReady === true;
+      byId("engine-note").textContent = status.ticketsReady
+        ? "Confira os dados antes de enviar. Seu e-mail ficará registrado para o retorno."
+        : "O atendimento está disponível. O envio aguarda conexão com o Google.";
+    } catch {
+      setAiStatus("absent");
+      byId("engine-note").textContent =
+        "Abra o SmartDesk em http://127.0.0.1:4173/ com o servidor iniciado.";
+    }
+  }
+  function start() {
+    if (saving) return;
+    follower.reset();
+    dock.style.removeProperty("min-height");
+    generation++;
+    messages.cancel();
+    history = [];
+    state = {
+      requestId: crypto.randomUUID(),
+      name: "",
+      email: "",
+      sector: "",
+      area: "",
+      item: null,
+      answers: {},
+      description: "",
+      attachments: [],
+      subject: "",
+      source: "local",
+      draftId: null,
+    };
+    byId("new-chat").hidden = true;
+    byId("mobile-new-chat").hidden = true;
+    byId("messages").replaceChildren();
+    byId("welcome").hidden = false;
+    byId("attachment-input").value = "";
+    context();
+    stage("context");
+    refreshStatus();
+    message("Olá! Sou o assistente do SmartDesk. Vamos organizar seu atendimento juntos?");
+    offerStart();
+  }
+  function offerStart() {
+    choose(
+      [
+        { label: "Sim, vamos começar", value: "Sim, vamos começar", primary: true },
+        "Como funciona?",
+      ],
+      (answer) => {
+        if (answer === "Como funciona?") {
+          message(
+            "Eu te acompanho uma pergunta por vez. Primeiro, informe seu nome e sobrenome, e-mail institucional e setor.",
+          );
+          message(
+            "Depois, toque nos botões para escolher o tipo de ajuda. Quando aparecer um campo de texto, preencha apenas o que a pergunta pede. Você poderá contar o que precisa na etapa de descrição e incluir arquivos, se quiser.",
+          );
+          message(
+            "Antes de enviar, vamos conferir tudo juntos. Use Voltar uma etapa para corrigir uma resposta ou Recomeçar para abrir este atendimento do zero. Após o envio, guarde o número do chamado.",
+          );
+          return offerStart();
+        }
+        byId("welcome").hidden = true;
+        askName();
+      },
+    );
+  }
+  function askName() {
+    checkpoint(askName);
+    message("Vamos começar por você: qual é seu nome e sobrenome?");
+    freeText(
+      "Seu nome e sobrenome…",
+      (name) => {
+        state.name = name.trim();
+        context();
+        const bubble = message("");
+        bubble.append(document.createTextNode("Prazer, "));
+        const strong = document.createElement("strong");
+        strong.textContent = state.name.split(/\s+/)[0];
+        bubble.append(strong, document.createTextNode("! Vamos cuidar disso juntos."));
+        askEmail();
+      },
+      100,
+      (value) =>
+        desk.requestPolicy.fullName(value)
+          ? null
+          : "Informe seu nome e sobrenome, como você usa no trabalho. Acentos, hífens e apóstrofos são aceitos.",
+      state.name,
+    );
+  }
+  function askEmail() {
+    checkpoint(askEmail);
+    message("Qual é o seu e-mail institucional? Vamos guardá-lo para o retorno deste chamado.");
+    freeText(
+      "Seu e-mail institucional…",
+      (email) => {
+        state.email = email.trim().toLowerCase();
+        context();
+        askSector();
+      },
+      160,
+      (value) =>
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim())
+          ? null
+          : "Esse e-mail parece incompleto. Confira o nome, o @ e o domínio (ex.: nome@instituicao.com.br).",
+      state.email,
+    );
+  }
+  function askSector() {
+    checkpoint(askSector);
+    stage("context");
+    message("Agora, em qual setor você trabalha? Escolha na lista abaixo.");
+    structured("Seu setor", "select", desk.flows.sectors, (sector) => {
+      state.sector = sector;
+      context();
+      askArea();
+    });
+  }
+  function askArea() {
+    checkpoint(askArea);
+    stage("report");
+    message(
+      "Qual tipo de ajuda você precisa? Veja os exemplos abaixo e escolha a opção mais próxima.",
+    );
+    choose(
+      desk.flows.areas.map((area, index) => ({
+        label: area,
+        value: area,
+        description: {
+          Audiovisual: "Projetor, som, microfone e cabo HDMI.",
+          Impressora: "Impressão, papel, toner e tinta.",
+          Google: "Gmail, Drive e ferramentas do Google.",
+          TI: "Computador, internet, sistemas e acessórios.",
+        }[area],
+        icon: ["fa-video", "fa-print", "fa-envelope", "fa-computer"][index],
+      })),
+      (area) => {
+        state.equipmentIntent = "";
+        state.authorization = null;
+        state.area = area;
+        state.item = null;
+        state.answers = {};
+        state.subject = "";
+        state.draftId = null;
+        context();
+        askPath([]);
+      },
+    );
+  }
+  function askPath(prefix) {
+    checkpoint(() => askPath(prefix));
+    const allowed = desk.knowledgeBase.items.filter(
+      (item) =>
+        item.area === state.area &&
+        desk.classifier.isAllowed(item, state.sector) &&
+        prefix.every((part, i) => item.path[i] === part),
+    );
+    const labels = [...new Set(allowed.map((item) => item.path[prefix.length]).filter(Boolean))];
+    message(
+      prefix.length
+        ? "Dentro de " +
+            prefix.join(" → ") +
+            ", qual destas opções combina com o que está acontecendo?"
+        : "Certo, vamos por " +
+            state.area +
+            ". Qual destas opções tem mais a ver com o que você precisa?",
+    );
+    choose([...labels.map((label) => ({ label, value: label }))], (value) => {
+      if (value === "__back") return prefix.length ? askPath(prefix.slice(0, -1)) : askArea();
+      const next = [...prefix, value],
+        item = allowed.find(
+          (item) =>
+            item.path.length === next.length && next.every((part, i) => item.path[i] === part),
+        );
+      if (!item) return askPath(next);
+      state.item = item;
+      state.answers = {};
+      state.equipmentIntent = "";
+      state.authorization = null;
+      context();
+      message(desk.conversationCopy.opening(item));
+      askEquipmentIntent();
+    });
+  }
+  function askEquipmentIntent() {
+    if (!desk.requestPolicy.asksEquipmentIntent(state.item)) return askField(0);
+    checkpoint(askEquipmentIntent);
+    message(
+      "É um problema com o item que você já usa ou você quer solicitar um item novo ou diferente?",
+    );
+    choose(
+      [
+        { label: "Meu item está com defeito", value: "repair" },
+        { label: "Quero um item novo ou diferente", value: "purchase" },
+      ],
+      (intent) => {
+        state.equipmentIntent = intent;
+        message(
+          intent === "repair"
+            ? "Entendi. Vamos registrar o defeito para a equipe avaliar o reparo ou a reposição."
+            : "Certo. Vamos registrar o que você precisa e quem autorizou esse pedido.",
+        );
+        askField(0);
+      },
+    );
+  }
+  function askField(index) {
+    const fields = state.item.fields || [];
+    if (index >= fields.length) {
+      if (
+        state.item.fields.some((f) => f.id === "descricao-do-problema") &&
+        state.answers["descricao-do-problema"]
+      ) {
+        state.description = state.answers["descricao-do-problema"];
+        return askAuthorization();
+      }
+      return askDescription();
+    }
+    const field = fields[index];
+    if (field.when && state.answers[field.when.field] !== field.when.equals)
+      return askField(index + 1);
+    checkpoint(() => askField(index));
+    if (field.id === "computador") {
+      const hardware = desk.requestPolicy.asksEquipmentIntent(state.item);
+      message(
+        hardware
+          ? state.equipmentIntent === "purchase"
+            ? "Quem vai usar esse novo item?"
+            : "Quem usa o equipamento que está com defeito?"
+          : "Quem usa o computador que precisa de atendimento?",
+      );
+      return choose(
+        [
+          {
+            label: hardware
+              ? state.equipmentIntent === "purchase"
+                ? "É para mim"
+                : "Eu uso esse equipamento"
+              : "Eu uso este computador",
+            value: state.name,
+          },
+          { label: "Outra pessoa", value: "other" },
+          { label: "Uso compartilhado", value: "shared" },
+        ],
+        (value) => {
+          if (value === "other")
+            return freeText(
+              "Nome e sobrenome de quem usa o computador…",
+              (owner) => {
+                state.answers[field.id] = owner.trim();
+                askField(index + 1);
+              },
+              100,
+              (v) =>
+                desk.requestPolicy.fullName(v)
+                  ? null
+                  : "Informe o nome e sobrenome de quem usa o computador.",
+            );
+          if (value === "shared")
+            return freeText(
+              "Onde fica o computador compartilhado? Ex.: recepção…",
+              (place) => {
+                state.answers[field.id] = "Compartilhado — " + place;
+                askField(index + 1);
+              },
+              200,
+            );
+          state.answers[field.id] = value;
+          askField(index + 1);
+        },
+      );
+    }
+    message(desk.conversationCopy.field(state.item, field));
+    const done = (value) => {
+      state.answers[field.id] = value;
+      askField(index + 1);
+    };
+    if (field.type === "choice") return choose(field.options, done);
+    if (["date", "time"].includes(field.type))
+      return structured(field.label, field.type, null, done);
+    const validate = (value) =>
+      field.id === "descricao-do-problema" && !desk.requestPolicy.usefulDescription(value)
+        ? "Me conte o que acontece com o cabo. Só o número da sala não explica o problema."
+        : field.type === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+          ? "Informe um e-mail válido."
+          : field.type === "url" && !/^https?:\/\/[^\s]+$/i.test(value)
+            ? "Informe um link começando com https:// ou http://."
+            : null;
+    freeText(
+      field.id === "descricao-do-problema"
+        ? "Conte o que acontece com o cabo HDMI…"
+        : field.label + "…",
+      done,
+      1000,
+      validate,
+      state.answers[field.id] || "",
+    );
+  }
+  function askDescription() {
+    checkpoint(askDescription);
+    message(desk.conversationCopy.description(state.item, state.equipmentIntent));
+    freeText(
+      "Conte aqui o problema ou pedido…",
+      (description) => {
+        state.description = description;
+        if (state.item.fields.some((f) => f.id === "descricao-do-problema"))
+          state.answers["descricao-do-problema"] = description;
+        state.subject = "";
+        state.draftId = null;
+        askAuthorization();
+      },
+      state.item.fields.some((f) => f.id === "descricao-do-problema") ? 1000 : 2000,
+      (value) =>
+        desk.requestPolicy.usefulDescription(value)
+          ? null
+          : "Conte o que acontece ou o que você precisa. Só um número ou símbolo não explica o chamado.",
+      state.description,
+    );
+  }
+  function askAuthorization() {
+    if (
+      !desk.requestPolicy.needsAuthorization(state.item, state.description, state.equipmentIntent)
+    ) {
+      state.authorization = null;
+      return askAttachments();
+    }
+    checkpoint(askAuthorization);
+    message(
+      "Para esse pedido de compra ou de um item novo, sua liderança já deu o aval? Vou registrar essa informação para a equipe conferir.",
+    );
+    choose(["Já foi autorizado", "Ainda não tenho autorização"], (answer) => {
+      if (answer === "Ainda não tenho autorização") {
+        state.authorization = { status: "pending", by: "" };
+        message(
+          "Tudo bem. Vou registrar que a autorização está pendente para a equipe avaliar com sua liderança.",
+        );
+        return askAttachments();
+      }
+      message(
+        "Quem autorizou? Informe o nome e sobrenome da liderança. Se quiser, anexe a aprovação na próxima etapa.",
+      );
+      freeText(
+        "Nome e sobrenome de quem autorizou…",
+        (name) => {
+          state.authorization = { status: "reported", by: name.trim() };
+          askAttachments();
+        },
+        100,
+        (v) =>
+          desk.requestPolicy.fullName(v)
+            ? null
+            : "Informe o nome e sobrenome da liderança que autorizou.",
+      );
+    });
+  }
+  function askAttachments() {
+    checkpoint(askAttachments);
+    message(
+      state.attachments.length
+        ? "Você pode adicionar outro arquivo ou continuar para a revisão."
+        : "Você tem uma foto ou arquivo que ajude a mostrar isso? Pode anexar agora ou seguir sem anexo.",
+    );
+    askAttachmentsControls();
+  }
+  function askAttachmentsControls() {
+    choose(
+      [
+        { label: "Adicionar anexo", value: "add", icon: "fa-paperclip" },
+        {
+          label: state.attachments.length ? "Continuar com os anexos" : "Continuar sem anexo",
+          value: "next",
+          icon: "fa-check",
+        },
+      ],
+      (value) => {
+        if (value === "add") {
+          askAttachmentsControls();
+          byId("attachment-input").click();
+        } else makeSubject();
+      },
+    );
+    renderAttachments();
+  }
+  function renderAttachments() {
+    const panel = byId("attachment-panel");
+    panel.hidden = false;
+    panel.replaceChildren();
+    const note = document.createElement("p");
+    note.textContent =
+      "Até 5 arquivos · 10 MB por arquivo · 20 MB no total. Os anexos não são enviados à IA.";
+    panel.append(note);
+    for (const [index, file] of state.attachments.entries()) {
+      const row = document.createElement("div");
+      row.className = "attachment-row";
+      const label = document.createElement("span");
+      label.textContent = file.name + " · " + (file.size / 1024).toFixed(1) + " KB";
+      const remove = document.createElement("button");
+      remove.type = "button";
+      remove.className = "small-action";
+      remove.textContent = "Remover";
+      remove.setAttribute("aria-label", "Remover " + file.name);
+      remove.addEventListener("click", () => {
+        state.attachments.splice(index, 1);
+        state.draftId = null;
+        askAttachmentsControls();
+      });
+      row.append(label, remove);
+      panel.append(row);
+    }
+  }
+  byId("attachment-input").addEventListener("change", () => {
+    const result = desk.attachments.merge(state.attachments, [...byId("attachment-input").files]);
+    if (!result.error) {
+      state.attachments = result.files;
+      state.draftId = null;
+    }
+    byId("attachment-input").value = "";
+    askAttachmentsControls();
+    byId("input-error").textContent = result.error;
+  });
+  async function makeSubject() {
+    setAiStatus("busy");
+    lock("ORGANIZANDO SEU CHAMADO");
+    const token = generation;
+    let result;
+    try {
+      result = await api("/api/subject", selectionPayload());
+    } catch {
+      if (token === generation) setAiStatus(false);
+      result = { subject: (state.area + " — " + state.item.need).slice(0, 80), source: "local" };
+    }
+    if (token !== generation) return;
+    state.subject = String(result.subject || state.area + " — " + state.item.need)
+      .replace(/[<>\r\n\x00-\x1f]+/g, " — ")
+      .replace(/\s+/g, " ")
+      .trim()
+      .slice(0, 80);
+    state.source = result.source;
+    showSummary();
+  }
+  function summaryRows() {
+    return [
+      ["Solicitante", state.name],
+      ["E-mail", state.email],
+      ["Setor", state.sector],
+      ["Área", state.area],
+      ["Necessidade", state.item.need],
+      ...(state.authorization
+        ? [
+            [
+              "Autorização da liderança",
+              state.authorization.status === "reported"
+                ? "Declarada pelo solicitante — " + state.authorization.by
+                : "Pendente de autorização",
+            ],
+          ]
+        : []),
+      ...(state.item.fields || [])
+        .filter((field) => state.answers[field.id] && field.id !== "descricao-do-problema")
+        .map((field) => [
+          field.id === "computador" ? "Quem utiliza o computador" : field.label,
+          state.answers[field.id],
+        ]),
+      ["Descrição", state.description],
+      ...(state.attachments.length
+        ? [["Anexos", state.attachments.map((file) => file.name).join("\n")]]
+        : []),
+    ];
+  }
+  function showSummary() {
+    checkpoint(showSummary);
+    stage("summary");
+    const bubble = message("Confira seu chamado:");
+    const card = document.createElement("section");
+    card.className = "summary-card";
+    card.setAttribute("aria-label", "Resumo do chamado");
+    const heading = document.createElement("h3");
+    heading.textContent = state.area + " · " + state.item.need;
+    const dl = document.createElement("dl");
+    for (const [label, value] of summaryRows()) {
+      const dt = document.createElement("dt");
+      dt.textContent = label;
+      const dd = document.createElement("dd");
+      dd.textContent = value;
+      dl.append(dt, dd);
+    }
+    card.append(heading, dl);
+    bubble.append(card);
+    summaryActions();
+  }
+  function summaryActions(failure = "") {
+    choose(
+      [
+        {
+          label: failure ? "Tentar enviar novamente" : "Enviar chamado",
+          value: "send",
+          icon: "fa-paper-plane",
+          primary: true,
+        },
+        { label: "Editar descrição", value: "edit", icon: "fa-pen" },
+        ...(state.attachments.length
+          ? [{ label: "Revisar anexos", value: "files", icon: "fa-paperclip" }]
+          : []),
+      ],
+      (action) => {
+        if (action === "edit") return askDescription();
+        if (action === "files") return askAttachments();
+        sendTicket();
+      },
+      failure
+        ? "ENVIO NÃO CONFIRMADO · SEUS DADOS CONTINUAM AQUI"
+        : "SEUS DADOS ESTÃO PRONTOS PARA ENVIO",
+    );
+    if (failure)
+      readyControls(() => {
+        const alert = document.createElement("p");
+        alert.className = "submission-error";
+        alert.setAttribute("role", "alert");
+        alert.textContent = failure;
+        choices.before(alert);
+      });
+  }
+  async function sendTicket() {
+    if (saving || state.receipt) return;
+    saving = true;
+    lock("ENVIANDO SEU CHAMADO");
+    const pending = document.createElement("div");
+    pending.className = "sending-status";
+    pending.setAttribute("role", "status");
+    pending.setAttribute("aria-live", "polite");
+    const spinner = document.createElement("span");
+    spinner.className = "sending-spinner";
+    spinner.setAttribute("aria-hidden", "true");
+    const label = document.createElement("span");
+    label.textContent = "Enviando seu chamado… Aguarde a confirmação.";
+    pending.append(spinner, label);
+    choices.append(pending);
+    choices.closest(".interaction-dock").setAttribute("aria-busy", "true");
+    byId("frozen-label").hidden = true;
+    byId("edit-context").hidden = true;
+    try {
+      const attachments = await Promise.all(state.attachments.map(desk.attachments.serialize));
+      const result = await api("/api/tickets", {
+        ...selectionPayload(),
+        requestId: state.requestId,
+        name: state.name,
+        email: state.email,
+        authorization: state.authorization,
+        subject: state.subject,
+        attachments,
+      });
+      if (
+        result.status !== "enviado" ||
+        result.requestId !== state.requestId ||
+        typeof result.number !== "string" ||
+        !result.number.trim()
+      )
+        throw new Error("Não consegui confirmar o recebimento. Seus dados continuam aqui.");
+      state.receipt = result;
+      stage("sent");
+      const confirmation = message(
+        "Chamado " + result.number + " enviado! Seus dados foram registrados com sucesso.",
+      );
+      confirmation.closest(".message").classList.add("sent");
+      saving = false;
+      choose(
+        [{ label: "Novo atendimento", value: "new", icon: "fa-plus", primary: true }],
+        start,
+        "ATENDIMENTO ENVIADO",
+      );
+      byId("new-chat").hidden = false;
+      byId("mobile-new-chat").hidden = false;
+    } catch (error) {
+      saving = false;
+      const detail =
+        error.name === "TimeoutError" || error.name === "TypeError"
+          ? "A conexão não respondeu. Não consegui confirmar o recebimento. Tente novamente; seus dados continuam aqui."
+          : error.message || "Não consegui confirmar o recebimento. Seus dados continuam aqui.";
+      message("O envio não foi confirmado. " + detail);
+      summaryActions(detail);
+    }
+  }
+  byId("composer").addEventListener("submit", (event) => {
+    event.preventDefault();
+    if (!textHandler || input.disabled) return;
+    const value = input.value;
+    if (!value.trim()) {
+      showInputError("Preencha este dado para continuar.");
+      return;
+    }
+    const error = validator?.(value);
+    if (error) {
+      showInputError(error);
+      return;
+    }
+    const callback = textHandler;
+    message(value, "user");
+    lock();
+    callback(value);
+  });
+  function showInputError(error) {
+    byId("input-error").textContent = error ? "⚠ " + error : "";
+    byId("composer").classList.toggle("invalid", !!error);
+    input.setAttribute("aria-invalid", String(!!error));
+  }
+  input.addEventListener("input", () => {
+    byId("send").disabled = !input.value.trim();
+    byId("char-count").textContent = input.value.length + " / " + input.maxLength;
+    if (input.getAttribute("aria-invalid") === "true")
+      showInputError(
+        validator?.(input.value) ||
+          (!input.value.trim() ? "Preencha este dado para continuar." : ""),
+      );
+  });
+  input.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" && !event.shiftKey && !event.isComposing) {
+      event.preventDefault();
+      byId("composer").requestSubmit();
+    }
+  });
+  byId("new-chat").addEventListener("click", start);
+  byId("mobile-new-chat").addEventListener("click", start);
+  byId("edit-context").addEventListener("click", back);
+  byId("restart-chat").addEventListener("click", start);
+  start();
+  setInterval(refreshStatus, 30000);
+})(window.SmartDesk);

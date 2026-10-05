@@ -97,3 +97,6 @@ Rodapé deve centralizar a caixa com margens automáticas, não apenas o texto. 
 
 ## Acompanhamento 0.8.14
 Abertura fica no topo apenas até a primeira interação. Como funciona deve acompanhar cada resposta. Reajustar rolagem após layout/ResizeObserver e renderização de controles para não cortar pergunta; preservar altura do dock durante fila e liberar após controles. Reiniciar deve cancelar fila e voltar ao topo. Circuito em quatro entradas sequenciais até robô, sem saída, finito e reduzido conforme preferência.
+
+## Entrega online 0.8.15 — 2026-10-05
+Usuário exige planilha, anexos e IA reais, acesso por links e custo zero. Pages é entrada para servidor HTTPS, não backend. Preparação Render somente Free, sem cartão/faturamento; exigir acesso de avaliação e não publicar chaves. Conta/URL e verificação remota ainda pendentes. Preservar integração Google já existente; não mudar modelo Gemini automaticamente. Guia em 03-prototipo/hospedagem.md.

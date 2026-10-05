@@ -1,0 +1,24 @@
+{
+  "version": "0.8.11",
+  "syntaxFiles": 31,
+  "formattedFiles": 40,
+  "keyframes": [
+    "message-arrive",
+    "reply-arrive",
+    "choice-arrive",
+    "surface-enter",
+    "mascot-float",
+    "connection-flow",
+    "stage-done",
+    "typing-pulse",
+    "sending-turn",
+    "chart-grow",
+    "backdrop-enter",
+    "busy-pulse"
+  ],
+  "notes": [
+    "Movimento decorativo limitado; rotação de envio/digitação apenas durante operação.",
+    "Testes de cancelamento e movimento reduzido executados em ambiente controlado.",
+    "Viewport móvel não substitui teste de teclado em aparelho real."
+  ]
+}

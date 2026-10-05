@@ -2,7 +2,7 @@
   "versao": 1,
   "projeto": "SmartDesk",
   "atualizado_em": "2026-10-01",
-  "proximo_numero": 161,
+  "proximo_numero": 162,
   "evidencias": [
     {
       "numero": "EVID-001",
@@ -1929,6 +1929,18 @@
       "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\acompanhamento-mobile-campo-v0814.png",
       "sha256": "CEBA9C64C763267410A16A7C8051BCB82055706D9F0853845A813128BB29374F",
       "status": "salvo e conferido visualmente"
+    },
+    {
+      "numero": "EVID-161",
+      "arquivo": "EVID-161_chat-local-v0815.png",
+      "etapa": "Preparação da entrega online 0.8.15",
+      "descricao": "Chat local com ajuda concluída e versão 0.8.15; não comprova hospedagem online nem conexão recente com IA.",
+      "data_aproximada": "2026-10-05",
+      "fundamento_data": "Captura desta sessão",
+      "data_inclusao": "2026-10-05",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\chat-local-v0815.png",
+      "sha256": "1ED725B4F1FCCFFC490137BBF32646B841259813A5A7E3140EB633A3D1CDA826",
+      "status": "captura local; verificação online pendente"
     }
   ]
 }

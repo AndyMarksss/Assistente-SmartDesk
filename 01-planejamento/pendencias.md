@@ -80,3 +80,5 @@ HDMI dispensa autorização, descrição duplicada removida, periféricos distin
 - 0.8.13: conferir circuito luminoso ao recarregar, robô nas mensagens e rodapé central no aparelho real. Próximo print: pergunta/campo com teclado aberto; EVID-151.
 
 - 0.8.14: conferir ajuda acompanhada, pergunta inteira após opções/campos e teclado real no celular. Próximo print: pergunta e campo após teclado abrir; EVID-161.
+
+- 0.8.15: usuário exige custo zero e integrações reais. Preparação hospedagem/Pages concluída; criar conta Render Free sem cartão/faturamento, configurar ambiente privado e URL pública, conferir um chamado de avaliação online. Próximo print EVID-162: confirmação online com número, sem senha/token/chave; não repetir evidências locais como prova remota.

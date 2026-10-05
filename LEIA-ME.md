@@ -44,3 +44,7 @@ Chat guiado pelos 25 setores, quatro áreas e 57 caminhos da matriz. Descrição
 ## Atualização 0.6.0
 
 Chat com mensagens suaves, correção de etapa anterior, campos pausados e revisão simplificada. Envio preparado para Google Planilhas/Drive por Apps Script; ativação pendente. Consulte [instalação Google](03-prototipo/integracoes/apps-script/INSTALAR-GOOGLE.md). Use http://127.0.0.1:4173/, com o servidor local iniciado, para IA e envio.
+
+## Entrega online com integrações reais — 0.8.15
+
+Código preparado para hospedagem Node gratuita e entrada GitHub Pages. Configuração pública ainda pendente; seguir [guia de hospedagem](03-prototipo/hospedagem.md). Professor acessará por link e acesso de avaliação, sem terminal. Chaves/token somente no ambiente privado do servidor.

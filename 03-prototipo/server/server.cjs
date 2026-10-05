@@ -14,6 +14,8 @@ function loadBase() {
 }
 function createServer(adapter = provider, options = {}) {
   const desk = loadBase();
+  const hosting = require("./hosting.cjs");
+  const config = hosting.configuration(options.env || process.env);
   const json = (res, status, content) => {
     res.writeHead(status, {
       "Content-Type": "application/json; charset=utf-8",
@@ -31,14 +33,11 @@ function createServer(adapter = provider, options = {}) {
     ...options,
   });
   return http.createServer(async (req, res) => {
-    const port = req.socket.localPort;
-    if (!["127.0.0.1:" + port, "localhost:" + port].includes(req.headers.host))
-      return json(res, 403, { error: "Host não permitido." });
-    if (
-      req.headers.origin &&
-      !["http://127.0.0.1:" + port, "http://localhost:" + port].includes(req.headers.origin)
-    )
-      return json(res, 403, { error: "Origem não permitida." });
+    if (!hosting.allowedRequest(req, config))
+      return json(res, 403, { error: "Host ou origem não permitidos." });
+    // Health checks reveal no configuration and never invoke paid/external APIs.
+    if (req.url === "/healthz" && req.method === "GET") return json(res, 200, { ok: true });
+    if (!hosting.authorize(req, res, config)) return;
     const url = new URL(req.url, "http://127.0.0.1");
     if (await management(req, res, url)) return;
     if (await ticketService(req, res, url)) return;
@@ -154,16 +153,9 @@ function createServer(adapter = provider, options = {}) {
   });
 }
 if (require.main === module) {
-  const port = Number(process.env.SMARTDESK_PORT || 4173);
-  if (!Number.isInteger(port) || port < 1024 || port > 65535) throw new Error("Porta inválida.");
-  createServer().listen(port, "127.0.0.1", () =>
-    console.log(
-      "SmartDesk: http://127.0.0.1:" +
-        port +
-        (provider.ready()
-          ? " — Gemini configurado; conexão será verificada ao analisar."
-          : " — Gemini aguardando chave; base local ativa."),
-    ),
+  const config = require("./hosting.cjs").configuration();
+  createServer().listen(config.port, config.host, () =>
+    console.log("SmartDesk iniciado em " + (config.origin || "http://127.0.0.1:" + config.port)),
   );
 }
 module.exports = { createServer };

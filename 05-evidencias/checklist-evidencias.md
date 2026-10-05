@@ -302,3 +302,7 @@ Incluídas em 2026-10-02:
 - EVID-158 — EVID-158_acompanhamento-opcoes.png: Captura 0.8.14: explicação/pergunta inteira após atualização do layout; desktop. SHA-256 5075672B56EF9D5C2DCB999C9411B627A1493C7905120045F28C4D1FD8B2158F
 - EVID-159 — EVID-159_acompanhamento-mobile.png: Captura 0.8.14: explicação/pergunta inteira após atualização do layout; viewport 390×844, sem teclado real. SHA-256 4171FCDCBD0777429DE5A623E99335195635BDE28F1AC103815DD009BC2E0A44
 - EVID-160 — EVID-160_acompanhamento-mobile-campo.png: Captura 0.8.14: explicação/pergunta inteira após atualização do layout; viewport 390×844, sem teclado real. SHA-256 CEBA9C64C763267410A16A7C8051BCB82055706D9F0853845A813128BB29374F
+
+## Preparação online 0.8.15
+
+- EVID-161 — EVID-161_chat-local-v0815.png: chat local com ajuda e versão; não comprova hospedagem online. Captura/inclusão 2026-10-05. Origem: C:\Users\ander\Documents\Codex\2026-09-30\referenced-chatgpt-conversation-this-is-an-2\outputs\chat-local-v0815.png. SHA-256 1ED725B4F1FCCFFC490137BBF32646B841259813A5A7E3140EB633A3D1CDA826.

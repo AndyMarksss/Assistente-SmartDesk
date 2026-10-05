@@ -1,0 +1,77 @@
+"use strict";
+function createStorage({ env = process.env, fetchImpl = globalThis.fetch } = {}) {
+  const config = () => ({
+    url: String(env.SMARTDESK_APPS_SCRIPT_URL || "").trim(),
+    token: String(env.SMARTDESK_APPS_SCRIPT_TOKEN || "").trim(),
+  });
+  const ready = () => {
+    const c = config();
+    return (
+      /^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]+\/exec$/.test(c.url) &&
+      c.token.length >= 32
+    );
+  };
+  return {
+    ready,
+    async manage(action, payload = {}) {
+      if (!ready()) throw Error("Google não configurado");
+      const { url, token } = config();
+      const response = await fetchImpl(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token, action, ...payload }),
+        redirect: "follow",
+        signal: AbortSignal.timeout(55000),
+      });
+      const output = await response.json();
+      if (!response.ok || !output.ok) throw Error("Gestão Google indisponível");
+      if (action === "listTickets" && !Array.isArray(output.tickets))
+        throw Error("Atualize o Apps Script");
+      return output;
+    },
+    async submit(ticket) {
+      if (!ready()) throw Error("Recebimento não configurado");
+      const { url, token } = config();
+      if (ticket.email) {
+        const health = await fetchImpl(url, {
+          redirect: "follow",
+          signal: AbortSignal.timeout(15000),
+        });
+        const info = await health.json();
+        if (!health.ok || !["0.7.0", "0.8.0"].includes(info.version))
+          throw Error("Atualize o Apps Script antes de enviar e-mail");
+        if (ticket.authorization && !info.features?.includes("authorization")) {
+          const error = Error(
+            "Para registrar a autorização, atualize Code.gs e Gestao.gs e publique uma nova versão do Apps Script. Seus dados continuam aqui.",
+          );
+          error.requiresUpgrade = true;
+          throw error;
+        }
+      }
+      const response = await fetchImpl(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token, ticket }),
+        redirect: "follow",
+        signal: AbortSignal.timeout(55000),
+      });
+      if (!response.ok) throw Error("Recebimento indisponível");
+      let output;
+      try {
+        output = await response.json();
+      } catch {
+        throw Error("Resposta de implantação inválida");
+      }
+      if (!output.ok || !/^#\d{3,}$/.test(output.number) || output.requestId !== ticket.requestId)
+        throw Error("Recebimento não confirmado");
+      return {
+        number: output.number,
+        requestId: output.requestId,
+        attachmentCount: Number(output.attachmentCount) || 0,
+        status: "enviado",
+      };
+    },
+  };
+}
+module.exports = createStorage();
+module.exports.createStorage = createStorage;
