@@ -1989,6 +1989,18 @@
       "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\pages-estatico-v091.png",
       "sha256": "B3B28D7F127F6F89DEE2CA706CDE154EE8321C61080B2A3B2101ACFEB9EF6FDA",
       "status": "salvo e conferido visualmente; publicação remota pendente"
+    },
+    {
+      "numero": "EVID-166",
+      "arquivo": "EVID-166_pages-publicado-v091.png",
+      "etapa": "Correção 0.9.1 — publicação frontend",
+      "descricao": "Pages público com interface, versão 0.9.1 conferida no DOM e endereço github.io preservado. GitHub Actions success no commit 2391470. Não comprova autenticação/backend Google, IA ou envio.",
+      "data_aproximada": "2026-10-05",
+      "fundamento_data": "Captura e conferência desta sessão",
+      "data_inclusao": "2026-10-05",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\pages-publicado-v091.png",
+      "sha256": "B3B28D7F127F6F89DEE2CA706CDE154EE8321C61080B2A3B2101ACFEB9EF6FDA",
+      "status": "frontend público conferido; backend/recebimento remoto pendentes"
     }
   ]
 }

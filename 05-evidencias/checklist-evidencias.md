@@ -314,3 +314,5 @@ Incluídas em 2026-10-02:
 - EVID-164: [arquivos-google-v090](EVID-164_arquivos-google-v090.png) — Anexo do usuário: arquivos 0.9.0 aplicados no editor; não comprova implantação. Motivou correção para frontend Pages.
 
 - EVID-165: [pages-estatico-v091](EVID-165_pages-estatico-v091.png) — Prévia local do pacote estático Pages 0.9.1 com acesso de avaliação; sem redirecionamento. Não comprova recebimento Google.
+
+- EVID-166: [Pages público 0.9.1](EVID-166_pages-publicado-v091.png); frontend conferido, backend ainda pendente. Próxima EVID-167.
