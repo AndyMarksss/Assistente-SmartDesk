@@ -2,7 +2,7 @@
   "versao": 1,
   "projeto": "SmartDesk",
   "atualizado_em": "2026-10-05",
-  "proximo_numero": 174,
+  "proximo_numero": 176,
   "evidencias": [
     {
       "numero": "EVID-001",
@@ -2085,6 +2085,30 @@
       "origem": "C:/Users/ander/AppData/Local/Temp/codex-clipboard-35f83ff3-b4c5-40d4-be06-7945eeb71655.png",
       "sha256": "66694795DCAE825D4984B0B6B46F39957D398D2B4296AC7BFB0AF16F46A78744",
       "status": "conferido visualmente; publicação mais recente em fila"
+    },
+    {
+      "numero": "EVID-174",
+      "arquivo": "EVID-174_deployments-ainda-pendente.png",
+      "etapa": "Acompanhamento do incidente Actions",
+      "descricao": "Histórico mostra publicação #22 pendente; última versão concluída anterior preservada.",
+      "data_aproximada": "2026-10-05",
+      "fundamento_data": "Print enviado nesta sessão",
+      "data_inclusao": "2026-10-05",
+      "origem": "C:/Users/ander/AppData/Local/Temp/codex-clipboard-70c16f54-8327-4ea9-83e9-ee95766edb4c.png",
+      "sha256": "5BB3CB63ED184EC0CF58EBB1E327CF4912F336C56FB3A9CA1734520C1E9CAF90",
+      "status": "conferido visualmente; publicação em fila"
+    },
+    {
+      "numero": "EVID-175",
+      "arquivo": "EVID-175_actions-fila-16-minutos.png",
+      "etapa": "Acompanhamento do incidente Actions",
+      "descricao": "Execução #22 mostra Queued após 16 minutos, sem passos iniciados. Não demonstra build em execução.",
+      "data_aproximada": "2026-10-05",
+      "fundamento_data": "Print enviado nesta sessão",
+      "data_inclusao": "2026-10-05",
+      "origem": "C:/Users/ander/AppData/Local/Temp/codex-clipboard-d16e839d-b6f2-4dea-a383-cc0f80959c72.png",
+      "sha256": "539D10225B68ADE3E338FB1F9D3433E15B80CDF4663BBE1DDFB193E81E22D18E",
+      "status": "conferido visualmente; publicação em fila"
     }
   ]
 }

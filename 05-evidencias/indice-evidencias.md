@@ -361,3 +361,7 @@ Próxima evidência: EVID-170. Teste de abertura sem senha no Pages 0.9.2 e conf
 - EVID-172: [actions-publicacao-fila](EVID-172_actions-publicacao-fila.png) — Execução #22, commit 01ee4f6, em fila aguardando execução.
 
 - EVID-173: [commit-acesso-sem-senha](EVID-173_commit-acesso-sem-senha.png) — Commit e0fc13b disponível no GitHub; check de publicação falhou. Código publicado no repositório não comprova implantação Pages.
+
+- EVID-174: [deployments-ainda-pendente](EVID-174_deployments-ainda-pendente.png) — Histórico mostra publicação #22 pendente; última versão concluída anterior preservada.
+
+- EVID-175: [actions-fila-16-minutos](EVID-175_actions-fila-16-minutos.png) — Execução #22 mostra Queued após 16 minutos, sem passos iniciados. Não demonstra build em execução.
