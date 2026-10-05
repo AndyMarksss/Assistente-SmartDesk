@@ -45,7 +45,12 @@ function build(destination, address = "") {
         "<body>",
         '<body><p role="status">A conexão Google ainda não está pronta para avaliação.</p>',
       );
-    html = html.replace("Chamados do Google", "Chamados desta avaliação");
+    html = html
+      .replace("Chamados do Google", "Chamados desta avaliação")
+      .replace(
+        "Abra o SmartDesk pelo servidor local para usar a IA e enviar chamados.",
+        "Conectando às integrações Google…",
+      );
     fs.writeFileSync(path.join(destination, page), html);
   }
   fs.writeFileSync(path.join(destination, ".nojekyll"), "");
