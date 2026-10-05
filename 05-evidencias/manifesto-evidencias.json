@@ -2001,6 +2001,18 @@
       "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\pages-publicado-v091.png",
       "sha256": "B3B28D7F127F6F89DEE2CA706CDE154EE8321C61080B2A3B2101ACFEB9EF6FDA",
       "status": "frontend público conferido; backend/recebimento remoto pendentes"
+    },
+    {
+      "numero": "EVID-167",
+      "arquivo": "EVID-167_sem-senha-previa-v092.png",
+      "etapa": "Avaliação sem senha 0.9.2",
+      "descricao": "Prévia local do build Pages: chat abre sem modal, opções iniciais disponíveis e versão 0.9.2. Google/IA reais não confirmados; publicação Pages na fila durante revisão.",
+      "data_aproximada": "2026-10-05",
+      "fundamento_data": "Captura desta sessão",
+      "data_inclusao": "2026-10-05",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\sem-senha-previa-v092.png",
+      "sha256": "8473162B1FF1D38686E627E3D3649D30AA030413477C6AAD8E0B0CB2C768FCDE",
+      "status": "conferido visualmente; implantação Google/teste real pendentes"
     }
   ]
 }
