@@ -335,3 +335,9 @@ Próxima evidência: EVID-170. Teste de abertura sem senha no Pages 0.9.2 e conf
 - EVID-174: [deployments-ainda-pendente](EVID-174_deployments-ainda-pendente.png) — Histórico mostra publicação #22 pendente; última versão concluída anterior preservada.
 
 - EVID-175: [actions-fila-16-minutos](EVID-175_actions-fila-16-minutos.png) — Execução #22 mostra Queued após 16 minutos, sem passos iniciados. Não demonstra build em execução.
+
+- EVID-176: [actions-publicacao-v092-sucesso](EVID-176_actions-publicacao-v092-sucesso.png) — Execução #22 concluída com Success; job executado em 15 segundos após espera na fila.
+
+- EVID-177: [pages-v092-sem-senha](EVID-177_pages-v092-sem-senha.png) — Interface no domínio github.io, rodapé v0.9.2 e abertura sem senha. Mostra IA ausente e Conectando às integrações Google; não comprova conexão, Gemini ou recebimento.
+
+- EVID-178: [deployment-v092-ativo](EVID-178_deployment-v092-ativo.png) — Histórico confirma #22 ativo e publicado com sucesso; falha histórica #21 permanece visível.

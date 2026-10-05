@@ -2,7 +2,7 @@
   "versao": 1,
   "projeto": "SmartDesk",
   "atualizado_em": "2026-10-05",
-  "proximo_numero": 176,
+  "proximo_numero": 179,
   "evidencias": [
     {
       "numero": "EVID-001",
@@ -2109,6 +2109,42 @@
       "origem": "C:/Users/ander/AppData/Local/Temp/codex-clipboard-d16e839d-b6f2-4dea-a383-cc0f80959c72.png",
       "sha256": "539D10225B68ADE3E338FB1F9D3433E15B80CDF4663BBE1DDFB193E81E22D18E",
       "status": "conferido visualmente; publicação em fila"
+    },
+    {
+      "numero": "EVID-176",
+      "arquivo": "EVID-176_actions-publicacao-v092-sucesso.png",
+      "etapa": "Frontend Pages 0.9.2 publicado",
+      "descricao": "Execução #22 concluída com Success; job executado em 15 segundos após espera na fila.",
+      "data_aproximada": "2026-10-05",
+      "fundamento_data": "Anexos enviados nesta sessão",
+      "data_inclusao": "2026-10-05",
+      "origem": "C:/Users/ander/AppData/Local/Temp/codex-clipboard-330ae797-34f0-4195-b15e-cde61cd3133d.png",
+      "sha256": "FF1BC289F60CBF81FDAFE58344BB4AB2B9ABAD642B8FABACAE126C06E4D115C4",
+      "status": "publicação frontend confirmada; integrações pelo Pages pendentes"
+    },
+    {
+      "numero": "EVID-177",
+      "arquivo": "EVID-177_pages-v092-sem-senha.png",
+      "etapa": "Frontend Pages 0.9.2 publicado",
+      "descricao": "Interface no domínio github.io, rodapé v0.9.2 e abertura sem senha. Mostra IA ausente e Conectando às integrações Google; não comprova conexão, Gemini ou recebimento.",
+      "data_aproximada": "2026-10-05",
+      "fundamento_data": "Anexos enviados nesta sessão",
+      "data_inclusao": "2026-10-05",
+      "origem": "C:/Users/ander/AppData/Local/Temp/codex-clipboard-8fbf5098-99c8-4b5b-bf71-d88061a1e1c2.png",
+      "sha256": "251F6EBAB6C696C775EA47FD9CE4F0746E5CA10FBE981349C306D672FFC11BB4",
+      "status": "publicação frontend confirmada; integrações pelo Pages pendentes"
+    },
+    {
+      "numero": "EVID-178",
+      "arquivo": "EVID-178_deployment-v092-ativo.png",
+      "etapa": "Frontend Pages 0.9.2 publicado",
+      "descricao": "Histórico confirma #22 ativo e publicado com sucesso; falha histórica #21 permanece visível.",
+      "data_aproximada": "2026-10-05",
+      "fundamento_data": "Anexos enviados nesta sessão",
+      "data_inclusao": "2026-10-05",
+      "origem": "C:/Users/ander/AppData/Local/Temp/codex-clipboard-352111c6-14a9-4469-bc27-4490efbbcb0f.png",
+      "sha256": "A79EC9270B4DA38B8A3C75CC123A08043AD60DA2CFC71A7F0A67CF229EFFD18E",
+      "status": "publicação frontend confirmada; integrações pelo Pages pendentes"
     }
   ]
 }
