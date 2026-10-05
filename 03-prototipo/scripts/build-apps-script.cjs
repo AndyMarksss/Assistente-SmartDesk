@@ -6,6 +6,7 @@ const destination = path.join(root, "integracoes/apps-script");
 const read = (file) => fs.readFileSync(path.join(root, file), "utf8");
 let checking = false;
 const write = (name, text) => {
+  text = text.replace(/^[ \t]+$/gm, "").trimEnd() + "\n";
   const target = path.join(destination, name);
   if (checking) {
     if (!fs.existsSync(target) || fs.readFileSync(target, "utf8") !== text)

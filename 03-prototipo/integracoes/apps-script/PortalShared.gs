@@ -1964,4 +1964,3 @@ function validateAnswers_(input, item) {
   }
   return result;
 }
-
