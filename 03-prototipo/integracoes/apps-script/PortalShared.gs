@@ -1,6 +1,6 @@
 /* Gerado: matriz, regras e validação compartilhadas com o protótipo. */
 var window = { SmartDesk: {} };
-var SMARTDESK_PORTAL_VERSION = "0.9.1";
+var SMARTDESK_PORTAL_VERSION = "0.9.2";
 "use strict";
 window.SmartDesk = window.SmartDesk || {};
 window.SmartDesk.knowledgeBase = {

@@ -87,3 +87,6 @@ HDMI dispensa autorização, descrição duplicada removida, periféricos distin
 
 ## Correção 0.9.1
 Aplicar cinco scripts atualizados/criados, conferir propriedades/manifesto e atualizar implantação existente. Testar chamado fictício real pelo Pages sem sair do domínio. Endpoint /exec público fornecido pelo usuário e registrado; nenhuma validação remota de envio nesta revisão.
+
+## 0.9.2 — acesso direto
+Frontend Pages sem senha. Aplicar Portal.gs, Pages.gs e PortalShared.gs e publicar nova versão Google. Testar envio fictício e isolamento do painel. Guia em 03-prototipo/integracoes/apps-script/AVALIAR-SEM-SENHA-v0.9.2.md.

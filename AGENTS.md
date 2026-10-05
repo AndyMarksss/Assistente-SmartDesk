@@ -106,3 +106,6 @@ Usuário escolheu dispensar Render e usar Apps Script existente, com avaliação
 
 ## Correção obrigatória 0.9.1 — instrução direta 2026-10-05
 Interface e painel devem permanecer no GitHub Pages; Apps Script somente backend. Não redirecionar para portal Google nem usar resposta opaca como confirmação. Preservar IDs/token e implantação existente. Usuário aplica arquivos no próprio navegador.
+
+## Avaliação sem senha 0.9.2
+Usuário exige acesso direto sem senha. Sessões técnicas automáticas; ponte pública deve limitar consulta/edição Google aos chamados enviados na mesma sessão. Não expor chamados prévios de terceiros. Simulações públicas mantidas, backend local completo preservado. Propriedade SMARTDESK_PORTAL_PASSWORD não utilizada.

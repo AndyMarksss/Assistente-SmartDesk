@@ -47,11 +47,8 @@ function packet(response) {
   });
   return msg;
 }
-assert.equal(
-  packet(post("/auth/login", { password: props.SMARTDESK_PORTAL_PASSWORD })).result.status,
-  200,
-);
-assert.equal(packet(post("/auth/login", { password: "wrong" })).result.status, 401);
+assert.equal(packet(post("/auth/session", {})).result.status, 200);
+assert.equal(packet(post("/auth/session", {})).result.status, 200);
 assert.equal(packet(post("/api/status", { session })).result.status, 200);
 assert.equal(packet(post("/api/status", { session: "invalid" })).result.status, 401);
 assert.equal(packet(post("/api/invalid", { session })).result.status, 404);
@@ -129,7 +126,7 @@ vm.runInContext(fs.readFileSync(path.join(proto, "assets/js/pages-transport.js")
   w.fetch = () => {
     throw Error("não usar fetch para resposta opaca");
   };
-  w.smartdeskPortalSession = Promise.resolve(session);
+  w.smartdeskGetSession = async () => session;
   w.smartdeskRemote = async (route, body) => {
     assert.equal(body.session, session);
     return {

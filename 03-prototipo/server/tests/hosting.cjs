@@ -86,6 +86,8 @@ async function run() {
       assert(html.includes("assets/js/pages-transport.js"));
       assert(!html.includes("location.replace"));
       assert(!html.includes("?page="));
+      assert(!html.includes("portal-password"));
+      assert(!html.includes("Acesso ao protótipo"));
     }
     assert(
       fs.readFileSync(path.join(destination, "smartdesk-config.js"), "utf8").includes(deployment),
@@ -99,7 +101,7 @@ async function run() {
     build(destination);
     assert.match(
       fs.readFileSync(path.join(destination, "index.html"), "utf8"),
-      /ainda não está pronto para avaliação/,
+      /ainda não está pronta para avaliação/,
     );
   } finally {
     fs.rmSync(destination, { recursive: true, force: true });

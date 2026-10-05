@@ -1,10 +1,12 @@
-# SmartDesk — protótipo 0.9.1
+> Atualização: avaliação sem senha; seguir [guia 0.9.2](integracoes/apps-script/AVALIAR-SEM-SENHA-v0.9.2.md). A gestão pública mostra apenas chamados da própria sessão.
+
+# SmartDesk — protótipo 0.9.2
 
 Chat guiado com poucas digitações, 25 setores, quatro áreas e 57 caminhos da Matriz Mestre. Identidade grafite/violeta, temas claro/escuro e Font Awesome local.
 
 ## Entrega para avaliação
 
-Chat e painel completos no GitHub Pages, com Apps Script somente para IA, planilha, anexos e gestão. Sem redirecionamento ou servidor local para o professor. Seguir [correção 0.9.1](integracoes/apps-script/APLICAR-CORRECAO-PAGES-v0.9.1.md). Endpoint público registrado; implantação Google e teste real pendentes.
+Chat e painel completos no GitHub Pages, com Apps Script somente para IA, planilha, anexos e gestão. Sem redirecionamento ou servidor local para o professor. Seguir [correção 0.9.2](integracoes/apps-script/AVALIAR-SEM-SENHA-v0.9.2.md). Endpoint público registrado; implantação Google e teste real pendentes.
 
 ## Desenvolvimento local
 
@@ -26,7 +28,7 @@ Nome, e-mails dos campos, demais textos complementares e anexos não vão ao Gem
 
 ## Recebimento Google
 
-O receptor existente é preservado. Para esta entrega, seguir somente o guia 0.9.1 e não executar configuração novamente.
+O receptor existente é preservado. Para esta entrega, seguir somente o guia 0.9.2 e não executar configuração novamente.
 
 No .env: SMARTDESK_APPS_SCRIPT_URL e SMARTDESK_APPS_SCRIPT_TOKEN. Token obrigatório, somente no servidor/propriedades do script. Confirmação com número #001, #002 etc. Um chamado por linha e links de arquivos do Drive. Trava de numeração e ID do envio permitem retomar sem duplicatas. Falha parcial pode deixar uma linha Recebendo até a retomada.
 

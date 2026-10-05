@@ -1,4 +1,4 @@
-# Estrutura do SmartDesk — 0.9.1
+# Estrutura do SmartDesk — 0.9.2
 
 ## Cliente
 Os scripts são carregados com defer na ordem declarada em index.html. Não há ferramenta de compilação: os arquivos continuam funcionando no servidor local e a apresentação estática no GitHub Pages.
@@ -46,3 +46,6 @@ Apps Script serve HTML autocontido em sandbox IFRAME, com base target=_top. Cód
 ## Correção definitiva 0.9.1
 
 Substitui o portal/redirecionamento 0.9.0: Pages serve a interface e Apps Script recebe POST de operações em iframe técnico oculto. Pages.gs retorna apenas confirmação via postMessage destinada à origem exata do Pages, correlacionada por nonce aleatório. Login gera sessão opaca temporária; regras/segredos/IA/Google permanecem servidor. Cliente não trata no-cors, timeout ou carga do iframe como confirmação. Build publica apenas interface/assets/config pública; não servidor/históricos/segredos.
+
+## Avaliação pública 0.9.2
+Sem senha ou login humano. Sessão técnica opaca automática persistida em sessionStorage para navegação chat/painel. A lista/edição Google da ponte pública só permite IDs registrados pelo servidor após recebimento na sessão. Chamados prévios inacessíveis; não depende de filtro cliente. Renovação após 401 tenta uma vez, preservando ID/conteúdo.

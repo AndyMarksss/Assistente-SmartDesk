@@ -69,12 +69,12 @@ props.GEMINI_API_KEY = "synthetic-key-not-real";
 for (const file of ["PortalShared.gs", "Portal.gs"])
   vm.runInContext(fs.readFileSync(path.join(proto, "integracoes/apps-script", file), "utf8"), ctx);
 assert.equal(ctx.smartdeskCall("invalid", "/api/status", null).status, 401);
-assert(ctx.smartdeskLogin("wrong").error);
-const session = ctx.smartdeskLogin(props.SMARTDESK_PORTAL_PASSWORD).session;
+
+const session = ctx.smartdeskStartSession_().session;
 assert.equal(session.length, 64);
 const call = (route, body) => ctx.smartdeskCall(session, route, body);
 assert.equal(call("/api/status").body.aiState, "standby");
-assert.equal(call("/api/admin/tickets?mode=google").body.tickets.length, 5);
+assert.equal(call("/api/admin/tickets?mode=google").body.tickets.length, 0);
 assert.equal(call("/api/admin/seed", { mode: "google" }).status, 400);
 assert.equal(call("/api/admin/seed", { mode: "demo" }).body.tickets.length, 12);
 assert.equal(call("/api/admin/seed", { mode: "demo" }).body.tickets.length, 12);
@@ -178,29 +178,29 @@ assert.equal(
   JSON.parse(ctx.doGet({ parameter: { page: "chat" } }).getContent()).service,
   "SmartDesk",
 );
+const isolated = ctx.smartdeskStartSession_().session;
+assert.equal(
+  ctx.smartdeskCall(isolated, "/api/admin/tickets?mode=google", null).body.tickets.length,
+  0,
+);
+assert.equal(
+  ctx.smartdeskCall(isolated, "/api/admin/status", {
+    mode: "google",
+    requestId: body.requestId,
+    status: "Finalizado",
+    expectedStatus: "Em atendimento",
+  }).status,
+  403,
+);
+assert.equal(call("/api/admin/tickets?mode=google").body.tickets.length, 1);
 const browser = vm.createContext({
   window: {
     fetch: () => {
       throw Error("Fetch não deve ser usado no portal");
     },
-    smartdeskPortalSession: Promise.resolve(session),
-    google: {
-      script: {
-        run: {
-          withSuccessHandler(handler) {
-            this.ok = handler;
-            return this;
-          },
-          withFailureHandler(handler) {
-            this.fail = handler;
-            return this;
-          },
-          smartdeskCall(token, route, body) {
-            this.ok(ctx.smartdeskCall(token, route, body));
-          },
-        },
-      },
-    },
+    smartdeskGetSession: async () => session,
+    smartdeskRemote: async (route, body) => ctx.smartdeskCall(body.session, route, body.payload),
+    smartdeskPortalExpired: () => {},
   },
   setTimeout,
   clearTimeout,

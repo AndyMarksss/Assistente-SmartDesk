@@ -1,22 +1,12 @@
-function smartdeskLogin(password) {
-  var props = PropertiesService.getScriptProperties();
-  var expected = props.getProperty("SMARTDESK_PORTAL_PASSWORD") || "";
-  var cache = CacheService.getScriptCache();
-  var lock = LockService.getScriptLock();
+/** Sessão técnica automática; avaliação pública sem senha. */
+function smartdeskStartSession_() {
+  var cache = CacheService.getScriptCache(),
+    lock = LockService.getScriptLock();
   lock.waitLock(25000);
   try {
-    var attempts = Number(cache.get("portal:failed-logins") || 0);
-    if (attempts >= 10) return { error: "Muitas tentativas. Aguarde um minuto." };
-    if (
-      expected.length < 16 ||
-      typeof password !== "string" ||
-      password.length > 256 ||
-      !igualSeguro_(password, expected)
-    ) {
-      cache.put("portal:failed-logins", String(attempts + 1), 60);
-      return { error: "Acesso não confirmado. Confira a senha de avaliação." };
-    }
-    cache.remove("portal:failed-logins");
+    var count = Number(cache.get("portal:session-starts") || 0);
+    if (count >= 100) return { error: "Muitos acessos neste momento. Aguarde um minuto." };
+    cache.put("portal:session-starts", String(count + 1), 60);
     var token = Utilities.getUuid().replace(/-/g, "") + Utilities.getUuid().replace(/-/g, "");
     cache.put("portal:session:" + token, JSON.stringify({ success: 0, failed: false }), 3600);
     return { session: token };
@@ -259,22 +249,25 @@ function smartdeskCall(session, route, body) {
       }
       if (!listing && route !== "/api/admin/status")
         throw new InvalidRequest("Simulações são separadas dos dados reais.");
-      return {
-        status: 200,
-        body: portalResult_(
-          doPost({
-            postData: {
-              contents: JSON.stringify({
-                token: PropertiesService.getScriptProperties().getProperty("SMARTDESK_TOKEN"),
-                action: listing ? "listTickets" : "updateStatus",
-                requestId: body.requestId,
-                status: body.status,
-                expectedStatus: body.expectedStatus,
-              }),
-            },
-          }),
-        ),
-      };
+      var owned = JSON.parse(CacheService.getScriptCache().get("portal:owned:" + session) || "[]");
+      if (!listing && !owned.includes(body.requestId))
+        throw new InvalidRequest("Este chamado não pertence a esta sessão de avaliação.", 403);
+      var response = portalResult_(
+        doPost({
+          postData: {
+            contents: JSON.stringify({
+              token: PropertiesService.getScriptProperties().getProperty("SMARTDESK_TOKEN"),
+              action: listing ? "listTickets" : "updateStatus",
+              requestId: body.requestId,
+              status: body.status,
+              expectedStatus: body.expectedStatus,
+            }),
+          },
+        }),
+      );
+      if (listing)
+        response.tickets = response.tickets.filter((ticket) => owned.includes(ticket.requestId));
+      return { status: 200, body: response };
     }
     if (!["/api/next-prompt", "/api/subject", "/api/tickets"].includes(route))
       throw new InvalidRequest("Operação inválida.", 404);
@@ -282,19 +275,27 @@ function smartdeskCall(session, route, body) {
       item = validateSelection_(body, desk);
     if (route === "/api/tickets") {
       var ticket = portalTicket_(body, item);
-      return {
-        status: 201,
-        body: portalResult_(
-          receberChamado_({
-            postData: {
-              contents: JSON.stringify({
-                token: PropertiesService.getScriptProperties().getProperty("SMARTDESK_TOKEN"),
-                ticket: ticket,
-              }),
-            },
-          }),
-        ),
-      };
+      var receipt = portalResult_(
+        receberChamado_({
+          postData: {
+            contents: JSON.stringify({
+              token: PropertiesService.getScriptProperties().getProperty("SMARTDESK_TOKEN"),
+              ticket: ticket,
+            }),
+          },
+        }),
+      );
+      var ownerLock = LockService.getScriptLock();
+      ownerLock.waitLock(25000);
+      try {
+        var cache = CacheService.getScriptCache(),
+          owned = JSON.parse(cache.get("portal:owned:" + session) || "[]");
+        if (!owned.includes(ticket.requestId)) owned.push(ticket.requestId);
+        cache.put("portal:owned:" + session, JSON.stringify(owned), 3600);
+      } finally {
+        ownerLock.releaseLock();
+      }
+      return { status: 201, body: receipt };
     }
     if (route === "/api/next-prompt") {
       var reply =

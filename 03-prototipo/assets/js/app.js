@@ -228,7 +228,7 @@
     } catch {
       setAiStatus("absent");
       byId("engine-note").textContent = window.smartdeskRemote
-        ? "Não consegui confirmar a conexão. Entre novamente ou tente em instantes."
+        ? "Não consegui confirmar a conexão. Tente novamente em instantes."
         : "Abra o SmartDesk em http://127.0.0.1:4173/ com o servidor iniciado.";
     }
   }

@@ -262,7 +262,9 @@
     $("source-note").textContent =
       mode === "demo"
         ? "Simulações separadas dos chamados reais."
-        : "Leitura e atualização da planilha conectada ao SmartDesk.";
+        : window.smartdeskRemote
+          ? "Somente chamados enviados nesta sessão de avaliação."
+          : "Leitura e atualização da planilha conectada ao SmartDesk.";
     load();
   });
   $("seed").addEventListener("click", async () => {

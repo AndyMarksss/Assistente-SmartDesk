@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,interactive-widget=resizes-content"
+    />
+    <title>SmartDesk — Assistente de suporte</title>
+    <script src="assets/js/runtime.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <link rel="stylesheet" href="assets/vendor/fontawesome/css/fontawesome.min.css" />
+    <link rel="stylesheet" href="assets/vendor/fontawesome/css/solid.min.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/responsive.css" />
+    <link rel="stylesheet" href="assets/css/visual-depth.css" />
+    <link rel="stylesheet" href="assets/css/personality.css" />
+    <script defer src="assets/js/knowledge-base.js"></script>
+    <script defer src="assets/js/classifier.js"></script>
+    <script defer src="assets/js/flows.js"></script>
+    <script defer src="assets/js/request-policy.js"></script>
+    <script defer src="assets/js/conversation-copy.js"></script>
+    <script defer src="assets/js/client-api.js"></script>
+    <script defer src="assets/js/chat-view.js"></script>
+    <script defer src="assets/js/attachments.js"></script>
+    <script defer src="assets/js/form-controls.js"></script>
+    <script defer src="assets/js/app.js"></script>
+    <script defer src="assets/js/mobile-viewport.js"></script>
+
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+    <link rel="stylesheet" href="assets/css/identity.css" />
+    <link rel="stylesheet" href="assets/css/motion.css" />
+  </head>
+
+  <body>
+    <div class="workspace">
+      <aside class="sidebar" aria-label="Acompanhamento do atendimento">
+        <a class="brand" href="index.html" aria-label="SmartDesk, início"
+          ><span class="logo"
+            ><img src="assets/img/smartdesk-mark.svg" width="40" height="40" alt="" /></span
+          >SmartDesk<span class="brand-dot">.</span></a
+        >
+        <div class="workspace-label">SEU PONTO DE APOIO · TI</div>
+        <button class="new-conversation" id="new-chat" type="button">
+          <span aria-hidden="true"><i class="fa-solid fa-plus"></i></span> Novo atendimento
+        </button>
+        <div class="session-info">
+          <div class="sidebar-section">SEU ATENDIMENTO</div>
+          <dl>
+            <dt>Solicitante</dt>
+            <dd id="context-name">Vamos nos conhecer</dd>
+            <dt>E-mail para contato</dt>
+            <dd id="context-email">Ainda não informado</dd>
+            <dt>Setor</dt>
+            <dd id="context-sector">Ainda não informado</dd>
+            <dt>Necessidade</dt>
+            <dd id="context-need">Vamos descobrir juntos</dd>
+          </dl>
+        </div>
+        <section class="sidebar-tip">
+          <span class="sidebar-tip-icon" aria-hidden="true"
+            ><i class="fa-solid fa-lightbulb"></i
+          ></span>
+          <h2>Sem complicação</h2>
+          <p>
+            Não precisa conhecer termos técnicos. Conte o que aconteceu com suas palavras; você pode
+            voltar e corrigir antes de enviar.
+          </p>
+        </section>
+        <a class="panel-link" href="admin.html"
+          ><i class="fa-solid fa-table-columns" aria-hidden="true"></i> Painel de gestão</a
+        >
+        <div class="sidebar-footer">
+          <span class="shield" aria-hidden="true"><i class="fa-solid fa-shield-halved"></i></span>
+          <div>Protótipo acadêmico<small>Confira os dados antes de enviar.</small></div>
+        </div>
+      </aside>
+      <main class="chat-shell">
+        <div class="ambient-scene" aria-hidden="true">
+          <div class="ambient-orbit"><span></span></div>
+          <div class="ambient-glow"></div>
+          <div class="ambient-glow secondary"></div>
+        </div>
+        <header class="chat-header">
+          <div class="assistant-identity">
+            <span class="assistant-avatar" aria-hidden="true"
+              ><img src="assets/img/assistente.svg" alt="" width="32" height="32"
+            /></span>
+            <div>
+              <h1>Assistente SmartDesk</h1>
+              <p>
+                <span id="ai-dot" class="online-dot offline"></span>
+                <span id="ai-status" role="status">IA ausente</span>
+              </p>
+            </div>
+          </div>
+          <div class="header-actions">
+            <a class="small-action" href="admin.html" aria-label="Abrir painel de gestão"
+              ><i class="fa-solid fa-table-columns"></i></a
+            ><span class="engine-badge" id="engine-badge">Base local · demonstração</span
+            ><button
+              id="theme-toggle"
+              class="theme-toggle"
+              type="button"
+              aria-pressed="false"
+              aria-label="Ativar tema escuro"
+            >
+              <i class="fa-solid fa-moon" aria-hidden="true"></i><span>Tema escuro</span></button
+            ><button
+              id="mobile-new-chat"
+              class="mobile-new"
+              type="button"
+              aria-label="Novo atendimento"
+            >
+              <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            </button>
+          </div>
+        </header>
+        <nav class="journey-bar" aria-label="Etapas do atendimento">
+          <ol class="journey">
+            <li data-stage="context" aria-current="step">
+              <span class="journey-dot">1</span>
+              <div>Boas-vindas<small>Vamos nos conhecer</small></div>
+            </li>
+            <li data-stage="report">
+              <span class="journey-dot">2</span>
+              <div>Escolhas<small>Área, necessidade e detalhes</small></div>
+            </li>
+            <li data-stage="summary">
+              <span class="journey-dot">3</span>
+              <div>Revisão<small>Confira seus dados</small></div>
+            </li>
+            <li data-stage="sent">
+              <span class="journey-dot">4</span>
+              <div>Enviado<small>Número do chamado</small></div>
+            </li>
+          </ol>
+        </nav>
+        <div
+          class="conversation"
+          id="conversation"
+          role="log"
+          aria-label="Conversa com o SmartDesk"
+          aria-live="polite"
+          aria-relevant="additions"
+        >
+          <div class="conversation-date">SEU ATENDIMENTO COMEÇA AQUI</div>
+          <div class="welcome" id="welcome">
+            <div class="welcome-copy">
+              <p class="eyebrow">
+                <span class="brand-signal" aria-hidden="true"></span> UM PONTO DE APOIO. MUITAS
+                SOLUÇÕES.
+              </p>
+              <h2>Menos interrupções.<br /><span>Mais trabalho fluindo.</span></h2>
+              <p>
+                Da conexão que caiu ao computador que travou.<br class="desktop-break" />
+                A TI começa a ajudar quando você conta o que precisa.
+              </p>
+              <div class="welcome-tags">
+                <span><i class="fa-solid fa-bolt" aria-hidden="true"></i> Escolhas rápidas</span
+                ><span
+                  ><i class="fa-solid fa-comment" aria-hidden="true"></i> Uma pergunta por vez</span
+                ><span><i class="fa-solid fa-heart" aria-hidden="true"></i> No seu ritmo</span>
+              </div>
+            </div>
+            <div class="support-scene" aria-hidden="true">
+              <div class="scene-caption">
+                <span>SMARTDESK / TI</span><span class="scene-dots"><b></b><b></b><b></b></span>
+              </div>
+              <svg class="scene-connections" viewBox="0 0 380 280" fill="none">
+                <path
+                  d="M65 65H130L190 140M315 65H250L190 140M65 215H130L190 140M315 215H250L190 140"
+                />
+                <path
+                  class="connection-signal from-computer"
+                  pathLength="100"
+                  d="M65 65H130L190 140"
+                />
+                <path
+                  class="connection-signal from-printer"
+                  pathLength="100"
+                  d="M65 215H130L190 140"
+                />
+                <path
+                  class="connection-signal from-network"
+                  pathLength="100"
+                  d="M315 65H250L190 140"
+                />
+                <path
+                  class="connection-signal from-audio"
+                  pathLength="100"
+                  d="M315 215H250L190 140"
+                />
+              </svg>
+              <div class="scene-halo"></div>
+              <div class="desk-mascot">
+                <img src="assets/img/assistente.svg" alt="" width="145" height="145" />
+              </div>
+              <div class="scene-device computer">
+                <i class="fa-solid fa-laptop"></i><span>Computador</span>
+              </div>
+              <div class="scene-device network">
+                <i class="fa-solid fa-wifi"></i><span>Conexão</span>
+              </div>
+              <div class="scene-device printer">
+                <i class="fa-solid fa-print"></i><span>Impressão</span>
+              </div>
+              <div class="scene-device audio">
+                <i class="fa-solid fa-headphones"></i><span>Som e imagem</span>
+              </div>
+              <div class="scene-foot">
+                <i class="fa-solid fa-comments"></i> Você conta. A gente conecta.
+              </div>
+            </div>
+          </div>
+          <div id="messages" class="messages"></div>
+        </div>
+        <section class="interaction-dock" aria-label="Responder ao assistente">
+          <div class="choice-header">
+            <span id="prompt-caption">ESCOLHA UMA OPÇÃO PARA CONTINUAR</span
+            ><button type="button" id="edit-context" class="small-action step-back" hidden>
+              <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Voltar uma etapa</button
+            ><button type="button" id="restart-chat" class="small-action" hidden>
+              <i class="fa-solid fa-rotate-left" aria-hidden="true"></i> Recomeçar
+            </button>
+          </div>
+          <div class="choices" id="choices" aria-label="Respostas disponíveis"></div>
+          <div id="structured-field" class="structured-field"></div>
+          <section id="attachment-panel" class="attachment-panel" hidden></section>
+          <input
+            id="attachment-input"
+            type="file"
+            multiple
+            hidden
+            accept=".png,.jpg,.jpeg,.webp,.gif,.pdf,.txt,.docx,.xlsx"
+          />
+          <div id="frozen-label" class="frozen-label">
+            <i class="fa-solid fa-lock" aria-hidden="true"></i
+            ><strong>Agora, escolha uma opção acima.</strong
+            ><span>A digitação será liberada quando precisar.</span>
+          </div>
+          <form id="composer" class="composer" novalidate>
+            <label class="sr-only" for="chat-input">Sua resposta</label
+            ><textarea
+              id="chat-input"
+              rows="2"
+              maxlength="2000"
+              disabled
+              placeholder="Escolha uma das opções acima para continuar."
+              aria-describedby="composer-hint input-error"
+            ></textarea
+            ><button
+              type="submit"
+              class="send-button"
+              id="send"
+              disabled
+              aria-label="Enviar resposta"
+            >
+              <span aria-hidden="true"><i class="fa-solid fa-arrow-up"></i></span>
+            </button>
+          </form>
+          <div class="composer-bottom">
+            <span id="composer-hint"
+              >A digitação é liberada quando precisamos de mais detalhes.</span
+            ><span id="char-count" hidden>0 / 2000</span>
+          </div>
+          <p id="input-error" class="error" role="alert"></p>
+          <p class="engine-note" id="engine-note">
+            Abra o SmartDesk pelo servidor local para usar a IA e enviar chamados.
+          </p>
+          <footer class="project-version" aria-label="Versão do projeto">
+            SmartDesk · v<span data-project-version>0.9.1</span>
+          </footer>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

@@ -197,3 +197,6 @@ Rolagem acompanha Como funciona mesmo com abertura visível e reajusta após mud
 ## 0.9.1 — 2026-10-05
 
 Correção solicitada: frontend estático no Pages sem redirecionamento, Apps Script apenas backend. POST em iframe técnico, respostas autenticadas/correlacionadas por postMessage, segredos fora da URL. Build por lista pública, endpoint fornecido pelo usuário e guia incremental. Dez suítes aprovadas; verificação Google real pendente.
+
+## 0.9.2 — 2026-10-05
+Acesso direto solicitado: sem modal/senha, sessão técnica automática e renovação única. Gestão pública limitada aos chamados enviados na mesma sessão; registros anteriores bloqueados no servidor. Simulações mantidas; acesso local completo preservado. Dez suítes aprovadas.

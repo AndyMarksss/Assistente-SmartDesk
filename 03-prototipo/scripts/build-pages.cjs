@@ -34,22 +34,18 @@ function build(destination, address = "") {
       JSON.stringify(address).replace(/</g, "\\u003c") +
       ";\n",
   );
-  const access = `<dialog id="portal-access" aria-labelledby="portal-access-title"><form id="portal-access-form"><small>SMARTDESK / TI</small><h2 id="portal-access-title">Acesso ao protótipo</h2><p>Use a senha de avaliação fornecida junto do link.</p><label for="portal-password">Senha de avaliação</label><input id="portal-password" type="password" required autocomplete="current-password" maxlength="256"><button type="submit">Entrar no SmartDesk</button><p id="portal-access-error" role="status"></p></form></dialog>`;
   for (const page of ["index.html", "admin.html"]) {
     let html = fs.readFileSync(path.join(root, page), "utf8");
     html = html.replace(
       "<head>",
-      '<head>\n<script src="smartdesk-config.js"></script>\n<script defer src="assets/js/pages-transport.js"></script>\n<script defer src="assets/js/portal-access.js"></script>\n<link rel="stylesheet" href="assets/css/portal-access.css">',
+      '<head>\n<script src="smartdesk-config.js"></script>\n<script defer src="assets/js/pages-transport.js"></script>\n<script defer src="assets/js/portal-access.js"></script>',
     );
-    // Estes scripts registram acesso antes dos scripts da aplicação.
-    html = html.replace("</body>", access + "\n</body>");
     if (!address)
-      html = html
-        .replace(
-          "Use a senha de avaliação fornecida junto do link.",
-          "A conexão Google ainda está sendo configurada. Este protótipo ainda não está pronto para avaliação.",
-        )
-        .replace('<button type="submit">', '<button type="submit" disabled>');
+      html = html.replace(
+        "<body>",
+        '<body><p role="status">A conexão Google ainda não está pronta para avaliação.</p>',
+      );
+    html = html.replace("Chamados do Google", "Chamados desta avaliação");
     fs.writeFileSync(path.join(destination, page), html);
   }
   fs.writeFileSync(path.join(destination, ".nojekyll"), "");

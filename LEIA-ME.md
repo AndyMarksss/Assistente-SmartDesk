@@ -55,3 +55,6 @@ Esta decisão substitui Render 0.8.15. Apps Script existente executa interface e
 
 ## Entrega corrigida 0.9.1
 Chat e painel hospedados no GitHub Pages; Apps Script somente integrações. Esta instrução substitui a arquitetura 0.9.0. Guia 03-prototipo/integracoes/apps-script/APLICAR-CORRECAO-PAGES-v0.9.1.md.
+
+## 0.9.2 — acesso direto
+Frontend Pages sem senha. Aplicar Portal.gs, Pages.gs e PortalShared.gs e publicar nova versão Google. Testar envio fictício e isolamento do painel. Guia em 03-prototipo/integracoes/apps-script/AVALIAR-SEM-SENHA-v0.9.2.md.

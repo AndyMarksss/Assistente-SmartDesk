@@ -1,0 +1,7 @@
+# Verificação 0.9.0 — 2026-10-05
+
+Nove suítes passaram, incluindo 211 verificações de integração e as regras dos 57 caminhos × 25 setores. Conferidos acesso/sessão, IA sem contatos/anexos, validação de campos e anexos, envio idempotente, conflitos de gestão, isolamento das 12 simulações e HTML autocontido. Transporte HTTP local preservado e transporte google.script.run testado com callbacks simulados. Pages aceita URL /exec e distingue chat/painel. Versão e artefatos gerados sincronizados.
+
+No navegador local, HTML Google compilado com ponte simulada: entrada com senha fictícia, Como funciona com respostas completas, painel com 12 simulações, categorias coerentes e rodapé 0.9.0. EVID-162 e EVID-163 registram apenas esta prévia local, sem prova de publicação remota. Nenhuma escrita real no Google ou chamada Gemini nesta revisão. Teclado físico, anexos grandes e permissões da implantação real continuam pendentes.
+
+Publicação escolhida pelo usuário: manual no navegador dele, no Apps Script existente. Guia PUBLICAR-PORTAL-v0.9.0.md e pacote público sem credenciais preparados. Não executar configuração que crie nova planilha/pasta. Preservar IDs/token; adicionar chave Gemini e senha nas propriedades privadas. Depois atualizar implantação e conferir chamado fictício, anexo privado e painel real. Só então configurar URL /exec na variável SMARTDESK_SERVICE_URL do Pages. A versão anterior 0.8.15 permanece em versoes/v0.8.15-antes-apps-script.
