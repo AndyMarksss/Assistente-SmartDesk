@@ -103,3 +103,6 @@ Usuário exige planilha, anexos e IA reais, acesso por links e custo zero. Pages
 
 ## Portal Google 0.9.0 — decisão direta 2026-10-05
 Usuário escolheu dispensar Render e usar Apps Script existente, com avaliação real e custo zero. Publicação manual no navegador do usuário. Fontes geradas via build:apps-script; transportes google.script.run e HTTP local preservados. Chave Gemini/senha novas somente em Propriedades do script; IDs/token existentes preservados. Sessão protege dados da gestão; auxiliares privados com underscore. Não usar mocks como prova remota. Guia PUBLICAR-PORTAL-v0.9.0.md. Versão deve regenerar artefatos Google antes de publicar.
+
+## Correção obrigatória 0.9.1 — instrução direta 2026-10-05
+Interface e painel devem permanecer no GitHub Pages; Apps Script somente backend. Não redirecionar para portal Google nem usar resposta opaca como confirmação. Preservar IDs/token e implantação existente. Usuário aplica arquivos no próprio navegador.

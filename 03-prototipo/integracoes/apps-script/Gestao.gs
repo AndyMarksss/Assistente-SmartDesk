@@ -12,6 +12,7 @@ function prepararGestao_(sheet) {
   if (!authHeader) texto_(authCell, ["Autorização da liderança"]);
 }
 function doPost(e) {
+  if (e && e.parameter && typeof e.parameter.smartdesk === "string") return pagesRequest_(e);
   try {
     if (
       !e ||

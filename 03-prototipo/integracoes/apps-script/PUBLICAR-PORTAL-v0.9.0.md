@@ -1,3 +1,5 @@
+> SUPERADO pela correção 0.9.1: seguir APLICAR-CORRECAO-PAGES-v0.9.1.md. A interface deve permanecer no Pages, sem redirecionamento.
+
 # Publicar SmartDesk 0.9.0 no projeto Google existente
 
 Esta é a entrega escolhida: Apps Script executa chat, painel, Gemini, planilha e Drive. Pages encaminha para o portal Google. Não criar conta Render, não contratar hospedagem, não ativar faturamento. Código adaptado e serviços simulados testados; implantação real ainda precisa ser atualizada e conferida.

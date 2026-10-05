@@ -1,6 +1,6 @@
 {
   "name": "smartdesk",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "private": true,
   "description": "Assistente guiado de suporte de TI",
   "scripts": {

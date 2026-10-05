@@ -222,7 +222,7 @@
       $("sync-status").textContent =
         "Etapa salva " +
         (mode === "demo"
-          ? window.google?.script?.run
+          ? window.smartdeskRemote
             ? "na demonstração desta sessão."
             : "na demonstração local."
           : "no Google Planilhas.");

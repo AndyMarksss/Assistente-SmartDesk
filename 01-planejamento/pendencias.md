@@ -84,3 +84,6 @@ HDMI dispensa autorização, descrição duplicada removida, periféricos distin
 - 0.8.15: usuário exige custo zero e integrações reais. Preparação hospedagem/Pages concluída; criar conta Render Free sem cartão/faturamento, configurar ambiente privado e URL pública, conferir um chamado de avaliação online. Próximo print EVID-162: confirmação online com número, sem senha/token/chave; não repetir evidências locais como prova remota.
 
 - 0.9.0: migração do código para Apps Script preparada; usuário aplicará arquivos no navegador próprio. Publicar nova versão na implantação existente, configurar chave/senha privadas, conferir Google real e URL /exec no Pages. Não usar Render ou repetir configuração da planilha.
+
+## Correção 0.9.1
+Aplicar cinco scripts atualizados/criados, conferir propriedades/manifesto e atualizar implantação existente. Testar chamado fictício real pelo Pages sem sair do domínio. Endpoint /exec público fornecido pelo usuário e registrado; nenhuma validação remota de envio nesta revisão.

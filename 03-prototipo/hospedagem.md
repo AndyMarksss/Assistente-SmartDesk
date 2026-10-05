@@ -1,5 +1,3 @@
-# Entrega online sem hospedagem adicional — SmartDesk 0.9.0
+# Entrega online — SmartDesk 0.9.1
 
-A decisão atual substitui a proposta Render 0.8.15: usar o Apps Script existente para interface e integrações, com entrada pelo GitHub Pages. Não criar conta Render, contratar plano ou executar seu blueprint. Arquivos da alternativa anterior permanecem como histórico/opção técnica, não como requisito de entrega.
-
-Seguir [Publicar portal Google](integracoes/apps-script/PUBLICAR-PORTAL-v0.9.0.md). Código adaptado; implantação real e URL do Pages ainda pendentes de aplicação pelo usuário em seu navegador.
+Chat e painel no GitHub Pages. Apps Script somente integrações: IA, planilha, anexos e gestão. Nenhum servidor local necessário para avaliação. A arquitetura 0.9.0 (redirecionamento/portal Google) foi corrigida por solicitação direta do usuário. Seguir [aplicar correção](integracoes/apps-script/APLICAR-CORRECAO-PAGES-v0.9.1.md). Implantação Google e teste real ainda pendentes; endpoint público já registrado.

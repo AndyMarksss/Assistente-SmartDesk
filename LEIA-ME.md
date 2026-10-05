@@ -52,3 +52,6 @@ Código preparado para hospedagem Node gratuita e entrada GitHub Pages. Configur
 ## Entrega escolhida — Apps Script 0.9.0
 
 Esta decisão substitui Render 0.8.15. Apps Script existente executa interface e integrações, sem servidor local na avaliação. Pages encaminha para o Google. Seguir [publicação do portal](03-prototipo/integracoes/apps-script/PUBLICAR-PORTAL-v0.9.0.md). Não criar planilha/pasta ou token novos. Código adaptado/testado com mocks; aplicação e verificação pública pendentes do usuário.
+
+## Entrega corrigida 0.9.1
+Chat e painel hospedados no GitHub Pages; Apps Script somente integrações. Esta instrução substitui a arquitetura 0.9.0. Guia 03-prototipo/integracoes/apps-script/APLICAR-CORRECAO-PAGES-v0.9.1.md.

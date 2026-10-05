@@ -34,9 +34,7 @@ jobs:
       - name: Configurar GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Preparar entrada pública sem arquivos privados
-        env:
-          SMARTDESK_SERVICE_URL: ${{ vars.SMARTDESK_SERVICE_URL }}
+      - name: Preparar interface estática do Pages sem arquivos privados
         run: node 03-prototipo/scripts/build-pages.cjs pages-dist
 
       - name: Preparar arquivos do SmartDesk

@@ -1,16 +1,3 @@
-/** SmartDesk: execução no Google. Segredos somente em Propriedades do script. */
-function portalPage_(event) {
-  var file = event.parameter.page === "admin" ? "PortalAdmin" : "PortalChat";
-  var template = HtmlService.createTemplateFromFile(file);
-  template.portalUrl = ScriptApp.getService().getUrl();
-  return template
-    .evaluate()
-    .setTitle("SmartDesk — Suporte de TI")
-    .addMetaTag(
-      "viewport",
-      "width=device-width, initial-scale=1, interactive-widget=resizes-content",
-    );
-}
 function smartdeskLogin(password) {
   var props = PropertiesService.getScriptProperties();
   var expected = props.getProperty("SMARTDESK_PORTAL_PASSWORD") || "";

@@ -35,8 +35,9 @@
       event.preventDefault();
       button.disabled = true;
       error.textContent = "Conferindo acesso…";
-      google.script.run
-        .withSuccessHandler((result) => {
+      window
+        .smartdeskRemote("/auth/login", { password: input.value })
+        .then(({ body: result }) => {
           button.disabled = false;
           input.value = "";
           if (!result?.session) {
@@ -51,12 +52,11 @@
           overlay.close();
           overlay.remove();
         })
-        .withFailureHandler(() => {
+        .catch(() => {
           button.disabled = false;
           input.value = "";
           error.textContent = "Não consegui verificar o acesso. Tente novamente.";
-        })
-        .smartdeskLogin(input.value);
+        });
     });
   });
 })();

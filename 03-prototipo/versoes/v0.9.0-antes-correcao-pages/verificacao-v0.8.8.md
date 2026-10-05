@@ -1,0 +1,5 @@
+# Verificação 0.8.8
+
+Marca própria de conversa/terminal substitui S no chat, gestão e favicon. Abertura focada no suporte de TI. Robô centralizado no mobile com legenda abaixo; três destaques alinhados. Botão de pausa retirado; movimento reduzido do sistema segue respeitado. Luzes violeta/azul atrás de superfícies translúcidas tornam o vidro perceptível. Gestão recebe a paleta grafite/fria, cabeçalho de TI, indicadores, cores de etapas com rótulos, gráfico e entradas curtas animadas. Backend, matriz e política de chamados preservados.
+
+152 verificações passaram. Chat conferido nos dois temas, desktop 1366×900 e mobile escuro 390×844; três destaques com mesmo top e altura 27px. Vidro calculado blur(28px) saturate(1.4). Gestão conferida nos dois temas e mobile 390×844 sem overflow do documento, quadro com rolagem própria. Detalhes de #SIM-001 abriram sem alteração de etapa. Nenhum chamado real enviado. Sem teste de teclado físico ou nova auditoria completa de contraste; preferência reduzida preservada em CSS.

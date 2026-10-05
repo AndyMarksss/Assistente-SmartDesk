@@ -227,7 +227,7 @@
         : "O atendimento está disponível. O envio aguarda conexão com o Google.";
     } catch {
       setAiStatus("absent");
-      byId("engine-note").textContent = window.google?.script?.run
+      byId("engine-note").textContent = window.smartdeskRemote
         ? "Não consegui confirmar a conexão. Entre novamente ou tente em instantes."
         : "Abra o SmartDesk em http://127.0.0.1:4173/ com o servidor iniciado.";
     }

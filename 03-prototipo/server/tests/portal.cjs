@@ -174,8 +174,10 @@ assert.equal(
     .description,
   body.description,
 );
-assert.equal(ctx.doGet({ parameter: { page: "admin" } }).file, "PortalAdmin");
-assert.equal(ctx.doGet({ parameter: { page: "chat" } }).file, "PortalChat");
+assert.equal(
+  JSON.parse(ctx.doGet({ parameter: { page: "chat" } }).getContent()).service,
+  "SmartDesk",
+);
 const browser = vm.createContext({
   window: {
     fetch: () => {
@@ -212,21 +214,8 @@ vm.runInContext(fs.readFileSync(path.join(proto, "assets/js/client-api.js"), "ut
     browser.window.SmartDesk.api.request("/api/invalid"),
     (e) => e.status === 404,
   );
-  for (const file of ["PortalChat.html", "PortalAdmin.html"]) {
-    const html = fs.readFileSync(path.join(proto, "integracoes/apps-script", file), "utf8");
-    assert(!/src="assets\/|href="assets\/|href="(?:index|admin)\.html"/.test(html));
-    assert(!html.includes('fetch("/api/status")'));
-    assert(html.includes('base target="_top"'));
-    assert(html.includes("data-project-version>0.9.0"));
-    assert(!html.includes(props.SMARTDESK_TOKEN));
-    assert(!html.includes(props.GEMINI_API_KEY));
-    assert(!html.includes(props.SMARTDESK_PORTAL_PASSWORD));
-    assert(html.includes("data:font/woff2;base64,"));
-    assert(html.includes("data:image/svg+xml;base64,"));
-    for (const script of html.matchAll(/<script>([\s\S]*?)<\/script>/g)) new vm.Script(script[1]);
-  }
   console.log(
-    "Portal Apps Script: sessão, 57×25 regras, IA sem contatos/anexos, envio idempotente, Drive, gestão/demo, transporte e HTML autocontido aprovados. Somente serviços simulados.",
+    "Portal Apps Script: sessão, 57×25 regras, IA sem contatos/anexos, envio idempotente, Drive, gestão/demo, transporte local e regras compartilhadas aprovados. Somente serviços simulados.",
   );
 })().catch((error) => {
   console.error(error);

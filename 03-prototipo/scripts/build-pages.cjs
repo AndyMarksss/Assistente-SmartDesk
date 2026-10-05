@@ -1,61 +1,66 @@
 "use strict";
 const fs = require("node:fs"),
   path = require("node:path");
+const root = path.resolve(__dirname, "..");
 function build(destination, address = "") {
-  let origin = "",
-    appsScript = false;
   if (address) {
-    const url = new URL(address);
-    appsScript =
-      url.hostname === "script.google.com" &&
-      /^\/macros\/s\/[A-Za-z0-9_-]+\/exec$/.test(url.pathname);
+    const u = new URL(address);
     if (
-      url.protocol !== "https:" ||
-      url.username ||
-      url.password ||
-      (!appsScript && url.pathname !== "/") ||
-      url.search ||
-      url.hash
+      u.origin !== "https://script.google.com" ||
+      !/^\/macros\/s\/[\w-]+\/exec$/.test(u.pathname) ||
+      u.search ||
+      u.hash ||
+      u.username ||
+      u.password
     )
-      throw Error(
-        "SMARTDESK_SERVICE_URL deve ser a URL HTTPS /exec do Apps Script ou uma origem HTTPS.",
-      );
-    origin = appsScript ? url.href : url.origin;
+      throw Error("Use somente a URL pública /exec do Apps Script.");
   }
-  const target = (page) =>
-    appsScript
-      ? origin + "?page=" + (page === "admin.html" ? "admin" : "chat")
-      : origin + "/" + page;
-  const escape = (s) =>
-    s.replace(
-      /[&<>"']/g,
-      (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c],
-    );
-  const version = require("../package.json").version;
   fs.mkdirSync(destination, { recursive: true });
-  const html = (page) =>
-    '<!doctype html><html lang="pt-BR"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SmartDesk · Suporte de TI</title><style>body{margin:0;min-height:100dvh;display:grid;place-items:center;background:#0e1926;color:#ecf1fa;font:16px system-ui}main{max-width:560px;padding:40px;background:#23364a;border:1px solid #53677f;border-radius:24px;margin:20px}h1{font-size:32px}a{display:inline-block;background:#bba4ff;color:#20153f;padding:14px 24px;border-radius:12px;text-decoration:none;font-weight:700}p{line-height:1.6}small{color:#bfcbdc}</style><main><small>SMARTDESK / TI</small><h1>Seu ponto de apoio na TI.</h1><p>' +
-    (origin
-      ? "Abrindo o protótipo com integrações reais. Use o acesso de avaliação fornecido junto da entrega."
-      : "A publicação do protótipo no Google está sendo configurada. Este endereço ainda não está pronto para avaliação.") +
-    "</p>" +
-    (origin
-      ? '<a href="' +
-        escape(target(page)) +
-        '">Abrir protótipo</a><script>location.replace(' +
-        JSON.stringify(target(page)).replace(/</g, "\u003c") +
-        ")</script>"
-      : "") +
-    "<p><small>SmartDesk · v" +
-    version +
-    "</small></p></main></html>";
-  for (const page of ["index.html", "admin.html"])
-    fs.writeFileSync(path.join(destination, page), html(page));
+  function copyAssets(source, target) {
+    fs.mkdirSync(target, { recursive: true });
+    for (const entry of fs.readdirSync(source, { withFileTypes: true })) {
+      if (entry.name.startsWith(".") || entry.isSymbolicLink())
+        throw Error("Asset inattendu: " + entry.name);
+      const from = path.join(source, entry.name),
+        to = path.join(target, entry.name);
+      if (entry.isDirectory()) copyAssets(from, to);
+      else fs.writeFileSync(to, fs.readFileSync(from));
+    }
+  }
+  copyAssets(path.join(root, "assets"), path.join(destination, "assets"));
+  fs.writeFileSync(
+    path.join(destination, "smartdesk-config.js"),
+    '"use strict";\nwindow.SMARTDESK_SERVICE_URL = ' +
+      JSON.stringify(address).replace(/</g, "\\u003c") +
+      ";\n",
+  );
+  const access = `<dialog id="portal-access" aria-labelledby="portal-access-title"><form id="portal-access-form"><small>SMARTDESK / TI</small><h2 id="portal-access-title">Acesso ao protótipo</h2><p>Use a senha de avaliação fornecida junto do link.</p><label for="portal-password">Senha de avaliação</label><input id="portal-password" type="password" required autocomplete="current-password" maxlength="256"><button type="submit">Entrar no SmartDesk</button><p id="portal-access-error" role="status"></p></form></dialog>`;
+  for (const page of ["index.html", "admin.html"]) {
+    let html = fs.readFileSync(path.join(root, page), "utf8");
+    html = html.replace(
+      "<head>",
+      '<head>\n<script src="smartdesk-config.js"></script>\n<script defer src="assets/js/pages-transport.js"></script>\n<script defer src="assets/js/portal-access.js"></script>\n<link rel="stylesheet" href="assets/css/portal-access.css">',
+    );
+    // Estes scripts registram acesso antes dos scripts da aplicação.
+    html = html.replace("</body>", access + "\n</body>");
+    if (!address)
+      html = html
+        .replace(
+          "Use a senha de avaliação fornecida junto do link.",
+          "A conexão Google ainda está sendo configurada. Este protótipo ainda não está pronto para avaliação.",
+        )
+        .replace('<button type="submit">', '<button type="submit" disabled>');
+    fs.writeFileSync(path.join(destination, page), html);
+  }
   fs.writeFileSync(path.join(destination, ".nojekyll"), "");
 }
 if (require.main === module)
   build(
     path.resolve(process.argv[2] || "pages-dist"),
-    String(process.env.SMARTDESK_SERVICE_URL || "").trim(),
+    String(
+      process.env.SMARTDESK_SERVICE_URL ||
+        require("../integracoes/apps-script/public-config.json").endpoint ||
+        "",
+    ).trim(),
   );
 module.exports = { build };

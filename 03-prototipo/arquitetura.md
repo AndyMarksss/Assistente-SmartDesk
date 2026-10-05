@@ -1,4 +1,4 @@
-# Estrutura do SmartDesk — 0.9.0
+# Estrutura do SmartDesk — 0.9.1
 
 ## Cliente
 Os scripts são carregados com defer na ordem declarada em index.html. Não há ferramenta de compilação: os arquivos continuam funcionando no servidor local e a apresentação estática no GitHub Pages.
@@ -42,3 +42,7 @@ server/hosting.cjs valida origem pública e exige acesso de avaliação na nuvem
 
 ## Portal Google 0.9.0
 Apps Script serve HTML autocontido em sandbox IFRAME, com base target=_top. Código JS/CSS/ícones/fontes/SVG são empacotados das fontes existentes, sem HTTP local nem chaves. client-api seleciona google.script.run quando o portal está presente e preserva fetch para desenvolvimento Node. Portal.gs oferece duas entradas RPC: login e smartdeskCall. Cada operação exige sessão, valida seleção/campos/autorização e delega recebimento/gestão ao Apps Script existente. PortalShared.gs é gerado de matriz, regras e validação para evitar divergência. IA recebe somente descrição/contexto permitido; contatos/anexos ficam excluídos. Pages aceita URL /exec e diferencia chat/admin. Manifesto usa V8, timezone São Paulo e escopos Google existentes/externos necessários. Deploy Google não é automático a cada push; republicar segundo guia.
+
+## Correção definitiva 0.9.1
+
+Substitui o portal/redirecionamento 0.9.0: Pages serve a interface e Apps Script recebe POST de operações em iframe técnico oculto. Pages.gs retorna apenas confirmação via postMessage destinada à origem exata do Pages, correlacionada por nonce aleatório. Login gera sessão opaca temporária; regras/segredos/IA/Google permanecem servidor. Cliente não trata no-cors, timeout ou carga do iframe como confirmação. Build publica apenas interface/assets/config pública; não servidor/históricos/segredos.

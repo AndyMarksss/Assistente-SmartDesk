@@ -1,0 +1,9 @@
+.env
+.env.*
+!.env.example
+
+# Rascunhos e anexos locais de atendimento
+server/data/
+
+# Ferramentas locais
+node_modules/

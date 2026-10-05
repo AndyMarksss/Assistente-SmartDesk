@@ -1,4 +1,4 @@
-/** SmartDesk 0.9.0 — receptor Apps Script. Não editar a matriz acadêmica. */
+/** SmartDesk 0.9.1 — receptor Apps Script. Não editar a matriz acadêmica. */
 var HEADERS = [
   "Número",
   "Recebido em",
@@ -60,15 +60,13 @@ function configurarSmartDesk_() {
   }
 }
 
-function doGet(e) {
-  if (!e || (e.parameter && e.parameter.api === "health"))
-    return resposta_({
-      ok: true,
-      service: "SmartDesk",
-      version: typeof SMARTDESK_PORTAL_VERSION === "undefined" ? "0.9.0" : SMARTDESK_PORTAL_VERSION,
-      features: ["email", "management", "authorization", "portal"],
-    });
-  return portalPage_(e);
+function doGet() {
+  return resposta_({
+    ok: true,
+    service: "SmartDesk",
+    version: SMARTDESK_PORTAL_VERSION,
+    features: ["email", "management", "authorization", "pages-api"],
+  });
 }
 function receberChamado_(e) {
   var lock;

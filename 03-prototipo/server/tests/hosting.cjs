@@ -72,24 +72,26 @@ async function run() {
   }
   const destination = fs.mkdtempSync(path.join(os.tmpdir(), "smartdesk-pages-"));
   try {
-    build(destination, "https://smartdesk.test");
-    assert.deepEqual(fs.readdirSync(destination).sort(), [".nojekyll", "admin.html", "index.html"]);
-    assert.ok(
-      fs
-        .readFileSync(path.join(destination, "admin.html"), "utf8")
-        .includes("https://smartdesk.test/admin.html"),
-    );
     const deployment = "https://script.google.com/macros/s/test-deployment/exec";
     build(destination, deployment);
-    for (const [file, page] of [
-      ["index.html", "chat"],
-      ["admin.html", "admin"],
-    ])
-      assert.ok(
-        fs
-          .readFileSync(path.join(destination, file), "utf8")
-          .includes(deployment + "?page=" + page),
-      );
+    assert.deepEqual(fs.readdirSync(destination).sort(), [
+      ".nojekyll",
+      "admin.html",
+      "assets",
+      "index.html",
+      "smartdesk-config.js",
+    ]);
+    for (const file of ["index.html", "admin.html"]) {
+      const html = fs.readFileSync(path.join(destination, file), "utf8");
+      assert(html.includes("assets/js/pages-transport.js"));
+      assert(!html.includes("location.replace"));
+      assert(!html.includes("?page="));
+    }
+    assert(
+      fs.readFileSync(path.join(destination, "smartdesk-config.js"), "utf8").includes(deployment),
+    );
+    for (const name of ["server", "integracoes", "versoes", ".env"])
+      assert(!fs.existsSync(path.join(destination, name)));
     assert.throws(() =>
       build(destination, "https://script.google.com/macros/s/test-deployment/dev"),
     );

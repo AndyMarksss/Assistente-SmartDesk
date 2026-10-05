@@ -1965,6 +1965,30 @@
       "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\portal-painel-previa-v090.png",
       "sha256": "BF66FE51C9B7C4F0162048546E3DF8DF496D49EEBF7D5FA74F105CFE187F43A2",
       "status": "salvo e conferido visualmente; publicação remota pendente"
+    },
+    {
+      "numero": "EVID-164",
+      "arquivo": "EVID-164_arquivos-google-v090.png",
+      "etapa": "Correção de arquitetura 0.9.1",
+      "descricao": "Anexo do usuário: arquivos 0.9.0 aplicados no editor; não comprova implantação. Motivou correção para frontend Pages.",
+      "data_aproximada": "2026-10-05",
+      "fundamento_data": "Anexo/captura desta sessão",
+      "data_inclusao": "2026-10-05",
+      "origem": "C:/Users/ander/AppData/Local/Temp/codex-clipboard-2fcb324e-0364-42b7-bc23-36c0a3c04740.png",
+      "sha256": "D4BAC992997A832DBA8FA9D054CFFDF9330DBB2805F8D9794792C8255D2125C9",
+      "status": "salvo e conferido visualmente; publicação remota pendente"
+    },
+    {
+      "numero": "EVID-165",
+      "arquivo": "EVID-165_pages-estatico-v091.png",
+      "etapa": "Correção de arquitetura 0.9.1",
+      "descricao": "Prévia local do pacote estático Pages 0.9.1 com acesso de avaliação; sem redirecionamento. Não comprova recebimento Google.",
+      "data_aproximada": "2026-10-05",
+      "fundamento_data": "Anexo/captura desta sessão",
+      "data_inclusao": "2026-10-05",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\pages-estatico-v091.png",
+      "sha256": "B3B28D7F127F6F89DEE2CA706CDE154EE8321C61080B2A3B2101ACFEB9EF6FDA",
+      "status": "salvo e conferido visualmente; publicação remota pendente"
     }
   ]
 }

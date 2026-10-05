@@ -12,6 +12,27 @@
     route,
     { body, timeout = 15000, fetchImpl = window.fetch.bind(window) } = {},
   ) {
+    if (window.smartdeskRemote && window.smartdeskPortalSession) {
+      const session = await window.smartdeskPortalSession;
+      let result;
+      try {
+        result = await window.smartdeskRemote(
+          route,
+          { session, payload: body === undefined ? null : body },
+          Math.max(timeout, 45000),
+        );
+      } catch (error) {
+        throw new ApiError(error.message);
+      }
+      if (result.status >= 400) {
+        if (result.status === 401) window.smartdeskPortalExpired?.();
+        throw new ApiError(
+          result.body.error || "Não foi possível concluir esta ação.",
+          result.status,
+        );
+      }
+      return result.body;
+    }
     if (window.google?.script?.run && window.smartdeskPortalSession) {
       const session = await window.smartdeskPortalSession;
       return new Promise((resolve, reject) => {

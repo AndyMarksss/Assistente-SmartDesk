@@ -310,3 +310,7 @@ Incluídas em 2026-10-02:
 - EVID-162: [Portal chat 0.9.0 — prévia local](EVID-162_portal-chat-previa-v090.png); serviços simulados, publicação remota pendente.
 
 - EVID-163: [Portal painel 0.9.0 — prévia local](EVID-163_portal-painel-previa-v090.png); serviços simulados, publicação remota pendente.
+
+- EVID-164: [arquivos-google-v090](EVID-164_arquivos-google-v090.png) — Anexo do usuário: arquivos 0.9.0 aplicados no editor; não comprova implantação. Motivou correção para frontend Pages.
+
+- EVID-165: [pages-estatico-v091](EVID-165_pages-estatico-v091.png) — Prévia local do pacote estático Pages 0.9.1 com acesso de avaliação; sem redirecionamento. Não comprova recebimento Google.

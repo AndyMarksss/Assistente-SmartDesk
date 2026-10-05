@@ -193,3 +193,7 @@ Rolagem acompanha Como funciona mesmo com abertura visível e reajusta após mud
 - Reutilização da planilha/Drive/token e idempotência existentes; simulações isoladas por sessão. Regras derivadas das fontes canônicas.
 - Pages aceita /exec; compatibilidade Node preservada com saúde ?api=health. Auxiliares de configuração/diagnóstico privados para RPC.
 - Guia/pacote para aplicação manual pelo usuário. Implantação Google e teste remoto ainda pendentes, sem contratação de plano ou faturamento.
+
+## 0.9.1 — 2026-10-05
+
+Correção solicitada: frontend estático no Pages sem redirecionamento, Apps Script apenas backend. POST em iframe técnico, respostas autenticadas/correlacionadas por postMessage, segredos fora da URL. Build por lista pública, endpoint fornecido pelo usuário e guia incremental. Dez suítes aprovadas; verificação Google real pendente.
