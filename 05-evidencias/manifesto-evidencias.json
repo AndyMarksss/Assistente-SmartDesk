@@ -1,8 +1,8 @@
 {
   "versao": 1,
   "projeto": "SmartDesk",
-  "atualizado_em": "2026-10-01",
-  "proximo_numero": 162,
+  "atualizado_em": "2026-10-05",
+  "proximo_numero": 170,
   "evidencias": [
     {
       "numero": "EVID-001",
@@ -2013,6 +2013,30 @@
       "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\sem-senha-previa-v092.png",
       "sha256": "8473162B1FF1D38686E627E3D3649D30AA030413477C6AAD8E0B0CB2C768FCDE",
       "status": "conferido visualmente; implantação Google/teste real pendentes"
+    },
+    {
+      "numero": "EVID-168",
+      "arquivo": "EVID-168_implantacao-google-v092.png",
+      "etapa": "Implantação Google 0.9.2",
+      "descricao": "Editor Google confirma implantação atualizada, versão 4, em 05/10/2026. Saúde pública responde SmartDesk 0.9.2; não comprova envio, anexo ou Gemini.",
+      "data_aproximada": "2026-10-05",
+      "fundamento_data": "Anexos desta sessão; data explícita no painel de implantação",
+      "data_inclusao": "2026-10-05",
+      "origem": "C:/Users/ander/AppData/Local/Temp/codex-clipboard-5326f6c1-1734-4445-a671-36a2cd297267.png",
+      "sha256": "57DA7E8E23B0FFAA959AE2893616CF13CCE014EBBA6A8F6A339390FB3E5162DF",
+      "status": "conferido visualmente; teste completo no Pages pendente"
+    },
+    {
+      "numero": "EVID-169",
+      "arquivo": "EVID-169_nomes-propriedades-google.png",
+      "etapa": "Implantação Google 0.9.2",
+      "descricao": "Lista dos nomes das seis propriedades preservadas. Valores não visíveis; não comprova validade das credenciais ou conexão com Sheet/Drive/Gemini.",
+      "data_aproximada": "2026-10-05",
+      "fundamento_data": "Anexos desta sessão; data explícita no painel de implantação",
+      "data_inclusao": "2026-10-05",
+      "origem": "C:/Users/ander/AppData/Local/Temp/codex-clipboard-4435963a-abbd-46de-a708-ad18b2361bc4.png",
+      "sha256": "523FD2B8DEDC5EA971DB977E0441E9847640DAB2D01BC6CDA2B64637FC6FDC11",
+      "status": "conferido visualmente; teste completo no Pages pendente"
     }
   ]
 }

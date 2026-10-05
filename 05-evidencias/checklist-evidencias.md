@@ -318,3 +318,8 @@ Incluídas em 2026-10-02:
 - EVID-166: [Pages público 0.9.1](EVID-166_pages-publicado-v091.png); frontend conferido, backend ainda pendente. Próxima EVID-167.
 
 - EVID-167: [Abertura sem senha 0.9.2](EVID-167_sem-senha-previa-v092.png); prévia local, backend real pendente. Próxima EVID-168.
+
+- EVID-168: [implantacao-google-v092](EVID-168_implantacao-google-v092.png) — Editor Google confirma implantação atualizada, versão 4, em 05/10/2026. Saúde pública responde SmartDesk 0.9.2; não comprova envio, anexo ou Gemini.
+- EVID-169: [nomes-propriedades-google](EVID-169_nomes-propriedades-google.png) — Lista dos nomes das seis propriedades preservadas. Valores não visíveis; não comprova validade das credenciais ou conexão com Sheet/Drive/Gemini.
+
+Próxima evidência: EVID-170. Teste de abertura sem senha no Pages 0.9.2 e confirmação real do chamado.
