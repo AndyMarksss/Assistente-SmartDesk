@@ -2,7 +2,7 @@
   "versao": 1,
   "projeto": "SmartDesk",
   "atualizado_em": "2026-10-05",
-  "proximo_numero": 170,
+  "proximo_numero": 174,
   "evidencias": [
     {
       "numero": "EVID-001",
@@ -2037,6 +2037,54 @@
       "origem": "C:/Users/ander/AppData/Local/Temp/codex-clipboard-4435963a-abbd-46de-a708-ad18b2361bc4.png",
       "sha256": "523FD2B8DEDC5EA971DB977E0441E9847640DAB2D01BC6CDA2B64637FC6FDC11",
       "status": "conferido visualmente; teste completo no Pages pendente"
+    },
+    {
+      "numero": "EVID-170",
+      "arquivo": "EVID-170_deployments-falha-fila.png",
+      "etapa": "Publicação Pages 0.9.2 — incidente Actions",
+      "descricao": "Histórico de deployments: execução anterior falhou e a mais recente está pendente.",
+      "data_aproximada": "2026-10-05",
+      "fundamento_data": "Anexos enviados nesta sessão",
+      "data_inclusao": "2026-10-05",
+      "origem": "C:/Users/ander/AppData/Local/Temp/codex-clipboard-34662551-5cbc-4857-8c92-9c2ebf50a3fe.png",
+      "sha256": "806BC1B166F4D9AF139F368B900B8EF151D00855CC75FFAB5D0300ECCAAEF703",
+      "status": "conferido visualmente; publicação mais recente em fila"
+    },
+    {
+      "numero": "EVID-171",
+      "arquivo": "EVID-171_actions-sem-runner.png",
+      "etapa": "Publicação Pages 0.9.2 — incidente Actions",
+      "descricao": "Execução #21: erro interno e runner não disponibilizado após múltiplas tentativas. Não demonstra erro de código.",
+      "data_aproximada": "2026-10-05",
+      "fundamento_data": "Anexos enviados nesta sessão",
+      "data_inclusao": "2026-10-05",
+      "origem": "C:/Users/ander/AppData/Local/Temp/codex-clipboard-36128c42-7a11-41b8-bc63-398324a1d965.png",
+      "sha256": "BC24B724111E60E825FD67C77ACC127E218A8E837E7F4878FFB5B8AA92DBD01B",
+      "status": "conferido visualmente; publicação mais recente em fila"
+    },
+    {
+      "numero": "EVID-172",
+      "arquivo": "EVID-172_actions-publicacao-fila.png",
+      "etapa": "Publicação Pages 0.9.2 — incidente Actions",
+      "descricao": "Execução #22, commit 01ee4f6, em fila aguardando execução.",
+      "data_aproximada": "2026-10-05",
+      "fundamento_data": "Anexos enviados nesta sessão",
+      "data_inclusao": "2026-10-05",
+      "origem": "C:/Users/ander/AppData/Local/Temp/codex-clipboard-f060b019-ede2-43cc-b027-6483469600b0.png",
+      "sha256": "AE7F6006E16ECB121547C24DB6587B4020ED9A7161EB39272E26AE29ECCBB710",
+      "status": "conferido visualmente; publicação mais recente em fila"
+    },
+    {
+      "numero": "EVID-173",
+      "arquivo": "EVID-173_commit-acesso-sem-senha.png",
+      "etapa": "Publicação Pages 0.9.2 — incidente Actions",
+      "descricao": "Commit e0fc13b disponível no GitHub; check de publicação falhou. Código publicado no repositório não comprova implantação Pages.",
+      "data_aproximada": "2026-10-05",
+      "fundamento_data": "Anexos enviados nesta sessão",
+      "data_inclusao": "2026-10-05",
+      "origem": "C:/Users/ander/AppData/Local/Temp/codex-clipboard-35f83ff3-b4c5-40d4-be06-7945eeb71655.png",
+      "sha256": "66694795DCAE825D4984B0B6B46F39957D398D2B4296AC7BFB0AF16F46A78744",
+      "status": "conferido visualmente; publicação mais recente em fila"
     }
   ]
 }

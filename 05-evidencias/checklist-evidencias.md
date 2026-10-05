@@ -323,3 +323,11 @@ Incluídas em 2026-10-02:
 - EVID-169: [nomes-propriedades-google](EVID-169_nomes-propriedades-google.png) — Lista dos nomes das seis propriedades preservadas. Valores não visíveis; não comprova validade das credenciais ou conexão com Sheet/Drive/Gemini.
 
 Próxima evidência: EVID-170. Teste de abertura sem senha no Pages 0.9.2 e confirmação real do chamado.
+
+- EVID-170: [deployments-falha-fila](EVID-170_deployments-falha-fila.png) — Histórico de deployments: execução anterior falhou e a mais recente está pendente.
+
+- EVID-171: [actions-sem-runner](EVID-171_actions-sem-runner.png) — Execução #21: erro interno e runner não disponibilizado após múltiplas tentativas. Não demonstra erro de código.
+
+- EVID-172: [actions-publicacao-fila](EVID-172_actions-publicacao-fila.png) — Execução #22, commit 01ee4f6, em fila aguardando execução.
+
+- EVID-173: [commit-acesso-sem-senha](EVID-173_commit-acesso-sem-senha.png) — Commit e0fc13b disponível no GitHub; check de publicação falhou. Código publicado no repositório não comprova implantação Pages.
