@@ -220,7 +220,12 @@
       render();
       $("ticket-dialog").close();
       $("sync-status").textContent =
-        "Etapa salva " + (mode === "demo" ? "na demonstração local." : "no Google Planilhas.");
+        "Etapa salva " +
+        (mode === "demo"
+          ? window.google?.script?.run
+            ? "na demonstração desta sessão."
+            : "na demonstração local."
+          : "no Google Planilhas.");
     } catch (e) {
       $("detail-error").textContent = e.message;
       $("admin-error").textContent = e.message;

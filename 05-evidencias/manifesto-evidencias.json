@@ -1941,6 +1941,30 @@
       "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\chat-local-v0815.png",
       "sha256": "1ED725B4F1FCCFFC490137BBF32646B841259813A5A7E3140EB633A3D1CDA826",
       "status": "captura local; verificação online pendente"
+    },
+    {
+      "numero": "EVID-162",
+      "arquivo": "EVID-162_portal-chat-previa-v090.png",
+      "etapa": "Portal Google 0.9.0 — prévia local",
+      "descricao": "chat: HTML autocontido do portal em navegador local com serviços simulados; não comprova implantação Google, envio ou IA reais.",
+      "data_aproximada": "2026-10-05",
+      "fundamento_data": "Captura desta sessão",
+      "data_inclusao": "2026-10-05",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\portal-google-previa-v090.png",
+      "sha256": "40EF4CB9F0A2D5D28F0E65EA3AA7FBA1220DFF91A0108A4EBB864D4F38AF5F8B",
+      "status": "salvo e conferido visualmente; publicação remota pendente"
+    },
+    {
+      "numero": "EVID-163",
+      "arquivo": "EVID-163_portal-painel-previa-v090.png",
+      "etapa": "Portal Google 0.9.0 — prévia local",
+      "descricao": "painel: HTML autocontido do portal em navegador local com serviços simulados; não comprova implantação Google, envio ou IA reais.",
+      "data_aproximada": "2026-10-05",
+      "fundamento_data": "Captura desta sessão",
+      "data_inclusao": "2026-10-05",
+      "origem": "C:\\Users\\ander\\Documents\\Codex\\2026-09-30\\referenced-chatgpt-conversation-this-is-an-2\\outputs\\portal-painel-previa-v090.png",
+      "sha256": "BF66FE51C9B7C4F0162048546E3DF8DF496D49EEBF7D5FA74F105CFE187F43A2",
+      "status": "salvo e conferido visualmente; publicação remota pendente"
     }
   ]
 }

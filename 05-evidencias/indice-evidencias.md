@@ -336,3 +336,7 @@ Incluídas em 2026-10-02:
 ## Preparação online 0.8.15
 
 - EVID-161 — EVID-161_chat-local-v0815.png: chat local com ajuda e versão; não comprova hospedagem online. Captura/inclusão 2026-10-05. Origem: C:\Users\ander\Documents\Codex\2026-09-30\referenced-chatgpt-conversation-this-is-an-2\outputs\chat-local-v0815.png. SHA-256 1ED725B4F1FCCFFC490137BBF32646B841259813A5A7E3140EB633A3D1CDA826.
+
+- EVID-162: [Portal chat 0.9.0 — prévia local](EVID-162_portal-chat-previa-v090.png); serviços simulados, publicação remota pendente.
+
+- EVID-163: [Portal painel 0.9.0 — prévia local](EVID-163_portal-painel-previa-v090.png); serviços simulados, publicação remota pendente.

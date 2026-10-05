@@ -186,3 +186,10 @@ Rolagem acompanha Como funciona mesmo com abertura visível e reajusta após mud
 - Blueprint Render Free e guia de primeira hospedagem, sem configuração de faturamento.
 - Pages gera somente entrada/encaminhamento público, sem publicar arquivos do servidor, histórico ou credenciais. URL pública configurada por variável de Actions.
 - Publicação e teste remoto ainda dependem da conta gratuita/ambiente privado. Não afirmar integração online antes de conferir.
+
+## 2026-10-05 — 0.9.0: portal completo no Apps Script
+
+- Migração autorizada para dispensar hospedagem adicional. Interface autocontida, transporte RPC, sessão privada e adaptador Gemini no Google.
+- Reutilização da planilha/Drive/token e idempotência existentes; simulações isoladas por sessão. Regras derivadas das fontes canônicas.
+- Pages aceita /exec; compatibilidade Node preservada com saúde ?api=health. Auxiliares de configuração/diagnóstico privados para RPC.
+- Guia/pacote para aplicação manual pelo usuário. Implantação Google e teste remoto ainda pendentes, sem contratação de plano ou faturamento.

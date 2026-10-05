@@ -33,12 +33,12 @@ function createStorage({ env = process.env, fetchImpl = globalThis.fetch } = {})
       if (!ready()) throw Error("Recebimento não configurado");
       const { url, token } = config();
       if (ticket.email) {
-        const health = await fetchImpl(url, {
+        const health = await fetchImpl(url + "?api=health", {
           redirect: "follow",
           signal: AbortSignal.timeout(15000),
         });
         const info = await health.json();
-        if (!health.ok || !["0.7.0", "0.8.0"].includes(info.version))
+        if (!health.ok || !/^0\.(7|8|9)\.\d+$/.test(info.version))
           throw Error("Atualize o Apps Script antes de enviar e-mail");
         if (ticket.authorization && !info.features?.includes("authorization")) {
           const error = Error(

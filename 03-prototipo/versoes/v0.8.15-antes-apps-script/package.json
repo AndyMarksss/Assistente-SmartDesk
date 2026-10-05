@@ -1,0 +1,20 @@
+{
+  "name": "smartdesk",
+  "version": "0.8.15",
+  "private": true,
+  "description": "Assistente guiado de suporte de TI",
+  "scripts": {
+    "start": "node server/server.cjs",
+    "test": "node server/tests/run.cjs",
+    "format": "prettier --write \"assets/**/*.{js,css}\" \"server/**/*.cjs\" index.html admin.html \"scripts/**/*.cjs\"",
+    "format:check": "prettier --check \"assets/**/*.{js,css}\" \"server/**/*.cjs\" index.html admin.html \"scripts/**/*.cjs\"",
+    "version:update": "node scripts/update-version.cjs",
+    "version:check": "node scripts/update-version.cjs --check"
+  },
+  "devDependencies": {
+    "prettier": "3.9.9"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

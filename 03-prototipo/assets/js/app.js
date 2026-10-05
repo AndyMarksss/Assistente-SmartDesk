@@ -216,8 +216,7 @@
   async function refreshStatus() {
     const token = generation;
     try {
-      const res = await fetch("/api/status");
-      const status = await res.json();
+      const status = await desk.api.request("/api/status");
       if (token !== generation) return;
       setAiStatus(
         status.aiState || (status.aiOnline ? "online" : status.aiReady ? "standby" : "absent"),
@@ -228,8 +227,9 @@
         : "O atendimento está disponível. O envio aguarda conexão com o Google.";
     } catch {
       setAiStatus("absent");
-      byId("engine-note").textContent =
-        "Abra o SmartDesk em http://127.0.0.1:4173/ com o servidor iniciado.";
+      byId("engine-note").textContent = window.google?.script?.run
+        ? "Não consegui confirmar a conexão. Entre novamente ou tente em instantes."
+        : "Abra o SmartDesk em http://127.0.0.1:4173/ com o servidor iniciado.";
     }
   }
   function start() {

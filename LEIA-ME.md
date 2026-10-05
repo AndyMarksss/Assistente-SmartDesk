@@ -48,3 +48,7 @@ Chat com mensagens suaves, correção de etapa anterior, campos pausados e revis
 ## Entrega online com integrações reais — 0.8.15
 
 Código preparado para hospedagem Node gratuita e entrada GitHub Pages. Configuração pública ainda pendente; seguir [guia de hospedagem](03-prototipo/hospedagem.md). Professor acessará por link e acesso de avaliação, sem terminal. Chaves/token somente no ambiente privado do servidor.
+
+## Entrega escolhida — Apps Script 0.9.0
+
+Esta decisão substitui Render 0.8.15. Apps Script existente executa interface e integrações, sem servidor local na avaliação. Pages encaminha para o Google. Seguir [publicação do portal](03-prototipo/integracoes/apps-script/PUBLICAR-PORTAL-v0.9.0.md). Não criar planilha/pasta ou token novos. Código adaptado/testado com mocks; aplicação e verificação pública pendentes do usuário.

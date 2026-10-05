@@ -1,14 +1,18 @@
-# SmartDesk — protótipo 0.6.0
+# SmartDesk — protótipo 0.9.0
 
-Chat guiado com poucas digitações, 25 setores, quatro áreas e 57 caminhos da Matriz Mestre. Identidade lavanda/ameixa, temas claro/escuro e Font Awesome local.
+Chat guiado com poucas digitações, 25 setores, quatro áreas e 57 caminhos da Matriz Mestre. Identidade grafite/violeta, temas claro/escuro e Font Awesome local.
 
-## Abrir
+## Entrega para avaliação
+
+Usar o portal no Apps Script existente, sem servidor local ou Render para o professor. Chat, gestão, planilha, anexos e IA são executados no Google. Seguir [publicação 0.9.0](integracoes/apps-script/PUBLICAR-PORTAL-v0.9.0.md). Implantação remota ainda precisa ser aplicada/conferida. Pages encaminha para a URL /exec configurada.
+
+## Desenvolvimento local
 
 Use Node.js 22 ou superior. Dentro de 03-prototipo, execute `node server/server.cjs` e abra **http://127.0.0.1:4173/**. Live Server na porta 5500 mostra a interface, mas não executa o servidor de IA e recebimento. A configuração fica no .env, nunca no navegador ou nos prints.
 
 ## Fluxo atual
 
-Iniciar → nome → setor por seleção → área → necessidade → dados necessários → descrição → anexos opcionais → revisão → Enviar chamado → confirmação numerada → Novo atendimento.
+Iniciar → nome → e-mail institucional → setor por seleção → área → necessidade → dados necessários → descrição → anexos opcionais → revisão → Enviar chamado → confirmação numerada → Novo atendimento.
 
 Nome destacado no cumprimento. Mensagens uma por vez, com digitação e animação suave; preferência de movimento reduzido respeitada. Campo de texto pausado nas escolhas. **Voltar uma etapa**, acima dos controles, restaura o passo anterior; corrigir área não repete setor.
 

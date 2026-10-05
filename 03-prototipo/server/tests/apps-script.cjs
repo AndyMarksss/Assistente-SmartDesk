@@ -151,8 +151,8 @@ for (const file of ["Schema.gs", "Code.gs", "Gestao.gs"])
     ),
     ctx,
   );
-ctx.configurarSmartDesk();
-ctx.configurarSmartDesk();
+ctx.configurarSmartDesk_();
+ctx.configurarSmartDesk_();
 assert.equal(cells.length, 1);
 assert(props.SMARTDESK_TOKEN.length >= 32);
 assert(!locked);
@@ -261,3 +261,5 @@ assert.equal(
 assert.equal(post(authTicket).number, "#005");
 assert(!post({ ...authTicket, authorization: { status: "reported", by: "" } }).ok);
 console.log("Autorização simulada: coluna O, leitura, validação e idempotência passaram.");
+
+module.exports = { ctx, props };

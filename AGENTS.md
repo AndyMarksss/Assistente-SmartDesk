@@ -100,3 +100,6 @@ Abertura fica no topo apenas até a primeira interação. Como funciona deve aco
 
 ## Entrega online 0.8.15 — 2026-10-05
 Usuário exige planilha, anexos e IA reais, acesso por links e custo zero. Pages é entrada para servidor HTTPS, não backend. Preparação Render somente Free, sem cartão/faturamento; exigir acesso de avaliação e não publicar chaves. Conta/URL e verificação remota ainda pendentes. Preservar integração Google já existente; não mudar modelo Gemini automaticamente. Guia em 03-prototipo/hospedagem.md.
+
+## Portal Google 0.9.0 — decisão direta 2026-10-05
+Usuário escolheu dispensar Render e usar Apps Script existente, com avaliação real e custo zero. Publicação manual no navegador do usuário. Fontes geradas via build:apps-script; transportes google.script.run e HTTP local preservados. Chave Gemini/senha novas somente em Propriedades do script; IDs/token existentes preservados. Sessão protege dados da gestão; auxiliares privados com underscore. Não usar mocks como prova remota. Guia PUBLICAR-PORTAL-v0.9.0.md. Versão deve regenerar artefatos Google antes de publicar.

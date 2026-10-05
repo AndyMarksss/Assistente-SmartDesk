@@ -1,4 +1,4 @@
-/** SmartDesk 0.6.0 — receptor Apps Script. Não editar a matriz acadêmica. */
+/** SmartDesk 0.9.0 — receptor Apps Script. Não editar a matriz acadêmica. */
 var HEADERS = [
   "Número",
   "Recebido em",
@@ -15,7 +15,7 @@ var HEADERS = [
   "Hash do conteúdo",
 ];
 
-function configurarSmartDesk() {
+function configurarSmartDesk_() {
   var lock = LockService.getScriptLock();
   lock.waitLock(25000);
   try {
@@ -48,8 +48,7 @@ function configurarSmartDesk() {
     if (!props.getProperty("SMARTDESK_TOKEN"))
       props.setProperty(
         "SMARTDESK_TOKEN",
-        Utilities.getUuid().replace(/-/g, "") +
-          Utilities.getUuid().replace(/-/g, ""),
+        Utilities.getUuid().replace(/-/g, "") + Utilities.getUuid().replace(/-/g, ""),
       );
     console.log("Planilha: " + SpreadsheetApp.openById(sheetId).getUrl());
     console.log("Pasta privada: " + DriveApp.getFolderById(folderId).getUrl());
@@ -61,8 +60,15 @@ function configurarSmartDesk() {
   }
 }
 
-function doGet() {
-  return resposta_({ ok: true, service: "SmartDesk", version: "0.8.0", features: ["email","management","authorization"] });
+function doGet(e) {
+  if (!e || (e.parameter && e.parameter.api === "health"))
+    return resposta_({
+      ok: true,
+      service: "SmartDesk",
+      version: typeof SMARTDESK_PORTAL_VERSION === "undefined" ? "0.9.0" : SMARTDESK_PORTAL_VERSION,
+      features: ["email", "management", "authorization", "portal"],
+    });
+  return portalPage_(e);
 }
 function receberChamado_(e) {
   var lock;
@@ -77,16 +83,31 @@ function receberChamado_(e) {
     var body = JSON.parse(e.postData.contents),
       props = PropertiesService.getScriptProperties(),
       secret = props.getProperty("SMARTDESK_TOKEN");
-    if (
-      !secret ||
-      typeof body.token !== "string" ||
-      !igualSeguro_(secret, body.token)
-    )
+    if (!secret || typeof body.token !== "string" || !igualSeguro_(secret, body.token))
       return resposta_({ ok: false, error: "Não autorizado." });
-    if(body.ticket && body.ticket.email && (typeof body.ticket.email!=="string" || body.ticket.email.length>160 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(body.ticket.email))) throw Error("E-mail inválido.");
+    if (
+      body.ticket &&
+      body.ticket.email &&
+      (typeof body.ticket.email !== "string" ||
+        body.ticket.email.length > 160 ||
+        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(body.ticket.email))
+    )
+      throw Error("E-mail inválido.");
     var ticket = validar_(body.ticket);
-    if(body.ticket.email) ticket.email=body.ticket.email;
-    if(body.ticket.authorization){var auth=body.ticket.authorization;if(['pending','reported'].indexOf(auth.status)<0||auth.status==='reported'&&(typeof auth.by!=='string'||!auth.by.trim()||auth.by.length>100))throw Error('Autorização inválida.');ticket.authorization={status:auth.status,by:auth.status==='reported'?auth.by.trim():''};}
+    if (body.ticket.email) ticket.email = body.ticket.email;
+    if (body.ticket.authorization) {
+      var auth = body.ticket.authorization;
+      if (
+        ["pending", "reported"].indexOf(auth.status) < 0 ||
+        (auth.status === "reported" &&
+          (typeof auth.by !== "string" || !auth.by.trim() || auth.by.length > 100))
+      )
+        throw Error("Autorização inválida.");
+      ticket.authorization = {
+        status: auth.status,
+        by: auth.status === "reported" ? auth.by.trim() : "",
+      };
+    }
     var digest = hash_(JSON.stringify(ticket));
     lock = LockService.getScriptLock();
     if (!lock.tryLock(25000))
@@ -105,9 +126,7 @@ function receberChamado_(e) {
     prepararGestao_(sheet);
     var rows =
         sheet.getLastRow() > 1
-          ? sheet
-              .getRange(2, 1, sheet.getLastRow() - 1, HEADERS.length)
-              .getValues()
+          ? sheet.getRange(2, 1, sheet.getLastRow() - 1, HEADERS.length).getValues()
           : [],
       found = -1,
       max = 0;
@@ -154,29 +173,19 @@ function receberChamado_(e) {
     // Reservar a linha antes de criar arquivos permite retomar um envio parcial, sem nova numeração.
     var links = [];
     if (ticket.attachments.length) {
-      var root = DriveApp.getFolderById(
-          props.getProperty("SMARTDESK_FOLDER_ID"),
-        ),
+      var root = DriveApp.getFolderById(props.getProperty("SMARTDESK_FOLDER_ID")),
         folderName = number + "_" + ticket.requestId,
         folders = root.getFoldersByName(folderName),
-        folder = folders.hasNext()
-          ? folders.next()
-          : root.createFolder(folderName);
+        folder = folders.hasNext() ? folders.next() : root.createFolder(folderName);
       ticket.attachments.forEach(function (file, index) {
         var name =
-            String(index + 1).padStart(2, "0") +
-            "_" +
-            file.name.replace(/[\/\\\x00-\x1f]/g, "_"),
+            String(index + 1).padStart(2, "0") + "_" + file.name.replace(/[\/\\\x00-\x1f]/g, "_"),
           existing = folder.getFilesByName(name),
           stored;
         if (existing.hasNext()) stored = existing.next();
         else
           stored = folder.createFile(
-            Utilities.newBlob(
-              Utilities.base64Decode(file.base64),
-              mime_(file.name),
-              name,
-            ),
+            Utilities.newBlob(Utilities.base64Decode(file.base64), mime_(file.name), name),
           );
         links.push(stored.getUrl());
       });
@@ -190,8 +199,10 @@ function receberChamado_(e) {
     });
     sheet.getRange(rowIndex, 10).setRichTextValue(rich.build());
     texto_(sheet.getRange(rowIndex, 11), ["Recebido"]);
-    texto_(sheet.getRange(rowIndex,14),[body.ticket.email||""]);
-    texto_(sheet.getRange(rowIndex,15),[ticket.authorization?JSON.stringify(ticket.authorization):""]);
+    texto_(sheet.getRange(rowIndex, 14), [body.ticket.email || ""]);
+    texto_(sheet.getRange(rowIndex, 15), [
+      ticket.authorization ? JSON.stringify(ticket.authorization) : "",
+    ]);
     sheet
       .getRange(rowIndex, 1, 1, HEADERS.length)
       .setWrapStrategy(SpreadsheetApp.WrapStrategy.CLIP);
@@ -205,15 +216,14 @@ function receberChamado_(e) {
     });
   } catch (error) {
     // Sem token, chave, conteúdo do chamado ou anexos no registro.
-    var safeMessage=String(error.message||'Erro interno');
-    var currentSecret=PropertiesService.getScriptProperties().getProperty('SMARTDESK_TOKEN');
-    if(currentSecret)safeMessage=safeMessage.split(currentSecret).join('[segredo oculto]');
-    console.error('SmartDesk: falha no recebimento: '+error.name+': '+safeMessage);
+    var safeMessage = String(error.message || "Erro interno");
+    var currentSecret = PropertiesService.getScriptProperties().getProperty("SMARTDESK_TOKEN");
+    if (currentSecret) safeMessage = safeMessage.split(currentSecret).join("[segredo oculto]");
+    console.error("SmartDesk: falha no recebimento: " + error.name + ": " + safeMessage);
 
     return resposta_({
       ok: false,
-      error:
-        "Não foi possível concluir o recebimento. Confira a configuração e tente novamente.",
+      error: "Não foi possível concluir o recebimento. Confira a configuração e tente novamente.",
     });
   } finally {
     if (lock) lock.releaseLock();
@@ -221,18 +231,11 @@ function receberChamado_(e) {
 }
 
 function validar_(t) {
-  if (
-    !t ||
-    typeof t.requestId !== "string" ||
-    !/^[a-f0-9-]{36}$/i.test(t.requestId)
-  )
+  if (!t || typeof t.requestId !== "string" || !/^[a-f0-9-]{36}$/i.test(t.requestId))
     throw Error("Identificação inválida.");
-  ["name", "sector", "area", "need", "subject", "description"].forEach(
-    function (key) {
-      if (typeof t[key] !== "string" || !t[key].trim())
-        throw Error("Campo obrigatório.");
-    },
-  );
+  ["name", "sector", "area", "need", "subject", "description"].forEach(function (key) {
+    if (typeof t[key] !== "string" || !t[key].trim()) throw Error("Campo obrigatório.");
+  });
   if (
     t.name.length > 100 ||
     t.subject.length > 80 ||
@@ -240,8 +243,7 @@ function validar_(t) {
     /[\r\n<>\x00-\x1f]/.test(t.subject)
   )
     throw Error("Limite de texto.");
-  if (SMARTDESK_SCHEMA.sectors.indexOf(t.sector) < 0)
-    throw Error("Setor inválido.");
+  if (SMARTDESK_SCHEMA.sectors.indexOf(t.sector) < 0) throw Error("Setor inválido.");
   var item = SMARTDESK_SCHEMA.items.filter(function (i) {
     return i.id === t.selectionId;
   })[0];
@@ -275,8 +277,7 @@ function validar_(t) {
       throw Error("Detalhes inválidos.");
     if (f.type === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value))
       throw Error("E-mail inválido.");
-    if (f.type === "url" && !/^https?:\/\/[^\s]+$/i.test(value))
-      throw Error("Link inválido.");
+    if (f.type === "url" && !/^https?:\/\/[^\s]+$/i.test(value)) throw Error("Link inválido.");
     if (
       f.type === "date" &&
       (!/^\d{4}-\d{2}-\d{2}$/.test(value) ||
@@ -287,8 +288,7 @@ function validar_(t) {
     if (f.type === "time" && !/^([01]\d|2[0-3]):[0-5]\d$/.test(value))
       throw Error("Horário inválido.");
   });
-  if (!Array.isArray(t.attachments) || t.attachments.length > 5)
-    throw Error("Anexos inválidos.");
+  if (!Array.isArray(t.attachments) || t.attachments.length > 5) throw Error("Anexos inválidos.");
   var total = 0;
   t.attachments.forEach(function (f) {
     if (
@@ -300,9 +300,7 @@ function validar_(t) {
       !f.base64 ||
       f.base64.length > 14 * 1024 * 1024 ||
       f.base64.length % 4 ||
-      !/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(
-        f.base64,
-      )
+      !/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(f.base64)
     )
       throw Error("Anexo inválido.");
     var size = Utilities.base64Decode(f.base64).length;
@@ -331,11 +329,7 @@ function texto_(range, values) {
   ]);
 }
 function hash_(text) {
-  return Utilities.computeDigest(
-    Utilities.DigestAlgorithm.SHA_256,
-    text,
-    Utilities.Charset.UTF_8,
-  )
+  return Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, text, Utilities.Charset.UTF_8)
     .map(function (b) {
       return ("0" + ((b + 256) % 256).toString(16)).slice(-2);
     })

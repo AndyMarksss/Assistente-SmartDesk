@@ -43,6 +43,8 @@ update(
     "# Estrutura do SmartDesk — " + version,
   ),
 );
+if (fs.existsSync(path.join(root, "scripts/build-apps-script.cjs")))
+  require("./build-apps-script.cjs").build({ check: checking });
 if (checking && changes.length) {
   console.error("Versão fora de sincronia: " + changes.join(", "));
   process.exitCode = 1;

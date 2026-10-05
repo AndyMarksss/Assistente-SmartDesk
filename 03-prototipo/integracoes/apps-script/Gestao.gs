@@ -5,9 +5,11 @@ function prepararGestao_(sheet) {
   if (value && value !== "E-mail institucional")
     throw Error("Coluna N ocupada; revisar antes da migração.");
   if (!value) texto_(cell, ["E-mail institucional"]);
-  var authCell=sheet.getRange(1,15),authHeader=String(authCell.getValue()||'');
-  if(authHeader&&authHeader!=='Autorização da liderança')throw Error('Coluna O ocupada; revisar antes da migração.');
-  if(!authHeader)texto_(authCell,['Autorização da liderança']);
+  var authCell = sheet.getRange(1, 15),
+    authHeader = String(authCell.getValue() || "");
+  if (authHeader && authHeader !== "Autorização da liderança")
+    throw Error("Coluna O ocupada; revisar antes da migração.");
+  if (!authHeader) texto_(authCell, ["Autorização da liderança"]);
 }
 function doPost(e) {
   try {
@@ -22,32 +24,24 @@ function doPost(e) {
     if (!body.action) return receberChamado_(e);
     var props = PropertiesService.getScriptProperties(),
       secret = props.getProperty("SMARTDESK_TOKEN");
-    if (
-      !secret ||
-      typeof body.token !== "string" ||
-      !igualSeguro_(secret, body.token)
-    )
+    if (!secret || typeof body.token !== "string" || !igualSeguro_(secret, body.token))
       return resposta_({ ok: false, error: "Não autorizado." });
-    if (["listTickets", "updateStatus"].indexOf(body.action) < 0)
-      throw Error("Ação inválida");
+    if (["listTickets", "updateStatus"].indexOf(body.action) < 0) throw Error("Ação inválida");
     var lock = LockService.getScriptLock();
     lock.waitLock(25000);
     try {
-      var sheet = SpreadsheetApp.openById(
-        props.getProperty("SMARTDESK_SHEET_ID"),
-      ).getSheetByName("Chamados");
+      var sheet = SpreadsheetApp.openById(props.getProperty("SMARTDESK_SHEET_ID")).getSheetByName(
+        "Chamados",
+      );
       if (
         !sheet ||
-        JSON.stringify(
-          sheet.getRange(1, 1, 1, HEADERS.length).getValues()[0],
-        ) !== JSON.stringify(HEADERS)
+        JSON.stringify(sheet.getRange(1, 1, 1, HEADERS.length).getValues()[0]) !==
+          JSON.stringify(HEADERS)
       )
         throw Error("Estrutura inválida");
       prepararGestao_(sheet);
       var rows =
-        sheet.getLastRow() > 1
-          ? sheet.getRange(2, 1, sheet.getLastRow() - 1, 15).getValues()
-          : [];
+        sheet.getLastRow() > 1 ? sheet.getRange(2, 1, sheet.getLastRow() - 1, 15).getValues() : [];
       if (body.action === "updateStatus") {
         var stages = [
           "Novos chamados",
@@ -58,19 +52,13 @@ function doPost(e) {
           "Finalizado",
           "Cancelado",
         ];
-        if (
-          stages.indexOf(body.status) < 0 ||
-          typeof body.requestId !== "string"
-        )
+        if (stages.indexOf(body.status) < 0 || typeof body.requestId !== "string")
           throw Error("Etapa inválida");
         var index = rows.findIndex(function (r) {
           return String(r[11]) === body.requestId;
         });
         if (index < 0) throw Error("Chamado não encontrado");
-        var current =
-          rows[index][10] === "Recebido"
-            ? "Novos chamados"
-            : String(rows[index][10]);
+        var current = rows[index][10] === "Recebido" ? "Novos chamados" : String(rows[index][10]);
         if (current === "Recebendo") throw Error("Envio incompleto");
         if (body.expectedStatus && current !== body.expectedStatus)
           throw Error("Conflito de etapa");
@@ -85,8 +73,11 @@ function doPost(e) {
             return /^#\d+$/.test(String(r[0]));
           })
           .map(function (r) {
-            var answers = {},authorization=null;
-            try{authorization=JSON.parse(String(r[14]||"null"));}catch(e){}
+            var answers = {},
+              authorization = null;
+            try {
+              authorization = JSON.parse(String(r[14] || "null"));
+            } catch (e) {}
             try {
               answers = JSON.parse(String(r[8]));
             } catch (e) {}
@@ -117,8 +108,7 @@ function doPost(e) {
   } catch (error) {
     return resposta_({
       ok: false,
-      error:
-        "Gestão indisponível. Confira implantação, estrutura ou conflito de etapa.",
+      error: "Gestão indisponível. Confira implantação, estrutura ou conflito de etapa.",
     });
   }
 }

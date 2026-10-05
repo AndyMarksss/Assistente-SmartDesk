@@ -79,6 +79,20 @@ async function run() {
         .readFileSync(path.join(destination, "admin.html"), "utf8")
         .includes("https://smartdesk.test/admin.html"),
     );
+    const deployment = "https://script.google.com/macros/s/test-deployment/exec";
+    build(destination, deployment);
+    for (const [file, page] of [
+      ["index.html", "chat"],
+      ["admin.html", "admin"],
+    ])
+      assert.ok(
+        fs
+          .readFileSync(path.join(destination, file), "utf8")
+          .includes(deployment + "?page=" + page),
+      );
+    assert.throws(() =>
+      build(destination, "https://script.google.com/macros/s/test-deployment/dev"),
+    );
     assert.throws(() => build(destination, "http://invalid.test"));
     build(destination);
     assert.match(

@@ -82,3 +82,5 @@ HDMI dispensa autorização, descrição duplicada removida, periféricos distin
 - 0.8.14: conferir ajuda acompanhada, pergunta inteira após opções/campos e teclado real no celular. Próximo print: pergunta e campo após teclado abrir; EVID-161.
 
 - 0.8.15: usuário exige custo zero e integrações reais. Preparação hospedagem/Pages concluída; criar conta Render Free sem cartão/faturamento, configurar ambiente privado e URL pública, conferir um chamado de avaliação online. Próximo print EVID-162: confirmação online com número, sem senha/token/chave; não repetir evidências locais como prova remota.
+
+- 0.9.0: migração do código para Apps Script preparada; usuário aplicará arquivos no navegador próprio. Publicar nova versão na implantação existente, configurar chave/senha privadas, conferir Google real e URL /exec no Pages. Não usar Render ou repetir configuração da planilha.

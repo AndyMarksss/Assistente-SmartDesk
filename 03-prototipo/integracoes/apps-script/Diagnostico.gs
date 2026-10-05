@@ -1,5 +1,5 @@
 /** Diagnóstico do recebimento — somente chamado fictício, mesmo ID de tentativa. */
-function diagnosticarSmartDesk() {
+function diagnosticarSmartDesk_() {
   var props = PropertiesService.getScriptProperties();
   var ticket = {
     requestId: "91be4010-6210-4a29-b4f2-05910dbaf2d9",
@@ -37,10 +37,10 @@ function diagnosticarSmartDesk() {
         : "ID não encontrado"),
   );
   try {
-    if(!item)throw Error('ID da solicitação não encontrado no Schema.');
+    if (!item) throw Error("ID da solicitação não encontrado no Schema.");
     // Mesmo contrato do servidor: rótulos vêm da seleção, sem digitação livre.
-    ticket.area=item.area;
-    ticket.need=item.need;
+    ticket.area = item.area;
+    ticket.need = item.need;
     validar_(ticket);
     console.log("Validação da solicitação fictícia: OK");
     var book = SpreadsheetApp.openById(props.getProperty("SMARTDESK_SHEET_ID"));
@@ -54,10 +54,7 @@ function diagnosticarSmartDesk() {
       throw Error("Cabeçalhos diferentes dos esperados.");
     console.log("Cabeçalhos da aba Chamados: OK");
     console.log(
-      "Pasta: " +
-        DriveApp.getFolderById(
-          props.getProperty("SMARTDESK_FOLDER_ID"),
-        ).getUrl(),
+      "Pasta: " + DriveApp.getFolderById(props.getProperty("SMARTDESK_FOLDER_ID")).getUrl(),
     );
     var output = JSON.parse(
       doPost({
@@ -78,9 +75,7 @@ function diagnosticarSmartDesk() {
       }),
     );
     if (!output.ok)
-      throw Error(
-        "O receptor falhou. Confira a mensagem SmartDesk: falha no recebimento acima.",
-      );
+      throw Error("O receptor falhou. Confira a mensagem SmartDesk: falha no recebimento acima.");
   } catch (error) {
     console.error("Diagnóstico: " + error.name + ": " + error.message);
     throw error;

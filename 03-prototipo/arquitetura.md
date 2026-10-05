@@ -1,4 +1,4 @@
-# Estrutura do SmartDesk — 0.8.15
+# Estrutura do SmartDesk — 0.9.0
 
 ## Cliente
 Os scripts são carregados com defer na ordem declarada em index.html. Não há ferramenta de compilação: os arquivos continuam funcionando no servidor local e a apresentação estática no GitHub Pages.
@@ -39,3 +39,6 @@ chat-view.createScrollFollower mantém a abertura no topo antes da interação e
 
 ## Hospedagem real 0.8.15
 server/hosting.cjs valida origem pública e exige acesso de avaliação na nuvem. Servidor usa PORT e 0.0.0.0 quando hospedado; local mantém 127.0.0.1:4173. scripts/build-pages.cjs gera apenas dois documentos de entrada e .nojekyll. Workflow publica pages-dist, não a árvore do protótipo. Integrações continuam no servidor; guia em hospedagem.md.
+
+## Portal Google 0.9.0
+Apps Script serve HTML autocontido em sandbox IFRAME, com base target=_top. Código JS/CSS/ícones/fontes/SVG são empacotados das fontes existentes, sem HTTP local nem chaves. client-api seleciona google.script.run quando o portal está presente e preserva fetch para desenvolvimento Node. Portal.gs oferece duas entradas RPC: login e smartdeskCall. Cada operação exige sessão, valida seleção/campos/autorização e delega recebimento/gestão ao Apps Script existente. PortalShared.gs é gerado de matriz, regras e validação para evitar divergência. IA recebe somente descrição/contexto permitido; contatos/anexos ficam excluídos. Pages aceita URL /exec e diferencia chat/admin. Manifesto usa V8, timezone São Paulo e escopos Google existentes/externos necessários. Deploy Google não é automático a cada push; republicar segundo guia.

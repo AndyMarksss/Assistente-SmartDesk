@@ -1,0 +1,16 @@
+{
+  "number": "#001",
+  "requestId": "91be4010-6210-4a29-b4f2-05910dbaf2d9",
+  "attachmentCount": 1,
+  "status": "enviado",
+  "verifiedAt": "2026-10-01T12:17:44.655Z",
+  "duplicateRetryConfirmed": true,
+  "fictional": true,
+  "note": "Chamado técnico fictício. Confirmação pelo receptor e conferência visual concluídas: linha #001/link/status EVID-033, conteúdo do TXT EVID-034, pasta/acesso restrito EVID-035. Não representa validação com usuários reais.",
+  "visualVerification": {
+    "date": "2026-10-01",
+    "sheetEvidence": "EVID-033",
+    "attachmentEvidence": "EVID-034",
+    "folderEvidence": "EVID-035"
+  }
+}

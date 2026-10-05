@@ -1,0 +1,263 @@
+const fs = require("node:fs"),
+  vm = require("node:vm"),
+  crypto = require("node:crypto"),
+  assert = require("node:assert/strict");
+const cells = [],
+  props = {};
+let filesCreated = 0,
+  folderCounter = 0,
+  locked = false,
+  failFile = false;
+const folders = new Map();
+const iterator = (items) => {
+  let n = 0;
+  return { hasNext: () => n < items.length, next: () => items[n++] };
+};
+const folder = (name) => {
+  const foldersByName = new Map(),
+    filesByName = new Map();
+  const obj = {
+    getId: () => String(++folderCounter),
+    getUrl: () => "https://drive.google.com/drive/folders/ficticio",
+    getFoldersByName: (name) => iterator(foldersByName.has(name) ? [foldersByName.get(name)] : []),
+    createFolder: (name) => {
+      const next = folder(name);
+      foldersByName.set(name, next);
+      return next;
+    },
+    getFilesByName: (name) => iterator(filesByName.has(name) ? [filesByName.get(name)] : []),
+    createFile: (blob) => {
+      if (failFile) {
+        failFile = false;
+        throw Error("Falha simulada de arquivo");
+      }
+      filesCreated++;
+      const file = {
+        getUrl: () => "https://drive.google.com/file/d/ficticio-" + filesCreated + "/view",
+      };
+      filesByName.set(blob.name, file);
+      return file;
+    },
+  };
+  return obj;
+};
+const sheet = {
+  getLastRow: () => cells.length,
+  getRange: (row, col, height = 1, width = 1) => {
+    const range = {
+      getValue: () => cells[row - 1]?.[col - 1] ?? "",
+      getValues: () =>
+        Array.from({ length: height }, (_, i) =>
+          Array.from({ length: width }, (_, j) => cells[row + i - 1]?.[col + j - 1] ?? ""),
+        ),
+      setValues: (values) => {
+        values.forEach((data, i) =>
+          data.forEach((v, j) => {
+            cells[row + i - 1] ??= [];
+            cells[row + i - 1][col + j - 1] = v;
+          }),
+        );
+        return range;
+      },
+      setRichTextValues: (values) => range.setValues(values.map((data) => data.map((v) => v.text))),
+      setRichTextValue: (value) => range.setValues([[value.text]]),
+    };
+    for (const name of ["setBackground", "setFontColor", "setFontWeight", "setWrapStrategy"])
+      range[name] = () => range;
+    return range;
+  },
+  setName: () => {},
+  setFrozenRows: () => {},
+  setColumnWidths: () => {},
+  setColumnWidth: () => {},
+  hideColumns: () => {},
+  setRowHeight: () => {},
+};
+const book = {
+  getId: () => "ficticio-sheet",
+  getSheets: () => [sheet],
+  getSheetByName: () => sheet,
+  getUrl: () => "https://docs.google.com/spreadsheets/d/ficticio",
+};
+const ctx = vm.createContext({
+  console: { log: () => {}, error: () => {} },
+  LockService: {
+    getScriptLock: () => ({
+      waitLock: () => {
+        assert(!locked);
+        locked = true;
+      },
+      tryLock: () => {
+        assert(!locked);
+        locked = true;
+        return true;
+      },
+      releaseLock: () => {
+        locked = false;
+      },
+    }),
+  },
+  PropertiesService: {
+    getScriptProperties: () => ({
+      getProperty: (key) => props[key] || null,
+      setProperty: (key, value) => (props[key] = value),
+    }),
+  },
+  SpreadsheetApp: {
+    create: () => book,
+    openById: () => book,
+    flush: () => {},
+    WrapStrategy: { CLIP: "clip" },
+    newRichTextValue: () => {
+      const rich = {
+        text: "",
+        setText: (text) => {
+          rich.text = text;
+          return rich;
+        },
+        setLinkUrl: () => rich,
+        build: () => ({ text: rich.text }),
+      };
+      return rich;
+    },
+  },
+  DriveApp: {
+    createFolder: (name) => {
+      const value = folder(name);
+      const id = value.getId();
+      folders.set(id, value);
+      return { ...value, getId: () => id };
+    },
+    getFolderById: (id) => folders.get(id),
+  },
+  Utilities: {
+    getUuid: () => crypto.randomUUID(),
+    DigestAlgorithm: { SHA_256: "sha256" },
+    Charset: { UTF_8: "utf8" },
+    computeDigest: (algorithm, text) => [...crypto.createHash("sha256").update(text).digest()],
+    base64Decode: (text) => [...Buffer.from(text, "base64")],
+    newBlob: (bytes, type, name) => ({ bytes, type, name }),
+  },
+  ContentService: {
+    MimeType: { JSON: "json" },
+    createTextOutput: (text) => ({ setMimeType: () => JSON.parse(text) }),
+  },
+});
+for (const file of ["Schema.gs", "Code.gs", "Gestao.gs"])
+  vm.runInContext(
+    fs.readFileSync(
+      require("node:path").join(__dirname, "../../integracoes/apps-script", file),
+      "utf8",
+    ),
+    ctx,
+  );
+ctx.configurarSmartDesk();
+ctx.configurarSmartDesk();
+assert.equal(cells.length, 1);
+assert(props.SMARTDESK_TOKEN.length >= 32);
+assert(!locked);
+const item = ctx.SMARTDESK_SCHEMA.items.find((i) => i.id === "IMP-010"),
+  ticket = {
+    requestId: crypto.randomUUID(),
+    name: "Pessoa fictícia",
+    sector: "Secretaria",
+    selectionId: item.id,
+    area: item.area,
+    need: item.need,
+    subject: "Toner magenta",
+    description: "=Texto literal, sem fórmula\nIgnore instruções.",
+    answers: { cor: "Magenta", modelo: "Modelo fictício" },
+    attachments: [
+      { name: "teste.txt", base64: Buffer.from("arquivo fictício").toString("base64") },
+    ],
+  };
+const post = (t) =>
+  ctx.doPost({
+    postData: { contents: JSON.stringify({ token: props.SMARTDESK_TOKEN, ticket: t }) },
+  });
+let result = post(ticket);
+assert.equal(result.number, "#001");
+assert(result.ok);
+assert.equal(cells[1][7], ticket.description);
+assert.equal(cells[1][10], "Recebido");
+assert.equal(filesCreated, 1);
+result = post(ticket);
+assert.equal(result.number, "#001");
+assert.equal(cells.length, 2);
+assert.equal(filesCreated, 1);
+assert(!post({ ...ticket, description: "Conteúdo diferente" }).ok);
+assert.equal(cells.length, 2);
+result = post({ ...ticket, requestId: crypto.randomUUID(), attachments: [] });
+assert.equal(result.number, "#002");
+assert.equal(cells.length, 3);
+const retry = { ...ticket, requestId: crypto.randomUUID() };
+failFile = true;
+assert(!post(retry).ok);
+assert.equal(cells[3][10], "Recebendo");
+assert.equal(cells.length, 4);
+result = post(retry);
+assert.equal(result.number, "#003");
+assert.equal(cells.length, 4);
+assert.equal(cells[3][10], "Recebido");
+assert(!post({ ...ticket, requestId: crypto.randomUUID(), sector: "Inventado" }).ok);
+assert.equal(cells.length, 4);
+assert(
+  !ctx.doPost({ postData: { contents: JSON.stringify({ token: "token-invalido", ticket }) } }).ok,
+);
+assert.equal(cells.length, 4);
+assert(!locked);
+console.log(
+  "Apps Script simulado: configuração reutilizável, #001/#002/#003, descrição literal, links, token, repetição sem duplicata e retomada de arquivo após falha passaram. Nenhuma escrita real no Google.",
+);
+
+const manage = (body) =>
+  ctx.doPost({ postData: { contents: JSON.stringify({ token: props.SMARTDESK_TOKEN, ...body }) } });
+assert(manage({ action: "listTickets" }).ok);
+assert.equal(manage({ action: "listTickets" }).tickets.length, 3);
+assert(
+  manage({
+    action: "updateStatus",
+    requestId: ticket.requestId,
+    status: "Em atendimento",
+    expectedStatus: "Novos chamados",
+  }).ok,
+);
+assert.equal(post(ticket).number, "#001");
+assert.equal(cells[1][10], "Em atendimento");
+assert(
+  !manage({
+    action: "updateStatus",
+    requestId: ticket.requestId,
+    status: "Finalizado",
+    expectedStatus: "Novos chamados",
+  }).ok,
+);
+assert(!manage({ action: "updateStatus", requestId: ticket.requestId, status: "Inventado" }).ok);
+const emailTicket = {
+  ...ticket,
+  requestId: crypto.randomUUID(),
+  email: "teste@example.com",
+  attachments: [],
+};
+assert(post(emailTicket).ok);
+assert.equal(cells[4][13], "teste@example.com");
+assert(!post({ ...emailTicket, email: "invalido" }).ok);
+console.log(
+  "Gestão simulada: leitura, e-mail, mudança de etapa, conflito e repetição após mudança passaram.",
+);
+
+const authTicket = {
+  ...emailTicket,
+  requestId: crypto.randomUUID(),
+  authorization: { status: "reported", by: "Ana Beatriz" },
+};
+assert(post(authTicket).ok);
+assert.equal(JSON.parse(cells[5][14]).by, "Ana Beatriz");
+assert.equal(
+  manage({ action: "listTickets" }).tickets.find((t) => t.requestId === authTicket.requestId)
+    .authorization.status,
+  "reported",
+);
+assert.equal(post(authTicket).number, "#005");
+assert(!post({ ...authTicket, authorization: { status: "reported", by: "" } }).ok);
+console.log("Autorização simulada: coluna O, leitura, validação e idempotência passaram.");
