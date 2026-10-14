@@ -2433,6 +2433,30 @@
       "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173",
       "sha256": "EEC6928F1775895A465B4A7A4C9D3EDF16E0EBBEBEA5F0D9F1BB237F242A57C8",
       "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-203",
+      "arquivo": "EVID-203_luz-so-no-fundo.jpg",
+      "etapa": "SmartDesk 0.11.2 — luz só no fundo do chat",
+      "descricao": "Luz do cursor com as cores reais (tema escuro) só no fundo do chat, abaixo do card, à direita da mensagem; card, etapas e botões sem a luz.",
+      "data_aproximada": "2026-10-14",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-14",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173",
+      "sha256": "A81F018DB649F0AAF634FB09A11A4293A2B500406AAD131934501D276D27C33F",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-204",
+      "arquivo": "EVID-204_luz-fundo-cor-teste.jpg",
+      "etapa": "SmartDesk 0.11.2 — luz só no fundo do chat",
+      "descricao": "Mesma posição com a luz em vermelho de teste: ela aparece só no fundo e fica atrás do card, da mensagem, das etapas e da área de botões. A mancha no alto é o brilho fixo do fundo, também em cor de teste.",
+      "data_aproximada": "2026-10-14",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-14",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173",
+      "sha256": "1A2C4095E1E2E0E5BD407023A8F35F33710C6967B1902BB04DC94FC218B60D2B",
+      "status": "verificação técnica; não é validação com usuários"
     }
   ]
 }

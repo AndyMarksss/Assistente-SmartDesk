@@ -247,3 +247,11 @@ Pedido do usuário: o robô deve olhar para o cursor, e o efeito de luz do fundo
 - **Olhar do robô:** os olhos (grupo `.robot-gaze`) se deslocam na direção do cursor em qualquer ponto da página, até 8 × 7 unidades do desenho, com a boca acompanhando pela metade; a piscada continua em cada olho. Quando o cursor sai da janela, o robô volta a olhar para frente. Só com mouse; com movimento reduzido, os olhos ficam parados.
 - **Luz do cursor:** a camada herdava de `visual-depth.css` 380×380 px no canto superior esquerdo e um desfoque de 65 px, e ficava atrás do cabeçalho, das etapas e da área de resposta — por isso o efeito só aparecia num pedaço. Agora ocupa o chat inteiro, por cima das faixas (mistura `screen` no escuro e `multiply` no claro), acende quando o cursor entra no chat e apaga quando sai. O brilho fixo do alto passou para o fundo do próprio chat. Desligada em cores forçadas.
 - Apps Script republicado só para alinhar a versão (implantação versão 11). Verificação em verificacao-v0.11.1.md.
+
+## 0.11.2 — 2026-10-14
+
+Correção pedida pelo usuário: na 0.11.1 a luz do cursor passou a ficar por cima de tudo e invadia o card central, a trilha de etapas e os botões. A luz deve ficar só no fundo do chat.
+
+- `.chat-shell::after` voltou para trás do conteúdo (`z-index: 0`, sem mistura de cores), mantendo o tamanho do chat inteiro — o defeito original era só a camada de 380×380 px no canto.
+- Medido com as cores reais (tema escuro): fundo abaixo do card vai de (17, 24, 40) para (53, 56, 89) com o cursor perto; área de botões não muda; dentro do card, pelo vidro, a variação é mínima ((34, 52, 72) → (42, 56, 82)).
+- Apps Script republicado só para alinhar a versão. Verificação em verificacao-v0.11.2.md.

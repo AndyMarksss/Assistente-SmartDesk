@@ -123,9 +123,9 @@
   border: 1px solid var(--edge);
   box-shadow: var(--depth-3), var(--highlight);
 }
-/* A luz do cursor cobre o chat inteiro (cabeçalho, etapas, conversa e respostas). Antes ela
-   herdava 380×380 px e desfoque de visual-depth.css e ficava atrás dessas faixas, então só
-   aparecia num pedaço do fundo. */
+/* A luz do cursor fica só no fundo do chat, atrás do conteúdo (cards, etapas e botões),
+   e cobre o fundo inteiro. Antes ela herdava 380×380 px e desfoque de visual-depth.css e só
+   aparecia num canto. */
 :root[data-theme] .chat-shell::after {
   display: block;
   content: "";
@@ -134,19 +134,15 @@
   width: auto;
   height: auto;
   filter: none;
-  z-index: 2;
+  z-index: 0;
   pointer-events: none;
   border-radius: inherit;
   opacity: 0;
-  mix-blend-mode: multiply;
   background: radial-gradient(
     520px circle at var(--sx, 72%) var(--sy, -12%),
     var(--spot),
     transparent 62%
   );
-}
-:root[data-theme="dark"] .chat-shell::after {
-  mix-blend-mode: screen;
 }
 :root[data-theme] .chat-shell.is-lit::after {
   opacity: 1;

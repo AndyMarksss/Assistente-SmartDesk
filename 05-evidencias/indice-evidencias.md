@@ -438,3 +438,11 @@ Próxima evidência: EVID-201.
 - EVID-202: [luz-chat-inteiro](EVID-202_luz-chat-inteiro.jpg) — Luz do cursor cobrindo o chat inteiro, com cor de teste vermelha: cursor na área de resposta ilumina a faixa de resposta e a conversa; antes a camada tinha 380 px e ficava atrás das faixas. A mancha no alto à direita é o brilho fixo, também em cor de teste.
 
 Próxima evidência: EVID-203.
+
+## 2026-10-14 — SmartDesk 0.11.2: luz só no fundo do chat
+
+- EVID-203: [luz-so-no-fundo](EVID-203_luz-so-no-fundo.jpg) — Luz do cursor com as cores reais (tema escuro) só no fundo do chat, abaixo do card, à direita da mensagem; card, etapas e botões sem a luz.
+
+- EVID-204: [luz-fundo-cor-teste](EVID-204_luz-fundo-cor-teste.jpg) — Mesma posição com a luz em vermelho de teste: ela aparece só no fundo e fica atrás do card, da mensagem, das etapas e da área de botões. A mancha no alto é o brilho fixo do fundo, também em cor de teste.
+
+Próxima evidência: EVID-205.

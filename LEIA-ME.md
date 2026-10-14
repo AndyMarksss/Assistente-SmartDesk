@@ -67,3 +67,6 @@ A IA monta o rascunho do chamado a partir do relato e só pergunta o que falta; 
 
 ## 0.11.1
 Robô da abertura acompanha o cursor com os olhos; a luz do cursor passou a cobrir o chat inteiro. Verificação em 03-prototipo/verificacao-v0.11.1.md.
+
+## 0.11.2
+A luz do cursor fica só no fundo do chat (atrás de card, etapas e botões), cobrindo o fundo inteiro. Verificação em 03-prototipo/verificacao-v0.11.2.md.

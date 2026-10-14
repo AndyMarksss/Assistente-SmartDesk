@@ -1,4 +1,4 @@
-# Estrutura do SmartDesk — 0.11.1
+# Estrutura do SmartDesk — 0.11.2
 
 ## Cliente
 Os scripts são carregados com defer na ordem declarada em index.html. Não há ferramenta de compilação: os arquivos continuam funcionando no servidor local e a apresentação estática no GitHub Pages.
@@ -67,4 +67,4 @@ Servidor: `ticket-validation.safeExtract` aceita só valores no formato do campo
 Painel: `admin.js` desenha o skeleton antes da primeira resposta, usa Pointer Events para o arraste (cartão-fantasma, coluna destacada, rolagem automática), atualiza a etapa de forma otimista e desfaz com aviso se o servidor recusar.
 
 ## Olhar e luz 0.11.1
-`atmosphere.js` calcula o olhar do robô (`look`) no mesmo quadro da luz: direção do cursor a partir do centro do rosto, limitada por `reach` (alcance total a 240 px), gravada em `--gaze-x/--gaze-y` no SVG; o CSS aplica em `.robot-gaze` (olhos) e `.robot-gaze.mouth` (45%). A luz do chat é `.chat-shell::after` acima das faixas (`z-index: 2`), com `width/height: auto` e `filter: none` para anular as regras antigas de `visual-depth.css`; a classe `is-lit` controla a opacidade e a transição fica em `motion.css`.
+`atmosphere.js` calcula o olhar do robô (`look`) no mesmo quadro da luz: direção do cursor a partir do centro do rosto, limitada por `reach` (alcance total a 240 px), gravada em `--gaze-x/--gaze-y` no SVG; o CSS aplica em `.robot-gaze` (olhos) e `.robot-gaze.mouth` (45%). A luz do chat é `.chat-shell::after` no fundo (`z-index: 0`, atrás das faixas e dos cards, que ficam em `z-index: 1`), com `width/height: auto` e `filter: none` para anular as regras antigas de `visual-depth.css`; a classe `is-lit` controla a opacidade e a transição fica em `motion.css`. Na 0.11.1 ela ficou por cima de tudo; o usuário pediu que ficasse só no fundo (0.11.2).
