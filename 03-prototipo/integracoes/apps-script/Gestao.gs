@@ -27,10 +27,17 @@ function doPost(e) {
       secret = props.getProperty("SMARTDESK_TOKEN");
     if (!secret || typeof body.token !== "string" || !igualSeguro_(secret, body.token))
       return resposta_({ ok: false, error: "Não autorizado." });
-    if (["listTickets", "updateStatus"].indexOf(body.action) < 0) throw Error("Ação inválida");
+    if (
+      ["listTickets", "updateStatus", "trackTicket", "selfHelp", "selfHelpStats"].indexOf(
+        body.action,
+      ) < 0
+    )
+      throw Error("Ação inválida");
     var lock = LockService.getScriptLock();
     lock.waitLock(25000);
     try {
+      if (["selfHelp", "selfHelpStats"].indexOf(body.action) >= 0)
+        return resposta_(autoatendimento_(props, body));
       var sheet = SpreadsheetApp.openById(props.getProperty("SMARTDESK_SHEET_ID")).getSheetByName(
         "Chamados",
       );
@@ -43,6 +50,34 @@ function doPost(e) {
       prepararGestao_(sheet);
       var rows =
         sheet.getLastRow() > 1 ? sheet.getRange(2, 1, sheet.getLastRow() - 1, 15).getValues() : [];
+      if (body.action === "trackTicket") {
+        // Acompanhamento pelo solicitante: número + e-mail; devolve só a situação.
+        var wanted = String(body.number || ""),
+          email = String(body.email || "")
+            .trim()
+            .toLowerCase(),
+          found = rows.filter(function (r) {
+            return (
+              String(r[0]) === wanted &&
+              email &&
+              String(r[13] || "")
+                .trim()
+                .toLowerCase() === email
+            );
+          })[0];
+        return resposta_({
+          ok: true,
+          ticket: found
+            ? {
+                number: String(found[0]),
+                createdAt: String(found[1]),
+                area: String(found[4]),
+                need: String(found[5]),
+                status: found[10] === "Recebido" ? "Novos chamados" : String(found[10]),
+              }
+            : null,
+        });
+      }
       if (body.action === "updateStatus") {
         var stages = [
           "Novos chamados",
@@ -112,4 +147,43 @@ function doPost(e) {
       error: "Gestão indisponível. Confira implantação, estrutura ou conflito de etapa.",
     });
   }
+}
+
+/** Autoatendimento: registro anônimo (setor, caminho, resultado) na aba Autoatendimento. */
+function autoatendimento_(props, body) {
+  var book = SpreadsheetApp.openById(props.getProperty("SMARTDESK_SHEET_ID")),
+    sheet = book.getSheetByName("Autoatendimento"),
+    headers = ["Data", "Setor", "Área", "Necessidade", "Resultado", "Origem"];
+  if (!sheet) {
+    sheet = book.insertSheet("Autoatendimento");
+    sheet.getRange(1, 1, 1, headers.length).setValues([headers]).setFontWeight("bold");
+    sheet.setFrozenRows(1);
+  }
+  if (body.action === "selfHelp") {
+    var outcomes = { resolved: "Resolvido com as dicas", continued: "Seguiu para o chamado" };
+    if (!outcomes[body.outcome]) throw Error("Resultado inválido");
+    var values = [body.sector, body.area, body.need, body.origin].map(function (value) {
+      return String(value || "").slice(0, 120);
+    });
+    texto_(sheet.getRange(sheet.getLastRow() + 1, 1, 1, headers.length), [
+      new Date().toISOString(),
+      values[0],
+      values[1],
+      values[2],
+      outcomes[body.outcome],
+      values[3],
+    ]);
+    return { ok: true };
+  }
+  var rows =
+    sheet.getLastRow() > 1 ? sheet.getRange(2, 5, sheet.getLastRow() - 1, 1).getValues() : [];
+  return {
+    ok: true,
+    resolved: rows.filter(function (r) {
+      return r[0] === "Resolvido com as dicas";
+    }).length,
+    continued: rows.filter(function (r) {
+      return r[0] === "Seguiu para o chamado";
+    }).length,
+  };
 }

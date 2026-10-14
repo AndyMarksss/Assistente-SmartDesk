@@ -61,3 +61,6 @@ Frontend Pages sem senha. Aplicar Portal.gs, Pages.gs e PortalShared.gs e public
 
 ## 0.10.0 — atmosfera, IA e fluxo
 Visual em vidro com aurora, luz sob o cursor e animações; IA sugere caminhos a partir de um relato livre, pergunta um complemento e dá dicas seguras; seletor de setor com busca, atalhos, comprovante com cópia e opção de lembrar os dados no dispositivo. Avaliação pública com cotas. Apps Script 0.10.0 publicado pelo clasp (conta pessoal, versão 5 da mesma implantação). O avaliador só abre o GitHub Pages; uso local com npm start. Verificação em 03-prototipo/verificacao-v0.10.0.md; evidências EVID-179 a EVID-188.
+
+## 0.11.0 — fluxos revisados
+A IA monta o rascunho do chamado a partir do relato e só pergunta o que falta; perguntas da IA entram na descrição; dicas aparecem antes do envio, com "Resolveu!" registrado sem dados pessoais. Acompanhamento de chamado por número e e-mail. Painel com skeleton, kanban colorido com tags e arrastar e soltar, e estatística de autoatendimento. Robô animado, setor com busca, calendário/relógio visíveis. Apps Script 0.11.0 publicado (versão 9). Verificação em 03-prototipo/verificacao-v0.11.0.md.

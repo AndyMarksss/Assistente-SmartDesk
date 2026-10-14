@@ -1,6 +1,9 @@
 "use strict";
 (function (desk) {
   if (window.smartdeskWrongRuntime) return;
+  const F = desk.chatFormat,
+    copy = desk.conversationCopy,
+    policy = desk.requestPolicy;
   const byId = (id) => document.getElementById(id),
     input = byId("chat-input"),
     choices = byId("choices");
@@ -13,135 +16,25 @@
     history = [];
   const reduced = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
   const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  // Display only: canonical labels and IDs stay untouched for validation and the spreadsheet.
-  const LABELS = {
-    COMPUTADOR: "Computador",
-    INTERNET: "Internet",
-    INTRANET: "Intranet",
-    "MENTOR WEB": "Mentor Web",
-    QUICKBOOKS: "QuickBooks",
-    CÂMERAS: "Câmeras",
+  const AREA_DESCRIPTIONS = {
+    Audiovisual: "Projetor, som, microfone e cabo HDMI.",
+    Impressora: "Impressão, papel, toner e tinta.",
+    Google: "Gmail, Drive e ferramentas do Google.",
+    TI: "Computador, internet, sistemas e acessórios.",
   };
-  const displayLabel = (label) => LABELS[label] || label;
-  const needLabel = (item) => item.path.map(displayLabel).join(" › ");
-  const AREA_ICONS = {
-    Audiovisual: "fa-video",
-    Impressora: "fa-print",
-    Google: "fa-envelope",
-    TI: "fa-computer",
+  const el = (tag, className, text) => {
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text !== undefined) node.textContent = text;
+    return node;
   };
-  const PATH_ICONS = [
-    [/rede|conectad/i, "fa-network-wired"],
-    [/wi-?fi|internet|login de acesso/i, "fa-wifi"],
-    [/^não liga$/i, "fa-power-off"],
-    [/intranet|^sites$/i, "fa-globe"],
-    [/mentor/i, "fa-graduation-cap"],
-    [/quickbooks/i, "fa-calculator"],
-    [/câmeras/i, "fa-video"],
-    [/dúvidas/i, "fa-circle-question"],
-    [/sugest/i, "fa-lightbulb"],
-    [/outros/i, "fa-ellipsis"],
-    [/headset|fone/i, "fa-headphones"],
-    [/mouse/i, "fa-computer-mouse"],
-    [/teclado/i, "fa-keyboard"],
-    [/cd\/dvd/i, "fa-compact-disc"],
-    [/lentid/i, "fa-gauge"],
-    [/programas|software|instala/i, "fa-download"],
-    [/chromebook|notebook/i, "fa-laptop"],
-    [/reserva/i, "fa-calendar-check"],
-    [/toner|tinta/i, "fa-fill-drip"],
-    [/papel|atolad/i, "fa-file"],
-    [/scanner/i, "fa-file-import"],
-    [/grampo/i, "fa-paperclip"],
-    [/mancha/i, "fa-droplet"],
-    [/lâmpada|estufa/i, "fa-fire"],
-    [/projetor/i, "fa-display"],
-    [/microfone/i, "fa-microphone"],
-    [/caixa de som/i, "fa-volume-high"],
-    [/hdmi|cabo/i, "fa-plug"],
-    [/gmail/i, "fa-envelope"],
-    [/drive/i, "fa-folder-open"],
-    [/planilhas/i, "fa-table"],
-    [/documentos|relatório/i, "fa-file-lines"],
-    [/apresenta/i, "fa-display"],
-    [/agendas/i, "fa-calendar-days"],
-    [/classroom/i, "fa-chalkboard-user"],
-    [/grupos/i, "fa-people-group"],
-    [/senha/i, "fa-key"],
-    [/notas|diário/i, "fa-book"],
-    [/remanejamento/i, "fa-right-left"],
-    [/erro/i, "fa-triangle-exclamation"],
-    [/login|acesso/i, "fa-user-plus"],
-    [/atualiza/i, "fa-pen-to-square"],
-    [/solicita/i, "fa-inbox"],
-    [/computador/i, "fa-computer"],
-    [/impressora|imprime/i, "fa-print"],
-  ];
-  const iconFor = (label, area) =>
-    (PATH_ICONS.find(([pattern]) => pattern.test(label)) || [])[1] ||
-    AREA_ICONS[area] ||
-    "fa-arrow-right";
-  const SECTOR_ICONS = [
-    [/^coordenação/i, "fa-chalkboard-user"],
-    [/^orientação/i, "fa-compass"],
-    [/cobrança|financeiro/i, "fa-coins"],
-    [/compras/i, "fa-cart-shopping"],
-    [/direção/i, "fa-building-columns"],
-    [/enfermaria/i, "fa-kit-medical"],
-    [/esporte/i, "fa-futbol"],
-    [/inspetoria/i, "fa-clipboard-list"],
-    [/limpeza/i, "fa-broom"],
-    [/marketing/i, "fa-bullhorn"],
-    [/portaria/i, "fa-door-open"],
-    [/recursos humanos/i, "fa-people-group"],
-    [/maker/i, "fa-screwdriver-wrench"],
-    [/secretaria/i, "fa-folder-open"],
-    [/provas/i, "fa-file-pen"],
-    [/^te$/i, "fa-microchip"],
-    [/^ti$/i, "fa-laptop-code"],
-  ];
-  // Quick paths taken from the matrix test scenarios; each still respects sector rules.
-  const SHORTCUTS = [
-    ["IMP-008", "Papel atolado"],
-    ["IMP-010", "Toner ou tinta"],
-    ["TI-NET-003", "Wi-Fi com problema"],
-    ["TI-COMP-004", "Computador lento"],
-    ["GOO-011", "Esqueci a senha do Google"],
-    ["GOO-010", "Reservar Chromebook"],
-  ];
-  // Opt-in convenience on this device only; never sent anywhere by itself.
-  const profile = {
-    key: "smartdesk-profile",
-    read() {
-      try {
-        const value = JSON.parse(localStorage.getItem(this.key) || "null");
-        return value &&
-          desk.requestPolicy.fullName(value.name) &&
-          EMAIL.test(value.email || "") &&
-          desk.flows.sectors.includes(value.sector)
-          ? value
-          : null;
-      } catch {
-        return null;
-      }
-    },
-    save(value) {
-      try {
-        localStorage.setItem(
-          this.key,
-          JSON.stringify({ name: value.name, email: value.email, sector: value.sector }),
-        );
-        return true;
-      } catch {
-        return false;
-      }
-    },
-    clear() {
-      try {
-        localStorage.removeItem(this.key);
-      } catch {}
-    },
+  const icon = (name) => {
+    const i = el("i", "fa-solid " + name);
+    i.setAttribute("aria-hidden", "true");
+    return i;
   };
+
+  // --- Infraestrutura da conversa ---------------------------------------------------------
   const readyControls = (render) => {
     const token = controlVersion,
       g = generation;
@@ -156,21 +49,26 @@
   function checkpoint(render) {
     history.push({
       render,
-      state: { ...state, answers: { ...state.answers }, attachments: [...state.attachments] },
+      state: {
+        ...state,
+        answers: { ...state.answers },
+        prefilled: { ...state.prefilled },
+        attachments: [...state.attachments],
+        followUps: state.followUps.map((entry) => ({ ...entry })),
+        review: state.review && { ...state.review },
+      },
     });
   }
   function back() {
     if (saving || history.length < 2) return;
     generation++;
     messages.cancel();
-
     history.pop();
     const previous = history.pop();
     state = previous.state;
     context();
     previous.render();
   }
-
   const dock = choices.closest(".interaction-dock");
   const follower = desk.chatView.createScrollFollower({
     viewport: byId("conversation"),
@@ -196,12 +94,12 @@
       .querySelector(".journey-bar")
       ?.style.setProperty("--progress", (index / (desk.flows.stages.length - 1)) * 100 + "%");
     desk.flows.stages.forEach((name, i) => {
-      const el = document.querySelector('[data-stage="' + name + '"]');
-      el.classList.toggle("done", i < index);
-      const dot = el.querySelector(".journey-dot");
+      const node = document.querySelector('[data-stage="' + name + '"]');
+      node.classList.toggle("done", i < index);
+      const dot = node.querySelector(".journey-dot");
       dot.textContent = i < index ? "✓" : String(i + 1);
       dot.setAttribute("aria-hidden", "true");
-      el.setAttribute(
+      node.setAttribute(
         "aria-label",
         i +
           1 +
@@ -209,8 +107,8 @@
           ["Boas-vindas", "Escolhas", "Revisão", "Enviado"][i] +
           (i < index ? " — concluída" : name === value ? " — etapa atual" : " — próxima etapa"),
       );
-      if (name === value) el.setAttribute("aria-current", "step");
-      else el.removeAttribute("aria-current");
+      if (name === value) node.setAttribute("aria-current", "step");
+      else node.removeAttribute("aria-current");
     });
   }
   function context() {
@@ -218,9 +116,18 @@
     byId("context-email").textContent = state.email || "Ainda não informado";
     byId("context-sector").textContent = state.sector || "Ainda não informado";
     byId("context-need").textContent = state.item
-      ? needLabel(state.item)
+      ? F.needLabel(state.item)
       : state.area || "Vamos descobrir juntos";
     byId("edit-context").hidden = !state.sector;
+  }
+  // Caixa de texto cresce até 3 linhas visíveis; depois rola por dentro.
+  function autoGrow() {
+    input.style.height = "auto";
+    const style = getComputedStyle(input),
+      line = parseFloat(style.lineHeight) || 22,
+      limit = line * 3 + parseFloat(style.paddingTop) + parseFloat(style.paddingBottom);
+    input.style.height = Math.min(input.scrollHeight, limit) + "px";
+    input.style.overflowY = input.scrollHeight > limit ? "auto" : "hidden";
   }
   function lock(caption = "ESCOLHA UMA OPÇÃO PARA CONTINUAR") {
     // Keep the response area stable while replies are queued; release after controls render.
@@ -229,17 +136,19 @@
         dock.getBoundingClientRect().height,
         byId("chat-shell")?.clientHeight * 0.48 || window.innerHeight * 0.48,
       ) + "px";
-    byId("choices").closest(".interaction-dock").setAttribute("aria-busy", "false");
+    dock.setAttribute("aria-busy", "false");
     document.querySelector(".submission-error")?.remove();
     controlVersion++;
     textHandler = null;
     validator = null;
     choices.replaceChildren();
+    choices.classList.remove("with-text");
     byId("structured-field").replaceChildren();
     byId("structured-field").classList.remove("structured-temporal", "structured-picker");
     byId("attachment-panel").hidden = true;
     input.disabled = true;
     input.value = "";
+    autoGrow();
     input.placeholder = "Campo pausado — use as opções acima.";
     byId("frozen-label").hidden = false;
     byId("edit-context").hidden = history.length < 2 || saving || state.stage === "sent";
@@ -253,57 +162,44 @@
     input.setAttribute("aria-invalid", "false");
     byId("restart-chat").hidden = !history.length || saving || state.stage === "sent";
   }
+  function choiceButton(entry, index, onPick) {
+    const item = typeof entry === "string" ? { label: entry, value: entry } : entry;
+    const button = el(
+      "button",
+      "choice" + (item.primary ? " primary" : "") + (item.className ? " " + item.className : ""),
+    );
+    button.type = "button";
+    button.style.setProperty("--option-delay", index * 70 + "ms");
+    const text = el("span", "", item.label);
+    if (item.description) {
+      button.classList.add("area-choice");
+      text.append(el("small", "", item.description));
+    }
+    button.append(icon(item.icon || "fa-arrow-right"), text);
+    button.addEventListener("click", () => {
+      if (saving) return;
+      choices.querySelectorAll("button").forEach((node) => (node.disabled = true));
+      message(item.label, "user");
+      onPick(item.value);
+    });
+    return button;
+  }
   function choose(options, callback, caption) {
     lock(caption);
     readyControls(() => {
-      let shortcuts = null;
-      options.forEach((entry, index) => {
-        const item = typeof entry === "string" ? { label: entry, value: entry } : entry;
-        const button = document.createElement("button");
-        button.type = "button";
-        button.style.setProperty("--option-delay", index * 70 + "ms");
-        button.className =
-          "choice" +
-          (item.primary ? " primary" : "") +
-          (item.className ? " " + item.className : "") +
-          (item.group === "shortcut" ? " shortcut-choice" : "");
-        const icon = document.createElement("i");
-        icon.className = "fa-solid " + (item.icon || "fa-arrow-right");
-        icon.setAttribute("aria-hidden", "true");
-        const text = document.createElement("span");
-        text.textContent = item.label;
-        if (item.description) {
-          button.classList.add("area-choice");
-          const detail = document.createElement("small");
-          detail.textContent = item.description;
-          text.append(detail);
-        }
-        button.append(icon, text);
-        button.addEventListener("click", () => {
-          if (saving) return;
-          choices.querySelectorAll("button").forEach((el) => (el.disabled = true));
-          message(item.label, "user");
-          callback(item.value);
-        });
-        if (item.group === "shortcut") {
-          if (!shortcuts) {
-            shortcuts = document.createElement("div");
-            shortcuts.className = "choice-shortcuts";
-            shortcuts.setAttribute("role", "group");
-            shortcuts.setAttribute("aria-label", "Atalhos rápidos");
-            const title = document.createElement("span");
-            title.className = "shortcut-title";
-            title.innerHTML = '<i class="fa-solid fa-bolt" aria-hidden="true"></i> Atalhos';
-            shortcuts.append(title);
-            choices.append(shortcuts);
-          }
-          shortcuts.append(button);
-        } else choices.insertBefore(button, shortcuts);
-      });
+      options.forEach((entry, index) => choices.append(choiceButton(entry, index, callback)));
       requestAnimationFrame(scroll);
     });
   }
-  function freeText(placeholder, callback, max = 1000, validation = null, prefill = "") {
+  // Texto livre, com respostas rápidas opcionais ao lado (ex.: "Não sei o modelo").
+  function freeText(
+    placeholder,
+    callback,
+    max = 1000,
+    validation = null,
+    prefill = "",
+    quick = [],
+  ) {
     lock("PREENCHA ESTE DADO DO CHAMADO");
     readyControls(() => {
       byId("frozen-label").hidden = true;
@@ -313,6 +209,7 @@
       input.maxLength = max;
       input.placeholder = placeholder;
       input.value = prefill;
+      autoGrow();
       byId("composer").classList.remove("locked");
       byId("send").disabled = !prefill.trim();
       byId("composer-hint").textContent = "Enter para enviar · Shift + Enter para uma nova linha";
@@ -320,11 +217,22 @@
       byId("char-count").textContent = input.value.length + " / " + max;
       textHandler = callback;
       validator = validation;
+      if (quick.length) {
+        choices.classList.add("with-text");
+        quick.forEach((entry, index) =>
+          choices.append(
+            choiceButton({ ...entry, className: "quick-reply" }, index, (value) => {
+              lock();
+              callback(value);
+            }),
+          ),
+        );
+      }
       input.focus();
     });
   }
-  const { structured, picker } = desk.formControls.create({
-    policy: desk.requestPolicy,
+  const { structured, comboBox } = desk.formControls.create({
+    policy,
     byId,
     lock,
     readyControls,
@@ -335,20 +243,21 @@
     const token = generation;
     const result = await desk.api.request(route, {
       body: data,
-      timeout: route === "/api/tickets" ? 65000 : 15000,
+      timeout: route === "/api/tickets" ? 65000 : 20000,
     });
     if (
       token === generation &&
-      ["/api/subject", "/api/next-prompt", "/api/assist", "/api/analyze"].includes(route)
+      ["/api/subject", "/api/assist", "/api/analyze", "/api/extract"].includes(route)
     )
       setAiStatus(result.source === "ai");
     return result;
   }
+  const fullDescription = () => F.composeDescription(state.description, state.followUps);
   const selectionPayload = () => ({
     sector: state.sector,
     selectionId: state.item.id,
     answers: state.answers,
-    description: state.description,
+    description: fullDescription(),
     equipmentIntent: state.equipmentIntent || "",
   });
   function setAiStatus(value) {
@@ -360,6 +269,7 @@
         : ["busy", "standby"].includes(status)
           ? "standby"
           : "offline");
+    document.body.classList.toggle("ai-busy", status === "busy");
     const label =
       {
         online: "IA conectada",
@@ -391,6 +301,8 @@
         : "Abra o SmartDesk em http://127.0.0.1:4173/ com o servidor iniciado.";
     }
   }
+
+  // --- Início, identificação e acompanhamento --------------------------------------------
   function start() {
     if (saving) return;
     follower.reset();
@@ -406,13 +318,15 @@
       area: "",
       item: null,
       answers: {},
+      prefilled: {},
       description: "",
+      followUps: [],
       attachments: [],
       subject: "",
       source: "local",
-      draftId: null,
       review: null,
       fromDescribe: false,
+      selfHelp: "",
     };
     byId("new-chat").hidden = true;
     byId("mobile-new-chat").hidden = true;
@@ -426,16 +340,18 @@
     offerStart();
   }
   function offerStart() {
-    const known = profile.read();
+    const known = F.profile.read();
     if (known && !state.name) {
       const bubble = message("");
       bubble.append(document.createTextNode("Que bom te ver de novo, "));
-      const strong = document.createElement("strong");
-      strong.textContent = known.name.split(/\s+/)[0];
+      bubble.append(el("strong", "", known.name.split(/\s+/)[0]));
       bubble.append(
-        strong,
-        document.createTextNode("! Posso usar os dados que você salvou neste dispositivo?"),
+        document.createTextNode(
+          "! Seus dados estão salvos neste dispositivo. Quer usá-los para pular as perguntas de nome, e-mail e setor?",
+        ),
       );
+      // Mostra a pergunta mesmo com a abertura grande na tela.
+      follower.follow();
     }
     choose(
       [
@@ -449,41 +365,138 @@
               },
               { label: "Sou outra pessoa", value: "other", icon: "fa-user-pen" },
             ]
-          : [{ label: "Sim, vamos começar", value: "Sim, vamos começar", primary: true }]),
-        "Como funciona?",
+          : [{ label: "Sim, vamos começar", value: "start", primary: true }]),
+        { label: "Acompanhar um chamado", value: "track", icon: "fa-magnifying-glass" },
+        { label: "Como funciona?", value: "how", icon: "fa-circle-question" },
       ],
       (answer) => {
-        if (answer === "known") {
-          byId("welcome").hidden = true;
-          Object.assign(state, { name: known.name, email: known.email, sector: known.sector });
-          context();
+        if (answer === "track") return askTrack();
+        if (answer === "how") {
           message(
-            "Perfeito! Seus dados estão no resumo ao lado. Vamos direto ao que você precisa.",
-          );
-          return askArea();
-        }
-        if (answer === "other") {
-          profile.clear();
-          byId("welcome").hidden = true;
-          message("Tudo bem! Apaguei os dados salvos neste dispositivo.");
-          return askName();
-        }
-        if (answer === "Como funciona?") {
-          message(
-            "Eu te acompanho uma pergunta por vez. Primeiro, informe seu nome e sobrenome, e-mail institucional e setor.",
+            "Eu te acompanho uma pergunta por vez. Primeiro, seu nome, e-mail institucional e setor. Depois, você escolhe o tipo de ajuda pelos botões ou conta com suas palavras: a IA monta um rascunho do chamado para você conferir.",
           );
           message(
-            "Depois, toque nos botões para escolher o tipo de ajuda — ou conte com suas palavras e deixe a IA sugerir o caminho. Quando aparecer um campo de texto, preencha apenas o que a pergunta pede.",
-          );
-          message(
-            "Depois da descrição, a IA pode pedir um detalhe que faltou e sugerir passos rápidos e seguros. Antes de enviar, conferimos tudo juntos; Voltar uma etapa corrige uma resposta e Recomeçar abre o atendimento do zero.",
+            "Só pergunto o que faltar. Antes de enviar, a IA pode pedir um detalhe e, em defeitos simples, sugerir passos seguros para tentar. Você confere tudo no resumo e recebe um número para acompanhar o chamado depois.",
           );
           return offerStart();
         }
         byId("welcome").hidden = true;
+        if (answer === "known") {
+          Object.assign(state, { name: known.name, email: known.email, sector: known.sector });
+          context();
+          message("Perfeito! Seus dados estão no resumo ao lado.");
+          return askArea();
+        }
+        if (answer === "other") {
+          F.profile.clear();
+          message("Tudo bem! Apaguei os dados salvos neste dispositivo.");
+        }
         askName();
       },
     );
+  }
+  function askTrack() {
+    byId("welcome").hidden = true;
+    checkpoint(askTrack);
+    message(
+      "Vamos consultar seu chamado. Qual é o número dele? Ele aparece no comprovante, por exemplo #012.",
+    );
+    freeText(
+      "Número do chamado, ex.: #012",
+      (value) => askTrackEmail(value.trim()),
+      12,
+      (value) => (/^#?\s*\d{1,6}$/.test(value.trim()) ? null : "Informe só o número, como #012."),
+    );
+  }
+  function askTrackEmail(number) {
+    checkpoint(() => askTrackEmail(number));
+    message("E qual e-mail você usou ao abrir o chamado? Ele confirma que o chamado é seu.");
+    const known = state.email || F.profile.read()?.email;
+    freeText(
+      "E-mail usado na abertura…",
+      (email) => lookupTicket(number, email.trim().toLowerCase()),
+      160,
+      (value) => (EMAIL.test(value.trim()) ? null : "Confira o e-mail."),
+      "",
+      known ? [{ label: "Usar " + known, value: known, icon: "fa-user" }] : [],
+    );
+  }
+  const TRACK_STEPS = [
+    ["Recebido", ["Novos chamados"]],
+    ["Em andamento", ["Em atendimento", "Aguardando terceiros", "Empréstimos", "Agendado"]],
+    ["Finalizado", ["Finalizado"]],
+  ];
+  function trackCard(ticket) {
+    const card = el("section", "receipt-card track-card");
+    card.setAttribute("aria-label", "Situação do chamado " + ticket.number);
+    const top = el("div", "receipt-top");
+    top.append(
+      el("small", "", "Chamado"),
+      el("strong", "receipt-number", ticket.number),
+      el("span", "track-status", ticket.status),
+    );
+    const need = el("p", "track-need", ticket.area + " · " + ticket.need);
+    const steps = el("ol", "receipt-steps");
+    const current = TRACK_STEPS.findIndex(([, list]) => list.includes(ticket.status));
+    TRACK_STEPS.forEach(([label], index) => {
+      const li = el("li", index <= current ? "done" : "");
+      li.append(
+        icon(index <= current ? "fa-check" : "fa-circle"),
+        document.createTextNode(" " + label),
+      );
+      steps.append(li);
+    });
+    const opened = Date.parse(ticket.createdAt);
+    const note = el(
+      "p",
+      "receipt-note",
+      ticket.status === "Cancelado"
+        ? "Este chamado foi cancelado pela equipe."
+        : Number.isNaN(opened)
+          ? "Situação atual informada pela equipe."
+          : "Aberto em " + new Date(opened).toLocaleDateString("pt-BR") + ".",
+    );
+    card.append(top, need, steps, note);
+    return card;
+  }
+  async function lookupTicket(number, email) {
+    lock("CONSULTANDO SEU CHAMADO");
+    const token = generation,
+      wait = thinking("Consultando o chamado…");
+    let ticket = null,
+      problem = "";
+    try {
+      ticket = (await api("/api/track", { number, email })).ticket;
+    } catch (error) {
+      problem = error.message;
+    }
+    messages.dismiss(wait);
+    if (token !== generation) return;
+    if (ticket) message("Encontrei seu chamado:").append(trackCard(ticket));
+    else
+      message(
+        problem ||
+          "Não encontrei um chamado com esse número e esse e-mail. Confira os dados no comprovante.",
+      );
+    choose(
+      [
+        { label: "Abrir um novo chamado", value: "new", icon: "fa-plus", primary: !ticket },
+        { label: "Consultar outro chamado", value: "again", icon: "fa-magnifying-glass" },
+      ],
+      (value) => (value === "again" ? askTrack() : beginTicket()),
+      "O QUE VOCÊ QUER FAZER AGORA?",
+    );
+  }
+  function beginTicket() {
+    const known = F.profile.read();
+    if (state.name && state.email && state.sector) return askArea();
+    if (known) {
+      Object.assign(state, { name: known.name, email: known.email, sector: known.sector });
+      context();
+      message("Vou usar os dados salvos neste dispositivo.");
+      return askArea();
+    }
+    askName();
   }
   function askName() {
     checkpoint(askName);
@@ -495,14 +508,13 @@
         context();
         const bubble = message("");
         bubble.append(document.createTextNode("Prazer, "));
-        const strong = document.createElement("strong");
-        strong.textContent = state.name.split(/\s+/)[0];
-        bubble.append(strong, document.createTextNode("! Vamos cuidar disso juntos."));
+        bubble.append(el("strong", "", state.name.split(/\s+/)[0]));
+        bubble.append(document.createTextNode("! Vamos cuidar disso juntos."));
         askEmail();
       },
       100,
       (value) =>
-        desk.requestPolicy.fullName(value)
+        policy.fullName(value)
           ? null
           : "Informe seu nome e sobrenome, como você usa no trabalho. Acentos, hífens e apóstrofos são aceitos.",
       state.name,
@@ -520,7 +532,7 @@
       },
       160,
       (value) =>
-        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim())
+        EMAIL.test(value.trim())
           ? null
           : "Esse e-mail parece incompleto. Confira o nome, o @ e o domínio (ex.: nome@instituicao.com.br).",
       state.email,
@@ -529,71 +541,55 @@
   function askSector() {
     checkpoint(askSector);
     stage("context");
-    message("Agora, em qual setor você trabalha? Escolha na lista abaixo.");
-    picker(
+    message("Agora, em qual setor você trabalha?");
+    comboBox(
       "Seu setor",
-      desk.flows.sectors.map((value) => ({
-        value,
-        icon: (SECTOR_ICONS.find(([pattern]) => pattern.test(value)) || [])[1],
-      })),
+      desk.flows.sectors.map((value) => ({ value, icon: F.sectorIcon(value) })),
       (sector) => {
         state.sector = sector;
         context();
         askArea();
       },
-      { placeholder: "Digite para buscar, ex.: secretaria" },
+      { placeholder: "Digite ou escolha seu setor, ex.: secretaria" },
     );
   }
+
+  // --- Caminho: escolhas da matriz ou relato livre com IA ---------------------------------
   function askArea() {
     checkpoint(askArea);
     stage("report");
-    message(
-      "Qual tipo de ajuda você precisa? Veja os exemplos abaixo e escolha a opção mais próxima.",
-    );
+    message("Qual tipo de ajuda você precisa? Escolha a área ou conte com suas palavras.");
     choose(
       [
         ...desk.flows.areas.map((area) => ({
           label: area,
           value: area,
-          description: {
-            Audiovisual: "Projetor, som, microfone e cabo HDMI.",
-            Impressora: "Impressão, papel, toner e tinta.",
-            Google: "Gmail, Drive e ferramentas do Google.",
-            TI: "Computador, internet, sistemas e acessórios.",
-          }[area],
-          icon: AREA_ICONS[area],
+          description: AREA_DESCRIPTIONS[area],
+          icon: F.AREA_ICONS[area],
         })),
         {
           label: "Descrever com minhas palavras",
           value: "__describe",
-          description: "Conte o que houve e a IA sugere o caminho.",
+          description: "Conte o que precisa; a IA monta o rascunho do chamado para você conferir.",
           icon: "fa-wand-magic-sparkles",
           className: "ai-choice",
         },
-        ...SHORTCUTS.map(([id, label]) => ({
-          id,
-          label,
-          value: "item:" + id,
-          icon: iconFor(desk.knowledgeBase.items.find((item) => item.id === id)?.need || "", ""),
-          group: "shortcut",
-        })).filter((entry) =>
-          desk.classifier.isAllowed(
-            desk.knowledgeBase.items.find((item) => item.id === entry.id),
-            state.sector,
-          ),
-        ),
       ],
       (area) => {
         if (area === "__describe") return askDescribe();
-        if (area.startsWith("item:"))
-          return pickItem(desk.knowledgeBase.items.find((item) => item.id === area.slice(5)));
-        state.equipmentIntent = "";
-        state.authorization = null;
-        state.area = area;
-        state.item = null;
-        state.answers = {};
-        state.subject = "";
-        state.draftId = null;
+        Object.assign(state, {
+          area,
+          item: null,
+          answers: {},
+          prefilled: {},
+          equipmentIntent: "",
+          authorization: null,
+          subject: "",
+          review: null,
+          followUps: [],
+          // Relato já contado continua valendo como descrição.
+          description: state.fromDescribe ? state.description : "",
+        });
         context();
         askPath([]);
       },
@@ -611,7 +607,7 @@
     message(
       prefix.length
         ? "Dentro de " +
-            prefix.map(displayLabel).join(" › ") +
+            prefix.map(F.displayLabel).join(" › ") +
             ", qual destas opções combina com o que está acontecendo?"
         : "Certo, vamos por " +
             state.area +
@@ -619,60 +615,61 @@
     );
     choose(
       labels.map((label) => ({
-        label: displayLabel(label),
+        label: F.displayLabel(label),
         value: label,
-        icon: iconFor(label, state.area),
+        icon: F.iconFor(label, state.area),
       })),
       (value) => {
-        if (value === "__back") return prefix.length ? askPath(prefix.slice(0, -1)) : askArea();
         const next = [...prefix, value],
           item = allowed.find(
-            (item) =>
-              item.path.length === next.length && next.every((part, i) => item.path[i] === part),
+            (entry) =>
+              entry.path.length === next.length && next.every((part, i) => entry.path[i] === part),
           );
         if (!item) return askPath(next);
-        pickItem(item);
+        selectItem(item);
+        message(copy.opening(item));
+        askEquipmentIntent();
       },
     );
   }
-  function pickItem(item) {
-    state.area = item.area;
-    state.item = item;
-    state.answers = {};
-    state.equipmentIntent = "";
-    state.authorization = null;
-    state.subject = "";
-    state.review = null;
-    state.draftId = null;
+  function selectItem(item, { answers = {}, intent = "", prefilled = {} } = {}) {
+    Object.assign(state, {
+      area: item.area,
+      item,
+      answers,
+      prefilled,
+      equipmentIntent: policy.asksEquipmentIntent(item) ? intent : "",
+      authorization: null,
+      subject: "",
+      review: null,
+      followUps: [],
+    });
     context();
-    message(desk.conversationCopy.opening(item));
-    askEquipmentIntent();
   }
-  // Optional shortcut beside the guided choices: the model only suggests allowed paths.
   function askDescribe() {
     checkpoint(askDescribe);
     aiMessage(
-      "Conte com suas palavras o que está acontecendo. Eu sugiro o tipo de atendimento e você confirma antes de seguir.",
+      "Conte com suas palavras o que você precisa: o que aconteceu ou o que vai acontecer, quando e onde. Eu monto o rascunho do chamado e você confere antes de seguir.",
     );
     freeText(
-      "Ex.: a impressora da secretaria está prendendo as folhas…",
+      "Ex.: na sexta, às 9h, vou precisar de som e projetor no auditório…",
       (text) => suggestPaths(text.trim()),
-      600,
+      1500,
       (value) =>
-        desk.requestPolicy.usefulDescription(value)
+        policy.usefulDescription(value)
           ? null
-          : "Conte o que acontece com algumas palavras para eu encontrar o caminho.",
+          : "Conte o que acontece ou o que precisa com algumas palavras.",
       state.fromDescribe ? state.description : "",
     );
   }
   async function suggestPaths(text) {
-    // Reuse the last suggestion when returning with Voltar: no second model call.
+    // Reaproveita a última análise ao voltar uma etapa: sem nova chamada à IA.
     let result = state.suggestion?.text === text ? state.suggestion.result : null;
     if (!result) {
       setAiStatus("busy");
       lock("A IA ESTÁ LENDO SEU RELATO");
       const token = generation,
-        wait = thinking("Lendo seu relato e procurando o melhor caminho…");
+        wait = thinking("Lendo seu relato e procurando o tipo de atendimento…");
       try {
         result = await api("/api/analyze", { description: text, sector: state.sector });
       } catch {
@@ -691,45 +688,135 @@
       .slice(0, 3);
     if (!items.length) {
       message(
-        "Não encontrei um caminho seguro só pelo relato. Vamos escolher juntos pelas opções — guardei seu texto para a descrição.",
+        "Não consegui identificar o tipo de atendimento só pelo relato. Vamos escolher juntos pelas opções — seu texto fica guardado como descrição.",
       );
       return askArea();
     }
-    checkpoint(() => suggestPaths(text));
-    aiMessage(
-      items.length === 1
-        ? "Pelo que você contou, este parece ser o caminho certo:"
-        : "Encontrei estes caminhos. Qual combina mais com o seu caso?",
-      result.source === "ai",
+    buildDraft(items[0], items.slice(1), result.source === "ai");
+  }
+  async function buildDraft(item, alternatives, fromAI) {
+    setAiStatus("busy");
+    lock("A IA ESTÁ MONTANDO O RASCUNHO");
+    const token = generation,
+      wait = thinking("Montando o rascunho do chamado com o que você contou…");
+    let draft = { answers: {}, intent: "" };
+    try {
+      draft = await api("/api/extract", {
+        sector: state.sector,
+        selectionId: item.id,
+        description: state.description,
+      });
+    } catch {
+      if (token === generation) refreshStatus();
+    }
+    messages.dismiss(wait);
+    if (token !== generation) return;
+    const answers = draft.answers && typeof draft.answers === "object" ? draft.answers : {};
+    selectItem(item, {
+      answers: { ...answers },
+      intent: draft.intent || "",
+      prefilled: Object.fromEntries(Object.keys(answers).map((key) => [key, true])),
+    });
+    showDraft(alternatives, fromAI);
+  }
+  function draftCard() {
+    const item = state.item,
+      card = el("section", "summary-card draft-card");
+    card.setAttribute("aria-label", "Rascunho do chamado");
+    const head = el("header", "summary-head"),
+      titles = el("div"),
+      badge = el("span", "summary-ready");
+    const tile = el("span", "summary-icon");
+    tile.append(icon(F.iconFor(item.need, item.area)));
+    titles.append(el("small", "", item.area), el("h3", "", F.needLabel(item)));
+    badge.append(icon("fa-wand-magic-sparkles"), document.createTextNode(" Rascunho"));
+    head.append(tile, titles, badge);
+    const dl = el("dl");
+    const row = (label, value, pending) => {
+      const wrap = el("div", pending ? "pending" : "");
+      wrap.append(el("dt", "", label), el("dd", "", pending ? "Vou perguntar" : value));
+      dl.append(wrap);
+    };
+    if (policy.asksEquipmentIntent(item))
+      row(
+        "Tipo de pedido",
+        state.equipmentIntent === "purchase"
+          ? "Item novo ou diferente"
+          : state.equipmentIntent === "repair"
+            ? "Defeito no item que uso"
+            : "",
+        !state.equipmentIntent,
+      );
+    for (const field of item.fields || []) {
+      if (field.id === "descricao-do-problema") continue;
+      if (field.when && state.answers[field.when.field] !== field.when.equals) continue;
+      const value = state.answers[field.id];
+      row(field.label, F.formatValue(field, value), !value);
+    }
+    const story = el("div", "summary-description");
+    story.append(
+      el("small", "", "Seu relato (vai como descrição)"),
+      el("p", "", state.description),
     );
+    card.append(head, dl, story);
+    return card;
+  }
+  function showDraft(alternatives = [], fromAI = true) {
+    checkpoint(() => showDraft(alternatives, fromAI));
+    stage("report");
+    const filled = Object.keys(state.answers).length;
+    aiMessage(
+      filled
+        ? "Montei este rascunho com o que você contou. Confira; o que estiver marcado como “Vou perguntar” eu pergunto em seguida."
+        : "Pelo que você contou, este é o tipo de atendimento. Confira; os dados que faltam eu pergunto em seguida.",
+      fromAI,
+    ).append(draftCard());
     choose(
       [
-        ...items.map((item, index) => ({
-          label: needLabel(item),
+        { label: "Está certo, continuar", value: "ok", icon: "fa-check", primary: true },
+        ...(filled ? [{ label: "Corrigir os dados", value: "fix", icon: "fa-pen" }] : []),
+        ...alternatives.map((item) => ({
+          label: "Na verdade é: " + F.needLabel(item),
           value: "item:" + item.id,
-          description: item.area + (index === 0 ? " · mais provável" : ""),
-          icon: iconFor(item.need, item.area),
-          primary: index === 0,
+          icon: F.iconFor(item.need, item.area),
         })),
-        { label: "Nenhum desses — escolher pelas opções", value: "__manual", icon: "fa-list" },
+        { label: "Escolher pelas opções", value: "manual", icon: "fa-list" },
       ],
       (value) => {
-        if (value === "__manual") return askArea();
-        pickItem(desk.knowledgeBase.items.find((item) => item.id === value.slice(5)));
+        if (value === "manual") return askArea();
+        if (value.startsWith("item:"))
+          return buildDraft(
+            desk.knowledgeBase.items.find((item) => item.id === value.slice(5)),
+            alternatives.filter((item) => item.id !== value.slice(5)).concat([state.item]),
+            true,
+          );
+        if (value === "fix") {
+          // Refaz as perguntas com os valores da IA já preenchidos para ajustar.
+          state.prefilled = {};
+          if (policy.asksEquipmentIntent(state.item)) state.equipmentIntent = "";
+        }
+        message(
+          value === "fix"
+            ? "Vamos ajustar. Deixei os valores que entendi preenchidos; é só corrigir."
+            : "Ótimo! Só faltam alguns detalhes.",
+        );
+        askEquipmentIntent();
       },
-      "CONFIRME O CAMINHO SUGERIDO",
+      "CONFIRA O RASCUNHO",
     );
   }
+
+  // --- Dados do chamado --------------------------------------------------------------------
   function askEquipmentIntent() {
-    if (!desk.requestPolicy.asksEquipmentIntent(state.item)) return askField(0);
+    if (!policy.asksEquipmentIntent(state.item) || state.equipmentIntent) return askField(0);
     checkpoint(askEquipmentIntent);
     message(
       "É um problema com o item que você já usa ou você quer solicitar um item novo ou diferente?",
     );
     choose(
       [
-        { label: "Meu item está com defeito", value: "repair" },
-        { label: "Quero um item novo ou diferente", value: "purchase" },
+        { label: "Meu item está com defeito", value: "repair", icon: "fa-screwdriver-wrench" },
+        { label: "Quero um item novo ou diferente", value: "purchase", icon: "fa-cart-shopping" },
       ],
       (intent) => {
         state.equipmentIntent = intent;
@@ -744,22 +831,20 @@
   }
   function askField(index) {
     const fields = state.item.fields || [];
-    if (index >= fields.length) {
-      if (
-        state.item.fields.some((f) => f.id === "descricao-do-problema") &&
-        state.answers["descricao-do-problema"]
-      ) {
-        state.description = state.answers["descricao-do-problema"];
-        return reviewWithAI();
-      }
-      return askDescription();
-    }
+    if (index >= fields.length) return afterFields();
     const field = fields[index];
-    if (field.when && state.answers[field.when.field] !== field.when.equals)
+    if (field.when && state.answers[field.when.field] !== field.when.equals) {
+      delete state.answers[field.id];
       return askField(index + 1);
+    }
+    if (state.prefilled[field.id] && state.answers[field.id]) return askField(index + 1);
     checkpoint(() => askField(index));
+    const done = (value) => {
+      state.answers[field.id] = value;
+      askField(index + 1);
+    };
     if (field.id === "computador") {
-      const hardware = desk.requestPolicy.asksEquipmentIntent(state.item);
+      const hardware = policy.asksEquipmentIntent(state.item);
       message(
         hardware
           ? state.equipmentIntent === "purchase"
@@ -776,100 +861,101 @@
                 : "Eu uso esse equipamento"
               : "Eu uso este computador",
             value: state.name,
+            icon: "fa-user",
           },
-          { label: "Outra pessoa", value: "other" },
-          { label: "Uso compartilhado", value: "shared" },
+          { label: "Outra pessoa", value: "other", icon: "fa-user-group" },
+          { label: "Uso compartilhado", value: "shared", icon: "fa-users" },
         ],
         (value) => {
           if (value === "other")
             return freeText(
-              "Nome e sobrenome de quem usa o computador…",
-              (owner) => {
-                state.answers[field.id] = owner.trim();
-                askField(index + 1);
-              },
+              "Nome e sobrenome de quem usa…",
+              (owner) => done(owner.trim()),
               100,
-              (v) =>
-                desk.requestPolicy.fullName(v)
-                  ? null
-                  : "Informe o nome e sobrenome de quem usa o computador.",
+              (v) => (policy.fullName(v) ? null : "Informe o nome e sobrenome de quem usa."),
             );
           if (value === "shared")
             return freeText(
-              "Onde fica o computador compartilhado? Ex.: recepção…",
-              (place) => {
-                state.answers[field.id] = "Compartilhado — " + place;
-                askField(index + 1);
-              },
+              "Onde fica o equipamento compartilhado? Ex.: recepção…",
+              (place) => done("Compartilhado — " + place.trim()),
               200,
             );
-          state.answers[field.id] = value;
-          askField(index + 1);
+          done(value);
         },
       );
     }
-    message(desk.conversationCopy.field(state.item, field));
-    const done = (value) => {
-      state.answers[field.id] = value;
-      askField(index + 1);
-    };
-    if (field.type === "choice") return choose(field.options, done);
+    message(copy.field(state.item, field));
+    if (field.type === "choice")
+      return choose(
+        field.options.map((option) => ({ label: option, value: option })),
+        done,
+      );
     if (["date", "time"].includes(field.type))
-      return structured(field.label, field.type, null, done);
+      return structured(field.label, field.type, null, done, { prefill: state.answers[field.id] });
     const validate = (value) =>
-      field.id === "descricao-do-problema" && !desk.requestPolicy.usefulDescription(value)
+      field.id === "descricao-do-problema" && !policy.usefulDescription(value)
         ? "Me conte o que acontece com o cabo. Só o número da sala não explica o problema."
-        : field.type === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+        : field.type === "email" && !EMAIL.test(value.trim())
           ? "Informe um e-mail válido."
-          : field.type === "url" && !/^https?:\/\/[^\s]+$/i.test(value)
+          : field.type === "url" && value !== F.PENDING_LINK && !/^https?:\/\/[^\s]+$/i.test(value)
             ? "Informe um link começando com https:// ou http://."
             : null;
     freeText(
       field.id === "descricao-do-problema"
         ? "Conte o que acontece com o cabo HDMI…"
         : field.label + "…",
-      done,
+      (value) => done(value.trim()),
       1000,
       validate,
       state.answers[field.id] ||
         (field.id === "descricao-do-problema" && state.fromDescribe ? state.description : ""),
+      copy.quickReplies(state.item, field, { email: state.email }),
     );
   }
-  function askDescription() {
-    checkpoint(askDescription);
-    message(desk.conversationCopy.description(state.item, state.equipmentIntent));
-    if (state.fromDescribe && state.description)
-      message("Já deixei o que você escreveu no campo abaixo. Ajuste se quiser e envie.");
-    freeText(
-      "Conte aqui o problema ou pedido…",
-      (description) => {
-        state.description = description;
-        if (state.item.fields.some((f) => f.id === "descricao-do-problema"))
-          state.answers["descricao-do-problema"] = description;
-        state.subject = "";
-        state.draftId = null;
-        reviewWithAI();
-      },
-      state.item.fields.some((f) => f.id === "descricao-do-problema") ? 1000 : 2000,
-      (value) =>
-        desk.requestPolicy.usefulDescription(value)
-          ? null
-          : "Conte o que acontece ou o que você precisa. Só um número ou símbolo não explica o chamado.",
-      state.description,
-    );
+  function afterFields() {
+    const describedField = state.item.fields.some((f) => f.id === "descricao-do-problema");
+    if (describedField && state.answers["descricao-do-problema"]) {
+      state.description = state.answers["descricao-do-problema"];
+      return reviewWithAI();
+    }
+    // Quem contou com as próprias palavras não precisa escrever de novo.
+    if (state.fromDescribe && state.description) return reviewWithAI();
+    askDescription();
   }
   function setDescription(text) {
     const hasField = state.item.fields.some((f) => f.id === "descricao-do-problema");
     state.description = text.slice(0, hasField ? 1000 : 2000);
     if (hasField) state.answers["descricao-do-problema"] = state.description;
   }
+  function askDescription() {
+    checkpoint(askDescription);
+    message(copy.description(state.item, state.equipmentIntent));
+    const optional = copy.detailsOptional(state.item, state.equipmentIntent);
+    freeText(
+      optional ? "Algum detalhe a mais? (opcional)" : "Conte aqui o que você precisa…",
+      (text) => {
+        setDescription(text === "__none" ? copy.autoDescription(state.item, state.answers) : text);
+        state.review = null;
+        reviewWithAI();
+      },
+      state.item.fields.some((f) => f.id === "descricao-do-problema") ? 1000 : 2000,
+      (value) =>
+        policy.usefulDescription(value)
+          ? null
+          : "Conte o que acontece ou o que você precisa. Só um número ou símbolo não explica o chamado.",
+      state.description,
+      optional ? [{ label: "Sem mais detalhes", value: "__none", icon: "fa-check" }] : [],
+    );
+  }
+
+  // --- Revisão da IA: coerência, complemento e passos antes do envio -----------------------
   async function reviewWithAI() {
-    const key = state.item.id + "|" + state.description;
-    if (state.review?.key === key) return offerTips();
+    const key = state.item.id + "|" + state.description + "|" + JSON.stringify(state.answers);
+    if (state.review?.key === key) return afterReview();
     setAiStatus("busy");
-    lock("A IA ESTÁ REVISANDO SEU RELATO");
+    lock("A IA ESTÁ CONFERINDO SEU CHAMADO");
     const token = generation,
-      wait = thinking("Conferindo se falta algum detalhe para a equipe…");
+      wait = thinking("Conferindo se está tudo claro para a equipe…");
     let result = {};
     try {
       result = await api("/api/assist", selectionPayload());
@@ -878,88 +964,150 @@
     }
     messages.dismiss(wait);
     if (token !== generation) return;
+    const text = (value) => (typeof value === "string" ? value : "");
     state.review = {
       key,
-      question: typeof result.question === "string" ? result.question : "",
+      question: text(result.question),
+      help: text(result.help),
       tips: Array.isArray(result.tips) ? result.tips.filter((t) => typeof t === "string") : [],
+      coherent: result.coherent !== false,
+      reason: text(result.reason),
+      asked: false,
+      checked: false,
     };
-    if (state.review.question) return askFollowUp();
+    afterReview();
+  }
+  function afterReview() {
+    const review = state.review;
+    if (!review.coherent && review.reason && !review.checked) return askCoherence();
+    if (review.question && !review.asked) return askFollowUp();
     offerTips();
+  }
+  function askCoherence() {
+    checkpoint(askCoherence);
+    aiMessage(
+      "Antes de continuar, uma conferência: " +
+        state.review.reason +
+        " Quer escolher outro tipo de atendimento?",
+    );
+    choose(
+      [
+        { label: "Escolher outro tipo", value: "change", icon: "fa-route", primary: true },
+        { label: "Está certo assim", value: "keep", icon: "fa-check" },
+      ],
+      (value) => {
+        state.review.checked = true;
+        if (value === "keep") return afterReview();
+        state.fromDescribe = true;
+        message("Tudo bem. Escolha o tipo certo; seu relato continua guardado como descrição.");
+        askArea();
+      },
+      "O RELATO COMBINA COM O PEDIDO?",
+    );
   }
   function askFollowUp() {
     checkpoint(askFollowUp);
     const question = state.review.question;
-    aiMessage(question);
+    const bubble = aiMessage(question);
+    if (state.review.help) {
+      const help = el("small", "ai-help");
+      help.append(icon("fa-circle-info"), document.createTextNode(" " + state.review.help));
+      bubble.append(help);
+    }
     freeText(
       "Sua resposta…",
       (answer) => {
-        setDescription(state.description + "\n\nComplemento: " + question + " " + answer.trim());
-        state.review.key = state.item.id + "|" + state.description;
+        state.review.asked = true;
+        if (answer !== "__skip")
+          state.followUps.push({
+            question,
+            answer: answer === "__unknown" ? "Não soube informar." : answer.trim().slice(0, 400),
+          });
         offerTips();
       },
       400,
+      null,
+      "",
+      [
+        { label: "Não sei", value: "__unknown", icon: "fa-question" },
+        { label: "Pular esta pergunta", value: "__skip", icon: "fa-forward" },
+      ],
     );
-    readyControls(() => {
-      const skip = document.createElement("button");
-      skip.type = "button";
-      skip.className = "choice skip-choice";
-      skip.innerHTML = '<i class="fa-solid fa-forward" aria-hidden="true"></i>';
-      const label = document.createElement("span");
-      label.textContent = "Pular esta pergunta";
-      skip.append(label);
-      skip.addEventListener("click", () => {
-        message("Prefiro pular", "user");
-        lock();
-        offerTips();
-      });
-      choices.append(skip);
-    });
+  }
+  function logSelfHelp(outcome) {
+    // Registro anônimo (setor, caminho e resultado) para medir se as dicas ajudam.
+    if (state.selfHelp === outcome) return;
+    state.selfHelp = outcome;
+    api("/api/selfhelp", {
+      sector: state.sector,
+      selectionId: state.item.id,
+      outcome,
+    }).catch(() => {});
   }
   function offerTips() {
     const tips = state.review?.tips || [];
-    if (!tips.length || !desk.requestPolicy.selfHelpEligible(state.item, state.equipmentIntent))
+    if (
+      !tips.length ||
+      !policy.selfHelpEligible(state.item, state.equipmentIntent) ||
+      state.selfHelp === "continued"
+    )
       return askAuthorization();
     checkpoint(offerTips);
-    const bubble = aiMessage("Enquanto a equipe não chega, vale tentar:");
-    const list = document.createElement("ol");
-    list.className = "tip-list";
-    tips.forEach((tip) => {
-      const li = document.createElement("li");
-      li.textContent = tip;
-      list.append(li);
-    });
-    const note = document.createElement("small");
-    note.className = "tip-note";
-    note.textContent =
-      "Sugestões da IA. Se não se sentir à vontade com algum passo, siga direto para o chamado.";
-    bubble.append(list, note);
+    const bubble = aiMessage("Antes de enviar o chamado, vale tentar estes passos rápidos:");
+    const list = el("ol", "tip-list");
+    tips.forEach((tip) => list.append(el("li", "", tip)));
+    bubble.append(
+      list,
+      el(
+        "small",
+        "tip-note",
+        "Sugestões da IA. Se não se sentir à vontade com algum passo, é só seguir com o chamado.",
+      ),
+    );
     choose(
       [
-        { label: "Continuar com o chamado", value: "go", icon: "fa-paper-plane", primary: true },
-        { label: "Resolveu! Não preciso mais", value: "solved", icon: "fa-circle-check" },
+        {
+          label: "Não resolveu, seguir com o chamado",
+          value: "go",
+          icon: "fa-paper-plane",
+          primary: true,
+        },
+        { label: "Resolveu! Não preciso do chamado", value: "solved", icon: "fa-circle-check" },
       ],
-      (value) => (value === "solved" ? resolvedBySelf() : askAuthorization()),
-      "AS DICAS AJUDARAM?",
+      (value) => {
+        if (value === "solved") return resolvedBySelf();
+        logSelfHelp("continued");
+        askAuthorization();
+      },
+      "OS PASSOS RESOLVERAM?",
     );
   }
   function resolvedBySelf() {
     checkpoint(resolvedBySelf);
+    logSelfHelp("resolved");
     message(
-      "Que ótimo! Como resolveu por aqui, nenhum chamado foi enviado. Se voltar a acontecer, é só abrir um novo atendimento.",
+      "Que ótimo! Registrei que os passos resolveram, sem abrir chamado. Se voltar a acontecer, é só continuar daqui ou abrir um novo atendimento.",
     );
+    byId("new-chat").hidden = false;
+    byId("mobile-new-chat").hidden = false;
     choose(
       [
         { label: "Novo atendimento", value: "new", icon: "fa-plus", primary: true },
-        { label: "Abrir o chamado mesmo assim", value: "open", icon: "fa-paper-plane" },
+        { label: "Voltou a acontecer — abrir o chamado", value: "open", icon: "fa-paper-plane" },
       ],
-      (value) => (value === "new" ? start() : askAuthorization()),
-      "ATENDIMENTO ENCERRADO SEM CHAMADO",
+      (value) => {
+        if (value === "new") return start();
+        logSelfHelp("continued");
+        message("Sem problema, vamos continuar o chamado de onde paramos.");
+        askAuthorization();
+      },
+      "TUDO CERTO POR AQUI",
     );
   }
+
+  // --- Autorização, anexos, resumo e envio --------------------------------------------------
   function askAuthorization() {
-    if (
-      !desk.requestPolicy.needsAuthorization(state.item, state.description, state.equipmentIntent)
-    ) {
+    if (!policy.needsAuthorization(state.item, state.description, state.equipmentIntent)) {
       state.authorization = null;
       return askAttachments();
     }
@@ -967,49 +1115,54 @@
     message(
       "Para esse pedido de compra ou de um item novo, sua liderança já deu o aval? Vou registrar essa informação para a equipe conferir.",
     );
-    choose(["Já foi autorizado", "Ainda não tenho autorização"], (answer) => {
-      if (answer === "Ainda não tenho autorização") {
-        state.authorization = { status: "pending", by: "" };
+    choose(
+      [
+        { label: "Já foi autorizado", value: "yes", icon: "fa-user-check" },
+        { label: "Ainda não tenho autorização", value: "no", icon: "fa-hourglass-half" },
+      ],
+      (answer) => {
+        if (answer === "no") {
+          state.authorization = { status: "pending", by: "" };
+          message(
+            "Tudo bem. Vou registrar que a autorização está pendente para a equipe avaliar com sua liderança.",
+          );
+          return askAttachments();
+        }
         message(
-          "Tudo bem. Vou registrar que a autorização está pendente para a equipe avaliar com sua liderança.",
+          "Quem autorizou? Informe o nome e sobrenome da liderança. Se quiser, anexe a aprovação na próxima etapa.",
         );
-        return askAttachments();
-      }
-      message(
-        "Quem autorizou? Informe o nome e sobrenome da liderança. Se quiser, anexe a aprovação na próxima etapa.",
-      );
-      freeText(
-        "Nome e sobrenome de quem autorizou…",
-        (name) => {
-          state.authorization = { status: "reported", by: name.trim() };
-          askAttachments();
-        },
-        100,
-        (v) =>
-          desk.requestPolicy.fullName(v)
-            ? null
-            : "Informe o nome e sobrenome da liderança que autorizou.",
-      );
-    });
+        freeText(
+          "Nome e sobrenome de quem autorizou…",
+          (name) => {
+            state.authorization = { status: "reported", by: name.trim() };
+            askAttachments();
+          },
+          100,
+          (v) =>
+            policy.fullName(v) ? null : "Informe o nome e sobrenome da liderança que autorizou.",
+        );
+      },
+    );
   }
   function askAttachments() {
     checkpoint(askAttachments);
     message(
       state.attachments.length
         ? "Você pode adicionar outro arquivo ou continuar para a revisão."
-        : "Você tem uma foto ou arquivo que ajude a mostrar isso? Pode anexar agora ou seguir sem anexo.",
+        : "Quer anexar uma foto ou arquivo? Ajuda a equipe a entender, mas é opcional.",
     );
     askAttachmentsControls();
   }
   function askAttachmentsControls() {
     choose(
       [
-        { label: "Adicionar anexo", value: "add", icon: "fa-paperclip" },
         {
           label: state.attachments.length ? "Continuar com os anexos" : "Continuar sem anexo",
           value: "next",
           icon: "fa-check",
+          primary: true,
         },
+        { label: "Adicionar anexo", value: "add", icon: "fa-paperclip" },
       ],
       (value) => {
         if (value === "add") {
@@ -1023,35 +1176,25 @@
   function renderAttachments() {
     const panel = byId("attachment-panel");
     panel.hidden = false;
-    panel.replaceChildren();
-    const note = document.createElement("p");
-    note.textContent = desk.attachments.describe() + " Os anexos não são enviados à IA.";
-    panel.append(note);
+    panel.replaceChildren(
+      el("p", "", desk.attachments.describe() + " Os anexos não são enviados à IA."),
+    );
     for (const [index, file] of state.attachments.entries()) {
-      const row = document.createElement("div");
-      row.className = "attachment-row";
-      const label = document.createElement("span");
-      label.textContent = file.name + " · " + (file.size / 1024).toFixed(1) + " KB";
-      const remove = document.createElement("button");
+      const row = el("div", "attachment-row"),
+        remove = el("button", "small-action", "Remover");
       remove.type = "button";
-      remove.className = "small-action";
-      remove.textContent = "Remover";
       remove.setAttribute("aria-label", "Remover " + file.name);
       remove.addEventListener("click", () => {
         state.attachments.splice(index, 1);
-        state.draftId = null;
         askAttachmentsControls();
       });
-      row.append(label, remove);
+      row.append(el("span", "", file.name + " · " + (file.size / 1024).toFixed(1) + " KB"), remove);
       panel.append(row);
     }
   }
   byId("attachment-input").addEventListener("change", () => {
     const result = desk.attachments.merge(state.attachments, [...byId("attachment-input").files]);
-    if (!result.error) {
-      state.attachments = result.files;
-      state.draftId = null;
-    }
+    if (!result.error) state.attachments = result.files;
     byId("attachment-input").value = "";
     askAttachmentsControls();
     byId("input-error").textContent = result.error;
@@ -1081,8 +1224,14 @@
       ["Solicitante", state.name],
       ["E-mail", state.email],
       ["Setor", state.sector],
-      ["Área", state.area],
-      ["Necessidade", needLabel(state.item)],
+      ...(state.equipmentIntent
+        ? [
+            [
+              "Tipo de pedido",
+              state.equipmentIntent === "purchase" ? "Item novo ou diferente" : "Defeito no item",
+            ],
+          ]
+        : []),
       ...(state.authorization
         ? [
             [
@@ -1096,65 +1245,61 @@
       ...(state.item.fields || [])
         .filter((field) => state.answers[field.id] && field.id !== "descricao-do-problema")
         .map((field) => [
-          field.id === "computador" ? "Quem utiliza o computador" : field.label,
-          state.answers[field.id],
+          field.id === "computador" ? "Quem utiliza" : field.label,
+          F.formatValue(field, state.answers[field.id]),
+          state.prefilled[field.id],
         ]),
-      ["Descrição", state.description],
-      ...(state.attachments.length
-        ? [["Anexos", state.attachments.map((file) => file.name).join("\n")]]
-        : []),
     ];
   }
   function showSummary() {
     checkpoint(showSummary);
     stage("summary");
     const bubble = message("Confira seu chamado antes de enviar:");
-    const card = document.createElement("section");
-    card.className = "summary-card";
+    const card = el("section", "summary-card");
     card.setAttribute("aria-label", "Resumo do chamado");
-    const head = document.createElement("header");
-    head.className = "summary-head";
-    const icon = document.createElement("span");
-    icon.className = "summary-icon";
-    icon.innerHTML =
-      '<i class="fa-solid ' + iconFor(state.item.need, state.area) + '" aria-hidden="true"></i>';
-    const titles = document.createElement("div");
-    const kicker = document.createElement("small");
-    kicker.textContent = state.area;
-    const heading = document.createElement("h3");
-    heading.textContent = needLabel(state.item);
-    titles.append(kicker, heading);
-    const ready = document.createElement("span");
-    ready.className = "summary-ready";
-    ready.innerHTML = '<i class="fa-solid fa-circle-check" aria-hidden="true"></i> Pronto';
-    head.append(icon, titles, ready);
-    const dl = document.createElement("dl");
-    for (const [label, value] of summaryRows()) {
-      if (["Descrição", "Anexos", "Área", "Necessidade"].includes(label)) continue;
-      const row = document.createElement("div");
-      const dt = document.createElement("dt");
-      dt.textContent = label;
-      const dd = document.createElement("dd");
-      dd.textContent = value;
-      row.append(dt, dd);
+    const head = el("header", "summary-head"),
+      tile = el("span", "summary-icon"),
+      titles = el("div"),
+      ready = el("span", "summary-ready");
+    tile.append(icon(F.iconFor(state.item.need, state.area)));
+    titles.append(el("small", "", state.area), el("h3", "", F.needLabel(state.item)));
+    ready.append(icon("fa-circle-check"), document.createTextNode(" Pronto"));
+    head.append(tile, titles, ready);
+    const dl = el("dl");
+    for (const [label, value, byAI] of summaryRows()) {
+      const row = el("div"),
+        dt = el("dt", "", label);
+      if (byAI) {
+        const mark = el("span", "ai-mark");
+        mark.title = "Preenchido pela IA a partir do seu relato";
+        mark.append(icon("fa-wand-magic-sparkles"));
+        dt.append(mark);
+      }
+      row.append(dt, el("dd", "", value));
       dl.append(row);
     }
-    const story = document.createElement("div");
-    story.className = "summary-description";
-    const storyLabel = document.createElement("small");
-    storyLabel.textContent = "Descrição";
-    const storyText = document.createElement("p");
-    storyText.textContent = state.description;
-    story.append(storyLabel, storyText);
+    const story = el("div", "summary-description");
+    story.append(el("small", "", "Descrição"), el("p", "", state.description));
     card.append(head, dl, story);
+    const answered = state.followUps.filter((entry) => entry.answer);
+    if (answered.length) {
+      const block = el("div", "summary-followups");
+      block.append(el("small", "", "Perguntas do assistente"));
+      const list = el("ul");
+      for (const entry of answered) {
+        const li = el("li");
+        li.append(el("span", "followup-q", entry.question), el("span", "followup-a", entry.answer));
+        list.append(li);
+      }
+      block.append(list);
+      card.append(block);
+    }
     if (state.attachments.length) {
-      const files = document.createElement("ul");
-      files.className = "summary-files";
+      const files = el("ul", "summary-files");
       files.setAttribute("aria-label", "Anexos");
       for (const file of state.attachments) {
-        const li = document.createElement("li");
-        li.innerHTML = '<i class="fa-solid fa-paperclip" aria-hidden="true"></i>';
-        li.append(document.createTextNode(" " + file.name));
+        const li = el("li");
+        li.append(icon("fa-paperclip"), document.createTextNode(" " + file.name));
         files.append(li);
       }
       card.append(files);
@@ -1163,51 +1308,52 @@
     summaryActions();
   }
   function receiptCard(number) {
-    const card = document.createElement("section");
-    card.className = "receipt-card";
+    const card = el("section", "receipt-card");
     card.setAttribute("aria-label", "Comprovante do chamado " + number);
-    const top = document.createElement("div");
-    top.className = "receipt-top";
-    const label = document.createElement("small");
-    label.textContent = "Número do chamado";
-    const value = document.createElement("strong");
-    value.className = "receipt-number";
-    value.textContent = number;
-    const copy = document.createElement("button");
-    copy.type = "button";
-    copy.className = "small-action receipt-copy";
-    copy.innerHTML = '<i class="fa-solid fa-copy" aria-hidden="true"></i> <span>Copiar</span>';
-    copy.addEventListener("click", async () => {
+    const top = el("div", "receipt-top"),
+      copyButton = el("button", "small-action receipt-copy");
+    copyButton.type = "button";
+    copyButton.append(icon("fa-copy"), el("span", "", " Copiar"));
+    copyButton.addEventListener("click", async () => {
+      const label = copyButton.querySelector("span");
       try {
         await navigator.clipboard.writeText(number);
-        copy.querySelector("span").textContent = "Copiado!";
+        label.textContent = " Copiado!";
       } catch {
-        copy.querySelector("span").textContent = "Selecione e copie";
+        label.textContent = " Selecione e copie";
       }
-      setTimeout(() => (copy.querySelector("span").textContent = "Copiar"), 2200);
+      setTimeout(() => (label.textContent = " Copiar"), 2200);
     });
-    top.append(label, value, copy);
-    const steps = document.createElement("ol");
-    steps.className = "receipt-steps";
+    top.append(
+      el("small", "", "Número do chamado"),
+      el("strong", "receipt-number", number),
+      copyButton,
+    );
+    const steps = el("ol", "receipt-steps");
     [
       ["Recebido", "fa-check", true],
-      ["Em atendimento", "fa-screwdriver-wrench", false],
+      ["Em andamento", "fa-screwdriver-wrench", false],
       ["Finalizado", "fa-flag-checkered", false],
     ].forEach(([text, glyph, done]) => {
-      const li = document.createElement("li");
-      if (done) li.className = "done";
-      li.innerHTML = '<i class="fa-solid ' + glyph + '" aria-hidden="true"></i>';
-      li.append(document.createTextNode(" " + text));
+      const li = el("li", done ? "done" : "");
+      li.append(icon(glyph), document.createTextNode(" " + text));
       steps.append(li);
     });
-    const note = document.createElement("p");
-    note.className = "receipt-note";
-    note.textContent = "A equipe usará " + state.email + " para o retorno deste chamado.";
-    card.append(top, steps, note);
+    card.append(
+      top,
+      steps,
+      el(
+        "p",
+        "receipt-note",
+        "A equipe usará " +
+          state.email +
+          " para o retorno. Para ver a situação depois, use “Acompanhar um chamado” com este número.",
+      ),
+    );
     return card;
   }
   function afterSent() {
-    const known = profile.read();
+    const known = F.profile.read();
     const remembered =
       known &&
       known.email === state.email &&
@@ -1223,21 +1369,21 @@
               icon: "fa-user-xmark",
             }
           : {
-              label: "Lembrar meus dados neste dispositivo",
+              label: "Lembrar nome, e-mail e setor neste dispositivo",
               value: "remember",
               icon: "fa-user-check",
             },
       ],
       (value) => {
         if (value === "new") return start();
-        if (value === "remember") {
+        if (value === "remember")
           message(
-            profile.save(state)
-              ? "Pronto! Na próxima vez, você começa direto pela escolha da área. Use só em um dispositivo pessoal."
+            F.profile.save(state)
+              ? "Pronto! Na próxima vez, você pula as perguntas de nome, e-mail e setor e vai direto ao que precisa. Use só em um dispositivo pessoal."
               : "Este navegador não permitiu salvar os dados. Tudo bem, é só informar de novo na próxima vez.",
           );
-        } else {
-          profile.clear();
+        else {
+          F.profile.clear();
           message("Feito. Seus dados não ficam mais salvos neste dispositivo.");
         }
         afterSent();
@@ -1260,7 +1406,10 @@
           : []),
       ],
       (action) => {
-        if (action === "edit") return askDescription();
+        if (action === "edit") {
+          state.fromDescribe = false;
+          return askDescription();
+        }
         if (action === "files") return askAttachments();
         sendTicket();
       },
@@ -1270,10 +1419,8 @@
     );
     if (failure)
       readyControls(() => {
-        const alert = document.createElement("p");
-        alert.className = "submission-error";
+        const alert = el("p", "submission-error", failure);
         alert.setAttribute("role", "alert");
-        alert.textContent = failure;
         choices.before(alert);
       });
   }
@@ -1281,18 +1428,14 @@
     if (saving || state.receipt) return;
     saving = true;
     lock("ENVIANDO SEU CHAMADO");
-    const pending = document.createElement("div");
-    pending.className = "sending-status";
+    const pending = el("div", "sending-status"),
+      spinner = el("span", "sending-spinner");
     pending.setAttribute("role", "status");
     pending.setAttribute("aria-live", "polite");
-    const spinner = document.createElement("span");
-    spinner.className = "sending-spinner";
     spinner.setAttribute("aria-hidden", "true");
-    const label = document.createElement("span");
-    label.textContent = "Enviando seu chamado… Aguarde a confirmação.";
-    pending.append(spinner, label);
+    pending.append(spinner, el("span", "", "Enviando seu chamado… Aguarde a confirmação."));
     choices.append(pending);
-    choices.closest(".interaction-dock").setAttribute("aria-busy", "true");
+    dock.setAttribute("aria-busy", "true");
     byId("frozen-label").hidden = true;
     byId("edit-context").hidden = true;
     try {
@@ -1337,6 +1480,8 @@
       summaryActions(detail);
     }
   }
+
+  // --- Campo de texto ------------------------------------------------------------------------
   byId("composer").addEventListener("submit", (event) => {
     event.preventDefault();
     if (!textHandler || input.disabled) return;
@@ -1361,6 +1506,7 @@
     input.setAttribute("aria-invalid", String(!!error));
   }
   input.addEventListener("input", () => {
+    autoGrow();
     byId("send").disabled = !input.value.trim();
     byId("char-count").textContent = input.value.length + " / " + input.maxLength;
     if (input.getAttribute("aria-invalid") === "true")

@@ -41,7 +41,8 @@ function safeSubject(value) {
   return subject;
 }
 function safeAssist(result, allowTips) {
-  // A IA só sugere: uma pergunta de complemento e até três dicas, sempre em texto puro.
+  // A IA só sugere: uma pergunta de complemento (com dica de onde achar a resposta),
+  // até três passos seguros e um alerta quando o relato não combina com o caminho.
   const clean = (value) =>
     typeof value === "string"
       ? value
@@ -58,6 +59,8 @@ function safeAssist(result, allowTips) {
     /senha|password|cpf|telefone|celular/i.test(question)
   )
     question = "";
+  let help = question ? clean(result && result.ajuda) : "";
+  if (help.length < 8 || help.length > 180 || links.test(help)) help = "";
   const tips =
     allowTips && result && Array.isArray(result.dicas)
       ? result.dicas
@@ -65,7 +68,76 @@ function safeAssist(result, allowTips) {
           .filter((tip) => tip.length >= 6 && tip.length <= 160 && !links.test(tip))
           .slice(0, 3)
       : [];
-  return { question, tips };
+  const coherent = !(result && result.coerente === false);
+  let reason = coherent ? "" : clean(result && result.motivo);
+  if (reason.length > 160 || links.test(reason)) reason = reason.slice(0, 157) + "…";
+  return { question, help, tips, coherent, reason };
+}
+// Campos que a IA nunca preenche: contatos, contas e dados de alunos continuam com a pessoa.
+const EXTRACT_SKIP = [
+  "computador",
+  "conta",
+  "e-mail-da-conta",
+  "usuario",
+  "aluno",
+  "aluno-turma",
+  "responsavel",
+  "email-responsavel",
+  "contato-responsavel",
+  "descricao-do-problema",
+];
+function extractableFields(item) {
+  return (item.fields || []).filter(
+    (field) => field.type !== "email" && !EXTRACT_SKIP.includes(field.id),
+  );
+}
+function weekdayName(iso) {
+  return [
+    "domingo",
+    "segunda-feira",
+    "terça-feira",
+    "quarta-feira",
+    "quinta-feira",
+    "sexta-feira",
+    "sábado",
+  ][new Date(iso + "T12:00:00Z").getUTCDay()];
+}
+function safeExtract(item, result) {
+  // Só valores no formato do campo entram no rascunho; o resto será perguntado.
+  const answers = {},
+    allowed = extractableFields(item),
+    list = result && Array.isArray(result.campos) ? result.campos : [];
+  for (const entry of list) {
+    const field = allowed.find((f) => f.id === (entry && entry.id));
+    if (!field || answers[field.id] !== undefined) continue;
+    const value = typeof entry.valor === "string" ? entry.valor.trim() : "";
+    if (!value || value.length > 200 || /[<>]/.test(value)) continue;
+    if (field.type === "choice" && !field.options.includes(value)) continue;
+    if (field.type === "date") {
+      if (
+        !/^\d{4}-\d{2}-\d{2}$/.test(value) ||
+        new Date(value + "T00:00:00Z").toISOString().slice(0, 10) !== value ||
+        value < policy.localDay()
+      )
+        continue;
+    }
+    if (field.type === "time" && !/^([01]\d|2[0-3]):[0-5]\d$/.test(value)) continue;
+    if (field.type === "url" && !/^https?:\/\/[^\s/?#]+(?:[/?#][^\s]*)?$/.test(value)) continue;
+    answers[field.id] = value;
+  }
+  for (const field of item.fields || [])
+    if (
+      field.when &&
+      answers[field.id] !== undefined &&
+      answers[field.when.field] !== field.when.equals
+    )
+      delete answers[field.id];
+  // Defeito x item novo só existe nos periféricos; em reservas e outros pedidos é ignorado.
+  const intent =
+    policy.asksEquipmentIntent(item) && result && ["repair", "purchase"].includes(result.intencao)
+      ? result.intencao
+      : "";
+  return { answers, intent };
 }
 function localSubject(item) {
   return (
@@ -74,6 +146,8 @@ function localSubject(item) {
     item.need.replace(/\s*[—–]\s*confirmar.*$/i, "").replace(/\s*>\s*/g, " — ")
   ).slice(0, 80);
 }
+// Link combinado para depois (ex.: roteiro do evento ainda não pronto).
+const PENDING_LINK = "Ainda não informado";
 function validateAnswers(input, item) {
   const answers = input || {};
   if (
@@ -103,7 +177,7 @@ function validateAnswers(input, item) {
       throw new InvalidRequest("Escolha hoje ou uma data futura para o atendimento.");
     if (field.type === "time" && !/^([01]\d|2[0-3]):[0-5]\d$/.test(value))
       throw new InvalidRequest("Confira o horário.");
-    if (field.type === "url") {
+    if (field.type === "url" && value !== PENDING_LINK) {
       try {
         if (!["http:", "https:"].includes(new URL(value).protocol)) throw Error();
       } catch {
@@ -121,6 +195,10 @@ module.exports = {
   validateDescription,
   safeSubject,
   safeAssist,
+  safeExtract,
+  extractableFields,
+  weekdayName,
+  PENDING_LINK,
   localSubject,
   validateAnswers,
 };

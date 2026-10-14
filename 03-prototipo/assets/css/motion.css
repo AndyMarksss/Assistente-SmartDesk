@@ -37,8 +37,31 @@
   .desk-mascot img {
     animation: mascot-float 2200ms ease-in-out 2;
   }
+  /* 0.11 — robô vivo: flutua, pisca, acende a antena e acena; sinais chegam em ciclo. */
+  .robot-core {
+    animation: robot-bob 3600ms ease-in-out infinite;
+  }
+  .robot-eye {
+    animation: robot-blink 5200ms ease-in-out infinite;
+  }
+  .robot-light {
+    animation: robot-glow 2400ms ease-in-out infinite;
+  }
+  .robot-ear.right {
+    animation: robot-wave 7000ms ease-in-out 1200ms infinite;
+  }
+  .robot-sparkle {
+    animation: robot-twinkle 3000ms ease-in-out infinite;
+  }
+  .ai-busy .assistant-avatar img,
+  .ai-busy .message.thinking .message-avatar img {
+    animation: robot-think 900ms ease-in-out infinite;
+  }
+  .assistant-avatar img {
+    animation: robot-breathe 4200ms ease-in-out infinite;
+  }
   .connection-signal {
-    animation: connection-flow 1100ms linear 1 both;
+    animation: connection-loop 6000ms linear infinite both;
   }
   .connection-signal.from-printer {
     animation-delay: 1100ms;
@@ -136,13 +159,6 @@
   .message:not(.user):not(.typing):last-child .message-avatar {
     animation: avatar-glow 1400ms ease-out 1;
   }
-  .picker-option {
-    animation: choice-arrive var(--motion-enter) var(--motion-ease) var(--option-delay, 0ms)
-      backwards;
-  }
-  .choice-shortcuts {
-    animation: surface-enter 360ms var(--motion-ease) 240ms backwards;
-  }
   .tip-list li {
     animation: choice-arrive 360ms var(--motion-ease) backwards;
   }
@@ -192,14 +208,12 @@
     animation: ripple-out 620ms ease-out forwards;
   }
   .choice::before,
-  .picker-option::before,
   .panel-link::before,
   .new-conversation::before,
   .metrics article::before,
   .ticket-card::before {
     transition: opacity 220ms ease;
   }
-  .picker-option,
   .panel-link,
   .new-conversation,
   .scene-device,
@@ -220,7 +234,6 @@
   }
 }
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  .picker-option:hover:not(:disabled),
   .panel-link:hover,
   .new-conversation:hover,
   .metrics article:hover,
@@ -361,6 +374,148 @@
   }
   to {
     opacity: 1;
+  }
+}
+/* 0.11 — painel: esqueleto, cartão que acabou de mudar de etapa e aviso. */
+@media (prefers-reduced-motion: no-preference) {
+  .skeleton-line,
+  .is-skeleton .metrics strong,
+  .is-skeleton #queue-insight,
+  .is-skeleton #selfhelp-insight {
+    animation: skeleton-sweep 1300ms ease-in-out infinite;
+  }
+  .ticket-card.just-moved {
+    animation: card-landed 900ms var(--motion-ease) 1;
+  }
+  /* O cartão-fantasma acompanha o cursor sem atraso. */
+  .ticket-card.drag-ghost {
+    transition: none;
+    animation: none;
+  }
+  .toast {
+    transition:
+      opacity 220ms ease,
+      translate 260ms var(--motion-ease);
+  }
+  .selfhelp-bar {
+    transition: width 700ms var(--motion-ease);
+  }
+  .kanban-column {
+    transition:
+      background 160ms ease,
+      outline-color 160ms ease;
+  }
+}
+@keyframes skeleton-sweep {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -100% 0;
+  }
+}
+@keyframes card-landed {
+  0% {
+    transform: scale(0.96);
+  }
+  40% {
+    transform: scale(1.03);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--tone, var(--accent)) 45%, transparent);
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes robot-bob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-1.5deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(1.5deg);
+  }
+}
+@keyframes robot-blink {
+  0%,
+  44%,
+  50%,
+  100% {
+    transform: scaleY(1);
+  }
+  47% {
+    transform: scaleY(0.12);
+  }
+}
+@keyframes robot-glow {
+  0%,
+  100% {
+    fill: #d7c7ff;
+    filter: drop-shadow(0 0 0 transparent);
+  }
+  50% {
+    fill: #f4c4ff;
+    filter: drop-shadow(0 0 6px #c79bff);
+  }
+}
+@keyframes robot-wave {
+  0%,
+  70%,
+  100% {
+    transform: rotate(0deg);
+  }
+  76% {
+    transform: rotate(-18deg);
+  }
+  82% {
+    transform: rotate(10deg);
+  }
+  88% {
+    transform: rotate(-12deg);
+  }
+}
+@keyframes robot-twinkle {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes robot-think {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px) rotate(-4deg);
+  }
+}
+@keyframes robot-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+@keyframes connection-loop {
+  0% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+  2% {
+    opacity: 0.9;
+  }
+  17% {
+    stroke-dashoffset: -100;
+    opacity: 0.9;
+  }
+  19%,
+  100% {
+    stroke-dashoffset: -100;
+    opacity: 0;
   }
 }
 @keyframes aurora-drift {

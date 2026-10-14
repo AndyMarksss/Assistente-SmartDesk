@@ -85,3 +85,12 @@ Recebimento planejado: Apps Script cria planilha separada SmartDesk — Chamados
 - Justificativa: dar valor visível à IA sem abrir conversa livre nem reclassificar sozinha; as escolhas da matriz continuam sendo o caminho principal.
 - Segurança: cotas por sessão e por dia, limite de anexos e checagem de conteúdo na avaliação pública, que estava sem limite.
 - Limites: as dicas e perguntas são sugestões do modelo e não foram avaliadas com usuários; nenhum resultado de validação foi produzido.
+
+## 2026-10-14 — 0.11.0: fluxos revisados
+
+- Origem: teste do próprio usuário na 0.10.x, com capturas e pedido de "cobrir todos os furos" e evitar solicitações erradas.
+- Decisão: a IA passa a montar o rascunho (tipo + dados já ditos) para confirmação, em vez de só sugerir um caminho; checagem de coerência entre relato e tipo escolhido; tipo do pedido (problema, solicitação, dúvida, outro) orienta a IA; dados nunca extraídos pela IA definidos no servidor.
+- Acompanhamento: número + e-mail da abertura, devolvendo só a etapa. Escolhido por não exigir login e não expor conteúdo do chamado.
+- Autoatendimento: registro anônimo (setor, caminho, resultado) para o painel mostrar se as dicas ajudam.
+- Painel: arrastar e soltar com Pointer Events (funciona com mouse e caneta); no toque, o cartão abre os detalhes para evitar arraste acidental na rolagem.
+- Limites: comportamento da IA conferido em testes técnicos, não com usuários.

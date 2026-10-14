@@ -61,3 +61,6 @@ Corrigido título local: separadores > do caminho canônico viram travessões no
 
 ## 0.10.0 — Atmosfera
 Pedido direto por mais profundidade, vidro, efeitos e animação. Mantidos os papéis: azul orienta, violeta age, mensagens neutras. Novidades: aurora violeta/azul/rosa desfocada atrás do vidro; gradiente de ação (violeta → azul) em botões principais, ícones de resumo e etapas concluídas; selo "IA" em violeta sólido; bordas em gradiente apenas no cartão de IA e no comprovante, sempre com fundo sólido por dentro. Pares novos medidos (≥ 4,5:1) em verificacao-v0.10.0.md. `prefers-reduced-transparency` volta às superfícies sólidas.
+
+## 0.11.0 — Etapas do kanban
+Cada etapa tem um tom próprio, usado só na barra da coluna, no ponto do título e na borda esquerda do cartão; o texto continua neutro. Claro: novo #6a4fd8, em atendimento #2f6fd1, aguardando terceiros #b7791f, empréstimos #0f8f7f, agendado #7a52c7, finalizado #2f8f4e, cancelado #6b7383. Escuro: #b9a6ff, #7fb4ff, #f2c46b, #5fd3c2, #d2a8ff, #7ed39a, #a3acbb. O texto de busca usa `--muted` (antes ficava quase invisível). Tags dos cartões usam fundo translúcido com texto `--ink`.

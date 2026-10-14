@@ -220,6 +220,17 @@ function portalAnalyze_(token, body, desk) {
     };
   }
 }
+function portalGestao_(payload) {
+  payload.token = PropertiesService.getScriptProperties().getProperty("SMARTDESK_TOKEN");
+  return portalResult_(doPost({ postData: { contents: JSON.stringify(payload) } }));
+}
+function portalCount_(token, kind, limit, message) {
+  // Contador simples por sessão para consultas públicas (acompanhamento, registros).
+  var session = portalSession_(token);
+  if ((session[kind] || 0) >= limit) throw new InvalidRequest(message, 429);
+  session[kind] = (session[kind] || 0) + 1;
+  CacheService.getScriptCache().put("portal:session:" + token, JSON.stringify(session), 3600);
+}
 function portalResult_(content) {
   var value = JSON.parse(content.getContent());
   if (!value.ok)
@@ -407,10 +418,9 @@ function smartdeskCall(session, route, body) {
         var demoLock = LockService.getScriptLock();
         demoLock.waitLock(25000);
         try {
-          return {
-            status: 200,
-            body: portalDemo_(session, listing ? "/api/admin/tickets" : route, body),
-          };
+          var demoBody = portalDemo_(session, listing ? "/api/admin/tickets" : route, body);
+          if (listing) demoBody.selfHelp = { resolved: 3, continued: 7, simulation: true };
+          return { status: 200, body: demoBody };
         } finally {
           demoLock.releaseLock();
         }
@@ -436,18 +446,105 @@ function smartdeskCall(session, route, body) {
       if (listing) {
         response.tickets = response.tickets.filter((ticket) => owned.includes(ticket.requestId));
         response.stages = PORTAL_STAGES; // o painel monta as colunas a partir desta lista
+        try {
+          // Totais anônimos de autoatendimento (sem nomes): mostram se as dicas da IA ajudam.
+          var stats = portalGestao_({ action: "selfHelpStats" });
+          response.selfHelp = { resolved: stats.resolved || 0, continued: stats.continued || 0 };
+        } catch (error) {
+          response.selfHelp = null;
+        }
       }
       return { status: 200, body: response };
     }
     if (
-      !["/api/analyze", "/api/assist", "/api/next-prompt", "/api/subject", "/api/tickets"].includes(
-        route,
-      )
+      ![
+        "/api/analyze",
+        "/api/extract",
+        "/api/assist",
+        "/api/track",
+        "/api/selfhelp",
+        "/api/next-prompt",
+        "/api/subject",
+        "/api/tickets",
+      ].includes(route)
     )
       throw new InvalidRequest("Operação inválida.", 404);
     var desk = window.SmartDesk;
     if (route === "/api/analyze") return { status: 200, body: portalAnalyze_(session, body, desk) };
+    if (route === "/api/track") {
+      // Acompanhamento pelo solicitante: número + e-mail da abertura, poucas consultas por sessão.
+      var number =
+          "#" +
+          String(body.number || "")
+            .replace(/\D/g, "")
+            .padStart(3, "0"),
+        email = String(body.email || "")
+          .trim()
+          .toLowerCase();
+      if (number === "#000" || email.length > 160 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+        throw new InvalidRequest(
+          "Informe o número do chamado (ex.: #012) e o e-mail usado na abertura.",
+        );
+      portalCount_(session, "track", 10, "Muitas consultas nesta sessão. Recarregue a página.");
+      var tracked = portalGestao_({ action: "trackTicket", number: number, email: email });
+      return { status: 200, body: { ticket: tracked.ticket || null } };
+    }
     var item = validateSelection_(body, desk);
+    if (route === "/api/selfhelp") {
+      if (!["resolved", "continued"].includes(body.outcome))
+        throw new InvalidRequest("Resultado inválido.");
+      var stored = false;
+      try {
+        portalCount_(session, "selfHelp", 20, "Limite de registros.");
+        portalGestao_({
+          action: "selfHelp",
+          sector: body.sector,
+          area: item.area,
+          need: item.need,
+          outcome: body.outcome,
+          origin: "Pages",
+        });
+        stored = true;
+      } catch (error) {}
+      return { status: 200, body: { stored: stored } };
+    }
+    if (route === "/api/extract") {
+      // Rascunho a partir do relato livre: só valores no formato certo; o resto é perguntado.
+      var told = validateDescription_(body.description),
+        draft = { answers: {}, intent: "" },
+        from = "local",
+        fields = extractableFields_(item).map(function (field) {
+          var entry = { id: field.id, rotulo: field.label, tipo: field.type };
+          if (field.options) entry.opcoes = field.options;
+          return entry;
+        });
+      if (fields.length)
+        try {
+          var today = policy.localDay();
+          draft = safeExtract_(
+            item,
+            portalAIJson_(
+              session,
+              SMARTDESK_EXTRACT_INSTRUCTION,
+              {
+                hoje: today + " (" + weekdayName_(today) + ")",
+                setor: body.sector,
+                area: item.area,
+                necessidade: item.need,
+                campos: fields,
+                relato: told,
+              },
+              SMARTDESK_EXTRACT_SCHEMA,
+              0,
+            ),
+          );
+          from = "ai";
+        } catch (error) {}
+      return {
+        status: 200,
+        body: { answers: draft.answers, intent: draft.intent, source: from, selectionId: item.id },
+      };
+    }
     if (route === "/api/tickets") {
       var ticket = portalTicket_(body, item),
         known = JSON.parse(CacheService.getScriptCache().get("portal:owned:" + session) || "[]");
@@ -530,7 +627,7 @@ function smartdeskCall(session, route, body) {
       .forEach((field) => (optionAnswers[field.label] = answers[field.id]));
     if (route === "/api/assist") {
       var allowTips = policy.selfHelpEligible(item, body.equipmentIntent || ""),
-        review = { question: "", tips: [] },
+        review = { question: "", help: "", tips: [], coherent: true, reason: "" },
         origin = "local";
       try {
         review = safeAssist_(
@@ -541,18 +638,15 @@ function smartdeskCall(session, route, body) {
               setor: body.sector,
               area: item.area,
               necessidade: item.need,
+              tipo: policy.requestKind(item, body.equipmentIntent || ""),
               descricao: description,
               opcoes: optionAnswers,
+              jaInformado: (item.fields || [])
+                .filter((field) => answers[field.id])
+                .map((field) => field.label),
               dicasPermitidas: allowTips,
             },
-            {
-              type: "OBJECT",
-              properties: {
-                pergunta: { type: "STRING" },
-                dicas: { type: "ARRAY", items: { type: "STRING" } },
-              },
-              required: ["pergunta", "dicas"],
-            },
+            SMARTDESK_ASSIST_SCHEMA,
             0.3,
           ),
           allowTips,
@@ -563,7 +657,10 @@ function smartdeskCall(session, route, body) {
         status: 200,
         body: {
           question: review.question,
+          help: review.help,
           tips: review.tips,
+          coherent: review.coherent,
+          reason: review.reason,
           source: origin,
           selectionId: item.id,
         },

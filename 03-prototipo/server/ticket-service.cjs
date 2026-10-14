@@ -21,9 +21,13 @@ const {
   validateDescription,
   safeSubject,
   safeAssist,
+  safeExtract,
+  extractableFields,
+  weekdayName,
   localSubject,
   validateAnswers,
 } = require("./ticket-validation.cjs");
+const SELF_HELP_OUTCOMES = ["resolved", "continued"];
 function createTicketService({
   root,
   desk,
@@ -34,9 +38,16 @@ function createTicketService({
 }) {
   return async function handle(req, res, url) {
     if (
-      !["/api/subject", "/api/assist", "/api/next-prompt", "/api/drafts", "/api/tickets"].includes(
-        url.pathname,
-      )
+      ![
+        "/api/subject",
+        "/api/assist",
+        "/api/extract",
+        "/api/track",
+        "/api/selfhelp",
+        "/api/next-prompt",
+        "/api/drafts",
+        "/api/tickets",
+      ].includes(url.pathname)
     )
       return false;
     if (req.method !== "POST") {
@@ -48,7 +59,54 @@ function createTicketService({
         req,
         ["/api/drafts", "/api/tickets"].includes(url.pathname) ? 30 * 1024 * 1024 : 65536,
       );
+      if (url.pathname === "/api/track") {
+        // Acompanhamento: número + e-mail da abertura; devolve só a situação, nunca o conteúdo.
+        const number =
+            "#" +
+            String(body?.number || "")
+              .replace(/\D/g, "")
+              .padStart(3, "0"),
+          email = String(body?.email || "")
+            .trim()
+            .toLowerCase();
+        if (number === "#000" || email.length > 160 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+          throw new InvalidRequest(
+            "Informe o número do chamado (ex.: #012) e o e-mail usado na abertura.",
+          );
+        if (!googleStorage.ready()) {
+          json(res, 503, { error: "O acompanhamento depende do recebimento Google configurado." });
+          return true;
+        }
+        try {
+          const result = await googleStorage.manage("trackTicket", { number, email });
+          json(res, 200, { ticket: result.ticket || null });
+        } catch {
+          json(res, 502, { error: "Não consegui consultar o chamado agora. Tente novamente." });
+        }
+        return true;
+      }
       const item = validateSelection(body, desk);
+      if (url.pathname === "/api/selfhelp") {
+        // Registro anônimo: só setor, caminho e resultado, para medir se as dicas ajudam.
+        if (!SELF_HELP_OUTCOMES.includes(body.outcome))
+          throw new InvalidRequest("Resultado inválido.");
+        let stored = false;
+        if (googleStorage.ready())
+          try {
+            await googleStorage.manage("selfHelp", {
+              sector: body.sector,
+              area: item.area,
+              need: item.need,
+              outcome: body.outcome,
+              origin: "Local",
+            });
+            stored = true;
+          } catch {
+            /* O atendimento continua mesmo sem registrar a estatística. */
+          }
+        json(res, 200, { stored });
+        return true;
+      }
       if (url.pathname === "/api/next-prompt") {
         // Only trusted selection labels enter this prompt; no arbitrary chat message is accepted.
         const fallback =
@@ -76,6 +134,37 @@ function createTicketService({
         return true;
       }
       const description = validateDescription(body.description);
+      if (url.pathname === "/api/extract") {
+        // Rascunho a partir do relato livre: só campos válidos; o resto será perguntado.
+        let result = { answers: {}, intent: "" },
+          source = "local";
+        const fields = extractableFields(item).map((field) => ({
+          id: field.id,
+          rotulo: field.label,
+          tipo: field.type,
+          ...(field.options ? { opcoes: field.options } : {}),
+        }));
+        if (fields.length && provider.ready() && typeof provider.extract === "function")
+          try {
+            const today = policy.localDay();
+            result = safeExtract(
+              item,
+              await provider.extract({
+                today: today + " (" + weekdayName(today) + ")",
+                sector: body.sector,
+                area: item.area,
+                need: item.need,
+                fields,
+                description,
+              }),
+            );
+            source = "ai";
+          } catch {
+            /* Sem IA, a conversa pergunta cada dado normalmente. */
+          }
+        json(res, 200, { ...result, source, selectionId: item.id });
+        return true;
+      }
       const answers = validateAnswers(body.answers, item);
       const optionAnswers = Object.fromEntries(
         (item.fields || [])
@@ -84,7 +173,7 @@ function createTicketService({
       );
       if (url.pathname === "/api/assist") {
         // Without AI the flow simply continues: no invented question or tip.
-        let result = { question: "", tips: [] },
+        let result = { question: "", help: "", tips: [], coherent: true, reason: "" },
           source = "local";
         const allowTips = policy.selfHelpEligible(item, body.equipmentIntent || "");
         if (provider.ready() && typeof provider.assist === "function")
@@ -95,7 +184,11 @@ function createTicketService({
                 sector: body.sector,
                 area: item.area,
                 need: item.need,
+                kind: policy.requestKind(item, body.equipmentIntent || ""),
                 optionAnswers,
+                answeredLabels: (item.fields || [])
+                  .filter((field) => answers[field.id])
+                  .map((field) => field.label),
                 allowTips,
               }),
               allowTips,

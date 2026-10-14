@@ -39,7 +39,12 @@ ctx.UrlFetchApp = {
   fetch: (url, options) => {
     const payload = JSON.parse(options.payload);
     remote.push(payload);
-    const field = payload.generationConfig.responseSchema.required[0];
+    const schema = payload.generationConfig.responseSchema,
+      field = schema.properties.pergunta
+        ? "pergunta"
+        : schema.properties.campos
+          ? "campos"
+          : schema.required[0];
     return {
       getResponseCode: () => (failAI ? 429 : 200),
       getContentText: () =>
@@ -52,17 +57,29 @@ ctx.UrlFetchApp = {
                     text: JSON.stringify(
                       field === "pergunta"
                         ? {
+                            coerente: true,
                             pergunta: "Desde quando isso acontece?",
+                            ajuda:
+                              "Veja no visor da impressora; se não houver visor, confira a gaveta.",
                             dicas: ["Retire a folha presa com cuidado.", "Veja http://exemplo.com"],
                           }
-                        : field === "itemIds"
-                          ? { itemIds: ["IMP-008", "TI-QB-001"] }
-                          : {
-                              [field]:
-                                field === "subject"
-                                  ? "Toner magenta para impressora"
-                                  : "Conte o que aconteceu para organizarmos seu chamado.",
-                            },
+                        : field === "campos"
+                          ? {
+                              campos: [
+                                { id: "data", valor: "2099-10-16" },
+                                { id: "horario", valor: "25:00" },
+                                { id: "evento", valor: "Sim" },
+                              ],
+                              intencao: "",
+                            }
+                          : field === "itemIds"
+                            ? { itemIds: ["IMP-008", "TI-QB-001"] }
+                            : {
+                                [field]:
+                                  field === "subject"
+                                    ? "Toner magenta para impressora"
+                                    : "Conte o que aconteceu para organizarmos seu chamado.",
+                              },
                     ),
                   },
                 ],
@@ -278,6 +295,55 @@ assert.equal(
   400,
 );
 assert.equal(call("/api/status").body.limits.files, 3);
+// 0.11: rascunho pela IA, revisão com ajuda e tipo, roteiro depois, acompanhamento e autoatendimento.
+const av3 = desk.knowledgeBase.items.find((i) => i.id === "AV-003");
+const draft = call("/api/extract", {
+  sector: "Secretaria",
+  selectionId: av3.id,
+  description: "Evento na sexta-feira, preciso de som, microfone e projetor.",
+}).body;
+assert.equal(draft.source, "ai");
+// Horário fora do formato é descartado; data e opção válidas entram no rascunho.
+assert.equal(JSON.stringify(draft.answers), JSON.stringify({ data: "2099-10-16", evento: "Sim" }));
+remote = [];
+const helped = call("/api/assist", jamBody).body;
+assert(helped.help.includes("visor") && helped.coherent === true);
+const sent = JSON.parse(remote[0].contents[0].parts[0].text);
+assert.equal(sent.tipo, "problema");
+assert(sent.jaInformado.includes("Modelo da impressora"));
+assert(!JSON.stringify(sent).includes("Informação fictícia"));
+remote = [];
+call("/api/assist", {
+  sector: "Secretaria",
+  selectionId: av3.id,
+  answers: { data: "2099-10-16", horario: "09:30", evento: "Não" },
+  description: "Palestra no auditório para 80 pessoas.",
+});
+assert.equal(JSON.parse(remote[0].contents[0].parts[0].text).tipo, "solicitação");
+assert.equal(
+  typeof ctx.validateAnswers_(
+    { data: "2099-10-16", horario: "09:30", evento: "Sim", roteiro: "Ainda não informado" },
+    av3,
+  ),
+  "object",
+);
+const tracked = call("/api/track", { number: "6", email: "FICTICIO@example.com" }).body.ticket;
+assert.equal(tracked.number, "#006");
+assert.equal(tracked.status, "Em atendimento");
+assert(!("description" in tracked) && !("email" in tracked) && !("name" in tracked));
+assert.equal(call("/api/track", { number: "#006", email: "outra@example.com" }).body.ticket, null);
+assert.equal(call("/api/track", { number: "abc", email: "x" }).status, 400);
+assert.equal(
+  call("/api/selfhelp", { sector: "Secretaria", selectionId: "IMP-008", outcome: "resolved" }).body
+    .stored,
+  true,
+);
+assert.equal(
+  call("/api/selfhelp", { sector: "Secretaria", selectionId: "IMP-008", outcome: "x" }).status,
+  400,
+);
+assert.equal(call("/api/admin/tickets?mode=google").body.selfHelp.resolved, 1);
+assert.equal(call("/api/admin/tickets?mode=demo").body.selfHelp.simulation, true);
 // Limitador por minuto: a janela é uma chave própria e não bloqueia o minuto seguinte.
 const minuteKey = "portal:session-starts:" + Math.floor(Date.now() / 60000);
 const before = cached.get(minuteKey);

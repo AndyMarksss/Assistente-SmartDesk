@@ -25,22 +25,22 @@
   const prompts = {
     "descricao-do-problema":
       "O que acontece quando você usa o cabo HDMI? Conte também em qual sala ou equipamento ele está conectado.",
-    modelo: "Qual é o modelo da impressora? Se não souber, pode escrever “não sei”.",
+    modelo: "Qual é o modelo da impressora? Costuma estar escrito na frente dela.",
     cor: "Qual cor de toner ou tinta você precisa?",
-    data: "Em qual dia você vai precisar? Digite a data ou use o calendário, como preferir.",
-    horario: "E a que horas? Pode digitar o horário, por exemplo 09:30.",
+    data: "Em qual dia você vai precisar? Digite a data ou toque no calendário.",
+    horario: "E a que horas? Digite o horário, por exemplo 09:30, ou toque no relógio.",
     evento: "Você vai usar os equipamentos em um evento?",
-    roteiro: "Você tem o link do roteiro do evento? Cole aqui para a equipe se preparar.",
+    roteiro:
+      "Tem o link do roteiro do evento? Cole aqui para a equipe se preparar. Se ainda não estiver pronto, pode enviar depois.",
     "mensagem-do-visor":
-      "O que aparece no visor da impressora? Se não aparecer nada, pode me dizer isso.",
-    "mensagem-de-erro":
-      "Aparece alguma mensagem de erro? Me conte o que ela diz; se não aparecer, escreva “não aparece”.",
+      "O que o visor da impressora mostra agora? Às vezes ele indica a bandeja ou um código, como “Atolamento bandeja 2”.",
+    "mensagem-de-erro": "Aparece alguma mensagem de erro? Me diga o que ela diz.",
     "erro-apresentado":
       "O que acontece quando você tenta usar? Se aparecer um erro, me diga o texto da mensagem.",
-    erro: "Que erro você está vendo? Pode descrever com suas palavras.",
-    conta: "Qual é o e-mail da conta em que isso acontece?",
+    erro: "Que erro aparece? Pode descrever com suas palavras.",
+    conta: "Em qual conta Google isso acontece?",
     "e-mail-da-conta":
-      "De qual conta você precisa recuperar o acesso? Informe o e-mail, sem enviar a senha.",
+      "De qual conta você precisa recuperar o acesso? Informe só o e-mail, nunca a senha.",
     "link-ou-nome-do-arquivo": "Qual arquivo está envolvido? Pode mandar o link ou o nome dele.",
     arquivo: "Qual documento está envolvido? Me passe o nome ou o link.",
     "link-ou-nome-do-recurso":
@@ -52,7 +52,7 @@
     periodo: "Em qual período você vai precisar?",
     "horario-periodo": "Em qual horário ou período você vai precisar?",
     programa: "Qual programa está envolvido?",
-    equipamento: "Qual equipamento precisa de atendimento? Diga quem usa e, se souber, o modelo.",
+    equipamento: "Qual equipamento não liga? Diga onde ele fica e, se souber, o modelo.",
     "tipo-de-conexao": "Esse computador usa cabo de rede ou Wi-Fi?",
     dispositivo: "Em qual dispositivo o Wi-Fi está dando problema?",
     rede: "Qual é o nome da rede Wi-Fi?",
@@ -77,28 +77,95 @@
   };
   function field(item, f) {
     if (f.id === "data" && item.area === "Audiovisual")
-      return "Para qual dia vamos preparar os equipamentos? Digite a data ou escolha no calendário.";
+      return "Para qual dia vamos preparar os equipamentos? Digite a data ou toque no calendário.";
     return (
       prompts[f.id] ||
       "Pode me informar " + f.label.charAt(0).toLowerCase() + f.label.slice(1) + "?"
     );
   }
+  // Respostas rápidas ao lado do campo: evitam digitar o óbvio e fecham caminhos sem saída.
+  function quickReplies(item, f, context = {}) {
+    const PENDING = desk.chatFormat?.PENDING_LINK || "Ainda não informado";
+    if (f.id === "modelo")
+      return [{ label: "Não sei o modelo", value: "Não sei", icon: "fa-question" }];
+    if (f.id === "mensagem-do-visor")
+      return [
+        { label: "Não aparece nada", value: "Não aparece nada", icon: "fa-ban" },
+        {
+          label: "A impressora não tem visor",
+          value: "A impressora não tem visor",
+          icon: "fa-print",
+        },
+      ];
+    if (["mensagem-de-erro", "erro", "erro-apresentado"].includes(f.id))
+      return [{ label: "Não aparece mensagem", value: "Não aparece mensagem", icon: "fa-ban" }];
+    if (["conta", "e-mail-da-conta"].includes(f.id) && context.email)
+      return [
+        { label: "Minha conta (" + context.email + ")", value: context.email, icon: "fa-user" },
+      ];
+    if (f.id === "roteiro")
+      return [{ label: "Enviar o link depois", value: PENDING, icon: "fa-clock" }];
+    if (f.id === "dispositivo")
+      return ["Notebook", "Celular", "Chromebook", "Computador"].map((value) => ({
+        label: value,
+        value,
+        icon: "fa-laptop",
+      }));
+    return [];
+  }
+  // Quando a necessidade já diz o problema, os detalhes extras são opcionais.
+  const OPTIONAL_DETAILS = [
+    "IMP-002",
+    "IMP-004",
+    "IMP-005",
+    "IMP-006",
+    "IMP-007",
+    "IMP-008",
+    "IMP-009",
+    "IMP-010",
+    "GOO-011",
+    "TI-COMP-001",
+    "TI-COMP-002",
+    "TI-COMP-003",
+    "TI-COMP-004",
+    "TI-COMP-006",
+    "TI-COMP-007",
+    "TI-COMP-008",
+    "TI-NET-001",
+    "TI-NET-003",
+  ];
+  const detailsOptional = (item, intent = "") =>
+    OPTIONAL_DETAILS.includes(item.id) && intent !== "purchase";
   function description(item, intent = "") {
     if (intent === "purchase")
       return "Qual item você quer solicitar e para qual atividade? Conte o que ele precisa ter para te ajudar no trabalho.";
-    if (intent === "repair")
-      return "O que deixou de funcionar nesse equipamento? Me conte desde quando e o que acontece quando você tenta usar.";
+    if (detailsOptional(item, intent))
+      return "Quer acrescentar algum detalhe para a equipe? Por exemplo, desde quando acontece ou se já tentou algo. Se não tiver, toque em “Sem mais detalhes”.";
     if (item.id === "AV-007")
       return "Quer ajustar o relato? Conte o que acontece com o cabo HDMI e onde ele está conectado.";
-    if (item.id === "IMP-010")
-      return "Há algum detalhe sobre essa solicitação de toner ou tinta que a equipe precisa saber? Conte aqui.";
     if (item.need.includes("Reserva") || item.area === "Audiovisual")
-      return "Como você pretende usar os equipamentos? Conte o que a equipe precisa preparar para te atender.";
+      return "Como vai ser o uso? Conte o local, a atividade e para quantas pessoas, para a equipe preparar tudo.";
     if (item.area === "Impressora")
-      return "Me conta o que acontece quando você tenta usar a impressora. Desde quando está assim e como isso está afetando seu trabalho?";
+      return "Me conta o que você precisa com a impressora e onde ela fica.";
     if (item.area === "Google")
       return "O que você está tentando fazer e o que acontece nessa hora? Conte com suas palavras; não precisa usar termos técnicos.";
+    if (desk.requestPolicy.requestKind(item, intent) === "solicitação")
+      return "Conte o que você precisa e para quando, com os detalhes que ajudam a equipe a atender.";
     return "Agora, me conta um pouco mais: o que aconteceu ou o que você precisa? Se puder, diga desde quando e como isso afeta seu trabalho.";
   }
-  desk.conversationCopy = { opening, field, description };
+  // Texto montado quando a pessoa não quer acrescentar nada: necessidade + dados informados.
+  function autoDescription(item, answers) {
+    const parts = (item.fields || [])
+      .filter((f) => answers[f.id] && f.id !== "computador")
+      .map((f) => f.label + ": " + desk.chatFormat.formatValue(f, answers[f.id]));
+    return (item.need + (parts.length ? ". " + parts.join("; ") : "") + ".").replace(/\.\.$/, ".");
+  }
+  desk.conversationCopy = {
+    opening,
+    field,
+    description,
+    quickReplies,
+    detailsOptional,
+    autoDescription,
+  };
 })((window.SmartDesk = window.SmartDesk || {}));

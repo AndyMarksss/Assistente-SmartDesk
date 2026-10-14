@@ -96,3 +96,6 @@ Apps Script 0.10.0 publicado (versão 5) pelo clasp em 2026-10-14; publicar o Pa
 
 ## 0.10.1
 Caminho público conferido: IA, envio e painel pelo GitHub Pages. Chamado de teste #010 fica na planilha (pode ser cancelado pelo painel local, se quiser). Próxima evidência: EVID-191. Pendente: conferir em celular real.
+
+## 0.11.0
+Executar `removerChamadoDeTeste` no editor do Apps Script para apagar o chamado de teste (lista em NUMEROS). Conferir no celular real o arraste do painel (no toque, abre detalhes) e o combobox de setor. Validação com usuários continua pendente.

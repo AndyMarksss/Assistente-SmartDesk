@@ -41,7 +41,8 @@ const folder = (name) => {
   };
   return obj;
 };
-const sheet = {
+// Cada aba simulada tem suas próprias células; "Chamados" é a principal.
+const makeSheet = (cells) => ({
   getLastRow: () => cells.length,
   getRange: (row, col, height = 1, width = 1) => {
     const range = {
@@ -72,11 +73,18 @@ const sheet = {
   setColumnWidth: () => {},
   hideColumns: () => {},
   setRowHeight: () => {},
-};
+});
+const sheet = makeSheet(cells),
+  extraSheets = new Map();
 const book = {
   getId: () => "ficticio-sheet",
   getSheets: () => [sheet],
-  getSheetByName: () => sheet,
+  getSheetByName: (name) => (!name || name === "Chamados" ? sheet : extraSheets.get(name) || null),
+  insertSheet: (name) => {
+    const created = makeSheet([]);
+    extraSheets.set(name, created);
+    return created;
+  },
   getUrl: () => "https://docs.google.com/spreadsheets/d/ficticio",
 };
 const ctx = vm.createContext({

@@ -1,4 +1,4 @@
-# Estrutura do SmartDesk — 0.10.2
+# Estrutura do SmartDesk — 0.11.0
 
 ## Cliente
 Os scripts são carregados com defer na ordem declarada em index.html. Não há ferramenta de compilação: os arquivos continuam funcionando no servidor local e a apresentação estática no GitHub Pages.
@@ -56,3 +56,12 @@ Camadas de CSS: `atmosphere.css` carrega depois de `identity.css` e antes de `mo
 `chat-view` aceita `{ ai, thinking }` em `append` e oferece `dismiss` para remover o balão de espera, mesmo antes de ele entrar na tela. `form-controls.picker` monta a grade com busca. `attachments.configure` aplica limites menores informados por `/api/status`. Em `app.js`: `pickItem` centraliza a escolha de um caminho (manual, atalho ou sugestão), `suggestPaths` guarda a última sugestão para o Voltar não chamar a IA de novo, e `reviewWithAI` → `askFollowUp` → `offerTips` ficam entre a descrição e a autorização. Rótulos como COMPUTADOR são exibidos como "Computador", mas IDs e valores canônicos não mudam.
 
 Servidor: `ai-provider.generate` é o único ponto de chamada ao Gemini (esquema JSON in, objeto out). `ticket-validation.safeAssist` filtra a pergunta e as dicas e é reaproveitada no Apps Script pelo build. Apps Script: `portalAIJson_` aplica cota por sessão e diária antes de chamar a IA; `portalAnalyze_` restringe a resposta aos IDs do setor; `portalFile_` confere o início do arquivo conforme a extensão; o limitador de sessões usa uma chave por minuto.
+
+## Fluxos revisados 0.11.0
+`chat-format.js` concentra a formatação da conversa: rótulos legíveis, ícones, data curta com dia da semana, link pendente ("Envio depois") e `composeDescription`, que junta o relato às perguntas do assistente sem passar de 2.000 caracteres. `conversation-copy.quickReplies` define as respostas rápidas por campo e `autoDescription` monta a descrição quando ela é opcional. `form-controls` passou a ter `structured` (data/hora com botão visível e datas rápidas) e `comboBox` (setor com busca, teclado e leitores de tela).
+
+Em `app.js`, o caminho da IA é `askDescribe` → `suggestPaths` (/api/analyze) → `buildDraft` (/api/extract) → `showDraft`; a escolha confirmada passa por `selectItem`, que guarda os dados pré-preenchidos para `askField` pular. Depois da descrição: `reviewWithAI` (/api/assist) → `askCoherence` (se o relato não combina) → `askFollowUp` → `offerTips` → `resolvedBySelf` ou autorização/anexos/resumo. O `checkpoint` copia respostas, pré-preenchidos e perguntas da IA para o Voltar restaurar o estado exato.
+
+Servidor: `ticket-validation.safeExtract` aceita só valores no formato do campo (data futura, HH:MM, opção existente, URL) e nunca contatos, contas ou dados de alunos (`EXTRACT_SKIP`); a intenção defeito/item novo só vale em `asksEquipmentIntent`. `request-policy.requestKind` informa à IA se é problema, solicitação, dúvida ou outro. No Apps Script, `trackTicket` devolve só a situação do chamado e `autoatendimento_` grava na aba Autoatendimento (Data, Setor, Área, Necessidade, Resultado, Origem).
+
+Painel: `admin.js` desenha o skeleton antes da primeira resposta, usa Pointer Events para o arraste (cartão-fantasma, coluna destacada, rolagem automática), atualiza a etapa de forma otimista e desfaz com aviso se o servidor recusar.

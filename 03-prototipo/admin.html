@@ -98,6 +98,13 @@
               ><i class="fa-solid fa-network-wired"></i> Equipe conectada</span
             >
           </article>
+          <article class="selfhelp-card">
+            <h2><i class="fa-solid fa-wand-magic-sparkles"></i> Autoatendimento com IA</h2>
+            <p id="selfhelp-insight">Carregando registros de autoatendimento…</p>
+            <div class="selfhelp-track" aria-hidden="true">
+              <div id="selfhelp-bar" class="selfhelp-bar"></div>
+            </div>
+          </article>
         </section>
         <section class="board-shell">
           <header class="board-toolbar">
@@ -125,13 +132,14 @@
             </div>
           </header>
           <p class="board-hint">
-            Arraste entre colunas no computador ou altere a etapa nos detalhes. Deslize o quadro nas
-            telas menores.
+            <i class="fa-solid fa-hand-pointer" aria-hidden="true"></i> Arraste um cartão para outra
+            etapa ou toque nele para ver os detalhes e mudar a etapa.
           </p>
           <div id="kanban" class="kanban" aria-label="Kanban de chamados"></div>
         </section>
+        <div id="toast" class="toast" role="status" aria-live="polite"></div>
         <footer class="project-version" aria-label="Versão do projeto">
-          SmartDesk · v<span data-project-version>0.10.2</span>
+          SmartDesk · v<span data-project-version>0.11.0</span>
         </footer>
       </main>
     </div>

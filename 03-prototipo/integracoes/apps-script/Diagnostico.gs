@@ -109,3 +109,46 @@ function diagnosticarIA() {
   console.log("Resposta do Gemini: HTTP " + response.getResponseCode());
   console.log(response.getContentText().slice(0, 300));
 }
+
+/**
+ * Executar no editor (Executar → removerChamadoDeTeste). Tira chamados de teste da aba
+ * Chamados e manda as pastas de anexos deles para a lixeira do Drive (recuperável por 30 dias).
+ * A numeração segue do maior número existente, então os próximos chamados não repetem números.
+ * Edite NUMEROS antes de executar para remover outros chamados de teste.
+ */
+function removerChamadoDeTeste() {
+  var NUMEROS = ["#010"];
+  var props = PropertiesService.getScriptProperties();
+  var lock = LockService.getScriptLock();
+  lock.waitLock(25000);
+  try {
+    var sheet = SpreadsheetApp.openById(props.getProperty("SMARTDESK_SHEET_ID")).getSheetByName(
+      "Chamados",
+    );
+    var root = DriveApp.getFolderById(props.getProperty("SMARTDESK_FOLDER_ID"));
+    NUMEROS.forEach(function (numero) {
+      var rows =
+        sheet.getLastRow() > 1
+          ? sheet.getRange(2, 1, sheet.getLastRow() - 1, HEADERS.length).getValues()
+          : [];
+      var index = rows.findIndex(function (row) {
+        return String(row[0]) === numero;
+      });
+      if (index < 0) {
+        console.log(numero + ": não está na planilha. Nada foi alterado.");
+        return;
+      }
+      var folders = root.getFoldersByName(numero + "_" + String(rows[index][11])),
+        trashed = 0;
+      console.log(numero + ": removendo — " + rows[index][6]);
+      sheet.deleteRow(index + 2);
+      while (folders.hasNext()) {
+        folders.next().setTrashed(true);
+        trashed++;
+      }
+      console.log(numero + ": linha removida; pastas de anexos na lixeira: " + trashed + ".");
+    });
+  } finally {
+    lock.releaseLock();
+  }
+}

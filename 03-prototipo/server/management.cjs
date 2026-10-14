@@ -38,7 +38,16 @@ function createManagement({ root, json, storage = require("./google-storage.cjs"
       if (req.method === "GET" && url.pathname === "/api/admin/tickets") {
         if (!["demo", "google"].includes(mode)) throw new InvalidRequest("Modo inválido.");
         const tickets = mode === "demo" ? await demo() : (await cloud("listTickets")).tickets;
-        json(res, 200, { tickets, stages: STAGES, mode });
+        // Autoatendimento: quantas vezes as dicas da IA resolveram sem abrir chamado.
+        let selfHelp = { resolved: 3, continued: 7, simulation: true };
+        if (mode === "google")
+          try {
+            const stats = await cloud("selfHelpStats");
+            selfHelp = { resolved: stats.resolved || 0, continued: stats.continued || 0 };
+          } catch {
+            selfHelp = null;
+          }
+        json(res, 200, { tickets, stages: STAGES, mode, selfHelp });
         return true;
       }
       if (

@@ -90,8 +90,48 @@
   ];
   const selfHelpEligible = (item, intent = "") =>
     !!item && SELF_HELP.includes(item.id) && intent !== "purchase";
+  // Pedidos (reservas, instalações, acessos, criações) não são defeitos: a IA não deve
+  // perguntar "qual é o problema" nem sugerir consertos nesses caminhos.
+  const REQUESTS = [
+    "AV-001",
+    "AV-002",
+    "AV-003",
+    "AV-004",
+    "AV-005",
+    "AV-006",
+    "IMP-001",
+    "IMP-003",
+    "IMP-010",
+    "GOO-010",
+    "GOO-011",
+    "TI-002",
+    "TI-COMP-006",
+    "TI-NET-002",
+    "TI-INT-001",
+    "TI-INT-002",
+    "TI-INT-003",
+    "TI-MENT-001",
+    "TI-MENT-003",
+    "TI-MENT-004",
+    "TI-MENT-006",
+    "TI-MENT-007",
+    "TI-MENT-008",
+    "TI-QB-002",
+    "TI-CAM-001",
+  ];
+  const requestKind = (item, intent = "") =>
+    !item
+      ? "outro"
+      : item.id === "TI-001"
+        ? "dúvida"
+        : item.id === "TI-003"
+          ? "outro"
+          : intent === "purchase" || REQUESTS.includes(item.id)
+            ? "solicitação"
+            : "problema";
   desk.requestPolicy = {
     selfHelpEligible,
+    requestKind,
     dateValue,
     timeValue,
     localDay,

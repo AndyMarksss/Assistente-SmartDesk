@@ -20,3 +20,10 @@ O assunto não aparece na conversa ou no cartão de revisão; é enviado ao rece
 - Os dados enviados ao modelo são os mesmos do assunto: setor, área, necessidade, descrição e respostas de opções fechadas. Nome, e-mail, textos livres dos campos e anexos continuam fora.
 - Sem IA (chave ausente, falha ou cota atingida), o atendimento segue sem pergunta nem dicas, e o atalho de relato usa a base local. Nada é inventado no lugar da IA.
 - Saídas da IA são marcadas na conversa com o selo "IA" e entram na página por `textContent`.
+
+## Atualização 0.11.0
+
+- `POST /api/extract`: recebe setor, ID confirmado e relato. A IA recebe a data de hoje com o dia da semana e a lista de campos extraíveis (rótulo, tipo e opções) e devolve `campos` [{id, valor}] e `intencao`. O servidor descarta valores fora do formato (data passada ou inexistente, horário fora de HH:MM, opção inexistente, link inválido) e campos condicionais cuja condição não foi atendida. Nunca são extraídos computador, conta, e-mails, usuário, aluno, responsável ou contatos. A pessoa confirma tudo no cartão de rascunho.
+- `POST /api/assist`: passa a receber o tipo do pedido (problema, solicitação, dúvida, outro) e os rótulos já respondidos. Devolve `coerente`/`motivo` (alerta quando o relato não combina com o tipo), `pergunta` e `ajuda` (onde achar a resposta, até 180 caracteres) e `dicas` "para tentar antes de enviar o chamado". A instrução proíbe sair do escopo do pedido, repetir dados informados e dizer que a equipe já está a caminho.
+- As perguntas da IA e as respostas da pessoa entram ao fim da descrição, em bloco "Perguntas do assistente"; o relato original continua literal.
+- `POST /api/track` e `POST /api/selfhelp` não usam IA.

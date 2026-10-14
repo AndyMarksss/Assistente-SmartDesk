@@ -275,7 +275,8 @@ function validar_(t) {
       throw Error("Detalhes inválidos.");
     if (f.type === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value))
       throw Error("E-mail inválido.");
-    if (f.type === "url" && !/^https?:\/\/[^\s]+$/i.test(value)) throw Error("Link inválido.");
+    if (f.type === "url" && value !== "Ainda não informado" && !/^https?:\/\/[^\s]+$/i.test(value))
+      throw Error("Link inválido.");
     if (
       f.type === "date" &&
       (!/^\d{4}-\d{2}-\d{2}$/.test(value) ||

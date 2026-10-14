@@ -1,6 +1,6 @@
-> Atualização 0.10.0: aparência em vidro, IA que sugere caminhos, pergunta complementos e dá dicas, e limites na avaliação pública. Apps Script 0.10.0 publicado (versão 5 da implantação existente); [guia 0.10.0](integracoes/apps-script/ATUALIZAR-v0.10.0.md). Avaliação: basta abrir o GitHub Pages. Uso local: `npm start` e http://127.0.0.1:4173/.
+> Atualização 0.11.0: a IA monta o rascunho do chamado a partir do relato, acompanhamento de chamado por número e e-mail, painel com skeleton e kanban de arrastar e soltar, e revisão de todos os fluxos. Apps Script 0.11.0 publicado (versão 9 da implantação existente). Avaliação: basta abrir o GitHub Pages. Uso local: `npm start` e http://127.0.0.1:4173/.
 
-# SmartDesk — protótipo 0.10.0
+# SmartDesk — protótipo 0.11.0
 
 Chat guiado com poucas digitações, 25 setores, quatro áreas e 57 caminhos da Matriz Mestre. Identidade grafite/violeta, temas claro/escuro e Font Awesome local.
 
@@ -55,6 +55,17 @@ Cliente: http://127.0.0.1:4173/; painel: http://127.0.0.1:4173/admin.html. Usar 
 Para gestão real e gravação de e-mail, seguir integracoes/apps-script/ATUALIZAR-GESTAO.md, publicando Código.gs + Gestao.gs juntos. O novo servidor impede envio com e-mail para implantação anterior, evitando perda silenciosa do contato. Resposta ao cliente: proposta em estrategia-retorno-cliente.md.
 
 Indicador: verde após resposta válida do Gemini nos últimos dois minutos; vermelho quando ausente ou sem resposta recente. Chave configurada, sozinha, não comprova conexão.
+
+## Versão 0.11.0 — fluxos revisados
+
+- **Rascunho pela IA:** em "Descrever com minhas palavras", `POST /api/analyze` identifica o tipo e `POST /api/extract` preenche os dados que a pessoa já disse (data, horário, opções). O cartão de rascunho mostra o que foi entendido; só o que falta é perguntado.
+- **Pergunta e dicas:** `POST /api/assist` devolve no máximo uma pergunta (com dica de onde achar a resposta), um alerta quando o relato não combina com o tipo escolhido e, em defeitos, até três passos para tentar antes de enviar. Perguntas e respostas entram na descrição.
+- **Acompanhar um chamado:** `POST /api/track` com número e e-mail da abertura devolve só a etapa, área, necessidade e data.
+- **Autoatendimento:** `POST /api/selfhelp` registra, sem dados pessoais, se as dicas resolveram; o painel mostra o resultado.
+- **Painel:** skeleton, kanban com tags e cores por etapa, arrastar e soltar (mouse e caneta; no toque, o cartão abre os detalhes).
+- **Chamado de teste:** `removerChamadoDeTeste` (Diagnostico.gs) é executada pelo dono no editor do Apps Script.
+
+Verificação em `verificacao-v0.11.0.md`.
 
 ## Versão 0.10.0 — atmosfera, IA e fluxo
 
