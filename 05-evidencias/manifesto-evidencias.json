@@ -2,7 +2,7 @@
   "versao": 1,
   "projeto": "SmartDesk",
   "atualizado_em": "2026-10-14",
-  "proximo_numero": 189,
+  "proximo_numero": 191,
   "evidencias": [
     {
       "numero": "EVID-001",
@@ -2265,6 +2265,30 @@
       "origem": "Navegador integrado do Claude, servidor local 127.0.0.1:4173 com envio ao Google desativado",
       "sha256": "1E2B0DB228379668B5BF53491293EB90BBAC97E2DE14C7F17A0588A0132DC780",
       "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-189",
+      "arquivo": "EVID-189_pages-chamado-010-confirmado.jpg",
+      "etapa": "SmartDesk 0.10.1 — teste público de ponta a ponta",
+      "descricao": "No GitHub Pages (andymarksss.github.io), chamado fictício #010 confirmado com comprovante, após correção do recibo; a mensagem anterior mostra a falha de confirmação que motivou a 0.10.1. Teste autorizado pelo usuário; não é validação com usuário.",
+      "data_aproximada": "2026-10-14",
+      "fundamento_data": "Capturas do assistente nesta sessão, no navegador integrado",
+      "data_inclusao": "2026-10-14",
+      "origem": "Navegador integrado do Claude, GitHub Pages público com Apps Script real",
+      "sha256": "75356FBDA71E95F7CF06B8FC06DD6DE7E6BCDE5010DBAAC4496641C87886734B",
+      "status": "verificação técnica pública; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-190",
+      "arquivo": "EVID-190_pages-painel-chamado-010.jpg",
+      "etapa": "SmartDesk 0.10.1 — teste público de ponta a ponta",
+      "descricao": "Painel no GitHub Pages em Chamados desta avaliação após a correção da listagem: 1 chamado, 1 em atendimento e etapa salva no Google Planilhas. Chamado fictício de teste.",
+      "data_aproximada": "2026-10-14",
+      "fundamento_data": "Capturas do assistente nesta sessão, no navegador integrado",
+      "data_inclusao": "2026-10-14",
+      "origem": "Navegador integrado do Claude, GitHub Pages público com Apps Script real",
+      "sha256": "ECA88EF6ADB0A7A482FE699711B85B8DD337E1CEF1A3861D05B84BFDBBDC9012",
+      "status": "verificação técnica pública; não é validação com usuários"
     }
   ]
 }

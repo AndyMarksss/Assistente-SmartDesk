@@ -433,8 +433,10 @@ function smartdeskCall(session, route, body) {
           },
         }),
       );
-      if (listing)
+      if (listing) {
         response.tickets = response.tickets.filter((ticket) => owned.includes(ticket.requestId));
+        response.stages = PORTAL_STAGES; // o painel monta as colunas a partir desta lista
+      }
       return { status: 200, body: response };
     }
     if (
@@ -489,7 +491,18 @@ function smartdeskCall(session, route, body) {
       } finally {
         ownerLock.releaseLock();
       }
-      return { status: 201, body: receipt };
+      // Mesmo recibo do servidor local: o chat só confirma com status, ID e número válidos.
+      if (!/^#\d{3,}$/.test(receipt.number) || receipt.requestId !== ticket.requestId)
+        throw new InvalidRequest("Não foi possível confirmar o recebimento.", 502);
+      return {
+        status: 201,
+        body: {
+          status: "enviado",
+          number: receipt.number,
+          requestId: receipt.requestId,
+          attachmentCount: receipt.attachmentCount,
+        },
+      };
     }
     if (route === "/api/next-prompt") {
       var reply =

@@ -1314,6 +1314,9 @@
       )
         throw new Error("Não consegui confirmar o recebimento. Seus dados continuam aqui.");
       state.receipt = result;
+      try {
+        sessionStorage.setItem("smartdesk-sent", "1");
+      } catch {}
       stage("sent");
       const confirmation = message(
         "Chamado " + result.number + " enviado! Seus dados foram registrados com sucesso.",

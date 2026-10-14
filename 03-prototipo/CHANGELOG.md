@@ -213,3 +213,11 @@ Pedido direto do usuário: mais profundidade, efeitos, animações, hover, vidro
 - Verificação: dez suítes aprovadas, incluindo 223 verificações de integração. Fluxo conferido no navegador com o Gemini real e o envio ao Google desligado. Detalhes em verificacao-v0.10.0.md; evidências EVID-179 a EVID-188.
 - Pendente: aplicar Portal.gs e PortalShared.gs no Apps Script (guia ATUALIZAR-v0.10.0.md) antes de publicar no Pages; conferir em aparelho real.
 
+## 0.10.1 — 2026-10-14
+
+Teste de ponta a ponta no GitHub Pages, como o avaliador, revelou três falhas do caminho público que existiam desde a 0.9.x e nunca tinham sido conferidas:
+
+- IA: o Apps Script não tinha autorização para chamar serviços externos, então o Gemini sempre caía na alternativa local pelo Pages. Criada a função `diagnosticarIA` (Diagnostico.gs); executada e autorizada pelo dono no editor. Depois disso, sugestão de caminho, pergunta de complemento e dicas funcionaram pelo Pages.
+- Envio: o portal devolvia o recibo sem `status: "enviado"`, e o chat mostrava "envio não confirmado" mesmo com o chamado gravado. O portal agora devolve o mesmo recibo do servidor local (status, ID e número validados). Chamado fictício #010 confirmado na interface pública.
+- Painel: a listagem pública não trazia as etapas e o painel ficava em "Carregando chamados…". A listagem agora inclui as etapas e o painel tolera a ausência delas. Melhorias junto: depois de enviar, o painel abre em "Chamados desta avaliação"; a demonstração vazia cria as simulações sozinha; detalhes mostram o nome dos campos e o resumo usa singular/plural.
+- Publicação: Apps Script publicado pelo clasp (perfil `--user pessoal`) nas versões 5, 6 e 7 da mesma implantação; /exec inalterado.

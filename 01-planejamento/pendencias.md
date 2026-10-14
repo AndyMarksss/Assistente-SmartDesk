@@ -93,3 +93,6 @@ Frontend Pages sem senha. Aplicar Portal.gs, Pages.gs e PortalShared.gs e public
 
 ## 0.10.0 — atmosfera e IA
 Apps Script 0.10.0 publicado (versão 5) pelo clasp em 2026-10-14; publicar o Pages e conferir o fluxo completo pelo site público. Conferir no celular real o desempenho do desfoque, o seletor de setor e as dicas. Próxima evidência: EVID-189 (Pages 0.10.0 com dicas da IA e chamado fictício confirmado). Validação com usuários continua pendente.
+
+## 0.10.1
+Caminho público conferido: IA, envio e painel pelo GitHub Pages. Chamado de teste #010 fica na planilha (pode ser cancelado pelo painel local, se quiser). Próxima evidência: EVID-191. Pendente: conferir em celular real.

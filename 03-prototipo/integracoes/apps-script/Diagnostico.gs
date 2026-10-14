@@ -81,3 +81,31 @@ function diagnosticarSmartDesk_() {
     throw error;
   }
 }
+
+/**
+ * Executar no editor (Executar → diagnosticarIA). Confere se o script pode chamar o Gemini.
+ * Na primeira execução o Google pede para autorizar "conectar a um serviço externo":
+ * sem essa autorização o portal público não consegue usar a IA. Nunca mostra a chave.
+ */
+function diagnosticarIA() {
+  var props = PropertiesService.getScriptProperties();
+  var key = props.getProperty("GEMINI_API_KEY");
+  var model = props.getProperty("GEMINI_MODEL") || "gemini-3.5-flash-lite";
+  console.log("Chave do Gemini configurada: " + (key ? "sim" : "NÃO"));
+  console.log("Modelo: " + model);
+  if (!key) return;
+  var response = UrlFetchApp.fetch(
+    "https://generativelanguage.googleapis.com/v1beta/models/" + model + ":generateContent",
+    {
+      method: "post",
+      contentType: "application/json",
+      headers: { "x-goog-api-key": key },
+      muteHttpExceptions: true,
+      payload: JSON.stringify({
+        contents: [{ role: "user", parts: [{ text: "Responda só: ok" }] }],
+      }),
+    },
+  );
+  console.log("Resposta do Gemini: HTTP " + response.getResponseCode());
+  console.log(response.getContentText().slice(0, 300));
+}

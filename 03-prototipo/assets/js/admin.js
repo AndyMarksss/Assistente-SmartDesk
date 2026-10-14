@@ -7,7 +7,8 @@
     mode = "demo",
     current = null,
     busy = false,
-    loadId = 0;
+    loadId = 0,
+    autoSeeded = false;
   const el = (tag, text, cls) => {
     const n = document.createElement(tag);
     if (text !== undefined) n.textContent = text;
@@ -15,6 +16,14 @@
     return n;
   };
   const api = (route, body) => window.SmartDesk.api.request(route, { body, timeout: 60000 });
+  // Nome legível do campo da matriz (ex.: mensagem-do-visor → Mensagem do visor).
+  const fieldLabel = (key) =>
+    key === "computador"
+      ? "Quem utiliza o computador"
+      : window.SmartDesk.knowledgeBase?.items
+          .flatMap((item) => item.fields || [])
+          .find((field) => field.id === key)?.label || key;
+  const plural = (n, one, many) => n + " " + (n === 1 ? one : many);
   function render() {
     const total = tickets.length,
       closed = tickets.filter((t) => ["Finalizado", "Cancelado"].includes(t.status)).length;
@@ -23,7 +32,7 @@
     $("metric-active").textContent = tickets.filter((t) => t.status === "Em atendimento").length;
     $("metric-done").textContent = tickets.filter((t) => t.status === "Finalizado").length;
     $("queue-insight").textContent = total
-      ? `${total - closed} chamados seguem em andamento. ${tickets.filter((t) => t.status === "Aguardando terceiros").length} aguardam terceiros e ${tickets.filter((t) => t.status === "Agendado").length} estão agendados.`
+      ? `${plural(total - closed, "chamado segue", "chamados seguem")} em andamento. ${plural(tickets.filter((t) => t.status === "Aguardando terceiros").length, "aguarda", "aguardam")} terceiros e ${plural(tickets.filter((t) => t.status === "Agendado").length, "está agendado", "estão agendados")}.`
       : "Nenhum chamado nesta origem. Crie simulações ou carregue os dados do Google.";
     $("area-chart").replaceChildren();
     for (const area of ["Audiovisual", "Impressora", "Google", "TI"]) {
@@ -128,8 +137,14 @@
     try {
       const result = await api("/api/admin/tickets?mode=" + selected);
       if (id !== loadId) return;
-      tickets = result.tickets;
-      stages = result.stages;
+      tickets = Array.isArray(result.tickets) ? result.tickets : [];
+      stages = Array.isArray(result.stages) ? result.stages : [];
+      // Demonstração vazia ganha as simulações sozinha: o avaliador já vê o quadro preenchido.
+      if (selected === "demo" && !tickets.length && !autoSeeded) {
+        autoSeeded = true;
+        await api("/api/admin/seed", { mode: "demo" });
+        if (id === loadId) return load();
+      }
       render();
       $("sync-status").textContent =
         "Atualizado às " +
@@ -172,10 +187,7 @@
             ],
           ]
         : []),
-      ...Object.entries(t.answers || {}).map(([key, value]) => [
-        key === "computador" ? "Quem utiliza o computador" : key,
-        value,
-      ]),
+      ...Object.entries(t.answers || {}).map(([key, value]) => [fieldLabel(key), value]),
     ])
       $("detail-data").append(el("dt", label), el("dd", value));
     $("detail-files").replaceChildren();
@@ -257,7 +269,12 @@
   for (const id of ["search", "area-filter", "sector-filter"])
     $(id).addEventListener("input", () => renderBoard(false));
   $("data-mode").addEventListener("change", () => {
-    mode = $("data-mode").value;
+    showMode($("data-mode").value);
+    load();
+  });
+  function showMode(value) {
+    mode = value;
+    $("data-mode").value = value;
     $("seed").hidden = mode !== "demo";
     $("source-note").textContent =
       mode === "demo"
@@ -265,8 +282,7 @@
         : window.smartdeskRemote
           ? "Somente chamados enviados nesta sessão de avaliação."
           : "Leitura e atualização da planilha conectada ao SmartDesk.";
-    load();
-  });
+  }
   $("seed").addEventListener("click", async () => {
     $("seed").disabled = true;
     try {
@@ -278,5 +294,9 @@
       $("seed").disabled = false;
     }
   });
+  // Quem acabou de enviar um chamado nesta aba abre o painel direto nele.
+  try {
+    if (sessionStorage.getItem("smartdesk-sent")) showMode("google");
+  } catch {}
   load();
 })();

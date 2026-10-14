@@ -398,3 +398,11 @@ Capturas do assistente durante a verificação técnica local, com dados fictíc
 - EVID-188: [gestao-vidro-escuro](EVID-188_gestao-vidro-escuro.jpg) — Painel de gestão no tema escuro com superfícies de vidro e 12 simulações locais. Dados de demonstração, não chamados reais.
 
 Próxima evidência: EVID-189. Sugestão: abertura do Pages 0.10.0 após atualizar o Apps Script, com dicas da IA e um chamado fictício confirmado.
+
+## 2026-10-14 — SmartDesk 0.10.1: teste público de ponta a ponta
+
+- EVID-189: [pages-chamado-010-confirmado](EVID-189_pages-chamado-010-confirmado.jpg) — No GitHub Pages (andymarksss.github.io), chamado fictício #010 confirmado com comprovante, após correção do recibo; a mensagem anterior mostra a falha de confirmação que motivou a 0.10.1. Teste autorizado pelo usuário; não é validação com usuário.
+
+- EVID-190: [pages-painel-chamado-010](EVID-190_pages-painel-chamado-010.jpg) — Painel no GitHub Pages em Chamados desta avaliação após a correção da listagem: 1 chamado, 1 em atendimento e etapa salva no Google Planilhas. Chamado fictício de teste.
+
+Próxima evidência: EVID-191.

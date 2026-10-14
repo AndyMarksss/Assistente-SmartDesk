@@ -161,6 +161,9 @@ failAI = false;
 const receipt = call("/api/tickets", body);
 assert.equal(receipt.status, 201);
 assert.equal(receipt.body.number, "#006");
+// O recibo do portal precisa seguir o contrato do chat: status, mesmo ID e número.
+assert.equal(receipt.body.status, "enviado");
+assert.equal(receipt.body.requestId, body.requestId);
 assert.equal(call("/api/tickets", body).body.number, "#006");
 assert.equal(call("/api/tickets", { ...body, name: "Pessoa" }).status, 400);
 assert.equal(call("/api/tickets", { ...body, email: "invalid" }).status, 400);
@@ -202,6 +205,8 @@ assert.equal(
   403,
 );
 assert.equal(call("/api/admin/tickets?mode=google").body.tickets.length, 1);
+// A listagem pública traz as etapas: sem elas o painel não monta as colunas.
+assert.equal(call("/api/admin/tickets?mode=google").body.stages.length, 7);
 // 0.10: revisão da IA, sugestão de caminho, cotas e conferência do conteúdo dos anexos.
 const jam = desk.knowledgeBase.items.find((i) => i.id === "IMP-008");
 const jamBody = {
