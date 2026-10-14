@@ -221,3 +221,7 @@ Teste de ponta a ponta no GitHub Pages, como o avaliador, revelou três falhas d
 - Envio: o portal devolvia o recibo sem `status: "enviado"`, e o chat mostrava "envio não confirmado" mesmo com o chamado gravado. O portal agora devolve o mesmo recibo do servidor local (status, ID e número validados). Chamado fictício #010 confirmado na interface pública.
 - Painel: a listagem pública não trazia as etapas e o painel ficava em "Carregando chamados…". A listagem agora inclui as etapas e o painel tolera a ausência delas. Melhorias junto: depois de enviar, o painel abre em "Chamados desta avaliação"; a demonstração vazia cria as simulações sozinha; detalhes mostram o nome dos campos e o resumo usa singular/plural.
 - Publicação: Apps Script publicado pelo clasp (perfil `--user pessoal`) nas versões 5, 6 e 7 da mesma implantação; /exec inalterado.
+
+## 0.10.2 — 2026-10-14
+
+O build do Pages acrescenta `?v=<versão>` aos CSS e JS próprios. O Pages guarda arquivos por cerca de 10 minutos; sem isso, quem já tinha aberto o site recebia HTML novo com JS antigo (visto no teste: o painel novo rodou com o admin.js anterior). Apps Script republicado só para alinhar a versão (implantação versão 8).

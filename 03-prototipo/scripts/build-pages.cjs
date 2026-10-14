@@ -51,6 +51,13 @@ function build(destination, address = "") {
         "Abra o SmartDesk pelo servidor local para usar a IA e enviar chamados.",
         "Conectando às integrações Google…",
       );
+    // O Pages guarda arquivos por alguns minutos: a versão no endereço evita misturar
+    // HTML novo com CSS/JS antigos para quem já abriu o site antes.
+    const version = encodeURIComponent(require("../package.json").version);
+    html = html.replace(
+      /((?:src|href)=")((?:assets\/(?:css|js)\/[\w.-]+\.(?:css|js))|smartdesk-config\.js)"/g,
+      "$1$2?v=" + version + '"',
+    );
     fs.writeFileSync(path.join(destination, page), html);
   }
   fs.writeFileSync(path.join(destination, ".nojekyll"), "");
