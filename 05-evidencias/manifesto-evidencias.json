@@ -2409,6 +2409,30 @@
       "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com Gemini real e envio ao Google desativado",
       "sha256": "BC6B84BAC147B5DDDFB92DA75509FF3A0151BCCB0369DDEEEC0AD27C69B30969",
       "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-201",
+      "arquivo": "EVID-201_robo-olhar-cursor.png",
+      "etapa": "SmartDesk 0.11.1 — olhar do robô e luz do chat",
+      "descricao": "Robô da abertura olhando para o cursor à esquerda, à direita, acima e abaixo (recortes de quatro capturas, 1440×900). A piscada continua independente.",
+      "data_aproximada": "2026-10-14",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-14",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173",
+      "sha256": "B0FF558A5D6A600AF25A515B613A490ABBC0AAFC3FE207FD4591859A5F1CA00C",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-202",
+      "arquivo": "EVID-202_luz-chat-inteiro.jpg",
+      "etapa": "SmartDesk 0.11.1 — olhar do robô e luz do chat",
+      "descricao": "Luz do cursor cobrindo o chat inteiro, com cor de teste vermelha: cursor na área de resposta ilumina a faixa de resposta e a conversa; antes a camada tinha 380 px e ficava atrás das faixas. A mancha no alto à direita é o brilho fixo, também em cor de teste.",
+      "data_aproximada": "2026-10-14",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-14",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173",
+      "sha256": "EEC6928F1775895A465B4A7A4C9D3EDF16E0EBBEBEA5F0D9F1BB237F242A57C8",
+      "status": "verificação técnica; não é validação com usuários"
     }
   ]
 }

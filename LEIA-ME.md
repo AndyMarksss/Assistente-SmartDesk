@@ -64,3 +64,6 @@ Visual em vidro com aurora, luz sob o cursor e animações; IA sugere caminhos a
 
 ## 0.11.0 — fluxos revisados
 A IA monta o rascunho do chamado a partir do relato e só pergunta o que falta; perguntas da IA entram na descrição; dicas aparecem antes do envio, com "Resolveu!" registrado sem dados pessoais. Acompanhamento de chamado por número e e-mail. Painel com skeleton, kanban colorido com tags e arrastar e soltar, e estatística de autoatendimento. Robô animado, setor com busca, calendário/relógio visíveis. Apps Script 0.11.0 publicado (versão 10). Verificação em 03-prototipo/verificacao-v0.11.0.md.
+
+## 0.11.1
+Robô da abertura acompanha o cursor com os olhos; a luz do cursor passou a cobrir o chat inteiro. Verificação em 03-prototipo/verificacao-v0.11.1.md.

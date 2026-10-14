@@ -430,3 +430,11 @@ Próxima evidência: EVID-191.
 - EVID-200: [setor-com-busca](EVID-200_setor-com-busca.jpg) — Setor em lista com busca (combobox) no lugar da grade de botões, em 390×844 emulado.
 
 Próxima evidência: EVID-201.
+
+## 2026-10-14 — SmartDesk 0.11.1: olhar do robô e luz do chat
+
+- EVID-201: [robo-olhar-cursor](EVID-201_robo-olhar-cursor.png) — Robô da abertura olhando para o cursor à esquerda, à direita, acima e abaixo (recortes de quatro capturas, 1440×900). A piscada continua independente.
+
+- EVID-202: [luz-chat-inteiro](EVID-202_luz-chat-inteiro.jpg) — Luz do cursor cobrindo o chat inteiro, com cor de teste vermelha: cursor na área de resposta ilumina a faixa de resposta e a conversa; antes a camada tinha 380 px e ficava atrás das faixas. A mancha no alto à direita é o brilho fixo, também em cor de teste.
+
+Próxima evidência: EVID-203.

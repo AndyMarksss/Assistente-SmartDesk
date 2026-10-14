@@ -1,0 +1,89 @@
+const fs = require("node:fs"),
+  path = require("node:path"),
+  vm = require("node:vm"),
+  assert = require("node:assert/strict");
+const proto = path.resolve(__dirname, "../..");
+const ctx = vm.createContext({ window: {} });
+for (const f of ["knowledge-base", "classifier", "flows"])
+  vm.runInContext(fs.readFileSync(path.join(proto, "assets/js", f + ".js"), "utf8"), ctx);
+const item = ctx.window.SmartDesk.knowledgeBase.items.find((i) =>
+  i.need.includes("Troca de Mouse"),
+);
+let saved;
+const server = require(path.join(proto, "server/server.cjs")).createServer(
+  { ready: () => false },
+  {
+    googleStorage: {
+      ready: () => true,
+      submit: async (ticket) => {
+        saved = ticket;
+        return { number: "#001" };
+      },
+    },
+  },
+);
+(async () => {
+  await new Promise((r) => server.listen(0, "127.0.0.1", r));
+  try {
+    const body = {
+      requestId: require("node:crypto").randomUUID(),
+      sector: "TI",
+      selectionId: item.id,
+      name: "Pessoa Fictícia",
+      email: "test@example.com",
+      subject: "Mouse",
+      description: "Trocar mouse",
+      equipmentIntent: "purchase",
+      answers: { computador: "Pessoa Fictícia" },
+      attachments: [],
+    };
+    const post = async (b) =>
+      fetch("http://127.0.0.1:" + server.address().port + "/api/tickets", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(b),
+      });
+    assert.equal((await post(body)).status, 400);
+    assert.equal(
+      (await post({ ...body, authorization: { status: "reported", by: "Ana" } })).status,
+      400,
+    );
+    assert.equal(
+      (await post({ ...body, authorization: { status: "pending", by: "" } })).status,
+      201,
+    );
+    assert.equal(saved.authorization.status, "pending");
+    assert.equal(
+      (await post({ ...body, name: "Andy", authorization: { status: "pending", by: "" } })).status,
+      400,
+    );
+    assert.equal(
+      (await post({ ...body, equipmentIntent: "repair", authorization: null })).status,
+      201,
+    );
+    assert.equal(saved.authorization, null);
+    assert.equal(
+      (
+        await post({
+          ...body,
+          selectionId: "AV-007",
+          sector: "Inspetoria",
+          description: "O cabo HDMI não dá imagem.",
+          answers: { "descricao-do-problema": "O cabo HDMI não dá imagem." },
+          equipmentIntent: "",
+          authorization: null,
+        })
+      ).status,
+      201,
+    );
+    assert.equal(saved.authorization, null);
+    console.log(
+      "Servidor HTTP bloqueia troca sem declaração, liderança incompleta e nome único; autorização pendente preservada. Nenhuma escrita real no Google.",
+    );
+  } finally {
+    server.close();
+  }
+})().catch((e) => {
+  console.error(e);
+  process.exitCode = 1;
+});

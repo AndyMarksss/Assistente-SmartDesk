@@ -239,3 +239,11 @@ Revisão pedida pelo usuário depois de testar a 0.10.x: robô parado, painel se
 - **Painel:** skeleton durante o carregamento; texto de busca legível; kanban com cor por etapa, tags nos cartões (área, data, anexos, autorização pendente, simulação), arrastar e soltar com cartão-fantasma, coluna de destino destacada, aviso de confirmação e desfazer em caso de erro; sem rolagem lateral (7 colunas numa linha a partir de 1280 px, quebram abaixo disso). Novo cartão "IA no autoatendimento" (resolvidos pelas dicas × seguiram para o chamado).
 - **Apps Script:** rotas de rascunho, acompanhamento (10 por sessão) e autoatendimento (20 por sessão); `trackTicket`, `selfHelp` e `selfHelpStats` em Gestao.gs; link "Ainda não informado" aceito; `removerChamadoDeTeste` em Diagnostico.gs para o dono apagar o chamado de teste #010. Publicado pelo clasp nas versões 9 e 10 da mesma implantação.
 - Verificação: dez suítes aprovadas; fluxos conferidos com o Gemini real e o envio ao Google desligado. Detalhes em verificacao-v0.11.0.md.
+
+## 0.11.1 — 2026-10-14
+
+Pedido do usuário: o robô deve olhar para o cursor, e o efeito de luz do fundo do chat deve acontecer no chat inteiro, não só em uma parte.
+
+- **Olhar do robô:** os olhos (grupo `.robot-gaze`) se deslocam na direção do cursor em qualquer ponto da página, até 8 × 7 unidades do desenho, com a boca acompanhando pela metade; a piscada continua em cada olho. Quando o cursor sai da janela, o robô volta a olhar para frente. Só com mouse; com movimento reduzido, os olhos ficam parados.
+- **Luz do cursor:** a camada herdava de `visual-depth.css` 380×380 px no canto superior esquerdo e um desfoque de 65 px, e ficava atrás do cabeçalho, das etapas e da área de resposta — por isso o efeito só aparecia num pedaço. Agora ocupa o chat inteiro, por cima das faixas (mistura `screen` no escuro e `multiply` no claro), acende quando o cursor entra no chat e apaga quando sai. O brilho fixo do alto passou para o fundo do próprio chat. Desligada em cores forçadas.
+- Apps Script republicado só para alinhar a versão (implantação versão 11). Verificação em verificacao-v0.11.1.md.

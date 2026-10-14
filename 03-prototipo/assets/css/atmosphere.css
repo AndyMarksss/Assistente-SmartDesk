@@ -112,28 +112,44 @@
   overflow: hidden;
 }
 
-/* Conversa: vidro principal com luz que segue o cursor. */
+/* Conversa: vidro principal com um brilho fixo no alto e luz que segue o cursor. */
 :root[data-theme] .chat-shell {
   position: relative;
-  background: color-mix(in srgb, var(--canvas) 72%, transparent);
+  background:
+    radial-gradient(520px circle at 72% -12%, var(--spot), transparent 62%),
+    color-mix(in srgb, var(--canvas) 72%, transparent);
   backdrop-filter: blur(30px) saturate(155%);
   -webkit-backdrop-filter: blur(30px) saturate(155%);
   border: 1px solid var(--edge);
   box-shadow: var(--depth-3), var(--highlight);
 }
+/* A luz do cursor cobre o chat inteiro (cabeçalho, etapas, conversa e respostas). Antes ela
+   herdava 380×380 px e desfoque de visual-depth.css e ficava atrás dessas faixas, então só
+   aparecia num pedaço do fundo. */
 :root[data-theme] .chat-shell::after {
   display: block;
   content: "";
   position: absolute;
   inset: 0;
-  z-index: 0;
+  width: auto;
+  height: auto;
+  filter: none;
+  z-index: 2;
   pointer-events: none;
   border-radius: inherit;
+  opacity: 0;
+  mix-blend-mode: multiply;
   background: radial-gradient(
     520px circle at var(--sx, 72%) var(--sy, -12%),
     var(--spot),
     transparent 62%
   );
+}
+:root[data-theme="dark"] .chat-shell::after {
+  mix-blend-mode: screen;
+}
+:root[data-theme] .chat-shell.is-lit::after {
+  opacity: 1;
 }
 :root[data-theme] .chat-header {
   background: color-mix(in srgb, var(--chrome) 62%, transparent);
@@ -897,6 +913,9 @@
   }
 }
 @media (forced-colors: active) {
+  :root[data-theme] .chat-shell::after {
+    display: none;
+  }
   .receipt-number,
   :root[data-theme] .welcome h2 span {
     color: CanvasText;
@@ -916,6 +935,14 @@
 .robot-core {
   transform-box: fill-box;
   transform-origin: center;
+}
+/* Olhar: o grupo dos olhos se desloca na direção do cursor (até 8 × 7 unidades do desenho);
+   a piscada continua em cada olho, então as duas coisas não brigam pelo mesmo transform. */
+.robot-gaze {
+  transform: translate(var(--gaze-x, 0px), var(--gaze-y, 0px));
+}
+.robot-gaze.mouth {
+  transform: translate(calc(var(--gaze-x, 0px) * 0.45), calc(var(--gaze-y, 0px) * 0.45));
 }
 .robot-ear.left {
   transform-origin: right center;

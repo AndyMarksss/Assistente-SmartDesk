@@ -44,6 +44,13 @@
   .robot-eye {
     animation: robot-blink 5200ms ease-in-out infinite;
   }
+  /* Os olhos alcançam o cursor com um pequeno atraso, como um olhar de verdade. */
+  .robot-gaze {
+    transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  :root[data-theme] .chat-shell::after {
+    transition: opacity 320ms ease;
+  }
   .robot-light {
     animation: robot-glow 2400ms ease-in-out infinite;
   }

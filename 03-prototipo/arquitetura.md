@@ -1,4 +1,4 @@
-# Estrutura do SmartDesk — 0.11.0
+# Estrutura do SmartDesk — 0.11.1
 
 ## Cliente
 Os scripts são carregados com defer na ordem declarada em index.html. Não há ferramenta de compilação: os arquivos continuam funcionando no servidor local e a apresentação estática no GitHub Pages.
@@ -65,3 +65,6 @@ Em `app.js`, o caminho da IA é `askDescribe` → `suggestPaths` (/api/analyze) 
 Servidor: `ticket-validation.safeExtract` aceita só valores no formato do campo (data futura, HH:MM, opção existente, URL) e nunca contatos, contas ou dados de alunos (`EXTRACT_SKIP`); a intenção defeito/item novo só vale em `asksEquipmentIntent`. `request-policy.requestKind` informa à IA se é problema, solicitação, dúvida ou outro. No Apps Script, `trackTicket` devolve só a situação do chamado e `autoatendimento_` grava na aba Autoatendimento (Data, Setor, Área, Necessidade, Resultado, Origem).
 
 Painel: `admin.js` desenha o skeleton antes da primeira resposta, usa Pointer Events para o arraste (cartão-fantasma, coluna destacada, rolagem automática), atualiza a etapa de forma otimista e desfaz com aviso se o servidor recusar.
+
+## Olhar e luz 0.11.1
+`atmosphere.js` calcula o olhar do robô (`look`) no mesmo quadro da luz: direção do cursor a partir do centro do rosto, limitada por `reach` (alcance total a 240 px), gravada em `--gaze-x/--gaze-y` no SVG; o CSS aplica em `.robot-gaze` (olhos) e `.robot-gaze.mouth` (45%). A luz do chat é `.chat-shell::after` acima das faixas (`z-index: 2`), com `width/height: auto` e `filter: none` para anular as regras antigas de `visual-depth.css`; a classe `is-lit` controla a opacidade e a transição fica em `motion.css`.

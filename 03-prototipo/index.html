@@ -260,31 +260,35 @@
                       stroke-linecap="round"
                     />
                     <rect x="48" y="57" width="85" height="64" rx="20" fill="url(#robot-face)" />
-                    <rect
-                      class="robot-eye"
-                      x="62"
-                      y="72"
-                      width="11"
-                      height="20"
-                      rx="5.5"
-                      fill="#DFD4FF"
-                    />
-                    <rect
-                      class="robot-eye"
-                      x="107"
-                      y="72"
-                      width="11"
-                      height="20"
-                      rx="5.5"
-                      fill="#DFD4FF"
-                    />
-                    <path
-                      class="robot-mouth"
-                      d="M78 102C85 109 95 109 102 102"
-                      stroke="#C2A5FF"
-                      stroke-width="4"
-                      stroke-linecap="round"
-                    />
+                    <g class="robot-gaze">
+                      <rect
+                        class="robot-eye"
+                        x="62"
+                        y="72"
+                        width="11"
+                        height="20"
+                        rx="5.5"
+                        fill="#DFD4FF"
+                      />
+                      <rect
+                        class="robot-eye"
+                        x="107"
+                        y="72"
+                        width="11"
+                        height="20"
+                        rx="5.5"
+                        fill="#DFD4FF"
+                      />
+                    </g>
+                    <g class="robot-gaze mouth">
+                      <path
+                        class="robot-mouth"
+                        d="M78 102C85 109 95 109 102 102"
+                        stroke="#C2A5FF"
+                        stroke-width="4"
+                        stroke-linecap="round"
+                      />
+                    </g>
                     <circle cx="90" cy="131" r="3" fill="#654199" />
                   </g>
                 </svg>
@@ -362,7 +366,7 @@
             Abra o SmartDesk pelo servidor local para usar a IA e enviar chamados.
           </p>
           <footer class="project-version" aria-label="Versão do projeto">
-            SmartDesk · v<span data-project-version>0.11.0</span>
+            SmartDesk · v<span data-project-version>0.11.1</span>
           </footer>
         </section>
       </main>

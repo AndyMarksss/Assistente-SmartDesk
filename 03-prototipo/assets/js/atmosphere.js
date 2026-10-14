@@ -1,5 +1,5 @@
 "use strict";
-// Decorative light that follows the cursor, a gentle 3D tilt and a press ripple.
+// Decorative light that follows the cursor, the robot's gaze, a gentle 3D tilt and a press ripple.
 // Mouse only; nothing here changes content, focus or the conversation state.
 (function () {
   const fine = matchMedia("(hover: hover) and (pointer: fine)"),
@@ -14,6 +14,23 @@
     element.style.setProperty(y, Math.round(event.clientY - box.top) + "px");
     return box;
   }
+  // O robô da abertura olha para o cursor em qualquer ponto da página.
+  function look(event) {
+    const robot = document.querySelector(".desk-mascot .robot");
+    if (!robot || !robot.getClientRects().length) return;
+    if (still.matches) return center(robot);
+    const box = robot.getBoundingClientRect(),
+      dx = event.clientX - (box.left + box.width / 2),
+      dy = event.clientY - (box.top + box.height * 0.46),
+      distance = Math.hypot(dx, dy) || 1,
+      reach = Math.min(distance / 240, 1);
+    robot.style.setProperty("--gaze-x", ((dx / distance) * reach * 8).toFixed(2) + "px");
+    robot.style.setProperty("--gaze-y", ((dy / distance) * reach * 7).toFixed(2) + "px");
+  }
+  function center(robot) {
+    robot.style.setProperty("--gaze-x", "0px");
+    robot.style.setProperty("--gaze-y", "0px");
+  }
   function paint() {
     frame = 0;
     const event = last;
@@ -21,7 +38,17 @@
     const lit = event.target.closest?.(LIT);
     if (lit) relative(lit, event, "--mx", "--my");
     const shell = document.querySelector(".chat-shell");
-    if (shell) relative(shell, event, "--sx", "--sy");
+    if (shell) {
+      const box = relative(shell, event, "--sx", "--sy");
+      shell.classList.toggle(
+        "is-lit",
+        event.clientX >= box.left &&
+          event.clientX <= box.right &&
+          event.clientY >= box.top &&
+          event.clientY <= box.bottom,
+      );
+    }
+    look(event);
     const scene = document.querySelector(".support-scene");
     if (!scene || still.matches || !scene.offsetParent) return;
     const box = scene.getBoundingClientRect(),
@@ -44,6 +71,13 @@
     },
     { passive: true },
   );
+  // Cursor saiu da janela: a luz apaga e o robô volta a olhar para frente.
+  document.addEventListener("mouseout", (event) => {
+    if (event.relatedTarget) return;
+    document.querySelector(".chat-shell")?.classList.remove("is-lit");
+    const robot = document.querySelector(".desk-mascot .robot");
+    if (robot) center(robot);
+  });
   document.addEventListener(
     "pointerdown",
     (event) => {
