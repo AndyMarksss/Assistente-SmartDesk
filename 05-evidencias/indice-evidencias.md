@@ -453,4 +453,6 @@ Próxima evidência: EVID-205.
 
 - EVID-206: [sem-ia-opcoes](EVID-206_sem-ia-opcoes.jpg) — Sem IA (cota do Gemini esgotada), o relato livre vira opções: aviso de IA indisponível, sugestão da base local e Escolher pelas opções, em vez de um rascunho incerto. Relato fictício.
 
-Próxima evidência: EVID-207.
+- EVID-207: [pages-rascunho-quickbooks](EVID-207_pages-rascunho-quickbooks.jpg) — No GitHub Pages 0.11.3, a instrução nova identificou "o programa da contabilidade não abre o arquivo da empresa" (Financeiro) como TI › QuickBooks › Erro no sistema, com Programas como alternativa. O indicador mostra IA indisponível porque a chamada seguinte (extração) não respondeu naquele momento. Relato fictício, nada enviado.
+
+Próxima evidência: EVID-208.

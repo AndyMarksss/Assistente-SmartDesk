@@ -2481,6 +2481,18 @@
       "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com a IA indisponível",
       "sha256": "D60DFE5B91C51B9166A115BA7EEB0B0A53F79DCB6D7AB02D7CF4AA6DEECC7832",
       "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-207",
+      "arquivo": "EVID-207_pages-rascunho-quickbooks.jpg",
+      "etapa": "SmartDesk 0.11.3 — avaliação técnica da IA",
+      "descricao": "No GitHub Pages 0.11.3, a instrução nova identificou \"o programa da contabilidade não abre o arquivo da empresa\" (Financeiro) como TI › QuickBooks › Erro no sistema, com Programas como alternativa. O indicador mostra IA indisponível porque a chamada seguinte (extração) não respondeu naquele momento. Relato fictício, nada enviado.",
+      "data_aproximada": "2026-10-14",
+      "fundamento_data": "Captura do assistente nesta sessão",
+      "data_inclusao": "2026-10-14",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), GitHub Pages público com Apps Script real",
+      "sha256": "FB58FA9C1789C8297363026513E647316EE1B29D3FC464DFD9133BCC1DEB8DF8",
+      "status": "verificação técnica pública; não é validação com usuários"
     }
   ]
 }

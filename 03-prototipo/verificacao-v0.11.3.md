@@ -14,4 +14,10 @@ Detalhes, tabelas e lista de erros em `04-validacao/avaliacao-ia/relatorio-avali
 
 Com a cota esgotada (IA indisponível de verdade), no servidor local: "Preciso instalar o QuickBooks no computador novo do financeiro" (Financeiro) → mensagem de IA indisponível, opções "TI › QuickBooks › Erro no sistema" e "Escolher pelas opções"; escolhida a primeira, os campos foram perguntados, a descrição não foi pedida de novo e o resumo trouxe o relato como descrição. Antes, no Pages, o mesmo cenário montava um rascunho de "Google › Drive" para "o programa da contabilidade não abre o arquivo da empresa".
 
-Evidências EVID-205 e EVID-206.
+## Pages publicado (Apps Script versão 13)
+
+- Saúde: `"version":"0.11.3"`; Pages servindo `app.js?v=0.11.3`.
+- "O programa da contabilidade não abre o arquivo da empresa" (Financeiro): rascunho da IA com TI › QuickBooks › Erro no sistema e a alternativa Computador › Programas. A IA do site público seguiu ativa depois de a cota da chave local esgotar, então usa outra chave.
+- Em uma tentativa a IA do Apps Script não respondeu e o chat mostrou o aviso de IA indisponível com as opções, como no teste local.
+
+Evidências EVID-205 a EVID-207.
