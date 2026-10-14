@@ -90,3 +90,6 @@ Aplicar cinco scripts atualizados/criados, conferir propriedades/manifesto e atu
 
 ## 0.9.2 — acesso direto
 Frontend Pages sem senha. Aplicar Portal.gs, Pages.gs e PortalShared.gs e publicar nova versão Google. Testar envio fictício e isolamento do painel. Guia em 03-prototipo/integracoes/apps-script/AVALIAR-SEM-SENHA-v0.9.2.md.
+
+## 0.10.0 — atmosfera e IA
+Apps Script 0.10.0 publicado (versão 5) pelo clasp em 2026-10-14; publicar o Pages e conferir o fluxo completo pelo site público. Conferir no celular real o desempenho do desfoque, o seletor de setor e as dicas. Próxima evidência: EVID-189 (Pages 0.10.0 com dicas da IA e chamado fictício confirmado). Validação com usuários continua pendente.

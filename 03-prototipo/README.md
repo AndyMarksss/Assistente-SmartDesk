@@ -1,6 +1,6 @@
-> Atualização: avaliação sem senha; seguir [guia 0.9.2](integracoes/apps-script/AVALIAR-SEM-SENHA-v0.9.2.md). A gestão pública mostra apenas chamados da própria sessão.
+> Atualização 0.10.0: aparência em vidro, IA que sugere caminhos, pergunta complementos e dá dicas, e limites na avaliação pública. Apps Script 0.10.0 publicado (versão 5 da implantação existente); [guia 0.10.0](integracoes/apps-script/ATUALIZAR-v0.10.0.md). Avaliação: basta abrir o GitHub Pages. Uso local: `npm start` e http://127.0.0.1:4173/.
 
-# SmartDesk — protótipo 0.9.2
+# SmartDesk — protótipo 0.10.0
 
 Chat guiado com poucas digitações, 25 setores, quatro áreas e 57 caminhos da Matriz Mestre. Identidade grafite/violeta, temas claro/escuro e Font Awesome local.
 
@@ -14,7 +14,7 @@ Use Node.js 22 ou superior. Dentro de 03-prototipo, execute `node server/server.
 
 ## Fluxo atual
 
-Iniciar → nome → e-mail institucional → setor por seleção → área → necessidade → dados necessários → descrição → anexos opcionais → revisão → Enviar chamado → confirmação numerada → Novo atendimento.
+Iniciar (ou "Continuar como…" se os dados foram lembrados neste dispositivo) → nome → e-mail institucional → setor (busca em grade) → área, atalho ou "Descrever com minhas palavras" → necessidade → dados necessários → descrição → pergunta de complemento da IA (opcional) → dicas da IA nos defeitos (opcional, com "Resolveu!") → anexos opcionais → revisão → Enviar chamado → comprovante numerado → Novo atendimento.
 
 Nome destacado no cumprimento. Mensagens uma por vez, com digitação e animação suave; preferência de movimento reduzido respeitada. Campo de texto pausado nas escolhas. **Voltar uma etapa**, acima dos controles, restaura o passo anterior; corrigir área não repete setor.
 
@@ -55,3 +55,12 @@ Cliente: http://127.0.0.1:4173/; painel: http://127.0.0.1:4173/admin.html. Usar 
 Para gestão real e gravação de e-mail, seguir integracoes/apps-script/ATUALIZAR-GESTAO.md, publicando Código.gs + Gestao.gs juntos. O novo servidor impede envio com e-mail para implantação anterior, evitando perda silenciosa do contato. Resposta ao cliente: proposta em estrategia-retorno-cliente.md.
 
 Indicador: verde após resposta válida do Gemini nos últimos dois minutos; vermelho quando ausente ou sem resposta recente. Chave configurada, sozinha, não comprova conexão.
+
+## Versão 0.10.0 — atmosfera, IA e fluxo
+
+- **Aparência:** `assets/css/atmosphere.css` (vidro, aurora, luz sob o cursor, cartões novos) e animações em `motion.css`; `assets/js/atmosphere.js` cuida da luz, da inclinação da cena e da ondulação, só com mouse. Movimento reduzido e transparência reduzida do sistema são respeitados.
+- **IA:** `POST /api/analyze` sugere caminhos para um relato livre (sempre confirmados pela pessoa); `POST /api/assist` faz no máximo uma pergunta de complemento e até três dicas seguras. Regras em `server/contrato-ia.md`.
+- **Fluxo:** seletor de setor com busca, atalhos dos cenários da matriz, nomes legíveis nas opções, comprovante com cópia do número e "Lembrar meus dados neste dispositivo" (opcional, só no navegador).
+- **Avaliação pública:** cotas por sessão e por dia, 3 anexos/5 MB e checagem do conteúdo dos arquivos no Apps Script.
+
+Verificação em `verificacao-v0.10.0.md`.

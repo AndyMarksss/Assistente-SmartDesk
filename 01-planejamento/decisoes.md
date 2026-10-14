@@ -77,3 +77,11 @@ Rascunhos e anexos são locais, sob server/data/rascunhos, sem publicação ou e
 Usar mensagens uma por vez, nome em negrito, seletor de setor destacado e texto pausado nas escolhas. Não sugerir uma área pelo preenchimento do primeiro botão. Voltar uma etapa acima das opções, sem confirmação extra. Local retirado porque o setor atende ao MVP; essa instrução prevalece sobre a matriz. Assunto oculto ao usuário e mantido internamente para a planilha. Revisar antes de enviar, sem etapa de confirmar assunto.
 
 Recebimento planejado: Apps Script cria planilha separada SmartDesk — Chamados e pasta privada SmartDesk — Anexos, sem alterar a matriz. ID sequencial #001 etc., dados em uma linha, links de anexos. Idempotência e trava evitam repetição por tentativa e colisões. Publicação/autorizações ainda dependem da conta do usuário; testes desta sessão foram simulados, sem criar chamados no Google.
+
+## 2026-10-14 — 0.10.0: atmosfera e IA no fluxo
+
+- Origem: instrução direta do usuário (mais profundidade, efeitos, animações, hover, vidro e elementos; melhor uso da IA e do fluxo até a abertura do chamado).
+- Decisão: camada visual própria (atmosphere.css) sobre as existentes, sem reescrever o CSS anterior. IA em três pontos com confirmação humana: sugestão de caminho (atalho opcional ao lado das escolhas), uma pergunta de complemento e dicas seguras em defeitos, com saída "Resolveu!" sem envio.
+- Justificativa: dar valor visível à IA sem abrir conversa livre nem reclassificar sozinha; as escolhas da matriz continuam sendo o caminho principal.
+- Segurança: cotas por sessão e por dia, limite de anexos e checagem de conteúdo na avaliação pública, que estava sem limite.
+- Limites: as dicas e perguntas são sugestões do modelo e não foram avaliadas com usuários; nenhum resultado de validação foi produzido.

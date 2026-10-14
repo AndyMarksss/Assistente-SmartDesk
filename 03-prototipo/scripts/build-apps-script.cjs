@@ -19,6 +19,11 @@ function build({ check = false } = {}) {
     "/* Gerado: matriz, regras e validação compartilhadas com o protótipo. */\nvar window = { SmartDesk: {} };\n";
   shared +=
     "var SMARTDESK_PORTAL_VERSION = " + JSON.stringify(require("../package.json").version) + ";\n";
+  // Mesma instrução de revisão no servidor local e no Apps Script.
+  shared +=
+    "var SMARTDESK_ASSIST_INSTRUCTION = " +
+    JSON.stringify(require("../server/ai-provider.cjs").ASSIST_INSTRUCTION) +
+    ";\n";
   for (const name of ["knowledge-base", "classifier", "flows", "request-policy"])
     shared += read("assets/js/" + name + ".js") + "\n";
   shared +=
@@ -35,6 +40,7 @@ function build({ check = false } = {}) {
     "validateDescription",
     "validateAnswers",
     "safeSubject",
+    "safeAssist",
     "localSubject",
   ])
     validation = validation.replace(new RegExp("\\b" + name + "\\b", "g"), name + "_");

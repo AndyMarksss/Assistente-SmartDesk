@@ -56,7 +56,7 @@ const sampleAnswers = (item) =>
           : field.type === "choice"
             ? field.options[0]
             : field.type === "date"
-              ? "2026-10-05"
+              ? "2099-10-05"
               : field.type === "time"
                 ? "09:30"
                 : field.type === "email"
@@ -183,6 +183,65 @@ const sampleAnswers = (item) =>
       throw Error("Offline");
     };
     check((await post("/api/subject", payload)).body.source === "local");
+    // 0.10: AI review asks at most one question and offers tips only for safe self-help paths.
+    const jam = items.find((i) => i.id === "IMP-008"),
+      jamBody = {
+        sector: "Secretaria",
+        selectionId: jam.id,
+        description: "A folha fica presa. Meu nome é Pessoa Fictícia.",
+        answers: sampleAnswers(jam),
+      };
+    adapter.assist = async (input) => {
+      record = input;
+      return {
+        pergunta: "Desde quando isso acontece?",
+        dicas: [
+          "Abra a tampa e retire a folha com cuidado.",
+          "<b>Veja</b> http://exemplo.com",
+          "Confira se o papel está alinhado na bandeja.",
+          "Feche as tampas e teste de novo.",
+          "Quarta dica que deve ser descartada.",
+        ],
+      };
+    };
+    let review = await post("/api/assist", jamBody);
+    check(review.status === 200 && review.body.source === "ai");
+    check(review.body.question === "Desde quando isso acontece?");
+    check(review.body.tips.length === 3 && review.body.tips.every((t) => !/http|</.test(t)));
+    check(record.allowTips === true && record.description === jamBody.description);
+    check(!("name" in record) && !("email" in record) && !("answers" in record));
+    check(!JSON.stringify(record).includes("Dado fictício"));
+    const reset = items.find((i) => i.id === "GOO-011");
+    review = await post("/api/assist", {
+      sector: "Secretaria",
+      selectionId: reset.id,
+      description: "Esqueci minha senha",
+      answers: sampleAnswers(reset),
+    });
+    check(review.body.tips.length === 0 && record.allowTips === false);
+    adapter.assist = async () => ({ pergunta: "Qual é a sua senha atual?", dicas: [] });
+    check((await post("/api/assist", jamBody)).body.question === "");
+    adapter.assist = async () => {
+      throw Error("Offline");
+    };
+    review = await post("/api/assist", jamBody);
+    check(
+      review.body.source === "local" && review.body.question === "" && !review.body.tips.length,
+    );
+    check((await post("/api/assist", { ...jamBody, sector: "Setor inventado" })).status === 400);
+    // Free-text path suggestion: model output is restricted to IDs allowed for the sector.
+    adapter.analyze = async () => ({ itemIds: ["IMP-008", "TI-QB-001"] });
+    let analysis = await post("/api/analyze", {
+      description: "papel preso na impressora",
+      sector: "Secretaria",
+    });
+    check(analysis.body.source === "local" && analysis.body.fallback === true);
+    adapter.analyze = async () => ({ itemIds: ["IMP-008"] });
+    analysis = await post("/api/analyze", {
+      description: "papel preso na impressora",
+      sector: "Secretaria",
+    });
+    check(analysis.body.source === "ai" && analysis.body.candidates[0].item.id === "IMP-008");
     // Regression: generated local titles must pass the ticket validator for every canonical path.
     for (const entry of items) {
       const sector = entry.sectors?.[0] || "Secretaria";

@@ -49,12 +49,21 @@ ctx.UrlFetchApp = {
               content: {
                 parts: [
                   {
-                    text: JSON.stringify({
-                      [field]:
-                        field === "subject"
-                          ? "Toner magenta para impressora"
-                          : "Conte o que aconteceu para organizarmos seu chamado.",
-                    }),
+                    text: JSON.stringify(
+                      field === "pergunta"
+                        ? {
+                            pergunta: "Desde quando isso acontece?",
+                            dicas: ["Retire a folha presa com cuidado.", "Veja http://exemplo.com"],
+                          }
+                        : field === "itemIds"
+                          ? { itemIds: ["IMP-008", "TI-QB-001"] }
+                          : {
+                              [field]:
+                                field === "subject"
+                                  ? "Toner magenta para impressora"
+                                  : "Conte o que aconteceu para organizarmos seu chamado.",
+                            },
+                    ),
                   },
                 ],
               },
@@ -193,6 +202,84 @@ assert.equal(
   403,
 );
 assert.equal(call("/api/admin/tickets?mode=google").body.tickets.length, 1);
+// 0.10: revisão da IA, sugestão de caminho, cotas e conferência do conteúdo dos anexos.
+const jam = desk.knowledgeBase.items.find((i) => i.id === "IMP-008");
+const jamBody = {
+  sector: "Secretaria",
+  selectionId: jam.id,
+  description: "A folha fica presa na saída.",
+  answers: sampleAnswers(jam),
+};
+remote = [];
+let review = call("/api/assist", jamBody).body;
+assert.equal(review.source, "ai");
+assert.equal(review.question, "Desde quando isso acontece?");
+assert.equal(JSON.stringify(review.tips), JSON.stringify(["Retire a folha presa com cuidado."]));
+assert(JSON.parse(remote[0].contents[0].parts[0].text).dicasPermitidas === true);
+assert(!JSON.stringify(remote).includes("Informação fictícia"));
+const reset = desk.knowledgeBase.items.find((i) => i.id === "GOO-011");
+review = call("/api/assist", {
+  sector: "Secretaria",
+  selectionId: reset.id,
+  description: "Esqueci minha senha do e-mail.",
+  answers: sampleAnswers(reset),
+}).body;
+assert.equal(review.tips.length, 0);
+// A IA só pode sugerir caminhos permitidos ao setor; resposta fora da lista cai na base local.
+let analysis = call("/api/analyze", {
+  description: "papel preso na impressora",
+  sector: "Secretaria",
+});
+assert.equal(analysis.status, 200);
+assert.equal(analysis.body.source, "local");
+assert(analysis.body.candidates.every((c) => c.item.id !== "TI-QB-001"));
+assert.equal(
+  call("/api/analyze", { description: "x".repeat(2001), sector: "Secretaria" }).status,
+  400,
+);
+// Cotas por sessão: chamados novos e chamadas de IA.
+const quota = ctx.smartdeskStartSession_().session;
+const quotaCall = (route, payload) => ctx.smartdeskCall(quota, route, payload);
+const first = { ...body, requestId: crypto.randomUUID(), attachments: [] };
+for (let i = 0; i < 5; i++)
+  assert.equal(
+    quotaCall("/api/tickets", i ? { ...first, requestId: crypto.randomUUID() } : first).status,
+    201,
+  );
+assert.equal(quotaCall("/api/tickets", { ...first, requestId: crypto.randomUUID() }).status, 429);
+assert.equal(quotaCall("/api/tickets", first).status, 201); // repetir o mesmo envio não consome cota
+for (let i = 0; i < 40; i++) quotaCall("/api/subject", body);
+assert.equal(quotaCall("/api/subject", body).body.source, "local");
+assert.equal(quotaCall("/api/status").body.aiState === "unavailable", false);
+// Anexos públicos: quantidade, tamanho e conteúdo coerente com a extensão.
+const fresh = () => ({ ...body, requestId: crypto.randomUUID() });
+const png = Buffer.from([0x89, 0x50, 0x4e, 0x47, 1, 2, 3]).toString("base64");
+assert.equal(
+  call("/api/tickets", { ...fresh(), attachments: [{ name: "foto.png", base64: png }] }).status,
+  201,
+);
+assert.equal(
+  call("/api/tickets", {
+    ...fresh(),
+    attachments: [{ name: "foto.png", base64: Buffer.from("não é imagem").toString("base64") }],
+  }).status,
+  400,
+);
+assert.equal(
+  call("/api/tickets", {
+    ...fresh(),
+    attachments: Array.from({ length: 4 }, (_, i) => ({ name: i + ".png", base64: png })),
+  }).status,
+  400,
+);
+assert.equal(call("/api/status").body.limits.files, 3);
+// Limitador por minuto: a janela é uma chave própria e não bloqueia o minuto seguinte.
+const minuteKey = "portal:session-starts:" + Math.floor(Date.now() / 60000);
+const before = cached.get(minuteKey);
+cached.set(minuteKey, "100");
+assert(ctx.smartdeskStartSession_().error);
+if (before === undefined) cached.delete(minuteKey);
+else cached.set(minuteKey, before);
 const browser = vm.createContext({
   window: {
     fetch: () => {

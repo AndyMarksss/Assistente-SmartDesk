@@ -20,6 +20,7 @@ const {
   validateSelection,
   validateDescription,
   safeSubject,
+  safeAssist,
   localSubject,
   validateAnswers,
 } = require("./ticket-validation.cjs");
@@ -32,7 +33,11 @@ function createTicketService({
   googleStorage = require("./google-storage.cjs"),
 }) {
   return async function handle(req, res, url) {
-    if (!["/api/subject", "/api/next-prompt", "/api/drafts", "/api/tickets"].includes(url.pathname))
+    if (
+      !["/api/subject", "/api/assist", "/api/next-prompt", "/api/drafts", "/api/tickets"].includes(
+        url.pathname,
+      )
+    )
       return false;
     if (req.method !== "POST") {
       json(res, 405, { error: "Método não permitido." });
@@ -72,17 +77,42 @@ function createTicketService({
       }
       const description = validateDescription(body.description);
       const answers = validateAnswers(body.answers, item);
+      const optionAnswers = Object.fromEntries(
+        (item.fields || [])
+          .filter((field) => field.type === "choice" && answers[field.id])
+          .map((field) => [field.label, answers[field.id]]),
+      );
+      if (url.pathname === "/api/assist") {
+        // Without AI the flow simply continues: no invented question or tip.
+        let result = { question: "", tips: [] },
+          source = "local";
+        const allowTips = policy.selfHelpEligible(item, body.equipmentIntent || "");
+        if (provider.ready() && typeof provider.assist === "function")
+          try {
+            result = safeAssist(
+              await provider.assist({
+                description,
+                sector: body.sector,
+                area: item.area,
+                need: item.need,
+                optionAnswers,
+                allowTips,
+              }),
+              allowTips,
+            );
+            source = "ai";
+          } catch {
+            /* The ticket keeps the user's own description. */
+          }
+        json(res, 200, { ...result, source, selectionId: item.id });
+        return true;
+      }
       if (url.pathname === "/api/subject") {
         let subject = localSubject(item),
           source = "local",
           fallback = false;
         if (provider.ready() && typeof provider.subject === "function")
           try {
-            const optionAnswers = Object.fromEntries(
-              (item.fields || [])
-                .filter((field) => field.type === "choice" && answers[field.id])
-                .map((field) => [field.label, answers[field.id]]),
-            );
             const result = await provider.subject({
               description,
               sector: body.sector,

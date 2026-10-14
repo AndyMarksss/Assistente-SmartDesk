@@ -1,8 +1,8 @@
 {
   "versao": 1,
   "projeto": "SmartDesk",
-  "atualizado_em": "2026-10-05",
-  "proximo_numero": 179,
+  "atualizado_em": "2026-10-14",
+  "proximo_numero": 189,
   "evidencias": [
     {
       "numero": "EVID-001",
@@ -2145,6 +2145,126 @@
       "origem": "C:/Users/ander/AppData/Local/Temp/codex-clipboard-352111c6-14a9-4469-bc27-4490efbbcb0f.png",
       "sha256": "A79EC9270B4DA38B8A3C75CC123A08043AD60DA2CFC71A7F0A67CF229EFFD18E",
       "status": "publicação frontend confirmada; integrações pelo Pages pendentes"
+    },
+    {
+      "numero": "EVID-179",
+      "arquivo": "EVID-179_areas-ia-atalhos-escuro.jpg",
+      "etapa": "Experiência 0.10.0 — verificação técnica local",
+      "descricao": "Etapa de áreas no tema escuro: quatro áreas, cartão Descrever com minhas palavras e linha de atalhos. Captura técnica do assistente com dados fictícios; não é sessão com usuário.",
+      "data_aproximada": "2026-10-14",
+      "fundamento_data": "Capturas feitas pelo assistente nesta sessão, no navegador integrado",
+      "data_inclusao": "2026-10-14",
+      "origem": "Navegador integrado do Claude, servidor local 127.0.0.1:4173 com envio ao Google desativado",
+      "sha256": "E8FE25FDFBC3273BF34CBB1D1F10B8EC62AFC81540E0302B8D89910A9B28709F",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-180",
+      "arquivo": "EVID-180_sugestao-ia-wifi.jpg",
+      "etapa": "Experiência 0.10.0 — verificação técnica local",
+      "descricao": "Relato livre fictício sobre Wi-Fi e sugestão Internet › Problemas com Wi-Fi marcada como IA, com opção de escolher manualmente. Servidor local com Gemini; não é validação com usuário.",
+      "data_aproximada": "2026-10-14",
+      "fundamento_data": "Capturas feitas pelo assistente nesta sessão, no navegador integrado",
+      "data_inclusao": "2026-10-14",
+      "origem": "Navegador integrado do Claude, servidor local 127.0.0.1:4173 com envio ao Google desativado",
+      "sha256": "32919BE7B30DF65B17DF45B3946702E8D2EA925C761CE36F1163E97AB26729AF",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-181",
+      "arquivo": "EVID-181_pergunta-complemento-ia.jpg",
+      "etapa": "Experiência 0.10.0 — verificação técnica local",
+      "descricao": "Relato vago fictício e pergunta de complemento gerada pela IA, com campo de resposta e botão Pular esta pergunta. Captura técnica local.",
+      "data_aproximada": "2026-10-14",
+      "fundamento_data": "Capturas feitas pelo assistente nesta sessão, no navegador integrado",
+      "data_inclusao": "2026-10-14",
+      "origem": "Navegador integrado do Claude, servidor local 127.0.0.1:4173 com envio ao Google desativado",
+      "sha256": "375A0A36EB4126C1EE00762F28A75791A12EB7113F70228151200DDFA89229C6",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-182",
+      "arquivo": "EVID-182_dicas-ia-lentidao.jpg",
+      "etapa": "Experiência 0.10.0 — verificação técnica local",
+      "descricao": "Três dicas numeradas geradas pela IA para lentidão, aviso de que são sugestões e escolhas Continuar com o chamado ou Resolveu. Captura técnica local com dados fictícios.",
+      "data_aproximada": "2026-10-14",
+      "fundamento_data": "Capturas feitas pelo assistente nesta sessão, no navegador integrado",
+      "data_inclusao": "2026-10-14",
+      "origem": "Navegador integrado do Claude, servidor local 127.0.0.1:4173 com envio ao Google desativado",
+      "sha256": "1F457E644B9B2C3B079CCD5EA9DB0295235CBA6103A63B8A248F6B4B805B07F3",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-183",
+      "arquivo": "EVID-183_revisao-redesenhada-escuro.jpg",
+      "etapa": "Experiência 0.10.0 — verificação técnica local",
+      "descricao": "Cartão de revisão redesenhado no tema escuro: cabeçalho com área e necessidade, dados em blocos e descrição com complemento. Nenhum envio real.",
+      "data_aproximada": "2026-10-14",
+      "fundamento_data": "Capturas feitas pelo assistente nesta sessão, no navegador integrado",
+      "data_inclusao": "2026-10-14",
+      "origem": "Navegador integrado do Claude, servidor local 127.0.0.1:4173 com envio ao Google desativado",
+      "sha256": "F190F6F52BCCD0928E7C7689DFBEC2C23089A38F50E6C516FFA93B2BCF856EF8",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-184",
+      "arquivo": "EVID-184_comprovante-simulado.jpg",
+      "etapa": "Experiência 0.10.0 — verificação técnica local",
+      "descricao": "Falha de envio local (Google desativado no servidor de teste) seguida de comprovante com número #TESTE-LOCAL produzido por resposta simulada no navegador. Não comprova recebimento no Google.",
+      "data_aproximada": "2026-10-14",
+      "fundamento_data": "Capturas feitas pelo assistente nesta sessão, no navegador integrado",
+      "data_inclusao": "2026-10-14",
+      "origem": "Navegador integrado do Claude, servidor local 127.0.0.1:4173 com envio ao Google desativado",
+      "sha256": "8637D02EA178A711114F001F6E452DAB36A58D97475E6392785BA340CB1A2077",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-185",
+      "arquivo": "EVID-185_revisao-tema-claro.jpg",
+      "etapa": "Experiência 0.10.0 — verificação técnica local",
+      "descricao": "Cartão de revisão no tema claro com vidro e aurora ao fundo; pedido fictício de toner magenta. Nenhum envio real.",
+      "data_aproximada": "2026-10-14",
+      "fundamento_data": "Capturas feitas pelo assistente nesta sessão, no navegador integrado",
+      "data_inclusao": "2026-10-14",
+      "origem": "Navegador integrado do Claude, servidor local 127.0.0.1:4173 com envio ao Google desativado",
+      "sha256": "98C8491104F9F88847EB54A17BBCEAF98E720B124796DAFAF233C907E023C21D",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-186",
+      "arquivo": "EVID-186_areas-mobile.jpg",
+      "etapa": "Experiência 0.10.0 — verificação técnica local",
+      "descricao": "Etapa de áreas em viewport 375×812 emulado: cartões em duas colunas, cartão de IA e atalhos. Emulação não comprova aparelho real.",
+      "data_aproximada": "2026-10-14",
+      "fundamento_data": "Capturas feitas pelo assistente nesta sessão, no navegador integrado",
+      "data_inclusao": "2026-10-14",
+      "origem": "Navegador integrado do Claude, servidor local 127.0.0.1:4173 com envio ao Google desativado",
+      "sha256": "C7B1C5B60BC1E7A84EAA5BB2EA7B521339A00E46762C741B61DF8C9FA731AC3E",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-187",
+      "arquivo": "EVID-187_seletor-setor-mobile.jpg",
+      "etapa": "Experiência 0.10.0 — verificação técnica local",
+      "descricao": "Seletor de setor com busca e grade de botões em viewport 375×812 emulado. Emulação não comprova aparelho real.",
+      "data_aproximada": "2026-10-14",
+      "fundamento_data": "Capturas feitas pelo assistente nesta sessão, no navegador integrado",
+      "data_inclusao": "2026-10-14",
+      "origem": "Navegador integrado do Claude, servidor local 127.0.0.1:4173 com envio ao Google desativado",
+      "sha256": "4F004520847F3F7954EC073EEC3BF70C9B47B56A4C56341505A82C28EE4CA55F",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-188",
+      "arquivo": "EVID-188_gestao-vidro-escuro.jpg",
+      "etapa": "Experiência 0.10.0 — verificação técnica local",
+      "descricao": "Painel de gestão no tema escuro com superfícies de vidro e 12 simulações locais. Dados de demonstração, não chamados reais.",
+      "data_aproximada": "2026-10-14",
+      "fundamento_data": "Capturas feitas pelo assistente nesta sessão, no navegador integrado",
+      "data_inclusao": "2026-10-14",
+      "origem": "Navegador integrado do Claude, servidor local 127.0.0.1:4173 com envio ao Google desativado",
+      "sha256": "1E2B0DB228379668B5BF53491293EB90BBAC97E2DE14C7F17A0588A0132DC780",
+      "status": "verificação técnica; não é validação com usuários"
     }
   ]
 }

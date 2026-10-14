@@ -58,3 +58,6 @@ Chat e painel hospedados no GitHub Pages; Apps Script somente integrações. Est
 
 ## 0.9.2 — acesso direto
 Frontend Pages sem senha. Aplicar Portal.gs, Pages.gs e PortalShared.gs e publicar nova versão Google. Testar envio fictício e isolamento do painel. Guia em 03-prototipo/integracoes/apps-script/AVALIAR-SEM-SENHA-v0.9.2.md.
+
+## 0.10.0 — atmosfera, IA e fluxo
+Visual em vidro com aurora, luz sob o cursor e animações; IA sugere caminhos a partir de um relato livre, pergunta um complemento e dá dicas seguras; seletor de setor com busca, atalhos, comprovante com cópia e opção de lembrar os dados no dispositivo. Avaliação pública com cotas. Apps Script 0.10.0 publicado pelo clasp (conta pessoal, versão 5 da mesma implantação). O avaliador só abre o GitHub Pages; uso local com npm start. Verificação em 03-prototipo/verificacao-v0.10.0.md; evidências EVID-179 a EVID-188.

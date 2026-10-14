@@ -200,3 +200,16 @@ Correção solicitada: frontend estático no Pages sem redirecionamento, Apps Sc
 
 ## 0.9.2 — 2026-10-05
 Acesso direto solicitado: sem modal/senha, sessão técnica automática e renovação única. Gestão pública limitada aos chamados enviados na mesma sessão; registros anteriores bloqueados no servidor. Simulações mantidas; acesso local completo preservado. Dez suítes aprovadas.
+
+## 0.10.0 — 2026-10-14
+
+Pedido direto do usuário: mais profundidade, efeitos, animações, hover, vidro e elementos; melhor uso da IA e um fluxo de mensagens mais fluido até a abertura do chamado.
+
+- Aparência: nova camada `assets/css/atmosphere.css` com aurora desfocada e grão no fundo, vidro em camadas (lateral, conversa, cabeçalho, dock, mensagens, opções, gestão), luz que acompanha o cursor, inclinação 3D na cena de abertura, linha de progresso na trilha e cartões de revisão e comprovante redesenhados. Animações novas em `motion.css` (entrada com desfoque, ondulação ao clicar, borda animada no cartão de IA, comprovante). Tudo desligado por `prefers-reduced-motion`; `prefers-reduced-transparency` e navegadores sem desfoque recebem superfícies sólidas. `assets/js/atmosphere.js` só atua com mouse.
+- IA: "Descrever com minhas palavras" sugere até três caminhos permitidos para confirmação; depois da descrição, a IA pode fazer uma pergunta de complemento (com opção de pular) e oferecer até três dicas seguras, com "Resolveu! Não preciso mais" sem abrir chamado. Mensagens da IA ganham selo próprio e um balão de "pensando" enquanto ela responde.
+- Fluxo: seletor de setor com busca em grade, atalhos dos cenários da matriz, opções com ícones e nomes legíveis (Computador em vez de COMPUTADOR, só na tela), comprovante com botão de copiar e próximos passos, e opção de lembrar nome, e-mail e setor neste dispositivo (com "Esquecer").
+- Avaliação pública (Apps Script): cotas por sessão (5 chamados, 40 chamadas de IA) e por dia (60 chamados, 600 chamadas de IA), limite de 3 anexos e 5 MB com conferência do conteúdo pelo tipo do arquivo, e limitador de sessões por minuto que não trava mais com tráfego contínuo.
+- Correção: teste de integração usava a data fixa 2026-10-05 e falhava após essa data.
+- Verificação: dez suítes aprovadas, incluindo 223 verificações de integração. Fluxo conferido no navegador com o Gemini real e o envio ao Google desligado. Detalhes em verificacao-v0.10.0.md; evidências EVID-179 a EVID-188.
+- Pendente: aplicar Portal.gs e PortalShared.gs no Apps Script (guia ATUALIZAR-v0.10.0.md) antes de publicar no Pages; conferir em aparelho real.
+

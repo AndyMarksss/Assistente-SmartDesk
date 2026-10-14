@@ -8,6 +8,7 @@
   }) {
     let revision = 0;
     let queue = Promise.resolve();
+    const dismissed = new WeakSet();
     function cancel() {
       revision++;
       queue = Promise.resolve();
@@ -19,9 +20,11 @@
         if (token === revision) render();
       });
     }
-    function append(text, role = "assistant") {
+    // options.ai marks text written by the model; options.thinking is a temporary status bubble.
+    function append(text, role = "assistant", options = {}) {
       const article = document.createElement("article");
-      article.className = "message " + role;
+      article.className =
+        "message " + role + (options.thinking ? " thinking" : "") + (options.ai ? " from-ai" : "");
       const avatar = document.createElement("span");
       avatar.className = "message-avatar";
       avatar.innerHTML = '<img src="assets/img/assistente.svg" alt="" width="32" height="32" />';
@@ -31,6 +34,13 @@
       const meta = document.createElement("div");
       meta.className = "message-meta";
       meta.textContent = role === "user" ? "Você" : "SmartDesk";
+      if (options.ai) {
+        const badge = document.createElement("span");
+        badge.className = "ai-badge";
+        badge.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i> IA';
+        badge.setAttribute("title", "Texto sugerido pela IA");
+        meta.append(badge);
+      }
       const bubble = document.createElement("div");
       bubble.className = "message-bubble";
       bubble.textContent = text;
@@ -42,7 +52,12 @@
       } else {
         const token = revision;
         queue = queue.then(async () => {
-          if (token !== revision) return;
+          if (token !== revision || dismissed.has(article)) return;
+          if (options.thinking) {
+            container.append(article);
+            scroll();
+            return;
+          }
           const typing = document.createElement("div");
           typing.className = "typing";
           typing.setAttribute("aria-label", "SmartDesk está digitando");
@@ -51,7 +66,7 @@
           scroll();
           if (!reducedMotion()) await wait(440);
           typing.remove();
-          if (token !== revision) return;
+          if (token !== revision || dismissed.has(article)) return;
           container.append(article);
           scroll();
           if (!reducedMotion()) await wait(260);
@@ -59,7 +74,14 @@
       }
       return bubble;
     }
-    return { append, cancel, whenReady };
+    function dismiss(bubble) {
+      // Works before or after the queued message reaches the screen.
+      const article = bubble?.parentNode?.parentNode;
+      if (!article) return;
+      dismissed.add(article);
+      article.remove();
+    }
+    return { append, cancel, whenReady, dismiss };
   }
   function createScrollFollower({
     viewport,

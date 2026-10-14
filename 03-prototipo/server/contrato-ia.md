@@ -12,3 +12,11 @@
 ## Atualização 0.6.0
 
 O assunto não aparece na conversa ou no cartão de revisão; é enviado ao receptor com o chamado. Descrição continua literal. Local retirado da base operacional por instrução direta. `POST /api/tickets` valida campos/anexos e envia pelo servidor ao Apps Script; token apenas no corpo desse pedido servidor-servidor, nunca na página. `google-storage.cjs` exige URL HTTPS de implantação /exec. Confirmação de envio somente com resposta válida contendo ID e número do chamado; indisponibilidade conserva os dados no cliente. Rascunho local continua como API histórica, não como ação do novo fluxo.
+
+## Atualização 0.10.0
+
+- `POST /api/analyze`: atalho opcional "Descrever com minhas palavras", ao lado das escolhas guiadas. Recebe relato e setor; a IA só pode devolver IDs da lista permitida ao setor (no máximo três), e qualquer ID fora dela faz cair na base local de palavras-chave. O cliente mostra os caminhos como sugestão e a pessoa confirma ou escolhe pelas opções. O fluxo principal continua sendo por escolhas.
+- `POST /api/assist`: depois da descrição, recebe seleção, respostas e descrição validadas. A IA devolve no máximo uma pergunta de complemento e até três dicas. A pergunta é descartada se pedir senha, CPF, telefone ou contiver link. As dicas só existem nos caminhos de `selfHelpEligible` (defeitos que a própria pessoa pode contornar) e nunca em reservas, compras, acessos, senhas ou instalações. A resposta ao complemento é anexada à descrição como "Complemento:"; a descrição original não é reescrita.
+- Os dados enviados ao modelo são os mesmos do assunto: setor, área, necessidade, descrição e respostas de opções fechadas. Nome, e-mail, textos livres dos campos e anexos continuam fora.
+- Sem IA (chave ausente, falha ou cota atingida), o atendimento segue sem pergunta nem dicas, e o atalho de relato usa a base local. Nada é inventado no lugar da IA.
+- Saídas da IA são marcadas na conversa com o selo "IA" e entram na página por `textContent`.

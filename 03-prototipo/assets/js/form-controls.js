@@ -159,7 +159,79 @@
       });
     }
 
-    return { structured };
+    // Searchable grid of buttons: faster than a long native list and readable on touch screens.
+    function picker(label, options, callback, { placeholder = "Buscar…" } = {}) {
+      lock("ESCOLHA UMA OPÇÃO PARA CONTINUAR");
+      readyControls(() => {
+        byId("frozen-label").hidden = true;
+        const box = byId("structured-field"),
+          caption = document.createElement("label"),
+          search = document.createElement("input"),
+          grid = document.createElement("div"),
+          empty = document.createElement("p"),
+          normalize = (value) => String(value).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+        caption.textContent = label;
+        caption.htmlFor = "picker-search";
+        search.id = "picker-search";
+        search.type = "search";
+        search.autocomplete = "off";
+        search.placeholder = placeholder;
+        search.className = "picker-search";
+        search.setAttribute("aria-controls", "picker-grid");
+        grid.id = "picker-grid";
+        grid.className = "picker-grid";
+        grid.setAttribute("role", "group");
+        grid.setAttribute("aria-label", label);
+        empty.className = "picker-empty";
+        empty.hidden = true;
+        empty.textContent = "Nada encontrado. Tente outra palavra.";
+        let done = false;
+        const pick = (value) => {
+          if (done) return;
+          done = true;
+          grid.querySelectorAll("button").forEach((button) => (button.disabled = true));
+          message(value, "user");
+          callback(value);
+        };
+        options.forEach((option, index) => {
+          const button = document.createElement("button"),
+            icon = document.createElement("i"),
+            text = document.createElement("span");
+          button.type = "button";
+          button.className = "picker-option";
+          button.dataset.search = normalize(option.value + " " + (option.hint || ""));
+          button.style.setProperty("--option-delay", Math.min(index, 16) * 18 + "ms");
+          icon.className = "fa-solid " + (option.icon || "fa-circle-dot");
+          icon.setAttribute("aria-hidden", "true");
+          text.textContent = option.value;
+          button.append(icon, text);
+          button.addEventListener("click", () => pick(option.value));
+          grid.append(button);
+        });
+        search.addEventListener("input", () => {
+          const query = normalize(search.value.trim());
+          let visible = 0;
+          grid.querySelectorAll(".picker-option").forEach((button) => {
+            const show = !query || button.dataset.search.includes(query);
+            button.hidden = !show;
+            if (show) visible++;
+          });
+          empty.hidden = visible > 0;
+        });
+        search.addEventListener("keydown", (event) => {
+          if (event.key !== "Enter") return;
+          event.preventDefault();
+          const first = grid.querySelector(".picker-option:not([hidden])");
+          if (first) first.click();
+        });
+        box.classList.add("structured-picker");
+        box.append(caption, search, grid, empty);
+        if (matchMedia("(hover: hover) and (pointer: fine)").matches) search.focus();
+        requestAnimationFrame(scroll);
+      });
+    }
+
+    return { structured, picker };
   }
   desk.formControls = { create };
 })(window.SmartDesk);

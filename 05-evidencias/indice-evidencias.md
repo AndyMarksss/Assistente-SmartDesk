@@ -371,3 +371,30 @@ Próxima evidência: EVID-170. Teste de abertura sem senha no Pages 0.9.2 e conf
 - EVID-177: [pages-v092-sem-senha](EVID-177_pages-v092-sem-senha.png) — Interface no domínio github.io, rodapé v0.9.2 e abertura sem senha. Mostra IA ausente e Conectando às integrações Google; não comprova conexão, Gemini ou recebimento.
 
 - EVID-178: [deployment-v092-ativo](EVID-178_deployment-v092-ativo.png) — Histórico confirma #22 ativo e publicado com sucesso; falha histórica #21 permanece visível.
+
+
+## 2026-10-14 — SmartDesk 0.10.0: atmosfera, IA e fluxo
+
+Capturas do assistente durante a verificação técnica local, com dados fictícios. O servidor de teste usou o Gemini real e teve o envio ao Google desligado; nenhuma captura é sessão com usuário ou prova de recebimento no Google.
+
+- EVID-179: [areas-ia-atalhos-escuro](EVID-179_areas-ia-atalhos-escuro.jpg) — Etapa de áreas no tema escuro: quatro áreas, cartão Descrever com minhas palavras e linha de atalhos. Captura técnica do assistente com dados fictícios; não é sessão com usuário.
+
+- EVID-180: [sugestao-ia-wifi](EVID-180_sugestao-ia-wifi.jpg) — Relato livre fictício sobre Wi-Fi e sugestão Internet › Problemas com Wi-Fi marcada como IA, com opção de escolher manualmente. Servidor local com Gemini; não é validação com usuário.
+
+- EVID-181: [pergunta-complemento-ia](EVID-181_pergunta-complemento-ia.jpg) — Relato vago fictício e pergunta de complemento gerada pela IA, com campo de resposta e botão Pular esta pergunta. Captura técnica local.
+
+- EVID-182: [dicas-ia-lentidao](EVID-182_dicas-ia-lentidao.jpg) — Três dicas numeradas geradas pela IA para lentidão, aviso de que são sugestões e escolhas Continuar com o chamado ou Resolveu. Captura técnica local com dados fictícios.
+
+- EVID-183: [revisao-redesenhada-escuro](EVID-183_revisao-redesenhada-escuro.jpg) — Cartão de revisão redesenhado no tema escuro: cabeçalho com área e necessidade, dados em blocos e descrição com complemento. Nenhum envio real.
+
+- EVID-184: [comprovante-simulado](EVID-184_comprovante-simulado.jpg) — Falha de envio local (Google desativado no servidor de teste) seguida de comprovante com número #TESTE-LOCAL produzido por resposta simulada no navegador. Não comprova recebimento no Google.
+
+- EVID-185: [revisao-tema-claro](EVID-185_revisao-tema-claro.jpg) — Cartão de revisão no tema claro com vidro e aurora ao fundo; pedido fictício de toner magenta. Nenhum envio real.
+
+- EVID-186: [areas-mobile](EVID-186_areas-mobile.jpg) — Etapa de áreas em viewport 375×812 emulado: cartões em duas colunas, cartão de IA e atalhos. Emulação não comprova aparelho real.
+
+- EVID-187: [seletor-setor-mobile](EVID-187_seletor-setor-mobile.jpg) — Seletor de setor com busca e grade de botões em viewport 375×812 emulado. Emulação não comprova aparelho real.
+
+- EVID-188: [gestao-vidro-escuro](EVID-188_gestao-vidro-escuro.jpg) — Painel de gestão no tema escuro com superfícies de vidro e 12 simulações locais. Dados de demonstração, não chamados reais.
+
+Próxima evidência: EVID-189. Sugestão: abertura do Pages 0.10.0 após atualizar o Apps Script, com dicas da IA e um chamado fictício confirmado.

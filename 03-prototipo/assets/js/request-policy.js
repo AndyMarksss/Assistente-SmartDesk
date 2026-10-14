@@ -56,7 +56,42 @@
   }
   const usefulDescription = (value) =>
     typeof value === "string" && (value.match(/[\p{L}]/gu) || []).length >= 3;
+  // Defeitos que a própria pessoa pode tentar contornar com segurança. Reservas, compras,
+  // acessos, senhas e instalações seguem direto para a equipe, sem dicas da IA.
+  const SELF_HELP = [
+    "AV-007",
+    "IMP-002",
+    "IMP-005",
+    "IMP-006",
+    "IMP-007",
+    "IMP-008",
+    "IMP-009",
+    "GOO-001",
+    "GOO-002",
+    "GOO-003",
+    "GOO-004",
+    "GOO-005",
+    "GOO-007",
+    "GOO-008",
+    "GOO-009",
+    "GOO-012",
+    "TI-COMP-001",
+    "TI-COMP-002",
+    "TI-COMP-003",
+    "TI-COMP-004",
+    "TI-COMP-005",
+    "TI-COMP-007",
+    "TI-COMP-008",
+    "TI-NET-001",
+    "TI-NET-003",
+    "TI-MENT-002",
+    "TI-MENT-005",
+    "TI-QB-001",
+  ];
+  const selfHelpEligible = (item, intent = "") =>
+    !!item && SELF_HELP.includes(item.id) && intent !== "purchase";
   desk.requestPolicy = {
+    selfHelpEligible,
     dateValue,
     timeValue,
     localDay,

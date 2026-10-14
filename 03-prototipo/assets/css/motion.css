@@ -115,6 +115,129 @@
     transition: transform var(--motion-fast);
   }
 }
+/* 0.10 — Atmosfera: luz ambiente lenta, vidro reagindo ao cursor e respostas da IA. */
+@media (prefers-reduced-motion: no-preference) {
+  .workspace::before,
+  .admin-layout::before {
+    animation: aurora-drift 46s ease-in-out infinite alternate;
+  }
+  .message.assistant:not(.thinking) .message-bubble {
+    animation: bubble-focus 460ms var(--motion-ease) both;
+  }
+  .message.user .message-bubble {
+    animation: reply-pop 320ms var(--motion-ease) both;
+  }
+  .message.thinking .message-bubble {
+    animation: thinking-sweep 1500ms linear infinite;
+  }
+  .message.thinking .message-bubble::before {
+    animation: sending-turn 800ms linear infinite;
+  }
+  .message:not(.user):not(.typing):last-child .message-avatar {
+    animation: avatar-glow 1400ms ease-out 1;
+  }
+  .picker-option {
+    animation: choice-arrive var(--motion-enter) var(--motion-ease) var(--option-delay, 0ms)
+      backwards;
+  }
+  .choice-shortcuts {
+    animation: surface-enter 360ms var(--motion-ease) 240ms backwards;
+  }
+  .tip-list li {
+    animation: choice-arrive 360ms var(--motion-ease) backwards;
+  }
+  .tip-list li:nth-child(2) {
+    animation-delay: 90ms;
+  }
+  .tip-list li:nth-child(3) {
+    animation-delay: 180ms;
+  }
+  .summary-card dl > div {
+    animation: surface-enter 320ms var(--motion-ease) backwards;
+  }
+  .summary-card dl > div:nth-child(2) {
+    animation-delay: 50ms;
+  }
+  .summary-card dl > div:nth-child(3) {
+    animation-delay: 100ms;
+  }
+  .summary-card dl > div:nth-child(n + 4) {
+    animation-delay: 150ms;
+  }
+  .receipt-card {
+    animation: receipt-pop 620ms var(--motion-ease) both;
+  }
+  .receipt-number {
+    animation: number-rise 700ms var(--motion-ease) 150ms both;
+  }
+  .message.sent .message-avatar::after {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border-radius: inherit;
+    border: 2px solid var(--accent);
+    pointer-events: none;
+    animation: ring-burst 900ms ease-out 2 both;
+  }
+  .welcome h2 span {
+    animation: gradient-shift 5s ease-in-out 2 alternate;
+  }
+  .journey-bar::after {
+    transition: width 700ms var(--motion-ease);
+  }
+  .support-scene {
+    transition: transform 260ms var(--motion-ease);
+  }
+  .ripple {
+    animation: ripple-out 620ms ease-out forwards;
+  }
+  .choice::before,
+  .picker-option::before,
+  .panel-link::before,
+  .new-conversation::before,
+  .metrics article::before,
+  .ticket-card::before {
+    transition: opacity 220ms ease;
+  }
+  .picker-option,
+  .panel-link,
+  .new-conversation,
+  .scene-device,
+  .metrics article,
+  .receipt-copy {
+    transition:
+      transform var(--motion-fast) var(--motion-ease),
+      box-shadow 220ms ease,
+      border-color var(--motion-fast),
+      background var(--motion-fast);
+  }
+  .choice {
+    transition:
+      background var(--motion-fast),
+      border-color var(--motion-fast),
+      box-shadow 220ms ease,
+      transform var(--motion-fast) var(--motion-ease);
+  }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .picker-option:hover:not(:disabled),
+  .panel-link:hover,
+  .new-conversation:hover,
+  .metrics article:hover,
+  .receipt-copy:hover {
+    transform: translateY(-2px);
+  }
+  .scene-device:hover {
+    transform: translateY(-3px) scale(1.04);
+  }
+  .choice.ai-choice:hover:not(:disabled) {
+    animation: ai-border 2600ms linear infinite;
+  }
+  .choice:hover:not(:disabled) > .fa-solid {
+    transform: scale(1.12);
+    transition: transform var(--motion-fast) var(--motion-ease);
+  }
+}
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
   .choice:hover:not(:disabled),
   .send-button:hover:not(:disabled),
@@ -240,6 +363,124 @@
     opacity: 1;
   }
 }
+@keyframes aurora-drift {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translate3d(3vmax, -2vmax, 0) rotate(8deg) scale(1.06);
+  }
+  100% {
+    transform: translate3d(-3vmax, 2vmax, 0) rotate(-6deg) scale(1.02);
+  }
+}
+@keyframes bubble-focus {
+  from {
+    opacity: 0;
+    filter: blur(6px);
+    transform: translateY(8px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+}
+@keyframes reply-pop {
+  0% {
+    opacity: 0;
+    transform: translateY(6px) scale(0.96);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.015);
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes thinking-sweep {
+  from {
+    background-position: 130% 0;
+  }
+  to {
+    background-position: -130% 0;
+  }
+}
+@keyframes avatar-glow {
+  0% {
+    box-shadow: 0 0 0 0 var(--glow);
+  }
+  100% {
+    box-shadow: 0 0 0 12px transparent;
+  }
+}
+@keyframes receipt-pop {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.96);
+    filter: blur(4px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.01);
+    filter: none;
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes number-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+    letter-spacing: 4px;
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes ring-burst {
+  from {
+    opacity: 0.9;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.7);
+  }
+}
+@keyframes gradient-shift {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 100% 50%;
+  }
+}
+@keyframes ripple-out {
+  from {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(28);
+  }
+}
+@keyframes ai-border {
+  from {
+    background-position:
+      0 0,
+      0% 50%;
+  }
+  to {
+    background-position:
+      0 0,
+      300% 50%;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -247,6 +488,12 @@
     animation: none !important;
     transition: none !important;
     scroll-behavior: auto !important;
+  }
+  :root[data-theme] .support-scene {
+    transform: none;
+  }
+  .ripple {
+    display: none;
   }
   .choice:active:not(:disabled),
   .choice:hover:not(:disabled),

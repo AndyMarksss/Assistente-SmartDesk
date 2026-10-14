@@ -204,7 +204,15 @@ const { api, attachments } = context.window.SmartDesk;
   const css = fs.readFileSync(path.join(proto, "assets/css/motion.css"), "utf8");
   assert(css.includes("prefers-reduced-motion: reduce"));
   assert(!css.match(/mascot-float[^;]*infinite/));
-  for (const file of ["style", "responsive", "visual-depth", "personality", "identity", "admin"])
+  for (const file of [
+    "style",
+    "responsive",
+    "visual-depth",
+    "personality",
+    "identity",
+    "admin",
+    "atmosphere",
+  ])
     assert(
       !/@keyframes|animation\s*:|transition\s*:/.test(
         fs.readFileSync(path.join(proto, "assets/css", file + ".css"), "utf8"),

@@ -40,6 +40,33 @@ function safeSubject(value) {
     return null;
   return subject;
 }
+function safeAssist(result, allowTips) {
+  // A IA só sugere: uma pergunta de complemento e até três dicas, sempre em texto puro.
+  const clean = (value) =>
+    typeof value === "string"
+      ? value
+          .replace(/[\x00-\x1f<>]+/g, " ")
+          .replace(/\s+/g, " ")
+          .trim()
+      : "";
+  const links = /https?:\/\/|www\./i;
+  let question = clean(result && result.pergunta);
+  if (
+    question.length < 8 ||
+    question.length > 180 ||
+    links.test(question) ||
+    /senha|password|cpf|telefone|celular/i.test(question)
+  )
+    question = "";
+  const tips =
+    allowTips && result && Array.isArray(result.dicas)
+      ? result.dicas
+          .map(clean)
+          .filter((tip) => tip.length >= 6 && tip.length <= 160 && !links.test(tip))
+          .slice(0, 3)
+      : [];
+  return { question, tips };
+}
 function localSubject(item) {
   return (
     item.area +
@@ -93,6 +120,7 @@ module.exports = {
   validateSelection,
   validateDescription,
   safeSubject,
+  safeAssist,
   localSubject,
   validateAnswers,
 };

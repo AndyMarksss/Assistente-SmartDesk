@@ -1,4 +1,4 @@
-# Estrutura do SmartDesk — 0.9.2
+# Estrutura do SmartDesk — 0.10.0
 
 ## Cliente
 Os scripts são carregados com defer na ordem declarada em index.html. Não há ferramenta de compilação: os arquivos continuam funcionando no servidor local e a apresentação estática no GitHub Pages.
@@ -49,3 +49,10 @@ Substitui o portal/redirecionamento 0.9.0: Pages serve a interface e Apps Script
 
 ## Avaliação pública 0.9.2
 Sem senha ou login humano. Sessão técnica opaca automática persistida em sessionStorage para navegação chat/painel. A lista/edição Google da ponte pública só permite IDs registrados pelo servidor após recebimento na sessão. Chamados prévios inacessíveis; não depende de filtro cliente. Renovação após 401 tenta uma vez, preservando ID/conteúdo.
+
+## Atmosfera e IA 0.10.0
+Camadas de CSS: `atmosphere.css` carrega depois de `identity.css` e antes de `motion.css`; usa seletores `:root[data-theme]` para vencer as camadas antigas sem `!important`. Texto fica sobre superfícies com 88–94% de opacidade; a transparência maior fica nas molduras (lateral, conversa, dock). Toda animação e transição continua em `motion.css` (teste `refactor.cjs` cobre também `atmosphere.css`). `atmosphere.js` grava apenas variáveis CSS de posição e um elemento decorativo de ondulação; não altera foco nem conteúdo.
+
+`chat-view` aceita `{ ai, thinking }` em `append` e oferece `dismiss` para remover o balão de espera, mesmo antes de ele entrar na tela. `form-controls.picker` monta a grade com busca. `attachments.configure` aplica limites menores informados por `/api/status`. Em `app.js`: `pickItem` centraliza a escolha de um caminho (manual, atalho ou sugestão), `suggestPaths` guarda a última sugestão para o Voltar não chamar a IA de novo, e `reviewWithAI` → `askFollowUp` → `offerTips` ficam entre a descrição e a autorização. Rótulos como COMPUTADOR são exibidos como "Computador", mas IDs e valores canônicos não mudam.
+
+Servidor: `ai-provider.generate` é o único ponto de chamada ao Gemini (esquema JSON in, objeto out). `ticket-validation.safeAssist` filtra a pergunta e as dicas e é reaproveitada no Apps Script pelo build. Apps Script: `portalAIJson_` aplica cota por sessão e diária antes de chamar a IA; `portalAnalyze_` restringe a resposta aos IDs do setor; `portalFile_` confere o início do arquivo conforme a extensão; o limitador de sessões usa uma chave por minuto.
