@@ -2289,6 +2289,126 @@
       "origem": "Navegador integrado do Claude, GitHub Pages público com Apps Script real",
       "sha256": "ECA88EF6ADB0A7A482FE699711B85B8DD337E1CEF1A3861D05B84BFDBBDC9012",
       "status": "verificação técnica pública; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-191",
+      "arquivo": "EVID-191_pages-rascunho-pela-ia.jpg",
+      "etapa": "SmartDesk 0.11.0 — fluxos revisados",
+      "descricao": "No GitHub Pages, a IA montou o rascunho a partir do relato fictício: Caixa de Som / Projetor, 16/10/2026 (sexta), 09:30 e evento \"Sim\"; só o link do roteiro ficou para perguntar.",
+      "data_aproximada": "2026-10-14",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-14",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), GitHub Pages público com Apps Script real",
+      "sha256": "29320E6FB53F102E307D2963159BAC8A4F0C98E250215272B48869ADB08AC75E",
+      "status": "verificação técnica pública; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-192",
+      "arquivo": "EVID-192_pages-chamado-013-comprovante.jpg",
+      "etapa": "SmartDesk 0.11.0 — fluxos revisados",
+      "descricao": "No GitHub Pages, chamado fictício #013 recebido pelo Google com comprovante e orientação para acompanhar. A quebra de \"Em andamento\" no meio da palavra foi corrigida logo depois (ver EVID-193).",
+      "data_aproximada": "2026-10-14",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-14",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), GitHub Pages público com Apps Script real",
+      "sha256": "19813536290FF1AC3F8D5B49109F381813438F9D7A9E26D1088111C260C2888C",
+      "status": "verificação técnica pública; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-193",
+      "arquivo": "EVID-193_pages-acompanhar-chamado-013.jpg",
+      "etapa": "SmartDesk 0.11.0 — fluxos revisados",
+      "descricao": "No GitHub Pages, \"Acompanhar um chamado\" com número e e-mail mostra o #013 já em \"Em atendimento\", etapa alterada pelo arraste no painel; só situação, área, necessidade e data.",
+      "data_aproximada": "2026-10-14",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-14",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), GitHub Pages público com Apps Script real",
+      "sha256": "0FEE316F889BA30429BC81028786C69EF95EDE9E5FB6E501CFE5413B82B0C779",
+      "status": "verificação técnica pública; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-194",
+      "arquivo": "EVID-194_pages-painel-arraste-013.jpg",
+      "etapa": "SmartDesk 0.11.0 — fluxos revisados",
+      "descricao": "Painel no GitHub Pages em Chamados desta avaliação: #013 arrastado para Em atendimento, aviso de confirmação e etapa salva no Google Planilhas. Chamado fictício de teste.",
+      "data_aproximada": "2026-10-14",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-14",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), GitHub Pages público com Apps Script real",
+      "sha256": "1B2339A708EF219FC0FAD26B33161F23A62F22C67BFCDADD8CE419311C846D69",
+      "status": "verificação técnica pública; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-195",
+      "arquivo": "EVID-195_dicas-antes-do-envio.jpg",
+      "etapa": "SmartDesk 0.11.0 — fluxos revisados",
+      "descricao": "Papel atolado: dicas da IA apresentadas antes do envio (\"Antes de enviar o chamado…\"), com \"Não resolveu, seguir com o chamado\" e \"Resolveu! Não preciso do chamado\". Gemini real, envio ao Google desligado.",
+      "data_aproximada": "2026-10-14",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-14",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com Gemini real e envio ao Google desativado",
+      "sha256": "523C204E7DFB944CD7D656D8BA5FD26E90AD79AED53BE48991F2F4663BBE00E8",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-196",
+      "arquivo": "EVID-196_visor-respostas-rapidas.jpg",
+      "etapa": "SmartDesk 0.11.0 — fluxos revisados",
+      "descricao": "Pergunta do visor com exemplo do que procurar e respostas rápidas (\"Não aparece nada\", \"A impressora não tem visor\"), depois de \"Não sei o modelo\".",
+      "data_aproximada": "2026-10-14",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-14",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com Gemini real e envio ao Google desativado",
+      "sha256": "284BA925C7E46B74F2A9FE1484F7A40965EE26111A2609C383186F9A63C5C401",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-197",
+      "arquivo": "EVID-197_kanban-arrastando.jpg",
+      "etapa": "SmartDesk 0.11.0 — fluxos revisados",
+      "descricao": "Kanban do painel durante o arraste: cartão-fantasma sob o cursor, coluna Finalizado destacada, cores por etapa e tags nos cartões; 7 colunas sem rolagem lateral em 1440 px. Simulações locais.",
+      "data_aproximada": "2026-10-14",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-14",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com Gemini real e envio ao Google desativado",
+      "sha256": "6EB34059A8E7CE889BF6748C70FFE727C01E6F06533895013B53A4360639186D",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-198",
+      "arquivo": "EVID-198_painel-skeleton.jpg",
+      "etapa": "SmartDesk 0.11.0 — fluxos revisados",
+      "descricao": "Skeleton do painel durante o carregamento (rede atrasada de propósito): métricas, distribuição, autoatendimento e colunas em espera.",
+      "data_aproximada": "2026-10-14",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-14",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com Gemini real e envio ao Google desativado",
+      "sha256": "6E9C5D72B8269CCC87D251717FA3144BC6E96794F30213D359CF1E63D758026A",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-199",
+      "arquivo": "EVID-199_areas-sem-atalhos.jpg",
+      "etapa": "SmartDesk 0.11.0 — fluxos revisados",
+      "descricao": "Escolha da área no celular emulado: só as quatro áreas e o cartão \"Descrever com minhas palavras\", sem atalhos; botões do cabeçalho com o mesmo tamanho.",
+      "data_aproximada": "2026-10-14",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-14",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com Gemini real e envio ao Google desativado",
+      "sha256": "651D1F4AE9C500D97B8E1F689536AB03D487436A393A56225D4213CFD8056F2E",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-200",
+      "arquivo": "EVID-200_setor-com-busca.jpg",
+      "etapa": "SmartDesk 0.11.0 — fluxos revisados",
+      "descricao": "Setor em lista com busca (combobox) no lugar da grade de botões, em 390×844 emulado.",
+      "data_aproximada": "2026-10-14",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-14",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com Gemini real e envio ao Google desativado",
+      "sha256": "BC6B84BAC147B5DDDFB92DA75509FF3A0151BCCB0369DDEEEC0AD27C69B30969",
+      "status": "verificação técnica; não é validação com usuários"
     }
   ]
 }

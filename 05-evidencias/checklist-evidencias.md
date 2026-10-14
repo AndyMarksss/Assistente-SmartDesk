@@ -375,3 +375,27 @@ Próxima evidência: EVID-189.
 - EVID-190: [pages-painel-chamado-010](EVID-190_pages-painel-chamado-010.jpg) — Painel no GitHub Pages em Chamados desta avaliação após a correção da listagem: 1 chamado, 1 em atendimento e etapa salva no Google Planilhas. Chamado fictício de teste.
 
 Próxima evidência: EVID-191.
+
+## 2026-10-14 — SmartDesk 0.11.0: fluxos revisados
+
+- EVID-191: [pages-rascunho-pela-ia](EVID-191_pages-rascunho-pela-ia.jpg) — No GitHub Pages, a IA montou o rascunho a partir do relato fictício: Caixa de Som / Projetor, 16/10/2026 (sexta), 09:30 e evento "Sim"; só o link do roteiro ficou para perguntar.
+
+- EVID-192: [pages-chamado-013-comprovante](EVID-192_pages-chamado-013-comprovante.jpg) — No GitHub Pages, chamado fictício #013 recebido pelo Google com comprovante e orientação para acompanhar. A quebra de "Em andamento" no meio da palavra foi corrigida logo depois (ver EVID-193).
+
+- EVID-193: [pages-acompanhar-chamado-013](EVID-193_pages-acompanhar-chamado-013.jpg) — No GitHub Pages, "Acompanhar um chamado" com número e e-mail mostra o #013 já em "Em atendimento", etapa alterada pelo arraste no painel; só situação, área, necessidade e data.
+
+- EVID-194: [pages-painel-arraste-013](EVID-194_pages-painel-arraste-013.jpg) — Painel no GitHub Pages em Chamados desta avaliação: #013 arrastado para Em atendimento, aviso de confirmação e etapa salva no Google Planilhas. Chamado fictício de teste.
+
+- EVID-195: [dicas-antes-do-envio](EVID-195_dicas-antes-do-envio.jpg) — Papel atolado: dicas da IA apresentadas antes do envio ("Antes de enviar o chamado…"), com "Não resolveu, seguir com o chamado" e "Resolveu! Não preciso do chamado". Gemini real, envio ao Google desligado.
+
+- EVID-196: [visor-respostas-rapidas](EVID-196_visor-respostas-rapidas.jpg) — Pergunta do visor com exemplo do que procurar e respostas rápidas ("Não aparece nada", "A impressora não tem visor"), depois de "Não sei o modelo".
+
+- EVID-197: [kanban-arrastando](EVID-197_kanban-arrastando.jpg) — Kanban do painel durante o arraste: cartão-fantasma sob o cursor, coluna Finalizado destacada, cores por etapa e tags nos cartões; 7 colunas sem rolagem lateral em 1440 px. Simulações locais.
+
+- EVID-198: [painel-skeleton](EVID-198_painel-skeleton.jpg) — Skeleton do painel durante o carregamento (rede atrasada de propósito): métricas, distribuição, autoatendimento e colunas em espera.
+
+- EVID-199: [areas-sem-atalhos](EVID-199_areas-sem-atalhos.jpg) — Escolha da área no celular emulado: só as quatro áreas e o cartão "Descrever com minhas palavras", sem atalhos; botões do cabeçalho com o mesmo tamanho.
+
+- EVID-200: [setor-com-busca](EVID-200_setor-com-busca.jpg) — Setor em lista com busca (combobox) no lugar da grade de botões, em 390×844 emulado.
+
+Próxima evidência: EVID-201.

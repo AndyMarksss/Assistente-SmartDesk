@@ -12,3 +12,17 @@ Capturas em Edge sem janela (390×844 a 2x e 1440×1000), dados fictícios.
 - **Painel:** skeleton com 8 cartões e distribuição/autoatendimento vazios durante a troca de origem; kanban com 7 colunas numa linha em 1280 e 1440 px, sem rolagem lateral (scrollWidth = clientWidth); em 375 px, duas colunas. Arraste com Pointer Events: cartão-fantasma sob o cursor, coluna de destino destacada, cartão movido, aviso "#SIM-… movido para Finalizado." e animação de chegada.
 - **Correções feitas durante a conferência:** o cartão-fantasma não aparecia (regra `.ticket-card` mais específica anulava `position: fixed`, e a transição atrasava o movimento); o botão do painel no cabeçalho do chat ficava estreito no celular; o skeleton deixava à vista a distribuição da origem anterior.
 - Acompanhamento de chamado devolve 503 local (depende do Google), como esperado.
+
+## GitHub Pages publicado (Actions #27 e #28)
+
+Sessão nova em Edge sem janela, como o avaliador (só o endereço do Pages), dados fictícios:
+
+- Chat carregou `app.js?v=0.11.0`; IA conectada pelo Apps Script.
+- "Descrever com minhas palavras" montou o rascunho pelo Apps Script (`/api/extract`): 16/10/2026 (sexta), 09:30, evento "Sim". "Enviar o link depois" aceito pelo receptor ("Ainda não informado"). Sem pergunta de autorização.
+- Chamado fictício **#013** recebido, comprovante com número e orientação de acompanhamento.
+- Painel abriu sozinho em "Chamados desta avaliação" com o #013 (tag de data 16/10); arraste para "Em atendimento" → "#013 movido para Em atendimento." e etapa salva no Google Planilhas. Autoatendimento: "Ainda não há atendimentos com dicas da IA registrados" (aba ainda não criada).
+- "Acompanhar um chamado" com 13 + e-mail mostrou o #013 em "Em atendimento" (a etapa alterada no painel), sem descrição nem contatos.
+- Correção feita na hora: as etapas do comprovante e do acompanhamento quebravam "Em andamento" no meio da palavra no celular; agora quebram só entre palavras.
+- Chamados de teste #010 e #013 listados em `removerChamadoDeTeste` (Apps Script versão 10) para o dono remover.
+
+Evidências EVID-191 a EVID-200.
