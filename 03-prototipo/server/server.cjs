@@ -6,6 +6,7 @@ const vm = require("node:vm");
 const root = path.resolve(__dirname, "..");
 if (fs.existsSync(path.join(root, ".env"))) process.loadEnvFile(path.join(root, ".env"));
 const provider = require("./ai-provider.cjs");
+const { analyzeCategories } = provider;
 function loadBase() {
   const context = vm.createContext({ window: {} });
   for (const file of ["knowledge-base.js", "classifier.js", "flows.js"])
@@ -76,10 +77,7 @@ function createServer(adapter = provider, options = {}) {
         );
         if (adapter.ready() === true) {
           try {
-            const output = await adapter.analyze(
-              request,
-              allowed.map(({ id, area, need }) => ({ id, area, need })),
-            );
+            const output = await adapter.analyze(request, analyzeCategories(allowed));
             if (!output || !Array.isArray(output.itemIds) || output.itemIds.length > allowed.length)
               throw new Error("Invalid AI output");
             const uniqueIds = [...new Set(output.itemIds)];

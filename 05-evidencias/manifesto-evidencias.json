@@ -2457,6 +2457,30 @@
       "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173",
       "sha256": "1A2C4095E1E2E0E5BD407023A8F35F33710C6967B1902BB04DC94FC218B60D2B",
       "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-205",
+      "arquivo": "EVID-205_relatorio-avaliacao-ia.md",
+      "etapa": "SmartDesk 0.11.3 — avaliação técnica da IA",
+      "descricao": "Relatório da avaliação técnica da IA (cópia de 04-validacao/avaliacao-ia): 186 relatos fictícios, 96% de caminho certo na 1ª sugestão com a instrução anterior, base local 38%, extração 98%, controle 27/27, tentativa com palavras-chave descartada e comparação parcial da instrução final. Avaliação incompleta pela cota diária do Gemini.",
+      "data_aproximada": "2026-10-14",
+      "fundamento_data": "Gerado pelo assistente nesta sessão",
+      "data_inclusao": "2026-10-14",
+      "origem": "Servidor local com Gemini real e envio ao Google desativado; rotas /api/analyze e /api/extract",
+      "sha256": "90528EFBEC8D2063CDD9F94D2C5CD74D35CDA4E28BFE4EBDAF9FC6DD598C384A",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-206",
+      "arquivo": "EVID-206_sem-ia-opcoes.jpg",
+      "etapa": "SmartDesk 0.11.3 — avaliação técnica da IA",
+      "descricao": "Sem IA (cota do Gemini esgotada), o relato livre vira opções: aviso de IA indisponível, sugestão da base local e Escolher pelas opções, em vez de um rascunho incerto. Relato fictício.",
+      "data_aproximada": "2026-10-14",
+      "fundamento_data": "Gerado pelo assistente nesta sessão",
+      "data_inclusao": "2026-10-14",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com a IA indisponível",
+      "sha256": "D60DFE5B91C51B9166A115BA7EEB0B0A53F79DCB6D7AB02D7CF4AA6DEECC7832",
+      "status": "verificação técnica; não é validação com usuários"
     }
   ]
 }

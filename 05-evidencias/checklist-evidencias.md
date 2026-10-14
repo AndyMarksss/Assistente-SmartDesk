@@ -415,3 +415,11 @@ Próxima evidência: EVID-203.
 - EVID-204: [luz-fundo-cor-teste](EVID-204_luz-fundo-cor-teste.jpg) — Mesma posição com a luz em vermelho de teste: ela aparece só no fundo e fica atrás do card, da mensagem, das etapas e da área de botões. A mancha no alto é o brilho fixo do fundo, também em cor de teste.
 
 Próxima evidência: EVID-205.
+
+## 2026-10-14 — SmartDesk 0.11.3: avaliação técnica da IA
+
+- EVID-205: [relatorio-avaliacao-ia](EVID-205_relatorio-avaliacao-ia.md) — Relatório da avaliação técnica da IA (cópia de 04-validacao/avaliacao-ia): 186 relatos fictícios, 96% de caminho certo na 1ª sugestão com a instrução anterior, base local 38%, extração 98%, controle 27/27, tentativa com palavras-chave descartada e comparação parcial da instrução final. Avaliação incompleta pela cota diária do Gemini.
+
+- EVID-206: [sem-ia-opcoes](EVID-206_sem-ia-opcoes.jpg) — Sem IA (cota do Gemini esgotada), o relato livre vira opções: aviso de IA indisponível, sugestão da base local e Escolher pelas opções, em vez de um rascunho incerto. Relato fictício.
+
+Próxima evidência: EVID-207.

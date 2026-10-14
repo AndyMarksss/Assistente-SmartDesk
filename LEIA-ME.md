@@ -70,3 +70,6 @@ Robô da abertura acompanha o cursor com os olhos; a luz do cursor passou a cobr
 
 ## 0.11.2
 A luz do cursor fica só no fundo do chat (atrás de card, etapas e botões), cobrindo o fundo inteiro. Verificação em 03-prototipo/verificacao-v0.11.2.md.
+
+## 0.11.3
+Avaliação técnica da IA com relatos fictícios (04-validacao/avaliacao-ia): 96% de caminho certo na 1ª sugestão com a instrução anterior; instrução ajustada com glossário; sem IA, o relato livre vira opções. Atenção à cota diária do Gemini, compartilhada entre testes locais e o site público. Verificação em 03-prototipo/verificacao-v0.11.3.md.

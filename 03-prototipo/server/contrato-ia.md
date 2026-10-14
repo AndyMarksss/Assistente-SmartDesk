@@ -27,3 +27,10 @@ O assunto não aparece na conversa ou no cartão de revisão; é enviado ao rece
 - `POST /api/assist`: passa a receber o tipo do pedido (problema, solicitação, dúvida, outro) e os rótulos já respondidos. Devolve `coerente`/`motivo` (alerta quando o relato não combina com o tipo), `pergunta` e `ajuda` (onde achar a resposta, até 180 caracteres) e `dicas` "para tentar antes de enviar o chamado". A instrução proíbe sair do escopo do pedido, repetir dados informados e dizer que a equipe já está a caminho.
 - As perguntas da IA e as respostas da pessoa entram ao fim da descrição, em bloco "Perguntas do assistente"; o relato original continua literal.
 - `POST /api/track` e `POST /api/selfhelp` não usam IA.
+
+## Atualização 0.11.3
+
+- Avaliação técnica com relatos fictícios em `04-validacao/avaliacao-ia` (banco de 186 relatos para ajuste, banco de controle de 30 relatos nunca usados para ajustar, roteiro que percorre os 57 caminhos pelos botões e relatório).
+- `POST /api/analyze`: a instrução (`ANALYZE_INSTRUCTION`) e as categorias (`analyzeCategories`) ficam em `server/ai-provider.cjs` e são copiadas para o Apps Script pelo build (`SMARTDESK_ANALYZE_INSTRUCTION` e `analyzeCategories_`), sem texto duplicado. As categorias continuam só com ID, área e necessidade: uma tentativa de enviar também as palavras-chave da matriz piorou Audiovisual, porque os seis caminhos repetem as mesmas palavras, e foi descartada. A instrução traz um glossário dos sistemas da escola (Mentor Web, QuickBooks, Intranet, Google Grupos, estufa da impressora), prefere o caminho específico ao genérico e devolve lista vazia para assuntos que não são de TI ou relatos sem pedido. Continuam valendo: só IDs da lista do setor, no máximo três, relato tratado como dado.
+- `POST /api/extract`: campo de opção só é preenchido quando a pessoa diz a resposta com todas as letras; aula, reunião, filme ou apresentação não bastam para marcar "É para um evento?".
+- Nenhum dado novo é enviado ao modelo; só o texto da instrução mudou.

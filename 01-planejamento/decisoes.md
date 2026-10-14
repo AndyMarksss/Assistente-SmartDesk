@@ -94,3 +94,10 @@ Recebimento planejado: Apps Script cria planilha separada SmartDesk — Chamados
 - Autoatendimento: registro anônimo (setor, caminho, resultado) para o painel mostrar se as dicas ajudam.
 - Painel: arrastar e soltar com Pointer Events (funciona com mouse e caneta); no toque, o cartão abre os detalhes para evitar arraste acidental na rolagem.
 - Limites: comportamento da IA conferido em testes técnicos, não com usuários.
+
+## 2026-10-14 — 0.11.3: avaliação técnica da IA
+
+- Origem: pergunta do usuário se todos os fluxos e a interpretação da IA tinham sido avaliados. Não tinham: a IA real só tinha 4 relatos testados.
+- Decisão: banco de 186 relatos fictícios (3 por caminho, mais casos especiais) e banco de controle de 30 relatos escritos antes de ver os erros e nunca usados para ajustar. Mudanças na instrução só ficam se melhoram nos mesmos relatos sem piorar o controle.
+- Resultado: glossário dos sistemas da escola mantido; envio das palavras-chave da matriz descartado (piorou Audiovisual). Sem IA, o relato livre passa a virar opções.
+- Limite: avaliação técnica, não validação com usuários; o banco foi escrito pelo assistente. Rodada completa da versão final pendente por causa da cota diária do Gemini.

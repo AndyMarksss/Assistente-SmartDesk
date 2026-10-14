@@ -26,8 +26,13 @@ function build({ check = false } = {}) {
     ["SMARTDESK_ASSIST_SCHEMA", ai.ASSIST_SCHEMA],
     ["SMARTDESK_EXTRACT_INSTRUCTION", ai.EXTRACT_INSTRUCTION],
     ["SMARTDESK_EXTRACT_SCHEMA", ai.EXTRACT_SCHEMA],
+    ["SMARTDESK_ANALYZE_INSTRUCTION", ai.ANALYZE_INSTRUCTION],
   ])
     shared += "var " + name + " = " + JSON.stringify(value) + ";\n";
+  shared +=
+    ai.analyzeCategories
+      .toString()
+      .replace("function analyzeCategories", "function analyzeCategories_") + "\n";
   for (const name of ["knowledge-base", "classifier", "flows", "request-policy"])
     shared += read("assets/js/" + name + ".js") + "\n";
   shared +=

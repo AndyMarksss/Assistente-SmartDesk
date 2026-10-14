@@ -255,3 +255,14 @@ Correção pedida pelo usuário: na 0.11.1 a luz do cursor passou a ficar por ci
 - `.chat-shell::after` voltou para trás do conteúdo (`z-index: 0`, sem mistura de cores), mantendo o tamanho do chat inteiro — o defeito original era só a camada de 380×380 px no canto.
 - Medido com as cores reais (tema escuro): fundo abaixo do card vai de (17, 24, 40) para (53, 56, 89) com o cursor perto; área de botões não muda; dentro do card, pelo vidro, a variação é mínima ((34, 52, 72) → (42, 56, 82)).
 - Apps Script republicado só para alinhar a versão. Verificação em verificacao-v0.11.2.md.
+
+## 0.11.3 — 2026-10-14
+
+Pedido do usuário: conferir se todos os fluxos foram avaliados, inclusive a interpretação da IA no relato livre. Resposta honesta: as regras dos 57 caminhos tinham testes, mas a IA real só tinha sido testada em 4 relatos. Foi feita uma avaliação técnica em `04-validacao/avaliacao-ia`.
+
+- **Avaliação (instrução anterior):** 186 relatos fictícios. Caminho certo em 1º em 96% (claros e informais 100%, vagos 89%); base local sem IA, 38%. Fora do escopo barrados 10/10, inclusive uma tentativa de manipular a IA; dois pedidos no mesmo relato 2/2; extração 98% dos campos e 100% das datas. Banco de controle com 30 relatos novos: 27/27 caminhos certos e 2/3 fora do escopo barrados.
+- **Instrução de identificação:** centralizada em `ai-provider.cjs` (`ANALYZE_INSTRUCTION`, `analyzeCategories`) e copiada para o Apps Script pelo build. Ganhou glossário dos sistemas da escola, preferência pelo caminho específico e lista vazia para assuntos que não são de TI. Uma tentativa de mandar também as palavras-chave da matriz piorou Audiovisual (47/50 contra 49/50) e foi descartada. Versão final nos 44 relatos que deu tempo de rodar: 44/44, contra 43/44 da anterior nos mesmos relatos; nos 10 casos sensíveis, 9 certos.
+- **Extração:** "É para um evento?" só é marcado quando a pessoa diz isso; marcações indevidas em Audiovisual caíram de 5/12 para 2/12 nos mesmos relatos.
+- **Sem IA:** o relato livre não vira mais um rascunho incerto. O chat avisa que a IA está indisponível, mostra as possibilidades da base local como opções e "Escolher pelas opções", e mantém o texto como descrição.
+- **Limite da IA:** o plano gratuito do Gemini permite 500 pedidos por dia por projeto, e os testes locais usam a mesma cota do site público. A avaliação esgotou a cota de 2026-10-14 e o Pages ficou sem IA até a renovação. A rodada completa da instrução nova, o controle com ela e o percurso dos 57 caminhos (2 feitos) ficam pendentes.
+- Verificação em verificacao-v0.11.3.md; relatório em 04-validacao/avaliacao-ia/relatorio-avaliacao-ia.md.

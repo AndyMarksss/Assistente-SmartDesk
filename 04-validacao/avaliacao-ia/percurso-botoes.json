@@ -1,0 +1,47 @@
+[
+  {
+    "id": "AV-001",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área Audiovisual",
+      "caminho Caixa de Som",
+      "data amanhã",
+      "horário 10:00",
+      "opção Sim",
+      "link depois",
+      "descrição = Preciso de uma caixa de som na quadra am",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [],
+    "dicas": null,
+    "resumo": "AudiovisualCaixa de Som ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaData do atendimento15/10/2026 (quinta)Horário do atendimento10:00É para um evento?SimLink do roteiro do eventoEnvio depoisDescriçãoPreciso de uma caixa de som na quadra amanhã às 10h para a aula de educação física.",
+    "segundos": 18
+  },
+  {
+    "id": "IMP-008",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área Impressora",
+      "caminho Papel Atolado",
+      "campo modelo = Informação de teste 01",
+      "campo mensagem-do-visor = Informação de teste 01",
+      "descrição = Papel preso na impressora Brother da sal",
+      "dicas → seguir",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [],
+    "dicas": "SmartDesk IAAntes de enviar o chamado, vale tentar estes passos rápidos:Abra a tampa da bandeja 2 indicada no visor.Puxe o papel preso com cuidado para evitar que rasgue.Feche bem a tampa e teste a impressão novamente.Sugestões da IA. Se não se sentir à vontade com algum passo, é só seguir com o chamado.",
+    "resumo": "ImpressoraPapel Atolado ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaModelo da impressoraInformação de teste 01Mensagem do visorInformação de teste 01DescriçãoPapel preso na impressora Brother da sala dos professores; o visor mostra 'Atolamento bandeja 2'.",
+    "segundos": 30
+  }
+]

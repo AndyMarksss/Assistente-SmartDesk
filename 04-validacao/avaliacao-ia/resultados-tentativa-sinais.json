@@ -1,0 +1,1929 @@
+{
+  "rodada": "depois",
+  "hoje": "2026-10-14",
+  "casos": [
+    {
+      "n": 1,
+      "tipo": "claro",
+      "setor": "Esporte",
+      "relato": "Preciso de uma caixa de som na quadra amanhã às 10h para a aula de educação física.",
+      "esperado": "AV-001",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "AV-001"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "AV-001",
+          "AV-002",
+          "AV-003",
+          "AV-004"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "data": "2026-10-15",
+          "horario": "10:00"
+        },
+        "intent": "",
+        "campos": {
+          "data": {
+            "esperado": "@+1",
+            "obtido": "2026-10-15",
+            "resultado": "ok"
+          },
+          "horario": {
+            "esperado": "=10:00",
+            "obtido": "10:00",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 2,
+      "tipo": "vago",
+      "setor": "Esporte",
+      "relato": "Vou precisar de som para uma atividade com os alunos.",
+      "esperado": "AV-001",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "AV-001",
+          "AV-002"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "AV-001"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      }
+    },
+    {
+      "n": 3,
+      "tipo": "informal",
+      "setor": "Esporte",
+      "relato": "mds preciso d caixinha de som pra sexta de manha, pode ser?",
+      "esperado": "AV-001",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "AV-001"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "AV-001"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "data": "2026-10-16"
+        },
+        "intent": "",
+        "campos": {
+          "data": {
+            "esperado": "@dow:5",
+            "obtido": "2026-10-16",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 4,
+      "tipo": "claro",
+      "setor": "Coordenação EFAI (Fundamental I)",
+      "relato": "Preciso de caixa de som e microfone no pátio na sexta-feira às 8h para a abertura da gincana, que é um evento.",
+      "esperado": "AV-002",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "AV-002"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "AV-001",
+          "AV-002",
+          "AV-003",
+          "AV-004",
+          "AV-005"
+        ],
+        "pontos": {
+          "top1": false,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "data": "2026-10-16",
+          "horario": "08:00",
+          "evento": "Sim"
+        },
+        "intent": "",
+        "campos": {
+          "data": {
+            "esperado": "@dow:5",
+            "obtido": "2026-10-16",
+            "resultado": "ok"
+          },
+          "horario": {
+            "esperado": "=08:00",
+            "obtido": "08:00",
+            "resultado": "ok"
+          },
+          "evento": {
+            "esperado": "=Sim",
+            "obtido": "Sim",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 5,
+      "tipo": "vago",
+      "setor": "Coordenação EFAI (Fundamental I)",
+      "relato": "Vamos falar com os pais no pátio e precisamos que todo mundo escute quem estiver no microfone.",
+      "esperado": "AV-002",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "AV-002",
+          "AV-001",
+          "AV-005"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "AV-002",
+          "AV-003",
+          "AV-005"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      }
+    },
+    {
+      "n": 6,
+      "tipo": "informal",
+      "setor": "Coordenação EFAI (Fundamental I)",
+      "relato": "precisa d som c microfone pra apresentacao amanha 14h",
+      "esperado": "AV-002",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "AV-002"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "AV-001",
+          "AV-002",
+          "AV-003",
+          "AV-004",
+          "AV-005",
+          "AV-006"
+        ],
+        "pontos": {
+          "top1": false,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "data": "2026-10-15",
+          "horario": "14:00",
+          "evento": "Sim"
+        },
+        "intent": "",
+        "campos": {
+          "data": {
+            "esperado": "@+1",
+            "obtido": "2026-10-15",
+            "resultado": "ok"
+          },
+          "horario": {
+            "esperado": "=14:00",
+            "obtido": "14:00",
+            "resultado": "ok"
+          }
+        },
+        "extras": [
+          "evento"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "tipo": "claro",
+      "setor": "Direção",
+      "relato": "Para a palestra no auditório no dia 20, às 19h, vou precisar de projetor, microfone e caixa de som. É um evento com os pais.",
+      "esperado": "AV-003",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "AV-003"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "AV-001",
+          "AV-002",
+          "AV-003",
+          "AV-004",
+          "AV-005",
+          "AV-006"
+        ],
+        "pontos": {
+          "top1": false,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "data": "2026-10-20",
+          "horario": "19:00",
+          "evento": "Sim"
+        },
+        "intent": "",
+        "campos": {
+          "data": {
+            "esperado": "@dia:20",
+            "obtido": "2026-10-20",
+            "resultado": "ok"
+          },
+          "horario": {
+            "esperado": "=19:00",
+            "obtido": "19:00",
+            "resultado": "ok"
+          },
+          "evento": {
+            "esperado": "=Sim",
+            "obtido": "Sim",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 8,
+      "tipo": "vago",
+      "setor": "Direção",
+      "relato": "Vai ter palestra no auditório com slides e uma pessoa falando para muita gente.",
+      "esperado": "AV-003",
+      "aceitos": [
+        "AV-002",
+        "AV-004",
+        "AV-006"
+      ],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "AV-003",
+          "AV-002",
+          "AV-006"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "AV-002",
+          "AV-005",
+          "GOO-002"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      }
+    },
+    {
+      "n": 9,
+      "tipo": "informal",
+      "setor": "Direção",
+      "relato": "preciso do kit completo projetor microfone e som pro auditorio na segunda q vem",
+      "esperado": "AV-003",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "AV-003"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "AV-001",
+          "AV-002",
+          "AV-003",
+          "AV-004",
+          "AV-005",
+          "AV-006"
+        ],
+        "pontos": {
+          "top1": false,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "data": "2026-10-19"
+        },
+        "intent": "",
+        "campos": {
+          "data": {
+            "esperado": "@dow:1",
+            "obtido": "2026-10-19",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 10,
+      "tipo": "claro",
+      "setor": "Coordenação EFAF (Fundamental II)",
+      "relato": "Preciso de projetor e caixa de som na sala 12 amanhã às 13h30 para passar um filme para a turma.",
+      "esperado": "AV-004",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "AV-003",
+          "AV-004"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": false,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "AV-001",
+          "AV-002",
+          "AV-003",
+          "AV-004",
+          "AV-006",
+          "GOO-003"
+        ],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "data": "2026-10-15",
+          "horario": "13:30"
+        },
+        "intent": "",
+        "campos": {
+          "data": {
+            "esperado": "@+1",
+            "obtido": "2026-10-15",
+            "resultado": "ok"
+          },
+          "horario": {
+            "esperado": "=13:30",
+            "obtido": "13:30",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 11,
+      "tipo": "vago",
+      "setor": "Coordenação EFAF (Fundamental II)",
+      "relato": "Vou passar um vídeo com áudio para a turma e preciso do equipamento.",
+      "esperado": "AV-004",
+      "aceitos": [
+        "AV-006"
+      ],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "AV-004"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "AV-001",
+          "AV-002",
+          "AV-003",
+          "AV-004",
+          "GOO-003"
+        ],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      }
+    },
+    {
+      "n": 12,
+      "tipo": "informal",
+      "setor": "Coordenação EFAF (Fundamental II)",
+      "relato": "projetor + som pra sala 5 quinta 9h",
+      "esperado": "AV-004",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "AV-003",
+          "AV-004",
+          "AV-006"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": false,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "AV-001",
+          "AV-003",
+          "AV-004",
+          "AV-006"
+        ],
+        "pontos": {
+          "top1": false,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "data": "2026-10-15",
+          "horario": "09:00"
+        },
+        "intent": "",
+        "campos": {
+          "data": {
+            "esperado": "@dow:4",
+            "obtido": "2026-10-15",
+            "resultado": "ok"
+          },
+          "horario": {
+            "esperado": "=09:00",
+            "obtido": "09:00",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 13,
+      "tipo": "claro",
+      "setor": "Orientação EM (Médio)",
+      "relato": "Preciso de um microfone sem fio para a reunião de professores na sexta às 17h.",
+      "esperado": "AV-005",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "AV-005"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "AV-002",
+          "AV-003",
+          "AV-005"
+        ],
+        "pontos": {
+          "top1": false,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "data": "2026-10-16",
+          "horario": "17:00",
+          "evento": "Não"
+        },
+        "intent": "",
+        "campos": {
+          "data": {
+            "esperado": "@dow:5",
+            "obtido": "2026-10-16",
+            "resultado": "ok"
+          },
+          "horario": {
+            "esperado": "=17:00",
+            "obtido": "17:00",
+            "resultado": "ok"
+          }
+        },
+        "extras": [
+          "evento"
+        ]
+      }
+    },
+    {
+      "n": 14,
+      "tipo": "vago",
+      "setor": "Orientação EM (Médio)",
+      "relato": "Minha voz não alcança o fundo da sala nas reuniões, tem algo que ajude?",
+      "esperado": "AV-005",
+      "aceitos": [
+        "AV-002",
+        "AV-001"
+      ],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "AV-005",
+          "AV-002",
+          "AV-001"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      }
+    },
+    {
+      "n": 15,
+      "tipo": "informal",
+      "setor": "Orientação EM (Médio)",
+      "relato": "microfone pra amanha cedo 7h30 na entrada",
+      "esperado": "AV-005",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "AV-005",
+          "AV-002"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "AV-002",
+          "AV-003",
+          "AV-005"
+        ],
+        "pontos": {
+          "top1": false,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "data": "2026-10-15",
+          "horario": "07:30"
+        },
+        "intent": "",
+        "campos": {
+          "data": {
+            "esperado": "@+1",
+            "obtido": "2026-10-15",
+            "resultado": "ok"
+          },
+          "horario": {
+            "esperado": "=07:30",
+            "obtido": "07:30",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 16,
+      "tipo": "claro",
+      "setor": "Coordenação EM (Médio)",
+      "relato": "Preciso reservar um projetor para a sala 8 na terça-feira às 10h para apresentar slides.",
+      "esperado": "AV-006",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "AV-006"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "AV-003",
+          "AV-004",
+          "AV-006",
+          "GOO-002"
+        ],
+        "pontos": {
+          "top1": false,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "data": "2026-10-20",
+          "horario": "10:00"
+        },
+        "intent": "",
+        "campos": {
+          "data": {
+            "esperado": "@dow:2",
+            "obtido": "2026-10-20",
+            "resultado": "ok"
+          },
+          "horario": {
+            "esperado": "=10:00",
+            "obtido": "10:00",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 17,
+      "tipo": "vago",
+      "setor": "Coordenação EM (Médio)",
+      "relato": "Quero mostrar uns slides na parede da sala para os alunos.",
+      "esperado": "AV-006",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "AV-006",
+          "GOO-002"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "GOO-002"
+        ],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      }
+    },
+    {
+      "n": 18,
+      "tipo": "informal",
+      "setor": "Coordenação EM (Médio)",
+      "relato": "datashow pra sala 3 amanha na primeira aula",
+      "esperado": "AV-006",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "AV-006"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "data": "2026-10-15"
+        },
+        "intent": "",
+        "campos": {
+          "data": {
+            "esperado": "@+1",
+            "obtido": "2026-10-15",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 19,
+      "tipo": "claro",
+      "setor": "Coordenação",
+      "relato": "O cabo HDMI da sala 4 está com mau contato e a imagem do projetor fica piscando, precisa trocar.",
+      "esperado": "AV-007",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "AV-007"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "AV-007",
+          "AV-003",
+          "AV-004",
+          "AV-006"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      }
+    },
+    {
+      "n": 20,
+      "tipo": "vago",
+      "setor": "Coordenação",
+      "relato": "A imagem do notebook não chega na TV da sala, acho que é o fio.",
+      "esperado": "AV-007",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "AV-007"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "AV-006"
+        ],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      }
+    },
+    {
+      "n": 21,
+      "tipo": "informal",
+      "setor": "Coordenação",
+      "relato": "cabo hdmi quebrado na sala dos prof",
+      "esperado": "AV-007",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "AV-007"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "AV-007"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      }
+    },
+    {
+      "n": 22,
+      "tipo": "claro",
+      "setor": "Secretaria",
+      "relato": "Preciso configurar o scanner da impressora Brother DCP-L5652 para digitalizar direto no meu computador.",
+      "esperado": "IMP-001",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "IMP-001"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "IMP-001"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "modelo": "Brother DCP-L5652"
+        },
+        "intent": "",
+        "campos": {
+          "modelo": {
+            "esperado": "~L5652",
+            "obtido": "Brother DCP-L5652",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 23,
+      "tipo": "vago",
+      "setor": "Secretaria",
+      "relato": "Quero digitalizar documentos e mandar para o meu computador, como faço?",
+      "esperado": "IMP-001",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "IMP-001"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "IMP-001"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      }
+    },
+    {
+      "n": 24,
+      "tipo": "informal",
+      "setor": "Secretaria",
+      "relato": "configura o escaner pra mim pf",
+      "esperado": "IMP-001",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "IMP-001"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      }
+    },
+    {
+      "n": 25,
+      "tipo": "claro",
+      "setor": "Setor de Provas",
+      "relato": "A impressora Ricoh do 2º andar está com o grampo travado e não grampeia as provas.",
+      "esperado": "IMP-002",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "IMP-002"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "IMP-002"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "modelo": "Ricoh do 2º andar"
+        },
+        "intent": "",
+        "campos": {
+          "modelo": {
+            "esperado": "~Ricoh",
+            "obtido": "Ricoh do 2º andar",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 26,
+      "tipo": "vago",
+      "setor": "Setor de Provas",
+      "relato": "As folhas saem soltas da impressora, ela não está mais prendendo as páginas.",
+      "esperado": "IMP-002",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "IMP-004"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      }
+    },
+    {
+      "n": 27,
+      "tipo": "informal",
+      "setor": "Setor de Provas",
+      "relato": "acabou o grampo da impressora grande",
+      "esperado": "IMP-002",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "IMP-002"
+        ],
+        "tentativas": 2
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "IMP-002"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      }
+    },
+    {
+      "n": 28,
+      "tipo": "claro",
+      "setor": "Recursos Humanos",
+      "relato": "Preciso instalar a impressora HP LaserJet M428 no meu notebook novo.",
+      "esperado": "IMP-003",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "IMP-003"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "modelo": "HP LaserJet M428"
+        },
+        "intent": "",
+        "campos": {
+          "modelo": {
+            "esperado": "~M428",
+            "obtido": "HP LaserJet M428",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 29,
+      "tipo": "vago",
+      "setor": "Recursos Humanos",
+      "relato": "Meu computador não encontra a impressora da sala para mandar imprimir.",
+      "esperado": "IMP-003",
+      "aceitos": [
+        "IMP-006"
+      ],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "IMP-003",
+          "IMP-006"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      }
+    },
+    {
+      "n": 30,
+      "tipo": "informal",
+      "setor": "Recursos Humanos",
+      "relato": "instala a impressora no meu note pfv",
+      "esperado": "IMP-003",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "IMP-003"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      }
+    },
+    {
+      "n": 31,
+      "tipo": "claro",
+      "setor": "Financeiro",
+      "relato": "A impressora Kyocera está mostrando erro na lâmpada da estufa (fusor) e parou de imprimir.",
+      "esperado": "IMP-004",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "IMP-004",
+          "IMP-006"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "IMP-004"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "modelo": "Kyocera",
+          "erro-apresentado": "erro na lâmpada da estufa (fusor) e parou de imprimir"
+        },
+        "intent": "",
+        "campos": {
+          "modelo": {
+            "esperado": "~Kyocera",
+            "obtido": "Kyocera",
+            "resultado": "ok"
+          }
+        },
+        "extras": [
+          "erro-apresentado"
+        ]
+      }
+    },
+    {
+      "n": 32,
+      "tipo": "vago",
+      "setor": "Financeiro",
+      "relato": "A impressora avisa que precisa trocar a peça que aquece o papel.",
+      "esperado": "IMP-004",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "IMP-004"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      }
+    },
+    {
+      "n": 33,
+      "tipo": "informal",
+      "setor": "Financeiro",
+      "relato": "deu erro C6000 na kyocera, acho q é a estufa",
+      "esperado": "IMP-004",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "IMP-004"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "IMP-004"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "erro-apresentado": "C6000",
+          "modelo": "kyocera"
+        },
+        "intent": "",
+        "campos": {
+          "modelo": {
+            "esperado": "~kyocera",
+            "obtido": "kyocera",
+            "resultado": "ok"
+          },
+          "erro-apresentado": {
+            "esperado": "~C6000",
+            "obtido": "C6000",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 34,
+      "tipo": "claro",
+      "setor": "Secretaria",
+      "relato": "A impressora Samsung da secretaria está manchando todas as folhas com uma faixa preta.",
+      "esperado": "IMP-005",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "IMP-005",
+          "IMP-004",
+          "IMP-006"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "IMP-005"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "modelo": "Samsung da secretaria"
+        },
+        "intent": "",
+        "campos": {
+          "modelo": {
+            "esperado": "~Samsung",
+            "obtido": "Samsung da secretaria",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 35,
+      "tipo": "vago",
+      "setor": "Secretaria",
+      "relato": "As impressões estão saindo sujas.",
+      "esperado": "IMP-005",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "IMP-005"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      }
+    },
+    {
+      "n": 36,
+      "tipo": "informal",
+      "setor": "Secretaria",
+      "relato": "ta saindo tudo borrado c risco preto na impressao",
+      "esperado": "IMP-005",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "IMP-005",
+          "IMP-004"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      }
+    },
+    {
+      "n": 37,
+      "tipo": "claro",
+      "setor": "Coordenação",
+      "relato": "Mando imprimir e nada sai na impressora HP da coordenação; aparece a mensagem 'impressora offline'.",
+      "esperado": "IMP-006",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "IMP-006",
+          "IMP-003"
+        ],
+        "tentativas": 2
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "GOO-007"
+        ],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "modelo": "HP",
+          "mensagem-de-erro": "impressora offline"
+        },
+        "intent": "",
+        "campos": {
+          "modelo": {
+            "esperado": "~HP",
+            "obtido": "HP",
+            "resultado": "ok"
+          },
+          "mensagem-de-erro": {
+            "esperado": "~offline",
+            "obtido": "impressora offline",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 38,
+      "tipo": "vago",
+      "setor": "Coordenação",
+      "relato": "O documento fica parado na fila e não sai.",
+      "esperado": "IMP-006",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "IMP-006"
+        ],
+        "tentativas": 2
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      }
+    },
+    {
+      "n": 39,
+      "tipo": "informal",
+      "setor": "Coordenação",
+      "relato": "nao imprime d jeito nenhum socorro",
+      "esperado": "IMP-006",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "IMP-006"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "IMP-006"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      }
+    },
+    {
+      "n": 40,
+      "tipo": "claro",
+      "setor": "Portaria",
+      "relato": "A impressora Epson L3250 da portaria não liga, nenhuma luz acende.",
+      "esperado": "IMP-007",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "IMP-007"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "IMP-007"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "modelo": "Epson L3250"
+        },
+        "intent": "",
+        "campos": {
+          "modelo": {
+            "esperado": "~L3250",
+            "obtido": "Epson L3250",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 41,
+      "tipo": "vago",
+      "setor": "Portaria",
+      "relato": "Apertei o botão da impressora e nada acontece.",
+      "esperado": "IMP-007",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "IMP-007",
+          "IMP-006"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      }
+    },
+    {
+      "n": 42,
+      "tipo": "informal",
+      "setor": "Portaria",
+      "relato": "impressora morreu, n liga",
+      "esperado": "IMP-007",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "IMP-007"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      }
+    },
+    {
+      "n": 43,
+      "tipo": "claro",
+      "setor": "Coordenação EFAF (Fundamental II)",
+      "relato": "Papel preso na impressora Brother da sala dos professores; o visor mostra 'Atolamento bandeja 2'.",
+      "esperado": "IMP-008",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "IMP-008"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "IMP-008"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "modelo": "Brother",
+          "mensagem-do-visor": "Atolamento bandeja 2"
+        },
+        "intent": "",
+        "campos": {
+          "modelo": {
+            "esperado": "~Brother",
+            "obtido": "Brother",
+            "resultado": "ok"
+          },
+          "mensagem-do-visor": {
+            "esperado": "~bandeja 2",
+            "obtido": "Atolamento bandeja 2",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 44,
+      "tipo": "vago",
+      "setor": "Coordenação EFAF (Fundamental II)",
+      "relato": "A folha ficou enroscada lá dentro e não sai.",
+      "esperado": "IMP-008",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "IMP-008",
+          "IMP-006"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      }
+    },
+    {
+      "n": 45,
+      "tipo": "informal",
+      "setor": "Coordenação EFAF (Fundamental II)",
+      "relato": "atolou papel dnv",
+      "esperado": "IMP-008",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "IMP-008"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      }
+    },
+    {
+      "n": 46,
+      "tipo": "claro",
+      "setor": "Secretaria",
+      "relato": "O scanner da multifuncional Canon não digitaliza, aparece 'erro de comunicação com o computador'.",
+      "esperado": "IMP-009",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "IMP-009",
+          "IMP-001"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "IMP-009"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "modelo": "Canon",
+          "erro": "erro de comunicação com o computador"
+        },
+        "intent": "",
+        "campos": {
+          "modelo": {
+            "esperado": "~Canon",
+            "obtido": "Canon",
+            "resultado": "ok"
+          },
+          "erro": {
+            "esperado": "~comunica",
+            "obtido": "erro de comunicação com o computador",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 47,
+      "tipo": "vago",
+      "setor": "Secretaria",
+      "relato": "Tento escanear e não chega nada no computador.",
+      "esperado": "IMP-009",
+      "aceitos": [
+        "IMP-001"
+      ],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "IMP-009",
+          "IMP-001"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "IMP-001"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      }
+    },
+    {
+      "n": 48,
+      "tipo": "informal",
+      "setor": "Secretaria",
+      "relato": "escaner parou",
+      "esperado": "IMP-009",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "IMP-009",
+          "IMP-001"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      }
+    },
+    {
+      "n": 49,
+      "tipo": "claro",
+      "setor": "Secretaria",
+      "relato": "Preciso de toner preto para a impressora HP M428 da secretaria.",
+      "esperado": "IMP-010",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "IMP-010"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "IMP-010"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "cor": "Preto",
+          "modelo": "HP M428"
+        },
+        "intent": "",
+        "campos": {
+          "cor": {
+            "esperado": "=Preto",
+            "obtido": "Preto",
+            "resultado": "ok"
+          },
+          "modelo": {
+            "esperado": "~M428",
+            "obtido": "HP M428",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 50,
+      "tipo": "vago",
+      "setor": "Secretaria",
+      "relato": "A impressão está saindo bem fraquinha, acho que está acabando.",
+      "esperado": "IMP-010",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "IMP-010"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      }
+    }
+  ]
+}

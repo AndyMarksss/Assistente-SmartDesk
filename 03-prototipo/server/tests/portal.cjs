@@ -255,6 +255,16 @@ let analysis = call("/api/analyze", {
 assert.equal(analysis.status, 200);
 assert.equal(analysis.body.source, "local");
 assert(analysis.body.candidates.every((c) => c.item.id !== "TI-QB-001"));
+// No Financeiro os dois IDs são permitidos: a resposta da IA vale e usa a instrução compartilhada.
+analysis = call("/api/analyze", { description: "o QuickBooks não abre", sector: "Financeiro" });
+assert.equal(analysis.body.source, "ai");
+assert.equal(
+  JSON.stringify(analysis.body.candidates.map((c) => c.item.id)),
+  JSON.stringify(["IMP-008", "TI-QB-001"]),
+);
+const analyzeRequest = JSON.stringify(remote[remote.length - 1]);
+assert(analyzeRequest.includes("Glossário da escola"));
+assert(analyzeRequest.includes("QUICKBOOKS > Erro no sistema"));
 assert.equal(
   call("/api/analyze", { description: "x".repeat(2001), sector: "Secretaria" }).status,
   400,

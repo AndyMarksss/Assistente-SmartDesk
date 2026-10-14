@@ -692,7 +692,35 @@
       );
       return askArea();
     }
-    buildDraft(items[0], items.slice(1), result.source === "ai");
+    if (result.source !== "ai") return pickLocalGuess(items);
+    buildDraft(items[0], items.slice(1), true);
+  }
+  // Sem IA, a base local só acha palavras parecidas (acertou 38% na avaliação): em vez de montar
+  // um rascunho como se tivesse certeza, mostra as possibilidades para a pessoa escolher.
+  function pickLocalGuess(items) {
+    checkpoint(() => pickLocalGuess(items));
+    message(
+      "A IA está indisponível agora, então não consigo montar o rascunho sozinho. Pelas palavras do seu relato, pode ser um destes. Se nenhum servir, escolha pelas opções — seu texto fica guardado como descrição.",
+    );
+    choose(
+      [
+        ...items.map((item) => ({
+          label: item.area + " › " + F.needLabel(item),
+          value: item.id,
+          icon: F.iconFor(item.need, item.area),
+        })),
+        { label: "Escolher pelas opções", value: "manual", icon: "fa-list" },
+      ],
+      (value) => {
+        if (value === "manual") return askArea();
+        const item = desk.knowledgeBase.items.find((entry) => entry.id === value);
+        stage("report");
+        selectItem(item);
+        message(copy.opening(item));
+        askEquipmentIntent();
+      },
+      "ESCOLHA O TIPO DE ATENDIMENTO",
+    );
   }
   async function buildDraft(item, alternatives, fromAI) {
     setAiStatus("busy");

@@ -1,4 +1,4 @@
-# Estrutura do SmartDesk — 0.11.2
+# Estrutura do SmartDesk — 0.11.3
 
 ## Cliente
 Os scripts são carregados com defer na ordem declarada em index.html. Não há ferramenta de compilação: os arquivos continuam funcionando no servidor local e a apresentação estática no GitHub Pages.
@@ -68,3 +68,6 @@ Painel: `admin.js` desenha o skeleton antes da primeira resposta, usa Pointer Ev
 
 ## Olhar e luz 0.11.1
 `atmosphere.js` calcula o olhar do robô (`look`) no mesmo quadro da luz: direção do cursor a partir do centro do rosto, limitada por `reach` (alcance total a 240 px), gravada em `--gaze-x/--gaze-y` no SVG; o CSS aplica em `.robot-gaze` (olhos) e `.robot-gaze.mouth` (45%). A luz do chat é `.chat-shell::after` no fundo (`z-index: 0`, atrás das faixas e dos cards, que ficam em `z-index: 1`), com `width/height: auto` e `filter: none` para anular as regras antigas de `visual-depth.css`; a classe `is-lit` controla a opacidade e a transição fica em `motion.css`. Na 0.11.1 ela ficou por cima de tudo; o usuário pediu que ficasse só no fundo (0.11.2).
+
+## Avaliação da IA e modo sem IA 0.11.3
+`ai-provider.cjs` concentra as instruções de identificar, extrair e revisar, além de `analyzeCategories`; o build copia essas instruções e `analyzeCategories_` para `PortalShared.gs`, e o `Portal.gs` não tem mais texto de instrução próprio para identificar o caminho. Em `app.js`, `suggestPaths` só monta rascunho (`buildDraft`) quando a análise veio da IA; quando veio da base local, `pickLocalGuess` mostra as possibilidades como opções. A avaliação técnica fica fora do protótipo, em `04-validacao/avaliacao-ia`, e usa só as rotas `/api/analyze` e `/api/extract` e o navegador.

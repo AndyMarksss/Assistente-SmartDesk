@@ -1,0 +1,59 @@
+Rodada depois: 186 relatos, hoje 2026-10-14.
+ok  #1 AV-001 → AV-001
+ok  #2 AV-001 → AV-001
+ok  #3 AV-001 → AV-001
+ok  #4 AV-002 → AV-002
+ok  #5 AV-002 → AV-002
+ok  #6 AV-002 → AV-002
+ok  #7 AV-003 → AV-003
+ok  #8 AV-003 → AV-003
+ok  #9 AV-003 → AV-003
+ok  #10 AV-004 → AV-004
+ok  #11 AV-004 → AV-004
+ok  #12 AV-004 → AV-004
+ok  #13 AV-005 → AV-005
+ok  #14 AV-005 → AV-005, AV-002
+ok  #15 AV-005 → AV-005
+ok  #16 AV-006 → AV-006
+  IA indisponível em /api/analyze (tentativa 1); aguardando…
+ok  #17 AV-006 → AV-006
+ok  #18 AV-006 → AV-006
+ok  #19 AV-007 → AV-007, AV-006
+ok  #20 AV-007 → AV-007
+ok  #21 AV-007 → AV-007
+ok  #22 IMP-001 → IMP-001
+ok  #23 IMP-001 → IMP-001
+ok  #24 IMP-001 → IMP-001
+ok  #25 IMP-002 → IMP-002
+ok  #26 IMP-002 → IMP-002
+ok  #27 IMP-002 → IMP-002
+ok  #28 IMP-003 → IMP-003
+ok  #29 IMP-003 → IMP-003, IMP-006
+ok  #30 IMP-003 → IMP-003
+ok  #31 IMP-004 → IMP-004, IMP-006
+ok  #32 IMP-004 → IMP-004
+ok  #33 IMP-004 → IMP-004
+ok  #34 IMP-005 → IMP-005
+ok  #35 IMP-005 → IMP-005
+ok  #36 IMP-005 → IMP-005
+ok  #37 IMP-006 → IMP-006
+ok  #38 IMP-006 → IMP-006
+ok  #39 IMP-006 → IMP-006
+ok  #40 IMP-007 → IMP-007
+ok  #41 IMP-007 → IMP-007, IMP-006
+ok  #42 IMP-007 → IMP-007
+  IA indisponível em /api/analyze (tentativa 1); aguardando…
+  IA indisponível em /api/analyze (tentativa 2); aguardando…
+  IA indisponível em /api/extract (tentativa 1); aguardando…
+  IA indisponível em /api/extract (tentativa 2); aguardando…
+  IA indisponível em /api/extract (tentativa 3); aguardando…
+  IA indisponível em /api/extract (tentativa 4); aguardando…
+  IA indisponível em /api/extract (tentativa 5); aguardando…
+ok  #43 IMP-008 → IMP-008
+  IA indisponível em /api/analyze (tentativa 1); aguardando…
+ok  #44 IMP-008 → IMP-008
+  IA indisponível em /api/analyze (tentativa 1); aguardando…
+  IA indisponível em /api/analyze (tentativa 2); aguardando…
+  IA indisponível em /api/analyze (tentativa 3); aguardando…
+  IA indisponível em /api/analyze (tentativa 4); aguardando…
+  IA indisponível em /api/analyze (tentativa 5); aguardando…

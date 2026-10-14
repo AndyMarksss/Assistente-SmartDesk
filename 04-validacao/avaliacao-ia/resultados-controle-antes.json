@@ -1,0 +1,976 @@
+{
+  "rodada": "controle-antes",
+  "hoje": "2026-10-14",
+  "casos": [
+    {
+      "n": 1,
+      "tipo": "controle",
+      "setor": "Coordenação EFAI (Fundamental I)",
+      "relato": "Na quarta que vem às 15h vou apresentar o projeto de leitura na sala 2 e preciso só do projetor.",
+      "esperado": "AV-006",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "AV-006"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "AV-003",
+          "AV-004",
+          "AV-006"
+        ],
+        "pontos": {
+          "top1": false,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "data": "2026-10-21",
+          "horario": "15:00",
+          "evento": "Sim"
+        },
+        "intent": "",
+        "campos": {
+          "horario": {
+            "esperado": "=15:00",
+            "obtido": "15:00",
+            "resultado": "ok"
+          }
+        },
+        "extras": [
+          "data",
+          "evento"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "tipo": "controle",
+      "setor": "Esporte",
+      "relato": "Festival de dança na quadra no sábado às 9h, preciso de som com microfone para a apresentadora. É evento aberto às famílias.",
+      "esperado": "AV-002",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "AV-002",
+          "AV-001"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "AV-001",
+          "AV-002",
+          "AV-003",
+          "AV-005"
+        ],
+        "pontos": {
+          "top1": false,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "data": "2026-10-17",
+          "horario": "09:00",
+          "evento": "Sim"
+        },
+        "intent": "",
+        "campos": {
+          "data": {
+            "esperado": "@dow:6",
+            "obtido": "2026-10-17",
+            "resultado": "ok"
+          },
+          "horario": {
+            "esperado": "=09:00",
+            "obtido": "09:00",
+            "resultado": "ok"
+          },
+          "evento": {
+            "esperado": "=Sim",
+            "obtido": "Sim",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 3,
+      "tipo": "controle",
+      "setor": "Coordenação EM (Médio)",
+      "relato": "O fio que liga o notebook na TV da sala 21 está com o conector solto.",
+      "esperado": "AV-007",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "AV-007"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      }
+    },
+    {
+      "n": 4,
+      "tipo": "controle",
+      "setor": "Direção",
+      "relato": "Só preciso de um microfone de lapela para a formatura amanhã às 18h.",
+      "esperado": "AV-005",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "AV-005"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "AV-002",
+          "AV-003",
+          "AV-005"
+        ],
+        "pontos": {
+          "top1": false,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "data": "2026-10-15",
+          "horario": "18:00",
+          "evento": "Sim"
+        },
+        "intent": "",
+        "campos": {
+          "data": {
+            "esperado": "@+1",
+            "obtido": "2026-10-15",
+            "resultado": "ok"
+          },
+          "horario": {
+            "esperado": "=18:00",
+            "obtido": "18:00",
+            "resultado": "ok"
+          }
+        },
+        "extras": [
+          "evento"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "tipo": "controle",
+      "setor": "Setor de Provas",
+      "relato": "Precisamos de cartucho ciano para a impressora colorida da sala de provas.",
+      "esperado": "IMP-010",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "IMP-010"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "IMP-010"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "cor": "Ciano",
+          "modelo": "impressora colorida da sala de provas"
+        },
+        "intent": "",
+        "campos": {
+          "cor": {
+            "esperado": "=Ciano",
+            "obtido": "Ciano",
+            "resultado": "ok"
+          }
+        },
+        "extras": [
+          "modelo"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "tipo": "controle",
+      "setor": "Secretaria",
+      "relato": "Toda folha que eu coloco amassa e trava lá dentro da impressora.",
+      "esperado": "IMP-008",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "IMP-008",
+          "IMP-006"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      }
+    },
+    {
+      "n": 7,
+      "tipo": "controle",
+      "setor": "Financeiro",
+      "relato": "Cliquei em imprimir três vezes e a impressora nem se mexeu.",
+      "esperado": "IMP-006",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "IMP-006",
+          "IMP-007"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      }
+    },
+    {
+      "n": 8,
+      "tipo": "controle",
+      "setor": "Marketing",
+      "relato": "Chegou uma impressora nova para o marketing e ela precisa ser colocada nos computadores da equipe.",
+      "esperado": "IMP-003",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "IMP-003"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      }
+    },
+    {
+      "n": 9,
+      "tipo": "controle",
+      "setor": "Coordenação",
+      "relato": "As cópias estão saindo com umas listras cinzas no meio da página.",
+      "esperado": "IMP-005",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "IMP-005"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      }
+    },
+    {
+      "n": 10,
+      "tipo": "controle",
+      "setor": "Enfermaria",
+      "relato": "A impressora da enfermaria ficou toda apagada depois da queda de energia.",
+      "esperado": "IMP-007",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "IMP-007"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      }
+    },
+    {
+      "n": 11,
+      "tipo": "controle",
+      "setor": "Limpeza",
+      "relato": "Troquei de celular e não consigo mais entrar no meu e-mail da escola, pede uma senha que eu não lembro.",
+      "esperado": "GOO-011",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "GOO-011",
+          "GOO-007"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      }
+    },
+    {
+      "n": 12,
+      "tipo": "controle",
+      "setor": "Coordenação EFAI (Fundamental I)",
+      "relato": "Uma aluna do 3º ano não aparece na lista da minha sala virtual de atividades.",
+      "esperado": "GOO-003",
+      "aceitos": [
+        "GOO-006"
+      ],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "GOO-003",
+          "GOO-006"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "GOO-003"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      }
+    },
+    {
+      "n": 13,
+      "tipo": "controle",
+      "setor": "Secretaria",
+      "relato": "Apaguei sem querer uma pasta compartilhada com os documentos dos alunos, dá para recuperar?",
+      "esperado": "GOO-005",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "GOO-005"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "GOO-005"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      }
+    },
+    {
+      "n": 14,
+      "tipo": "controle",
+      "setor": "Cobrança",
+      "relato": "Os e-mails que eu envio para os responsáveis estão voltando com erro.",
+      "esperado": "GOO-007",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "GOO-007"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      }
+    },
+    {
+      "n": 15,
+      "tipo": "controle",
+      "setor": "Coordenação EM (Médio)",
+      "relato": "Gostaria de reservar o carrinho de Chromebooks para segunda-feira no período da tarde.",
+      "esperado": "GOO-010",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "GOO-010"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "data": "2026-10-19",
+          "horario-periodo": "período da tarde"
+        },
+        "intent": "",
+        "campos": {
+          "data": {
+            "esperado": "@dow:1",
+            "obtido": "2026-10-19",
+            "resultado": "ok"
+          },
+          "horario-periodo": {
+            "esperado": "~tarde",
+            "obtido": "período da tarde",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 16,
+      "tipo": "controle",
+      "setor": "Direção",
+      "relato": "Quero criar um calendário compartilhado com as datas das reuniões da direção.",
+      "esperado": "GOO-001",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "GOO-001"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "GOO-001"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      }
+    },
+    {
+      "n": 17,
+      "tipo": "controle",
+      "setor": "Secretaria",
+      "relato": "O computador demora uns dez minutos para ligar e fica travando quando abro o navegador.",
+      "esperado": "TI-COMP-004",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "TI-COMP-004",
+          "TI-COMP-005"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "TI-COMP-004"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      }
+    },
+    {
+      "n": 18,
+      "tipo": "controle",
+      "setor": "Portaria",
+      "relato": "O mouse sem fio da portaria não responde nem com pilha nova.",
+      "esperado": "TI-COMP-007",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "TI-COMP-007"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "TI-COMP-007"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      }
+    },
+    {
+      "n": 19,
+      "tipo": "controle",
+      "setor": "Orientação EFAF (Fundamental II)",
+      "relato": "Depois da chuva o computador da orientação não dá sinal de vida.",
+      "esperado": "TI-COMP-003",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "TI-COMP-003"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "TI-001"
+        ],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      }
+    },
+    {
+      "n": 20,
+      "tipo": "controle",
+      "setor": "Sala Maker",
+      "relato": "Precisamos do programa de modelagem 3D instalado nos computadores da sala maker.",
+      "esperado": "TI-COMP-005",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "TI-COMP-005"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "TI-COMP-005"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "programa": "modelagem 3D"
+        },
+        "intent": "",
+        "campos": {
+          "programa": {
+            "esperado": "~3D",
+            "obtido": "modelagem 3D",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 21,
+      "tipo": "controle",
+      "setor": "Inspetoria",
+      "relato": "No pátio o celular não pega a rede sem fio da escola.",
+      "esperado": "TI-NET-003",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "TI-NET-003"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      }
+    },
+    {
+      "n": 22,
+      "tipo": "controle",
+      "setor": "Coordenação",
+      "relato": "Um professor substituto começa amanhã e precisa de acesso à internet da escola por duas semanas.",
+      "esperado": "TI-NET-002",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "TI-NET-002"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "finalidade": "Professor substituto",
+          "periodo": "duas semanas"
+        },
+        "intent": "",
+        "campos": {
+          "periodo": {
+            "esperado": "~semana",
+            "obtido": "duas semanas",
+            "resultado": "ok"
+          }
+        },
+        "extras": [
+          "finalidade"
+        ]
+      }
+    },
+    {
+      "n": 23,
+      "tipo": "controle",
+      "setor": "Coordenação EFAI (Fundamental I)",
+      "relato": "Não consigo lançar a frequência no Mentor, a tela fica girando e não salva.",
+      "esperado": "TI-MENT-005",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "TI-MENT-005"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      }
+    },
+    {
+      "n": 24,
+      "tipo": "controle",
+      "setor": "Secretaria",
+      "relato": "Uma aluna foi transferida do 5º B para o 5º A e precisa ser movida no sistema.",
+      "esperado": "TI-MENT-006",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "TI-MENT-006"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      }
+    },
+    {
+      "n": 25,
+      "tipo": "controle",
+      "setor": "Coordenação EM (Médio)",
+      "relato": "O novo professor de física precisa de usuário e senha no Mentor Web.",
+      "esperado": "TI-MENT-001",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "TI-MENT-001"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      }
+    },
+    {
+      "n": 26,
+      "tipo": "controle",
+      "setor": "Financeiro",
+      "relato": "O QuickBooks fecha sozinho sempre que tento emitir um relatório.",
+      "esperado": "TI-QB-001",
+      "aceitos": [
+        "TI-MENT-002"
+      ],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "TI-QB-001"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "TI-MENT-007",
+          "TI-QB-001"
+        ],
+        "pontos": {
+          "top1": false,
+          "top3": true
+        }
+      }
+    },
+    {
+      "n": 27,
+      "tipo": "controle",
+      "setor": "Marketing",
+      "relato": "O telefone do marketing mudou e precisa ser corrigido na página da intranet.",
+      "esperado": "TI-INT-001",
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "TI-INT-001"
+        ],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      }
+    },
+    {
+      "n": 28,
+      "tipo": "controle-fora",
+      "setor": "Portaria",
+      "relato": "O portão da garagem não está abrindo com o controle.",
+      "esperado": null,
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [
+          "TI-003"
+        ],
+        "tentativas": 2
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      }
+    },
+    {
+      "n": 29,
+      "tipo": "controle-fora",
+      "setor": "Recursos Humanos",
+      "relato": "Preciso do meu holerite de setembro.",
+      "esperado": null,
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [],
+        "tentativas": 1
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      }
+    },
+    {
+      "n": 30,
+      "tipo": "controle-fora",
+      "setor": "Coordenação EI (Infantil)",
+      "relato": "Faltou papel higiênico no banheiro do infantil.",
+      "esperado": null,
+      "aceitos": [],
+      "analise": {
+        "source": "ai",
+        "ids": [],
+        "tentativas": 2
+      },
+      "pontos": {
+        "top1": true,
+        "top3": true
+      },
+      "local": {
+        "ids": [
+          "TI-CAM-001"
+        ],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      }
+    }
+  ]
+}
