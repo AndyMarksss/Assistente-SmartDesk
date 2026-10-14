@@ -1,6 +1,6 @@
 # Verificação 0.11.0
 
-Data: 2026-10-14. `npm test` com dez suítes aprovadas (223 verificações de integração); `version:check` e `format:check` aprovados. Saúde do Apps Script: `"version":"0.11.0"` (versão 9 da mesma implantação, /exec inalterado).
+Data: 2026-10-14. `npm test` com dez suítes aprovadas (223 verificações de integração); `version:check` e `format:check` aprovados. Saúde do Apps Script: `"version":"0.11.0"` (versões 9 e 10 da mesma implantação, /exec inalterado).
 
 ## Servidor local, Gemini real, envio ao Google desligado
 

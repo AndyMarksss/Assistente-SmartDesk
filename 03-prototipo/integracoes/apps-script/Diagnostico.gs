@@ -117,7 +117,7 @@ function diagnosticarIA() {
  * Edite NUMEROS antes de executar para remover outros chamados de teste.
  */
 function removerChamadoDeTeste() {
-  var NUMEROS = ["#010"];
+  var NUMEROS = ["#010", "#013"]; // #010 e #013: testes fictícios do assistente (0.10.1 e 0.11.0).
   var props = PropertiesService.getScriptProperties();
   var lock = LockService.getScriptLock();
   lock.waitLock(25000);

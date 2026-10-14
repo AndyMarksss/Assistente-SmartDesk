@@ -731,10 +731,16 @@
 }
 .receipt-steps li {
   flex: 1;
+  min-width: 0;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 4px;
+  line-height: 1.25;
+  /* Quebra só entre palavras ("Em / andamento"), nunca no meio delas. */
+  overflow-wrap: normal;
+  word-break: normal;
   padding: 8px 6px;
   border-radius: 10px;
   font-size: 12px;

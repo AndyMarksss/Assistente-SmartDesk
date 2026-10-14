@@ -1,4 +1,4 @@
-> Atualização 0.11.0: a IA monta o rascunho do chamado a partir do relato, acompanhamento de chamado por número e e-mail, painel com skeleton e kanban de arrastar e soltar, e revisão de todos os fluxos. Apps Script 0.11.0 publicado (versão 9 da implantação existente). Avaliação: basta abrir o GitHub Pages. Uso local: `npm start` e http://127.0.0.1:4173/.
+> Atualização 0.11.0: a IA monta o rascunho do chamado a partir do relato, acompanhamento de chamado por número e e-mail, painel com skeleton e kanban de arrastar e soltar, e revisão de todos os fluxos. Apps Script 0.11.0 publicado (versão 10 da implantação existente). Avaliação: basta abrir o GitHub Pages. Uso local: `npm start` e http://127.0.0.1:4173/.
 
 # SmartDesk — protótipo 0.11.0
 
