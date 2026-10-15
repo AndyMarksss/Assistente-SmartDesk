@@ -1,0 +1,634 @@
+[
+  {
+    "id": "AV-001",
+    "relato": "Preciso de uma caixa de som na quadra amanhã às 10h para a aula de educação física.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": []
+  },
+  {
+    "id": "AV-002",
+    "relato": "Preciso de caixa de som e microfone no pátio na sexta-feira às 8h para a abertura da gincana, que é um evento.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Em qual local exato do pátio os equipamentos devem ser montados?",
+    "ajuda": "",
+    "dicas": []
+  },
+  {
+    "id": "AV-003",
+    "relato": "Para a palestra no auditório no dia 20, às 19h, vou precisar de projetor, microfone e caixa de som. É um evento com os pais.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": []
+  },
+  {
+    "id": "AV-004",
+    "relato": "Preciso de projetor e caixa de som na sala 12 amanhã às 13h30 para passar um filme para a turma.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": []
+  },
+  {
+    "id": "AV-005",
+    "relato": "Preciso de um microfone sem fio para a reunião de professores na sexta às 17h.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Em qual local da escola será realizada a reunião?",
+    "ajuda": "",
+    "dicas": []
+  },
+  {
+    "id": "AV-006",
+    "relato": "Preciso reservar um projetor para a sala 8 na terça-feira às 10h para apresentar slides.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": []
+  },
+  {
+    "id": "AV-007",
+    "relato": "O cabo HDMI da sala 4 está com mau contato e a imagem do projetor fica piscando, precisa trocar.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": []
+  },
+  {
+    "id": "IMP-001",
+    "relato": "Preciso configurar o scanner da impressora Brother DCP-L5652 para digitalizar direto no meu computador.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": []
+  },
+  {
+    "id": "IMP-002",
+    "relato": "A impressora Ricoh do 2º andar está com o grampo travado e não grampeia as provas.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": []
+  },
+  {
+    "id": "IMP-003",
+    "relato": "Preciso instalar a impressora HP LaserJet M428 no meu notebook novo.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Em qual sala ou setor o notebook será utilizado?",
+    "ajuda": "",
+    "dicas": []
+  },
+  {
+    "id": "IMP-004",
+    "relato": "A impressora Kyocera está mostrando erro na lâmpada da estufa (fusor) e parou de imprimir.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Em qual sala ou setor a impressora está localizada?",
+    "ajuda": "",
+    "dicas": []
+  },
+  {
+    "id": "IMP-005",
+    "relato": "A impressora Samsung da secretaria está manchando todas as folhas com uma faixa preta.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [
+      "Abra a tampa da impressora e remova o toner com cuidado.",
+      "Limpe o rolo interno com um pano seco e sem fiapos.",
+      "Reencaixe o toner firmemente e faça um teste de impressão."
+    ]
+  },
+  {
+    "id": "IMP-006",
+    "relato": "Mando imprimir e nada sai na impressora HP da coordenação; aparece a mensagem 'impressora offline'.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [
+      "Verifique se o cabo USB ou de rede está firmemente conectado.",
+      "Reinicie a impressora desligando-a e ligando-a novamente após 10 segundos.",
+      "Confirme se a impressora não está pausada nas configurações do sistema."
+    ]
+  },
+  {
+    "id": "IMP-007",
+    "relato": "A impressora Epson L3250 da portaria não liga, nenhuma luz acende.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [
+      "Verifique se o cabo de alimentação está firmemente conectado à tomada e à impressora.",
+      "Teste ligar a impressora em outra tomada que esteja funcionando.",
+      "Pressione firmemente o botão de ligar/desligar."
+    ]
+  },
+  {
+    "id": "IMP-008",
+    "relato": "Papel preso na impressora Brother da sala dos professores; o visor mostra 'Atolamento bandeja 2'.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [
+      "Desligue a impressora da tomada antes de mexer.",
+      "Abra a bandeja 2 e puxe o papel preso com cuidado.",
+      "Feche bem a bandeja e religue o equipamento."
+    ]
+  },
+  {
+    "id": "IMP-009",
+    "relato": "O scanner da multifuncional Canon não digitaliza, aparece 'erro de comunicação com o computador'.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [
+      "Reinicie o computador e a multifuncional Canon.",
+      "Verifique se o cabo USB ou de rede está conectado corretamente."
+    ]
+  },
+  {
+    "id": "IMP-010",
+    "relato": "Preciso de toner preto para a impressora HP M428 da secretaria.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": []
+  },
+  {
+    "id": "GOO-001",
+    "relato": "Não consigo compartilhar minha agenda do Google com a coordenação.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": []
+  },
+  {
+    "id": "GOO-002",
+    "relato": "Minha apresentação do Google Slides 'Feira de Ciências' não abre, fica carregando.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [
+      "Atualize a página do navegador usando as teclas Ctrl + F5.",
+      "Tente abrir o arquivo em uma aba anônima do navegador.",
+      "Limpe o cachê e os cookies do seu navegador."
+    ]
+  },
+  {
+    "id": "GOO-003",
+    "relato": "Não consigo adicionar alunos na turma 7º B do Google Classroom.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": []
+  },
+  {
+    "id": "GOO-004",
+    "relato": "O Google Docs 'Ata de reunião' não salva as alterações que faço.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [
+      "Atualize a página do navegador e tente fazer as alterações novamente.",
+      "Verifique se o ícone de nuvem no topo indica que as alterações foram salvas offline."
+    ]
+  },
+  {
+    "id": "GOO-005",
+    "relato": "Preciso de acesso à pasta 'Planejamento 2026' no Google Drive da coordenação.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": []
+  },
+  {
+    "id": "GOO-006",
+    "relato": "Tenho uma dúvida sobre como usar as ferramentas do Google da escola.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Qual ferramenta específica do Google você gostaria de saber utilizar?",
+    "ajuda": "",
+    "dicas": []
+  },
+  {
+    "id": "GOO-007",
+    "relato": "Meu Gmail institucional não está recebendo e-mails desde ontem.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [
+      "Acesse o Gmail pelo navegador em uma aba anônima e verifique se o problema persiste.",
+      "Confira na aba de Spam se os e-mails estão chegando lá por engano.",
+      "Verifique se o armazenamento da sua conta está cheio no Google Drive."
+    ]
+  },
+  {
+    "id": "GOO-008",
+    "relato": "Preciso ser incluída no grupo de e-mail professores@ do Google Grupos.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": []
+  },
+  {
+    "id": "GOO-009",
+    "relato": "A planilha 'Controle de frequência' no Google Sheets está com as fórmulas quebradas.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [
+      "Faça uma cópia da planilha para testar se as fórmulas voltam a funcionar.",
+      "Verifique se houve alterações recentes no histórico de revisões."
+    ]
+  },
+  {
+    "id": "GOO-010",
+    "relato": "Quero reservar 30 Chromebooks para o 6º ano na quinta-feira, no 3º e 4º horário.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Em qual sala ou laboratório os Chromebooks serão utilizados?",
+    "ajuda": "",
+    "dicas": []
+  },
+  {
+    "id": "GOO-011",
+    "relato": "Esqueci a senha do meu e-mail institucional e preciso redefinir.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": []
+  },
+  {
+    "id": "GOO-012",
+    "relato": "Preciso atualizar a página do Google Sites do projeto 'Horta Escolar'.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "O que exatamente precisa ser alterado ou adicionado nesta página do site?",
+    "ajuda": "",
+    "dicas": []
+  },
+  {
+    "id": "TI-001",
+    "relato": "Queria tirar uma dúvida com a TI sobre como funciona o backup dos meus arquivos.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Qual é a sua principal dúvida sobre o funcionamento do backup dos seus arquivos?",
+    "ajuda": "",
+    "dicas": []
+  },
+  {
+    "id": "TI-002",
+    "relato": "Tenho uma sugestão de melhoria: o sistema de reservas poderia mandar lembrete por e-mail.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": []
+  },
+  {
+    "id": "TI-003",
+    "relato": "Preciso de ajuda da TI para configurar a TV nova da recepção, que não está em nenhuma opção.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Qual é o modelo da TV e o que exatamente precisa ser configurado nela?",
+    "ajuda": "",
+    "dicas": []
+  },
+  {
+    "id": "TI-COMP-001",
+    "relato": "O headset do meu computador não funciona; o microfone não capta minha voz nas reuniões.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [
+      "Desconecte e reconecte o headset na porta USB ou de áudio do computador.",
+      "Verifique nas configurações de som do sistema se o microfone correto está selecionado."
+    ]
+  },
+  {
+    "id": "TI-COMP-002",
+    "relato": "O leitor de DVD do computador da sala de vídeo não abre a gaveta.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [
+      "Pressione o botão físico de ejeção localizado na frente do leitor de DVD.",
+      "Abra o Explorador de Arquivos, clique com o botão direito no ícone do leitor e selecione a opção Ejetar."
+    ]
+  },
+  {
+    "id": "TI-COMP-003",
+    "relato": "O computador da recepção não liga; aperto o botão e nada acontece.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [
+      "Verifique se o cabo de força está bem conectado na tomada e na fonte do computador.",
+      "Confirme se o estabilizador ou filtro de linha está ligado e funcionando."
+    ]
+  },
+  {
+    "id": "TI-COMP-004",
+    "relato": "Meu computador está muito lento, demora vários minutos para abrir qualquer programa.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [
+      "Reinicie o computador para limpar a memória temporária.",
+      "Feche programas e abas do navegador que não estiver usando."
+    ]
+  },
+  {
+    "id": "TI-COMP-005",
+    "relato": "Preciso instalar o Adobe Reader no computador da secretaria.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": []
+  },
+  {
+    "id": "TI-COMP-006",
+    "relato": "Quero reservar um notebook para a reunião de pais amanhã à tarde.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Em qual sala ou local será realizada a reunião?",
+    "ajuda": "",
+    "dicas": []
+  },
+  {
+    "id": "TI-COMP-007",
+    "relato": "O mouse do meu computador parou de funcionar e precisa ser trocado.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [
+      "Desconecte o mouse da porta USB atual e tente conectá-lo em outra porta USB.",
+      "Se o mouse for sem fio, verifique se as pilhas precisam ser substituídas."
+    ]
+  },
+  {
+    "id": "TI-COMP-008",
+    "relato": "O teclado do computador da enfermaria está com várias teclas que não funcionam.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": []
+  },
+  {
+    "id": "TI-NET-001",
+    "relato": "O computador da minha mesa está sem internet; ele é ligado por cabo de rede.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "O cabo de rede está firmemente conectado tanto no computador quanto na tomada de parede?",
+    "ajuda": "",
+    "dicas": [
+      "Verifique se o cabo de rede está bem conectado atrás do computador.",
+      "Desconecte e reconecte o cabo para garantir o encaixe.",
+      "Reinicie o computador para atualizar a conexão com a rede."
+    ]
+  },
+  {
+    "id": "TI-NET-002",
+    "relato": "Preciso de um login de acesso à internet para um palestrante convidado na sexta-feira.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": []
+  },
+  {
+    "id": "TI-NET-003",
+    "relato": "O Wi-Fi da sala dos professores cai toda hora no meu celular.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": []
+  },
+  {
+    "id": "TI-INT-001",
+    "relato": "Preciso atualizar o calendário de provas na página da Coordenação na intranet.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": []
+  },
+  {
+    "id": "TI-INT-002",
+    "relato": "Quero solicitar uma nova seção na intranet para os documentos do RH.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Quais documentos e links devem ficar disponíveis nesta nova seção da Intranet?",
+    "ajuda": "",
+    "dicas": []
+  },
+  {
+    "id": "TI-INT-003",
+    "relato": "Tenho uma sugestão para a intranet: colocar uma busca na página inicial.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": []
+  },
+  {
+    "id": "TI-MENT-001",
+    "relato": "Preciso criar o login no Mentor Web para uma professora nova de matemática.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Qual é o nome completo e o e-mail institucional da professora?",
+    "ajuda": "",
+    "dicas": []
+  },
+  {
+    "id": "TI-MENT-002",
+    "relato": "O relatório de frequência no Mentor Web dá erro ao gerar o PDF.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Poderia informar qual é a mensagem de erro exata que aparece ao tentar gerar o PDF?",
+    "ajuda": "",
+    "dicas": [
+      "Atualize a página do Mentor Web e tente gerar o relatório novamente.",
+      "Limpe o cache do navegador e acesse o sistema de novo."
+    ]
+  },
+  {
+    "id": "TI-MENT-003",
+    "relato": "Preciso alterar a nota de Matemática de um aluno do 8º A no Mentor Web, foi lançada errada.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": []
+  },
+  {
+    "id": "TI-MENT-004",
+    "relato": "Preciso encerrar o diário de Português da turma 6º B referente ao 3º bimestre.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": []
+  },
+  {
+    "id": "TI-MENT-005",
+    "relato": "O Mentor Web mostra 'erro 500' quando tento entrar na tela de lançamento de notas.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [
+      "Feche todas as abas do navegador referentes ao Mentor Web e limpe o cache.",
+      "Tente acessar o sistema utilizando uma janela anônima do navegador.",
+      "Verifique se a sua conexão com a internet está estável e tente novamente."
+    ]
+  },
+  {
+    "id": "TI-MENT-006",
+    "relato": "Preciso remanejar um aluno do 7º A para o 7º C no Mentor Web.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": []
+  },
+  {
+    "id": "TI-MENT-007",
+    "relato": "Preciso de um relatório do Mentor Web com as notas de todos os alunos do 9º ano no 2º bimestre.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Para qual turma ou disciplina específica você precisa deste relatório de notas?",
+    "ajuda": "",
+    "dicas": []
+  },
+  {
+    "id": "TI-MENT-008",
+    "relato": "Preciso de acesso ao relatório de inadimplência no Mentor Web.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": []
+  },
+  {
+    "id": "TI-QB-001",
+    "relato": "O QuickBooks está dando erro ao abrir a empresa, aparece o código H202.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [
+      "Verifique se o serviço do QuickBooks (QuickBooksDBXX e QBCFMonitorService) está em execução no computador servidor.",
+      "Certifique-se de que o firewall do Windows está permitindo a comunicação nas portas usadas pelo QuickBooks."
+    ]
+  },
+  {
+    "id": "TI-QB-002",
+    "relato": "Preciso instalar o QuickBooks no computador novo do financeiro.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Em qual sala ou mesa o novo computador está instalado?",
+    "ajuda": "",
+    "dicas": []
+  },
+  {
+    "id": "TI-CAM-001",
+    "relato": "Uma mãe pediu acesso às câmeras da sala do Infantil 2 para acompanhar o filho.",
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": []
+  }
+]

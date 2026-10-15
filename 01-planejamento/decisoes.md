@@ -101,3 +101,10 @@ Recebimento planejado: Apps Script cria planilha separada SmartDesk — Chamados
 - Decisão: banco de 186 relatos fictícios (3 por caminho, mais casos especiais) e banco de controle de 30 relatos escritos antes de ver os erros e nunca usados para ajustar. Mudanças na instrução só ficam se melhoram nos mesmos relatos sem piorar o controle.
 - Resultado: glossário dos sistemas da escola mantido; envio das palavras-chave da matriz descartado (piorou Audiovisual). Sem IA, o relato livre passa a virar opções.
 - Limite: avaliação técnica, não validação com usuários; o banco foi escrito pelo assistente. Rodada completa da versão final pendente por causa da cota diária do Gemini.
+
+## 2026-10-15 — 0.11.4: avaliação da IA concluída
+
+- A regra de extração da 0.11.3 foi refinada depois de a rodada completa mostrar que ela também esvaziava campos de texto (94%): cuidado só nas perguntas de Sim/Não.
+- O glossário passou a valer também na revisão, depois de 2 alertas falsos no percurso pelos botões.
+- Perguntas com nome de pessoa ou endereço de e-mail passam a ser barradas por regra fixa no servidor, além da instrução, porque a instrução sozinha não impediu.
+- Limite: avaliação técnica com relatos escritos pelo assistente; não substitui o teste com usuários.

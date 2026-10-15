@@ -1,0 +1,36 @@
+# Contrato da IA — chat guiado (0.5.0)
+
+- Fonte de opções: Matriz Mestre fornecida pelo usuário, leitura em 2026-10-01. 25 setores, quatro áreas, 57 caminhos e dez regras cadastradas. A tabela completa é preservada na exportação; o MVP aplica as ramificações, dados necessários e restrições de setor. Triagem automática e avaliação posterior continuam pendentes.
+- `POST /api/next-prompt`: recebe setor e ID permitido; o servidor fornece à IA somente área e necessidade oficiais. Retorna uma frase curta para pedir a descrição, ou uma frase predefinida se a IA falhar.
+- `POST /api/subject`: recebe setor, ID, respostas estruturadas e descrição. Valida a seleção e os campos. Encaminha à IA a descrição como dado, rótulos oficiais e respostas de opções fechadas. Retorna `subject`, `source`, `fallback` e o ID selecionado pelo usuário. Assunto validado até 80 caracteres; sem alteração da classificação e da descrição.
+- Não envia nomes, e-mails de campos, textos complementares ou anexos à IA. Dados pessoais que o próprio usuário incluir na descrição serão transmitidos com ela; usar dados fictícios nos testes.
+- Não há conversa livre, ferramentas, execução de comandos, envio de e-mails nem instruções do usuário ao modelo. A instrução do servidor trata a descrição como conteúdo a resumir. Saídas passam por validação e entram na interface com `textContent`. A qualidade semântica do assunto ainda exige revisão pelo usuário.
+- `POST /api/drafts`: salva o chamado revisado e anexos localmente, sem consultar IA e sem envio externo. Seleção, campos e anexos são verificados no servidor; arquivos têm nomes internos independentes do nome enviado. O texto original da descrição fica em `chamado.json`.
+- O adaptador antigo de classificação permanece como código histórico compatível, mas não é carregado nem utilizado pelo novo percurso da interface.
+- Chave lida apenas pelo servidor, nunca entregue à página. Manter o modelo definido na configuração e o projeto gratuito sem faturamento. Nenhuma tentativa automática em modelos alternativos.
+
+## Atualização 0.6.0
+
+O assunto não aparece na conversa ou no cartão de revisão; é enviado ao receptor com o chamado. Descrição continua literal. Local retirado da base operacional por instrução direta. `POST /api/tickets` valida campos/anexos e envia pelo servidor ao Apps Script; token apenas no corpo desse pedido servidor-servidor, nunca na página. `google-storage.cjs` exige URL HTTPS de implantação /exec. Confirmação de envio somente com resposta válida contendo ID e número do chamado; indisponibilidade conserva os dados no cliente. Rascunho local continua como API histórica, não como ação do novo fluxo.
+
+## Atualização 0.10.0
+
+- `POST /api/analyze`: atalho opcional "Descrever com minhas palavras", ao lado das escolhas guiadas. Recebe relato e setor; a IA só pode devolver IDs da lista permitida ao setor (no máximo três), e qualquer ID fora dela faz cair na base local de palavras-chave. O cliente mostra os caminhos como sugestão e a pessoa confirma ou escolhe pelas opções. O fluxo principal continua sendo por escolhas.
+- `POST /api/assist`: depois da descrição, recebe seleção, respostas e descrição validadas. A IA devolve no máximo uma pergunta de complemento e até três dicas. A pergunta é descartada se pedir senha, CPF, telefone ou contiver link. As dicas só existem nos caminhos de `selfHelpEligible` (defeitos que a própria pessoa pode contornar) e nunca em reservas, compras, acessos, senhas ou instalações. A resposta ao complemento é anexada à descrição como "Complemento:"; a descrição original não é reescrita.
+- Os dados enviados ao modelo são os mesmos do assunto: setor, área, necessidade, descrição e respostas de opções fechadas. Nome, e-mail, textos livres dos campos e anexos continuam fora.
+- Sem IA (chave ausente, falha ou cota atingida), o atendimento segue sem pergunta nem dicas, e o atalho de relato usa a base local. Nada é inventado no lugar da IA.
+- Saídas da IA são marcadas na conversa com o selo "IA" e entram na página por `textContent`.
+
+## Atualização 0.11.0
+
+- `POST /api/extract`: recebe setor, ID confirmado e relato. A IA recebe a data de hoje com o dia da semana e a lista de campos extraíveis (rótulo, tipo e opções) e devolve `campos` [{id, valor}] e `intencao`. O servidor descarta valores fora do formato (data passada ou inexistente, horário fora de HH:MM, opção inexistente, link inválido) e campos condicionais cuja condição não foi atendida. Nunca são extraídos computador, conta, e-mails, usuário, aluno, responsável ou contatos. A pessoa confirma tudo no cartão de rascunho.
+- `POST /api/assist`: passa a receber o tipo do pedido (problema, solicitação, dúvida, outro) e os rótulos já respondidos. Devolve `coerente`/`motivo` (alerta quando o relato não combina com o tipo), `pergunta` e `ajuda` (onde achar a resposta, até 180 caracteres) e `dicas` "para tentar antes de enviar o chamado". A instrução proíbe sair do escopo do pedido, repetir dados informados e dizer que a equipe já está a caminho.
+- As perguntas da IA e as respostas da pessoa entram ao fim da descrição, em bloco "Perguntas do assistente"; o relato original continua literal.
+- `POST /api/track` e `POST /api/selfhelp` não usam IA.
+
+## Atualização 0.11.3
+
+- Avaliação técnica com relatos fictícios em `04-validacao/avaliacao-ia` (banco de 186 relatos para ajuste, banco de controle de 30 relatos nunca usados para ajustar, roteiro que percorre os 57 caminhos pelos botões e relatório).
+- `POST /api/analyze`: a instrução (`ANALYZE_INSTRUCTION`) e as categorias (`analyzeCategories`) ficam em `server/ai-provider.cjs` e são copiadas para o Apps Script pelo build (`SMARTDESK_ANALYZE_INSTRUCTION` e `analyzeCategories_`), sem texto duplicado. As categorias continuam só com ID, área e necessidade: uma tentativa de enviar também as palavras-chave da matriz piorou Audiovisual, porque os seis caminhos repetem as mesmas palavras, e foi descartada. A instrução traz um glossário dos sistemas da escola (Mentor Web, QuickBooks, Intranet, Google Grupos, estufa da impressora), prefere o caminho específico ao genérico e devolve lista vazia para assuntos que não são de TI ou relatos sem pedido. Continuam valendo: só IDs da lista do setor, no máximo três, relato tratado como dado.
+- `POST /api/extract`: campo de opção só é preenchido quando a pessoa diz a resposta com todas as letras; aula, reunião, filme ou apresentação não bastam para marcar "É para um evento?".
+- Nenhum dado novo é enviado ao modelo; só o texto da instrução mudou.

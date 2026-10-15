@@ -34,3 +34,9 @@ O assunto não aparece na conversa ou no cartão de revisão; é enviado ao rece
 - `POST /api/analyze`: a instrução (`ANALYZE_INSTRUCTION`) e as categorias (`analyzeCategories`) ficam em `server/ai-provider.cjs` e são copiadas para o Apps Script pelo build (`SMARTDESK_ANALYZE_INSTRUCTION` e `analyzeCategories_`), sem texto duplicado. As categorias continuam só com ID, área e necessidade: uma tentativa de enviar também as palavras-chave da matriz piorou Audiovisual, porque os seis caminhos repetem as mesmas palavras, e foi descartada. A instrução traz um glossário dos sistemas da escola (Mentor Web, QuickBooks, Intranet, Google Grupos, estufa da impressora), prefere o caminho específico ao genérico e devolve lista vazia para assuntos que não são de TI ou relatos sem pedido. Continuam valendo: só IDs da lista do setor, no máximo três, relato tratado como dado.
 - `POST /api/extract`: campo de opção só é preenchido quando a pessoa diz a resposta com todas as letras; aula, reunião, filme ou apresentação não bastam para marcar "É para um evento?".
 - Nenhum dado novo é enviado ao modelo; só o texto da instrução mudou.
+
+## Atualização 0.11.4
+
+- O glossário dos sistemas da escola (`GLOSSARY` em `ai-provider.cjs`) vale na identificação e na revisão. Na revisão, alerta de incoerência só quando a descrição trata claramente de outro equipamento, sistema ou serviço; mesmo item para outra pessoa é coerente; na dúvida, coerente. Motivo em português correto, sem nomes de campos.
+- Extração: o cuidado extra vale só para perguntas de Sim/Não (como "É para um evento?"); campos de texto são preenchidos sempre que o relato traz a informação.
+- `safeAssist` descarta perguntas que pedem nome de pessoas (aluno, responsável, professor, funcionário…) ou endereço de e-mail, além de senha, CPF e telefone.

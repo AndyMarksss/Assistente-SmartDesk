@@ -1,6 +1,6 @@
 "use strict";
 // Gera relatorio-avaliacao-ia.md a partir das rodadas (resultados-*.json) e do percurso pelos botões.
-// Uso: node gerar-relatorio.cjs antes,depois [controle-antes,controle-depois]
+// Uso: node gerar-relatorio.cjs antes,depois [controle-antes,controle-depois] [parciais] [extracao-final]
 const fs = require("node:fs");
 const path = require("node:path");
 const AQUI = __dirname;
@@ -20,6 +20,7 @@ const ler = (lista) =>
 const rodadas = ler(process.argv[2]);
 const controles = ler(process.argv[3]);
 const parciais = ler(process.argv[4]);
+const extracoes = ler(process.argv[5]);
 if (!rodadas.length) throw new Error("Informe ao menos uma rodada.");
 const percursoArquivo = path.join(AQUI, "percurso-botoes.json");
 const percurso = fs.existsSync(percursoArquivo)
@@ -60,7 +61,9 @@ function placar(casos, chave) {
     misto: linha(so((c) => c.tipo === "misto")),
   };
 }
-function extracao(casos) {
+function extracao(todos) {
+  // Só conta extrações que a IA respondeu; falha de cota não é erro do modelo.
+  const casos = todos.filter((c) => c.extracao && c.extracao.source === "ai");
   const campos = casos.flatMap((c) =>
     c.extracao
       ? Object.entries(c.extracao.campos).map(([id, v]) => ({
@@ -88,6 +91,8 @@ function extracao(casos) {
     ),
     erros: campos.filter((c) => c.resultado !== "ok"),
     extras: casos.filter((c) => c.extracao && c.extracao.extras.length),
+    falhas: todos.filter((c) => c.extracao && c.extracao.source !== "ai")
+      .length,
   };
 }
 
@@ -106,10 +111,19 @@ md +=
 md +=
   '**Como ler:** "1ª sugestão" = o caminho certo veio em primeiro (é o que o rascunho usa). "Entre as 3" = apareceu em alguma das sugestões. A base local é o classificador por palavras-chave usado quando a IA está fora.\n\n';
 const pendentes = [];
-if (parciais.length) pendentes.push("a rodada completa da instrução nova e o banco de controle com ela");
-if (percurso.length < 57) pendentes.push("o percurso pelos botões (" + percurso.length + " de 57 caminhos feitos)");
+if (!rodadas.some((r) => r.nome === "depois"))
+  pendentes.push(
+    "a rodada completa da instrução nova e o banco de controle com ela",
+  );
+if (percurso.length < 57)
+  pendentes.push(
+    "o percurso pelos botões (" + percurso.length + " de 57 caminhos feitos)",
+  );
 if (pendentes.length)
-  md += "**Situação:** avaliação incompleta. Faltam " + pendentes.join(" e ") + ", que esperam a cota diária do Gemini voltar.\n\n";
+  md +=
+    "**Situação:** avaliação incompleta. Faltam " +
+    pendentes.join(" e ") +
+    ", que esperam a cota diária do Gemini voltar.\n\n";
 
 md +=
   "## Identificação do caminho\n\n| Recorte | " +
@@ -171,8 +185,25 @@ md +=
   placarLocal.misto[1] +
   " |\n\n";
 
-md += "## Extração dos dados do relato (rodada " + ultima.nome + ")\n\n";
-for (const r of rodadas) {
+// "Evento" preenchido pela IA sem estar entre os campos esperados do relato.
+const eventoExtra = (casos) => {
+  const comExtracao = casos.filter(
+    (c) =>
+      c.extracao && c.extracao.source === "ai" && c.esperado?.startsWith("AV-"),
+  );
+  return fracao(
+    comExtracao.filter(
+      (c) =>
+        "evento" in c.extracao.respostas && !("evento" in c.extracao.campos),
+    ).length,
+    comExtracao.length,
+  );
+};
+const finalExtracao = extracoes.length
+  ? extracoes[extracoes.length - 1]
+  : ultima;
+md += "## Extração dos dados do relato\n\n";
+for (const r of [...rodadas, ...extracoes]) {
   const e = extracao(r.casos);
   md +=
     "- **" +
@@ -183,9 +214,15 @@ for (const r of rodadas) {
     e.datas +
     "; demais campos " +
     e.outros +
+    '; "evento" marcado sem estar no relato ' +
+    eventoExtra(r.casos) +
+    (e.falhas
+      ? "; " + e.falhas + " sem resposta da IA (cota), fora da conta"
+      : "") +
     ".\n";
 }
-const ex = extracao(ultima.casos);
+md += "\nTabelas abaixo: rodada " + finalExtracao.nome + ".\n";
+const ex = extracao(finalExtracao.casos);
 if (ex.erros.length) {
   md +=
     "\nCampos que não bateram:\n\n| Relato | Campo | Esperado | Obtido |\n|---|---|---|---|\n";
@@ -215,25 +252,11 @@ if (ex.extras.length) {
       " |\n";
 }
 
-// "Evento" preenchido pela IA sem estar entre os campos esperados do relato.
-const eventoExtra = (casos) => {
-  const comExtracao = casos.filter(
-    (c) =>
-      c.extracao && c.extracao.source === "ai" && c.esperado?.startsWith("AV-"),
-  );
-  return fracao(
-    comExtracao.filter(
-      (c) =>
-        "evento" in c.extracao.respostas && !("evento" in c.extracao.campos),
-    ).length,
-    comExtracao.length,
-  );
-};
 if (parciais.length) {
   const base = rodadas[0];
   md += "\n## Mudanças na instrução, comparadas nos mesmos relatos\n\n";
   md +=
-    "Estas rodadas pararam no limite diário gratuito do Gemini (500 pedidos por dia). A comparação usa só os relatos que a IA respondeu, contra os mesmos relatos da rodada " +
+    "Rodadas interrompidas (por piorar o resultado ou pelo limite diário do Gemini). A comparação usa só os relatos que a IA respondeu, contra os mesmos relatos da rodada " +
     base.nome +
     ".\n\n";
   md +=
@@ -360,7 +383,7 @@ if (percurso.length) {
     percurso.length +
     " caminhos até o resumo)\n\n";
   md +=
-    "Cada caminho foi percorrido no navegador do início ao resumo, sem enviar, usando o relato claro como descrição.\n\n";
+    "Cada caminho foi percorrido no navegador do início ao resumo, sem enviar, usando o relato claro como descrição. O percurso rodou antes do ajuste da revisão da IA; a seção seguinte confere a revisão final, direto na rota.\n\n";
   const falhas = percurso.filter((p) => !p.ok);
   if (falhas.length)
     md +=
@@ -409,6 +432,46 @@ if (percurso.length) {
               .join(" / "),
         )
         .join("\n") +
+      "\n";
+}
+// Revisão da IA conferida direto na rota /api/assist (revisar-ia.cjs), depois dos ajustes.
+for (const arquivo of fs
+  .readdirSync(AQUI)
+  .filter((f) => /^revisao-.+\.json$/.test(f))) {
+  const lista = JSON.parse(
+    fs.readFileSync(path.join(AQUI, arquivo), "utf8"),
+  ).filter((r) => r.source === "ai");
+  const alertas = lista.filter((r) => !r.coerente),
+    perguntas = lista.filter((r) => r.pergunta);
+  md +=
+    "\n## Revisão da IA conferida direto (" +
+    arquivo.replace(/^revisao-|\.json$/g, "") +
+    ", " +
+    lista.length +
+    " caminhos)\n\n";
+  md +=
+    "Mesmo relato claro de cada caminho, enviado direto para `/api/assist` com respostas fictícias válidas.\n\n";
+  md +=
+    "- Alertas de incoerência (falso alarme): " +
+    fracao(alertas.length, lista.length) +
+    "\n";
+  md +=
+    "- Com pergunta de complemento: " +
+    fracao(perguntas.length, lista.length) +
+    "\n";
+  md +=
+    "- Com dicas antes do envio: " +
+    fracao(lista.filter((r) => r.dicas.length).length, lista.length) +
+    "\n\n";
+  if (alertas.length)
+    md +=
+      "Alertas:\n\n" +
+      alertas.map((r) => "- " + r.id + ": " + r.motivo).join("\n") +
+      "\n\n";
+  if (perguntas.length)
+    md +=
+      "Perguntas:\n\n" +
+      perguntas.map((r) => "- " + r.id + ": " + r.pergunta).join("\n") +
       "\n";
 }
 fs.writeFileSync(path.join(AQUI, "relatorio-avaliacao-ia.md"), md);

@@ -43,5 +43,1276 @@
     "dicas": "SmartDesk IAAntes de enviar o chamado, vale tentar estes passos rápidos:Abra a tampa da bandeja 2 indicada no visor.Puxe o papel preso com cuidado para evitar que rasgue.Feche bem a tampa e teste a impressão novamente.Sugestões da IA. Se não se sentir à vontade com algum passo, é só seguir com o chamado.",
     "resumo": "ImpressoraPapel Atolado ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaModelo da impressoraInformação de teste 01Mensagem do visorInformação de teste 01DescriçãoPapel preso na impressora Brother da sala dos professores; o visor mostra 'Atolamento bandeja 2'.",
     "segundos": 30
+  },
+  {
+    "id": "AV-002",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área Audiovisual",
+      "caminho Caixa de Som / Microfone",
+      "data amanhã",
+      "horário 10:00",
+      "opção Sim",
+      "link depois",
+      "descrição = Preciso de caixa de som e microfone no p",
+      "pergunta da IA → pular",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [
+      "SmartDesk IAEm qual local exato do pátio os equipamentos devem ser montados?"
+    ],
+    "dicas": null,
+    "resumo": "AudiovisualCaixa de Som / Microfone ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaData do atendimento16/10/2026 (sexta)Horário do atendimento10:00É para um evento?SimLink do roteiro do eventoEnvio depoisDescriçãoPreciso de caixa de som e microfone no pátio na sexta-feira às 8h para a abertura da gincana, que é um evento.",
+    "segundos": 20
+  },
+  {
+    "id": "AV-003",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área Audiovisual",
+      "caminho Caixa de Som / Microfone / Projetor",
+      "data amanhã",
+      "horário 10:00",
+      "opção Sim",
+      "link depois",
+      "descrição = Para a palestra no auditório no dia 20, ",
+      "pergunta da IA → pular",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [
+      "SmartDesk IAEm qual espaço ou sala do auditório o equipamento será utilizado?"
+    ],
+    "dicas": null,
+    "resumo": "AudiovisualCaixa de Som / Microfone / Projetor ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaData do atendimento16/10/2026 (sexta)Horário do atendimento10:00É para um evento?SimLink do roteiro do eventoEnvio depoisDescriçãoPara a palestra no auditório no dia 20, às 19h, vou precisar de projetor, microfone e caixa de som. É um evento com os pais.",
+    "segundos": 20
+  },
+  {
+    "id": "AV-004",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área Audiovisual",
+      "caminho Caixa de Som / Projetor",
+      "data amanhã",
+      "horário 10:00",
+      "opção Sim",
+      "link depois",
+      "descrição = Preciso de projetor e caixa de som na sa",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [],
+    "dicas": null,
+    "resumo": "AudiovisualCaixa de Som / Projetor ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaData do atendimento16/10/2026 (sexta)Horário do atendimento10:00É para um evento?SimLink do roteiro do eventoEnvio depoisDescriçãoPreciso de projetor e caixa de som na sala 12 amanhã às 13h30 para passar um filme para a turma.",
+    "segundos": 18
+  },
+  {
+    "id": "AV-005",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área Audiovisual",
+      "caminho Microfone",
+      "data amanhã",
+      "horário 10:00",
+      "opção Sim",
+      "link depois",
+      "descrição = Preciso de um microfone sem fio para a r",
+      "pergunta da IA → pular",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [
+      "SmartDesk IAEm qual sala ou local da escola acontecerá a reunião?"
+    ],
+    "dicas": null,
+    "resumo": "AudiovisualMicrofone ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaData do atendimento16/10/2026 (sexta)Horário do atendimento10:00É para um evento?SimLink do roteiro do eventoEnvio depoisDescriçãoPreciso de um microfone sem fio para a reunião de professores na sexta às 17h.",
+    "segundos": 20
+  },
+  {
+    "id": "AV-006",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área Audiovisual",
+      "caminho Projetor",
+      "data amanhã",
+      "horário 10:00",
+      "opção Sim",
+      "link depois",
+      "descrição = Preciso reservar um projetor para a sala",
+      "pergunta da IA → pular",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [
+      "SmartDesk IAPara qual atividade o projetor será utilizado?"
+    ],
+    "dicas": null,
+    "resumo": "AudiovisualProjetor ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaData do atendimento16/10/2026 (sexta)Horário do atendimento10:00É para um evento?SimLink do roteiro do eventoEnvio depoisDescriçãoPreciso reservar um projetor para a sala 8 na terça-feira às 10h para apresentar slides.",
+    "segundos": 20
+  },
+  {
+    "id": "AV-007",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área Audiovisual",
+      "caminho Troca de cabo HDMI",
+      "descrição = O cabo HDMI da sala 4 está com mau conta",
+      "dicas → seguir",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [],
+    "dicas": "SmartDesk IAAntes de enviar o chamado, vale tentar estes passos rápidos:Desconecte o cabo HDMI das duas pontas e conecte novamente com firmeza.Certifique-se de que o conector está totalmente encaixado na porta.Sugestões da IA. Se não se sentir à vontade com algum passo, é só seguir com o chamado.",
+    "resumo": "AudiovisualTroca de cabo HDMI ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaDescriçãoO cabo HDMI da sala 4 está com mau contato e a imagem do projetor fica piscando, precisa trocar.",
+    "segundos": 15
+  },
+  {
+    "id": "IMP-001",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área Impressora",
+      "caminho Configurar Scanner",
+      "campo modelo = Informação de teste 01",
+      "quem usa → eu",
+      "descrição = Preciso configurar o scanner da impresso",
+      "pergunta da IA → pular",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [
+      "SmartDesk IAEm qual pasta ou formato você prefere receber os arquivos digitalizados?"
+    ],
+    "dicas": null,
+    "resumo": "ImpressoraConfigurar Scanner ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaModelo da impressoraInformação de teste 01Quem utilizaPessoa Ficticia TesteDescriçãoPreciso configurar o scanner da impressora Brother DCP-L5652 para digitalizar direto no meu computador.",
+    "segundos": 17
+  },
+  {
+    "id": "IMP-002",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área Impressora",
+      "caminho Grampo da Impressora",
+      "campo modelo = Informação de teste 01",
+      "descrição = A impressora Ricoh do 2º andar está com ",
+      "dicas → seguir",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [],
+    "dicas": "SmartDesk IAAntes de enviar o chamado, vale tentar estes passos rápidos:Abra a gaveta do grampador para verificar se há algum grampo amassado bloqueando o mecanismo.Retire cuidadosamente o grampo preso e feche bem a gaveta novamente.Sugestões da IA. Se não se sentir à vontade com algum passo, é só seguir com o chamado.",
+    "resumo": "ImpressoraGrampo da Impressora ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaModelo da impressoraInformação de teste 01DescriçãoA impressora Ricoh do 2º andar está com o grampo travado e não grampeia as provas.",
+    "segundos": 17
+  },
+  {
+    "id": "IMP-003",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área Impressora",
+      "caminho Instalar Impressora",
+      "campo modelo = Informação de teste 01",
+      "quem usa → eu",
+      "descrição = Preciso instalar a impressora HP LaserJe",
+      "pergunta da IA → pular",
+      "autorização pendente",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [
+      "SmartDesk IAEm qual sala ou setor o notebook será utilizado?"
+    ],
+    "dicas": null,
+    "resumo": "ImpressoraInstalar Impressora ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaAutorização da liderançaPendente de autorizaçãoModelo da impressoraInformação de teste 01Quem utilizaPessoa Ficticia TesteDescriçãoPreciso instalar a impressora HP LaserJet M428 no meu notebook novo.",
+    "segundos": 19
+  },
+  {
+    "id": "IMP-004",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área Impressora",
+      "caminho Lâmpada da Estufa",
+      "campo modelo = Informação de teste 01",
+      "campo erro-apresentado = Informação de teste 01",
+      "descrição = A impressora Kyocera está mostrando erro",
+      "alerta de incoerência → está certo",
+      "sem anexo"
+    ],
+    "alerta": "SmartDesk IAAntes de continuar, uma conferência: A necessidade escolhida e lâmpada da estufa, mas a descricao trata de impressora. Quer escolher outro tipo de atendimento?",
+    "perguntas": [],
+    "dicas": null,
+    "resumo": "ImpressoraLâmpada da Estufa ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaModelo da impressoraInformação de teste 01Erro apresentadoInformação de teste 01DescriçãoA impressora Kyocera está mostrando erro na lâmpada da estufa (fusor) e parou de imprimir.",
+    "segundos": 17
+  },
+  {
+    "id": "IMP-005",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área Impressora",
+      "caminho Manchando folhas",
+      "campo modelo = Informação de teste 01",
+      "descrição = A impressora Samsung da secretaria está ",
+      "dicas → seguir",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [],
+    "dicas": "SmartDesk IAAntes de enviar o chamado, vale tentar estes passos rápidos:Abra a tampa da impressora e verifique se o cartucho ou toner está vazando.Retire o toner com cuidado e balance-o suavemente de um lado para o outro.Limpe os roletes internos com um pano seco e sem fiapos.Sugestões da IA. Se não se sentir à vontade com algum passo, é só seguir com o chamado.",
+    "resumo": "ImpressoraManchando folhas ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaModelo da impressoraInformação de teste 01DescriçãoA impressora Samsung da secretaria está manchando todas as folhas com uma faixa preta.",
+    "segundos": 16
+  },
+  {
+    "id": "IMP-006",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área Impressora",
+      "caminho Não imprime",
+      "campo modelo = Informação de teste 01",
+      "quem usa → eu",
+      "campo mensagem-de-erro = Informação de teste 01",
+      "descrição = Mando imprimir e nada sai na impressora ",
+      "dicas → seguir",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [],
+    "dicas": "SmartDesk IAAntes de enviar o chamado, vale tentar estes passos rápidos:Verifique se o cabo USB ou de rede está bem conectado na impressora e no computador.Desligue a impressora na tomada, aguarde 10 segundos e ligue novamente.Sugestões da IA. Se não se sentir à vontade com algum passo, é só seguir com o chamado.",
+    "resumo": "ImpressoraNão imprime ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaModelo da impressoraInformação de teste 01Quem utilizaPessoa Ficticia TesteMensagem de erroInformação de teste 01DescriçãoMando imprimir e nada sai na impressora HP da coordenação; aparece a mensagem 'impressora offline'.",
+    "segundos": 18
+  },
+  {
+    "id": "IMP-007",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área Impressora",
+      "caminho Não liga",
+      "campo modelo = Informação de teste 01",
+      "descrição = A impressora Epson L3250 da portaria não",
+      "dicas → seguir",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [],
+    "dicas": "SmartDesk IAAntes de enviar o chamado, vale tentar estes passos rápidos:Verifique se o cabo de energia está bem conectado na tomada e atrás da impressora.Teste ligar a impressora em outra tomada que esteja funcionando.Sugestões da IA. Se não se sentir à vontade com algum passo, é só seguir com o chamado.",
+    "resumo": "ImpressoraNão liga ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaModelo da impressoraInformação de teste 01DescriçãoA impressora Epson L3250 da portaria não liga, nenhuma luz acende.",
+    "segundos": 16
+  },
+  {
+    "id": "IMP-009",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área Impressora",
+      "caminho Scanner não funciona",
+      "campo modelo = Informação de teste 01",
+      "quem usa → eu",
+      "campo erro = Informação de teste 01",
+      "descrição = O scanner da multifuncional Canon não di",
+      "dicas → seguir",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [],
+    "dicas": "SmartDesk IAAntes de enviar o chamado, vale tentar estes passos rápidos:Reinicie o computador e a multifuncional para restablecer a conexao de rede.Verifique se o cabo de rede ou USB esta bem conectado na impressora e no computador.Sugestões da IA. Se não se sentir à vontade com algum passo, é só seguir com o chamado.",
+    "resumo": "ImpressoraScanner não funciona ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaModelo da impressoraInformação de teste 01Quem utilizaPessoa Ficticia TesteErroInformação de teste 01DescriçãoO scanner da multifuncional Canon não digitaliza, aparece 'erro de comunicação com o computador'.",
+    "segundos": 19
+  },
+  {
+    "id": "IMP-010",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área Impressora",
+      "caminho Solicitação de Toner / Tinta",
+      "opção Preto",
+      "campo modelo = Informação de teste 01",
+      "descrição = Preciso de toner preto para a impressora",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [],
+    "dicas": null,
+    "resumo": "ImpressoraSolicitação de Toner / Tinta ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaCor do toner / tintaPretoModelo da impressoraInformação de teste 01DescriçãoPreciso de toner preto para a impressora HP M428 da secretaria.",
+    "segundos": 16
+  },
+  {
+    "id": "GOO-001",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área Google",
+      "caminho Agendas",
+      "campo conta = teste.ficticio@exemplo.com",
+      "descrição = Não consigo compartilhar minha agenda do",
+      "pergunta da IA → pular",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [
+      "SmartDesk IAQual mensagem de erro aparece quando você tenta compartilhar a agenda?"
+    ],
+    "dicas": null,
+    "resumo": "GoogleAgendas ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaE-mail da conta envolvidateste.ficticio@exemplo.comDescriçãoNão consigo compartilhar minha agenda do Google com a coordenação.",
+    "segundos": 16
+  },
+  {
+    "id": "GOO-002",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área Google",
+      "caminho Apresentações",
+      "campo conta = teste.ficticio@exemplo.com",
+      "campo link-ou-nome-do-arquivo = Informação de teste 01",
+      "descrição = Minha apresentação do Google Slides 'Fei",
+      "dicas → seguir",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [],
+    "dicas": "SmartDesk IAAntes de enviar o chamado, vale tentar estes passos rápidos:Atualize a página do navegador pressionando F5.Feche outras abas e tente abrir o arquivo novamente.Sugestões da IA. Se não se sentir à vontade com algum passo, é só seguir com o chamado.",
+    "resumo": "GoogleApresentações ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaE-mail da conta envolvidateste.ficticio@exemplo.comLink ou nome do arquivoInformação de teste 01DescriçãoMinha apresentação do Google Slides 'Feira de Ciências' não abre, fica carregando.",
+    "segundos": 18
+  },
+  {
+    "id": "GOO-003",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área Google",
+      "caminho Classroom",
+      "campo conta = teste.ficticio@exemplo.com",
+      "campo turma = Informação de teste 01",
+      "descrição = Não consigo adicionar alunos na turma 7º",
+      "pergunta da IA → pular",
+      "dicas → seguir",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [
+      "SmartDesk IAQual mensagem de erro aparece ao tentar adicionar os alunos?"
+    ],
+    "dicas": "SmartDesk IAAntes de enviar o chamado, vale tentar estes passos rápidos:Atualize a página do Classroom e tente novamente.Verifique se está usando a conta institucional correta.Sugestões da IA. Se não se sentir à vontade com algum passo, é só seguir com o chamado.",
+    "resumo": "GoogleClassroom ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaE-mail da conta envolvidateste.ficticio@exemplo.comTurmaInformação de teste 01DescriçãoNão consigo adicionar alunos na turma 7º B do Google Classroom.",
+    "segundos": 19
+  },
+  {
+    "id": "GOO-004",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área Google",
+      "caminho Documentos",
+      "campo conta = teste.ficticio@exemplo.com",
+      "campo arquivo = Informação de teste 01",
+      "descrição = O Google Docs 'Ata de reunião' não salva",
+      "pergunta da IA → pular",
+      "dicas → seguir",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [
+      "SmartDesk IAVocê pode verificar se há uma mensagem de erro ou se o ícone de salvamento exibe algum aviso no topo da página?"
+    ],
+    "dicas": "SmartDesk IAAntes de enviar o chamado, vale tentar estes passos rápidos:Verifique sua conexão com a internet.Atualize a página do navegador e tente editar novamente.Abra o documento em uma aba anônima e teste as alterações.Sugestões da IA. Se não se sentir à vontade com algum passo, é só seguir com o chamado.",
+    "resumo": "GoogleDocumentos ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaE-mail da conta envolvidateste.ficticio@exemplo.comArquivoInformação de teste 01DescriçãoO Google Docs 'Ata de reunião' não salva as alterações que faço.",
+    "segundos": 19
+  },
+  {
+    "id": "GOO-005",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área Google",
+      "caminho Drive",
+      "campo conta = teste.ficticio@exemplo.com",
+      "campo link-ou-nome-do-recurso = Informação de teste 01",
+      "descrição = Preciso de acesso à pasta 'Planejamento ",
+      "pergunta da IA → pular",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [
+      "SmartDesk IAPara qual atividade na secretaria você precisará acessar esta pasta?"
+    ],
+    "dicas": null,
+    "resumo": "GoogleDrive ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaE-mail da conta envolvidateste.ficticio@exemplo.comLink ou nome do recursoInformação de teste 01DescriçãoPreciso de acesso à pasta 'Planejamento 2026' no Google Drive da coordenação.",
+    "segundos": 18
+  },
+  {
+    "id": "GOO-006",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área Google",
+      "caminho Dúvidas",
+      "campo conta = teste.ficticio@exemplo.com",
+      "descrição = Tenho uma dúvida sobre como usar as ferr",
+      "pergunta da IA → pular",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [
+      "SmartDesk IAQual ferramenta específica do Google você gostaria de saber como usar?"
+    ],
+    "dicas": null,
+    "resumo": "GoogleDúvidas ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaE-mail da conta envolvidateste.ficticio@exemplo.comDescriçãoTenho uma dúvida sobre como usar as ferramentas do Google da escola.",
+    "segundos": 17
+  },
+  {
+    "id": "GOO-007",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área Google",
+      "caminho Gmail",
+      "campo conta = teste.ficticio@exemplo.com",
+      "campo erro-apresentado = Informação de teste 01",
+      "descrição = Meu Gmail institucional não está receben",
+      "dicas → seguir",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [],
+    "dicas": "SmartDesk IAAntes de enviar o chamado, vale tentar estes passos rápidos:Verifique a pasta de Lixeira e Spam para ver se as mensagens estão chegando lá.Faça logout da sua conta e entre novamente para atualizar a conexão.Sugestões da IA. Se não se sentir à vontade com algum passo, é só seguir com o chamado.",
+    "resumo": "GoogleGmail ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaE-mail da conta envolvidateste.ficticio@exemplo.comErro apresentadoInformação de teste 01DescriçãoMeu Gmail institucional não está recebendo e-mails desde ontem.",
+    "segundos": 18
+  },
+  {
+    "id": "GOO-008",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área Google",
+      "caminho Grupos",
+      "campo conta = teste.ficticio@exemplo.com",
+      "campo grupo = Informação de teste 01",
+      "descrição = Preciso ser incluída no grupo de e-mail ",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [],
+    "dicas": null,
+    "resumo": "GoogleGrupos ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaE-mail da conta envolvidateste.ficticio@exemplo.comGrupoInformação de teste 01DescriçãoPreciso ser incluída no grupo de e-mail professores@ do Google Grupos.",
+    "segundos": 17
+  },
+  {
+    "id": "GOO-009",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área Google",
+      "caminho Planilhas",
+      "campo conta = teste.ficticio@exemplo.com",
+      "campo link-ou-nome-da-planilha = Informação de teste 01",
+      "descrição = A planilha 'Controle de frequência' no G",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [],
+    "dicas": null,
+    "resumo": "GooglePlanilhas ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaE-mail da conta envolvidateste.ficticio@exemplo.comLink ou nome da planilhaInformação de teste 01DescriçãoA planilha 'Controle de frequência' no Google Sheets está com as fórmulas quebradas.",
+    "segundos": 16
+  },
+  {
+    "id": "GOO-010",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área Google",
+      "caminho Reserva de Chromebook",
+      "data amanhã",
+      "campo horario-periodo = Informação de teste 01",
+      "descrição = Quero reservar 30 Chromebooks para o 6º ",
+      "pergunta da IA → pular",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [
+      "SmartDesk IAEm qual sala os Chromebooks serão utilizados?"
+    ],
+    "dicas": null,
+    "resumo": "GoogleReserva de Chromebook ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaData do atendimento16/10/2026 (sexta)Horário/períodoInformação de teste 01DescriçãoQuero reservar 30 Chromebooks para o 6º ano na quinta-feira, no 3º e 4º horário.",
+    "segundos": 18
+  },
+  {
+    "id": "GOO-011",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área Google",
+      "caminho Resetar senha",
+      "campo e-mail-da-conta = teste.ficticio@exemplo.com",
+      "descrição = Esqueci a senha do meu e-mail institucio",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [],
+    "dicas": null,
+    "resumo": "GoogleResetar senha ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaE-mail da conta envolvidateste.ficticio@exemplo.comDescriçãoEsqueci a senha do meu e-mail institucional e preciso redefinir.",
+    "segundos": 15
+  },
+  {
+    "id": "GOO-012",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área Google",
+      "caminho Sites",
+      "campo conta = teste.ficticio@exemplo.com",
+      "campo link-ou-nome-do-site = Informação de teste 01",
+      "descrição = Preciso atualizar a página do Google Sit",
+      "pergunta da IA → pular",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [
+      "SmartDesk IAQuais alterações específicas você precisa fazer na página do projeto 'Horta Escolar'?"
+    ],
+    "dicas": null,
+    "resumo": "GoogleSites ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaE-mail da conta envolvidateste.ficticio@exemplo.comLink ou nome do siteInformação de teste 01DescriçãoPreciso atualizar a página do Google Sites do projeto 'Horta Escolar'.",
+    "segundos": 17
+  },
+  {
+    "id": "TI-001",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área TI",
+      "caminho Dúvidas",
+      "descrição = Queria tirar uma dúvida com a TI sobre c",
+      "pergunta da IA → pular",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [
+      "SmartDesk IAQual é a sua dúvida específica sobre o funcionamento do backup?"
+    ],
+    "dicas": null,
+    "resumo": "TIDúvidas ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaDescriçãoQueria tirar uma dúvida com a TI sobre como funciona o backup dos meus arquivos.",
+    "segundos": 16
+  },
+  {
+    "id": "TI-002",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área TI",
+      "caminho Sugestão de melhoria",
+      "campo sistema-processo = Informação de teste 01",
+      "descrição = Tenho uma sugestão de melhoria: o sistem",
+      "pergunta da IA → pular",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [
+      "SmartDesk IAPoderia informar para qual sistema de reservas você sugere essa melhoria e quais telas deveriam ter o lembrete?"
+    ],
+    "dicas": null,
+    "resumo": "TISugestão de melhoria ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaSistema/processoInformação de teste 01DescriçãoTenho uma sugestão de melhoria: o sistema de reservas poderia mandar lembrete por e-mail.",
+    "segundos": 17
+  },
+  {
+    "id": "TI-003",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área TI",
+      "caminho Outros",
+      "descrição = Preciso de ajuda da TI para configurar a",
+      "pergunta da IA → pular",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [
+      "SmartDesk IAPoderia informar qual é o modelo da TV e o que exatamente precisa ser configurado?"
+    ],
+    "dicas": null,
+    "resumo": "TIOutros ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaDescriçãoPreciso de ajuda da TI para configurar a TV nova da recepção, que não está em nenhuma opção.",
+    "segundos": 16
+  },
+  {
+    "id": "TI-COMP-001",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área TI",
+      "caminho Computador",
+      "caminho Headset / Fone de Ouvido",
+      "defeito",
+      "quem usa → eu",
+      "descrição = O headset do meu computador não funciona",
+      "dicas → seguir",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [],
+    "dicas": "SmartDesk IAAntes de enviar o chamado, vale tentar estes passos rápidos:Desconecte e reconecte o headset na entrada correta do computador.Verifique se o volume do microfone está ativado nas configurações de som.Sugestões da IA. Se não se sentir à vontade com algum passo, é só seguir com o chamado.",
+    "resumo": "TIComputador › Headset / Fone de Ouvido ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaTipo de pedidoDefeito no itemQuem utilizaPessoa Ficticia TesteDescriçãoO headset do meu computador não funciona; o microfone não capta minha voz nas reuniões.",
+    "segundos": 19
+  },
+  {
+    "id": "TI-COMP-002",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área TI",
+      "caminho Computador",
+      "caminho Leitor de CD/DVD",
+      "quem usa → eu",
+      "descrição = O leitor de DVD do computador da sala de",
+      "dicas → seguir",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [],
+    "dicas": "SmartDesk IAAntes de enviar o chamado, vale tentar estes passos rápidos:Pressione o botão de ejeção firmemente.Reinicie o computador e tente novamente.Utilize um clipe de papel aberto no orifício de emergência se houver.Sugestões da IA. Se não se sentir à vontade com algum passo, é só seguir com o chamado.",
+    "resumo": "TIComputador › Leitor de CD/DVD ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaQuem utilizaPessoa Ficticia TesteDescriçãoO leitor de DVD do computador da sala de vídeo não abre a gaveta.",
+    "segundos": 18
+  },
+  {
+    "id": "TI-COMP-003",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área TI",
+      "caminho Computador",
+      "caminho Não liga",
+      "campo equipamento = Informação de teste 01",
+      "descrição = O computador da recepção não liga; apert",
+      "dicas → seguir",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [],
+    "dicas": "SmartDesk IAAntes de enviar o chamado, vale tentar estes passos rápidos:Verifique se o cabo de força está firmemente conectado na parte de trás do computador e na tomada.Certifique-se de que o estabilizador ou filtro de linha está ligado e com energia.Sugestões da IA. Se não se sentir à vontade com algum passo, é só seguir com o chamado.",
+    "resumo": "TIComputador › Não liga ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaIdentificação do equipamentoInformação de teste 01DescriçãoO computador da recepção não liga; aperto o botão e nada acontece.",
+    "segundos": 17
+  },
+  {
+    "id": "TI-COMP-004",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área TI",
+      "caminho Computador",
+      "caminho Problemas com lentidão",
+      "quem usa → eu",
+      "descrição = Meu computador está muito lento, demora ",
+      "dicas → seguir",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [],
+    "dicas": "SmartDesk IAAntes de enviar o chamado, vale tentar estes passos rápidos:Reinicie o computador para limpar a memória temporária.Feche programas e abas do navegador que não estiverem em uso.Sugestões da IA. Se não se sentir à vontade com algum passo, é só seguir com o chamado.",
+    "resumo": "TIComputador › Problemas com lentidão ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaQuem utilizaPessoa Ficticia TesteDescriçãoMeu computador está muito lento, demora vários minutos para abrir qualquer programa.",
+    "segundos": 18
+  },
+  {
+    "id": "TI-COMP-005",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área TI",
+      "caminho Computador",
+      "caminho Programas (software)",
+      "campo programa = Informação de teste 01",
+      "quem usa → eu",
+      "descrição = Preciso instalar o Adobe Reader no compu",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [],
+    "dicas": null,
+    "resumo": "TIComputador › Programas (software) ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaNome do programaInformação de teste 01Quem utilizaPessoa Ficticia TesteDescriçãoPreciso instalar o Adobe Reader no computador da secretaria.",
+    "segundos": 17
+  },
+  {
+    "id": "TI-COMP-006",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área TI",
+      "caminho Computador",
+      "caminho Reserva de Notebook",
+      "data amanhã",
+      "campo periodo = Informação de teste 01",
+      "descrição = Quero reservar um notebook para a reuniã",
+      "pergunta da IA → pular",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [
+      "SmartDesk IAEm qual sala ou local será realizada a reunião de pais amanhã?"
+    ],
+    "dicas": null,
+    "resumo": "TIComputador › Reserva de Notebook ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaData do atendimento16/10/2026 (sexta)Período solicitadoInformação de teste 01DescriçãoQuero reservar um notebook para a reunião de pais amanhã à tarde.",
+    "segundos": 19
+  },
+  {
+    "id": "TI-COMP-007",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área TI",
+      "caminho Computador",
+      "caminho Troca de Mouse",
+      "defeito",
+      "quem usa → eu",
+      "descrição = O mouse do meu computador parou de funci",
+      "dicas → seguir",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [],
+    "dicas": "SmartDesk IAAntes de enviar o chamado, vale tentar estes passos rápidos:Desconecte o mouse e conecte-o em outra porta USB do computador.Reinicie o computador para verificar se o sistema reconhece o dispositivo.Sugestões da IA. Se não se sentir à vontade com algum passo, é só seguir com o chamado.",
+    "resumo": "TIComputador › Troca de Mouse ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaTipo de pedidoDefeito no itemQuem utilizaPessoa Ficticia TesteDescriçãoO mouse do meu computador parou de funcionar e precisa ser trocado.",
+    "segundos": 19
+  },
+  {
+    "id": "TI-COMP-008",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área TI",
+      "caminho Computador",
+      "caminho Troca de Teclado",
+      "defeito",
+      "quem usa → eu",
+      "descrição = O teclado do computador da enfermaria es",
+      "dicas → seguir",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [],
+    "dicas": "SmartDesk IAAntes de enviar o chamado, vale tentar estes passos rápidos:Desconecte o teclado do computador e conecte-o novamente em outra porta USB.Reinicie o computador para verificar se o sistema reconhece as teclas.Teste o teclado em outro computador da sala para confirmar se o defeito é nele.Sugestões da IA. Se não se sentir à vontade com algum passo, é só seguir com o chamado.",
+    "resumo": "TIComputador › Troca de Teclado ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaTipo de pedidoDefeito no itemQuem utilizaPessoa Ficticia TesteDescriçãoO teclado do computador da enfermaria está com várias teclas que não funcionam.",
+    "segundos": 19
+  },
+  {
+    "id": "TI-NET-001",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área TI",
+      "caminho Internet",
+      "caminho Computador não está conectado à rede",
+      "quem usa → eu",
+      "opção Cabo",
+      "descrição = O computador da minha mesa está sem inte",
+      "dicas → seguir",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [],
+    "dicas": "SmartDesk IAAntes de enviar o chamado, vale tentar estes passos rápidos:Verifique se o cabo de rede está bem conectado atrás do computador e na tomada da parede.Desligue o computador, aguarde 10 segundos e ligue novamente.Sugestões da IA. Se não se sentir à vontade com algum passo, é só seguir com o chamado.",
+    "resumo": "TIInternet › Computador não está conectado à rede ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaQuem utilizaPessoa Ficticia TesteTipo de conexãoCaboDescriçãoO computador da minha mesa está sem internet; ele é ligado por cabo de rede.",
+    "segundos": 20
+  },
+  {
+    "id": "TI-NET-002",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área TI",
+      "caminho Internet",
+      "caminho Criar Login de acesso Internet",
+      "campo finalidade = Informação de teste 01",
+      "campo periodo = Informação de teste 01",
+      "descrição = Preciso de um login de acesso à internet",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [],
+    "dicas": null,
+    "resumo": "TIInternet › Criar Login de acesso Internet ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaFinalidadeInformação de teste 01Período solicitadoInformação de teste 01DescriçãoPreciso de um login de acesso à internet para um palestrante convidado na sexta-feira.",
+    "segundos": 18
+  },
+  {
+    "id": "TI-NET-003",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área TI",
+      "caminho Internet",
+      "caminho Problemas com Wi-Fi",
+      "campo dispositivo = Informação de teste 01",
+      "campo rede = Informação de teste 01",
+      "descrição = O Wi-Fi da sala dos professores cai toda",
+      "dicas → seguir",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [],
+    "dicas": "SmartDesk IAAntes de enviar o chamado, vale tentar estes passos rápidos:Desconecte e reconecte sua rede Wi-Fi.Reinicie o seu celular e teste novamente.Sugestões da IA. Se não se sentir à vontade com algum passo, é só seguir com o chamado.",
+    "resumo": "TIInternet › Problemas com Wi-Fi ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaDispositivoInformação de teste 01RedeInformação de teste 01DescriçãoO Wi-Fi da sala dos professores cai toda hora no meu celular.",
+    "segundos": 18
+  },
+  {
+    "id": "TI-INT-001",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área TI",
+      "caminho Intranet",
+      "caminho Atualização",
+      "campo pagina-secao = Informação de teste 01",
+      "campo conteudo-novo = Informação de teste 01",
+      "descrição = Preciso atualizar o calendário de provas",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [],
+    "dicas": null,
+    "resumo": "TIIntranet › Atualização ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaPágina/seçãoInformação de teste 01Conteúdo novoInformação de teste 01DescriçãoPreciso atualizar o calendário de provas na página da Coordenação na intranet.",
+    "segundos": 17
+  },
+  {
+    "id": "TI-INT-002",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área TI",
+      "caminho Intranet",
+      "caminho Solicitação",
+      "campo secao = Informação de teste 01",
+      "campo arquivos-links = Informação de teste 01",
+      "descrição = Quero solicitar uma nova seção na intran",
+      "pergunta da IA → pular",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [
+      "SmartDesk IAPara qual data você precisa que esta nova seção esteja disponível?"
+    ],
+    "dicas": null,
+    "resumo": "TIIntranet › Solicitação ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaSeçãoInformação de teste 01Arquivos/linksInformação de teste 01DescriçãoQuero solicitar uma nova seção na intranet para os documentos do RH.",
+    "segundos": 19
+  },
+  {
+    "id": "TI-INT-003",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área TI",
+      "caminho Intranet",
+      "caminho Sugestão",
+      "descrição = Tenho uma sugestão para a intranet: colo",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [],
+    "dicas": null,
+    "resumo": "TIIntranet › Sugestão ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaDescriçãoTenho uma sugestão para a intranet: colocar uma busca na página inicial.",
+    "segundos": 15
+  },
+  {
+    "id": "TI-MENT-001",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área TI",
+      "caminho Mentor Web",
+      "caminho Criação de Login",
+      "campo perfil = Informação de teste 01",
+      "descrição = Preciso criar o login no Mentor Web para",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [],
+    "dicas": null,
+    "resumo": "TIMentor Web › Criação de Login ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaPerfilInformação de teste 01DescriçãoPreciso criar o login no Mentor Web para uma professora nova de matemática.",
+    "segundos": 17
+  },
+  {
+    "id": "TI-MENT-002",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área TI",
+      "caminho Mentor Web",
+      "caminho Erro no relatório",
+      "campo relatorio = Informação de teste 01",
+      "campo mensagem-de-erro = Informação de teste 01",
+      "descrição = O relatório de frequência no Mentor Web ",
+      "pergunta da IA → pular",
+      "dicas → seguir",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [
+      "SmartDesk IAQual é a mensagem de erro que aparece ao tentar gerar o PDF?"
+    ],
+    "dicas": "SmartDesk IAAntes de enviar o chamado, vale tentar estes passos rápidos:Feche a aba do navegador, abra novamente e tente gerar o relatório de frequência.Limpe o cache do navegador e tente emitir o PDF mais uma vez.Sugestões da IA. Se não se sentir à vontade com algum passo, é só seguir com o chamado.",
+    "resumo": "TIMentor Web › Erro no relatório ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaRelatórioInformação de teste 01Mensagem de erroInformação de teste 01DescriçãoO relatório de frequência no Mentor Web dá erro ao gerar o PDF.",
+    "segundos": 20
+  },
+  {
+    "id": "TI-MENT-003",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área TI",
+      "caminho Mentor Web",
+      "caminho Alteração de notas",
+      "campo aluno-turma = Informação de teste 01",
+      "campo disciplina = Informação de teste 01",
+      "descrição = Preciso alterar a nota de Matemática de ",
+      "pergunta da IA → pular",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [
+      "SmartDesk IAQual é o nome do aluno e qual é a nota correta que deve ser lançada?"
+    ],
+    "dicas": null,
+    "resumo": "TIMentor Web › Alteração de notas ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaAluno/turmaInformação de teste 01DisciplinaInformação de teste 01DescriçãoPreciso alterar a nota de Matemática de um aluno do 8º A no Mentor Web, foi lançada errada.",
+    "segundos": 18
+  },
+  {
+    "id": "TI-MENT-004",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área TI",
+      "caminho Mentor Web",
+      "caminho Encerramento de diário",
+      "campo turma = Informação de teste 01",
+      "campo disciplina = Informação de teste 01",
+      "campo periodo = Informação de teste 01",
+      "descrição = Preciso encerrar o diário de Português d",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [],
+    "dicas": null,
+    "resumo": "TIMentor Web › Encerramento de diário ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaTurmaInformação de teste 01DisciplinaInformação de teste 01Período solicitadoInformação de teste 01DescriçãoPreciso encerrar o diário de Português da turma 6º B referente ao 3º bimestre.",
+    "segundos": 19
+  },
+  {
+    "id": "TI-MENT-005",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área TI",
+      "caminho Mentor Web",
+      "caminho Erro no sistema",
+      "campo usuario = Informação de teste 01",
+      "campo mensagem-de-erro = Informação de teste 01",
+      "descrição = O Mentor Web mostra 'erro 500' quando te",
+      "dicas → seguir",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [],
+    "dicas": "SmartDesk IAAntes de enviar o chamado, vale tentar estes passos rápidos:Feche o navegador, abra novamente e tente acessar o sistema.Limpe o cache e os cookies do navegador.Sugestões da IA. Se não se sentir à vontade com algum passo, é só seguir com o chamado.",
+    "resumo": "TIMentor Web › Erro no sistema ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaUsuárioInformação de teste 01Mensagem de erroInformação de teste 01DescriçãoO Mentor Web mostra 'erro 500' quando tento entrar na tela de lançamento de notas.",
+    "segundos": 19
+  },
+  {
+    "id": "TI-MENT-006",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área TI",
+      "caminho Mentor Web",
+      "caminho Remanejamento de aluno",
+      "campo aluno = Informação de teste 01",
+      "campo turma-atual = Informação de teste 01",
+      "campo turma-destino = Informação de teste 01",
+      "descrição = Preciso remanejar um aluno do 7º A para ",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [],
+    "dicas": null,
+    "resumo": "TIMentor Web › Remanejamento de aluno ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaAlunoInformação de teste 01Turma atualInformação de teste 01Turma destinoInformação de teste 01DescriçãoPreciso remanejar um aluno do 7º A para o 7º C no Mentor Web.",
+    "segundos": 19
+  },
+  {
+    "id": "TI-MENT-007",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área TI",
+      "caminho Mentor Web",
+      "caminho Solicitação de Relatório",
+      "campo descricao-do-relatorio = Informação de teste 01",
+      "descrição = Preciso de um relatório do Mentor Web co",
+      "pergunta da IA → pular",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [
+      "SmartDesk IAEm qual formato você prefere o relatório e para quando precisa?"
+    ],
+    "dicas": null,
+    "resumo": "TIMentor Web › Solicitação de Relatório ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaDescrição do relatórioInformação de teste 01DescriçãoPreciso de um relatório do Mentor Web com as notas de todos os alunos do 9º ano no 2º bimestre.",
+    "segundos": 18
+  },
+  {
+    "id": "TI-MENT-008",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Secretaria",
+      "área TI",
+      "caminho Mentor Web",
+      "caminho Solicitação de acesso a relatório",
+      "campo relatorio = Informação de teste 01",
+      "campo usuario = Informação de teste 01",
+      "descrição = Preciso de acesso ao relatório de inadim",
+      "pergunta da IA → pular",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [
+      "SmartDesk IAEm qual setor ou perfil o acesso ao relatório de inadimplência deve ser liberado?"
+    ],
+    "dicas": null,
+    "resumo": "TIMentor Web › Solicitação de acesso a relatório ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorSecretariaRelatórioInformação de teste 01UsuárioInformação de teste 01DescriçãoPreciso de acesso ao relatório de inadimplência no Mentor Web.",
+    "segundos": 19
+  },
+  {
+    "id": "TI-QB-001",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Financeiro",
+      "área TI",
+      "caminho QuickBooks",
+      "caminho Erro no sistema",
+      "campo usuario = Informação de teste 01",
+      "campo mensagem-de-erro = Informação de teste 01",
+      "descrição = O QuickBooks está dando erro ao abrir a ",
+      "dicas → seguir",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [],
+    "dicas": "SmartDesk IAAntes de enviar o chamado, vale tentar estes passos rápidos:Verifique se o serviço QuickBooksDBXX está rodando no computador servidor.Certifique-se de que o Firewall do Windows permite a comunicação do programa.Sugestões da IA. Se não se sentir à vontade com algum passo, é só seguir com o chamado.",
+    "resumo": "TIQuickBooks › Erro no sistema ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorFinanceiroUsuárioInformação de teste 01Mensagem de erroInformação de teste 01DescriçãoO QuickBooks está dando erro ao abrir a empresa, aparece o código H202.",
+    "segundos": 19
+  },
+  {
+    "id": "TI-QB-002",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Financeiro",
+      "área TI",
+      "caminho QuickBooks",
+      "caminho Instalação",
+      "campo usuario = Informação de teste 01",
+      "quem usa → eu",
+      "descrição = Preciso instalar o QuickBooks no computa",
+      "pergunta da IA → pular",
+      "autorização pendente",
+      "sem anexo"
+    ],
+    "alerta": null,
+    "perguntas": [
+      "SmartDesk IAEm qual sala ou mesa o computador novo está localizado?"
+    ],
+    "dicas": null,
+    "resumo": "TIQuickBooks › Instalação ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorFinanceiroAutorização da liderançaPendente de autorizaçãoUsuárioInformação de teste 01Quem utilizaPessoa Ficticia TesteDescriçãoPreciso instalar o QuickBooks no computador novo do financeiro.",
+    "segundos": 20
+  },
+  {
+    "id": "TI-CAM-001",
+    "ok": true,
+    "passos": [
+      "início",
+      "nome",
+      "e-mail",
+      "setor Coordenação EI (Infantil)",
+      "área TI",
+      "caminho Câmeras",
+      "caminho Acesso às Câmeras",
+      "campo aluno = Informação de teste 01",
+      "campo turma = Informação de teste 01",
+      "campo responsavel = Informação de teste 01",
+      "campo email-responsavel = teste.ficticio@exemplo.com",
+      "campo contato-responsavel = 11 99999-0000",
+      "descrição = Uma mãe pediu acesso às câmeras da sala ",
+      "alerta de incoerência → está certo",
+      "sem anexo"
+    ],
+    "alerta": "SmartDesk IAAntes de continuar, uma conferência: A necessidade escolhida é de infraestrutura de TI, mas o pedido trata de acesso de terceiros às câmeras. Quer escolher outro tipo de atendimento?",
+    "perguntas": [],
+    "dicas": null,
+    "resumo": "TICâmeras › Acesso às Câmeras ProntoSolicitantePessoa Ficticia TesteE-mailteste.ficticio@exemplo.comSetorCoordenação EI (Infantil)Nome do alunoInformação de teste 01Turma do alunoInformação de teste 01Nome do responsávelInformação de teste 01E-mail do responsávelteste.ficticio@exemplo.comContato do responsável11 99999-0000DescriçãoUma mãe pediu acesso às câmeras da sala do Infantil 2 para acompanhar o filho.",
+    "segundos": 22
   }
 ]

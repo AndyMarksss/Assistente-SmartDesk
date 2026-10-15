@@ -56,7 +56,14 @@ function safeAssist(result, allowTips) {
     question.length < 8 ||
     question.length > 180 ||
     links.test(question) ||
-    /senha|password|cpf|telefone|celular/i.test(question)
+    /senha|password|cpf|telefone|celular/i.test(question) ||
+    // Nunca pedir nome de pessoas nem endereço de e-mail. A avaliação 0.11.3 pegou
+    // "Qual é o nome do aluno…?" e "o nome completo e o e-mail institucional da professora".
+    (/\bnomes?\b/i.test(question) &&
+      /alun|respons|\bpai\b|m[ãa]e\b|pessoa|professor|funcion|usu[áa]ri|colaborador|estagi/i.test(
+        question,
+      )) ||
+    /e-?mail (institucional|d[aeo]s?\s|para contato)|endere[çc]o de e-?mail/i.test(question)
   )
     question = "";
   let help = question ? clean(result && result.ajuda) : "";

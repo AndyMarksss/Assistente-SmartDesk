@@ -102,3 +102,6 @@ Executar `removerChamadoDeTeste` no editor do Apps Script para apagar os chamado
 
 ## 0.11.3
 Concluir a avaliação da IA quando a cota do Gemini renovar: `node avaliar-ia.cjs --rodada depois` (retoma de onde parou), `node avaliar-ia.cjs --rodada controle-depois --banco relatos-controle.json`, percurso dos 57 caminhos (`node navegador-cdp.cjs percorrer-botoes.cjs`) e `node gerar-relatorio.cjs antes,depois controle-antes,controle-depois`. A cota é da chave local (500 pedidos por dia); o site público usa outra chave. Executar `removerChamadoDeTeste` (#010 e #013).
+
+## 0.11.4
+Avaliação técnica da IA concluída. Pendentes: executar `removerChamadoDeTeste` (#010 e #013) no editor do Apps Script; conferir no celular real; teste com usuários reais.

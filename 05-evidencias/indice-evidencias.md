@@ -455,4 +455,8 @@ Próxima evidência: EVID-205.
 
 - EVID-207: [pages-rascunho-quickbooks](EVID-207_pages-rascunho-quickbooks.jpg) — No GitHub Pages 0.11.3, a instrução nova identificou "o programa da contabilidade não abre o arquivo da empresa" (Financeiro) como TI › QuickBooks › Erro no sistema, com Programas como alternativa. O indicador mostra IA indisponível porque a chamada seguinte (extração) não respondeu naquele momento. Relato fictício, nada enviado.
 
-Próxima evidência: EVID-208.
+## 2026-10-15 — SmartDesk 0.11.4: avaliação da IA concluída
+
+- EVID-208: [relatorio-avaliacao-ia-final](EVID-208_relatorio-avaliacao-ia-final.md) — Relatório final da avaliação técnica da IA (cópia de 04-validacao/avaliacao-ia): identificação 96% → 99% na 1ª sugestão, controle 27/27 e 3/3 fora do escopo, extração 99% sem evento inventado, 57/57 caminhos até o resumo pelos botões e revisão sem alertas falsos. Relatos fictícios escritos pelo assistente.
+
+Próxima evidência: EVID-209.

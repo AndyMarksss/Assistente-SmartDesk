@@ -151,9 +151,13 @@ async function main() {
   const anterior = fs.existsSync(SAIDA)
     ? JSON.parse(fs.readFileSync(SAIDA, "utf8"))
     : { casos: [] };
+  // --so-extracao sim: confere só a extração (para comparar mudanças na instrução de extrair).
+  const SO_EXTRACAO = args["so-extracao"] === "sim";
   const feitos = new Map(
     anterior.casos
-      .filter((c) => c.analise?.source === "ai")
+      .filter((c) =>
+        SO_EXTRACAO ? c.extracao?.source === "ai" : c.analise?.source === "ai",
+      )
       .map((c) => [c.n, c]),
   );
   const resultados = [];
@@ -165,13 +169,16 @@ async function main() {
       resultados.push(feitos.get(caso.n));
       continue;
     }
+    if (SO_EXTRACAO && !(caso.extrair && caso.esperado)) continue;
     const local = desk.classifier
       .classify(caso.relato, caso.setor)
       .candidates.map((c) => c.item.id);
-    const analise = await comIA("/api/analyze", {
-      description: caso.relato,
-      sector: caso.setor,
-    });
+    const analise = SO_EXTRACAO
+      ? { json: { source: "nao-avaliado", candidates: [] }, tentativas: 0 }
+      : await comIA("/api/analyze", {
+          description: caso.relato,
+          sector: caso.setor,
+        });
     const ids = (analise.json.candidates || []).map((c) => c.item.id);
     const registro = {
       n: caso.n,
@@ -217,11 +224,13 @@ async function main() {
       };
     }
     resultados.push(registro);
-    const marca = registro.pontos.top1
-      ? "ok "
-      : registro.pontos.top3
-        ? "~  "
-        : "ERR";
+    const marca = SO_EXTRACAO
+      ? "ext"
+      : registro.pontos.top1
+        ? "ok "
+        : registro.pontos.top3
+          ? "~  "
+          : "ERR";
     console.log(
       marca +
         " #" +
@@ -240,7 +249,7 @@ async function main() {
     SAIDA,
     JSON.stringify({ rodada: RODADA, hoje, casos: resultados }, null, 2),
   );
-  console.log("Resultados em " + SAIDA);
+  console.log("Resultados em " + path.basename(SAIDA));
 }
 main().catch((error) => {
   console.error(error.message);

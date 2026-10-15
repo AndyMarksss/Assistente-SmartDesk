@@ -73,3 +73,6 @@ A luz do cursor fica só no fundo do chat (atrás de card, etapas e botões), co
 
 ## 0.11.3
 Avaliação técnica da IA com relatos fictícios (04-validacao/avaliacao-ia): 96% de caminho certo na 1ª sugestão com a instrução anterior; instrução ajustada com glossário; sem IA, o relato livre vira opções. Atenção à cota diária do Gemini (500 pedidos por projeto no plano gratuito): a avaliação esgotou a da chave local; o site público usa outra chave e seguiu com IA. Verificação em 03-prototipo/verificacao-v0.11.3.md.
+
+## 0.11.4
+Avaliação da IA concluída: 99% de caminho certo na 1ª sugestão, extração 99%, 57/57 caminhos chegam ao resumo pelos botões, revisão sem alertas falsos e sem perguntas de dados pessoais. Verificação em 03-prototipo/verificacao-v0.11.4.md.

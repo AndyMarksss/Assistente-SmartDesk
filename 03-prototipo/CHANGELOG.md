@@ -267,3 +267,14 @@ Pedido do usuário: conferir se todos os fluxos foram avaliados, inclusive a int
 - **Limite da IA:** o plano gratuito do Gemini permite 500 pedidos por dia por projeto. A avaliação esgotou a cota da chave local (`.env`) em 2026-10-14; o site público seguiu com IA, porque o Apps Script usa outra chave. A rodada completa da instrução nova, o controle com ela e o percurso dos 57 caminhos (2 feitos) ficam pendentes até a cota local renovar.
 - **Pages:** Apps Script na versão 13 da implantação. Com a instrução nova, "o programa da contabilidade não abre o arquivo da empresa" (Financeiro) virou rascunho de TI › QuickBooks › Erro no sistema; antes, no mesmo site, a base local sugeria Google › Drive. Numa das tentativas a IA não respondeu e o modo sem IA apareceu como previsto.
 - Verificação em verificacao-v0.11.3.md; relatório em 04-validacao/avaliacao-ia/relatorio-avaliacao-ia.md.
+
+## 0.11.4 — 2026-10-15
+
+Avaliação da IA concluída depois que a cota do Gemini renovou (pedido do usuário: continuar quando a cota voltar). Relatório final em `04-validacao/avaliacao-ia/relatorio-avaliacao-ia.md`.
+
+- **Identificação (instrução com glossário da 0.11.3), 186 relatos:** caminho certo em 1º em 99% (antes 96%), entre as três 100%; vagos 98% (antes 89%). Fora do escopo 10/10, restritos 2/2, dois pedidos 2/2. Banco de controle: 27/27 caminhos e 3/3 fora do escopo (antes 2/3).
+- **Extração:** a regra da 0.11.3 deixou a IA cautelosa demais também em campos de texto (94%). Agora o cuidado vale só para perguntas de Sim/Não e campos de texto são preenchidos sempre que o relato traz a informação: 99% dos campos certos (antes 98%) e nenhum "evento" marcado sem a pessoa dizer (antes 5/12).
+- **Percurso pelos botões:** os 57 caminhos chegaram ao resumo, sem travar. A revisão da IA deu 2 alertas falsos (Lâmpada da Estufa e Câmeras) e uma pergunta pedindo o nome do aluno.
+- **Revisão da IA:** o mesmo glossário passou a valer na revisão (com Câmeras do Infantil); alerta só quando a descrição trata claramente de outra coisa, na dúvida segue; motivo em português correto. Conferida direto na rota nos 57 caminhos: 0 alertas falsos, 16 perguntas, 18 caminhos com dicas.
+- **Filtro do servidor:** perguntas que pedem nome de pessoas ou endereço de e-mail são descartadas (pegou "o nome completo e o e-mail institucional da professora"). Reaplicado às 39 perguntas coletadas: descartou só as 2 indevidas.
+- `revisar-ia.cjs` (revisão direto na rota) e `--so-extracao sim` em `avaliar-ia.cjs` para conferir mudanças sem gastar cota com o resto. Apps Script republicado. Verificação em verificacao-v0.11.4.md.

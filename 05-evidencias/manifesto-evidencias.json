@@ -2493,6 +2493,18 @@
       "origem": "Edge sem janela controlado pelo assistente (CDP), GitHub Pages público com Apps Script real",
       "sha256": "FB58FA9C1789C8297363026513E647316EE1B29D3FC464DFD9133BCC1DEB8DF8",
       "status": "verificação técnica pública; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-208",
+      "arquivo": "EVID-208_relatorio-avaliacao-ia-final.md",
+      "etapa": "SmartDesk 0.11.4 — avaliação da IA concluída",
+      "descricao": "Relatório final da avaliação técnica da IA (cópia de 04-validacao/avaliacao-ia): identificação 96% → 99% na 1ª sugestão, controle 27/27 e 3/3 fora do escopo, extração 99% sem evento inventado, 57/57 caminhos até o resumo pelos botões e revisão sem alertas falsos. Relatos fictícios escritos pelo assistente.",
+      "data_aproximada": "2026-10-15",
+      "fundamento_data": "Gerado pelo assistente nesta sessão",
+      "data_inclusao": "2026-10-15",
+      "origem": "Servidor local com Gemini real e envio ao Google desativado; rotas /api/analyze, /api/extract e /api/assist e navegador sem janela",
+      "sha256": "BFC855F7F61E80EB755FBE9C442A4383A4AC78EEC102A563D913FABB7414132C",
+      "status": "verificação técnica; não é validação com usuários"
     }
   ]
 }

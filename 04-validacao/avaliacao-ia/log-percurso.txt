@@ -1,0 +1,55 @@
+ok  AV-002 (20s) pergunta
+ok  AV-003 (20s) pergunta
+ok  AV-004 (18s)
+ok  AV-005 (20s) pergunta
+ok  AV-006 (20s) pergunta
+ok  AV-007 (15s) dicas
+ok  IMP-001 (17s) pergunta
+ok  IMP-002 (17s) dicas
+ok  IMP-003 (19s) pergunta
+ok  IMP-004 (17s) ALERTA
+ok  IMP-005 (16s) dicas
+ok  IMP-006 (18s) dicas
+ok  IMP-007 (16s) dicas
+ok  IMP-009 (19s) dicas
+ok  IMP-010 (16s)
+ok  GOO-001 (16s) pergunta
+ok  GOO-002 (18s) dicas
+ok  GOO-003 (19s) pergunta dicas
+ok  GOO-004 (19s) pergunta dicas
+ok  GOO-005 (18s) pergunta
+ok  GOO-006 (17s) pergunta
+ok  GOO-007 (18s) dicas
+ok  GOO-008 (17s)
+ok  GOO-009 (16s)
+ok  GOO-010 (18s) pergunta
+ok  GOO-011 (15s)
+ok  GOO-012 (17s) pergunta
+ok  TI-001 (16s) pergunta
+ok  TI-002 (17s) pergunta
+ok  TI-003 (16s) pergunta
+ok  TI-COMP-001 (19s) dicas
+ok  TI-COMP-002 (18s) dicas
+ok  TI-COMP-003 (17s) dicas
+ok  TI-COMP-004 (18s) dicas
+ok  TI-COMP-005 (17s)
+ok  TI-COMP-006 (19s) pergunta
+ok  TI-COMP-007 (19s) dicas
+ok  TI-COMP-008 (19s) dicas
+ok  TI-NET-001 (20s) dicas
+ok  TI-NET-002 (18s)
+ok  TI-NET-003 (18s) dicas
+ok  TI-INT-001 (17s)
+ok  TI-INT-002 (19s) pergunta
+ok  TI-INT-003 (15s)
+ok  TI-MENT-001 (17s)
+ok  TI-MENT-002 (20s) pergunta dicas
+ok  TI-MENT-003 (18s) pergunta
+ok  TI-MENT-004 (19s)
+ok  TI-MENT-005 (19s) dicas
+ok  TI-MENT-006 (19s)
+ok  TI-MENT-007 (18s) pergunta
+ok  TI-MENT-008 (19s) pergunta
+ok  TI-QB-001 (19s) dicas
+ok  TI-QB-002 (20s) pergunta
+ok  TI-CAM-001 (22s) ALERTA

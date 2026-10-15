@@ -8,7 +8,12 @@ Confere, com relatos fictícios, se a IA do SmartDesk identifica o caminho certo
 - `relatos-controle.json` — banco de controle: 30 relatos novos, escritos antes de ver os erros e nunca usados para ajustar a IA. Mostra se uma melhora vale para relatos que a IA nunca viu.
 - `avaliar-ia.cjs` — envia cada relato para `/api/analyze` (e `/api/extract` quando há dados para conferir) e grava `resultados-<rodada>.json`.
 - `percorrer-botoes.cjs` + `navegador-cdp.cjs` — percorrem os 57 caminhos no navegador (Edge sem janela) até o resumo, sem enviar, e gravam `percurso-botoes.json`.
+- `revisar-ia.cjs` — envia o relato claro de cada caminho direto para `/api/assist` (revisão: alerta, pergunta e dicas) e grava `revisao-<rodada>.json`.
 - `gerar-relatorio.cjs` — monta `relatorio-avaliacao-ia.md`.
+
+## Resultado (2026-10-15)
+
+Instrução final: 99% de caminho certo na 1ª sugestão (antes 96%), controle 27/27 e 3/3 fora do escopo, extração 99% sem "evento" inventado, 57/57 caminhos até o resumo pelos botões, revisão sem alertas falsos. Detalhes no relatório.
 
 ## Como rodar
 
@@ -19,7 +24,9 @@ Confere, com relatos fictícios, se a IA do SmartDesk identifica o caminho certo
 node avaliar-ia.cjs --rodada depois
 node avaliar-ia.cjs --rodada controle-depois --banco relatos-controle.json
 node navegador-cdp.cjs percorrer-botoes.cjs
-node gerar-relatorio.cjs antes,depois controle-antes,controle-depois
+node avaliar-ia.cjs --rodada extracao-final --so-extracao sim
+node revisar-ia.cjs --rodada final
+node gerar-relatorio.cjs antes,depois controle-antes,controle-depois tentativa-sinais extracao-final
 ```
 
-Os pedidos são espaçados (4,5 s) para respeitar o limite gratuito do Gemini; quando a IA não responde, o script espera e tenta de novo. Uma rodada completa leva cerca de 30 minutos.
+Os pedidos são espaçados (4,5 s) para respeitar o limite gratuito do Gemini (500 pedidos por dia por projeto); quando a IA não responde, o script espera e tenta de novo, e uma nova execução retoma de onde parou. Custo aproximado: rodada completa ~250 pedidos e 30 minutos; controle ~36; percurso ~115; só extração 57; só revisão 57.

@@ -1,0 +1,58 @@
+ok   AV-001
+ok   AV-002 | pergunta: Em qual local exato do pátio os equipamentos devem ser montados?
+ok   AV-003
+ok   AV-004
+ok   AV-005 | pergunta: Em qual local da escola será realizada a reunião?
+ok   AV-006
+ok   AV-007
+ok   IMP-001
+ok   IMP-002
+ok   IMP-003 | pergunta: Em qual sala ou setor o notebook será utilizado?
+ok   IMP-004 | pergunta: Em qual sala ou setor a impressora está localizada?
+ok   IMP-005
+ok   IMP-006
+ok   IMP-007
+ok   IMP-008
+ok   IMP-009
+ok   IMP-010
+ok   GOO-001
+ok   GOO-002
+ok   GOO-003
+ok   GOO-004
+ok   GOO-005
+ok   GOO-006 | pergunta: Qual ferramenta específica do Google você gostaria de saber utilizar?
+ok   GOO-007
+ok   GOO-008
+ok   GOO-009
+ok   GOO-010 | pergunta: Em qual sala ou laboratório os Chromebooks serão utilizados?
+ok   GOO-011
+ok   GOO-012 | pergunta: O que exatamente precisa ser alterado ou adicionado nesta página do site?
+ok   TI-001 | pergunta: Qual é a sua principal dúvida sobre o funcionamento do backup dos seus arquivos?
+ok   TI-002
+ok   TI-003 | pergunta: Qual é o modelo da TV e o que exatamente precisa ser configurado nela?
+ok   TI-COMP-001
+ok   TI-COMP-002
+ok   TI-COMP-003
+ok   TI-COMP-004
+ok   TI-COMP-005
+ok   TI-COMP-006 | pergunta: Em qual sala ou local será realizada a reunião?
+ok   TI-COMP-007
+ok   TI-COMP-008
+ok   TI-NET-001 | pergunta: O cabo de rede está firmemente conectado tanto no computador quanto na tomada de parede?
+ok   TI-NET-002
+ok   TI-NET-003
+ok   TI-INT-001
+ok   TI-INT-002 | pergunta: Quais documentos e links devem ficar disponíveis nesta nova seção da Intranet?
+ok   TI-INT-003
+ok   TI-MENT-001 | pergunta: Qual é o nome completo e o e-mail institucional da professora?
+ok   TI-MENT-002 | pergunta: Poderia informar qual é a mensagem de erro exata que aparece ao tentar gerar o PDF?
+ok   TI-MENT-003
+ok   TI-MENT-004
+ok   TI-MENT-005
+ok   TI-MENT-006
+ok   TI-MENT-007 | pergunta: Para qual turma ou disciplina específica você precisa deste relatório de notas?
+ok   TI-MENT-008
+ok   TI-QB-001
+ok   TI-QB-002 | pergunta: Em qual sala ou mesa o novo computador está instalado?
+ok   TI-CAM-001
+Resultados em revisao-final.json

@@ -221,6 +221,27 @@ const sampleAnswers = (item) =>
     check(review.body.tips.length === 0 && record.allowTips === false);
     adapter.assist = async () => ({ pergunta: "Qual é a sua senha atual?", dicas: [] });
     check((await post("/api/assist", jamBody)).body.question === "");
+    // 0.11.3: pergunta que pede nome de pessoa também é descartada.
+    adapter.assist = async () => ({
+      pergunta: "Qual é o nome do aluno e qual é a nota correta?",
+      dicas: [],
+    });
+    check((await post("/api/assist", jamBody)).body.question === "");
+    adapter.assist = async () => ({
+      pergunta: "Qual é o nome completo e o e-mail institucional da professora?",
+      dicas: [],
+    });
+    check((await post("/api/assist", jamBody)).body.question === "");
+    adapter.assist = async () => ({ pergunta: "Qual é o nome do arquivo?", dicas: [] });
+    check((await post("/api/assist", jamBody)).body.question === "Qual é o nome do arquivo?");
+    adapter.assist = async () => ({
+      pergunta: "Qual mensagem de erro aparece ao abrir o e-mail?",
+      dicas: [],
+    });
+    check(
+      (await post("/api/assist", jamBody)).body.question ===
+        "Qual mensagem de erro aparece ao abrir o e-mail?",
+    );
     adapter.assist = async () => {
       throw Error("Offline");
     };

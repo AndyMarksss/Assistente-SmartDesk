@@ -189,4 +189,4 @@ ok  #183 (nada) → (nada)
 ok  #184 IMP-006 → IMP-006, TI-COMP-004
 ok  #185 AV-006 → AV-006, GOO-011
 ERR #186 (nada) → TI-003
-Resultados em C:\Users\ander\OneDrive\Documentos\Faculdade\Curso Graduação IA e Automação Digital\2º Semestre\05 - Metodologias Ágeis e Validação de Produtos\SmartDesk\04-validacao\avaliacao-ia\resultados-antes.json
+Resultados em resultados-antes.json

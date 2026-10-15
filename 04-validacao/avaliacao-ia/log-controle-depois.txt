@@ -1,0 +1,32 @@
+Rodada controle-depois: 30 relatos, hoje 2026-10-15.
+ok  #1 AV-006 → AV-006
+ok  #2 AV-002 → AV-002
+ok  #3 AV-007 → AV-007
+ok  #4 AV-005 → AV-005
+ok  #5 IMP-010 → IMP-010
+ok  #6 IMP-008 → IMP-008
+ok  #7 IMP-006 → IMP-006
+ok  #8 IMP-003 → IMP-003
+ok  #9 IMP-005 → IMP-005
+ok  #10 IMP-007 → IMP-007
+ok  #11 GOO-011 → GOO-011, GOO-007
+ok  #12 GOO-003 → GOO-003
+ok  #13 GOO-005 → GOO-005
+ok  #14 GOO-007 → GOO-007
+ok  #15 GOO-010 → GOO-010
+ok  #16 GOO-001 → GOO-001
+ok  #17 TI-COMP-004 → TI-COMP-004, TI-COMP-005
+ok  #18 TI-COMP-007 → TI-COMP-007
+ok  #19 TI-COMP-003 → TI-COMP-003
+ok  #20 TI-COMP-005 → TI-COMP-005
+ok  #21 TI-NET-003 → TI-NET-003
+ok  #22 TI-NET-002 → TI-NET-002
+ok  #23 TI-MENT-005 → TI-MENT-005
+ok  #24 TI-MENT-006 → TI-MENT-006
+ok  #25 TI-MENT-001 → TI-MENT-001
+ok  #26 TI-QB-001 → TI-QB-001
+ok  #27 TI-INT-001 → TI-INT-001
+ok  #28 (nada) → (nada)
+ok  #29 (nada) → (nada)
+ok  #30 (nada) → (nada)
+Resultados em resultados-controle-depois.json
