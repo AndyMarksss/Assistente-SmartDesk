@@ -63,6 +63,28 @@ release({
     (e) => e.requiresUpgrade === true,
   );
   assert(!posted);
+  // 0.12: receptor 0.10+ também aceita e-mail (antes a regra só aceitava 0.7 a 0.9).
+  let postedCurrent = false;
+  const current = createStorage({
+    env: {
+      SMARTDESK_APPS_SCRIPT_URL: "https://script.google.com/macros/s/ficticio/exec",
+      SMARTDESK_APPS_SCRIPT_TOKEN: "a".repeat(32),
+    },
+    fetchImpl: async (url, opts) => {
+      if (!opts.method)
+        return { ok: true, json: async () => ({ version: "0.11.4", features: ["authorization"] }) };
+      postedCurrent = true;
+      return {
+        ok: true,
+        json: async () => ({ ok: true, number: "#001", requestId: "r", attachmentCount: 0 }),
+      };
+    },
+  });
+  assert.equal(
+    (await current.submit({ email: "test@example.com", requestId: "r" })).number,
+    "#001",
+  );
+  assert(postedCurrent);
   console.log(
     "Política de nomes Unicode, aquisição/troca, estados da IA e proteção contra perda de autorização em implantação antiga passaram.",
   );

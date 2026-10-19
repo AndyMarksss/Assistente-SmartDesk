@@ -108,3 +108,9 @@ Recebimento planejado: Apps Script cria planilha separada SmartDesk — Chamados
 - O glossário passou a valer também na revisão, depois de 2 alertas falsos no percurso pelos botões.
 - Perguntas com nome de pessoa ou endereço de e-mail passam a ser barradas por regra fixa no servidor, além da instrução, porque a instrução sozinha não impediu.
 - Limite: avaliação técnica com relatos escritos pelo assistente; não substitui o teste com usuários.
+
+## 2026-10-19 — 0.12.0: preparação do teste com usuários
+
+- Origem: pedido do usuário para medir automaticamente as sessões, marcar participantes, perguntar a satisfação e montar o kit.
+- Decisões: métricas anônimas para todos os atendimentos (o código só aparece quando o link traz `?p=`), uma linha por atendimento atualizada a cada etapa (permite ver onde a pessoa desistiu sem depender de evento de saída da página); planilha de validação dentro da planilha do SmartDesk, para as métricas entrarem por fórmula; cenários e colunas da Matriz Mestre (CT-01 a CT-11 e aba 05_Resultados_Validacao).
+- Limite: as metas dos critérios de decisão ficam em branco, para o usuário definir antes dos testes.

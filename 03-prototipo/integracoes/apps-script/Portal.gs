@@ -323,6 +323,8 @@ function portalTicket_(body, item) {
     attachments: body.attachments,
     authorization: authorization,
   };
+  var participant = safeParticipant_(body.participant);
+  if (participant) ticket.participant = participant;
   try {
     validar_(ticket);
   } catch (error) {
@@ -461,6 +463,7 @@ function smartdeskCall(session, route, body) {
         "/api/assist",
         "/api/track",
         "/api/selfhelp",
+        "/api/metrics",
         "/api/next-prompt",
         "/api/subject",
         "/api/tickets",
@@ -468,6 +471,17 @@ function smartdeskCall(session, route, body) {
     )
       throw new InvalidRequest("Operação inválida.", 404);
     var desk = window.SmartDesk;
+    if (route === "/api/metrics") {
+      // Métricas anônimas do atendimento para o teste com usuários (aba Sessões).
+      var metrics = safeMetrics_(body, desk),
+        saved = false;
+      try {
+        portalCount_(session, "metrics", 60, "Limite de registros.");
+        portalGestao_({ action: "sessionMetrics", metrics: metrics, origin: "Pages" });
+        saved = true;
+      } catch (error) {}
+      return { status: 200, body: { stored: saved } };
+    }
     if (route === "/api/analyze") return { status: 200, body: portalAnalyze_(session, body, desk) };
     if (route === "/api/track") {
       // Acompanhamento pelo solicitante: número + e-mail da abertura, poucas consultas por sessão.

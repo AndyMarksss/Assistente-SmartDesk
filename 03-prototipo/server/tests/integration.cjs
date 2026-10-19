@@ -44,7 +44,9 @@ const googleStorage = {
     };
   },
 };
-const server = createServer(adapter, { storageRoot, googleStorage });
+const metricsFile = path.join(storageRoot, "sessoes.jsonl");
+const { randomUUID } = require("node:crypto");
+const server = createServer(adapter, { storageRoot, googleStorage, metricsFile });
 const sampleAnswers = (item) =>
   Object.fromEntries(
     item.fields
@@ -343,7 +345,41 @@ const sampleAnswers = (item) =>
     check(sent.status === 201 && sent.body.number === "#001");
     check(cloudPayload.description === description && cloudPayload.selectionId === item.id);
     check(cloudPayload.attachments[0].base64 === sending.attachments[0].base64);
+    // 0.12: código do participante vai junto; código fora do formato é ignorado.
+    check(!("participant" in cloudPayload));
+    await post("/api/tickets", { ...sending, requestId: randomUUID(), participant: "p07" });
+    check(cloudPayload.participant === "P07");
+    await post("/api/tickets", { ...sending, requestId: randomUUID(), participant: "Maria" });
+    check(!("participant" in cloudPayload));
+    // 0.12: métricas anônimas; sem Google, vão para um arquivo local fora do Git.
     googleStorage.ready = () => false;
+    const metric = {
+      sessionId: randomUUID(),
+      participant: "P03",
+      device: "computador",
+      stage: "enviado",
+      method: "descrição",
+      path: "IMP-008",
+      aiDraft: "aceito",
+      coherence: "",
+      followUp: "pulou",
+      tips: "seguiu para o chamado",
+      backs: 2,
+      ticket: "#001",
+      secondsToSend: 95,
+      ease: 4,
+      comment: "Faltou <b>ver</b> o horário",
+      name: "Nome que não deve ir",
+    };
+    const stored = await post("/api/metrics", metric);
+    check(stored.status === 200 && stored.body.stored === true);
+    const line = JSON.parse(fs.readFileSync(metricsFile, "utf8").trim().split("\n").pop());
+    check(line.participant === "P03" && line.pathLabel === "Impressora › Papel Atolado");
+    check(!("name" in line) && !line.comment.includes("<") && line.secondsToSend === 95);
+    check((await post("/api/metrics", { ...metric, stage: "inventada" })).status === 400);
+    check((await post("/api/metrics", { ...metric, sessionId: "x" })).status === 400);
+    check((await post("/api/metrics", { ...metric, ease: 9 })).body.stored === true);
+    check(JSON.parse(fs.readFileSync(metricsFile, "utf8").trim().split("\n").pop()).ease === 0);
     check((await post("/api/tickets", sending)).status === 503);
     googleStorage.ready = () => true;
     googleStorage.submit = async () => {

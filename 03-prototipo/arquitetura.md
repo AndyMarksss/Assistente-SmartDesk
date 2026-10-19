@@ -1,4 +1,4 @@
-# Estrutura do SmartDesk — 0.11.4
+# Estrutura do SmartDesk — 0.12.0
 
 ## Cliente
 Os scripts são carregados com defer na ordem declarada em index.html. Não há ferramenta de compilação: os arquivos continuam funcionando no servidor local e a apresentação estática no GitHub Pages.
@@ -71,3 +71,6 @@ Painel: `admin.js` desenha o skeleton antes da primeira resposta, usa Pointer Ev
 
 ## Avaliação da IA e modo sem IA 0.11.3
 `ai-provider.cjs` concentra as instruções de identificar, extrair e revisar, além de `analyzeCategories`; o build copia essas instruções e `analyzeCategories_` para `PortalShared.gs`, e o `Portal.gs` não tem mais texto de instrução próprio para identificar o caminho. Em `app.js`, `suggestPaths` só monta rascunho (`buildDraft`) quando a análise veio da IA; quando veio da base local, `pickLocalGuess` mostra as possibilidades como opções. A avaliação técnica fica fora do protótipo, em `04-validacao/avaliacao-ia`, e usa só as rotas `/api/analyze` e `/api/extract` e o navegador.
+
+## Teste com usuários 0.12.0
+`session-metrics.js` vive fora do `state` do chat (o Voltar restaura o estado e não pode apagar a contagem de voltas): `begin` abre o registro no primeiro clique de início, `update` junta mudanças em 500 ms e envia `/api/metrics`, `reset` fecha ao começar um novo atendimento. O código do participante vem de `?p=` e fica em `sessionStorage`. A validação (`safeMetrics`, `safeParticipant`, `metricPathLabel` em `ticket-validation.cjs`) é copiada para o Apps Script pelo build; `metricas_` (Gestao.gs) revalida e grava/atualiza a linha da sessão na aba Sessões. `Validacao.gs` monta as abas de validação com fórmulas que buscam na aba Sessões pelo número do chamado.

@@ -1524,3 +1524,22 @@ body.is-dragging {
     bottom: 16px;
   }
 }
+
+/* 0.12 — Teste com usuários: código do participante no cabeçalho e no painel. */
+.test-badge {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 8px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--accent-ink);
+  background: var(--brand-gradient);
+}
+:root[data-theme] .ticket-tag.test {
+  color: var(--accent-ink);
+  background: var(--brand-gradient);
+  border-color: transparent;
+}

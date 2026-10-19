@@ -1,0 +1,280 @@
+# Changelog
+
+Registre mudanças do protótipo e da organização do projeto, com data e evidência quando disponível.
+
+## 2026-09-30 — Estrutura inicial
+
+- Criadas as oito áreas do projeto e suas subpastas.
+- Preparados modelos para decisões, evidências, README futuro e diário de validação.
+- Registrado um resumo do fluxo proposto e pendências da próxima etapa.
+- Nenhum protótipo implementado ou resultado de validação registrado nesta etapa.
+
+## Modelo para próximas mudanças
+
+### AAAA-MM-DD — [Versão ou etapa]
+
+- Alteração:
+- Motivo:
+- Telas ou regras afetadas:
+- Verificação realizada:
+- Evidência:
+- Pendências conhecidas:
+
+## 2026-09-30 — Organização das evidências
+
+- Recuperados e copiados os três prints definidos na conversa, preservando os originais.
+- Criados índice Markdown e manifesto JSON com etapas, descrições, datas aproximadas e SHA-256.
+- Adotado o padrão EVID-###_descricao-curta.ext; próximo número livre: EVID-004.
+- Atualizado o checklist e registradas as instruções de continuidade em AGENTS.md.
+- Conferidos visualmente os prints; cópias a verificar por hash.
+
+## 2026-09-30 — Versão 0.1.0, primeiro percurso do MVP
+
+- Criados index.html, style.css, app.js, classifier.js, knowledge-base.js, flows.js e README.md.
+- Implementadas entrada, análise, classificação, correção e confirmação da classificação.
+- Base inicial parcial de 14 necessidades; matriz completa e setores oficiais pendentes de importação.
+- Preservadas as pastas src, assets e versoes; arquivos da interface organizados conforme o Passo 4.
+- Perguntas complementares, triagem, resumo e avaliação permanecem na próxima etapa.
+
+- Verificação técnica concluída: dez cenários de classificação, percurso no navegador e layout em largura de celular. Detalhes em verificacao-v0.1.0.md.
+- Corrigida a exibição da confirmação anterior ao reabrir a correção manual.
+- Salvas EVID-004 e EVID-005; índices e checklist atualizados. Próximo número: EVID-006.
+
+## 2026-10-01 — Versão 0.2.0, chat guiado
+
+- Substituída a interface de formulário por conversa com escolhas padronizadas e digitação liberada por etapa, conforme correção do usuário.
+- Incluídos acompanhamento lateral, confirmação/correção, coleta de detalhes e identificação, resumo revisável e exportação local preparada.
+- Versão anterior preservada em versoes/v0.1.0-antes-chat, incluindo a base e o classificador.
+- Criados motor de conversa, servidor local, adaptador de IA desativado e contrato da integração.
+- Serviço de IA adiado por escolha explícita do usuário; não houve chamadas externas.
+- Conferidos percurso no navegador, layout de celular e doze verificações do servidor. Limite do download no navegador integrado registrado em verificacao-v0.2.0.md.
+- Salvas EVID-006 a EVID-008, índices e checklist atualizados. Próximo número: EVID-009.
+
+## 2026-10-01 — Versão 0.3.0
+
+- Font Awesome Free 6.7.2 local substitui símbolos de interface; licença preservada.
+- Temas claro/escuro por botão, preferência persistente, contraste e foco de teclado.
+- Início pessoal: convite, nome/apelido, saudação pelo nome. Empresas retiradas do fluxo acadêmico; versões antigas preservam contexto histórico para futura implementação corporativa.
+- Nome coletado uma única vez; e-mail de contato genérico, com exemplo fictício. Setores continuam exemplos da base parcial.
+- Adaptador Gemini com resposta estruturada, confirmação humana e fallback identificado. Chave em .env, bloqueado no servidor e ignorado no Git. Sem chave real ou chamada externa nesta verificação.
+- Corrigida rolagem após renderização das escolhas no celular.
+- Preservados 11 arquivos da versão 0.2.0 em versoes/v0.2.0-antes-temas-gemini.
+- 21 verificações automatizadas e percurso visual desktop/celular documentados em verificacao-v0.3.0.md.
+- EVID-009 a EVID-011 registradas; próximo número: EVID-012.
+
+## 2026-10-01 — Versão 0.4.0, identidade lavanda
+
+- Substituído verde por lavanda, ameixa e rosa discreto nos dois temas, por instrução direta do usuário.
+- Refinados espaçamento, moldura do chat, sidebar clara/escura, cartões, botões e hierarquia tipográfica. Robô Font Awesome e coração discreto nas boas-vindas.
+- Contraste dos textos inspecionados acima de 4,5:1; celular 390x844 sem transbordamento horizontal.
+- Preservados 12 originais em versoes/v0.3.0-antes-lavanda. Nenhum arquivo apagado; .env não foi copiado nem alterado pelo assistente.
+- Servidor reiniciado para carregar a chave inserida pelo usuário. Google aceita consulta de modelos, mas gemini-2.5-flash-lite retorna 404: indisponível para novos usuários. Classificação permanece em fallback local identificado.
+- Tentativa de atualizar para Gemini 3.5 Flash-Lite e testar bloqueada pela revisão automática por possível custo. Sem mudança de modelo ou chamada nessa tentativa. Confirmação do plano gratuito solicitada ao usuário; pendente.
+- 21 verificações simuladas do servidor passaram. Nenhuma classificação real de IA bem-sucedida registrada.
+- Evidências EVID-012 a EVID-014; próximo número EVID-015.
+
+## 2026-10-01 — Conexão Gemini concluída
+
+O usuário confirmou explicitamente Free tier sem faturamento. Com essa confirmação e a tabela oficial mostrando entrada/saída gratuitas nessa modalidade, a atualização foi autorizada pela revisão automática. Modelo atualizado para gemini-3.5-flash-lite, chave preservada. Resposta real 200 com printer-paper, e chat mostrou Gemini · análise com IA e Impressora / Papel atolado. EVID-015 registrada; próximo número EVID-016. 21 testes simulados repetidos e aprovados após a atualização. A interrupção e pendência anteriores estão resolvidas; não houve ativação de faturamento ou mudança automática de modelo.
+
+Referência: [preços oficiais](https://ai.google.dev/gemini-api/docs/pricing#gemini-3.5-flash-lite).
+
+## 2026-10-01 — 0.5.0, escolhas da matriz e assunto do chamado
+
+- Substituída classificação livre por setor padronizado, quatro áreas e 57 caminhos da matriz.
+- Campos específicos e condicionais; QuickBooks para Financeiro, câmeras para Coordenação EI (Infantil), roteiro de evento, data de Chromebook, conta para reset e cor/modelo para toner.
+- Gemini adapta a pergunta da descrição e sugere apenas um assunto curto, sem mudar categoria nem descrição. Sem ferramentas ou conversa livre.
+- Anexos opcionais depois da descrição; rascunhos locais com arquivos, validação no servidor e resumo em texto. Sem envio ao suporte.
+- Preservados temas e Font Awesome. Versão anterior arquivada, sem chave.
+- 147 verificações simuladas passaram. Percurso real de toner verificado no navegador: Gemini sugeriu Solicitação de Toner Magenta; rascunho fictício com anexo salvo e conferido em disco. Sem erros de console observados.
+- Evidências EVID-016 a EVID-019. Validação com usuários reais continua pendente.
+
+## 2026-10-01 — 0.6.0, diálogo suave e receptor Google
+
+- Mensagens do bot enfileiradas, indicador de digitação e entrada suave, respeitando movimento reduzido. Respostas só liberadas após a mensagem.
+- Nome no cumprimento em negrito, setor com texto simplificado e seletor destacado; campo indisponível com aparência pausada e rótulo com cadeado.
+- Escolhas sem destaque automático da primeira opção; hover e botão Voltar uma etapa acima das opções. Histórico restaura a etapa anterior, sem reiniciar o setor para corrigir a área.
+- Local retirado por instrução do usuário. Assunto permanece interno, sem confirmação ou exibição no resumo.
+- Revisão final com Enviar, Editar descrição e Revisar anexos apenas quando existem; Novo atendimento somente após recebimento confirmado.
+- Receptor Apps Script e ponte no servidor: chamados em linhas numeradas, anexos privados no Drive, token secreto, trava de numeração, ID de envio e retomada sem duplicatas.
+- 152 verificações do servidor passaram com Google simulado; testes do Apps Script verificaram #001/#002/#003, repetição, token, descrição literal, links e retomada após falha de arquivo.
+- Publicação real pendente: navegador não autenticado no Apps Script; nenhuma planilha ou pasta nova foi criada no Google nesta sessão. Não afirmar envio real. Chave .env preservada.
+
+## 2026-10-01 — Publicação e diagnóstico do Google
+
+- Usuário publicou receptor versão 1 e inseriu configuração no .env. Servidor reiniciado; arquivo de configuração não foi exibido nem alterado pelo assistente.
+- GET real retorna SmartDesk 0.6.0. POST do chamado fictício com TXT retorna erro interno do script, distinto de falha de token. Sem confirmação de número; não alegar envio. Mesmo ID reutilizado nas tentativas.
+- Preservado Code.gs anterior em versoes/v0.6.0-antes-diagnostico-google. Adicionado log seguro ao catch e Diagnostico.gs para validação/retomada pelo editor. Causa exata depende da execução na conta do usuário.
+- EVID-030 e EVID-031 registram configuração e publicação; recebimento permanece pendente.
+
+## 2026-10-01 — Correção do diagnóstico e confirmação Google
+
+- Diagnostico.gs corrigido para preencher area/need a partir do Schema antes de validar, reproduzindo o contrato do servidor. Versão anterior preservada.
+- Teste local confirma campos obrigatórios corretos.
+- Reteste real do servidor recebeu HTTP 201: chamado fictício #001, um anexo, status enviado. Repetição do mesmo requestId/conteúdo retornou #001 novamente. Sem novos chamados por essa repetição.
+- .env não foi modificado nem exibido. EVID-032 preserva o diagnóstico anterior; pendência de recebimento resolvida, conferência visual da planilha/arquivo ainda pendente.
+
+## 0.7.0 — Gestão e adaptação de telas
+
+- Compositor alinhado e compacto; adaptação por largura/altura, até 4K.
+- E-mail após nome; indicador verde/vermelho baseado em resposta recente válida do Gemini, não apenas chave configurada.
+- Dashboard, filtros, kanban, detalhes e mudança de etapa; demonstrações persistidas separadamente.
+- Extensão Google com listagem/etapa/e-mail preparada; requer atualização da implantação pelo usuário. Estratégia de retorno registrada.
+
+## 0.7.1 — Acesso ao servidor correto
+
+- Cliente e painel abertos em localhost:5500 ou como arquivo local encaminham para localhost:4173, preservando a tela desejada.
+- Painel verifica o tipo da resposta antes de interpretar JSON e apresenta orientação legível.
+- Leitura real pelo servidor confirmou um chamado Google (#001) após a atualização da implantação; não foram alteradas etapas nem criados chamados reais nesta correção.
+
+## 0.8.0 — Refinamento de experiência
+
+Modal fecha por clique externo e Escape; botão de fechar compacto; dashboard com fundos discretos e temas refinados; favicon SVG. Nome e sobrenome com Unicode, e-mail destacado até correção, Recomeçar, instruções e respostas acolhedoras. Computador identificado por quem utiliza. Pergunta imediata de descrição sem espera por IA. Autorização declarada ou pendente para compra/troca, servidor valida e Apps Script armazena em O. IA distingue pronta, processando, conectada e indisponível sem chamadas artificiais.
+
+## 0.8.1 — Contexto e trilha horizontal
+
+HDMI sem autorização e sem descrição duplicada. Periféricos distinguem defeito de item novo/diferente antes dos detalhes. Prompts contextualizados por serviço/campo. Trilha horizontal sob cabeçalho, resumo e orientação na lateral. Regra de autorização alinhada entre navegador e servidor.
+
+## 0.8.2 — Chat compacto e agendamento intuitivo
+Trilha mais fina; painel de resposta compacto, sem caixa pausada redundante; exemplos nas quatro áreas; data/hora digitáveis com teclado numérico e seletor opcional. Validação de datas reais e não passadas, horários e relato só numérico no cliente e servidor. Categorias canônicas preservadas.
+
+## 0.8.3 — Feedback de envio e trilha
+Calendário/relógio alternam o tipo da mesma caixa preservando o valor. Indicador animado imediato durante envio, com texto acessível, movimento reduzido respeitado e bloqueio de nova submissão. Etapas concluídas recebem ✓, mantendo etapa atual em destaque; reinício limpa marcações.
+
+## 0.8.4 — Visual móvel e teclado
+Tema escuro com conversa em fundo neutro, mensagens ameixa e campo de resposta mais claro. Elementos decorativos difusos e superfícies com vidro/blur. VisualViewport ajusta altura móvel; cabeçalho e trilha recolhem durante teclado, restauram ao fechar. Calendário/relógio ficam acima da caixa. Mantidos campo único, ✓ e feedback de envio.
+
+## 0.8.5 — Profundidade pela cor
+Planos de cor para cenário, conversa e resposta; vidro translúcido no cabeçalho e na área de resposta; histórico em ameixa suave e lavanda reservada para ação principal. Lateral integrada ao cenário, menos bordas e cartões, selo de IA duplicado e instrução repetida removidos visualmente. Mensagem atual com detalhe lavanda; iniciar atendimento recebe destaque principal. Mantidos ✓, alternância data/hora, estado de envio e adaptação ao teclado.
+
+## 0.8.6 — Paleta por função
+Direção tecnológica escolhida pelo usuário: grafite e neutros frios estruturam planos; violeta indica ação, foco e etapa atual. Histórico do usuário azul acinzentado; mensagens do bot neutras, cores sólidas para legibilidade. Vidro somente no cabeçalho/dock, grade discreta, proporções e texto inicial mais precisos. Mantidos os fluxos e os controles móveis. 22 pares de contraste aprovados; sistema documentado com fontes.
+
+## 0.8.7 — Personalidade e movimento
+Assistente ilustrado vetorial próprio na abertura, órbitas e luzes discretas no cenário, vidro no cabeçalho e resposta, avatares maiores e cartão de ajuda. Quatro áreas em cartões com ícones e seta decorativa; quatro colunas desktop e duas mobile. Entradas curtas de mensagens e opções, retorno em hover/toque, flutuação do assistente, rotação do aro e transição de ✓. Botão para pausar efeitos, preferência salva localmente; movimento reduzido desativa animações decorativas e entradas.
+
+## 0.8.8 — Identidade de suporte TI
+Marca própria de conversa/terminal substitui S no chat, gestão e favicon. Abertura focada no suporte de TI. Robô centralizado no mobile com legenda abaixo; três destaques alinhados. Botão de pausa retirado; movimento reduzido do sistema segue respeitado. Luzes violeta/azul atrás de superfícies translúcidas tornam o vidro perceptível. Gestão recebe a paleta grafite/fria, cabeçalho de TI, indicadores, cores de etapas com rótulos, gráfico e entradas curtas animadas. Backend, matriz e política de chamados preservados.
+
+## 0.8.9 — Central de apoio
+Abertura redesenhada como uma central de apoio: painel com título, texto e ilustração do assistente conectado a computador, conexão, impressão e som. Cena com formas geométricas, vidro nos dispositivos e sinais curtos animados; decoração sem cliques ou anúncios assistivos. Fundo com textura de pontos discreta substitui órbitas grandes. Resumo lateral usa linha de acompanhamento; ajuda azul, ação violeta e mensagens neutras. Composição centralizada no desktop e compacta no mobile, incluindo 360×740. Painel recebe o mesmo vocabulário visual, novos planos de cor e indicadores com menos decoração.
+
+## 0.8.10 — Planos de cor e envio compreensível
+Corrigido título local: separadores > do caminho canônico viram travessões no assunto interno, mantendo categoria e descrição originais. O cliente normaliza também a resposta recebida de versões anteriores do servidor. Falha de envio anuncia explicitamente que o recebimento não foi confirmado, preserva dados/ID e oferece Tentar enviar novamente. Nenhuma confirmação é mostrada antes de uma resposta de sucesso. Abertura permanece no topo, sem rolagem automática ocultando o título. Planos definidos por luminosidade: cenário recuado azul cinza/grafite, navegação intermediária, painel e mensagens elevados, pergunta atual em azul e resposta em lavanda/violeta. Mesmo vocabulário no painel. Vidro localizado na ilustração, sem sombras novas.
+
+## 0.8.11 — Estrutura e movimento
+
+Módulos separados para comunicação, fila de mensagens, campos e anexos; validação do servidor extraída; formatação uniforme dos arquivos próprios. Movimento centralizado, efeitos decorativos finitos e novas entradas de mensagens/opções, campos, resumos, detalhes, cartões e gráficos. Feedback de espera no painel e confirmação de recibo antes de concluir envio. Erros de gestão distinguem validação, conflito e origem dos dados.
+
+Sete suítes aprovadas, incluindo 211 verificações de integração, comparação dos 57 caminhos nos 25 setores, anexos, autorização, idempotência, datas e gestão. Novos testes de cancelamento de respostas/controles antigos e sequência sem atrasos em movimento reduzido. Sintaxe de 31 arquivos JavaScript aprovada; 40 arquivos próprios passaram na padronização. Navegador: calendário/relógio preservam um campo e valor; fluxo fictício completo com falha, nova tentativa e recibo #TESTE-LOCAL, sem escrever no Google; etapa de demonstração persistiu e foi restaurada. Chat e painel em 390×844 sem overflow lateral. Preferência de movimento reduzido validada por regras e testes controlados, sem alterar a configuração do sistema. Teclado virtual real ainda exige conferência no aparelho. Nenhum teste equivale a garantia de ausência de qualquer regressão.
+
+## 0.8.12 — Versão nos rodapés
+
+Chat e gestão exibem SmartDesk · v0.8.12 no rodapé, incluindo mobile. Comando único sincroniza versão do pacote, lock, páginas e documentação atual. Regra de incremento registrada para as próximas entregas.
+
+## 0.8.13 — Robô e conexões coerentes
+
+Rodapé centralizado pela caixa e texto. Sinal luminoso segue exatamente as linhas computador → robô → som/imagem, com comprimento normalizado. Mesmo personagem SVG no cabeçalho e avatar das mensagens, com tamanho móvel e moldura suave; bolhas do assistente refinadas.
+
+## 0.8.14 — Conversa acompanha respostas
+
+Rolagem acompanha Como funciona mesmo com abertura visível e reajusta após mudança de altura dos controles/conversa. Área de resposta preserva altura durante fila de digitação; libera após renderizar controles. Recomeçar preserva abertura no topo. Circuito luminoso sequencial: computador, impressão, conexão e som/imagem → robô, sem trecho de saída.
+
+## 2026-10-05 — 0.8.15: preparação da entrega online real
+
+- Servidor compatível com PORT, host público e origem HTTPS de hospedagem. Acesso de avaliação obrigatório na nuvem; saúde pública sem chamadas externas.
+- Blueprint Render Free e guia de primeira hospedagem, sem configuração de faturamento.
+- Pages gera somente entrada/encaminhamento público, sem publicar arquivos do servidor, histórico ou credenciais. URL pública configurada por variável de Actions.
+- Publicação e teste remoto ainda dependem da conta gratuita/ambiente privado. Não afirmar integração online antes de conferir.
+
+## 2026-10-05 — 0.9.0: portal completo no Apps Script
+
+- Migração autorizada para dispensar hospedagem adicional. Interface autocontida, transporte RPC, sessão privada e adaptador Gemini no Google.
+- Reutilização da planilha/Drive/token e idempotência existentes; simulações isoladas por sessão. Regras derivadas das fontes canônicas.
+- Pages aceita /exec; compatibilidade Node preservada com saúde ?api=health. Auxiliares de configuração/diagnóstico privados para RPC.
+- Guia/pacote para aplicação manual pelo usuário. Implantação Google e teste remoto ainda pendentes, sem contratação de plano ou faturamento.
+
+## 0.9.1 — 2026-10-05
+
+Correção solicitada: frontend estático no Pages sem redirecionamento, Apps Script apenas backend. POST em iframe técnico, respostas autenticadas/correlacionadas por postMessage, segredos fora da URL. Build por lista pública, endpoint fornecido pelo usuário e guia incremental. Dez suítes aprovadas; verificação Google real pendente.
+
+## 0.9.2 — 2026-10-05
+Acesso direto solicitado: sem modal/senha, sessão técnica automática e renovação única. Gestão pública limitada aos chamados enviados na mesma sessão; registros anteriores bloqueados no servidor. Simulações mantidas; acesso local completo preservado. Dez suítes aprovadas.
+
+## 0.10.0 — 2026-10-14
+
+Pedido direto do usuário: mais profundidade, efeitos, animações, hover, vidro e elementos; melhor uso da IA e um fluxo de mensagens mais fluido até a abertura do chamado.
+
+- Aparência: nova camada `assets/css/atmosphere.css` com aurora desfocada e grão no fundo, vidro em camadas (lateral, conversa, cabeçalho, dock, mensagens, opções, gestão), luz que acompanha o cursor, inclinação 3D na cena de abertura, linha de progresso na trilha e cartões de revisão e comprovante redesenhados. Animações novas em `motion.css` (entrada com desfoque, ondulação ao clicar, borda animada no cartão de IA, comprovante). Tudo desligado por `prefers-reduced-motion`; `prefers-reduced-transparency` e navegadores sem desfoque recebem superfícies sólidas. `assets/js/atmosphere.js` só atua com mouse.
+- IA: "Descrever com minhas palavras" sugere até três caminhos permitidos para confirmação; depois da descrição, a IA pode fazer uma pergunta de complemento (com opção de pular) e oferecer até três dicas seguras, com "Resolveu! Não preciso mais" sem abrir chamado. Mensagens da IA ganham selo próprio e um balão de "pensando" enquanto ela responde.
+- Fluxo: seletor de setor com busca em grade, atalhos dos cenários da matriz, opções com ícones e nomes legíveis (Computador em vez de COMPUTADOR, só na tela), comprovante com botão de copiar e próximos passos, e opção de lembrar nome, e-mail e setor neste dispositivo (com "Esquecer").
+- Avaliação pública (Apps Script): cotas por sessão (5 chamados, 40 chamadas de IA) e por dia (60 chamados, 600 chamadas de IA), limite de 3 anexos e 5 MB com conferência do conteúdo pelo tipo do arquivo, e limitador de sessões por minuto que não trava mais com tráfego contínuo.
+- Correção: teste de integração usava a data fixa 2026-10-05 e falhava após essa data.
+- Verificação: dez suítes aprovadas, incluindo 223 verificações de integração. Fluxo conferido no navegador com o Gemini real e o envio ao Google desligado. Detalhes em verificacao-v0.10.0.md; evidências EVID-179 a EVID-188.
+- Pendente: aplicar Portal.gs e PortalShared.gs no Apps Script (guia ATUALIZAR-v0.10.0.md) antes de publicar no Pages; conferir em aparelho real.
+
+## 0.10.1 — 2026-10-14
+
+Teste de ponta a ponta no GitHub Pages, como o avaliador, revelou três falhas do caminho público que existiam desde a 0.9.x e nunca tinham sido conferidas:
+
+- IA: o Apps Script não tinha autorização para chamar serviços externos, então o Gemini sempre caía na alternativa local pelo Pages. Criada a função `diagnosticarIA` (Diagnostico.gs); executada e autorizada pelo dono no editor. Depois disso, sugestão de caminho, pergunta de complemento e dicas funcionaram pelo Pages.
+- Envio: o portal devolvia o recibo sem `status: "enviado"`, e o chat mostrava "envio não confirmado" mesmo com o chamado gravado. O portal agora devolve o mesmo recibo do servidor local (status, ID e número validados). Chamado fictício #010 confirmado na interface pública.
+- Painel: a listagem pública não trazia as etapas e o painel ficava em "Carregando chamados…". A listagem agora inclui as etapas e o painel tolera a ausência delas. Melhorias junto: depois de enviar, o painel abre em "Chamados desta avaliação"; a demonstração vazia cria as simulações sozinha; detalhes mostram o nome dos campos e o resumo usa singular/plural.
+- Publicação: Apps Script publicado pelo clasp (perfil `--user pessoal`) nas versões 5, 6 e 7 da mesma implantação; /exec inalterado.
+
+## 0.10.2 — 2026-10-14
+
+O build do Pages acrescenta `?v=<versão>` aos CSS e JS próprios. O Pages guarda arquivos por cerca de 10 minutos; sem isso, quem já tinha aberto o site recebia HTML novo com JS antigo (visto no teste: o painel novo rodou com o admin.js anterior). Apps Script republicado só para alinhar a versão (implantação versão 8).
+
+## 0.11.0 — 2026-10-14
+
+Revisão pedida pelo usuário depois de testar a 0.10.x: robô parado, painel sem indicação de carregamento, kanban difícil de usar, botões piscando, setor e atalhos poluídos, calendário escondido, IA que perguntava de novo o que já tinha sido dito e fluxos com furos.
+
+- **Chat — aparência:** robô animado (flutua, pisca, acena, brilha e "pensa" enquanto a IA responde); frases da tela inicial em pílulas; botões violeta sem deslocamento no hover (o deslocamento tirava o botão de baixo do cursor e causava a piscada); campo de texto cresce até 3 linhas; botões do cabeçalho com o mesmo tamanho no celular.
+- **Chat — escolhas:** setor numa lista com busca (combobox acessível) no lugar da grade; tela de áreas só com as quatro áreas e o cartão da IA (atalhos retirados); data e horário com botão visível "Calendário"/"Relógio" e datas rápidas (Hoje, Amanhã, próximos dias úteis); respostas rápidas ("Não sei o modelo", "Não aparece nada", "A impressora não tem visor", "Enviar o link depois", dispositivo); "Sem mais detalhes" nos caminhos em que a descrição é opcional, com texto montado a partir das respostas.
+- **IA monta o rascunho:** "Descrever com minhas palavras" identifica o tipo e extrai os dados já ditos (data, horário, evento, opções) num cartão para a pessoa confirmar ou corrigir; só o que falta é perguntado; o relato vira a descrição sem ser pedido de novo. Novo `POST /api/extract`. Defeito × item novo só nos periféricos (antes uma reserva podia cair em autorização de compra).
+- **IA blindada:** a pergunta de complemento traz uma dica de onde achar a resposta, nunca repete dados informados e fica no escopo do pedido; a IA avisa quando o relato não combina com o tipo escolhido ("Escolher outro tipo" mantém o relato). Perguntas e respostas entram formatadas na descrição ("Perguntas do assistente").
+- **Dicas e "Resolveu":** "Antes de enviar o chamado, vale tentar…" (não dá mais a entender que o chamado já foi enviado). "Resolveu!" encerra sem chamado e oferece "Voltou a acontecer — abrir o chamado" com os dados mantidos. O resultado é registrado sem dados pessoais na aba Autoatendimento.
+- **Acompanhar um chamado:** número + e-mail usado na abertura mostram só a etapa (Recebido, Em andamento, Finalizado), área, necessidade e data. "Lembrar nome, e-mail e setor" ganhou explicação; "Novo atendimento" com dados lembrados volta a rolar a tela.
+- **Painel:** skeleton durante o carregamento; texto de busca legível; kanban com cor por etapa, tags nos cartões (área, data, anexos, autorização pendente, simulação), arrastar e soltar com cartão-fantasma, coluna de destino destacada, aviso de confirmação e desfazer em caso de erro; sem rolagem lateral (7 colunas numa linha a partir de 1280 px, quebram abaixo disso). Novo cartão "IA no autoatendimento" (resolvidos pelas dicas × seguiram para o chamado).
+- **Apps Script:** rotas de rascunho, acompanhamento (10 por sessão) e autoatendimento (20 por sessão); `trackTicket`, `selfHelp` e `selfHelpStats` em Gestao.gs; link "Ainda não informado" aceito; `removerChamadoDeTeste` em Diagnostico.gs para o dono apagar o chamado de teste #010. Publicado pelo clasp nas versões 9 e 10 da mesma implantação.
+- Verificação: dez suítes aprovadas; fluxos conferidos com o Gemini real e o envio ao Google desligado. Detalhes em verificacao-v0.11.0.md.
+
+## 0.11.1 — 2026-10-14
+
+Pedido do usuário: o robô deve olhar para o cursor, e o efeito de luz do fundo do chat deve acontecer no chat inteiro, não só em uma parte.
+
+- **Olhar do robô:** os olhos (grupo `.robot-gaze`) se deslocam na direção do cursor em qualquer ponto da página, até 8 × 7 unidades do desenho, com a boca acompanhando pela metade; a piscada continua em cada olho. Quando o cursor sai da janela, o robô volta a olhar para frente. Só com mouse; com movimento reduzido, os olhos ficam parados.
+- **Luz do cursor:** a camada herdava de `visual-depth.css` 380×380 px no canto superior esquerdo e um desfoque de 65 px, e ficava atrás do cabeçalho, das etapas e da área de resposta — por isso o efeito só aparecia num pedaço. Agora ocupa o chat inteiro, por cima das faixas (mistura `screen` no escuro e `multiply` no claro), acende quando o cursor entra no chat e apaga quando sai. O brilho fixo do alto passou para o fundo do próprio chat. Desligada em cores forçadas.
+- Apps Script republicado só para alinhar a versão (implantação versão 11). Verificação em verificacao-v0.11.1.md.
+
+## 0.11.2 — 2026-10-14
+
+Correção pedida pelo usuário: na 0.11.1 a luz do cursor passou a ficar por cima de tudo e invadia o card central, a trilha de etapas e os botões. A luz deve ficar só no fundo do chat.
+
+- `.chat-shell::after` voltou para trás do conteúdo (`z-index: 0`, sem mistura de cores), mantendo o tamanho do chat inteiro — o defeito original era só a camada de 380×380 px no canto.
+- Medido com as cores reais (tema escuro): fundo abaixo do card vai de (17, 24, 40) para (53, 56, 89) com o cursor perto; área de botões não muda; dentro do card, pelo vidro, a variação é mínima ((34, 52, 72) → (42, 56, 82)).
+- Apps Script republicado só para alinhar a versão. Verificação em verificacao-v0.11.2.md.
+
+## 0.11.3 — 2026-10-14
+
+Pedido do usuário: conferir se todos os fluxos foram avaliados, inclusive a interpretação da IA no relato livre. Resposta honesta: as regras dos 57 caminhos tinham testes, mas a IA real só tinha sido testada em 4 relatos. Foi feita uma avaliação técnica em `04-validacao/avaliacao-ia`.
+
+- **Avaliação (instrução anterior):** 186 relatos fictícios. Caminho certo em 1º em 96% (claros e informais 100%, vagos 89%); base local sem IA, 38%. Fora do escopo barrados 10/10, inclusive uma tentativa de manipular a IA; dois pedidos no mesmo relato 2/2; extração 98% dos campos e 100% das datas. Banco de controle com 30 relatos novos: 27/27 caminhos certos e 2/3 fora do escopo barrados.
+- **Instrução de identificação:** centralizada em `ai-provider.cjs` (`ANALYZE_INSTRUCTION`, `analyzeCategories`) e copiada para o Apps Script pelo build. Ganhou glossário dos sistemas da escola, preferência pelo caminho específico e lista vazia para assuntos que não são de TI. Uma tentativa de mandar também as palavras-chave da matriz piorou Audiovisual (47/50 contra 49/50) e foi descartada. Versão final nos 44 relatos que deu tempo de rodar: 44/44, contra 43/44 da anterior nos mesmos relatos; nos 10 casos sensíveis, 9 certos.
+- **Extração:** "É para um evento?" só é marcado quando a pessoa diz isso; marcações indevidas em Audiovisual caíram de 5/12 para 2/12 nos mesmos relatos.
+- **Sem IA:** o relato livre não vira mais um rascunho incerto. O chat avisa que a IA está indisponível, mostra as possibilidades da base local como opções e "Escolher pelas opções", e mantém o texto como descrição.
+- **Limite da IA:** o plano gratuito do Gemini permite 500 pedidos por dia por projeto. A avaliação esgotou a cota da chave local (`.env`) em 2026-10-14; o site público seguiu com IA, porque o Apps Script usa outra chave. A rodada completa da instrução nova, o controle com ela e o percurso dos 57 caminhos (2 feitos) ficam pendentes até a cota local renovar.
+- **Pages:** Apps Script na versão 13 da implantação. Com a instrução nova, "o programa da contabilidade não abre o arquivo da empresa" (Financeiro) virou rascunho de TI › QuickBooks › Erro no sistema; antes, no mesmo site, a base local sugeria Google › Drive. Numa das tentativas a IA não respondeu e o modo sem IA apareceu como previsto.
+- Verificação em verificacao-v0.11.3.md; relatório em 04-validacao/avaliacao-ia/relatorio-avaliacao-ia.md.
+
+## 0.11.4 — 2026-10-15
+
+Avaliação da IA concluída depois que a cota do Gemini renovou (pedido do usuário: continuar quando a cota voltar). Relatório final em `04-validacao/avaliacao-ia/relatorio-avaliacao-ia.md`.
+
+- **Identificação (instrução com glossário da 0.11.3), 186 relatos:** caminho certo em 1º em 99% (antes 96%), entre as três 100%; vagos 98% (antes 89%). Fora do escopo 10/10, restritos 2/2, dois pedidos 2/2. Banco de controle: 27/27 caminhos e 3/3 fora do escopo (antes 2/3).
+- **Extração:** a regra da 0.11.3 deixou a IA cautelosa demais também em campos de texto (94%). Agora o cuidado vale só para perguntas de Sim/Não e campos de texto são preenchidos sempre que o relato traz a informação: 99% dos campos certos (antes 98%) e nenhum "evento" marcado sem a pessoa dizer (antes 5/12).
+- **Percurso pelos botões:** os 57 caminhos chegaram ao resumo, sem travar. A revisão da IA deu 2 alertas falsos (Lâmpada da Estufa e Câmeras) e uma pergunta pedindo o nome do aluno.
+- **Revisão da IA:** o mesmo glossário passou a valer na revisão (com Câmeras do Infantil); alerta só quando a descrição trata claramente de outra coisa, na dúvida segue; motivo em português correto. Conferida direto na rota nos 57 caminhos: 0 alertas falsos, 16 perguntas, 18 caminhos com dicas.
+- **Filtro do servidor:** perguntas que pedem nome de pessoas ou endereço de e-mail são descartadas (pegou "o nome completo e o e-mail institucional da professora"). Reaplicado às 39 perguntas coletadas: descartou só as 2 indevidas.
+- `revisar-ia.cjs` (revisão direto na rota) e `--so-extracao sim` em `avaliar-ia.cjs` para conferir mudanças sem gastar cota com o resto. Apps Script republicado. Verificação em verificacao-v0.11.4.md.

@@ -76,3 +76,6 @@ Avaliação técnica da IA com relatos fictícios (04-validacao/avaliacao-ia): 9
 
 ## 0.11.4
 Avaliação da IA concluída: 99% de caminho certo na 1ª sugestão, extração 99%, 57/57 caminhos chegam ao resumo pelos botões, revisão sem alertas falsos e sem perguntas de dados pessoais. Verificação em 03-prototipo/verificacao-v0.11.4.md.
+
+## 0.12.0 — teste com usuários
+O SmartDesk registra métricas anônimas de cada atendimento (aba Sessões), aceita o código do participante no link (`?p=P01`) e pergunta a facilidade no fim. Kit das sessões em `04-validacao/roteiros/roteiro-sessao-usuarios.md`. Verificação em 03-prototipo/verificacao-v0.12.0.md.

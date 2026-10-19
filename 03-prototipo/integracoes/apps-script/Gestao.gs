@@ -10,6 +10,11 @@ function prepararGestao_(sheet) {
   if (authHeader && authHeader !== "Autorização da liderança")
     throw Error("Coluna O ocupada; revisar antes da migração.");
   if (!authHeader) texto_(authCell, ["Autorização da liderança"]);
+  var testCell = sheet.getRange(1, 16),
+    testHeader = String(testCell.getValue() || "");
+  if (testHeader && testHeader !== "Participante do teste")
+    throw Error("Coluna P ocupada; revisar antes da migração.");
+  if (!testHeader) texto_(testCell, ["Participante do teste"]);
 }
 function doPost(e) {
   if (e && e.parameter && typeof e.parameter.smartdesk === "string") return pagesRequest_(e);
@@ -28,9 +33,14 @@ function doPost(e) {
     if (!secret || typeof body.token !== "string" || !igualSeguro_(secret, body.token))
       return resposta_({ ok: false, error: "Não autorizado." });
     if (
-      ["listTickets", "updateStatus", "trackTicket", "selfHelp", "selfHelpStats"].indexOf(
-        body.action,
-      ) < 0
+      [
+        "listTickets",
+        "updateStatus",
+        "trackTicket",
+        "selfHelp",
+        "selfHelpStats",
+        "sessionMetrics",
+      ].indexOf(body.action) < 0
     )
       throw Error("Ação inválida");
     var lock = LockService.getScriptLock();
@@ -38,6 +48,7 @@ function doPost(e) {
     try {
       if (["selfHelp", "selfHelpStats"].indexOf(body.action) >= 0)
         return resposta_(autoatendimento_(props, body));
+      if (body.action === "sessionMetrics") return resposta_(metricas_(props, body));
       var sheet = SpreadsheetApp.openById(props.getProperty("SMARTDESK_SHEET_ID")).getSheetByName(
         "Chamados",
       );
@@ -49,7 +60,7 @@ function doPost(e) {
         throw Error("Estrutura inválida");
       prepararGestao_(sheet);
       var rows =
-        sheet.getLastRow() > 1 ? sheet.getRange(2, 1, sheet.getLastRow() - 1, 15).getValues() : [];
+        sheet.getLastRow() > 1 ? sheet.getRange(2, 1, sheet.getLastRow() - 1, 16).getValues() : [];
       if (body.action === "trackTicket") {
         // Acompanhamento pelo solicitante: número + e-mail; devolve só a situação.
         var wanted = String(body.number || ""),
@@ -134,6 +145,7 @@ function doPost(e) {
               requestId: String(r[11]),
               email: String(r[13] || ""),
               authorization: authorization,
+              participant: String(r[15] || ""),
               simulation: false,
             };
           }),
@@ -186,4 +198,70 @@ function autoatendimento_(props, body) {
       return r[0] === "Seguiu para o chamado";
     }).length,
   };
+}
+
+/**
+ * Teste com usuários (0.12): uma linha anônima por atendimento na aba Sessões, atualizada a
+ * cada etapa. Sem nome, e-mail ou relato; o participante aparece só como código (P01…).
+ */
+var SESSOES_CABECALHO = [
+  "Sessão",
+  "Participante",
+  "Início",
+  "Atualizado",
+  "Dispositivo",
+  "Última etapa",
+  "Como escolheu",
+  "Caminho",
+  "Rascunho da IA",
+  "Alerta da IA",
+  "Pergunta da IA",
+  "Dicas da IA",
+  "Voltas",
+  "Chamado",
+  "Tempo até enviar (s)",
+  "Facilidade (1 a 5)",
+  "O que faltou",
+  "Origem",
+];
+function metricas_(props, body) {
+  var m = safeMetrics_(body.metrics, window.SmartDesk),
+    book = SpreadsheetApp.openById(props.getProperty("SMARTDESK_SHEET_ID")),
+    sheet = book.getSheetByName("Sessões");
+  if (!sheet) {
+    sheet = book.insertSheet("Sessões");
+    sheet
+      .getRange(1, 1, 1, SESSOES_CABECALHO.length)
+      .setValues([SESSOES_CABECALHO])
+      .setFontWeight("bold");
+    sheet.setFrozenRows(1);
+  }
+  var ids =
+      sheet.getLastRow() > 1 ? sheet.getRange(2, 1, sheet.getLastRow() - 1, 3).getValues() : [],
+    index = ids.findIndex(function (r) {
+      return String(r[0]) === m.sessionId;
+    }),
+    now = new Date().toISOString(),
+    row = index >= 0 ? index + 2 : sheet.getLastRow() + 1;
+  texto_(sheet.getRange(row, 1, 1, SESSOES_CABECALHO.length), [
+    m.sessionId,
+    m.participant,
+    index >= 0 ? String(ids[index][2]) : now,
+    now,
+    m.device,
+    m.stage,
+    m.method,
+    metricPathLabel_(m.path, window.SmartDesk),
+    m.aiDraft,
+    m.coherence,
+    m.followUp,
+    m.tips,
+    String(m.backs),
+    m.ticket,
+    m.secondsToSend === null ? "" : String(m.secondsToSend),
+    m.ease ? String(m.ease) : "",
+    m.comment,
+    body.origin === "Local" ? "Local" : "Pages",
+  ]);
+  return { ok: true };
 }

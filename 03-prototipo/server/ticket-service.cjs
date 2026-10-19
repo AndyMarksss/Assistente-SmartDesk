@@ -26,6 +26,9 @@ const {
   weekdayName,
   localSubject,
   validateAnswers,
+  safeParticipant,
+  safeMetrics,
+  metricPathLabel,
 } = require("./ticket-validation.cjs");
 const SELF_HELP_OUTCOMES = ["resolved", "continued"];
 function createTicketService({
@@ -34,6 +37,7 @@ function createTicketService({
   provider,
   json,
   storageRoot = path.join(root, "server/data/rascunhos"),
+  metricsFile = path.join(root, "server/data/sessoes.jsonl"),
   googleStorage = require("./google-storage.cjs"),
 }) {
   return async function handle(req, res, url) {
@@ -44,6 +48,7 @@ function createTicketService({
         "/api/extract",
         "/api/track",
         "/api/selfhelp",
+        "/api/metrics",
         "/api/next-prompt",
         "/api/drafts",
         "/api/tickets",
@@ -83,6 +88,32 @@ function createTicketService({
         } catch {
           json(res, 502, { error: "Não consegui consultar o chamado agora. Tente novamente." });
         }
+        return true;
+      }
+      if (url.pathname === "/api/metrics") {
+        // Métricas anônimas do atendimento (teste com usuários). Com o Google configurado vão
+        // para a aba Sessões; sem ele, para um arquivo local fora do Git.
+        const metrics = safeMetrics(body, desk);
+        let stored = false;
+        try {
+          if (googleStorage.ready())
+            await googleStorage.manage("sessionMetrics", { metrics, origin: "Local" });
+          else {
+            await fs.mkdir(path.dirname(metricsFile), { recursive: true });
+            await fs.appendFile(
+              metricsFile,
+              JSON.stringify({
+                at: new Date().toISOString(),
+                ...metrics,
+                pathLabel: metricPathLabel(metrics.path, desk),
+              }) + "\n",
+            );
+          }
+          stored = true;
+        } catch {
+          /* O atendimento continua mesmo sem registrar a métrica. */
+        }
+        json(res, 200, { stored });
         return true;
       }
       const item = validateSelection(body, desk);
@@ -299,8 +330,10 @@ function createTicketService({
               by: body.authorization.status === "reported" ? body.authorization.by.trim() : "",
             }
           : null;
+        const participant = safeParticipant(body.participant);
         const ticket = {
           authorization,
+          ...(participant ? { participant } : {}),
           requestId: body.requestId,
           name: body.name.trim(),
           email: body.email || "",

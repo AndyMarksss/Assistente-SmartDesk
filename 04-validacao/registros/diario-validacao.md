@@ -2,7 +2,7 @@
 
 Modelo para sessões futuras. Não há sessões nem resultados registrados.
 
-Use uma ficha por sessão. Diferencie o que foi observado do que foi interpretado e vincule cada conclusão a uma evidência.
+Durante as sessões, use a [ficha de observação](ficha-observacao.md) e o [roteiro](../roteiros/roteiro-sessao-usuarios.md); aqui ficam a ficha resumida de cada sessão e a consolidação. Use uma ficha por sessão. Diferencie o que foi observado do que foi interpretado e vincule cada conclusão a uma evidência.
 
 ## Ficha de sessão
 

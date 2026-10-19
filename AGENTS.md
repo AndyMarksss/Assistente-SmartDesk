@@ -124,3 +124,6 @@ Avaliação técnica em `04-validacao/avaliacao-ia` (ver o LEIA-ME da pasta). **
 
 ## 0.11.4 — avaliação da IA concluída
 Resultado final e números em `03-prototipo/verificacao-v0.11.4.md` e no relatório de `04-validacao/avaliacao-ia`. Para conferir uma mudança sem rodar tudo: `--so-extracao sim` (só extração, 57 pedidos) e `revisar-ia.cjs` (só revisão, 57 pedidos); a rodada completa gasta ~250 pedidos e o percurso ~115. Filtros fixos do servidor (`safeAssist`) são conferidos reaplicando-os às perguntas já coletadas, sem gastar cota.
+
+## 0.12.0 — teste com usuários
+Métricas anônimas (aba Sessões), participante por `?p=P01` (coluna P de Chamados, tag no painel) e nota de facilidade no fim do chat. Kit em `04-validacao` (roteiro, ficha e planilha criada por `prepararPlanilhaDeValidacao`). Nunca gravar nome, e-mail ou relato nas métricas; o comentário "o que faltou" é limpo e limitado a 300 caracteres. Chamados de participantes só saem da fila pela função `removerChamadosDosParticipantes`, rodada pelo usuário depois de exportar a planilha. Ao publicar com clasp, o arquivo novo `Validacao.gs` vira `Validacao.js` no projeto.

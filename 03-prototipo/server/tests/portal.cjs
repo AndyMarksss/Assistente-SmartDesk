@@ -354,6 +354,52 @@ assert.equal(
 );
 assert.equal(call("/api/admin/tickets?mode=google").body.selfHelp.resolved, 1);
 assert.equal(call("/api/admin/tickets?mode=demo").body.selfHelp.simulation, true);
+// 0.12: métricas anônimas do atendimento numa linha por sessão (aba Sessões).
+const metricSession = crypto.randomUUID(),
+  metric = {
+    sessionId: metricSession,
+    participant: "p04",
+    device: "celular",
+    stage: "caminho",
+    method: "descrição",
+    path: "IMP-008",
+    aiDraft: "aceito",
+    coherence: "",
+    followUp: "",
+    tips: "",
+    backs: 1,
+    ticket: "",
+    secondsToSend: null,
+    ease: 0,
+    comment: "",
+    name: "Nome que não deve ir",
+  };
+assert.equal(call("/api/metrics", metric).body.stored, true);
+assert.equal(
+  call("/api/metrics", {
+    ...metric,
+    stage: "enviado",
+    ticket: "#009",
+    secondsToSend: 140,
+    ease: 4,
+    comment: "Faltou <b>ver</b> o horário",
+  }).body.stored,
+  true,
+);
+const sessions = ctx.SpreadsheetApp.openById().getSheetByName("Sessões");
+assert.equal(sessions.getLastRow(), 2); // a segunda chamada atualizou a mesma linha
+const saved = sessions.getRange(2, 1, 1, 18).getValues()[0];
+assert.equal(saved[0], metricSession);
+assert.equal(saved[1], "P04");
+assert.equal(saved[5], "enviado");
+assert.equal(saved[7], "Impressora › Papel Atolado");
+assert.equal(saved[13], "#009");
+assert.equal(saved[15], "4");
+assert(!saved.join(" ").includes("Nome que não deve ir") && !saved[16].includes("<"));
+assert.equal(saved[17], "Pages");
+assert.equal(call("/api/metrics", { ...metric, stage: "inventada" }).status, 400);
+assert.equal(call("/api/metrics", { ...metric, sessionId: "x" }).status, 400);
+assert.equal(call("/api/metrics", { ...metric, path: "NAO-EXISTE" }).status, 400);
 // Limitador por minuto: a janela é uma chave própria e não bloqueia o minuto seguinte.
 const minuteKey = "portal:session-starts:" + Math.floor(Date.now() / 60000);
 const before = cached.get(minuteKey);

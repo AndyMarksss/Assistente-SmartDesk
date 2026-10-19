@@ -195,6 +195,83 @@ function validateAnswers(input, item) {
   }
   return result;
 }
+// Teste com usuários (0.12): código do participante vindo do link (?p=P01).
+function safeParticipant(value) {
+  const code = typeof value === "string" ? value.trim().toUpperCase() : "";
+  return /^P\d{2,3}$/.test(code) ? code : "";
+}
+// Métricas anônimas de um atendimento: só valores de listas fechadas, números, o número do
+// chamado e um comentário curto. Nunca nome, e-mail ou o texto do relato.
+const METRIC_OPTIONS = {
+  stage: ["início", "identificação", "caminho", "resumo", "enviado", "resolvido sem chamado"],
+  device: ["celular", "computador"],
+  method: ["", "botões", "descrição", "descrição, depois botões"],
+  aiDraft: [
+    "",
+    "aceito",
+    "corrigiu os dados",
+    "trocou pelo sugerido",
+    "escolheu pelas opções",
+    "sem IA",
+    "não identificou",
+  ],
+  coherence: ["", "trocou o tipo", "manteve"],
+  followUp: ["", "respondeu", "não sabia", "pulou"],
+  tips: ["", "resolveu", "seguiu para o chamado"],
+};
+// Nome legível do caminho para a planilha (a validação guarda o ID, para poder ser refeita).
+function metricPathLabel(id, desk) {
+  const item = id ? desk.knowledgeBase.items.filter((entry) => entry.id === id)[0] : null;
+  return item ? item.area + " › " + item.need : "";
+}
+function safeMetrics(body, desk) {
+  if (
+    !body ||
+    typeof body !== "object" ||
+    typeof body.sessionId !== "string" ||
+    !/^[a-f0-9-]{36}$/i.test(body.sessionId)
+  )
+    throw new InvalidRequest("Sessão inválida.");
+  const pick = (key) => {
+    const value = typeof body[key] === "string" ? body[key] : "";
+    if (METRIC_OPTIONS[key].indexOf(value) < 0) throw new InvalidRequest("Métrica inválida.");
+    return value;
+  };
+  const whole = (value, max) =>
+    typeof value === "number" && Math.floor(value) === value && value >= 0 && value <= max
+      ? value
+      : null;
+  const item = body.path
+    ? desk.knowledgeBase.items.filter((entry) => entry.id === body.path)[0]
+    : null;
+  if (body.path && !item) throw new InvalidRequest("Caminho inválido.");
+  const backs = whole(body.backs, 500),
+    ease = whole(body.ease, 5);
+  return {
+    sessionId: body.sessionId.toLowerCase(),
+    participant: safeParticipant(body.participant),
+    device: pick("device"),
+    stage: pick("stage"),
+    method: pick("method"),
+    path: item ? item.id : "",
+    aiDraft: pick("aiDraft"),
+    coherence: pick("coherence"),
+    followUp: pick("followUp"),
+    tips: pick("tips"),
+    backs: backs === null ? 0 : backs,
+    ticket: typeof body.ticket === "string" && /^#\d{3,}$/.test(body.ticket) ? body.ticket : "",
+    secondsToSend: whole(body.secondsToSend, 86400),
+    ease: ease === null ? 0 : ease,
+    comment:
+      typeof body.comment === "string"
+        ? body.comment
+            .replace(/[\x00-\x1f<>]+/g, " ")
+            .replace(/\s+/g, " ")
+            .trim()
+            .slice(0, 300)
+        : "",
+  };
+}
 
 module.exports = {
   policy,
@@ -208,4 +285,8 @@ module.exports = {
   PENDING_LINK,
   localSubject,
   validateAnswers,
+  safeParticipant,
+  safeMetrics,
+  metricPathLabel,
+  METRIC_OPTIONS,
 };

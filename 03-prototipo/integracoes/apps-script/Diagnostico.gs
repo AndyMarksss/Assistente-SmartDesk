@@ -152,3 +152,37 @@ function removerChamadoDeTeste() {
     lock.releaseLock();
   }
 }
+
+/**
+ * Executar no editor depois dos testes com usuários (Executar → removerChamadosDosParticipantes).
+ * Tira da aba Chamados as linhas com código de participante (coluna P) e manda as pastas de
+ * anexos para a lixeira (recuperável por 30 dias). A aba Sessões, com as métricas, fica intacta.
+ * Antes, baixe uma cópia da planilha se quiser guardar os chamados dos testes como evidência.
+ */
+function removerChamadosDosParticipantes() {
+  var props = PropertiesService.getScriptProperties();
+  var lock = LockService.getScriptLock();
+  lock.waitLock(25000);
+  try {
+    var sheet = SpreadsheetApp.openById(props.getProperty("SMARTDESK_SHEET_ID")).getSheetByName(
+      "Chamados",
+    );
+    var root = DriveApp.getFolderById(props.getProperty("SMARTDESK_FOLDER_ID"));
+    if (!sheet || sheet.getLastRow() < 2) return console.log("A aba Chamados está vazia.");
+    var rows = sheet.getRange(2, 1, sheet.getLastRow() - 1, 16).getValues(),
+      removed = 0;
+    // De baixo para cima, para os números das linhas não mudarem durante a remoção.
+    for (var i = rows.length - 1; i >= 0; i--) {
+      var participant = String(rows[i][15] || "");
+      if (!/^P\d{2,3}$/.test(participant)) continue;
+      var folders = root.getFoldersByName(String(rows[i][0]) + "_" + String(rows[i][11]));
+      while (folders.hasNext()) folders.next().setTrashed(true);
+      console.log(rows[i][0] + " (" + participant + ") removido.");
+      sheet.deleteRow(i + 2);
+      removed++;
+    }
+    console.log("Chamados de participantes removidos: " + removed + ". A aba Sessões foi mantida.");
+  } finally {
+    lock.releaseLock();
+  }
+}

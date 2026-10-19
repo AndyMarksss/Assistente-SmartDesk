@@ -105,3 +105,6 @@ Concluir a avaliação da IA quando a cota do Gemini renovar: `node avaliar-ia.c
 
 ## 0.11.4
 Avaliação técnica da IA concluída. Pendentes: executar `removerChamadoDeTeste` (#010 e #013) no editor do Apps Script; conferir no celular real; teste com usuários reais.
+
+## 0.12.0
+Antes das sessões: escrever hipótese e metas (aba *Validação — Resumo*), rodar `prepararPlanilhaDeValidacao`, `removerChamadoDeTeste` (#010 e #013) e recrutar 5 participantes. Depois: síntese, decisão, exportar a planilha para `04-validacao/resultados` e rodar `removerChamadosDosParticipantes`.

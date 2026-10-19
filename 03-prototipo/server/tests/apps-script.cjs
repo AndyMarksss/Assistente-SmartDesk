@@ -62,8 +62,17 @@ const makeSheet = (cells) => ({
       },
       setRichTextValues: (values) => range.setValues(values.map((data) => data.map((v) => v.text))),
       setRichTextValue: (value) => range.setValues([[value.text]]),
+      setFormulas: (values) => range.setValues(values),
+      setFormula: (value) => range.setValues([[value]]),
     };
-    for (const name of ["setBackground", "setFontColor", "setFontWeight", "setWrapStrategy"])
+    for (const name of [
+      "setBackground",
+      "setFontColor",
+      "setFontWeight",
+      "setWrapStrategy",
+      "setDataValidation",
+      "setNumberFormat",
+    ])
       range[name] = () => range;
     return range;
   },
@@ -116,6 +125,14 @@ const ctx = vm.createContext({
     openById: () => book,
     flush: () => {},
     WrapStrategy: { CLIP: "clip" },
+    newDataValidation: () => {
+      const rule = {
+        requireValueInList: () => rule,
+        setAllowInvalid: () => rule,
+        build: () => ({}),
+      };
+      return rule;
+    },
     newRichTextValue: () => {
       const rich = {
         text: "",
@@ -151,7 +168,7 @@ const ctx = vm.createContext({
     createTextOutput: (text) => ({ setMimeType: () => JSON.parse(text) }),
   },
 });
-for (const file of ["Schema.gs", "Code.gs", "Gestao.gs"])
+for (const file of ["Schema.gs", "Code.gs", "Gestao.gs", "Validacao.gs"])
   vm.runInContext(
     fs.readFileSync(
       require("node:path").join(__dirname, "../../integracoes/apps-script", file),
@@ -269,5 +286,45 @@ assert.equal(
 assert.equal(post(authTicket).number, "#005");
 assert(!post({ ...authTicket, authorization: { status: "reported", by: "" } }).ok);
 console.log("Autorização simulada: coluna O, leitura, validação e idempotência passaram.");
+
+// 0.12: código do participante do teste com usuários na coluna P.
+const testTicket = { ...emailTicket, requestId: crypto.randomUUID(), participant: "P02" };
+assert(post(testTicket).ok);
+assert.equal(cells[0][15], "Participante do teste");
+assert.equal(cells[cells.length - 1][15], "P02");
+assert.equal(
+  manage({ action: "listTickets" }).tickets.find((t) => t.requestId === testTicket.requestId)
+    .participant,
+  "P02",
+);
+const rowsBefore = cells.length;
+assert(!post({ ...testTicket, requestId: crypto.randomUUID(), participant: "Maria" }).ok);
+assert.equal(cells.length, rowsBefore);
+cells.pop(); // devolve a planilha simulada ao estado esperado pelos testes do portal
+console.log("Participante simulado: coluna P, leitura e validação passaram.");
+
+// 0.12: abas de validação criadas uma vez, com o rodízio dos cenários CT-01 a CT-11.
+const created = ctx.prepararPlanilhaDeValidacao();
+assert.deepEqual(Array.from(created), [
+  "Sessões",
+  "Validação — Tarefas",
+  "Validação — Participantes",
+  "Validação — Resumo",
+]);
+assert.equal(ctx.prepararPlanilhaDeValidacao().length, 0);
+const tasks = book.getSheetByName("Validação — Tarefas");
+assert.equal(tasks.getLastRow(), 16); // cabeçalho + 5 participantes × 3 cenários
+const covered = new Set(
+  tasks
+    .getRange(2, 3, 15, 1)
+    .getValues()
+    .map((r) => r[0]),
+);
+assert.equal(covered.size, 11);
+assert(String(tasks.getRange(2, 13).getValue()).includes("MATCH($F2,'Sessões'!$N:$N,0)"));
+const summary = book.getSheetByName("Validação — Resumo");
+assert.equal(summary.getRange(4, 1).getValue(), "Concluíram sem ajuda");
+assert(String(summary.getRange(17, 5).getValue()).startsWith("=IF(OR(C17"));
+console.log("Planilha de validação simulada: abas, rodízio dos 11 cenários e fórmulas passaram.");
 
 module.exports = { ctx, props };

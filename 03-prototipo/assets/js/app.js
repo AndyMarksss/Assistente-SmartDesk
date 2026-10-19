@@ -3,7 +3,8 @@
   if (window.smartdeskWrongRuntime) return;
   const F = desk.chatFormat,
     copy = desk.conversationCopy,
-    policy = desk.requestPolicy;
+    policy = desk.requestPolicy,
+    metrics = desk.sessionMetrics;
   const byId = (id) => document.getElementById(id),
     input = byId("chat-input"),
     choices = byId("choices");
@@ -61,6 +62,7 @@
   }
   function back() {
     if (saving || history.length < 2) return;
+    metrics.back();
     generation++;
     messages.cancel();
     history.pop();
@@ -305,6 +307,7 @@
   // --- Início, identificação e acompanhamento --------------------------------------------
   function start() {
     if (saving) return;
+    metrics.reset();
     follower.reset();
     dock.style.removeProperty("min-height");
     generation++;
@@ -378,11 +381,16 @@
           message(
             "Só pergunto o que faltar. Antes de enviar, a IA pode pedir um detalhe e, em defeitos simples, sugerir passos seguros para tentar. Você confere tudo no resumo e recebe um número para acompanhar o chamado depois.",
           );
+          message(
+            "Para melhorar o atendimento, guardo de forma anônima as etapas e o tempo de cada atendimento — sem nome, e-mail ou o que você escreveu.",
+          );
           return offerStart();
         }
         byId("welcome").hidden = true;
+        metrics.begin();
         if (answer === "known") {
           Object.assign(state, { name: known.name, email: known.email, sector: known.sector });
+          metrics.update({ stage: "identificação" });
           context();
           message("Perfeito! Seus dados estão no resumo ao lado.");
           return askArea();
@@ -489,9 +497,14 @@
   }
   function beginTicket() {
     const known = F.profile.read();
-    if (state.name && state.email && state.sector) return askArea();
+    metrics.begin();
+    if (state.name && state.email && state.sector) {
+      metrics.update({ stage: "identificação" });
+      return askArea();
+    }
     if (known) {
       Object.assign(state, { name: known.name, email: known.email, sector: known.sector });
+      metrics.update({ stage: "identificação" });
       context();
       message("Vou usar os dados salvos neste dispositivo.");
       return askArea();
@@ -547,6 +560,7 @@
       desk.flows.sectors.map((value) => ({ value, icon: F.sectorIcon(value) })),
       (sector) => {
         state.sector = sector;
+        metrics.update({ stage: "identificação" });
         context();
         askArea();
       },
@@ -576,7 +590,11 @@
         },
       ],
       (area) => {
-        if (area === "__describe") return askDescribe();
+        if (area === "__describe") {
+          metrics.chooseMethod("descrição");
+          return askDescribe();
+        }
+        metrics.chooseMethod("botões");
         Object.assign(state, {
           area,
           item: null,
@@ -633,6 +651,7 @@
     );
   }
   function selectItem(item, { answers = {}, intent = "", prefilled = {} } = {}) {
+    metrics.update({ stage: "caminho", path: item.id });
     Object.assign(state, {
       area: item.area,
       item,
@@ -687,12 +706,16 @@
       .filter((item) => item && desk.classifier.isAllowed(item, state.sector))
       .slice(0, 3);
     if (!items.length) {
+      metrics.update({ aiDraft: "não identificou" });
       message(
         "Não consegui identificar o tipo de atendimento só pelo relato. Vamos escolher juntos pelas opções — seu texto fica guardado como descrição.",
       );
       return askArea();
     }
-    if (result.source !== "ai") return pickLocalGuess(items);
+    if (result.source !== "ai") {
+      metrics.update({ aiDraft: "sem IA" });
+      return pickLocalGuess(items);
+    }
     buildDraft(items[0], items.slice(1), true);
   }
   // Sem IA, a base local só acha palavras parecidas (acertou 38% na avaliação): em vez de montar
@@ -811,6 +834,17 @@
         { label: "Escolher pelas opções", value: "manual", icon: "fa-list" },
       ],
       (value) => {
+        if (value.startsWith("item:")) state.switchedDraft = true;
+        metrics.update({
+          aiDraft:
+            value === "manual"
+              ? "escolheu pelas opções"
+              : value === "fix"
+                ? "corrigiu os dados"
+                : value.startsWith("item:") || state.switchedDraft
+                  ? "trocou pelo sugerido"
+                  : "aceito",
+        });
         if (value === "manual") return askArea();
         if (value.startsWith("item:"))
           return buildDraft(
@@ -1025,6 +1059,7 @@
       ],
       (value) => {
         state.review.checked = true;
+        metrics.update({ coherence: value === "keep" ? "manteve" : "trocou o tipo" });
         if (value === "keep") return afterReview();
         state.fromDescribe = true;
         message("Tudo bem. Escolha o tipo certo; seu relato continua guardado como descrição.");
@@ -1046,6 +1081,10 @@
       "Sua resposta…",
       (answer) => {
         state.review.asked = true;
+        metrics.update({
+          followUp:
+            answer === "__skip" ? "pulou" : answer === "__unknown" ? "não sabia" : "respondeu",
+        });
         if (answer !== "__skip")
           state.followUps.push({
             question,
@@ -1103,6 +1142,7 @@
         { label: "Resolveu! Não preciso do chamado", value: "solved", icon: "fa-circle-check" },
       ],
       (value) => {
+        metrics.update({ tips: value === "solved" ? "resolveu" : "seguiu para o chamado" });
         if (value === "solved") return resolvedBySelf();
         logSelfHelp("continued");
         askAuthorization();
@@ -1113,6 +1153,7 @@
   function resolvedBySelf() {
     checkpoint(resolvedBySelf);
     logSelfHelp("resolved");
+    metrics.update({ stage: "resolvido sem chamado" });
     message(
       "Que ótimo! Registrei que os passos resolveram, sem abrir chamado. Se voltar a acontecer, é só continuar daqui ou abrir um novo atendimento.",
     );
@@ -1126,6 +1167,7 @@
       (value) => {
         if (value === "new") return start();
         logSelfHelp("continued");
+        metrics.update({ tips: "seguiu para o chamado", stage: "caminho" });
         message("Sem problema, vamos continuar o chamado de onde paramos.");
         askAuthorization();
       },
@@ -1282,6 +1324,7 @@
   function showSummary() {
     checkpoint(showSummary);
     stage("summary");
+    metrics.update({ stage: "resumo" });
     const bubble = message("Confira seu chamado antes de enviar:");
     const card = el("section", "summary-card");
     card.setAttribute("aria-label", "Resumo do chamado");
@@ -1380,6 +1423,52 @@
     );
     return card;
   }
+  // Teste com usuários (0.12): nota de facilidade e comentário opcional, guardados só nas
+  // métricas anônimas do atendimento (nunca no chamado nem na IA).
+  function askEase() {
+    message("Antes de terminar, uma pergunta rápida: quão fácil foi abrir este chamado?");
+    choose(
+      [
+        ...[
+          [5, "Muito fácil", "fa-face-grin-stars"],
+          [4, "Fácil", "fa-face-smile"],
+          [3, "Mais ou menos", "fa-face-meh"],
+          [2, "Difícil", "fa-face-frown"],
+          [1, "Muito difícil", "fa-face-tired"],
+        ].map(([value, label, glyph]) => ({
+          label: value + " · " + label,
+          value: String(value),
+          icon: glyph,
+        })),
+        { label: "Prefiro não responder", value: "skip", icon: "fa-forward" },
+      ],
+      (value) => {
+        if (value === "skip") return afterSent();
+        metrics.update({ ease: Number(value) });
+        askMissing(Number(value));
+      },
+      "SUA OPINIÃO AJUDA A MELHORAR",
+    );
+  }
+  function askMissing(ease) {
+    message(
+      ease >= 4
+        ? "Obrigado! Algo poderia ser ainda mais fácil?"
+        : "Obrigado pela sinceridade. O que faltou ou atrapalhou?",
+    );
+    freeText(
+      "Conte em poucas palavras, sem nomes… (opcional)",
+      (text) => {
+        if (text !== "__none") metrics.update({ comment: text.trim().slice(0, 300) });
+        message("Anotado. Obrigado por ajudar a melhorar o SmartDesk!");
+        afterSent();
+      },
+      300,
+      null,
+      "",
+      [{ label: "Nada a acrescentar", value: "__none", icon: "fa-check" }],
+    );
+  }
   function afterSent() {
     const known = F.profile.read();
     const remembered =
@@ -1476,6 +1565,7 @@
         authorization: state.authorization,
         subject: state.subject,
         attachments,
+        ...(metrics.participant ? { participant: metrics.participant } : {}),
       });
       if (
         result.status !== "enviado" ||
@@ -1494,8 +1584,9 @@
       );
       confirmation.parentNode.parentNode.classList.add("sent");
       confirmation.append(receiptCard(result.number));
+      metrics.sent(result.number);
       saving = false;
-      afterSent();
+      askEase();
       byId("new-chat").hidden = false;
       byId("mobile-new-chat").hidden = false;
     } catch (error) {
@@ -1553,6 +1644,13 @@
   byId("mobile-new-chat").addEventListener("click", start);
   byId("edit-context").addEventListener("click", back);
   byId("restart-chat").addEventListener("click", start);
+  // Sessão de teste (link com ?p=P01): mostra o código para o facilitador conferir.
+  if (metrics.participant) {
+    const badge = el("span", "test-badge", "Teste " + metrics.participant);
+    badge.title =
+      "Sessão de teste com usuários: o código marca os chamados e as métricas desta aba.";
+    byId("ai-status").parentNode.append(badge);
+  }
   start();
   setInterval(refreshStatus, 30000);
 })(window.SmartDesk);

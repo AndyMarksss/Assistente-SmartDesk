@@ -54,6 +54,9 @@ function build({ check = false } = {}) {
     "extractableFields",
     "weekdayName",
     "localSubject",
+    "safeParticipant",
+    "safeMetrics",
+    "metricPathLabel",
   ])
     validation = validation.replace(new RegExp("\\b" + name + "\\b", "g"), name + "_");
   validation = validation.replace(

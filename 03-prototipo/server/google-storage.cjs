@@ -38,7 +38,12 @@ function createStorage({ env = process.env, fetchImpl = globalThis.fetch } = {})
           signal: AbortSignal.timeout(15000),
         });
         const info = await health.json();
-        if (!health.ok || !/^0\.(7|8|9)\.\d+$/.test(info.version))
+        // E-mail exige o receptor 0.7 ou mais novo. (Até a 0.11.4 a regra aceitava só 0.7 a 0.9
+        // e recusava os envios locais das versões 0.10 e 0.11.)
+        const [major, minor] = String(info.version || "")
+          .split(".")
+          .map(Number);
+        if (!health.ok || !(major > 0 || minor >= 7))
           throw Error("Atualize o Apps Script antes de enviar e-mail");
         if (ticket.authorization && !info.features?.includes("authorization")) {
           const error = Error(

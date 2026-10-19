@@ -1,3 +1,5 @@
+> Substituído em 2026-10-19 por [roteiro-sessao-usuarios.md](roteiro-sessao-usuarios.md), alinhado à versão 0.12 do SmartDesk (chat atual, métricas automáticas e cenários CT-01 a CT-11). Mantido como registro.
+
 # Roteiro base para testes
 
 Rascunho para adaptar após o protótipo e o enunciado serem conferidos.

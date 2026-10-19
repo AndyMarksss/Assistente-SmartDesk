@@ -278,3 +278,14 @@ Avaliação da IA concluída depois que a cota do Gemini renovou (pedido do usu�
 - **Revisão da IA:** o mesmo glossário passou a valer na revisão (com Câmeras do Infantil); alerta só quando a descrição trata claramente de outra coisa, na dúvida segue; motivo em português correto. Conferida direto na rota nos 57 caminhos: 0 alertas falsos, 16 perguntas, 18 caminhos com dicas.
 - **Filtro do servidor:** perguntas que pedem nome de pessoas ou endereço de e-mail são descartadas (pegou "o nome completo e o e-mail institucional da professora"). Reaplicado às 39 perguntas coletadas: descartou só as 2 indevidas.
 - `revisar-ia.cjs` (revisão direto na rota) e `--so-extracao sim` em `avaliar-ia.cjs` para conferir mudanças sem gastar cota com o resto. Apps Script republicado. Verificação em verificacao-v0.11.4.md.
+
+## 0.12.0 — 2026-10-19
+
+Pedido do usuário: preparar o protótipo e o material para o teste com pelo menos 5 usuários reais (itens 1, 2, 3 e 5 da sugestão).
+
+- **Métricas anônimas por atendimento:** `assets/js/session-metrics.js` registra a última etapa alcançada (início, identificação, caminho, resumo, enviado, resolvido sem chamado), como a pessoa escolheu (botões, relato ou relato e depois botões), o que fez com o rascunho, o alerta, a pergunta e as dicas da IA, quantas vezes voltou, dispositivo, número do chamado e tempo até enviar. Sem nome, e-mail ou relato. Rota `POST /api/metrics` (servidor local e Apps Script), validada por `safeMetrics`; no Google vai para a aba **Sessões** (uma linha por atendimento, atualizada a cada etapa); sem Google, para `server/data/sessoes.jsonl`, fora do Git. O "Como funciona?" avisa que esse registro existe.
+- **Participante do teste:** o link `?p=P01` marca a janela (selo "Teste P01" no topo), as métricas e os chamados. Coluna P "Participante do teste" na aba Chamados, tag "Teste P01" no painel e busca pelo código. `removerChamadosDosParticipantes` (Diagnostico.gs) tira esses chamados da fila depois dos testes, mantendo a aba Sessões.
+- **Satisfação:** depois do comprovante, "Quão fácil foi abrir este chamado?" (1 a 5, ou não responder) e "O que faltou?" (opcional, sem nomes), guardados só nas métricas.
+- **Kit das sessões:** `04-validacao/roteiros/roteiro-sessao-usuarios.md` (preparação, fala de abertura, rodízio dos cenários CT-01 a CT-11 da Matriz Mestre com os links P01–P05, conversa final e cuidados), `04-validacao/registros/ficha-observacao.md` e `prepararPlanilhaDeValidacao` (Validacao.gs), que cria as abas *Validação — Tarefas* (rodízio já preenchido; o número do chamado puxa as métricas da aba Sessões), *Validação — Participantes* e *Validação — Resumo* (indicadores e quadro de critérios com metas em branco).
+- **Correção:** o servidor local recusava enviar chamados para o Apps Script desde a 0.10, porque a checagem de versão aceitava só 0.7 a 0.9. O Pages não era afetado.
+- Apps Script publicado na versão 15 da mesma implantação. Verificação em verificacao-v0.12.0.md.

@@ -93,6 +93,12 @@ function receberChamado_(e) {
       throw Error("E-mail inválido.");
     var ticket = validar_(body.ticket);
     if (body.ticket.email) ticket.email = body.ticket.email;
+    // Teste com usuários (0.12): código do participante (P01…), nunca o nome.
+    if (body.ticket.participant) {
+      if (!/^P\d{2,3}$/.test(String(body.ticket.participant)))
+        throw Error("Participante inválido.");
+      ticket.participant = String(body.ticket.participant);
+    }
     if (body.ticket.authorization) {
       var auth = body.ticket.authorization;
       if (
@@ -201,6 +207,7 @@ function receberChamado_(e) {
     texto_(sheet.getRange(rowIndex, 15), [
       ticket.authorization ? JSON.stringify(ticket.authorization) : "",
     ]);
+    texto_(sheet.getRange(rowIndex, 16), [ticket.participant || ""]);
     sheet
       .getRange(rowIndex, 1, 1, HEADERS.length)
       .setWrapStrategy(SpreadsheetApp.WrapStrategy.CLIP);

@@ -154,6 +154,7 @@
     if (t.authorization?.status === "pending")
       tags.push(["fa-hourglass-half", "Autorização pendente", "auth"]);
     if (t.simulation) tags.push(["fa-flask", "Simulação", "sim"]);
+    if (t.participant) tags.push(["fa-user-check", "Teste " + t.participant, "test"]);
     return tags;
   }
   function renderBoard(animate = false) {
@@ -164,7 +165,7 @@
       (t) =>
         (!area || area === t.area) &&
         (!sector || sector === t.sector) &&
-        [t.number, t.subject, t.name, t.sector, t.email]
+        [t.number, t.subject, t.name, t.sector, t.email, t.participant]
           .join(" ")
           .toLocaleLowerCase("pt-BR")
           .includes(search),
@@ -356,6 +357,7 @@
       ["Área", t.area],
       ["Necessidade", t.need],
       ["Descrição", t.description],
+      ...(t.participant ? [["Participante do teste", t.participant]] : []),
       ...(t.authorization
         ? [
             [
