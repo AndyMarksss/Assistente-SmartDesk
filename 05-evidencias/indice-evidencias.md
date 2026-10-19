@@ -459,4 +459,12 @@ Próxima evidência: EVID-205.
 
 - EVID-208: [relatorio-avaliacao-ia-final](EVID-208_relatorio-avaliacao-ia-final.md) — Relatório final da avaliação técnica da IA (cópia de 04-validacao/avaliacao-ia): identificação 96% → 99% na 1ª sugestão, controle 27/27 e 3/3 fora do escopo, extração 99% sem evento inventado, 57/57 caminhos até o resumo pelos botões e revisão sem alertas falsos. Relatos fictícios escritos pelo assistente.
 
-Próxima evidência: EVID-209.
+## 2026-10-19 — SmartDesk 0.12.0: preparação do teste com usuários
+
+- EVID-209: [pages-pergunta-facilidade](EVID-209_pages-pergunta-facilidade.jpg) — No GitHub Pages 0.12.0, depois do comprovante do chamado fictício #015 (participante técnico P99), a pergunta "Quão fácil foi abrir este chamado?" com notas de 1 a 5 e Prefiro não responder; selo Teste P99 no topo.
+
+- EVID-210: [pages-painel-tag-participante](EVID-210_pages-painel-tag-participante.jpg) — Painel no GitHub Pages em Chamados desta avaliação: #015 com a tag Teste P99, marcando chamados do teste com usuários.
+
+- EVID-211: [selo-sessao-de-teste](EVID-211_selo-sessao-de-teste.jpg) — Chat aberto com o link ?p=1: selo Teste P01 ao lado do status da IA e explicação do Como funciona?. Servidor local.
+
+Próxima evidência: EVID-212.

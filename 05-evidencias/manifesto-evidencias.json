@@ -2505,6 +2505,42 @@
       "origem": "Servidor local com Gemini real e envio ao Google desativado; rotas /api/analyze, /api/extract e /api/assist e navegador sem janela",
       "sha256": "BFC855F7F61E80EB755FBE9C442A4383A4AC78EEC102A563D913FABB7414132C",
       "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-209",
+      "arquivo": "EVID-209_pages-pergunta-facilidade.jpg",
+      "etapa": "SmartDesk 0.12.0 — preparação do teste com usuários",
+      "descricao": "No GitHub Pages 0.12.0, depois do comprovante do chamado fictício #015 (participante técnico P99), a pergunta \"Quão fácil foi abrir este chamado?\" com notas de 1 a 5 e Prefiro não responder; selo Teste P99 no topo.",
+      "data_aproximada": "2026-10-19",
+      "fundamento_data": "Captura do assistente nesta sessão",
+      "data_inclusao": "2026-10-19",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), GitHub Pages público com Apps Script real",
+      "sha256": "F5F48299E51C39E453E43F91C49FB960BE49CDB9C1958CE2A9F03DCA1823319B",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-210",
+      "arquivo": "EVID-210_pages-painel-tag-participante.jpg",
+      "etapa": "SmartDesk 0.12.0 — preparação do teste com usuários",
+      "descricao": "Painel no GitHub Pages em Chamados desta avaliação: #015 com a tag Teste P99, marcando chamados do teste com usuários.",
+      "data_aproximada": "2026-10-19",
+      "fundamento_data": "Captura do assistente nesta sessão",
+      "data_inclusao": "2026-10-19",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), GitHub Pages público com Apps Script real",
+      "sha256": "24EBC67B2870B8DC4012D5791CD411A087B9E9A8123F57CFD40557B3F702198E",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-211",
+      "arquivo": "EVID-211_selo-sessao-de-teste.jpg",
+      "etapa": "SmartDesk 0.12.0 — preparação do teste com usuários",
+      "descricao": "Chat aberto com o link ?p=1: selo Teste P01 ao lado do status da IA e explicação do Como funciona?. Servidor local.",
+      "data_aproximada": "2026-10-19",
+      "fundamento_data": "Captura do assistente nesta sessão",
+      "data_inclusao": "2026-10-19",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com envio ao Google desativado",
+      "sha256": "822EB138B470AA34006CDD199D82E4458C8D6F00EBFAB71430B404AACA57E399",
+      "status": "verificação técnica; não é validação com usuários"
     }
   ]
 }
