@@ -1572,3 +1572,114 @@ body.is-dragging {
     height: 29px;
   }
 }
+
+/* 0.12.2 — Responsividade revisada em 12 tamanhos (celular em pé e deitado, tablet e monitor). */
+/* Textos da abertura e da cena legíveis no celular (chegavam a 7–8 px). */
+@media (max-width: 900px) {
+  .welcome .eyebrow {
+    font-size: 10px;
+  }
+  .welcome-tags span,
+  .welcome-tags span:last-child {
+    font-size: 10px;
+  }
+  .scene-caption {
+    font-size: 8px;
+  }
+  .scene-device,
+  .scene-foot {
+    font-size: 9px;
+  }
+  .choice-header #prompt-caption {
+    font-size: 10px;
+  }
+  /* Alvos de toque: atalhos de data e ações da área de resposta com pelo menos 40 px. */
+  .date-chip {
+    min-height: 40px;
+    padding: 8px 14px;
+  }
+  .temporal-open {
+    min-height: 36px;
+  }
+  :root[data-theme] .choice-header .small-action,
+  .choice-header #restart-chat.small-action,
+  .attachment-panel .small-action {
+    min-height: 40px;
+  }
+}
+/* Campo de data/hora estreito: o botão vira só o ícone e o "DD/MM/AAAA" aparece inteiro. */
+@media (max-width: 420px) {
+  .temporal-open span {
+    display: none;
+  }
+  :root[data-theme] .temporal-group input[type="text"] {
+    padding-right: 52px;
+  }
+}
+/* Celular pequeno: só a etapa atual mostra o nome (antes "Boas-vindas" quebrava em duas
+   linhas) e os balões ganham espaço para os cartões de rascunho e resumo. */
+@media (max-width: 380px) {
+  .journey-bar .journey li:not([aria-current]) > div {
+    display: none;
+  }
+  .journey-bar .journey li[aria-current] > div {
+    white-space: nowrap;
+  }
+  :root[data-theme] .message-bubble {
+    padding: 12px 13px;
+  }
+}
+/* Monitor baixo (1024 × 768, 1280 × 720): a dica da barra lateral não cabia e aparecia cortada. */
+@media (min-width: 901px) and (max-height: 820px) {
+  .sidebar-tip {
+    display: none;
+  }
+}
+/* Tela baixa (celular pequeno): o aviso de conexão sai; o status da IA continua no topo. */
+@media (max-height: 650px) {
+  .engine-note {
+    display: none;
+  }
+}
+/* Celular deitado: a conversa ficava com 46–115 px de altura, espremida entre o topo e os botões. */
+@media (max-height: 500px) {
+  .journey-bar,
+  .choice-header #prompt-caption {
+    display: none;
+  }
+  .chat-header {
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+  .interaction-dock {
+    padding-top: 8px;
+    padding-bottom: 6px;
+    max-height: 62dvh;
+  }
+  .choice-header {
+    margin-bottom: 6px;
+    justify-content: flex-end;
+  }
+  :root[data-theme] .choices,
+  :root[data-theme] .choices:has(.area-choice) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 6px;
+  }
+  :root[data-theme] .choice,
+  :root[data-theme] .area-choice {
+    min-height: 40px;
+    padding: 8px 12px;
+  }
+  :root[data-theme] .area-choice > i {
+    width: 28px;
+    height: 28px;
+  }
+  .area-choice small {
+    display: none;
+  }
+  :root[data-theme] .choice-header .small-action,
+  .choice-header #restart-chat.small-action {
+    min-height: 34px;
+  }
+}

@@ -456,4 +456,12 @@ Próxima evidência: EVID-205.
 
 - EVID-219: [robozinho-quadros-claro](EVID-219_robozinho-quadros-claro.png) — Os mesmos sete quadros do robozinho no tema claro.
 
-Próxima evidência: EVID-220.
+## 2026-10-19 — SmartDesk 0.12.2: responsividade
+
+- EVID-220: [cena-abertura-antes-depois](EVID-220_cena-abertura-antes-depois.jpg) — Cena da abertura em 360, 430, 768, 1280 e 1920 px, com os sinais congelados: na 0.12.1 as linhas ficavam soltas entre os cartões e o robô ou começavam por baixo dos cartões; na 0.12.2 saem da borda de cada cartão e chegam ao círculo do robô em todos os tamanhos.
+
+- EVID-221: [celular-deitado-antes-depois](EVID-221_celular-deitado-antes-depois.jpg) — Etapa das áreas no celular deitado (844×390 e 740×360): na 0.12.1 a conversa ficava espremida e parte das opções escondida; na 0.12.2 a pergunta e as cinco opções aparecem sem rolar.
+
+- EVID-222: [abertura-12-tamanhos](EVID-222_abertura-12-tamanhos.jpg) — Abertura da 0.12.2 nos 12 tamanhos da varredura (320×568 a 1920×1080, incluindo celular deitado e tablet), tema escuro: sem rolagem lateral, trilha em uma linha e cena encaixada.
+
+Próxima evidência: EVID-223.

@@ -95,4 +95,53 @@
     },
     { passive: true },
   );
+  // Linhas da cena da abertura: o desenho fixo (380 × 280) só encaixava num formato de quadro.
+  // Aqui elas são refeitas no tamanho real, saindo da borda de cada cartão até o círculo do
+  // robô, para os sinais animados chegarem aos aparelhos em qualquer tela. Usa a posição de
+  // layout (offset), que ignora a inclinação 3D e a animação de entrada dos cartões.
+  const WIRES = [
+    ["from-computer", "computer"],
+    ["from-printer", "printer"],
+    ["from-network", "network"],
+    ["from-audio", "audio"],
+  ];
+  function wire(scene) {
+    const svg = scene.querySelector(".scene-connections"),
+      halo = scene.querySelector(".scene-halo"),
+      width = scene.clientWidth,
+      height = scene.clientHeight;
+    if (!svg || !halo || !width || !height) return;
+    const shift = new DOMMatrixReadOnly(getComputedStyle(halo).transform),
+      radius = halo.offsetWidth / 2,
+      cx = halo.offsetLeft + shift.m41 + radius,
+      cy = halo.offsetTop + shift.m42 + halo.offsetHeight / 2;
+    const paths = WIRES.map(([, name]) => {
+      const card = scene.querySelector(".scene-device." + name);
+      if (!card) return "";
+      const left = card.offsetLeft + card.offsetWidth / 2 < cx,
+        x0 = left ? card.offsetLeft + card.offsetWidth : card.offsetLeft,
+        y0 = card.offsetTop + card.offsetHeight / 2;
+      let ex = x0 + (cx - x0) * 0.45;
+      if (Math.hypot(cx - ex, cy - y0) <= radius + 4) ex = x0;
+      const distance = Math.hypot(cx - ex, cy - y0);
+      if (distance <= radius) return "";
+      const tx = cx - ((cx - ex) / distance) * radius,
+        ty = cy - ((cy - y0) / distance) * radius,
+        round = (n) => Math.round(n * 10) / 10;
+      return (
+        "M" + round(x0) + " " + round(y0) + "H" + round(ex) + "L" + round(tx) + " " + round(ty)
+      );
+    });
+    svg.setAttribute("viewBox", "0 0 " + width + " " + height);
+    svg.querySelector("path:not(.connection-signal)")?.setAttribute("d", paths.join(""));
+    WIRES.forEach(([signal], index) =>
+      svg.querySelector(".connection-signal." + signal)?.setAttribute("d", paths[index]),
+    );
+  }
+  const scene = document.querySelector(".support-scene");
+  if (scene && window.ResizeObserver) {
+    const observer = new ResizeObserver(() => wire(scene));
+    observer.observe(scene);
+    scene.querySelectorAll(".scene-device, .scene-halo").forEach((node) => observer.observe(node));
+  }
 })();

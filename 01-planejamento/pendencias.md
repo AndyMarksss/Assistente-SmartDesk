@@ -111,3 +111,6 @@ Antes das sessões: escrever hipótese e metas (aba *Validação — Resumo*), r
 
 ## 0.12.1
 Feitos pelo usuário em 2026-10-19: `prepararPlanilhaDeValidacao`, `removerChamadoDeTeste` (#010 e #013) e hipótese e metas na aba *Validação — Resumo* (EVID-212 a EVID-216), antes de qualquer sessão. Falta: ensaio no celular real com `?p=P00`, recrutar 5 participantes e realizar as sessões; depois, síntese, decisão, exportar a planilha e rodar `removerChamadosDosParticipantes`. Não alterar o chat durante as sessões.
+
+## 0.12.2
+Responsividade revisada em 12 tamanhos (EVID-220 a EVID-222). Continua pendente o ensaio no celular real com `?p=P00` antes das sessões: a varredura usa tamanhos de tela simulados e não mostra o teclado do aparelho.

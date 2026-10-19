@@ -130,3 +130,6 @@ Métricas anônimas (aba Sessões), participante por `?p=P01` (coluna P de Chama
 
 ## 0.12.1 — robozinho das mensagens
 O avatar das mensagens é SVG inline (`miniRobot` em `chat-view.js`), não mais `<img>`: para animar uma parte, use as classes `.mini-core`, `.mini-eye`, `.mini-gaze`, `.mini-mouth`, `.mini-light` e `.mini-ear` em `motion.css`. Só a mensagem mais recente (`.message.assistant:last-child`) anima; manter assim para a conversa não virar um painel de robôs se mexendo.
+
+## 0.12.2 — responsividade
+As linhas da cena de abertura são calculadas em `atmosphere.js` (`wire`) a partir da posição dos cartões e do círculo do robô; ao mexer no tamanho ou na posição deles pelo CSS, as linhas acompanham sozinhas — não voltar ao desenho fixo do `index.html`. Ajustes de tela ficam na seção 0.12.2 do `atmosphere.css` (celular deitado = altura até 500 px). Para conferir layout em vários tamanhos sem gastar cota da IA, o envio e o acompanhamento podem ser simulados no navegador trocando `SmartDesk.api.request`.

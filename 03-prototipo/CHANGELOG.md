@@ -298,3 +298,19 @@ Pedido do usuário: animar o robozinho que aparece ao lado das mensagens do Smar
 - Só o robô da mensagem mais recente se mexe, para não encher a conversa de movimento: ao chegar dá um pulinho e mexe a boca como se falasse; depois pisca a cada ~4,6 s e a antena acende e apaga. Na primeira mensagem, acena com a orelha direita. Enquanto a IA pensa, os olhos procuram de um lado para o outro (além do balanço que já existia). Os robôs das mensagens anteriores ficam parados.
 - Animações em `motion.css`, desligadas com movimento reduzido; tamanhos e pontos de giro em `atmosphere.css`.
 - Apps Script republicado só para alinhar a versão. Verificação em verificacao-v0.12.1.md.
+
+## 0.12.2 — 2026-10-19
+
+Pedido do usuário: algumas animações e elementos não estavam bons em outras telas; verificar a responsividade completa de tudo, inclusive elementos e animações.
+
+Varredura automática (Edge sem janela) do chat inteiro — abertura, Como funciona?, nome, e-mail inválido, setor, áreas, necessidades, data, horário, escolhas, link, relato, rascunho e revisão da IA, dicas, anexo, resumo, comprovante, nota, "o que faltou", acompanhamento — e do painel (quadro, detalhe e busca), nos temas escuro e claro, em 12 tamanhos: 320×568, 360×740, 390×844, 430×932, 740×360, 844×390, 932×430, 768×1024, 1024×768, 1280×720, 1440×900 e 1920×1080. Em cada um: rolagem lateral, elementos fora da tela, texto cortado, botões cobertos ou sobrepostos, alvos de toque, fontes pequenas, altura da conversa e encaixe das linhas da cena.
+
+- **Animação da cena de abertura:** as linhas por onde correm os sinais eram um desenho fixo de 380 × 280; em outros formatos ficavam soltas entre os cartões e o robô (celular e tablet) ou começavam por baixo dos cartões (1280 px). Agora `atmosphere.js` refaz as linhas no tamanho real do quadro, da borda de cada cartão até o círculo do robô, e repete quando o quadro muda de tamanho. Desvio medido: 0 px em todos os tamanhos.
+- **Celular deitado (740×360, 844×390, 932×430):** a conversa ficava com 46 a 115 px, espremida entre o topo e os botões, e parte das opções ficava escondida. Com altura até 500 px, a trilha de etapas e o rótulo da área de botões saem, o topo fica mais baixo e as opções viram uma grade compacta (as áreas sem a descrição), com a pergunta e todas as opções visíveis.
+- **Monitor baixo (1024×768, 1280×720):** a dica "Sem complicação" da barra lateral não cabia e aparecia cortada; sai quando a altura é até 820 px.
+- **Celular pequeno:** "Boas-vindas" quebrava em duas linhas na trilha (320 e 360 px); até 380 px só a etapa atual mostra o nome. Balões com menos recuo para os cartões de rascunho e resumo. O aviso de conexão sai em telas de até 650 px de altura (o status da IA continua no topo).
+- **Campo de data e hora:** no celular estreito o botão "Calendário"/"Relógio" cobria o "DD/MM/AAAA"; até 420 px ele vira só o ícone (o nome continua para leitores de tela).
+- **Toque:** atalhos de data com 40 px de altura (eram 30), "Voltar uma etapa", "Recomeçar" e "Remover" anexo com 40 px.
+- **Textos pequenos:** a abertura chegava a 7–8 px no celular; selo, etiquetas, cena e rótulo da área de botões passaram a 9–10 px.
+- O painel de gestão não precisou de ajuste: sem rolagem lateral, sem elementos fora da tela e com o quadro em duas colunas no celular.
+- Apps Script republicado só para alinhar a versão (versão 17 da implantação). Verificação em verificacao-v0.12.2.md.

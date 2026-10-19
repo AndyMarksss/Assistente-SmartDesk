@@ -82,3 +82,6 @@ O SmartDesk registra métricas anônimas de cada atendimento (aba Sessões), ace
 
 ## 0.12.1
 O robozinho ao lado das mensagens agora se mexe (só o da mensagem mais recente). Verificação em 03-prototipo/verificacao-v0.12.1.md.
+
+## 0.12.2
+Responsividade revisada em 12 tamanhos de tela, do celular pequeno ao monitor grande, nos dois temas. Verificação em 03-prototipo/verificacao-v0.12.2.md.
