@@ -79,3 +79,6 @@ Avaliação da IA concluída: 99% de caminho certo na 1ª sugestão, extração 
 
 ## 0.12.0 — teste com usuários
 O SmartDesk registra métricas anônimas de cada atendimento (aba Sessões), aceita o código do participante no link (`?p=P01`) e pergunta a facilidade no fim. Kit das sessões em `04-validacao/roteiros/roteiro-sessao-usuarios.md`. Verificação em 03-prototipo/verificacao-v0.12.0.md.
+
+## 0.12.1
+O robozinho ao lado das mensagens agora se mexe (só o da mensagem mais recente). Verificação em 03-prototipo/verificacao-v0.12.1.md.

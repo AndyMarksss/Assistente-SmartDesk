@@ -1,8 +1,8 @@
 {
   "versao": 1,
   "projeto": "SmartDesk",
-  "atualizado_em": "2026-10-14",
-  "proximo_numero": 191,
+  "atualizado_em": "2026-10-19",
+  "proximo_numero": 220,
   "evidencias": [
     {
       "numero": "EVID-001",
@@ -2540,6 +2540,102 @@
       "data_inclusao": "2026-10-19",
       "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com envio ao Google desativado",
       "sha256": "822EB138B470AA34006CDD199D82E4458C8D6F00EBFAB71430B404AACA57E399",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-212",
+      "arquivo": "EVID-212_planilha-validacao-criada.png",
+      "etapa": "Preparação do teste com usuários — planilha e critérios definidos antes das sessões",
+      "descricao": "Registro de execução do Apps Script: prepararPlanilhaDeValidacao criou as abas Validação — Tarefas, Validação — Participantes e Validação — Resumo.",
+      "data_aproximada": "2026-10-19",
+      "fundamento_data": "Captura do usuário em 2026-10-19 (horários do registro de execução: 10:19 e 10:23)",
+      "data_inclusao": "2026-10-19",
+      "origem": "Print enviado pelo usuário na conversa com o assistente",
+      "sha256": "FE995975A5353A692EEEA9A8380C62A17921B67494D735DDCBC8827502D9A23C",
+      "status": "documental; preparação, ainda sem sessão com usuários"
+    },
+    {
+      "numero": "EVID-213",
+      "arquivo": "EVID-213_aba-tarefas-rodizio.png",
+      "etapa": "Preparação do teste com usuários — planilha e critérios definidos antes das sessões",
+      "descricao": "Aba Validação — Tarefas com o rodízio de 15 tarefas (P01 a P05, três cenários CT da Matriz Mestre cada), texto e classificação esperada; colunas de observação ainda vazias.",
+      "data_aproximada": "2026-10-19",
+      "fundamento_data": "Captura do usuário em 2026-10-19 (horários do registro de execução: 10:19 e 10:23)",
+      "data_inclusao": "2026-10-19",
+      "origem": "Print enviado pelo usuário na conversa com o assistente",
+      "sha256": "C1C599FABB56342B44AA06D4087E8676BF90119A60DABF677F5D04D60D9F9862",
+      "status": "documental; preparação, ainda sem sessão com usuários"
+    },
+    {
+      "numero": "EVID-214",
+      "arquivo": "EVID-214_aba-participantes.png",
+      "etapa": "Preparação do teste com usuários — planilha e critérios definidos antes das sessões",
+      "descricao": "Aba Validação — Participantes com os códigos P01 a P05 e colunas de perfil, uso de tecnologia, dispositivo e conversa final ainda vazias.",
+      "data_aproximada": "2026-10-19",
+      "fundamento_data": "Captura do usuário em 2026-10-19 (horários do registro de execução: 10:19 e 10:23)",
+      "data_inclusao": "2026-10-19",
+      "origem": "Print enviado pelo usuário na conversa com o assistente",
+      "sha256": "9BE7C9C70C5FA170BFB373D202CC6F4351A40EE8A13B41E57D7DFC0046ABDCA0",
+      "status": "documental; preparação, ainda sem sessão com usuários"
+    },
+    {
+      "numero": "EVID-215",
+      "arquivo": "EVID-215_remocao-chamados-teste.png",
+      "etapa": "Preparação do teste com usuários — planilha e critérios definidos antes das sessões",
+      "descricao": "Registro de execução de removerChamadoDeTeste: chamados de teste #010 e #013 removidos da aba Chamados (uma pasta de anexos do #010 na lixeira).",
+      "data_aproximada": "2026-10-19",
+      "fundamento_data": "Captura do usuário em 2026-10-19 (horários do registro de execução: 10:19 e 10:23)",
+      "data_inclusao": "2026-10-19",
+      "origem": "Print enviado pelo usuário na conversa com o assistente",
+      "sha256": "CC3FE2A142F852F194D24E7144ACD633CB9684D9384D7A38F9978504F05E1FD8",
+      "status": "documental; limpeza antes das sessões"
+    },
+    {
+      "numero": "EVID-216",
+      "arquivo": "EVID-216_hipotese-e-metas-antes-dos-testes.png",
+      "etapa": "Preparação do teste com usuários — planilha e critérios definidos antes das sessões",
+      "descricao": "Aba Validação — Resumo com a hipótese escrita e as metas (concluíram sem ajuda 80%, caminho certo 80%, tempo médio até 180 s, facilidade 4, usariam novamente 80%) antes de qualquer sessão: indicadores zerados e Resultado/Atingiu? vazios.",
+      "data_aproximada": "2026-10-19",
+      "fundamento_data": "Captura do usuário em 2026-10-19 (horários do registro de execução: 10:19 e 10:23)",
+      "data_inclusao": "2026-10-19",
+      "origem": "Print enviado pelo usuário na conversa com o assistente",
+      "sha256": "EC2C4D0384763B9D6CBEFB94C35826B6DB48C2ED7B2ED85BFE4D037E07A0D56E",
+      "status": "documental; critérios definidos antes das sessões"
+    },
+    {
+      "numero": "EVID-217",
+      "arquivo": "EVID-217_avatar-estatico-antes.png",
+      "etapa": "SmartDesk 0.12.1 — robozinho das mensagens",
+      "descricao": "Recorte do chat 0.12.0 com o robozinho estático ao lado da primeira mensagem, enviado com o pedido de animá-lo.",
+      "data_aproximada": "2026-10-19",
+      "fundamento_data": "Captura do usuário em 2026-10-19 (horários do registro de execução: 10:19 e 10:23)",
+      "data_inclusao": "2026-10-19",
+      "origem": "Print enviado pelo usuário na conversa com o assistente",
+      "sha256": "735CC97DBA575442FD0D0ED8B0F5B174943CD3E74C3A56D77B9CA09AFAEA9CB9",
+      "status": "registro do pedido; estado anterior"
+    },
+    {
+      "numero": "EVID-218",
+      "arquivo": "EVID-218_robozinho-quadros-escuro.png",
+      "etapa": "SmartDesk 0.12.1 — robozinho das mensagens",
+      "descricao": "Robozinho 0.12.1 no tema escuro, ampliado, com cada animação congelada: repouso, pulinho, boca falando, piscada, antena acesa, aceno e olhos procurando ao pensar.",
+      "data_aproximada": "2026-10-19",
+      "fundamento_data": "Captura do assistente nesta sessão",
+      "data_inclusao": "2026-10-19",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com envio ao Google desativado",
+      "sha256": "71A02081E853BDA095A11DB4FDFF8559332E44D2A7FCF874C43B11A371523341",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-219",
+      "arquivo": "EVID-219_robozinho-quadros-claro.png",
+      "etapa": "SmartDesk 0.12.1 — robozinho das mensagens",
+      "descricao": "Os mesmos sete quadros do robozinho no tema claro.",
+      "data_aproximada": "2026-10-19",
+      "fundamento_data": "Captura do assistente nesta sessão",
+      "data_inclusao": "2026-10-19",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com envio ao Google desativado",
+      "sha256": "E9A1F9DC4CB748AEC36DD0926844B327838882485CE94CD4BADCB7F657DB11D5",
       "status": "verificação técnica; não é validação com usuários"
     }
   ]

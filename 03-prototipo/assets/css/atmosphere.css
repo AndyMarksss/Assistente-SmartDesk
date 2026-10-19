@@ -1543,3 +1543,32 @@ body.is-dragging {
   background: var(--brand-gradient);
   border-color: transparent;
 }
+
+/* 0.12.1 — Robozinho das mensagens: desenho inline para o motion.css animar as partes. */
+.message-avatar .mini-robot {
+  display: block;
+  width: 32px;
+  height: 32px;
+  overflow: visible;
+}
+.mini-core,
+.mini-eye,
+.mini-light,
+.mini-ear,
+.mini-gaze {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.mini-mouth {
+  transform-box: fill-box;
+  transform-origin: center top;
+}
+.mini-ear.right {
+  transform-origin: left center;
+}
+@media (max-width: 600px) {
+  .message-avatar .mini-robot {
+    width: 29px;
+    height: 29px;
+  }
+}

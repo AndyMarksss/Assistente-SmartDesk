@@ -436,4 +436,24 @@ Próxima evidência: EVID-205.
 
 - EVID-211: [selo-sessao-de-teste](EVID-211_selo-sessao-de-teste.jpg) — Chat aberto com o link ?p=1: selo Teste P01 ao lado do status da IA e explicação do Como funciona?. Servidor local.
 
-Próxima evidência: EVID-212.
+## 2026-10-19 — Preparação das sessões com usuários
+
+- EVID-212: [planilha-validacao-criada](EVID-212_planilha-validacao-criada.png) — Registro de execução do Apps Script: prepararPlanilhaDeValidacao criou as abas Validação — Tarefas, Validação — Participantes e Validação — Resumo.
+
+- EVID-213: [aba-tarefas-rodizio](EVID-213_aba-tarefas-rodizio.png) — Aba Validação — Tarefas com o rodízio de 15 tarefas (P01 a P05, três cenários CT da Matriz Mestre cada), texto e classificação esperada; colunas de observação ainda vazias.
+
+- EVID-214: [aba-participantes](EVID-214_aba-participantes.png) — Aba Validação — Participantes com os códigos P01 a P05 e colunas de perfil, uso de tecnologia, dispositivo e conversa final ainda vazias.
+
+- EVID-215: [remocao-chamados-teste](EVID-215_remocao-chamados-teste.png) — Registro de execução de removerChamadoDeTeste: chamados de teste #010 e #013 removidos da aba Chamados (uma pasta de anexos do #010 na lixeira).
+
+- EVID-216: [hipotese-e-metas-antes-dos-testes](EVID-216_hipotese-e-metas-antes-dos-testes.png) — Aba Validação — Resumo com a hipótese escrita e as metas (concluíram sem ajuda 80%, caminho certo 80%, tempo médio até 180 s, facilidade 4, usariam novamente 80%) antes de qualquer sessão: indicadores zerados e Resultado/Atingiu? vazios.
+
+## 2026-10-19 — SmartDesk 0.12.1: robozinho das mensagens
+
+- EVID-217: [avatar-estatico-antes](EVID-217_avatar-estatico-antes.png) — Recorte do chat 0.12.0 com o robozinho estático ao lado da primeira mensagem, enviado com o pedido de animá-lo.
+
+- EVID-218: [robozinho-quadros-escuro](EVID-218_robozinho-quadros-escuro.png) — Robozinho 0.12.1 no tema escuro, ampliado, com cada animação congelada: repouso, pulinho, boca falando, piscada, antena acesa, aceno e olhos procurando ao pensar.
+
+- EVID-219: [robozinho-quadros-claro](EVID-219_robozinho-quadros-claro.png) — Os mesmos sete quadros do robozinho no tema claro.
+
+Próxima evidência: EVID-220.

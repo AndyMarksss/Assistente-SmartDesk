@@ -61,7 +61,7 @@
     animation: robot-twinkle 3000ms ease-in-out infinite;
   }
   .ai-busy .assistant-avatar img,
-  .ai-busy .message.thinking .message-avatar img {
+  .ai-busy .message.thinking .message-avatar .mini-robot {
     animation: robot-think 900ms ease-in-out infinite;
   }
   .assistant-avatar img {
@@ -641,6 +641,88 @@
     background-position:
       0 0,
       300% 50%;
+  }
+}
+/* 0.12.1 — Robozinho das mensagens. Só o da mensagem mais recente se mexe: chega com um pulinho
+   e mexe a boca enquanto "fala", depois pisca e acende a antena. Na primeira mensagem acena;
+   enquanto a IA pensa, procura a resposta com os olhos. */
+@media (prefers-reduced-motion: no-preference) {
+  .message.assistant:last-child .mini-core {
+    animation: mini-hop 560ms var(--motion-ease) 1;
+  }
+  .message.assistant:not(.thinking):last-child .mini-mouth {
+    animation: mini-talk 240ms ease-in-out 200ms 4;
+  }
+  .message.assistant:last-child .mini-eye {
+    animation: robot-blink 4600ms ease-in-out 600ms infinite;
+  }
+  .message.assistant:last-child .mini-light {
+    animation: mini-glow 2400ms ease-in-out infinite;
+  }
+  .message.assistant:first-child .mini-ear.right {
+    animation: mini-wave 1200ms ease-in-out 700ms 1;
+  }
+  .message.thinking .mini-gaze {
+    animation: mini-scan 1800ms ease-in-out infinite;
+  }
+}
+@keyframes mini-hop {
+  0%,
+  100% {
+    transform: none;
+  }
+  35% {
+    transform: translateY(-16px) rotate(-4deg);
+  }
+  65% {
+    transform: translateY(2px) rotate(2deg);
+  }
+}
+@keyframes mini-talk {
+  0%,
+  100% {
+    transform: none;
+  }
+  50% {
+    transform: scale(0.92, 1.7);
+  }
+}
+@keyframes mini-glow {
+  0%,
+  100% {
+    fill: #d7c7ff;
+    filter: drop-shadow(0 0 0 transparent);
+  }
+  50% {
+    fill: #f4c4ff;
+    filter: drop-shadow(0 0 14px #c79bff);
+  }
+}
+@keyframes mini-wave {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(-24deg);
+  }
+  45% {
+    transform: rotate(14deg);
+  }
+  70% {
+    transform: rotate(-16deg);
+  }
+}
+@keyframes mini-scan {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-9px);
+  }
+  75% {
+    transform: translateX(9px);
   }
 }
 @media (prefers-reduced-motion: reduce) {

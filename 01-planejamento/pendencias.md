@@ -108,3 +108,6 @@ Avaliação técnica da IA concluída. Pendentes: executar `removerChamadoDeTest
 
 ## 0.12.0
 Antes das sessões: escrever hipótese e metas (aba *Validação — Resumo*), rodar `prepararPlanilhaDeValidacao`, `removerChamadoDeTeste` (#010 e #013) e recrutar 5 participantes. Depois: síntese, decisão, exportar a planilha para `04-validacao/resultados` e rodar `removerChamadosDosParticipantes`.
+
+## 0.12.1
+Feitos pelo usuário em 2026-10-19: `prepararPlanilhaDeValidacao`, `removerChamadoDeTeste` (#010 e #013) e hipótese e metas na aba *Validação — Resumo* (EVID-212 a EVID-216), antes de qualquer sessão. Falta: ensaio no celular real com `?p=P00`, recrutar 5 participantes e realizar as sessões; depois, síntese, decisão, exportar a planilha e rodar `removerChamadosDosParticipantes`. Não alterar o chat durante as sessões.

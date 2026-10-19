@@ -127,3 +127,6 @@ Resultado final e números em `03-prototipo/verificacao-v0.11.4.md` e no relató
 
 ## 0.12.0 — teste com usuários
 Métricas anônimas (aba Sessões), participante por `?p=P01` (coluna P de Chamados, tag no painel) e nota de facilidade no fim do chat. Kit em `04-validacao` (roteiro, ficha e planilha criada por `prepararPlanilhaDeValidacao`). Nunca gravar nome, e-mail ou relato nas métricas; o comentário "o que faltou" é limpo e limitado a 300 caracteres. Chamados de participantes só saem da fila pela função `removerChamadosDosParticipantes`, rodada pelo usuário depois de exportar a planilha. Ao publicar com clasp, o arquivo novo `Validacao.gs` vira `Validacao.js` no projeto.
+
+## 0.12.1 — robozinho das mensagens
+O avatar das mensagens é SVG inline (`miniRobot` em `chat-view.js`), não mais `<img>`: para animar uma parte, use as classes `.mini-core`, `.mini-eye`, `.mini-gaze`, `.mini-mouth`, `.mini-light` e `.mini-ear` em `motion.css`. Só a mensagem mais recente (`.message.assistant:last-child`) anima; manter assim para a conversa não virar um painel de robôs se mexendo.

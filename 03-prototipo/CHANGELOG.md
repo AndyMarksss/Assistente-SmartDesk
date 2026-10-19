@@ -289,3 +289,12 @@ Pedido do usuário: preparar o protótipo e o material para o teste com pelo men
 - **Kit das sessões:** `04-validacao/roteiros/roteiro-sessao-usuarios.md` (preparação, fala de abertura, rodízio dos cenários CT-01 a CT-11 da Matriz Mestre com os links P01–P05, conversa final e cuidados), `04-validacao/registros/ficha-observacao.md` e `prepararPlanilhaDeValidacao` (Validacao.gs), que cria as abas *Validação — Tarefas* (rodízio já preenchido; o número do chamado puxa as métricas da aba Sessões), *Validação — Participantes* e *Validação — Resumo* (indicadores e quadro de critérios com metas em branco).
 - **Correção:** o servidor local recusava enviar chamados para o Apps Script desde a 0.10, porque a checagem de versão aceitava só 0.7 a 0.9. O Pages não era afetado.
 - Apps Script publicado na versão 15 da mesma implantação. Verificação em verificacao-v0.12.0.md.
+
+## 0.12.1 — 2026-10-19
+
+Pedido do usuário: animar o robozinho que aparece ao lado das mensagens do SmartDesk.
+
+- O avatar deixou de ser a imagem `assistente.svg` e passou a ser o mesmo desenho inline (`miniRobot` em `chat-view.js`), com classes nas partes e IDs próprios para os gradientes de cada cópia.
+- Só o robô da mensagem mais recente se mexe, para não encher a conversa de movimento: ao chegar dá um pulinho e mexe a boca como se falasse; depois pisca a cada ~4,6 s e a antena acende e apaga. Na primeira mensagem, acena com a orelha direita. Enquanto a IA pensa, os olhos procuram de um lado para o outro (além do balanço que já existia). Os robôs das mensagens anteriores ficam parados.
+- Animações em `motion.css`, desligadas com movimento reduzido; tamanhos e pontos de giro em `atmosphere.css`.
+- Apps Script republicado só para alinhar a versão. Verificação em verificacao-v0.12.1.md.
