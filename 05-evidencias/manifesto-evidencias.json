@@ -2,7 +2,7 @@
   "versao": 1,
   "projeto": "SmartDesk",
   "atualizado_em": "2026-10-20",
-  "proximo_numero": 250,
+  "proximo_numero": 256,
   "evidencias": [
     {
       "numero": "EVID-001",
@@ -2996,6 +2996,78 @@
       "data_inclusao": "2026-10-20",
       "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com envio ao Google desativado",
       "sha256": "1147115640CD2D1ADC91BF70AF3156452499136DF5FDFEA6E83126BFFBB87468",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-250",
+      "arquivo": "EVID-250_barra-clara-0129.png",
+      "etapa": "SmartDesk 0.12.10 — barra lateral, dicas e hover",
+      "descricao": "Print do usuário da barra lateral no tema claro da 0.12.9, com o pedido de mais profundidade.",
+      "data_aproximada": "2026-10-20",
+      "fundamento_data": "Captura do usuário em 2026-10-20",
+      "data_inclusao": "2026-10-20",
+      "origem": "Print enviado pelo usuário na conversa com o assistente",
+      "sha256": "0D30856E9DBD9872F343954890AA810747025E83FBE680BCC16186F39AC2F00F",
+      "status": "registro do pedido; estado anterior (0.12.9)"
+    },
+    {
+      "numero": "EVID-251",
+      "arquivo": "EVID-251_areas-painel-0129-escuro.png",
+      "etapa": "SmartDesk 0.12.10 — barra lateral, dicas e hover",
+      "descricao": "Recorte do usuário de \"O que a TI atende\" e \"Painel de gestão\" no escuro (0.12.9), a parte que não combinava com o resto.",
+      "data_aproximada": "2026-10-20",
+      "fundamento_data": "Captura do usuário em 2026-10-20",
+      "data_inclusao": "2026-10-20",
+      "origem": "Print enviado pelo usuário na conversa com o assistente",
+      "sha256": "2C51BFFC68E1D318EC5F9E23ADECDCF909BF32061CD8E9B438EA91E8C55F00A0",
+      "status": "registro do pedido; estado anterior (0.12.9)"
+    },
+    {
+      "numero": "EVID-252",
+      "arquivo": "EVID-252_barra-escura-0129.png",
+      "etapa": "SmartDesk 0.12.10 — barra lateral, dicas e hover",
+      "descricao": "Print do usuário da barra lateral no tema escuro da 0.12.9.",
+      "data_aproximada": "2026-10-20",
+      "fundamento_data": "Captura do usuário em 2026-10-20",
+      "data_inclusao": "2026-10-20",
+      "origem": "Print enviado pelo usuário na conversa com o assistente",
+      "sha256": "CCD93199F334408ED13B87196A1917AD14C0054848DB822CB2EE55C17CAF4743",
+      "status": "registro do pedido; estado anterior (0.12.9)"
+    },
+    {
+      "numero": "EVID-253",
+      "arquivo": "EVID-253_areas-painel-0129-claro.png",
+      "etapa": "SmartDesk 0.12.10 — barra lateral, dicas e hover",
+      "descricao": "O mesmo trecho no tema claro (0.12.9).",
+      "data_aproximada": "2026-10-20",
+      "fundamento_data": "Captura do usuário em 2026-10-20",
+      "data_inclusao": "2026-10-20",
+      "origem": "Print enviado pelo usuário na conversa com o assistente",
+      "sha256": "C048D37F306DE5D0A54BF25090A199DE594D33E9C1A6166DAECD2B5C19827CFB",
+      "status": "registro do pedido; estado anterior (0.12.9)"
+    },
+    {
+      "numero": "EVID-254",
+      "arquivo": "EVID-254_hover-piscando-quadros.jpg",
+      "etapa": "SmartDesk 0.12.10 — barra lateral, dicas e hover",
+      "descricao": "16 quadros da gravação do usuário: ao receber o mouse, o botão \"Sim, vamos começar\" escurece por um instante (quadro 12) antes de ficar lilás.",
+      "data_aproximada": "2026-10-20",
+      "fundamento_data": "Gravação do usuário em 2026-10-20",
+      "data_inclusao": "2026-10-20",
+      "origem": "Quadros extraídos pelo assistente (Edge sem janela) da gravação de tela de 6,4 s enviada pelo usuário",
+      "sha256": "96652C2878DCDED00C7201A132576C67D155906E53E1D331BCF0039AD97C55C4",
+      "status": "registro do defeito (0.12.9)"
+    },
+    {
+      "numero": "EVID-255",
+      "arquivo": "EVID-255_barra-lateral-0-12-10.jpg",
+      "etapa": "SmartDesk 0.12.10 — barra lateral, dicas e hover",
+      "descricao": "Barra lateral 0.12.10 na tela do usuário (1864×958), temas escuro e claro, na abertura (0/4) e com dados (4/4): cartões elevados, dica com setas e pontinhos, \"O que a TI atende\" em cartão e \"Painel de gestão\" como item de navegação.",
+      "data_aproximada": "2026-10-20",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-20",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com envio ao Google desativado",
+      "sha256": "FB81D334011388ABC61BEF499EABD8EA3957E4E10A7969E34FF258E30BDB4A03",
       "status": "verificação técnica; não é validação com usuários"
     }
   ]

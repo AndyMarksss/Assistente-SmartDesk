@@ -48,39 +48,42 @@
         <button class="new-conversation" id="new-chat" type="button">
           <span aria-hidden="true"><i class="fa-solid fa-plus"></i></span> Novo atendimento
         </button>
-        <div class="session-info chamado-card">
-          <div class="chamado-head">
-            <div>
-              <span class="chamado-kicker">SEU CHAMADO</span>
-              <strong id="context-title">Vamos começar</strong>
+        <div class="chamado-wrap">
+          <div class="session-info chamado-card">
+            <div class="chamado-head">
+              <div>
+                <span class="chamado-kicker">SEU CHAMADO</span>
+                <strong id="context-title">Vamos começar</strong>
+              </div>
+              <span class="chamado-ring" id="context-ring" aria-hidden="true"
+                ><span id="context-count">0/4</span></span
+              >
             </div>
-            <span class="chamado-ring" id="context-ring" aria-hidden="true"
-              ><span id="context-count">0/4</span></span
-            >
+            <dl class="context-steps">
+              <div class="context-step" data-step="name">
+                <dt><i class="step-icon fa-solid fa-user" aria-hidden="true"></i>Solicitante</dt>
+                <dd id="context-name">Vamos nos conhecer</dd>
+              </div>
+              <div class="context-step" data-step="email">
+                <dt>
+                  <i class="step-icon fa-solid fa-envelope" aria-hidden="true"></i>E-mail para
+                  contato
+                </dt>
+                <dd id="context-email">Ainda não informado</dd>
+              </div>
+              <div class="context-step" data-step="sector">
+                <dt><i class="step-icon fa-solid fa-building" aria-hidden="true"></i>Setor</dt>
+                <dd id="context-sector">Ainda não informado</dd>
+              </div>
+              <div class="context-step" data-step="need">
+                <dt>
+                  <i class="step-icon fa-solid fa-screwdriver-wrench" aria-hidden="true"></i
+                  >Necessidade
+                </dt>
+                <dd id="context-need">Vamos descobrir juntos</dd>
+              </div>
+            </dl>
           </div>
-          <dl class="context-steps">
-            <div class="context-step" data-step="name">
-              <dt><i class="step-icon fa-solid fa-user" aria-hidden="true"></i>Solicitante</dt>
-              <dd id="context-name">Vamos nos conhecer</dd>
-            </div>
-            <div class="context-step" data-step="email">
-              <dt>
-                <i class="step-icon fa-solid fa-envelope" aria-hidden="true"></i>E-mail para contato
-              </dt>
-              <dd id="context-email">Ainda não informado</dd>
-            </div>
-            <div class="context-step" data-step="sector">
-              <dt><i class="step-icon fa-solid fa-building" aria-hidden="true"></i>Setor</dt>
-              <dd id="context-sector">Ainda não informado</dd>
-            </div>
-            <div class="context-step" data-step="need">
-              <dt>
-                <i class="step-icon fa-solid fa-screwdriver-wrench" aria-hidden="true"></i
-                >Necessidade
-              </dt>
-              <dd id="context-need">Vamos descobrir juntos</dd>
-            </div>
-          </dl>
         </div>
         <section class="sidebar-tip" aria-label="Dicas">
           <span class="sidebar-tip-icon" aria-hidden="true"
@@ -109,7 +112,19 @@
               </p>
             </div>
           </div>
-          <div class="tip-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div class="tip-nav">
+            <button type="button" class="tip-arrow" data-tip="prev" aria-label="Dica anterior">
+              <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+            </button>
+            <div class="tip-dots">
+              <button type="button" aria-label="Dica 1 de 3"></button
+              ><button type="button" aria-label="Dica 2 de 3"></button
+              ><button type="button" aria-label="Dica 3 de 3"></button>
+            </div>
+            <button type="button" class="tip-arrow" data-tip="next" aria-label="Próxima dica">
+              <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+            </button>
+          </div>
         </section>
         <section class="sidebar-areas" aria-label="O que a TI atende">
           <div class="sidebar-section">O QUE A TI ATENDE</div>
@@ -133,8 +148,12 @@
           </ul>
         </section>
         <a class="panel-link" href="admin.html"
-          ><i class="fa-solid fa-table-columns" aria-hidden="true"></i> Painel de gestão</a
-        >
+          ><span class="panel-icon" aria-hidden="true"
+            ><i class="fa-solid fa-table-columns"></i></span
+          ><span class="panel-text"
+            ><strong>Painel de gestão</strong><small>Fila e etapas</small></span
+          ><i class="fa-solid fa-chevron-right panel-arrow" aria-hidden="true"></i
+        ></a>
         <svg
           class="sidebar-net"
           viewBox="0 0 240 150"
@@ -487,7 +506,7 @@
             Abra o SmartDesk pelo servidor local para usar a IA e enviar chamados.
           </p>
           <footer class="project-version" aria-label="Versão do projeto">
-            SmartDesk · v<span data-project-version>0.12.9</span>
+            SmartDesk · v<span data-project-version>0.12.10</span>
           </footer>
         </section>
       </main>

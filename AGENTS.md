@@ -154,3 +154,6 @@ Tokens do tema claro redefinidos no fim do `atmosphere.css` (`:root[data-theme="
 
 ## 0.12.9 — tema claro, cartão "Seu chamado" e ícones do fundo
 O tema claro tem papéis por área (página cinza-azulada, boas-vindas e cabeçalho do painel em gradiente roxo→azul, balões da pessoa roxos, conversa lilás clara); não voltar ao "tudo branco" da 0.12.8, que o usuário reprovou. O cartão "Seu chamado" usa gradiente fixo (no escuro, a cor de destaque é clara demais para texto branco). Os ícones do fundo dependem de `--gutter` (atmosphere.js): nada decorativo pode ficar na coluna dos robozinhos das mensagens.
+
+## 0.12.10 — barra lateral, dicas e hover
+Na barra lateral, todo bloco é um cartão elevado (`--card-bg`, `--card-line`, `--card-shadow` em `.sidebar`); itens novos seguem esse padrão. Nunca trocar `background` entre gradiente e cor no hover (gradiente não interpola e o botão pisca): mude brilho, sombra ou borda. Para checar hover, use mouse real no CDP (`page.mouse`) e leia `getAnimations()` — capturas de tela são lentas demais para pegar 160 ms.

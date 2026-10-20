@@ -106,3 +106,6 @@ Tema claro com cores limpas e "O que a TI atende" como lista informativa. Verifi
 
 ## 0.12.9
 Tema claro redesenhado, cartão "Seu chamado" na barra lateral e ícones do fundo fora da coluna das mensagens. Verificação em 03-prototipo/verificacao-v0.12.9.md.
+
+## 0.12.10
+Barra lateral com profundidade e cartões no mesmo padrão, dicas com setas e arrastar, e hover do botão principal sem piscar. Verificação em 03-prototipo/verificacao-v0.12.10.md.

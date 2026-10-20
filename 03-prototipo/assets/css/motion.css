@@ -661,7 +661,7 @@
     animation: step-pulse 2400ms ease-in-out infinite;
   }
   .tip-slide {
-    transform: translateY(6px);
+    transform: translateX(14px);
     transition:
       opacity 500ms ease,
       visibility 500ms,
@@ -669,6 +669,21 @@
   }
   .tip-slide.is-active {
     transform: none;
+  }
+  /* 0.12.10 — a dica entra pelo lado da navegação (seta da esquerda: vem da esquerda). */
+  .sidebar-tip[data-direction="prev"] .tip-slide:not(.is-active) {
+    transform: translateX(-14px);
+  }
+  .tip-arrow,
+  .tip-dots button::before,
+  .sidebar .panel-link,
+  .panel-arrow {
+    transition:
+      color 180ms ease,
+      background 180ms ease,
+      border-color 180ms ease,
+      box-shadow 220ms ease,
+      width 300ms var(--motion-ease);
   }
   .tip-dots span {
     transition:

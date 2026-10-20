@@ -2574,3 +2574,246 @@ body.is-dragging {
     #000 calc(100% - var(--gutter, 120px) + 30px)
   );
 }
+
+/* 0.12.10 — Hover do botão principal sem piscar. Regras antigas (identity.css e
+   visual-depth.css) trocavam o gradiente por uma cor sólida no hover; como gradiente e cor
+   não se interpolam, por um instante o botão ficava sem fundo e o escuro de trás aparecia.
+   Agora o fundo é o mesmo no hover; o retorno vem do brilho e da sombra. Links da barra também
+   não sobem mais 2 px no hover (o deslocamento fazia o cursor "escapar" na borda). */
+:root[data-theme] .choice.primary:hover:not(:disabled),
+:root[data-theme="dark"] .choice.primary:hover:not(:disabled),
+:root[data-theme="light"] .choice.primary:hover:not(:disabled) {
+  background: var(--brand-gradient);
+}
+:root[data-theme] .panel-link:hover,
+:root[data-theme] .new-conversation:hover {
+  transform: none;
+}
+
+/* 0.12.10 — Barra lateral com profundidade e uma linguagem só: cartões elevados (chamado,
+   dica, áreas, painel) sobre um fundo levemente degradê. No claro os cartões são brancos com
+   sombra suave; no escuro, vidro com sombra profunda. */
+.sidebar {
+  --card-bg: color-mix(in srgb, var(--side-soft) 45%, transparent);
+  --card-line: var(--side-line);
+  --card-shadow: inset 0 1px 0 rgb(255 255 255 / 0.04), 0 14px 28px -20px rgb(0 0 0 / 0.75);
+  --wrap-shadow: drop-shadow(0 14px 18px rgb(0 0 0 / 0.38));
+}
+:root[data-theme="light"] .sidebar {
+  --card-bg: #ffffff;
+  --card-line: #e5e6f1;
+  --card-shadow: 0 1px 2px rgb(31 41 72 / 0.06), 0 12px 26px -18px rgb(46 36 120 / 0.35);
+  --wrap-shadow: drop-shadow(0 12px 16px rgb(46 36 120 / 0.16));
+  background: linear-gradient(180deg, #ffffff 0%, #f4f3fc 62%, #eeedf9 100%);
+  border-color: #e1e3ef;
+  box-shadow:
+    0 1px 0 rgb(255 255 255 / 0.9) inset,
+    0 28px 60px -34px rgb(46 36 120 / 0.35);
+}
+:root[data-theme="light"] .sidebar::before {
+  opacity: 0.55;
+}
+/* Cartão "Seu chamado": a sombra acompanha o picote (fica num invólucro, fora da máscara). */
+.chamado-wrap {
+  filter: var(--wrap-shadow);
+}
+:root[data-theme="light"] .sidebar .session-info.chamado-card {
+  border-color: var(--card-line);
+}
+/* Dica: mesmo cartão elevado e navegação com setas e pontinhos. */
+:root[data-theme] .sidebar-tip {
+  background: var(--card-bg);
+  border-color: var(--card-line);
+  box-shadow: var(--card-shadow);
+}
+:root[data-theme="light"] .sidebar-tip {
+  background: var(--card-bg);
+}
+.sidebar-tip .tip-nav {
+  grid-column: 2;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 8px;
+}
+.tip-slides {
+  touch-action: pan-y;
+  user-select: none;
+  cursor: grab;
+}
+.tip-slides:active {
+  cursor: grabbing;
+}
+.tip-arrow {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid var(--card-line);
+  background: transparent;
+  color: var(--side-muted);
+  font-size: 9px;
+  cursor: pointer;
+}
+.tip-arrow:hover {
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 60%, transparent);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+}
+.tip-arrow:focus-visible,
+.tip-dots button:focus-visible {
+  outline: 2px solid var(--focus, var(--accent));
+  outline-offset: 2px;
+}
+.sidebar .tip-nav .tip-dots {
+  display: flex;
+  gap: 0;
+  margin: 0;
+}
+.tip-dots button {
+  position: relative;
+  width: 14px;
+  height: 20px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.tip-dots button::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  translate: -50% -50%;
+  background: color-mix(in srgb, var(--info) 35%, transparent);
+}
+.tip-dots button[aria-current="true"] {
+  width: 24px;
+}
+.tip-dots button[aria-current="true"]::before {
+  width: 16px;
+  background: var(--info);
+}
+/* O que a TI atende: um cartão como os outros; linhas informativas (sem caixa por item). */
+.sidebar .sidebar-areas {
+  padding: 10px 14px 11px;
+  border: 1px solid var(--card-line);
+  border-radius: 14px;
+  background: var(--card-bg);
+  box-shadow: var(--card-shadow);
+}
+.sidebar-areas .sidebar-section {
+  font-size: 10px;
+  letter-spacing: 1.3px;
+  color: var(--side-muted);
+}
+.sidebar-areas ul {
+  gap: 5px;
+  margin-top: 8px;
+}
+.sidebar-areas li {
+  gap: 8px;
+  align-items: center;
+}
+.sidebar-areas li i {
+  display: grid;
+  place-items: center;
+  flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 9px;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+}
+.sidebar-areas li:nth-child(2) i,
+.sidebar-areas li:nth-child(3) i {
+  color: var(--info);
+  background: color-mix(in srgb, var(--info) 14%, transparent);
+}
+@media (max-width: 1799px) {
+  .sidebar-areas li i {
+    flex-basis: 20px;
+    width: 20px;
+    height: 20px;
+    font-size: 9px;
+  }
+}
+/* Painel de gestão: item de navegação (ícone, nome, descrição e seta), no mesmo cartão. */
+:root[data-theme] .sidebar .panel-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+  padding: 9px 12px 9px 9px;
+  border: 1px solid var(--card-line);
+  border-radius: 14px;
+  background: var(--card-bg);
+  box-shadow: var(--card-shadow);
+  color: var(--side-ink);
+  text-decoration: none;
+}
+.panel-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 13px;
+  background: linear-gradient(125deg, #5a3cd2, #2f63d0);
+}
+.panel-text {
+  display: grid;
+  min-width: 0;
+  line-height: 1.25;
+}
+.panel-text strong {
+  font-size: 13px;
+  font-weight: 650;
+}
+.panel-text small {
+  font-size: 11px;
+  color: var(--side-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.panel-arrow {
+  margin-left: auto;
+  font-size: 11px;
+  color: var(--side-muted);
+}
+:root[data-theme] .sidebar .panel-link:hover {
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--card-line));
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--accent) 12%, transparent),
+    var(--card-shadow);
+}
+:root[data-theme] .sidebar .panel-link:hover .panel-arrow {
+  color: var(--accent);
+}
+:root[data-theme="light"] .sidebar-net {
+  opacity: 0.6;
+}
+
+/* 0.12.10 — Espaços mais justos entre os cartões da barra, para "O que a TI atende" caber
+   também em telas de cerca de 950 px de altura (medido na tela do usuário, 1864 × 958). */
+.sidebar .session-info.chamado-card .context-step dd {
+  margin-bottom: 10px;
+}
+:root[data-theme] .sidebar-tip {
+  margin-top: 12px;
+}
+.sidebar .sidebar-areas {
+  margin-top: 10px;
+}
+:root[data-theme] .sidebar .panel-link {
+  margin-top: 10px;
+}

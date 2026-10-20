@@ -160,25 +160,57 @@
       .forEach((node) => follow.observe(node));
     place();
   }
-  // Dicas da barra lateral (0.12.6): três dicas que se revezam a cada 9 s. Pausam com o mouse
-  // em cima; com movimento reduzido fica só a primeira.
+  // Dicas da barra lateral: três dicas que se revezam a cada 9 s (0.12.6). Desde a 0.12.10 dá
+  // para navegar com as setas, os pontinhos ou arrastando para o lado; quando a pessoa navega,
+  // a troca automática para — quem está lendo decide. Pausa com o mouse em cima; com movimento
+  // reduzido não troca sozinha.
   const tip = document.querySelector(".sidebar-tip"),
     slides = tip ? [...tip.querySelectorAll(".tip-slide")] : [],
-    dots = tip ? [...tip.querySelectorAll(".tip-dots span")] : [];
-  if (slides.length > 1) {
+    dots = tip ? [...tip.querySelectorAll(".tip-dots button")] : [],
+    track = tip?.querySelector(".tip-slides");
+  if (slides.length > 1 && track) {
     let index = 0,
-      paused = false;
-    const show = (next) => {
-      index = next;
-      slides.forEach((slide, i) => slide.classList.toggle("is-active", i === index));
-      dots.forEach((dot, i) => dot.classList.toggle("is-active", i === index));
+      paused = false,
+      manual = false;
+    const show = (next, direction = 1) => {
+      index = (next + slides.length) % slides.length;
+      tip.dataset.direction = direction > 0 ? "next" : "prev";
+      slides.forEach((slide, i) => {
+        slide.classList.toggle("is-active", i === index);
+        slide.setAttribute("aria-hidden", i === index ? "false" : "true");
+      });
+      dots.forEach((dot, i) => dot.setAttribute("aria-current", i === index ? "true" : "false"));
+    };
+    const take = (next, direction) => {
+      manual = true;
+      track.setAttribute("aria-live", "polite");
+      show(next, direction);
     };
     show(0);
+    tip.querySelectorAll(".tip-arrow").forEach((arrow) =>
+      arrow.addEventListener("click", () => {
+        const step = arrow.dataset.tip === "prev" ? -1 : 1;
+        take(index + step, step);
+      }),
+    );
+    dots.forEach((dot, i) => dot.addEventListener("click", () => take(i, i >= index ? 1 : -1)));
+    // Arrastar (dedo ou mouse): mais de 40 px para o lado troca a dica.
+    let startX = null;
+    track.addEventListener("pointerdown", (event) => {
+      startX = event.clientX;
+    });
+    track.addEventListener("pointerup", (event) => {
+      if (startX === null) return;
+      const dx = event.clientX - startX;
+      startX = null;
+      if (Math.abs(dx) > 40) take(index + (dx < 0 ? 1 : -1), dx < 0 ? 1 : -1);
+    });
+    track.addEventListener("pointercancel", () => (startX = null));
     tip.addEventListener("pointerenter", () => (paused = true));
     tip.addEventListener("pointerleave", () => (paused = false));
     setInterval(() => {
-      if (paused || still.matches || document.hidden || !tip.offsetParent) return;
-      show((index + 1) % slides.length);
+      if (manual || paused || still.matches || document.hidden || !tip.offsetParent) return;
+      show(index + 1, 1);
     }, 9000);
   }
 })();

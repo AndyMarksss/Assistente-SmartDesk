@@ -532,4 +532,18 @@ Próxima evidência: EVID-205.
 
 - EVID-249: [painel-claro-cabecalho](EVID-249_painel-claro-cabecalho.jpg) — Painel de gestão no tema claro com o cabeçalho no mesmo gradiente do cartão de boas-vindas do chat.
 
-Próxima evidência: EVID-250.
+## 2026-10-20 — SmartDesk 0.12.10: barra lateral, dicas e hover
+
+- EVID-250: [barra-clara-0129](EVID-250_barra-clara-0129.png) — Print do usuário da barra lateral no tema claro da 0.12.9, com o pedido de mais profundidade.
+
+- EVID-251: [areas-painel-0129-escuro](EVID-251_areas-painel-0129-escuro.png) — Recorte do usuário de "O que a TI atende" e "Painel de gestão" no escuro (0.12.9), a parte que não combinava com o resto.
+
+- EVID-252: [barra-escura-0129](EVID-252_barra-escura-0129.png) — Print do usuário da barra lateral no tema escuro da 0.12.9.
+
+- EVID-253: [areas-painel-0129-claro](EVID-253_areas-painel-0129-claro.png) — O mesmo trecho no tema claro (0.12.9).
+
+- EVID-254: [hover-piscando-quadros](EVID-254_hover-piscando-quadros.jpg) — 16 quadros da gravação do usuário: ao receber o mouse, o botão "Sim, vamos começar" escurece por um instante (quadro 12) antes de ficar lilás.
+
+- EVID-255: [barra-lateral-0-12-10](EVID-255_barra-lateral-0-12-10.jpg) — Barra lateral 0.12.10 na tela do usuário (1864×958), temas escuro e claro, na abertura (0/4) e com dados (4/4): cartões elevados, dica com setas e pontinhos, "O que a TI atende" em cartão e "Painel de gestão" como item de navegação.
+
+Próxima evidência: EVID-256.
