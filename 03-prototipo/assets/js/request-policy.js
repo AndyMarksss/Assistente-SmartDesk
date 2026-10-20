@@ -129,7 +129,67 @@
           : intent === "purchase" || REQUESTS.includes(item.id)
             ? "solicitação"
             : "problema";
+  // Conferências locais do pedido, sem IA. Audiovisual: cada tipo é uma combinação de
+  // equipamentos; se o relato ou as respostas citam um que o tipo escolhido não tem ("preciso
+  // de microfone também"), sugere o tipo que junta tudo — nunca tira nada do pedido.
+  const plain = (text) =>
+    String(text || "")
+      .normalize("NFD")
+      .replace(/[̀-ͯ]/g, "")
+      .toLowerCase();
+  const EQUIPMENT = {
+    som: {
+      name: "caixa de som",
+      label: /caixa de som/,
+      said: /\b(caixas? de som|caixinhas? de som|som|sonorizacao|audio|amplificador(es)?)\b/,
+    },
+    microfone: { name: "microfone", label: /microfone/, said: /\b(microfones?|mics?|lapela)\b/ },
+    projetor: {
+      name: "projetor",
+      label: /projetor/,
+      said: /\b(projetor(es)?|projecao|datashow|data show|telao)\b/,
+    },
+  };
+  const NO_EQUIPMENT =
+    /\b(?:sem|nao\s+(?:precis\w*|vou precisar|vamos precisar|quero|queremos|vou usar|vamos usar|usaremos|usarei))(?:\s+(?:de|do|da|dos|das|o|a|os|as|um|uma|nenhum|nenhuma))*\s+(?:caixas? de som|som|microfones?|projetor(?:es)?|datashow|telao)\b/g;
+  function equipmentOf(item) {
+    if (!item || item.area !== "Audiovisual") return null;
+    const kinds = plain(item.need)
+      .split("/")
+      .map((part) => Object.keys(EQUIPMENT).find((kind) => EQUIPMENT[kind].label.test(part)));
+    return kinds.every(Boolean) ? kinds : null;
+  }
+  function fullerItem(item, texts, items) {
+    const current = equipmentOf(item);
+    if (!current) return null;
+    const said = plain(texts.join("\n")).replace(NO_EQUIPMENT, " "),
+      wanted = new Set(current);
+    for (const kind of Object.keys(EQUIPMENT))
+      if (EQUIPMENT[kind].said.test(said)) wanted.add(kind);
+    if (wanted.size === current.length) return null;
+    const match = items.find((other) => {
+      const kinds = equipmentOf(other);
+      return kinds && kinds.length === wanted.size && kinds.every((kind) => wanted.has(kind));
+    });
+    return match
+      ? {
+          item: match,
+          extra: [...wanted]
+            .filter((kind) => !current.includes(kind))
+            .map((k) => EQUIPMENT[k].name),
+        }
+      : null;
+  }
+  // "É para um evento?" respondido "Não" quando o próprio relato fala em evento.
+  const NOT_EVENT = /\bnao\s+(?:e|sera|vai ser)\s+(?:(?:um|uma|para|pra|de)\s+)*eventos?\b/g;
+  const eventMismatch = (item, answers, texts) =>
+    !!item &&
+    (item.fields || []).some((field) => field.id === "evento") &&
+    answers.evento === "Não" &&
+    /\beventos?\b/.test(plain(texts.join("\n")).replace(NOT_EVENT, " "));
   desk.requestPolicy = {
+    fullerItem,
+    eventMismatch,
     selfHelpEligible,
     requestKind,
     dateValue,

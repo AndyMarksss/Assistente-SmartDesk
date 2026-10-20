@@ -114,3 +114,9 @@ Recebimento planejado: Apps Script cria planilha separada SmartDesk — Chamados
 - Origem: pedido do usuário para medir automaticamente as sessões, marcar participantes, perguntar a satisfação e montar o kit.
 - Decisões: métricas anônimas para todos os atendimentos (o código só aparece quando o link traz `?p=`), uma linha por atendimento atualizada a cada etapa (permite ver onde a pessoa desistiu sem depender de evento de saída da página); planilha de validação dentro da planilha do SmartDesk, para as métricas entrarem por fórmula; cenários e colunas da Matriz Mestre (CT-01 a CT-11 e aba 05_Resultados_Validacao).
 - Limite: as metas dos critérios de decisão ficam em branco, para o usuário definir antes dos testes.
+
+## 2026-10-20 — 0.12.3: conferências locais em vez de mudar a instrução da IA
+
+- Origem: atendimento do usuário em que "preciso de microfone também" não mudou o tipo e o evento ficou "Não" com o relato falando em evento.
+- Decisão: regras locais e testáveis no navegador (lista fechada de equipamentos do Audiovisual e a palavra "evento"), que perguntam e deixam a pessoa decidir. Não alterar a instrução da revisão da IA, já avaliada (0 alertas falsos em 57 caminhos), nem gastar cota em uma nova rodada.
+- Limite: cobre as combinações do Audiovisual; em outras áreas, pedidos acumulados continuam só na descrição.

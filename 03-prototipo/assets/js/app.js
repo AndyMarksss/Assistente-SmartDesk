@@ -330,6 +330,8 @@
       review: null,
       fromDescribe: false,
       selfHelp: "",
+      declined: [],
+      keepAnswered: false,
     };
     byId("new-chat").hidden = true;
     byId("mobile-new-chat").hidden = true;
@@ -893,13 +895,17 @@
   }
   function askField(index) {
     const fields = state.item.fields || [];
-    if (index >= fields.length) return afterFields();
+    if (index >= fields.length) {
+      state.keepAnswered = false;
+      return afterFields();
+    }
     const field = fields[index];
     if (field.when && state.answers[field.when.field] !== field.when.equals) {
       delete state.answers[field.id];
       return askField(index + 1);
     }
-    if (state.prefilled[field.id] && state.answers[field.id]) return askField(index + 1);
+    if ((state.prefilled[field.id] || state.keepAnswered) && state.answers[field.id])
+      return askField(index + 1);
     checkpoint(() => askField(index));
     const done = (value) => {
       state.answers[field.id] = value;
@@ -947,9 +953,14 @@
       );
     }
     message(copy.field(state.item, field));
+    // Ao corrigir o rascunho, a opção que a IA entendeu já vem destacada.
     if (field.type === "choice")
       return choose(
-        field.options.map((option) => ({ label: option, value: option })),
+        field.options.map((option) => ({
+          label: option,
+          value: option,
+          primary: option === state.answers[field.id],
+        })),
         done,
       );
     if (["date", "time"].includes(field.type))
@@ -1011,7 +1022,95 @@
   }
 
   // --- Revisão da IA: coerência, complemento e passos antes do envio -----------------------
+  // Conferências locais, antes da revisão da IA e depois de cada resposta a ela: o relato pede
+  // mais equipamentos do que o tipo escolhido, ou fala em evento com a resposta "Não".
+  function checkConsistency(resume) {
+    const texts = [state.description, ...state.followUps.map((entry) => entry.answer)],
+      allowed = desk.knowledgeBase.items.filter((item) =>
+        desk.classifier.isAllowed(item, state.sector),
+      ),
+      fuller = policy.fullerItem(state.item, texts, allowed);
+    if (fuller && !state.declined.includes(fuller.item.id)) {
+      offerFuller(fuller, resume);
+      return true;
+    }
+    if (
+      policy.eventMismatch(state.item, state.answers, texts) &&
+      !state.declined.includes("evento")
+    ) {
+      confirmEvent(resume);
+      return true;
+    }
+    return false;
+  }
+  // Depois de trocar o tipo ou confirmar o evento, só pergunta o que ainda falta. Não usa
+  // `prefilled`, que no resumo marca o que veio da IA.
+  function askMissingFields() {
+    state.keepAnswered = true;
+    if (state.description) state.fromDescribe = true;
+    askField(0);
+  }
+  function offerFuller({ item, extra }, resume) {
+    checkpoint(() => offerFuller({ item, extra }, resume));
+    message(
+      "Você também citou " +
+        extra.join(" e ") +
+        ". Para a equipe separar tudo, quer mudar o pedido para “" +
+        F.needLabel(item) +
+        "”?",
+    );
+    choose(
+      [
+        {
+          label: "Mudar para " + F.needLabel(item),
+          value: "switch",
+          icon: F.iconFor(item.need, item.area),
+          primary: true,
+        },
+        { label: "Manter " + F.needLabel(state.item), value: "keep", icon: "fa-check" },
+      ],
+      (value) => {
+        state.declined = [...state.declined, item.id];
+        if (value === "keep") return resume();
+        const kept = {
+          answers: { ...state.answers },
+          prefilled: { ...state.prefilled },
+          followUps: state.followUps,
+          intent: state.equipmentIntent,
+        };
+        selectItem(item, { answers: kept.answers, intent: kept.intent, prefilled: kept.prefilled });
+        state.followUps = kept.followUps;
+        message(
+          "Pronto, o pedido agora é " +
+            F.needLabel(item) +
+            ". O que você já respondeu continua valendo.",
+        );
+        askMissingFields();
+      },
+      "O PEDIDO ESTÁ COMPLETO?",
+    );
+  }
+  function confirmEvent(resume) {
+    checkpoint(() => confirmEvent(resume));
+    message(
+      "No seu relato aparece um evento, mas a resposta para “É para um evento?” foi “Não”. É para um evento?",
+    );
+    choose(
+      [
+        { label: "Sim, é para um evento", value: "Sim", icon: "fa-calendar-check", primary: true },
+        { label: "Não é um evento", value: "Não", icon: "fa-xmark" },
+      ],
+      (value) => {
+        state.declined = [...state.declined, "evento"];
+        if (value === "Não") return resume();
+        state.answers = { ...state.answers, evento: "Sim" };
+        askMissingFields();
+      },
+      "CONFIRME O EVENTO",
+    );
+  }
   async function reviewWithAI() {
+    if (checkConsistency(reviewWithAI)) return;
     const key = state.item.id + "|" + state.description + "|" + JSON.stringify(state.answers);
     if (state.review?.key === key) return afterReview();
     setAiStatus("busy");
@@ -1090,7 +1189,7 @@
             question,
             answer: answer === "__unknown" ? "Não soube informar." : answer.trim().slice(0, 400),
           });
-        offerTips();
+        if (!checkConsistency(offerTips)) offerTips();
       },
       400,
       null,

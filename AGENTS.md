@@ -133,3 +133,6 @@ O avatar das mensagens é SVG inline (`miniRobot` em `chat-view.js`), não mais 
 
 ## 0.12.2 — responsividade
 As linhas da cena de abertura são calculadas em `atmosphere.js` (`wire`) a partir da posição dos cartões e do círculo do robô; ao mexer no tamanho ou na posição deles pelo CSS, as linhas acompanham sozinhas — não voltar ao desenho fixo do `index.html`. Ajustes de tela ficam na seção 0.12.2 do `atmosphere.css` (celular deitado = altura até 500 px). Para conferir layout em vários tamanhos sem gastar cota da IA, o envio e o acompanhamento podem ser simulados no navegador trocando `SmartDesk.api.request`.
+
+## 0.12.3 — conferências locais do pedido
+`checkConsistency` (app.js) roda antes da revisão da IA e depois de cada resposta a ela, com as regras puras `fullerItem` e `eventMismatch` de `request-policy.js` (testadas em `experience.cjs`). Para pular campos já respondidos depois de trocar o tipo, use `keepAnswered`, nunca `prefilled` — `prefilled` marca no resumo o que veio da IA.

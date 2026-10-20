@@ -464,4 +464,12 @@ Próxima evidência: EVID-205.
 
 - EVID-222: [abertura-12-tamanhos](EVID-222_abertura-12-tamanhos.jpg) — Abertura da 0.12.2 nos 12 tamanhos da varredura (320×568 a 1920×1080, incluindo celular deitado e tablet), tema escuro: sem rolagem lateral, trilha em uma linha e cena encaixada.
 
-Próxima evidência: EVID-223.
+## 2026-10-20 — SmartDesk 0.12.3: conferências do pedido
+
+- EVID-223: [relato-microfone-nao-mudou-tipo](EVID-223_relato-microfone-nao-mudou-tipo.webp) — Atendimento do usuário no Pages 0.12.2 (dados fictícios): resposta "Não" para o evento e, à pergunta da IA sobre o local, "Não só caixa de som, preciso de microfone também"; o chat seguiu para o anexo sem rever o tipo do pedido.
+
+- EVID-224: [resumo-caixa-de-som-sem-microfone](EVID-224_resumo-caixa-de-som-sem-microfone.webp) — Resumo do mesmo atendimento: Audiovisual › Caixa de Som e "É para um evento?" Não, embora a descrição fale em evento e a resposta peça microfone.
+
+- EVID-225: [conferencias-pedido-0.12.3](EVID-225_conferencias-pedido-0.12.3.jpg) — O mesmo atendimento reproduzido na 0.12.3: "Sim" da IA destacado ao corrigir; confirmação do evento depois do "Não"; sugestão de mudar para Caixa de Som / Microfone; resumo com o tipo certo e sem ícone de IA nos dados respondidos pela pessoa.
+
+Próxima evidência: EVID-226.

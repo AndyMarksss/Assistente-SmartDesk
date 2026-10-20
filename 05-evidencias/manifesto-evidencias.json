@@ -1,8 +1,8 @@
 {
   "versao": 1,
   "projeto": "SmartDesk",
-  "atualizado_em": "2026-10-19",
-  "proximo_numero": 223,
+  "atualizado_em": "2026-10-20",
+  "proximo_numero": 226,
   "evidencias": [
     {
       "numero": "EVID-001",
@@ -2672,6 +2672,42 @@
       "data_inclusao": "2026-10-19",
       "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com envio ao Google desativado; envio e acompanhamento simulados no navegador",
       "sha256": "C692EEFC6CEC25BA0707AB8A87045873E8F19FDD9A9AC56BBC7A6C3123B52C04",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-223",
+      "arquivo": "EVID-223_relato-microfone-nao-mudou-tipo.webp",
+      "etapa": "SmartDesk 0.12.3 — conferências do pedido",
+      "descricao": "Atendimento do usuário no Pages 0.12.2 (dados fictícios): resposta \"Não\" para o evento e, à pergunta da IA sobre o local, \"Não só caixa de som, preciso de microfone também\"; o chat seguiu para o anexo sem rever o tipo do pedido.",
+      "data_aproximada": "2026-10-20",
+      "fundamento_data": "Captura do usuário em 2026-10-20 (relógio de outro print da mesma sequência: 08:17)",
+      "data_inclusao": "2026-10-20",
+      "origem": "Print enviado pelo usuário na conversa com o assistente",
+      "sha256": "E7695155C830FB343A20DE34921F7BAA05F27A9F52C6A49ECE92B700667EAA85",
+      "status": "registro do defeito (0.12.2)"
+    },
+    {
+      "numero": "EVID-224",
+      "arquivo": "EVID-224_resumo-caixa-de-som-sem-microfone.webp",
+      "etapa": "SmartDesk 0.12.3 — conferências do pedido",
+      "descricao": "Resumo do mesmo atendimento: Audiovisual › Caixa de Som e \"É para um evento?\" Não, embora a descrição fale em evento e a resposta peça microfone.",
+      "data_aproximada": "2026-10-20",
+      "fundamento_data": "Captura do usuário em 2026-10-20 (relógio de outro print da mesma sequência: 08:17)",
+      "data_inclusao": "2026-10-20",
+      "origem": "Print enviado pelo usuário na conversa com o assistente",
+      "sha256": "A3B1111E4D2A6F91F444EAB9A9A9BB9350DEC4C3098B7D28C92AB665C0BC9F77",
+      "status": "registro do defeito (0.12.2)"
+    },
+    {
+      "numero": "EVID-225",
+      "arquivo": "EVID-225_conferencias-pedido-0.12.3.jpg",
+      "etapa": "SmartDesk 0.12.3 — conferências do pedido",
+      "descricao": "O mesmo atendimento reproduzido na 0.12.3: \"Sim\" da IA destacado ao corrigir; confirmação do evento depois do \"Não\"; sugestão de mudar para Caixa de Som / Microfone; resumo com o tipo certo e sem ícone de IA nos dados respondidos pela pessoa.",
+      "data_aproximada": "2026-10-20",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-20",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com Gemini real e envio ao Google desativado",
+      "sha256": "0F4B09E5721DD0245102AE47EA6C66F282331FC5DB88FCA9B7F8FFA515FD5805",
       "status": "verificação técnica; não é validação com usuários"
     }
   ]

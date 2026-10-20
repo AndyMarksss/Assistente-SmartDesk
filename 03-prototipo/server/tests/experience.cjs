@@ -21,6 +21,33 @@ assert(!p.needsAuthorization({ need: "COMPUTADOR > Troca de Mouse" }, "Trocar mo
 assert(p.needsAuthorization({ need: "COMPUTADOR > Troca de Mouse" }, "", "purchase"));
 assert(p.needsAuthorization({ need: "Outros" }, "Quero um headset novo"));
 assert(!p.needsAuthorization({ need: "Não imprime" }, "Parou de imprimir ontem"));
+// 0.12.3 — conferências locais: equipamento a mais no relato e evento respondido "Não".
+vm.runInContext(fs.readFileSync(path.join(proto, "assets/js/knowledge-base.js"), "utf8"), ctx);
+const kbItems = ctx.window.SmartDesk.knowledgeBase.items,
+  av = (id) => kbItems.find((item) => item.id === id),
+  fuller = (id, texts) => {
+    const found = p.fullerItem(av(id), texts, kbItems);
+    return found ? found.item.id + " +" + found.extra.join(",") : "";
+  };
+assert.equal(
+  fuller("AV-001", [
+    "Teremos um evento na quinta, a palestrante solicitou o sistema de som",
+    "Não só caixa de som, preciso de microfone também",
+  ]),
+  "AV-002 +microfone",
+);
+assert.equal(fuller("AV-001", ["som e projetor no auditório, sem microfone"]), "AV-004 +projetor");
+assert.equal(
+  fuller("AV-006", ["projetor, caixa de som e microfone"]),
+  "AV-003 +caixa de som,microfone",
+);
+assert.equal(fuller("AV-001", ["sistema de som; não vamos precisar de microfone"]), "");
+assert.equal(fuller("AV-002", ["só a caixa de som, somente isso"]), "");
+assert.equal(fuller("AV-007", ["o cabo HDMI não passa som"]), "");
+assert(p.eventMismatch(av("AV-001"), { evento: "Não" }, ["Teremos um evento na quinta"]));
+assert(!p.eventMismatch(av("AV-001"), { evento: "Não" }, ["Não é um evento, é uma aula"]));
+assert(!p.eventMismatch(av("AV-001"), { evento: "Sim" }, ["Teremos um evento"]));
+assert(!p.eventMismatch(av("AV-001"), { evento: "Não" }, ["Aula de música na sala 3"]));
 const { createProvider } = require(path.join(proto, "server/ai-provider.cjs"));
 let release;
 const fake = createProvider({

@@ -314,3 +314,13 @@ Varredura automática (Edge sem janela) do chat inteiro — abertura, Como funci
 - **Textos pequenos:** a abertura chegava a 7–8 px no celular; selo, etiquetas, cena e rótulo da área de botões passaram a 9–10 px.
 - O painel de gestão não precisou de ajuste: sem rolagem lateral, sem elementos fora da tela e com o quadro em duas colunas no celular.
 - Apps Script republicado só para alinhar a versão (versão 17 da implantação). Verificação em verificacao-v0.12.2.md.
+
+## 0.12.3 — 2026-10-20
+
+Origem: prints do usuário de um atendimento no Pages. Relato: "Teremos um evento na quinta a noite (...) ela solicitou o sistema de som". A IA montou Audiovisual › Caixa de Som com evento "Sim"; o usuário escolheu Corrigir os dados, respondeu "Não" para o evento, respondeu à pergunta da IA com "Não só caixa de som, preciso de microfone também" e, depois, editou a descrição acrescentando o microfone. O chamado chegou ao resumo como **Caixa de Som** e com **"É para um evento?" Não**.
+
+- **Equipamento a mais:** nada conferia se a resposta à IA ou a descrição editada mudavam o pedido; a revisão da IA considera coerente qualquer relato que cite o item escolhido. Nova conferência local (`fullerItem` em `request-policy.js`): no Audiovisual, se o relato ou as respostas citam caixa de som, microfone ou projetor que o tipo escolhido não tem, o chat sugere o tipo que junta tudo ("Você também citou microfone… quer mudar o pedido para Caixa de Som / Microfone?"). Ignora menções negadas ("não vamos precisar de microfone"), nunca tira equipamento e não repete a sugestão recusada. Ao trocar, as respostas já dadas continuam valendo e só o que falta é perguntado.
+- **Evento contraditório:** em Corrigir os dados, a mensagem dizia "deixei os valores preenchidos", mas as perguntas de Sim/Não apareciam sem marcar o valor entendido. Agora a opção da IA vem destacada. E se o relato fala em evento e a resposta foi "Não" (`eventMismatch`), o chat confirma uma vez antes de seguir.
+- As conferências rodam antes da revisão da IA e depois de cada resposta a ela, sem gastar cota da IA.
+- "IA pronta para ajudar" no fim do print não era falha: o topo mostra "IA conectada" até 2 minutos depois da última resposta da IA e volta para "pronta" quando ela fica ociosa.
+- Apps Script republicado para alinhar a versão (as regras de `request-policy.js` também vão para o `PortalShared.gs`). Verificação em verificacao-v0.12.3.md.
