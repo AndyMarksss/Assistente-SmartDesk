@@ -208,9 +208,6 @@
   .journey-bar::after {
     transition: width 700ms var(--motion-ease);
   }
-  .support-scene {
-    transition: transform 260ms var(--motion-ease);
-  }
   .ripple {
     animation: ripple-out 620ms ease-out forwards;
   }
@@ -732,9 +729,6 @@
     animation: none !important;
     transition: none !important;
     scroll-behavior: auto !important;
-  }
-  :root[data-theme] .support-scene {
-    transform: none;
   }
   .ripple {
     display: none;

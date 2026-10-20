@@ -88,3 +88,6 @@ Responsividade revisada em 12 tamanhos de tela, do celular pequeno ao monitor gr
 
 ## 0.12.3
 Conferências do pedido: equipamento a mais citado no relato (sugere o tipo que junta tudo) e evento contraditório. Verificação em 03-prototipo/verificacao-v0.12.3.md.
+
+## 0.12.4
+O quadro da abertura não inclina mais com o mouse; só os olhos do robô acompanham. Verificação em 03-prototipo/verificacao-v0.12.4.md.

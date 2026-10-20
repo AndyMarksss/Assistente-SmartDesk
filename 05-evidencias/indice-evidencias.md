@@ -503,4 +503,12 @@ Próxima evidência: EVID-205.
 
 - EVID-225: [conferencias-pedido-0.12.3](EVID-225_conferencias-pedido-0.12.3.jpg) — O mesmo atendimento reproduzido na 0.12.3: "Sim" da IA destacado ao corrigir; confirmação do evento depois do "Não"; sugestão de mudar para Caixa de Som / Microfone; resumo com o tipo certo e sem ícone de IA nos dados respondidos pela pessoa.
 
-Próxima evidência: EVID-226.
+## 2026-10-20 — SmartDesk 0.12.4: quadro da abertura parado
+
+- EVID-226: [quadro-inclinado-mouse-1](EVID-226_quadro-inclinado-mouse-1.png) — Quadro da abertura inclinado em 3D enquanto o mouse passava por cima (0.12.3), enviado com o pedido de deixar o quadro parado.
+
+- EVID-227: [quadro-inclinado-mouse-2](EVID-227_quadro-inclinado-mouse-2.png) — Outra posição do mouse com o quadro da abertura inclinado no sentido oposto (0.12.3).
+
+- EVID-228: [quadro-parado-olhos-seguem](EVID-228_quadro-parado-olhos-seguem.png) — Na 0.12.4, com o mouse fora do quadro à esquerda: quadro reto, sem inclinação, e os olhos do robô voltados para o cursor.
+
+Próxima evidência: EVID-229.

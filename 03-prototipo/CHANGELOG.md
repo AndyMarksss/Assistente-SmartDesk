@@ -324,3 +324,11 @@ Origem: prints do usuário de um atendimento no Pages. Relato: "Teremos um event
 - As conferências rodam antes da revisão da IA e depois de cada resposta a ela, sem gastar cota da IA.
 - "IA pronta para ajudar" no fim do print não era falha: o topo mostra "IA conectada" até 2 minutos depois da última resposta da IA e volta para "pronta" quando ela fica ociosa.
 - Apps Script republicado para alinhar a versão (as regras de `request-policy.js` também vão para o `PortalShared.gs`). Verificação em verificacao-v0.12.3.md.
+
+## 0.12.4 — 2026-10-20
+
+Pedido do usuário (com prints): ao mexer o mouse, o quadro da abertura inclinava em 3D; ele quer o quadro parado e só o robô acompanhando.
+
+- Removida a inclinação do quadro: o cálculo de `--tilt-x`/`--tilt-y` em `atmosphere.js`, a rotação com perspectiva em `atmosphere.css` e as regras de transição e de movimento reduzido que só existiam para ela em `motion.css`.
+- Os olhos do robô continuam seguindo o cursor (0.11.1), e as linhas da cena continuam encaixadas nos cartões (0.12.2).
+- Apps Script republicado só para alinhar a versão. Verificação em verificacao-v0.12.4.md.

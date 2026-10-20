@@ -2,7 +2,7 @@
   "versao": 1,
   "projeto": "SmartDesk",
   "atualizado_em": "2026-10-20",
-  "proximo_numero": 226,
+  "proximo_numero": 229,
   "evidencias": [
     {
       "numero": "EVID-001",
@@ -2708,6 +2708,42 @@
       "data_inclusao": "2026-10-20",
       "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com Gemini real e envio ao Google desativado",
       "sha256": "0F4B09E5721DD0245102AE47EA6C66F282331FC5DB88FCA9B7F8FFA515FD5805",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-226",
+      "arquivo": "EVID-226_quadro-inclinado-mouse-1.png",
+      "etapa": "SmartDesk 0.12.4 — quadro da abertura parado",
+      "descricao": "Quadro da abertura inclinado em 3D enquanto o mouse passava por cima (0.12.3), enviado com o pedido de deixar o quadro parado.",
+      "data_aproximada": "2026-10-20",
+      "fundamento_data": "Captura do usuário em 2026-10-20",
+      "data_inclusao": "2026-10-20",
+      "origem": "Print enviado pelo usuário na conversa com o assistente",
+      "sha256": "7603EBF4A4A574251E2377E7419FDBB99CEC4DFC474CAD9FC68578B2C14D4DF6",
+      "status": "registro do pedido; estado anterior (0.12.3)"
+    },
+    {
+      "numero": "EVID-227",
+      "arquivo": "EVID-227_quadro-inclinado-mouse-2.png",
+      "etapa": "SmartDesk 0.12.4 — quadro da abertura parado",
+      "descricao": "Outra posição do mouse com o quadro da abertura inclinado no sentido oposto (0.12.3).",
+      "data_aproximada": "2026-10-20",
+      "fundamento_data": "Captura do usuário em 2026-10-20",
+      "data_inclusao": "2026-10-20",
+      "origem": "Print enviado pelo usuário na conversa com o assistente",
+      "sha256": "6C43783A7FE763C28273F79FD5D0DCC4898C13B74B6A6C79D2AE1154A082A39E",
+      "status": "registro do pedido; estado anterior (0.12.3)"
+    },
+    {
+      "numero": "EVID-228",
+      "arquivo": "EVID-228_quadro-parado-olhos-seguem.png",
+      "etapa": "SmartDesk 0.12.4 — quadro da abertura parado",
+      "descricao": "Na 0.12.4, com o mouse fora do quadro à esquerda: quadro reto, sem inclinação, e os olhos do robô voltados para o cursor.",
+      "data_aproximada": "2026-10-20",
+      "fundamento_data": "Captura do assistente nesta sessão",
+      "data_inclusao": "2026-10-20",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com envio ao Google desativado",
+      "sha256": "38616981D931ED5B5815784DFE9472ACACE14B93DA630C52254534029D9E66E0",
       "status": "verificação técnica; não é validação com usuários"
     }
   ]

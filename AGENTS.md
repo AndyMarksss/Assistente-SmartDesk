@@ -136,3 +136,6 @@ As linhas da cena de abertura são calculadas em `atmosphere.js` (`wire`) a part
 
 ## 0.12.3 — conferências locais do pedido
 `checkConsistency` (app.js) roda antes da revisão da IA e depois de cada resposta a ela, com as regras puras `fullerItem` e `eventMismatch` de `request-policy.js` (testadas em `experience.cjs`). Para pular campos já respondidos depois de trocar o tipo, use `keepAnswered`, nunca `prefilled` — `prefilled` marca no resumo o que veio da IA.
+
+## 0.12.4 — quadro da abertura parado
+O usuário não quer o quadro da abertura (`.support-scene`) se mexendo com o mouse: só os olhos do robô acompanham o cursor. Não reintroduzir inclinação, parallax ou deslocamento no quadro.

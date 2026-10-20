@@ -1,5 +1,6 @@
 "use strict";
-// Decorative light that follows the cursor, the robot's gaze, a gentle 3D tilt and a press ripple.
+// Decorative light that follows the cursor, the robot's gaze and a press ripple. The opening scene
+// itself stays still (0.12.4: the 3D tilt was removed at the user's request; only the eyes follow).
 // Mouse only; nothing here changes content, focus or the conversation state.
 (function () {
   const fine = matchMedia("(hover: hover) and (pointer: fine)"),
@@ -49,18 +50,6 @@
       );
     }
     look(event);
-    const scene = document.querySelector(".support-scene");
-    if (!scene || still.matches || !scene.offsetParent) return;
-    const box = scene.getBoundingClientRect(),
-      near =
-        event.clientX > box.left - 80 &&
-        event.clientX < box.right + 80 &&
-        event.clientY > box.top - 80 &&
-        event.clientY < box.bottom + 80,
-      x = near ? (event.clientX - box.left) / box.width - 0.5 : 0,
-      y = near ? (event.clientY - box.top) / box.height - 0.5 : 0;
-    scene.style.setProperty("--tilt-y", (x * 10).toFixed(2) + "deg");
-    scene.style.setProperty("--tilt-x", (-y * 8).toFixed(2) + "deg");
   }
   document.addEventListener(
     "pointermove",
@@ -98,7 +87,7 @@
   // Linhas da cena da abertura: o desenho fixo (380 × 280) só encaixava num formato de quadro.
   // Aqui elas são refeitas no tamanho real, saindo da borda de cada cartão até o círculo do
   // robô, para os sinais animados chegarem aos aparelhos em qualquer tela. Usa a posição de
-  // layout (offset), que ignora a inclinação 3D e a animação de entrada dos cartões.
+  // layout (offset), que ignora a animação de entrada dos cartões.
   const WIRES = [
     ["from-computer", "computer"],
     ["from-printer", "printer"],
