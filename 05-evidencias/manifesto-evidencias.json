@@ -2,7 +2,7 @@
   "versao": 1,
   "projeto": "SmartDesk",
   "atualizado_em": "2026-10-20",
-  "proximo_numero": 232,
+  "proximo_numero": 235,
   "evidencias": [
     {
       "numero": "EVID-001",
@@ -2780,6 +2780,42 @@
       "data_inclusao": "2026-10-20",
       "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com envio ao Google desativado",
       "sha256": "AB97200EC5CA68D42D444B451CDF04B31DA70593E8D277307B44A8A87FA87A46",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-232",
+      "arquivo": "EVID-232_barra-lateral-trilha-escuro.jpg",
+      "etapa": "SmartDesk 0.12.6 — barra lateral e luz do cursor",
+      "descricao": "Barra lateral 0.12.6 no tema escuro em três momentos: abertura (0 de 4, Solicitante destacado), depois do e-mail (2 de 4, linha até Setor) e com o caminho escolhido (4 de 4); dicas se revezando com os pontinhos.",
+      "data_aproximada": "2026-10-20",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-20",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com envio ao Google desativado",
+      "sha256": "C87691236C88E765EABC17FCA2A402D52B5C7587B3818F2832481696CCFB6080",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-233",
+      "arquivo": "EVID-233_barra-lateral-claro-e-1024.jpg",
+      "etapa": "SmartDesk 0.12.6 — barra lateral e luz do cursor",
+      "descricao": "Os mesmos três momentos no tema claro e, à direita, a barra em 1024×768 no tema escuro (3 de 4, dica oculta pela altura).",
+      "data_aproximada": "2026-10-20",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-20",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com envio ao Google desativado",
+      "sha256": "489B49D3758A974CE5F4B6493B73B3B5E9D6C8B4633BD8C2A84C999270AF4622",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-234",
+      "arquivo": "EVID-234_luz-cursor-menor.jpg",
+      "etapa": "SmartDesk 0.12.6 — barra lateral e luz do cursor",
+      "descricao": "Luz do cursor com 260 px de raio no meio da conversa (antes 520 px), atrás das mensagens e da rede do fundo.",
+      "data_aproximada": "2026-10-20",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-20",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com envio ao Google desativado",
+      "sha256": "EDD31DB5E16807AE6E5B7D4A95A11C46D860F741E917720373C4D328117563B1",
       "status": "verificação técnica; não é validação com usuários"
     }
   ]

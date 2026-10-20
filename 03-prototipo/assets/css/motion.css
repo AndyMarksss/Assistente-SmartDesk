@@ -640,6 +640,62 @@
       300% 50%;
   }
 }
+/* 0.12.6 — Barra lateral: a linha da trilha cresce até a etapa atual, o ícone da etapa atual
+   pulsa de leve, o que acabou de ser preenchido dá um pulinho, as dicas trocam com um fade e a
+   luz do fundo respira devagar. */
+@media (prefers-reduced-motion: no-preference) {
+  .context-steps::after {
+    transition: height 600ms var(--motion-ease);
+  }
+  .step-icon {
+    transition:
+      background 300ms ease,
+      border-color 300ms ease,
+      color 300ms ease,
+      box-shadow 300ms ease;
+  }
+  .context-step.is-filled .step-icon {
+    animation: stage-done 420ms var(--motion-ease);
+  }
+  .context-step.is-current .step-icon {
+    animation: step-pulse 2400ms ease-in-out infinite;
+  }
+  .tip-slide {
+    transform: translateY(6px);
+    transition:
+      opacity 500ms ease,
+      visibility 500ms,
+      transform 500ms var(--motion-ease);
+  }
+  .tip-slide.is-active {
+    transform: none;
+  }
+  .tip-dots span {
+    transition:
+      width 300ms var(--motion-ease),
+      background 300ms ease;
+  }
+  .sidebar::before {
+    animation: sidebar-breathe 12s ease-in-out infinite alternate;
+  }
+}
+@keyframes step-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 45%, transparent);
+  }
+  60% {
+    box-shadow: 0 0 0 7px transparent;
+  }
+}
+@keyframes sidebar-breathe {
+  from {
+    opacity: 0.65;
+  }
+  to {
+    opacity: 1;
+  }
+}
 /* 0.12.5 — Fundo do chat: luzes que passeiam devagar, pontos da rede que respiram, sinais que
    correm pelas linhas e ícones que flutuam. Ciclos longos e defasados, para dar vida sem
    chamar atenção; com movimento reduzido tudo fica parado (e os sinais, ocultos). */

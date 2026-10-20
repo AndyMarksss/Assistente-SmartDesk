@@ -149,4 +149,25 @@
       .forEach((node) => follow.observe(node));
     place();
   }
+  // Dicas da barra lateral (0.12.6): três dicas que se revezam a cada 9 s. Pausam com o mouse
+  // em cima; com movimento reduzido fica só a primeira.
+  const tip = document.querySelector(".sidebar-tip"),
+    slides = tip ? [...tip.querySelectorAll(".tip-slide")] : [],
+    dots = tip ? [...tip.querySelectorAll(".tip-dots span")] : [];
+  if (slides.length > 1) {
+    let index = 0,
+      paused = false;
+    const show = (next) => {
+      index = next;
+      slides.forEach((slide, i) => slide.classList.toggle("is-active", i === index));
+      dots.forEach((dot, i) => dot.classList.toggle("is-active", i === index));
+    };
+    show(0);
+    tip.addEventListener("pointerenter", () => (paused = true));
+    tip.addEventListener("pointerleave", () => (paused = false));
+    setInterval(() => {
+      if (paused || still.matches || document.hidden || !tip.offsetParent) return;
+      show((index + 1) % slides.length);
+    }, 9000);
+  }
 })();

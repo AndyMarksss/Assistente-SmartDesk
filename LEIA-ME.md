@@ -94,3 +94,6 @@ O quadro da abertura não inclina mais com o mouse; só os olhos do robô acompa
 
 ## 0.12.5
 Fundo do chat com rede de conexões, ícones de TI em contorno e luzes suaves, só atrás da conversa. Verificação em 03-prototipo/verificacao-v0.12.5.md.
+
+## 0.12.6
+Luz do cursor menor e barra lateral com trilha de progresso, dicas que se revezam e luz suave. Verificação em 03-prototipo/verificacao-v0.12.6.md.

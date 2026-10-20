@@ -1817,3 +1817,143 @@ body.is-dragging {
     display: none;
   }
 }
+
+/* 0.12.6 — Luz do cursor menor (círculo de 520 → 260 px), a pedido do usuário. */
+:root[data-theme] .chat-shell::after {
+  background: radial-gradient(
+    260px circle at var(--sx, 72%) var(--sy, -12%),
+    var(--spot),
+    transparent 65%
+  );
+}
+
+/* 0.12.6 — Barra lateral: luz suave no fundo, trilha de progresso do atendimento e dicas que
+   se revezam. */
+:root[data-theme] .sidebar {
+  isolation: isolate;
+}
+.sidebar::before {
+  content: "";
+  position: absolute;
+  left: -30%;
+  right: -30%;
+  bottom: -6%;
+  height: 58%;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      55% 45% at 30% 78%,
+      color-mix(in srgb, var(--accent) 20%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      45% 38% at 78% 100%,
+      color-mix(in srgb, var(--info) 15%, transparent),
+      transparent 70%
+    );
+}
+.context-count {
+  margin-left: 6px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-size: 10px;
+  letter-spacing: 0.3px;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 15%, transparent);
+}
+.sidebar .session-info .context-steps {
+  position: relative;
+  margin-top: 14px;
+  padding-left: 36px;
+  border-left: 0;
+}
+.context-steps::before,
+.context-steps::after {
+  content: "";
+  position: absolute;
+  left: 11px;
+  top: 7px;
+  width: 2px;
+  border-radius: 2px;
+}
+.context-steps::before {
+  height: var(--context-track, 0px);
+  background: var(--side-line);
+}
+.context-steps::after {
+  height: var(--context-fill, 0px);
+  background: linear-gradient(var(--accent), var(--info));
+}
+.sidebar .session-info .context-step dt {
+  position: relative;
+}
+.sidebar .session-info .context-step dt::before {
+  display: none;
+}
+.step-icon {
+  position: absolute;
+  z-index: 1;
+  left: -36px;
+  top: -5px;
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 10px;
+  color: var(--side-muted);
+  background: var(--side);
+  border: 1px solid var(--side-line);
+}
+.context-step.is-filled .step-icon {
+  color: var(--accent-ink);
+  background: var(--brand-gradient);
+  border-color: transparent;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 16%, transparent);
+}
+.context-step.is-current .step-icon {
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, var(--side));
+  border-color: var(--accent);
+}
+:root[data-theme] .sidebar .session-info .context-step:not(.is-filled) dd {
+  color: var(--side-muted);
+  font-style: italic;
+}
+:root[data-theme] .sidebar .session-info .context-step.is-filled dd {
+  color: var(--side-ink);
+  font-weight: 600;
+}
+.tip-slides {
+  display: grid;
+}
+.tip-slide {
+  grid-area: 1 / 1;
+  opacity: 0;
+  visibility: hidden;
+}
+.tip-slide.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+.tip-dots {
+  display: flex;
+  gap: 5px;
+  margin-top: 10px;
+}
+.tip-dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--info) 35%, transparent);
+}
+.tip-dots span.is-active {
+  width: 16px;
+  background: var(--info);
+}
+@media (forced-colors: active) {
+  .sidebar::before {
+    display: none;
+  }
+}

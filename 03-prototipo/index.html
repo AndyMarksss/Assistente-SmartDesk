@@ -49,27 +49,61 @@
           <span aria-hidden="true"><i class="fa-solid fa-plus"></i></span> Novo atendimento
         </button>
         <div class="session-info">
-          <div class="sidebar-section">SEU ATENDIMENTO</div>
-          <dl>
-            <dt>Solicitante</dt>
-            <dd id="context-name">Vamos nos conhecer</dd>
-            <dt>E-mail para contato</dt>
-            <dd id="context-email">Ainda não informado</dd>
-            <dt>Setor</dt>
-            <dd id="context-sector">Ainda não informado</dd>
-            <dt>Necessidade</dt>
-            <dd id="context-need">Vamos descobrir juntos</dd>
+          <div class="sidebar-section">
+            SEU ATENDIMENTO <span id="context-count" class="context-count">0 de 4</span>
+          </div>
+          <dl class="context-steps">
+            <div class="context-step" data-step="name">
+              <dt><i class="step-icon fa-solid fa-user" aria-hidden="true"></i>Solicitante</dt>
+              <dd id="context-name">Vamos nos conhecer</dd>
+            </div>
+            <div class="context-step" data-step="email">
+              <dt>
+                <i class="step-icon fa-solid fa-envelope" aria-hidden="true"></i>E-mail para contato
+              </dt>
+              <dd id="context-email">Ainda não informado</dd>
+            </div>
+            <div class="context-step" data-step="sector">
+              <dt><i class="step-icon fa-solid fa-building" aria-hidden="true"></i>Setor</dt>
+              <dd id="context-sector">Ainda não informado</dd>
+            </div>
+            <div class="context-step" data-step="need">
+              <dt>
+                <i class="step-icon fa-solid fa-screwdriver-wrench" aria-hidden="true"></i
+                >Necessidade
+              </dt>
+              <dd id="context-need">Vamos descobrir juntos</dd>
+            </div>
           </dl>
         </div>
-        <section class="sidebar-tip">
+        <section class="sidebar-tip" aria-label="Dicas">
           <span class="sidebar-tip-icon" aria-hidden="true"
             ><i class="fa-solid fa-lightbulb"></i
           ></span>
-          <h2>Sem complicação</h2>
-          <p>
-            Não precisa conhecer termos técnicos. Conte o que aconteceu com suas palavras; você pode
-            voltar e corrigir antes de enviar.
-          </p>
+          <div class="tip-slides">
+            <div class="tip-slide is-active">
+              <h2>Sem complicação</h2>
+              <p>
+                Não precisa conhecer termos técnicos. Conte o que aconteceu com suas palavras; você
+                pode voltar e corrigir antes de enviar.
+              </p>
+            </div>
+            <div class="tip-slide">
+              <h2>Uma pergunta por vez</h2>
+              <p>
+                Responda no seu ritmo. As opções aparecem embaixo da conversa e a digitação é
+                liberada quando precisa.
+              </p>
+            </div>
+            <div class="tip-slide">
+              <h2>Guarde o número</h2>
+              <p>
+                Depois de enviar, use “Acompanhar um chamado” com o número e o e-mail para ver em
+                que etapa ele está.
+              </p>
+            </div>
+          </div>
+          <div class="tip-dots" aria-hidden="true"><span></span><span></span><span></span></div>
         </section>
         <a class="panel-link" href="admin.html"
           ><i class="fa-solid fa-table-columns" aria-hidden="true"></i> Painel de gestão</a
@@ -405,7 +439,7 @@
             Abra o SmartDesk pelo servidor local para usar a IA e enviar chamados.
           </p>
           <footer class="project-version" aria-label="Versão do projeto">
-            SmartDesk · v<span data-project-version>0.12.5</span>
+            SmartDesk · v<span data-project-version>0.12.6</span>
           </footer>
         </section>
       </main>

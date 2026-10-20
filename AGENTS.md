@@ -142,3 +142,6 @@ O usuário não quer o quadro da abertura (`.support-scene`) se mexendo com o mo
 
 ## 0.12.5 — fundo do chat
 Elementos decorativos do fundo ficam em `.chat-backdrop`, posicionada por `atmosphere.js` só na faixa da conversa (z-index 0, abaixo do conteúdo, sem cliques). Manter discreto: o usuário pediu vida no fundo, mas já recusou luz por cima dos cards e o quadro da abertura se mexendo.
+
+## 0.12.6 — barra lateral e luz do cursor
+A trilha "Seu atendimento" é atualizada em `context()` (classes `is-filled`/`is-current` em `.context-step`) e a linha por `placeContextLine()`. Luz do cursor: círculo de 260 px — o usuário achou 520 px grande demais.

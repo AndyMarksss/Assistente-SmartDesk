@@ -1,0 +1,844 @@
+/* Single motion layer. Decorative effects finish; loading stays active until confirmed. */
+:root {
+  --motion-fast: 160ms;
+  --motion-enter: 280ms;
+  --motion-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.chart-bar {
+  transform-origin: left;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .message {
+    animation: message-arrive var(--motion-enter) var(--motion-ease);
+  }
+  .message.user {
+    animation-name: reply-arrive;
+  }
+  #choices .choice {
+    animation: choice-arrive var(--motion-enter) var(--motion-ease) var(--option-delay, 0ms)
+      backwards;
+  }
+  .welcome,
+  .admin-header {
+    animation: surface-enter 400ms var(--motion-ease);
+  }
+  .scene-device {
+    animation: surface-enter 400ms var(--motion-ease) backwards;
+  }
+  .scene-device.network {
+    animation-delay: 60ms;
+  }
+  .scene-device.printer {
+    animation-delay: 120ms;
+  }
+  .scene-device.audio {
+    animation-delay: 180ms;
+  }
+  .desk-mascot img {
+    animation: mascot-float 2200ms ease-in-out 2;
+  }
+  /* 0.11 — robô vivo: flutua, pisca, acende a antena e acena; sinais chegam em ciclo. */
+  .robot-core {
+    animation: robot-bob 3600ms ease-in-out infinite;
+  }
+  .robot-eye {
+    animation: robot-blink 5200ms ease-in-out infinite;
+  }
+  /* Os olhos alcançam o cursor com um pequeno atraso, como um olhar de verdade. */
+  .robot-gaze {
+    transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  :root[data-theme] .chat-shell::after {
+    transition: opacity 320ms ease;
+  }
+  .robot-light {
+    animation: robot-glow 2400ms ease-in-out infinite;
+  }
+  .robot-ear.right {
+    animation: robot-wave 7000ms ease-in-out 1200ms infinite;
+  }
+  .robot-sparkle {
+    animation: robot-twinkle 3000ms ease-in-out infinite;
+  }
+  .ai-busy .assistant-avatar img,
+  .ai-busy .message.thinking .message-avatar .mini-robot {
+    animation: robot-think 900ms ease-in-out infinite;
+  }
+  .assistant-avatar img {
+    animation: robot-breathe 4200ms ease-in-out infinite;
+  }
+  .connection-signal {
+    animation: connection-loop 6000ms linear infinite both;
+  }
+  .connection-signal.from-printer {
+    animation-delay: 1100ms;
+  }
+  .connection-signal.from-network {
+    animation-delay: 2200ms;
+  }
+  .connection-signal.from-audio {
+    animation-delay: 3300ms;
+  }
+  .journey-bar .journey li.done .journey-dot {
+    animation: stage-done 320ms var(--motion-ease);
+  }
+  .journey-bar .journey li[aria-current] {
+    animation: surface-enter var(--motion-enter) var(--motion-ease);
+  }
+  .is-loading .fa-check {
+    animation: busy-pulse 850ms ease-in-out infinite;
+  }
+  .typing span {
+    animation: typing-pulse 900ms ease-in-out infinite;
+  }
+  .typing span:nth-child(2) {
+    animation-delay: 120ms;
+  }
+  .typing span:nth-child(3) {
+    animation-delay: 240ms;
+  }
+  .sending-spinner,
+  .is-loading .fa-rotate {
+    animation: sending-turn 850ms linear infinite;
+  }
+  .summary-card,
+  .submission-error,
+  .sending-status,
+  .structured-field:not(:empty),
+  #attachment-panel:not([hidden]),
+  dialog[open] {
+    animation: surface-enter var(--motion-enter) var(--motion-ease);
+  }
+  .message.sent .message-avatar {
+    animation: stage-done 400ms var(--motion-ease);
+  }
+  .metrics article {
+    animation: surface-enter 360ms var(--motion-ease);
+  }
+  .chart-bar {
+    animation: chart-grow 400ms var(--motion-ease);
+  }
+  .ticket-card.motion-enter {
+    animation: surface-enter var(--motion-enter) var(--motion-ease) var(--option-delay, 0ms)
+      backwards;
+  }
+  dialog[open]::backdrop {
+    animation: backdrop-enter 180ms ease-out;
+  }
+  .choice,
+  .send-button,
+  .ticket-card {
+    transition:
+      background var(--motion-fast),
+      border-color var(--motion-fast),
+      transform var(--motion-fast) var(--motion-ease);
+  }
+  .journey-dot,
+  .composer,
+  .theme-toggle {
+    transition:
+      background var(--motion-fast),
+      border-color var(--motion-fast),
+      color var(--motion-fast);
+  }
+  .area-choice::after {
+    transition: transform var(--motion-fast);
+  }
+}
+/* 0.10 — Atmosfera: luz ambiente lenta, vidro reagindo ao cursor e respostas da IA. */
+@media (prefers-reduced-motion: no-preference) {
+  .workspace::before,
+  .admin-layout::before {
+    animation: aurora-drift 46s ease-in-out infinite alternate;
+  }
+  .message.assistant:not(.thinking) .message-bubble {
+    animation: bubble-focus 460ms var(--motion-ease) both;
+  }
+  .message.user .message-bubble {
+    animation: reply-pop 320ms var(--motion-ease) both;
+  }
+  .message.thinking .message-bubble {
+    animation: thinking-sweep 1500ms linear infinite;
+  }
+  .message.thinking .message-bubble::before {
+    animation: sending-turn 800ms linear infinite;
+  }
+  .message:not(.user):not(.typing):last-child .message-avatar {
+    animation: avatar-glow 1400ms ease-out 1;
+  }
+  .tip-list li {
+    animation: choice-arrive 360ms var(--motion-ease) backwards;
+  }
+  .tip-list li:nth-child(2) {
+    animation-delay: 90ms;
+  }
+  .tip-list li:nth-child(3) {
+    animation-delay: 180ms;
+  }
+  .summary-card dl > div {
+    animation: surface-enter 320ms var(--motion-ease) backwards;
+  }
+  .summary-card dl > div:nth-child(2) {
+    animation-delay: 50ms;
+  }
+  .summary-card dl > div:nth-child(3) {
+    animation-delay: 100ms;
+  }
+  .summary-card dl > div:nth-child(n + 4) {
+    animation-delay: 150ms;
+  }
+  .receipt-card {
+    animation: receipt-pop 620ms var(--motion-ease) both;
+  }
+  .receipt-number {
+    animation: number-rise 700ms var(--motion-ease) 150ms both;
+  }
+  .message.sent .message-avatar::after {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border-radius: inherit;
+    border: 2px solid var(--accent);
+    pointer-events: none;
+    animation: ring-burst 900ms ease-out 2 both;
+  }
+  .welcome h2 span {
+    animation: gradient-shift 5s ease-in-out 2 alternate;
+  }
+  .journey-bar::after {
+    transition: width 700ms var(--motion-ease);
+  }
+  .ripple {
+    animation: ripple-out 620ms ease-out forwards;
+  }
+  .choice::before,
+  .panel-link::before,
+  .new-conversation::before,
+  .metrics article::before,
+  .ticket-card::before {
+    transition: opacity 220ms ease;
+  }
+  .panel-link,
+  .new-conversation,
+  .scene-device,
+  .metrics article,
+  .receipt-copy {
+    transition:
+      transform var(--motion-fast) var(--motion-ease),
+      box-shadow 220ms ease,
+      border-color var(--motion-fast),
+      background var(--motion-fast);
+  }
+  .choice {
+    transition:
+      background var(--motion-fast),
+      border-color var(--motion-fast),
+      box-shadow 220ms ease,
+      transform var(--motion-fast) var(--motion-ease);
+  }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .panel-link:hover,
+  .new-conversation:hover,
+  .metrics article:hover,
+  .receipt-copy:hover {
+    transform: translateY(-2px);
+  }
+  .scene-device:hover {
+    transform: translateY(-3px) scale(1.04);
+  }
+  .choice.ai-choice:hover:not(:disabled) {
+    animation: ai-border 2600ms linear infinite;
+  }
+  .choice:hover:not(:disabled) > .fa-solid {
+    transform: scale(1.12);
+    transition: transform var(--motion-fast) var(--motion-ease);
+  }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .choice:hover:not(:disabled),
+  .send-button:hover:not(:disabled),
+  .ticket-card:hover {
+    transform: translateY(-2px);
+  }
+  .area-choice:hover::after {
+    transform: translateX(3px) rotate(45deg);
+  }
+}
+.choice:active:not(:disabled),
+.send-button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+.choice.primary::after {
+  display: none;
+} /* Remove the old sweeping highlight/layout animation. */
+@keyframes message-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes reply-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(6px) translateX(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes choice-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes surface-enter {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes mascot-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(2deg);
+  }
+}
+@keyframes connection-flow {
+  0% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+  5% {
+    opacity: 0.9;
+  }
+  90% {
+    opacity: 0.9;
+  }
+  100% {
+    stroke-dashoffset: -100;
+    opacity: 0;
+  }
+}
+@keyframes stage-done {
+  0% {
+    transform: scale(0.85);
+  }
+  65% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes typing-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: none;
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+}
+@keyframes sending-turn {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes chart-grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes backdrop-enter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/* 0.11 — painel: esqueleto, cartão que acabou de mudar de etapa e aviso. */
+@media (prefers-reduced-motion: no-preference) {
+  .skeleton-line,
+  .is-skeleton .metrics strong,
+  .is-skeleton #queue-insight,
+  .is-skeleton #selfhelp-insight {
+    animation: skeleton-sweep 1300ms ease-in-out infinite;
+  }
+  .ticket-card.just-moved {
+    animation: card-landed 900ms var(--motion-ease) 1;
+  }
+  /* O cartão-fantasma acompanha o cursor sem atraso. */
+  .ticket-card.drag-ghost {
+    transition: none;
+    animation: none;
+  }
+  .toast {
+    transition:
+      opacity 220ms ease,
+      translate 260ms var(--motion-ease);
+  }
+  .selfhelp-bar {
+    transition: width 700ms var(--motion-ease);
+  }
+  .kanban-column {
+    transition:
+      background 160ms ease,
+      outline-color 160ms ease;
+  }
+}
+@keyframes skeleton-sweep {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -100% 0;
+  }
+}
+@keyframes card-landed {
+  0% {
+    transform: scale(0.96);
+  }
+  40% {
+    transform: scale(1.03);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--tone, var(--accent)) 45%, transparent);
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes robot-bob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-1.5deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(1.5deg);
+  }
+}
+@keyframes robot-blink {
+  0%,
+  44%,
+  50%,
+  100% {
+    transform: scaleY(1);
+  }
+  47% {
+    transform: scaleY(0.12);
+  }
+}
+@keyframes robot-glow {
+  0%,
+  100% {
+    fill: #d7c7ff;
+    filter: drop-shadow(0 0 0 transparent);
+  }
+  50% {
+    fill: #f4c4ff;
+    filter: drop-shadow(0 0 6px #c79bff);
+  }
+}
+@keyframes robot-wave {
+  0%,
+  70%,
+  100% {
+    transform: rotate(0deg);
+  }
+  76% {
+    transform: rotate(-18deg);
+  }
+  82% {
+    transform: rotate(10deg);
+  }
+  88% {
+    transform: rotate(-12deg);
+  }
+}
+@keyframes robot-twinkle {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes robot-think {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px) rotate(-4deg);
+  }
+}
+@keyframes robot-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+@keyframes connection-loop {
+  0% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+  2% {
+    opacity: 0.9;
+  }
+  17% {
+    stroke-dashoffset: -100;
+    opacity: 0.9;
+  }
+  19%,
+  100% {
+    stroke-dashoffset: -100;
+    opacity: 0;
+  }
+}
+@keyframes aurora-drift {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translate3d(3vmax, -2vmax, 0) rotate(8deg) scale(1.06);
+  }
+  100% {
+    transform: translate3d(-3vmax, 2vmax, 0) rotate(-6deg) scale(1.02);
+  }
+}
+@keyframes bubble-focus {
+  from {
+    opacity: 0;
+    filter: blur(6px);
+    transform: translateY(8px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+}
+@keyframes reply-pop {
+  0% {
+    opacity: 0;
+    transform: translateY(6px) scale(0.96);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.015);
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes thinking-sweep {
+  from {
+    background-position: 130% 0;
+  }
+  to {
+    background-position: -130% 0;
+  }
+}
+@keyframes avatar-glow {
+  0% {
+    box-shadow: 0 0 0 0 var(--glow);
+  }
+  100% {
+    box-shadow: 0 0 0 12px transparent;
+  }
+}
+@keyframes receipt-pop {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.96);
+    filter: blur(4px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.01);
+    filter: none;
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes number-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+    letter-spacing: 4px;
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes ring-burst {
+  from {
+    opacity: 0.9;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.7);
+  }
+}
+@keyframes gradient-shift {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 100% 50%;
+  }
+}
+@keyframes ripple-out {
+  from {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(28);
+  }
+}
+@keyframes ai-border {
+  from {
+    background-position:
+      0 0,
+      0% 50%;
+  }
+  to {
+    background-position:
+      0 0,
+      300% 50%;
+  }
+}
+/* 0.12.5 — Fundo do chat: luzes que passeiam devagar, pontos da rede que respiram, sinais que
+   correm pelas linhas e ícones que flutuam. Ciclos longos e defasados, para dar vida sem
+   chamar atenção; com movimento reduzido tudo fica parado (e os sinais, ocultos). */
+@media (prefers-reduced-motion: no-preference) {
+  .backdrop-glow.one {
+    animation: backdrop-drift 38s ease-in-out infinite alternate;
+  }
+  .backdrop-glow.two {
+    animation: backdrop-drift 46s ease-in-out -14s infinite alternate-reverse;
+  }
+  .backdrop-net .net-nodes circle {
+    animation: backdrop-twinkle 5600ms ease-in-out infinite;
+  }
+  .backdrop-net .net-nodes circle:nth-child(3n + 2) {
+    animation-delay: -1900ms;
+  }
+  .backdrop-net .net-nodes circle:nth-child(3n) {
+    animation-delay: -3700ms;
+  }
+  .backdrop-net .net-signal {
+    animation: backdrop-signal 11s linear infinite both;
+  }
+  .backdrop-net .net-signal.two {
+    animation-delay: 2700ms;
+  }
+  .backdrop-net .net-signal.three {
+    animation-delay: 5500ms;
+  }
+  .backdrop-net .net-signal.four {
+    animation-delay: 8200ms;
+  }
+  .chat-backdrop .glyph {
+    animation: backdrop-float 13s ease-in-out infinite;
+  }
+  .chat-backdrop .glyph:nth-of-type(2n) {
+    animation-duration: 16s;
+    animation-delay: -5s;
+  }
+  .chat-backdrop .glyph:nth-of-type(3n) {
+    animation-delay: -9s;
+  }
+}
+@keyframes backdrop-drift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(14%, 10%, 0) scale(1.12);
+  }
+}
+@keyframes backdrop-twinkle {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.35);
+  }
+}
+@keyframes backdrop-signal {
+  0% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+  3% {
+    opacity: 0.85;
+  }
+  32% {
+    stroke-dashoffset: -100;
+    opacity: 0.85;
+  }
+  35%,
+  100% {
+    stroke-dashoffset: -100;
+    opacity: 0;
+  }
+}
+@keyframes backdrop-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-4deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(4deg);
+  }
+}
+/* 0.12.1 — Robozinho das mensagens. Só o da mensagem mais recente se mexe: chega com um pulinho
+   e mexe a boca enquanto "fala", depois pisca e acende a antena. Na primeira mensagem acena;
+   enquanto a IA pensa, procura a resposta com os olhos. */
+@media (prefers-reduced-motion: no-preference) {
+  .message.assistant:last-child .mini-core {
+    animation: mini-hop 560ms var(--motion-ease) 1;
+  }
+  .message.assistant:not(.thinking):last-child .mini-mouth {
+    animation: mini-talk 240ms ease-in-out 200ms 4;
+  }
+  .message.assistant:last-child .mini-eye {
+    animation: robot-blink 4600ms ease-in-out 600ms infinite;
+  }
+  .message.assistant:last-child .mini-light {
+    animation: mini-glow 2400ms ease-in-out infinite;
+  }
+  .message.assistant:first-child .mini-ear.right {
+    animation: mini-wave 1200ms ease-in-out 700ms 1;
+  }
+  .message.thinking .mini-gaze {
+    animation: mini-scan 1800ms ease-in-out infinite;
+  }
+}
+@keyframes mini-hop {
+  0%,
+  100% {
+    transform: none;
+  }
+  35% {
+    transform: translateY(-16px) rotate(-4deg);
+  }
+  65% {
+    transform: translateY(2px) rotate(2deg);
+  }
+}
+@keyframes mini-talk {
+  0%,
+  100% {
+    transform: none;
+  }
+  50% {
+    transform: scale(0.92, 1.7);
+  }
+}
+@keyframes mini-glow {
+  0%,
+  100% {
+    fill: #d7c7ff;
+    filter: drop-shadow(0 0 0 transparent);
+  }
+  50% {
+    fill: #f4c4ff;
+    filter: drop-shadow(0 0 14px #c79bff);
+  }
+}
+@keyframes mini-wave {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(-24deg);
+  }
+  45% {
+    transform: rotate(14deg);
+  }
+  70% {
+    transform: rotate(-16deg);
+  }
+}
+@keyframes mini-scan {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-9px);
+  }
+  75% {
+    transform: translateX(9px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+  .ripple {
+    display: none;
+  }
+  .choice:active:not(:disabled),
+  .choice:hover:not(:disabled),
+  .send-button:hover:not(:disabled),
+  .send-button:active:not(:disabled),
+  .ticket-card:hover {
+    transform: none;
+  }
+  .area-choice:hover::after {
+    transform: rotate(45deg);
+  }
+}
+
+@keyframes busy-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}

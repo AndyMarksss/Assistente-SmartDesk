@@ -342,3 +342,14 @@ Pedido do usuário: o fundo do chat estava "meio morto"; colocar elementos no fu
 - Bem transparente (linhas a 22% da cor de destaque, ícones a 20%) e com ciclos longos e defasados (5,6 s a 46 s). No tablet e no celular ficam só quatro ícones, menores e encostados nas bordas, e a rede mais apagada. Some com o teclado aberto no celular e em cores forçadas; com movimento reduzido fica parada.
 - Animações em `motion.css`; estilos em `atmosphere.css` (seção 0.12.5).
 - Apps Script republicado só para alinhar a versão. Verificação em verificacao-v0.12.5.md.
+
+## 0.12.6 — 2026-10-20
+
+Pedido do usuário: "a luz do cursor está muito grande" e "melhore a barra lateral também".
+
+- **Luz do cursor:** o círculo que acompanha o mouse no fundo do chat passou de 520 para 260 px de raio. O brilho fixo do alto não mudou.
+- **Seu atendimento como trilha de progresso:** cada item ganhou um ícone (pessoa, envelope, prédio, ferramentas); o que já foi informado fica preenchido com o gradiente da marca, o próximo a responder fica destacado e pulsa de leve, e uma linha cresce do primeiro ícone até a etapa atual. O título mostra a contagem ("2 de 4"). Valores ainda não informados ficam em itálico e mais apagados. A linha é calculada em pixels (`placeContextLine` em app.js), porque e-mails e necessidades longos ocupam duas linhas.
+- **Dicas que se revezam:** o cartão "Sem complicação" agora alterna três dicas a cada 9 s ("Sem complicação", "Uma pergunta por vez", "Guarde o número"), com pontinhos indicando qual está à vista. Pausa com o mouse em cima; com movimento reduzido fica só a primeira.
+- **Fundo da barra:** luz suave roxa e azul na parte de baixo, que respira devagar, no mesmo estilo do fundo do chat.
+- Animações em `motion.css`; estilos em `atmosphere.css` (seção 0.12.6).
+- Apps Script republicado só para alinhar a versão. Verificação em verificacao-v0.12.6.md.

@@ -488,4 +488,12 @@ Próxima evidência: EVID-205.
 
 - EVID-231: [fundo-chat-celulares](EVID-231_fundo-chat-celulares.jpg) — Etapa da data em 320, 360, 390 e 430 px de largura: quatro ícones discretos nas bordas e a rede mais apagada; em 320×568 o campo está em foco e o fundo some, como previsto com o teclado aberto.
 
-Próxima evidência: EVID-232.
+## 2026-10-20 — SmartDesk 0.12.6: barra lateral e luz do cursor
+
+- EVID-232: [barra-lateral-trilha-escuro](EVID-232_barra-lateral-trilha-escuro.jpg) — Barra lateral 0.12.6 no tema escuro em três momentos: abertura (0 de 4, Solicitante destacado), depois do e-mail (2 de 4, linha até Setor) e com o caminho escolhido (4 de 4); dicas se revezando com os pontinhos.
+
+- EVID-233: [barra-lateral-claro-e-1024](EVID-233_barra-lateral-claro-e-1024.jpg) — Os mesmos três momentos no tema claro e, à direita, a barra em 1024×768 no tema escuro (3 de 4, dica oculta pela altura).
+
+- EVID-234: [luz-cursor-menor](EVID-234_luz-cursor-menor.jpg) — Luz do cursor com 260 px de raio no meio da conversa (antes 520 px), atrás das mensagens e da rede do fundo.
+
+Próxima evidência: EVID-235.

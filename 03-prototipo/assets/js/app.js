@@ -121,7 +121,40 @@
       ? F.needLabel(state.item)
       : state.area || "Vamos descobrir juntos";
     byId("edit-context").hidden = !state.sector;
+    // Trilha da barra lateral: o que já foi informado fica preenchido e o próximo, destacado.
+    const filled = {
+      name: !!state.name,
+      email: !!state.email,
+      sector: !!state.sector,
+      need: !!state.item,
+    };
+    const steps = [...document.querySelectorAll(".context-step")];
+    let current = false,
+      done = 0;
+    steps.forEach((step) => {
+      const ok = filled[step.dataset.step];
+      step.classList.toggle("is-filled", ok);
+      step.classList.toggle("is-current", !ok && !current);
+      if (!ok) current = true;
+      else done++;
+    });
+    placeContextLine();
+    const count = byId("context-count");
+    if (count) count.textContent = done + " de " + steps.length;
   }
+  // A linha preenchida vai do primeiro ícone até o da etapa atual (ou o último, se completo).
+  // Em pixels, porque um e-mail ou necessidade longos ocupam duas linhas.
+  function placeContextLine() {
+    const steps = [...document.querySelectorAll(".context-step")];
+    if (!steps.length) return;
+    const done = steps.filter((step) => step.classList.contains("is-filled")).length,
+      target = steps[Math.min(done, steps.length - 1)],
+      list = steps[0].parentElement;
+    list.style.setProperty("--context-fill", target.offsetTop - steps[0].offsetTop + "px");
+    list.style.setProperty("--context-track", steps.at(-1).offsetTop - steps[0].offsetTop + "px");
+  }
+  if (window.ResizeObserver && document.querySelector(".context-steps"))
+    new ResizeObserver(placeContextLine).observe(document.querySelector(".context-steps"));
   // Caixa de texto cresce até 3 linhas visíveis; depois rola por dentro.
   function autoGrow() {
     input.style.height = "auto";
