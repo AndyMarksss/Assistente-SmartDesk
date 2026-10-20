@@ -2,7 +2,7 @@
   "versao": 1,
   "projeto": "SmartDesk",
   "atualizado_em": "2026-10-20",
-  "proximo_numero": 235,
+  "proximo_numero": 238,
   "evidencias": [
     {
       "numero": "EVID-001",
@@ -2816,6 +2816,42 @@
       "data_inclusao": "2026-10-20",
       "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com envio ao Google desativado",
       "sha256": "EDD31DB5E16807AE6E5B7D4A95A11C46D860F741E917720373C4D328117563B1",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-235",
+      "arquivo": "EVID-235_barra-lateral-rolando.png",
+      "etapa": "SmartDesk 0.12.7 — barra lateral sem rolagem",
+      "descricao": "Barra lateral da 0.12.6 com barras de rolagem vertical e horizontal, enviada com o pedido de corrigir.",
+      "data_aproximada": "2026-10-20",
+      "fundamento_data": "Captura do usuário em 2026-10-20",
+      "data_inclusao": "2026-10-20",
+      "origem": "Print enviado pelo usuário na conversa com o assistente",
+      "sha256": "F0216B52E049613A082CF1794359571E05FD02E92E30A80326543A12C050E2E0",
+      "status": "registro do defeito (0.12.6)"
+    },
+    {
+      "numero": "EVID-236",
+      "arquivo": "EVID-236_barra-lateral-rolando-tela-cheia.webp",
+      "etapa": "SmartDesk 0.12.7 — barra lateral sem rolagem",
+      "descricao": "A mesma rolagem na tela inteira do usuário (1864×958 aprox.), ao lado do chat.",
+      "data_aproximada": "2026-10-20",
+      "fundamento_data": "Captura do usuário em 2026-10-20",
+      "data_inclusao": "2026-10-20",
+      "origem": "Print enviado pelo usuário na conversa com o assistente",
+      "sha256": "80DEA87B18BF8B38A32A0F1AF2C5FD277DE5E94DFF952EFE3F321FC38F446C46",
+      "status": "registro do defeito (0.12.6)"
+    },
+    {
+      "numero": "EVID-237",
+      "arquivo": "EVID-237_barra-lateral-sem-rolagem.jpg",
+      "etapa": "SmartDesk 0.12.7 — barra lateral sem rolagem",
+      "descricao": "Barra lateral 0.12.7 sem rolagem: 1864×958 nos temas escuro e claro (trilha, dica e O que a TI atende), 1920×1080 (com a rede no espaço livre), 1366×768 (sem a dica) e 1024×768 (barra estreita).",
+      "data_aproximada": "2026-10-20",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-20",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com envio ao Google desativado",
+      "sha256": "409031F6E5EBF681325BD810B198F0BB6C319EDF64F4FCA36E5357A12E4F6E9F",
       "status": "verificação técnica; não é validação com usuários"
     }
   ]

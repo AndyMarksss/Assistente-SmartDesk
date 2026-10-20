@@ -145,3 +145,6 @@ Elementos decorativos do fundo ficam em `.chat-backdrop`, posicionada por `atmos
 
 ## 0.12.6 — barra lateral e luz do cursor
 A trilha "Seu atendimento" é atualizada em `context()` (classes `is-filled`/`is-current` em `.context-step`) e a linha por `placeContextLine()`. Luz do cursor: círculo de 260 px — o usuário achou 520 px grande demais.
+
+## 0.12.7 — barra lateral sem rolagem
+A barra lateral nunca pode rolar (o usuário reclamou). Nada decorativo pode passar das bordas dela; itens novos devem ser opcionais e entrar na lista de `fitSidebar` (app.js), que os tira quando não cabem. Medir sempre a rolagem de dentro dos elementos, não só a da página: a varredura em `--hide-scrollbars` não mostra barras de rolagem nas fotos.

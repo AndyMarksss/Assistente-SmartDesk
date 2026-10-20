@@ -353,3 +353,14 @@ Pedido do usuário: "a luz do cursor está muito grande" e "melhore a barra late
 - **Fundo da barra:** luz suave roxa e azul na parte de baixo, que respira devagar, no mesmo estilo do fundo do chat.
 - Animações em `motion.css`; estilos em `atmosphere.css` (seção 0.12.6).
 - Apps Script republicado só para alinhar a versão. Verificação em verificacao-v0.12.6.md.
+
+## 0.12.7 — 2026-10-20
+
+Pedido do usuário (com prints): "eu disse para melhorar, e não aumentar" — a barra lateral da 0.12.6 rolava para os lados e para baixo; ajustar e acrescentar elementos que façam sentido e combinem com a página.
+
+- **Causa da rolagem:** a luz do pé da barra (0.12.6) passava 30% das bordas e 6% do fundo; como a barra rola quando o conteúdo não cabe, ganhou rolagem lateral (60–87 px) e vertical (41–74 px) em todos os tamanhos de computador. A varredura da 0.12.2 não pegou porque media só a rolagem da página, não a de dentro dos elementos — agora mede (`rolagemLateralInterna` e `rolagemBarra`).
+- **Correção:** a luz fica dentro dos limites e a barra nunca rola para os lados. Os itens da barra não encolhem mais (antes a dica era espremida e cortava o texto quando faltava espaço) e uma proteção (`fitSidebar` em app.js) tira primeiro "O que a TI atende" e depois a dica se o conteúdo não couber — por exemplo, com um e-mail longo que quebra linha.
+- **Alturas medidas:** a dica só aparece acima de 860 px de altura (em 821–860 ela já não cabia); com altura até 560 px (celular grande deitado, 932×430) a barra sai e fica o layout do celular, com o botão "+" de novo atendimento no topo.
+- **"O que a TI atende":** as quatro áreas com os ícones das opções do chat (Audiovisual, Impressora, Google, TI), em duas colunas. Aparece onde cabe com folga — com a dica, a partir de 955 px de altura; sem ela, de 740 a 860 px — e não aparece na barra estreita (telas até 1100 px de largura).
+- **Rede no pé da barra:** o mesmo desenho do fundo do chat, com pontos que respiram e um sinal correndo; ocupa só o espaço livre entre o Painel de gestão e o rodapé e some quando não sobra espaço.
+- Apps Script republicado só para alinhar a versão. Verificação em verificacao-v0.12.7.md.

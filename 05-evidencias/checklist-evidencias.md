@@ -496,4 +496,12 @@ Próxima evidência: EVID-205.
 
 - EVID-234: [luz-cursor-menor](EVID-234_luz-cursor-menor.jpg) — Luz do cursor com 260 px de raio no meio da conversa (antes 520 px), atrás das mensagens e da rede do fundo.
 
-Próxima evidência: EVID-235.
+## 2026-10-20 — SmartDesk 0.12.7: barra lateral sem rolagem
+
+- EVID-235: [barra-lateral-rolando](EVID-235_barra-lateral-rolando.png) — Barra lateral da 0.12.6 com barras de rolagem vertical e horizontal, enviada com o pedido de corrigir.
+
+- EVID-236: [barra-lateral-rolando-tela-cheia](EVID-236_barra-lateral-rolando-tela-cheia.webp) — A mesma rolagem na tela inteira do usuário (1864×958 aprox.), ao lado do chat.
+
+- EVID-237: [barra-lateral-sem-rolagem](EVID-237_barra-lateral-sem-rolagem.jpg) — Barra lateral 0.12.7 sem rolagem: 1864×958 nos temas escuro e claro (trilha, dica e O que a TI atende), 1920×1080 (com a rede no espaço livre), 1366×768 (sem a dica) e 1024×768 (barra estreita).
+
+Próxima evidência: EVID-238.

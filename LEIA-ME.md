@@ -97,3 +97,6 @@ Fundo do chat com rede de conexões, ícones de TI em contorno e luzes suaves, s
 
 ## 0.12.6
 Luz do cursor menor e barra lateral com trilha de progresso, dicas que se revezam e luz suave. Verificação em 03-prototipo/verificacao-v0.12.6.md.
+
+## 0.12.7
+Barra lateral sem rolagem em nenhum tamanho, com "O que a TI atende" e uma pequena rede no espaço livre. Verificação em 03-prototipo/verificacao-v0.12.7.md.

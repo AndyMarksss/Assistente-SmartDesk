@@ -678,6 +678,16 @@
   .sidebar::before {
     animation: sidebar-breathe 12s ease-in-out infinite alternate;
   }
+  /* 0.12.7 — rede do pé da barra: pontos respiram e um sinal percorre a linha. */
+  .sidebar-net .net-nodes circle {
+    animation: backdrop-twinkle 5600ms ease-in-out infinite;
+  }
+  .sidebar-net .net-nodes circle:nth-child(2n) {
+    animation-delay: -2600ms;
+  }
+  .sidebar-net .net-signal {
+    animation: backdrop-signal 12s linear 1500ms infinite both;
+  }
 }
 @keyframes step-pulse {
   0%,

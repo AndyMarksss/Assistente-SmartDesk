@@ -152,9 +152,27 @@
       list = steps[0].parentElement;
     list.style.setProperty("--context-fill", target.offsetTop - steps[0].offsetTop + "px");
     list.style.setProperty("--context-track", steps.at(-1).offsetTop - steps[0].offsetTop + "px");
+    fitSidebar();
   }
-  if (window.ResizeObserver && document.querySelector(".context-steps"))
-    new ResizeObserver(placeContextLine).observe(document.querySelector(".context-steps"));
+  // A barra lateral nunca rola: se um e-mail ou uma necessidade longos ocuparem mais linhas e o
+  // conteúdo não couber, saem primeiro "O que a TI atende" e depois a dica.
+  function fitSidebar() {
+    const side = document.querySelector(".sidebar");
+    if (!side || !side.offsetParent) return;
+    const optional = [".sidebar-areas", ".sidebar-tip"]
+      .map((selector) => side.querySelector(selector))
+      .filter(Boolean);
+    optional.forEach((node) => node.classList.remove("is-squeezed"));
+    for (const node of optional) {
+      if (side.scrollHeight <= side.clientHeight + 1) break;
+      node.classList.add("is-squeezed");
+    }
+  }
+  if (window.ResizeObserver && document.querySelector(".context-steps")) {
+    const watch = new ResizeObserver(placeContextLine);
+    watch.observe(document.querySelector(".context-steps"));
+    watch.observe(document.querySelector(".sidebar"));
+  }
   // Caixa de texto cresce até 3 linhas visíveis; depois rola por dentro.
   function autoGrow() {
     input.style.height = "auto";
