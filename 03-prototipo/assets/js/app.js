@@ -164,7 +164,7 @@
       .filter(Boolean);
     optional.forEach((node) => node.classList.remove("is-squeezed"));
     for (const node of optional) {
-      if (side.scrollHeight <= side.clientHeight + 1) break;
+      if (side.scrollHeight <= side.clientHeight) break;
       node.classList.add("is-squeezed");
     }
   }

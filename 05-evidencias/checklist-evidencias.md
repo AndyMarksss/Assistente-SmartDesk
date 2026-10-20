@@ -504,4 +504,16 @@ Próxima evidência: EVID-205.
 
 - EVID-237: [barra-lateral-sem-rolagem](EVID-237_barra-lateral-sem-rolagem.jpg) — Barra lateral 0.12.7 sem rolagem: 1864×958 nos temas escuro e claro (trilha, dica e O que a TI atende), 1920×1080 (com a rede no espaço livre), 1366×768 (sem a dica) e 1024×768 (barra estreita).
 
-Próxima evidência: EVID-238.
+## 2026-10-20 — SmartDesk 0.12.8: tema claro e lista de áreas
+
+- EVID-238: [tema-claro-abertura-antes-depois](EVID-238_tema-claro-abertura-antes-depois.jpg) — Abertura no tema claro, 1440×900: na 0.12.7 fundo cinza-azulado e névoa lilás/rosa; na 0.12.8 fundo quase branco, painéis brancos e linhas do fundo mais discretas.
+
+- EVID-239: [tema-claro-conversa-antes-depois](EVID-239_tema-claro-conversa-antes-depois.jpg) — Conversa no tema claro, antes e depois: balões da pessoa em lilás, balões do assistente brancos, barra lateral e área de botões brancas.
+
+- EVID-240: [o-que-a-ti-atende-lista](EVID-240_o-que-a-ti-atende-lista.jpg) — "O que a TI atende" como lista informativa (ícone, área e descrição curta, sem caixa de botão) em 1864×958 e 1366×768, temas escuro e claro.
+
+- EVID-241: [areas-pareciam-botoes](EVID-241_areas-pareciam-botoes.png) — Print do usuário: "O que a TI atende" da 0.12.7 com itens em caixas, parecendo botões.
+
+- EVID-242: [tema-claro-antes-usuario](EVID-242_tema-claro-antes-usuario.webp) — Print do usuário do tema claro da 0.12.7 na tela inteira, enviado com o pedido de melhorar as cores.
+
+Próxima evidência: EVID-243.

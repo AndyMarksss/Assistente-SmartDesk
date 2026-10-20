@@ -148,3 +148,6 @@ A trilha "Seu atendimento" é atualizada em `context()` (classes `is-filled`/`is
 
 ## 0.12.7 — barra lateral sem rolagem
 A barra lateral nunca pode rolar (o usuário reclamou). Nada decorativo pode passar das bordas dela; itens novos devem ser opcionais e entrar na lista de `fitSidebar` (app.js), que os tira quando não cabem. Medir sempre a rolagem de dentro dos elementos, não só a da página: a varredura em `--hide-scrollbars` não mostra barras de rolagem nas fotos.
+
+## 0.12.8 — tema claro e lista de áreas
+Tokens do tema claro redefinidos no fim do `atmosphere.css` (`:root[data-theme="light"]`); ao mudar cores, conferir o contraste dos pares do `contraste-v0.8.10.json`. "O que a TI atende" é informativo: não dar aparência de botão (caixa, borda, fundo) ao que não é clicável.

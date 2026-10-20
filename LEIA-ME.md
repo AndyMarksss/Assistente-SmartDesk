@@ -100,3 +100,6 @@ Luz do cursor menor e barra lateral com trilha de progresso, dicas que se reveza
 
 ## 0.12.7
 Barra lateral sem rolagem em nenhum tamanho, com "O que a TI atende" e uma pequena rede no espaço livre. Verificação em 03-prototipo/verificacao-v0.12.7.md.
+
+## 0.12.8
+Tema claro com cores limpas e "O que a TI atende" como lista informativa. Verificação em 03-prototipo/verificacao-v0.12.8.md.

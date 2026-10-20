@@ -364,3 +364,12 @@ Pedido do usuário (com prints): "eu disse para melhorar, e não aumentar" — a
 - **"O que a TI atende":** as quatro áreas com os ícones das opções do chat (Audiovisual, Impressora, Google, TI), em duas colunas. Aparece onde cabe com folga — com a dica, a partir de 955 px de altura; sem ela, de 740 a 860 px — e não aparece na barra estreita (telas até 1100 px de largura).
 - **Rede no pé da barra:** o mesmo desenho do fundo do chat, com pontos que respiram e um sinal correndo; ocupa só o espaço livre entre o Painel de gestão e o rodapé e some quando não sobra espaço.
 - Apps Script republicado só para alinhar a versão. Verificação em verificacao-v0.12.7.md.
+
+## 0.12.8 — 2026-10-20
+
+Pedido do usuário (com prints): "O que a TI atende" parecia botões e induzia a clicar; adicionar elementos; no geral, melhorar as cores do tema claro.
+
+- **"O que a TI atende" como lista informativa:** sem caixa, borda ou fundo; cada linha tem o ícone, o nome da área e uma descrição curta (Audiovisual · som e projetor; Impressora · papel e toner; Google · e-mail e Drive; TI · computador e internet). Continua aparecendo só onde cabe; a proteção da barra (sem tolerância de 1 px agora) a retira se o conteúdo não couber.
+- **Tema claro:** antes o fundo da página era cinza-azulado (#c9d4e3), o do chat outro cinza parecido (#e0e7f0) e uma névoa colorida a 42% com rosa deixava tudo lavado. Agora: fundo #eef1f8 com névoa suave a 26% (lilás e azul, sem rosa), barra lateral, topo, área de botões e balões do assistente brancos, balões da pessoa lilás (#ebe5ff, texto #2f1f6b), texto principal #1b2233, secundário #56607a, linhas #dce1eb, azul de informação #245d96, e as linhas do fundo do chat mais discretas no claro. O tema escuro não mudou.
+- **Contraste (WCAG) da paleta clara:** todos os pares de texto do relatório da 0.8.10 passam (de 5,3:1 a 15,9:1); a borda das opções ficou em 3,2:1 (mínimo 3:1).
+- Apps Script republicado só para alinhar a versão. Verificação em verificacao-v0.12.8.md.

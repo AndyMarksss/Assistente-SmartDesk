@@ -2,7 +2,7 @@
   "versao": 1,
   "projeto": "SmartDesk",
   "atualizado_em": "2026-10-20",
-  "proximo_numero": 238,
+  "proximo_numero": 243,
   "evidencias": [
     {
       "numero": "EVID-001",
@@ -2853,6 +2853,66 @@
       "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com envio ao Google desativado",
       "sha256": "409031F6E5EBF681325BD810B198F0BB6C319EDF64F4FCA36E5357A12E4F6E9F",
       "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-238",
+      "arquivo": "EVID-238_tema-claro-abertura-antes-depois.jpg",
+      "etapa": "SmartDesk 0.12.8 — tema claro e lista de áreas",
+      "descricao": "Abertura no tema claro, 1440×900: na 0.12.7 fundo cinza-azulado e névoa lilás/rosa; na 0.12.8 fundo quase branco, painéis brancos e linhas do fundo mais discretas.",
+      "data_aproximada": "2026-10-20",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-20",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com envio ao Google desativado",
+      "sha256": "586306EFCB15E485758E539619553C6AB3EEF9D7A35D3B02B05A8A03C3C5C4CF",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-239",
+      "arquivo": "EVID-239_tema-claro-conversa-antes-depois.jpg",
+      "etapa": "SmartDesk 0.12.8 — tema claro e lista de áreas",
+      "descricao": "Conversa no tema claro, antes e depois: balões da pessoa em lilás, balões do assistente brancos, barra lateral e área de botões brancas.",
+      "data_aproximada": "2026-10-20",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-20",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com envio ao Google desativado",
+      "sha256": "05ECB825E46EE9396C02D39D547C26194C17F3375580552E64EB57B3606F09A9",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-240",
+      "arquivo": "EVID-240_o-que-a-ti-atende-lista.jpg",
+      "etapa": "SmartDesk 0.12.8 — tema claro e lista de áreas",
+      "descricao": "\"O que a TI atende\" como lista informativa (ícone, área e descrição curta, sem caixa de botão) em 1864×958 e 1366×768, temas escuro e claro.",
+      "data_aproximada": "2026-10-20",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-20",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com envio ao Google desativado",
+      "sha256": "8E5B0E4EF074DDFDB59D12BABF5C5551332D7E7AB1B0B53721A984AAA76653A3",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-241",
+      "arquivo": "EVID-241_areas-pareciam-botoes.png",
+      "etapa": "SmartDesk 0.12.8 — tema claro e lista de áreas",
+      "descricao": "Print do usuário: \"O que a TI atende\" da 0.12.7 com itens em caixas, parecendo botões.",
+      "data_aproximada": "2026-10-20",
+      "fundamento_data": "Captura do usuário em 2026-10-20",
+      "data_inclusao": "2026-10-20",
+      "origem": "Print enviado pelo usuário na conversa com o assistente",
+      "sha256": "E623839688A9352821501AEA444B22DCB2FE0547DEEC2E62E3CAA5CBEC3330F5",
+      "status": "registro do pedido; estado anterior (0.12.7)"
+    },
+    {
+      "numero": "EVID-242",
+      "arquivo": "EVID-242_tema-claro-antes-usuario.webp",
+      "etapa": "SmartDesk 0.12.8 — tema claro e lista de áreas",
+      "descricao": "Print do usuário do tema claro da 0.12.7 na tela inteira, enviado com o pedido de melhorar as cores.",
+      "data_aproximada": "2026-10-20",
+      "fundamento_data": "Captura do usuário em 2026-10-20",
+      "data_inclusao": "2026-10-20",
+      "origem": "Print enviado pelo usuário na conversa com o assistente",
+      "sha256": "4D2C586C153C5576E92FE65A8DD06B7A0D79D1CA8B22181C8000C309D849106A",
+      "status": "registro do pedido; estado anterior (0.12.7)"
     }
   ]
 }

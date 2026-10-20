@@ -1,0 +1,5 @@
+# Verificação 0.8.7
+
+Assistente ilustrado vetorial próprio na abertura, órbitas e luzes discretas no cenário, vidro no cabeçalho e resposta, avatares maiores e cartão de ajuda. Quatro áreas em cartões com ícones e seta decorativa; quatro colunas desktop e duas mobile. Entradas curtas de mensagens e opções, retorno em hover/toque, flutuação do assistente, rotação do aro e transição de ✓. Botão para pausar efeitos, preferência salva localmente; movimento reduzido desativa animações decorativas e entradas.
+
+152 verificações de integração passaram. Interface inspecionada nos dois temas em 1366×900 e escuro em 390×844. Nomes de animação calculados conferidos no navegador; pause resultou em animation-name:none para assistente e órbita, e reativação restabeleceu os efeitos. Cartões chegam a opacity:1; preenchimento backwards permite hover após entrada. Cenário usa pointer-events:none e aria-hidden. Sem overflow lateral no mobile; setas não entram nos nomes acessíveis. Regra de movimento reduzido conferida no código, sem simulação de preferência do sistema. Não houve envio Google; teclado virtual real não retestado.
