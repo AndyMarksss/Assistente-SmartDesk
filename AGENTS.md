@@ -139,3 +139,6 @@ As linhas da cena de abertura são calculadas em `atmosphere.js` (`wire`) a part
 
 ## 0.12.4 — quadro da abertura parado
 O usuário não quer o quadro da abertura (`.support-scene`) se mexendo com o mouse: só os olhos do robô acompanham o cursor. Não reintroduzir inclinação, parallax ou deslocamento no quadro.
+
+## 0.12.5 — fundo do chat
+Elementos decorativos do fundo ficam em `.chat-backdrop`, posicionada por `atmosphere.js` só na faixa da conversa (z-index 0, abaixo do conteúdo, sem cliques). Manter discreto: o usuário pediu vida no fundo, mas já recusou luz por cima dos cards e o quadro da abertura se mexendo.

@@ -91,3 +91,6 @@ Conferências do pedido: equipamento a mais citado no relato (sugere o tipo que 
 
 ## 0.12.4
 O quadro da abertura não inclina mais com o mouse; só os olhos do robô acompanham. Verificação em 03-prototipo/verificacao-v0.12.4.md.
+
+## 0.12.5
+Fundo do chat com rede de conexões, ícones de TI em contorno e luzes suaves, só atrás da conversa. Verificação em 03-prototipo/verificacao-v0.12.5.md.

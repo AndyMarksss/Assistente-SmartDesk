@@ -332,3 +332,13 @@ Pedido do usuário (com prints): ao mexer o mouse, o quadro da abertura inclinav
 - Removida a inclinação do quadro: o cálculo de `--tilt-x`/`--tilt-y` em `atmosphere.js`, a rotação com perspectiva em `atmosphere.css` e as regras de transição e de movimento reduzido que só existiam para ela em `motion.css`.
 - Os olhos do robô continuam seguindo o cursor (0.11.1), e as linhas da cena continuam encaixadas nos cartões (0.12.2).
 - Apps Script republicado só para alinhar a versão. Verificação em verificacao-v0.12.4.md.
+
+## 0.12.5 — 2026-10-20
+
+Pedido do usuário: o fundo do chat estava "meio morto"; colocar elementos no fundo.
+
+- Nova camada `.chat-backdrop` (index.html), no tema da marca ("Você conta. A gente conecta."): uma rede de conexões em linhas finas com pontos que respiram e quatro sinais correndo pelas linhas, oito ícones de TI em contorno (notebook, Wi-Fi, impressora, fone, conversa, engrenagem, escudo e nuvem) flutuando nas laterais e duas luzes suaves que passeiam devagar.
+- Fica só na faixa da conversa: `atmosphere.js` acompanha a posição e a altura dela, então nada passa por trás do topo, das etapas ou da área de botões. Está abaixo das mensagens e não recebe cliques.
+- Bem transparente (linhas a 22% da cor de destaque, ícones a 20%) e com ciclos longos e defasados (5,6 s a 46 s). No tablet e no celular ficam só quatro ícones, menores e encostados nas bordas, e a rede mais apagada. Some com o teclado aberto no celular e em cores forçadas; com movimento reduzido fica parada.
+- Animações em `motion.css`; estilos em `atmosphere.css` (seção 0.12.5).
+- Apps Script republicado só para alinhar a versão. Verificação em verificacao-v0.12.5.md.

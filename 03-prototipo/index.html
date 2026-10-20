@@ -85,6 +85,44 @@
           <div class="ambient-glow"></div>
           <div class="ambient-glow secondary"></div>
         </div>
+        <div class="chat-backdrop" aria-hidden="true">
+          <span class="backdrop-glow one"></span><span class="backdrop-glow two"></span>
+          <svg class="backdrop-net" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice">
+            <path
+              class="net-line"
+              d="M40 80L150 150L90 270L200 360L70 470L180 540M150 150L330 70M200 360L420 250M960 90L850 160L920 280L800 370L940 470L830 540M850 160L670 70M800 370L580 330M330 70L500 40L670 70M420 250L580 330M180 540L360 560M830 540L640 560"
+            />
+            <path class="net-signal one" pathLength="100" d="M40 80L150 150L90 270L200 360" />
+            <path class="net-signal two" pathLength="100" d="M960 90L850 160L920 280L800 370" />
+            <path class="net-signal three" pathLength="100" d="M330 70L500 40L670 70" />
+            <path class="net-signal four" pathLength="100" d="M200 360L420 250L580 330L800 370" />
+            <g class="net-nodes">
+              <circle cx="40" cy="80" r="3.5" />
+              <circle cx="150" cy="150" r="5" />
+              <circle cx="90" cy="270" r="3.5" />
+              <circle cx="200" cy="360" r="5" />
+              <circle cx="70" cy="470" r="3.5" />
+              <circle cx="180" cy="540" r="3.5" />
+              <circle cx="960" cy="90" r="3.5" />
+              <circle cx="850" cy="160" r="5" />
+              <circle cx="920" cy="280" r="3.5" />
+              <circle cx="800" cy="370" r="5" />
+              <circle cx="940" cy="470" r="3.5" />
+              <circle cx="830" cy="540" r="3.5" />
+              <circle cx="330" cy="70" r="3.5" />
+              <circle cx="500" cy="40" r="5" />
+              <circle cx="670" cy="70" r="3.5" />
+              <circle cx="420" cy="250" r="3.5" />
+              <circle cx="580" cy="330" r="3.5" />
+              <circle cx="360" cy="560" r="3.5" />
+              <circle cx="640" cy="560" r="3.5" />
+            </g>
+          </svg>
+          <i class="glyph fa-solid fa-laptop"></i><i class="glyph fa-solid fa-wifi"></i
+          ><i class="glyph fa-solid fa-print"></i><i class="glyph fa-solid fa-headphones"></i
+          ><i class="glyph fa-solid fa-comment-dots"></i><i class="glyph fa-solid fa-gear"></i
+          ><i class="glyph fa-solid fa-shield-halved"></i><i class="glyph fa-solid fa-cloud"></i>
+        </div>
         <header class="chat-header">
           <div class="assistant-identity">
             <span class="assistant-avatar" aria-hidden="true"
@@ -367,7 +405,7 @@
             Abra o SmartDesk pelo servidor local para usar a IA e enviar chamados.
           </p>
           <footer class="project-version" aria-label="Versão do projeto">
-            SmartDesk · v<span data-project-version>0.12.4</span>
+            SmartDesk · v<span data-project-version>0.12.5</span>
           </footer>
         </section>
       </main>

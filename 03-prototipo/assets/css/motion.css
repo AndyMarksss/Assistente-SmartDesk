@@ -640,6 +640,94 @@
       300% 50%;
   }
 }
+/* 0.12.5 — Fundo do chat: luzes que passeiam devagar, pontos da rede que respiram, sinais que
+   correm pelas linhas e ícones que flutuam. Ciclos longos e defasados, para dar vida sem
+   chamar atenção; com movimento reduzido tudo fica parado (e os sinais, ocultos). */
+@media (prefers-reduced-motion: no-preference) {
+  .backdrop-glow.one {
+    animation: backdrop-drift 38s ease-in-out infinite alternate;
+  }
+  .backdrop-glow.two {
+    animation: backdrop-drift 46s ease-in-out -14s infinite alternate-reverse;
+  }
+  .backdrop-net .net-nodes circle {
+    animation: backdrop-twinkle 5600ms ease-in-out infinite;
+  }
+  .backdrop-net .net-nodes circle:nth-child(3n + 2) {
+    animation-delay: -1900ms;
+  }
+  .backdrop-net .net-nodes circle:nth-child(3n) {
+    animation-delay: -3700ms;
+  }
+  .backdrop-net .net-signal {
+    animation: backdrop-signal 11s linear infinite both;
+  }
+  .backdrop-net .net-signal.two {
+    animation-delay: 2700ms;
+  }
+  .backdrop-net .net-signal.three {
+    animation-delay: 5500ms;
+  }
+  .backdrop-net .net-signal.four {
+    animation-delay: 8200ms;
+  }
+  .chat-backdrop .glyph {
+    animation: backdrop-float 13s ease-in-out infinite;
+  }
+  .chat-backdrop .glyph:nth-of-type(2n) {
+    animation-duration: 16s;
+    animation-delay: -5s;
+  }
+  .chat-backdrop .glyph:nth-of-type(3n) {
+    animation-delay: -9s;
+  }
+}
+@keyframes backdrop-drift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(14%, 10%, 0) scale(1.12);
+  }
+}
+@keyframes backdrop-twinkle {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.35);
+  }
+}
+@keyframes backdrop-signal {
+  0% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+  3% {
+    opacity: 0.85;
+  }
+  32% {
+    stroke-dashoffset: -100;
+    opacity: 0.85;
+  }
+  35%,
+  100% {
+    stroke-dashoffset: -100;
+    opacity: 0;
+  }
+}
+@keyframes backdrop-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-4deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(4deg);
+  }
+}
 /* 0.12.1 — Robozinho das mensagens. Só o da mensagem mais recente se mexe: chega com um pulinho
    e mexe a boca enquanto "fala", depois pisca e acende a antena. Na primeira mensagem acena;
    enquanto a IA pensa, procura a resposta com os olhos. */

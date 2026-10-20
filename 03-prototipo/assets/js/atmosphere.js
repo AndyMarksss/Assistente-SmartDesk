@@ -133,4 +133,20 @@
     observer.observe(scene);
     scene.querySelectorAll(".scene-device, .scene-halo").forEach((node) => observer.observe(node));
   }
+  // Fundo do chat (0.12.5): ocupa só a faixa da conversa, sem passar por trás do topo, das
+  // etapas e da área de botões, que mudam de altura conforme a etapa e a tela.
+  const backdrop = document.querySelector(".chat-backdrop"),
+    conversation = document.getElementById("conversation");
+  if (backdrop && conversation && window.ResizeObserver) {
+    const place = () => {
+      backdrop.style.top = conversation.offsetTop + "px";
+      backdrop.style.bottom = "auto";
+      backdrop.style.height = conversation.offsetHeight + "px";
+    };
+    const follow = new ResizeObserver(place);
+    [conversation, document.querySelector(".chat-header"), document.querySelector(".journey-bar")]
+      .filter(Boolean)
+      .forEach((node) => follow.observe(node));
+    place();
+  }
 })();

@@ -2,7 +2,7 @@
   "versao": 1,
   "projeto": "SmartDesk",
   "atualizado_em": "2026-10-20",
-  "proximo_numero": 229,
+  "proximo_numero": 232,
   "evidencias": [
     {
       "numero": "EVID-001",
@@ -2744,6 +2744,42 @@
       "data_inclusao": "2026-10-20",
       "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com envio ao Google desativado",
       "sha256": "38616981D931ED5B5815784DFE9472ACACE14B93DA630C52254534029D9E66E0",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-229",
+      "arquivo": "EVID-229_fundo-chat-escuro-1440.jpg",
+      "etapa": "SmartDesk 0.12.5 — fundo do chat",
+      "descricao": "Chat 0.12.5 em 1440×900, tema escuro, na escolha da área: rede de conexões, ícones de TI em contorno e luzes no fundo da conversa, atrás das mensagens; topo, etapas e área de botões sem os elementos.",
+      "data_aproximada": "2026-10-20",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-20",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com envio ao Google desativado",
+      "sha256": "163B4E32922CA5DD00C38DD8DE7ADC9F671A68A64704A5706CB31FD922C26837",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-230",
+      "arquivo": "EVID-230_fundo-chat-claro.jpg",
+      "etapa": "SmartDesk 0.12.5 — fundo do chat",
+      "descricao": "O mesmo fundo no tema claro, ampliado no computador (à esquerda) e no celular de 390×844 (à direita).",
+      "data_aproximada": "2026-10-20",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-20",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com envio ao Google desativado",
+      "sha256": "F5B0B07A37E54AC3A10C707289D582C113A0FF5CBD14BEACD7CD99F88E951C75",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-231",
+      "arquivo": "EVID-231_fundo-chat-celulares.jpg",
+      "etapa": "SmartDesk 0.12.5 — fundo do chat",
+      "descricao": "Etapa da data em 320, 360, 390 e 430 px de largura: quatro ícones discretos nas bordas e a rede mais apagada; em 320×568 o campo está em foco e o fundo some, como previsto com o teclado aberto.",
+      "data_aproximada": "2026-10-20",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-20",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com envio ao Google desativado",
+      "sha256": "AB97200EC5CA68D42D444B451CDF04B31DA70593E8D277307B44A8A87FA87A46",
       "status": "verificação técnica; não é validação com usuários"
     }
   ]

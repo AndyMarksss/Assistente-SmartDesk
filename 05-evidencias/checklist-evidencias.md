@@ -480,4 +480,12 @@ Próxima evidência: EVID-205.
 
 - EVID-228: [quadro-parado-olhos-seguem](EVID-228_quadro-parado-olhos-seguem.png) — Na 0.12.4, com o mouse fora do quadro à esquerda: quadro reto, sem inclinação, e os olhos do robô voltados para o cursor.
 
-Próxima evidência: EVID-229.
+## 2026-10-20 — SmartDesk 0.12.5: fundo do chat
+
+- EVID-229: [fundo-chat-escuro-1440](EVID-229_fundo-chat-escuro-1440.jpg) — Chat 0.12.5 em 1440×900, tema escuro, na escolha da área: rede de conexões, ícones de TI em contorno e luzes no fundo da conversa, atrás das mensagens; topo, etapas e área de botões sem os elementos.
+
+- EVID-230: [fundo-chat-claro](EVID-230_fundo-chat-claro.jpg) — O mesmo fundo no tema claro, ampliado no computador (à esquerda) e no celular de 390×844 (à direita).
+
+- EVID-231: [fundo-chat-celulares](EVID-231_fundo-chat-celulares.jpg) — Etapa da data em 320, 360, 390 e 430 px de largura: quatro ícones discretos nas bordas e a rede mais apagada; em 320×568 o campo está em foco e o fundo some, como previsto com o teclado aberto.
+
+Próxima evidência: EVID-232.

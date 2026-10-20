@@ -1681,3 +1681,139 @@ body.is-dragging {
     min-height: 34px;
   }
 }
+
+/* 0.12.5 — Fundo do chat com vida: rede de conexões, ícones de TI em contorno e duas luzes.
+   Fica só atrás da conversa (o atmosphere.js acompanha a posição dela), abaixo de mensagens,
+   etapas e botões, sem receber cliques. Bem transparente para não competir com o texto. */
+.chat-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.backdrop-glow {
+  position: absolute;
+  width: min(46vw, 620px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+.backdrop-glow.one {
+  left: -12%;
+  top: 4%;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--accent) 16%, transparent),
+    transparent 68%
+  );
+}
+.backdrop-glow.two {
+  right: -14%;
+  bottom: -18%;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--info) 13%, transparent),
+    transparent 68%
+  );
+}
+.backdrop-net {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: none;
+}
+.backdrop-net .net-line {
+  stroke: color-mix(in srgb, var(--accent) 22%, transparent);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+.backdrop-net .net-signal {
+  stroke: var(--accent);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 6 200;
+  vector-effect: non-scaling-stroke;
+  opacity: 0;
+}
+.backdrop-net .net-nodes circle {
+  fill: color-mix(in srgb, var(--accent) 45%, transparent);
+  opacity: 0.55;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.chat-backdrop .glyph {
+  position: absolute;
+  font-size: 34px;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--accent);
+  opacity: 0.2;
+}
+.chat-backdrop .glyph:nth-of-type(1) {
+  left: 4%;
+  top: 13%;
+}
+.chat-backdrop .glyph:nth-of-type(2) {
+  right: 5%;
+  top: 9%;
+  font-size: 30px;
+}
+.chat-backdrop .glyph:nth-of-type(3) {
+  left: 6%;
+  top: 56%;
+  font-size: 30px;
+}
+.chat-backdrop .glyph:nth-of-type(4) {
+  right: 7%;
+  top: 50%;
+}
+.chat-backdrop .glyph:nth-of-type(5) {
+  left: 14%;
+  top: 82%;
+  font-size: 28px;
+}
+.chat-backdrop .glyph:nth-of-type(6) {
+  right: 15%;
+  top: 80%;
+  font-size: 28px;
+}
+.chat-backdrop .glyph:nth-of-type(7) {
+  left: 16%;
+  top: 31%;
+  font-size: 24px;
+}
+.chat-backdrop .glyph:nth-of-type(8) {
+  right: 18%;
+  top: 27%;
+  font-size: 26px;
+}
+/* Tablet e celular: as mensagens ocupam quase toda a largura; ficam só quatro ícones,
+   menores e mais apagados, encostados nas bordas. */
+@media (max-width: 900px) {
+  .chat-backdrop .glyph {
+    font-size: 24px;
+    opacity: 0.13;
+  }
+  .chat-backdrop .glyph:nth-of-type(n + 5) {
+    display: none;
+  }
+  .chat-backdrop .glyph:nth-of-type(1),
+  .chat-backdrop .glyph:nth-of-type(3) {
+    left: 2%;
+  }
+  .chat-backdrop .glyph:nth-of-type(2),
+  .chat-backdrop .glyph:nth-of-type(4) {
+    right: 2%;
+  }
+  .backdrop-net {
+    opacity: 0.7;
+  }
+}
+.mobile-keyboard .chat-backdrop {
+  display: none;
+}
+@media (forced-colors: active) {
+  .chat-backdrop {
+    display: none;
+  }
+}
