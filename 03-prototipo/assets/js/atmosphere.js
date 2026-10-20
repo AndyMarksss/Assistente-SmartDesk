@@ -138,13 +138,24 @@
   const backdrop = document.querySelector(".chat-backdrop"),
     conversation = document.getElementById("conversation");
   if (backdrop && conversation && window.ResizeObserver) {
+    const column = document.getElementById("messages");
     const place = () => {
       backdrop.style.top = conversation.offsetTop + "px";
       backdrop.style.bottom = "auto";
       backdrop.style.height = conversation.offsetHeight + "px";
+      // 0.12.9: os ícones ficam nas laterais livres, fora da coluna das mensagens, para não
+      // aparecerem atrás do robozinho das mensagens. Lateral estreita: só os do lado direito.
+      const gutter = column ? Math.max(0, (conversation.clientWidth - column.offsetWidth) / 2) : 0;
+      backdrop.style.setProperty("--gutter", Math.round(gutter) + "px");
+      backdrop.classList.toggle("is-narrow", gutter < 96);
     };
     const follow = new ResizeObserver(place);
-    [conversation, document.querySelector(".chat-header"), document.querySelector(".journey-bar")]
+    [
+      conversation,
+      column,
+      document.querySelector(".chat-header"),
+      document.querySelector(".journey-bar"),
+    ]
       .filter(Boolean)
       .forEach((node) => follow.observe(node));
     place();

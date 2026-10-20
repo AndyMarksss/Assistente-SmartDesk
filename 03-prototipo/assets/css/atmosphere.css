@@ -2206,3 +2206,371 @@ body.is-dragging {
 :root[data-theme="light"] .chat-backdrop .glyph {
   opacity: 0.13;
 }
+
+/* 0.12.9 — Ícones do fundo nas laterais livres (fora da coluna das mensagens). Antes ficavam a
+   uma porcentagem fixa da largura e, em telas largas, o balão de conversa caía atrás do
+   robozinho das mensagens. O atmosphere.js mede a lateral livre (--gutter). */
+.chat-backdrop .glyph:nth-of-type(odd) {
+  right: auto;
+  left: calc(var(--gutter, 120px) * 0.5 - 17px);
+}
+.chat-backdrop .glyph:nth-of-type(even) {
+  left: auto;
+  right: calc(var(--gutter, 120px) * 0.5 - 17px);
+}
+.chat-backdrop .glyph:nth-of-type(5),
+.chat-backdrop .glyph:nth-of-type(6) {
+  margin-inline: calc(var(--gutter, 120px) * -0.16);
+}
+.chat-backdrop .glyph:nth-of-type(7),
+.chat-backdrop .glyph:nth-of-type(8) {
+  margin-inline: calc(var(--gutter, 120px) * 0.16);
+}
+/* Lateral estreita (celular, tablet, janela pequena): só os ícones da direita, encostados na
+   borda; à esquerda ficam os robozinhos das mensagens. */
+.chat-backdrop.is-narrow .glyph:nth-of-type(odd) {
+  display: none;
+}
+.chat-backdrop.is-narrow .glyph:nth-of-type(2),
+.chat-backdrop.is-narrow .glyph:nth-of-type(4),
+.chat-backdrop.is-narrow .glyph:nth-of-type(6) {
+  display: block;
+  right: 6px;
+  margin-inline: 0;
+}
+.chat-backdrop.is-narrow .glyph:nth-of-type(8) {
+  display: none;
+}
+
+/* 0.12.9 — Barra lateral: "Seu atendimento" vira o cartão "Seu chamado", com cabeçalho no
+   gradiente da marca, anel de progresso (0/4 a 4/4), título que acompanha o momento (até o
+   número do chamado enviado) e o picote de ticket entre o cabeçalho e a trilha. */
+.sidebar .session-info.chamado-card {
+  --notch: 64px;
+  margin-top: 22px;
+  padding: 0;
+  border: 1px solid var(--side-line);
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--side-soft) 55%, transparent);
+  -webkit-mask:
+    radial-gradient(circle 8px at 0 var(--notch), transparent 96%, #000 100%) left / 51% 100%
+      no-repeat,
+    radial-gradient(circle 8px at 100% var(--notch), transparent 96%, #000 100%) right / 51% 100%
+      no-repeat;
+  mask:
+    radial-gradient(circle 8px at 0 var(--notch), transparent 96%, #000 100%) left / 51% 100%
+      no-repeat,
+    radial-gradient(circle 8px at 100% var(--notch), transparent 96%, #000 100%) right / 51% 100%
+      no-repeat;
+}
+.chamado-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 64px;
+  padding: 11px 14px;
+  border-radius: 15px 15px 0 0;
+  color: #fff;
+  background:
+    radial-gradient(120% 140% at 100% 0%, rgb(255 255 255 / 0.18), transparent 55%),
+    var(--brand-gradient);
+}
+.chamado-kicker {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.3px;
+  opacity: 0.8;
+}
+.chamado-head strong {
+  display: block;
+  margin-top: 2px;
+  font-size: 14px;
+  line-height: 1.25;
+}
+.chamado-ring {
+  --p: 0;
+  position: relative;
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 700;
+  background: conic-gradient(#fff calc(var(--p) * 1turn), rgb(255 255 255 / 0.25) 0);
+}
+.chamado-ring::before {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--accent) 78%, #170f3d);
+}
+.chamado-ring > span {
+  position: relative;
+}
+.chamado-ring.is-sent {
+  background: conic-gradient(#7ff0c0 1turn, transparent 0);
+}
+.sidebar .session-info.chamado-card .context-steps {
+  margin: 0;
+  padding: 16px 14px 2px 50px;
+  border-top: 2px dashed var(--side-line);
+}
+.chamado-card .context-steps::before,
+.chamado-card .context-steps::after {
+  left: 25px;
+  top: 23px;
+}
+.sidebar .session-info.chamado-card .context-step dd {
+  margin-bottom: 14px;
+}
+
+/* 0.12.9 — Tema claro redesenhado. A 0.12.8 deixou tudo branco: barra, chat, fundo e cartão
+   de boas-vindas se confundiam e nada guiava o olhar. Agora as áreas têm papéis claros:
+   página em cinza-azulado suave com aurora lilás e azul (os painéis brancos saltam), cartão
+   de boas-vindas em gradiente roxo e azul com texto branco (ponto focal), conversa num lilás
+   bem claro, balões da pessoa em roxo sólido com texto branco (como nos apps de mensagem),
+   balões do assistente brancos, etapa atual em roxo e área de botões branca. */
+:root[data-theme="light"] {
+  --scene: #e7eaf4;
+  --canvas: #f4f3fa;
+  --dock: #ffffff;
+  --reply: #6240ca;
+  --user-ink: #ffffff;
+  --info-surface: #eaf2fc;
+  --aurora-a: #9d86ff;
+  --aurora-b: #6cbcff;
+  --aurora-c: #b8a6ff;
+  --aurora-opacity: 0.4;
+}
+:root[data-theme="light"] .sidebar {
+  background: rgb(255 255 255 / 0.8);
+  border: 1px solid #e2e5ef;
+  box-shadow: 0 24px 60px -34px rgb(31 41 72 / 0.32);
+}
+:root[data-theme="light"] .sidebar .session-info.chamado-card {
+  background: #ffffff;
+  border-color: #e2e5ef;
+}
+:root[data-theme="light"] .interaction-dock {
+  background: #ffffff;
+  border-top: 1px solid #e6e8f1;
+  box-shadow: 0 -14px 34px -26px rgb(31 41 72 / 0.4);
+}
+:root[data-theme="light"] .journey-bar .journey li[aria-current] {
+  color: #fff;
+  background: var(--brand-gradient);
+  border-color: transparent;
+  box-shadow: 0 10px 22px -12px var(--glow);
+}
+:root[data-theme="light"] .journey-bar .journey li[aria-current] .journey-dot {
+  color: var(--accent);
+  background: #fff;
+  border-color: transparent;
+}
+:root[data-theme="light"] .journey-bar .journey li[aria-current] small {
+  color: rgb(255 255 255 / 0.85);
+}
+/* Cartão de boas-vindas: o ponto focal da abertura. */
+:root[data-theme="light"] .welcome {
+  color: #fff;
+  background:
+    radial-gradient(90% 120% at 0% 0%, #8e72ff 0%, transparent 60%),
+    radial-gradient(70% 90% at 100% 100%, #3f8cff 0%, transparent 60%),
+    linear-gradient(125deg, #5434c4 0%, #4a3fc9 50%, #2f63d0 100%);
+  border-color: rgb(255 255 255 / 0.18);
+  box-shadow:
+    0 36px 70px -36px rgb(74 52 190 / 0.65),
+    0 10px 24px -14px rgb(31 41 72 / 0.3);
+}
+:root[data-theme="light"] .welcome::before {
+  background: linear-gradient(90deg, #fff, #b9e3ff);
+  box-shadow: none;
+}
+:root[data-theme="light"] .welcome h2 {
+  color: #fff;
+}
+:root[data-theme="light"] .welcome h2 span {
+  background: linear-gradient(100deg, #efe9ff, #b9e3ff 60%, #ffd6f0);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+:root[data-theme="light"] .welcome p,
+:root[data-theme="light"] .welcome .eyebrow {
+  color: rgb(255 255 255 / 0.88);
+}
+:root[data-theme="light"] .brand-signal {
+  border-color: #fff;
+}
+:root[data-theme="light"] .welcome-tags span {
+  color: #fff;
+  background: rgb(255 255 255 / 0.14);
+  border-color: rgb(255 255 255 / 0.3);
+  box-shadow: none;
+}
+:root[data-theme="light"] .welcome-tags span i {
+  color: #fff;
+}
+:root[data-theme="light"] .support-scene {
+  background: rgb(255 255 255 / 0.1);
+  border-color: rgb(255 255 255 / 0.3);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.25),
+    0 18px 40px -24px rgb(20 10 70 / 0.55);
+}
+:root[data-theme="light"] .support-scene::before {
+  background: rgb(255 255 255 / 0.1);
+}
+:root[data-theme="light"] .support-scene::after {
+  border-color: rgb(255 255 255 / 0.14);
+}
+:root[data-theme="light"] .scene-caption,
+:root[data-theme="light"] .scene-foot {
+  color: rgb(255 255 255 / 0.88);
+}
+:root[data-theme="light"] .scene-dots b {
+  background: #fff;
+}
+:root[data-theme="light"] .scene-connections {
+  stroke: rgb(255 255 255 / 0.42);
+}
+:root[data-theme="light"] .scene-connections .connection-signal {
+  stroke: #fff;
+}
+:root[data-theme="light"] .scene-halo {
+  border-color: rgb(255 255 255 / 0.38);
+  background: radial-gradient(circle, rgb(255 255 255 / 0.22), transparent 70%);
+}
+:root[data-theme="light"] .scene-device {
+  color: var(--accent);
+  background: rgb(255 255 255 / 0.95);
+  border-color: transparent;
+  box-shadow: 0 10px 22px -12px rgb(20 10 70 / 0.55);
+}
+:root[data-theme="light"] .scene-device span {
+  color: #2a2350;
+}
+
+/* 0.12.9 — Cabeçalho do cartão "Seu chamado" com gradiente profundo fixo: no tema escuro a
+   cor de destaque é um lilás claro, e o texto branco ficava com pouco contraste. */
+.chamado-head {
+  background:
+    radial-gradient(120% 140% at 100% 0%, rgb(255 255 255 / 0.16), transparent 55%),
+    linear-gradient(125deg, #5a3cd2 0%, #4a3fc9 55%, #2f63d0 100%);
+}
+.chamado-ring::before {
+  background: #2b1c78;
+}
+/* Cartão de dicas mais leve: lâmpada num selo âmbar ao lado do título, menos altura. */
+:root[data-theme] .sidebar-tip {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  column-gap: 10px;
+  align-items: start;
+  margin-top: 16px;
+  padding: 13px 14px 11px;
+  border: 1px solid var(--side-line);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--side-soft) 45%, transparent);
+  box-shadow: none;
+}
+:root[data-theme] .sidebar-tip .sidebar-tip-icon {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  margin: 0;
+  border-radius: 9px;
+  font-size: 13px;
+  color: #3b2a00;
+  background: linear-gradient(135deg, #ffd66b, #f5a742);
+}
+.sidebar-tip .tip-slides,
+.sidebar-tip .tip-dots {
+  grid-column: 2;
+}
+:root[data-theme] .sidebar-tip h2 {
+  margin: 4px 0 4px;
+  font-size: 13px;
+}
+:root[data-theme] .sidebar-tip p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.sidebar .tip-dots {
+  margin-top: 8px;
+}
+.sidebar .session-info.chamado-card .context-step dd {
+  margin-bottom: 12px;
+}
+:root[data-theme="light"] .sidebar-tip {
+  background: #f7f6fd;
+  border-color: #e5e2f3;
+}
+
+/* A dica continua oculta em telas de até 860 px de altura (a regra do cartão novo é mais forte
+   que a de 0.12.7); a barra sai até 600 px (com o cartão novo, em 561 px ela já não cabia). */
+@media (min-width: 901px) and (max-height: 860px) {
+  :root[data-theme] .sidebar-tip {
+    display: none;
+  }
+}
+@media (min-width: 901px) and (max-height: 600px) {
+  .workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .sidebar {
+    display: none;
+  }
+  .mobile-new {
+    display: flex;
+  }
+}
+
+/* 0.12.9 — Painel de gestão no tema claro: cabeçalho no mesmo gradiente do cartão de
+   boas-vindas do chat, para as duas telas parecerem do mesmo produto. */
+:root[data-theme="light"] .admin-header {
+  color: #fff;
+  background:
+    radial-gradient(90% 120% at 0% 0%, #8e72ff 0%, transparent 60%),
+    radial-gradient(70% 90% at 100% 100%, #3f8cff 0%, transparent 60%),
+    linear-gradient(125deg, #5434c4 0%, #4a3fc9 50%, #2f63d0 100%);
+  border-color: rgb(255 255 255 / 0.18);
+  box-shadow:
+    0 30px 60px -34px rgb(74 52 190 / 0.6),
+    0 10px 24px -14px rgb(31 41 72 / 0.25);
+}
+:root[data-theme="light"] .admin-header h1,
+:root[data-theme="light"] .admin-header h1 span {
+  color: #fff;
+}
+:root[data-theme="light"] .admin-header p,
+:root[data-theme="light"] .admin-header .eyebrow {
+  color: rgb(255 255 255 / 0.88);
+}
+
+/* 0.12.9 — A rede do fundo fica forte nas laterais e suave (cerca de 25%) dentro da coluna das
+   mensagens, para nenhuma linha ou ponto chamar atenção atrás dos robozinhos e dos balões. */
+.chat-backdrop:not(.is-narrow) .backdrop-net {
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    #000 calc(var(--gutter, 120px) - 30px),
+    rgb(0 0 0 / 0.25) calc(var(--gutter, 120px) + 30px),
+    rgb(0 0 0 / 0.25) calc(100% - var(--gutter, 120px) - 30px),
+    #000 calc(100% - var(--gutter, 120px) + 30px)
+  );
+  mask-image: linear-gradient(
+    90deg,
+    #000 calc(var(--gutter, 120px) - 30px),
+    rgb(0 0 0 / 0.25) calc(var(--gutter, 120px) + 30px),
+    rgb(0 0 0 / 0.25) calc(100% - var(--gutter, 120px) - 30px),
+    #000 calc(100% - var(--gutter, 120px) + 30px)
+  );
+}

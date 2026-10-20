@@ -139,8 +139,24 @@
       else done++;
     });
     placeContextLine();
-    const count = byId("context-count");
-    if (count) count.textContent = done + " de " + steps.length;
+    // Cartão "Seu chamado": anel de progresso, contagem e um título que acompanha o momento.
+    const count = byId("context-count"),
+      ring = byId("context-ring"),
+      title = byId("context-title"),
+      sent = state.receipt?.number;
+    if (count) count.textContent = done + "/" + steps.length;
+    if (ring) {
+      ring.style.setProperty("--p", steps.length ? done / steps.length : 0);
+      ring.classList.toggle("is-sent", !!sent);
+    }
+    if (title)
+      title.textContent = sent
+        ? "Chamado " + sent + " enviado"
+        : done === steps.length
+          ? "Quase pronto"
+          : done
+            ? "Em andamento"
+            : "Vamos começar";
   }
   // A linha preenchida vai do primeiro ícone até o da etapa atual (ou o último, se completo).
   // Em pixels, porque um e-mail ou necessidade longos ocupam duas linhas.
@@ -152,14 +168,18 @@
       list = steps[0].parentElement;
     list.style.setProperty("--context-fill", target.offsetTop - steps[0].offsetTop + "px");
     list.style.setProperty("--context-track", steps.at(-1).offsetTop - steps[0].offsetTop + "px");
+    // Picote do cartão "Seu chamado": os recortes laterais acompanham a altura do cabeçalho.
+    const card = list.closest(".chamado-card"),
+      head = card?.querySelector(".chamado-head");
+    if (head) card.style.setProperty("--notch", head.offsetHeight + 1 + "px");
     fitSidebar();
   }
   // A barra lateral nunca rola: se um e-mail ou uma necessidade longos ocuparem mais linhas e o
-  // conteúdo não couber, saem primeiro "O que a TI atende" e depois a dica.
+  // conteúdo não couber, saem primeiro "O que a TI atende", depois a dica e, por último, o rodapé.
   function fitSidebar() {
     const side = document.querySelector(".sidebar");
     if (!side || !side.offsetParent) return;
-    const optional = [".sidebar-areas", ".sidebar-tip"]
+    const optional = [".sidebar-areas", ".sidebar-tip", ".sidebar-footer"]
       .map((selector) => side.querySelector(selector))
       .filter(Boolean);
     optional.forEach((node) => node.classList.remove("is-squeezed"));
@@ -1725,6 +1745,7 @@
       )
         throw new Error("Não consegui confirmar o recebimento. Seus dados continuam aqui.");
       state.receipt = result;
+      context();
       try {
         sessionStorage.setItem("smartdesk-sent", "1");
       } catch {}

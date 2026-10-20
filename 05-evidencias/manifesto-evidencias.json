@@ -2,7 +2,7 @@
   "versao": 1,
   "projeto": "SmartDesk",
   "atualizado_em": "2026-10-20",
-  "proximo_numero": 243,
+  "proximo_numero": 250,
   "evidencias": [
     {
       "numero": "EVID-001",
@@ -2913,6 +2913,90 @@
       "origem": "Print enviado pelo usuário na conversa com o assistente",
       "sha256": "4D2C586C153C5576E92FE65A8DD06B7A0D79D1CA8B22181C8000C309D849106A",
       "status": "registro do pedido; estado anterior (0.12.7)"
+    },
+    {
+      "numero": "EVID-243",
+      "arquivo": "EVID-243_tema-claro-0128-reprovado.webp",
+      "etapa": "SmartDesk 0.12.9 — tema claro, barra lateral e ícones do fundo",
+      "descricao": "Print do usuário do tema claro da 0.12.8 (\"ficou horrível\"): tudo branco, sem distinção entre barra, chat e cartão de boas-vindas.",
+      "data_aproximada": "2026-10-20",
+      "fundamento_data": "Captura do usuário em 2026-10-20",
+      "data_inclusao": "2026-10-20",
+      "origem": "Print enviado pelo usuário na conversa com o assistente",
+      "sha256": "6A4416753BC3F5D210850DB0DAECD7A6F41FA68D3DEC38F698F4D0F061F13CA2",
+      "status": "registro do pedido; estado anterior (0.12.8)"
+    },
+    {
+      "numero": "EVID-244",
+      "arquivo": "EVID-244_tema-escuro-barra-0128.webp",
+      "etapa": "SmartDesk 0.12.9 — tema claro, barra lateral e ícones do fundo",
+      "descricao": "Print do usuário do tema escuro da 0.12.8, com a barra lateral que ele pediu para melhorar.",
+      "data_aproximada": "2026-10-20",
+      "fundamento_data": "Captura do usuário em 2026-10-20",
+      "data_inclusao": "2026-10-20",
+      "origem": "Print enviado pelo usuário na conversa com o assistente",
+      "sha256": "5ED06CF9F90499674A47579EB2A49AAACB762ECD7A685ECCABD902FFA62515DE",
+      "status": "registro do pedido; estado anterior (0.12.8)"
+    },
+    {
+      "numero": "EVID-245",
+      "arquivo": "EVID-245_icone-atras-do-robo.png",
+      "etapa": "SmartDesk 0.12.9 — tema claro, barra lateral e ícones do fundo",
+      "descricao": "Recorte do usuário: o ícone de balão do fundo aparecendo atrás do robozinho da mensagem.",
+      "data_aproximada": "2026-10-20",
+      "fundamento_data": "Captura do usuário em 2026-10-20",
+      "data_inclusao": "2026-10-20",
+      "origem": "Print enviado pelo usuário na conversa com o assistente",
+      "sha256": "DDD79237DE514DD5D6F4C9463EB1BE514FB4E3CAAECA690319123FFF13EC0FDA",
+      "status": "registro do defeito (0.12.8)"
+    },
+    {
+      "numero": "EVID-246",
+      "arquivo": "EVID-246_tema-claro-antes-depois-0129.jpg",
+      "etapa": "SmartDesk 0.12.9 — tema claro, barra lateral e ícones do fundo",
+      "descricao": "Tema claro na tela do usuário (1864×958): antes (print da 0.12.8) e depois (0.12.9), com o cartão de boas-vindas em gradiente roxo→azul, a página cinza-azulada e o cartão \"Seu chamado\".",
+      "data_aproximada": "2026-10-20",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-20",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com envio ao Google desativado",
+      "sha256": "CB17AB977AA7D1765EBAB90AE0905EC68D7A4AD959B25DBAB4771017D0F2EBA7",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-247",
+      "arquivo": "EVID-247_barra-cartao-seu-chamado.jpg",
+      "etapa": "SmartDesk 0.12.9 — tema claro, barra lateral e ícones do fundo",
+      "descricao": "Barra lateral 0.12.9 nos temas escuro e claro: cartão \"Seu chamado\" em 0/4 (abertura) e 4/4 \"Quase pronto\", dica com a lâmpada no selo âmbar, \"O que a TI atende\" e a rede no espaço livre.",
+      "data_aproximada": "2026-10-20",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-20",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com envio ao Google desativado",
+      "sha256": "ECA7D633FA743858F435D1D7997D7A26CB8961B271AC45C9F08FFCD96CB239E4",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-248",
+      "arquivo": "EVID-248_icones-fora-da-coluna.jpg",
+      "etapa": "SmartDesk 0.12.9 — tema claro, barra lateral e ícones do fundo",
+      "descricao": "Conversa em 1864×958, temas escuro e claro: ícones do fundo na lateral livre, longe dos robozinhos, e a rede suave dentro da coluna das mensagens; balões da pessoa em roxo no claro.",
+      "data_aproximada": "2026-10-20",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-20",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com envio ao Google desativado",
+      "sha256": "0B204D565A867A612EF223B6D2EC3410A12EB2F36D32ABF8FB0EE23A1C45564A",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-249",
+      "arquivo": "EVID-249_painel-claro-cabecalho.jpg",
+      "etapa": "SmartDesk 0.12.9 — tema claro, barra lateral e ícones do fundo",
+      "descricao": "Painel de gestão no tema claro com o cabeçalho no mesmo gradiente do cartão de boas-vindas do chat.",
+      "data_aproximada": "2026-10-20",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-20",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com envio ao Google desativado",
+      "sha256": "1147115640CD2D1ADC91BF70AF3156452499136DF5FDFEA6E83126BFFBB87468",
+      "status": "verificação técnica; não é validação com usuários"
     }
   ]
 }

@@ -103,3 +103,6 @@ Barra lateral sem rolagem em nenhum tamanho, com "O que a TI atende" e uma peque
 
 ## 0.12.8
 Tema claro com cores limpas e "O que a TI atende" como lista informativa. Verificação em 03-prototipo/verificacao-v0.12.8.md.
+
+## 0.12.9
+Tema claro redesenhado, cartão "Seu chamado" na barra lateral e ícones do fundo fora da coluna das mensagens. Verificação em 03-prototipo/verificacao-v0.12.9.md.

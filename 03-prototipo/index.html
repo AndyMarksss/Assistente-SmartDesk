@@ -48,9 +48,15 @@
         <button class="new-conversation" id="new-chat" type="button">
           <span aria-hidden="true"><i class="fa-solid fa-plus"></i></span> Novo atendimento
         </button>
-        <div class="session-info">
-          <div class="sidebar-section">
-            SEU ATENDIMENTO <span id="context-count" class="context-count">0 de 4</span>
+        <div class="session-info chamado-card">
+          <div class="chamado-head">
+            <div>
+              <span class="chamado-kicker">SEU CHAMADO</span>
+              <strong id="context-title">Vamos começar</strong>
+            </div>
+            <span class="chamado-ring" id="context-ring" aria-hidden="true"
+              ><span id="context-count">0/4</span></span
+            >
           </div>
           <dl class="context-steps">
             <div class="context-step" data-step="name">
@@ -481,7 +487,7 @@
             Abra o SmartDesk pelo servidor local para usar a IA e enviar chamados.
           </p>
           <footer class="project-version" aria-label="Versão do projeto">
-            SmartDesk · v<span data-project-version>0.12.8</span>
+            SmartDesk · v<span data-project-version>0.12.9</span>
           </footer>
         </section>
       </main>

@@ -547,4 +547,20 @@ Próxima evidência: EVID-205.
 
 - EVID-242: [tema-claro-antes-usuario](EVID-242_tema-claro-antes-usuario.webp) — Print do usuário do tema claro da 0.12.7 na tela inteira, enviado com o pedido de melhorar as cores.
 
-Próxima evidência: EVID-243.
+## 2026-10-20 — SmartDesk 0.12.9: tema claro, cartão "Seu chamado" e ícones do fundo
+
+- EVID-243: [tema-claro-0128-reprovado](EVID-243_tema-claro-0128-reprovado.webp) — Print do usuário do tema claro da 0.12.8 ("ficou horrível"): tudo branco, sem distinção entre barra, chat e cartão de boas-vindas.
+
+- EVID-244: [tema-escuro-barra-0128](EVID-244_tema-escuro-barra-0128.webp) — Print do usuário do tema escuro da 0.12.8, com a barra lateral que ele pediu para melhorar.
+
+- EVID-245: [icone-atras-do-robo](EVID-245_icone-atras-do-robo.png) — Recorte do usuário: o ícone de balão do fundo aparecendo atrás do robozinho da mensagem.
+
+- EVID-246: [tema-claro-antes-depois-0129](EVID-246_tema-claro-antes-depois-0129.jpg) — Tema claro na tela do usuário (1864×958): antes (print da 0.12.8) e depois (0.12.9), com o cartão de boas-vindas em gradiente roxo→azul, a página cinza-azulada e o cartão "Seu chamado".
+
+- EVID-247: [barra-cartao-seu-chamado](EVID-247_barra-cartao-seu-chamado.jpg) — Barra lateral 0.12.9 nos temas escuro e claro: cartão "Seu chamado" em 0/4 (abertura) e 4/4 "Quase pronto", dica com a lâmpada no selo âmbar, "O que a TI atende" e a rede no espaço livre.
+
+- EVID-248: [icones-fora-da-coluna](EVID-248_icones-fora-da-coluna.jpg) — Conversa em 1864×958, temas escuro e claro: ícones do fundo na lateral livre, longe dos robozinhos, e a rede suave dentro da coluna das mensagens; balões da pessoa em roxo no claro.
+
+- EVID-249: [painel-claro-cabecalho](EVID-249_painel-claro-cabecalho.jpg) — Painel de gestão no tema claro com o cabeçalho no mesmo gradiente do cartão de boas-vindas do chat.
+
+Próxima evidência: EVID-250.
