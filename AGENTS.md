@@ -163,3 +163,6 @@ O painel segue o Storytelling com Dados: título-conclusão nos cartões de leit
 
 ## 0.12.12 — cor e profundidade no painel
 No painel, cor de etapa (`--stage-*`) é exclusiva das etapas: linha do topo da coluna, ponto, contador, borda do cartão e fila da barra. Áreas, etiquetas e datas ficam em neutro. Camadas: painel do quadro → coluna rebaixada (`--lane-*`) → cartão elevado (`--card-surface`, `--card-lift`); nos cartões de cima, conteúdo secundário em poço (`--well-*`). Ao mexer em fundos, conferir que o cartão continua mais claro que a coluna no tema escuro.
+
+## 0.12.13 — cartões e modal do painel
+No quadro, a cor da etapa fica no cabeçalho da coluna e no ponto ao lado do número; cartões, áreas e etiquetas são neutros (`[data-tone]` define `--tone` para qualquer elemento do painel). O modal escolhe a etapa por rádios (`#detail-stages`), e `chooseStage()` controla o texto e o estado do botão. No Pages, "Chamados desta avaliação" é limitado à aba (cache de 1 hora por sessão); para ver todos os chamados, use a planilha ou o painel local.

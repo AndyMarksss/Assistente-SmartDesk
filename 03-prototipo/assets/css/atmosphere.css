@@ -3574,3 +3574,422 @@ body.is-dragging {
 .ticket-tag.test .fa-solid {
   color: inherit;
 }
+
+/* 0.12.13 — Cartões do quadro e modal de detalhes. Na 0.12.12 o cartão escuro ficou num
+   cinza-azulado apagado, cada coluna tinha uma faixa colorida em todos os cartões e cada cartão
+   duas etiquetas contornadas. Agora a etapa aparece no cabeçalho tingido da coluna e num ponto
+   ao lado do número; o cartão é neutro (azul-marinho no escuro, branco no claro); a área é uma
+   etiqueta cheia e discreta; "Simulação" vai para o rodapé, em texto. O modal ganhou cabeçalho
+   na cor da etapa, blocos "Solicitante" e "Pedido" e a escolha da etapa por opções coloridas. */
+[data-tone="new"] {
+  --tone: var(--stage-new);
+}
+[data-tone="doing"] {
+  --tone: var(--stage-doing);
+}
+[data-tone="waiting"] {
+  --tone: var(--stage-waiting);
+}
+[data-tone="loan"] {
+  --tone: var(--stage-loan);
+}
+[data-tone="scheduled"] {
+  --tone: var(--stage-scheduled);
+}
+[data-tone="done"] {
+  --tone: var(--stage-done);
+}
+[data-tone="cancelled"] {
+  --tone: var(--stage-cancelled);
+}
+.admin-main {
+  --lane-bg: rgb(5 10 17 / 0.5);
+  --card-surface: linear-gradient(180deg, #27384f 0%, #1f2d42 100%);
+  --card-edge: rgb(255 255 255 / 0.08);
+}
+:root[data-theme="light"] .admin-main {
+  --lane-bg: #eceef5;
+  --card-surface: #ffffff;
+  --card-edge: #e1e4ee;
+}
+/* Coluna: neutra, com o cabeçalho tingido pela etapa (a legenda do quadro). */
+:root[data-theme] .kanban-column {
+  padding: 8px;
+  border-top: 1px solid var(--lane-line);
+}
+/* Altura mínima de duas linhas: "Aguardando terceiros" quebra em colunas estreitas e todos os
+   cabeçalhos ficam iguais. */
+:root[data-theme] .column-head {
+  min-height: 48px;
+  margin: 0 0 10px;
+  padding: 8px 8px 8px 10px;
+  border-radius: 11px;
+  background: color-mix(in srgb, var(--tone, var(--accent)) 16%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--tone, var(--accent)) 30%, transparent);
+}
+:root[data-theme="light"] .column-head {
+  background: color-mix(in srgb, var(--tone, var(--accent)) 11%, #ffffff);
+}
+:root[data-theme] .column-head h3 {
+  color: var(--ink);
+}
+:root[data-theme] .column-count {
+  min-width: 24px;
+  text-align: center;
+  color: var(--ink);
+  background: color-mix(in srgb, var(--tone, var(--accent)) 26%, transparent);
+}
+/* Cartão neutro e elevado; a etapa fica no ponto ao lado do número. */
+:root[data-theme] .ticket-card {
+  padding: 11px 12px 10px;
+  border: 1px solid var(--card-edge);
+  background: var(--card-surface);
+}
+:root[data-theme] .ticket-card:hover {
+  border-color: color-mix(in srgb, var(--tone, var(--accent)) 50%, var(--card-edge));
+}
+:root[data-theme] .ticket-card .ticket-number {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.ticket-card .stage-dot {
+  width: 8px;
+  height: 8px;
+}
+:root[data-theme] .ticket-card h4 {
+  color: var(--ink);
+}
+:root[data-theme] .area-tag,
+.area-tag[data-area="Impressora"],
+.area-tag[data-area="Google"],
+.area-tag[data-area="TI"] {
+  padding: 2px 8px;
+  border: 0;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+  background: color-mix(in srgb, var(--muted) 13%, transparent);
+}
+.ticket-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 9px;
+  padding-top: 8px;
+  border-top: 1px solid color-mix(in srgb, var(--muted) 16%, transparent);
+}
+:root[data-theme] .ticket-card .ticket-date {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 11px;
+}
+.ticket-sim {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--muted);
+}
+.ticket-sim .fa-solid {
+  font-size: 10px;
+}
+
+/* Modal de detalhes. */
+#ticket-dialog {
+  --dlg-well-bg: rgb(4 9 16 / 0.3);
+  --dlg-well-line: rgb(255 255 255 / 0.05);
+  --dlg-well-shadow: inset 0 2px 6px rgb(0 0 0 / 0.3);
+}
+:root[data-theme="light"] #ticket-dialog {
+  --dlg-well-bg: #f5f6fb;
+  --dlg-well-line: #e8eaf2;
+  --dlg-well-shadow: inset 0 1px 2px rgb(31 41 72 / 0.06);
+}
+:root[data-theme] #ticket-dialog {
+  width: min(720px, calc(100% - 24px));
+  padding: 0;
+  border: 1px solid var(--edge);
+  border-radius: 24px;
+  background: var(--chrome);
+  color: var(--ink);
+  box-shadow:
+    0 40px 100px -30px rgb(0 0 0 / 0.75),
+    inset 0 1px 0 rgb(255 255 255 / 0.06);
+}
+:root[data-theme="light"] #ticket-dialog {
+  border-color: #e3e5f0;
+  background: #ffffff;
+  box-shadow: 0 40px 100px -30px rgb(46 36 120 / 0.45);
+}
+#ticket-dialog .dialog-header {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px 24px 18px;
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--tone, var(--accent)) 22%, var(--chrome)),
+    var(--chrome) 72%
+  );
+}
+:root[data-theme="light"] #ticket-dialog .dialog-header {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--tone, var(--accent)) 12%, #ffffff),
+    #ffffff 72%
+  );
+}
+#ticket-dialog .dialog-header::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 4px;
+  background: var(--tone, var(--accent));
+}
+.dialog-heading {
+  min-width: 0;
+}
+.detail-badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 8px;
+  margin: 0 0 10px;
+}
+.detail-number {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  color: var(--muted);
+}
+.stage-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border: 1px solid color-mix(in srgb, var(--tone, var(--accent)) 45%, transparent);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink);
+  background: color-mix(in srgb, var(--tone, var(--accent)) 20%, transparent);
+}
+.detail-badges .area-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: 999px;
+}
+.detail-sim {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.detail-sim[hidden] {
+  display: none;
+}
+#ticket-dialog #detail-title {
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+#ticket-dialog #detail-title:focus {
+  outline: none;
+}
+.detail-opened {
+  margin: 6px 0 0;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+.dialog-body {
+  display: grid;
+  gap: 12px;
+  padding: 18px 24px 6px;
+}
+.detail-block {
+  padding: 14px 16px;
+  border: 1px solid var(--dlg-well-line);
+  border-radius: 14px;
+  background: var(--dlg-well-bg);
+  box-shadow: var(--dlg-well-shadow);
+}
+#ticket-dialog .detail-block h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.detail-block h3 .fa-solid {
+  color: var(--accent);
+}
+#ticket-dialog .detail-block dl {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 8px 14px;
+  margin: 0;
+  padding: 0;
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+#ticket-dialog .detail-block dt {
+  color: var(--muted);
+}
+#ticket-dialog .detail-block dd {
+  margin: 0;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+#ticket-dialog #detail-files {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 0;
+}
+#ticket-dialog #detail-files:empty {
+  display: none;
+}
+#ticket-dialog .detail-file {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 40px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: var(--accent);
+  font-size: 13px;
+  text-decoration: none;
+}
+/* Etapas como opções com a cor de cada coluna. */
+.stage-picker {
+  margin: 0;
+  padding: 12px 24px 16px;
+  border: 0;
+  min-width: 0;
+}
+.stage-picker legend {
+  padding: 0;
+  margin-bottom: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.stage-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.stage-option {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 40px;
+  padding: 6px 13px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 13px;
+  color: var(--ink);
+  cursor: pointer;
+}
+.stage-option input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.stage-option small {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+}
+.stage-option:hover {
+  border-color: color-mix(in srgb, var(--tone, var(--accent)) 60%, var(--line));
+}
+.stage-option:has(input:checked) {
+  border-color: var(--tone, var(--accent));
+  font-weight: 700;
+  background: color-mix(in srgb, var(--tone, var(--accent)) 18%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--tone, var(--accent)) 14%, transparent);
+}
+.stage-option:has(input:focus-visible) {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+/* O rodapé fica preso na base do modal: no celular o botão de salvar não some ao rolar. */
+.dialog-footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 14px 24px 20px;
+  border-top: 1px solid var(--line);
+  background: var(--chrome);
+}
+:root[data-theme="light"] .dialog-footer {
+  background: #ffffff;
+}
+#ticket-dialog #detail-error {
+  flex: 1 1 100%;
+  margin: 0;
+}
+#ticket-dialog #detail-error:empty {
+  display: none;
+}
+#ticket-dialog #save-stage {
+  margin: 0;
+}
+/* Sem etapa nova escolhida o botão fica claramente desligado (no claro, a regra do botão
+   principal com gradiente vencia a de desligado). */
+:root[data-theme] #ticket-dialog #save-stage:disabled {
+  border-color: var(--line);
+  color: var(--muted);
+  background: color-mix(in srgb, var(--muted) 16%, transparent);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+@media (max-width: 600px) {
+  #ticket-dialog .detail-block dl {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+  #ticket-dialog .detail-block dd {
+    margin-bottom: 8px;
+  }
+  .dialog-body,
+  .stage-picker {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .dialog-footer {
+    padding: 12px 16px 16px;
+  }
+  .dialog-footer .choice {
+    flex: 1;
+    justify-content: center;
+  }
+  #ticket-dialog #detail-title {
+    font-size: 19px;
+  }
+}

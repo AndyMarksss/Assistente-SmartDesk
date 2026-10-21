@@ -204,28 +204,54 @@
         </section>
         <div id="toast" class="toast" role="status" aria-live="polite"></div>
         <footer class="project-version" aria-label="Versão do projeto">
-          SmartDesk · v<span data-project-version>0.12.12</span>
+          SmartDesk · v<span data-project-version>0.12.13</span>
         </footer>
       </main>
     </div>
-    <dialog id="ticket-dialog">
+    <dialog id="ticket-dialog" aria-labelledby="detail-title">
       <div class="dialog-header">
-        <div>
-          <span id="detail-number" class="eyebrow"></span>
-          <h2 id="detail-title"></h2>
+        <div class="dialog-heading">
+          <p class="detail-badges">
+            <span id="detail-number" class="detail-number"></span
+            ><span id="detail-stage-badge" class="stage-badge"></span
+            ><span id="detail-area" class="area-tag"></span
+            ><span id="detail-sim" class="detail-sim" hidden
+              ><i class="fa-solid fa-flask" aria-hidden="true"></i> Simulação</span
+            >
+          </p>
+          <h2 id="detail-title" tabindex="-1"></h2>
+          <p id="detail-opened" class="detail-opened"></p>
         </div>
         <button id="close-dialog" class="theme-toggle" aria-label="Fechar detalhes">
           <i class="fa-solid fa-xmark"></i>
         </button>
       </div>
-      <dl id="detail-data"></dl>
-      <section id="detail-files"></section>
-      <label for="detail-stage">Etapa do atendimento</label
-      ><select id="detail-stage"></select
-      ><button id="save-stage" class="choice primary">
-        <i class="fa-solid fa-check"></i><span>Salvar etapa</span>
-      </button>
-      <p id="detail-error" class="error" role="alert"></p>
+      <div class="dialog-body">
+        <section class="detail-block" aria-labelledby="detail-person-title">
+          <h3 id="detail-person-title">
+            <i class="fa-solid fa-user" aria-hidden="true"></i> Solicitante
+          </h3>
+          <dl id="detail-person"></dl>
+        </section>
+        <section class="detail-block" aria-labelledby="detail-request-title">
+          <h3 id="detail-request-title">
+            <i class="fa-solid fa-clipboard-list" aria-hidden="true"></i> Pedido
+          </h3>
+          <dl id="detail-data"></dl>
+          <div id="detail-files" class="detail-files"></div>
+        </section>
+      </div>
+      <fieldset class="stage-picker">
+        <legend>Etapa do atendimento</legend>
+        <div id="detail-stages" class="stage-options"></div>
+      </fieldset>
+      <div class="dialog-footer">
+        <p id="detail-error" class="error" role="alert"></p>
+        <button id="cancel-dialog" class="choice" type="button">Fechar</button
+        ><button id="save-stage" class="choice primary" type="button">
+          <i class="fa-solid fa-check"></i><span>Salvar etapa</span>
+        </button>
+      </div>
     </dialog>
   </body>
 </html>

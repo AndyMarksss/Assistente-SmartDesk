@@ -2,7 +2,7 @@
   "versao": 1,
   "projeto": "SmartDesk",
   "atualizado_em": "2026-10-21",
-  "proximo_numero": 264,
+  "proximo_numero": 270,
   "evidencias": [
     {
       "numero": "EVID-001",
@@ -3164,6 +3164,78 @@
       "data_inclusao": "2026-10-21",
       "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com envio ao Google desativado",
       "sha256": "357E9D4D8A05E7C6F09F4C8DC38B139D73B3EAAB66DA5F8AEBE855EE88F242D8",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-264",
+      "arquivo": "EVID-264_quadro-escuro-01212.webp",
+      "etapa": "SmartDesk 0.12.13 — cartões, modal e chamados de teste",
+      "descricao": "Print do usuário do quadro no tema escuro (0.12.12): cartões cinza-azulados com faixa colorida e duas etiquetas contornadas.",
+      "data_aproximada": "2026-10-21",
+      "fundamento_data": "Captura do usuário em 2026-10-21",
+      "data_inclusao": "2026-10-21",
+      "origem": "Print enviado pelo usuário na conversa com o assistente",
+      "sha256": "756095FB7DAF0F23C0DC58B7B9B222FA398973B52A3A88B1964DF94506C171D5",
+      "status": "registro do pedido; estado anterior (0.12.12)"
+    },
+    {
+      "numero": "EVID-265",
+      "arquivo": "EVID-265_modal-detalhes-01212.png",
+      "etapa": "SmartDesk 0.12.13 — cartões, modal e chamados de teste",
+      "descricao": "Print do usuário do modal de detalhes (0.12.12): lista simples de campos, menu de etapa e anel grosso no botão de fechar.",
+      "data_aproximada": "2026-10-21",
+      "fundamento_data": "Captura do usuário em 2026-10-21",
+      "data_inclusao": "2026-10-21",
+      "origem": "Print enviado pelo usuário na conversa com o assistente",
+      "sha256": "8442363FA51757B14914D46000E06CA5762721038636D4566A2F0720FB5FCAB4",
+      "status": "registro do pedido; estado anterior (0.12.12)"
+    },
+    {
+      "numero": "EVID-266",
+      "arquivo": "EVID-266_painel-avaliacao-vazio-01212.webp",
+      "etapa": "SmartDesk 0.12.13 — cartões, modal e chamados de teste",
+      "descricao": "Print do usuário do painel publicado em \"Chamados desta avaliação\" sem nenhum chamado, depois de abrir chamados de teste.",
+      "data_aproximada": "2026-10-21",
+      "fundamento_data": "Captura do usuário em 2026-10-21",
+      "data_inclusao": "2026-10-21",
+      "origem": "Print enviado pelo usuário na conversa com o assistente",
+      "sha256": "C2040782F3632D81F21FACA79F1B07914B3164159CD839C65F4DCF3D1987A19E",
+      "status": "registro do relato (0.12.12)"
+    },
+    {
+      "numero": "EVID-267",
+      "arquivo": "EVID-267_planilha-chamados-ate-015.png",
+      "etapa": "SmartDesk 0.12.13 — cartões, modal e chamados de teste",
+      "descricao": "Print do usuário da aba Chamados: o último chamado gravado é o #015 (19/10); os chamados de teste não chegaram à planilha.",
+      "data_aproximada": "2026-10-21",
+      "fundamento_data": "Captura do usuário em 2026-10-21",
+      "data_inclusao": "2026-10-21",
+      "origem": "Print enviado pelo usuário na conversa com o assistente",
+      "sha256": "F09C56E0A7868B8FED2F58B2637F83814C9F042E9A82C8B9D7B00341F59C403A",
+      "status": "registro do relato"
+    },
+    {
+      "numero": "EVID-268",
+      "arquivo": "EVID-268_quadro-e-modal-0-12-13.jpg",
+      "etapa": "SmartDesk 0.12.13 — cartões, modal e chamados de teste",
+      "descricao": "Quadro 0.12.13 nos dois temas (cabeçalho da coluna tingido pela etapa, cartões neutros com ponto da etapa) e modal de detalhes (escuro com \"Finalizado\" escolhido; claro antes e depois da escolha).",
+      "data_aproximada": "2026-10-21",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-21",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com envio ao Google desativado",
+      "sha256": "33384C3AB3BC67167A6A8AE4405386869502A10D723AA63D01C4E55B4326CCEF",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-269",
+      "arquivo": "EVID-269_modal-celular-0-12-13.png",
+      "etapa": "SmartDesk 0.12.13 — cartões, modal e chamados de teste",
+      "descricao": "Modal 0.12.13 no celular (390×844): blocos empilhados e rodapé com \"Fechar\" e \"Salvar etapa\" preso na base.",
+      "data_aproximada": "2026-10-21",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-21",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com envio ao Google desativado",
+      "sha256": "2FA77B43585B06286C96B94C4A3781A46C84814B2E34CEA6A88B787A69B556A8",
       "status": "verificação técnica; não é validação com usuários"
     }
   ]

@@ -127,8 +127,12 @@
     share("active", active, total);
     share("done", done, total);
     // Pulso: a conclusão primeiro (o que pede ação agora) e o detalhe logo abaixo.
+    // No Pages, "Chamados desta avaliação" só lista o que foi enviado nesta aba (privacidade).
+    const tabOnly = mode === "google" && !!window.smartdeskRemote;
     $("pulse-headline").textContent = !total
-      ? "Nenhum chamado nesta origem"
+      ? tabOnly
+        ? "Nenhum chamado enviado nesta aba"
+        : "Nenhum chamado nesta origem"
       : fresh
         ? fresh === 1
           ? "1 chamado novo espera a primeira resposta"
@@ -140,7 +144,9 @@
     $("pulse-action").dataset.stage = freshStage;
     $("queue-insight").textContent = total
       ? `${plural(total - closed, "chamado segue", "chamados seguem")} em andamento. ${plural(count("Aguardando terceiros"), "aguarda", "aguardam")} terceiros e ${plural(count("Agendado"), "está agendado", "estão agendados")}.`
-      : "Crie simulações ou carregue os dados do Google.";
+      : tabOnly
+        ? "Por privacidade, o painel publicado mostra só os chamados enviados nesta aba do navegador, por até 1 hora. Todos os chamados ficam na planilha do Google."
+        : "Crie simulações ou carregue os dados do Google.";
     renderSelfHelp();
     renderAreas();
     renderQueue();
@@ -254,7 +260,6 @@
     if (t.attachments?.length) tags.push(["fa-paperclip", String(t.attachments.length), "files"]);
     if (t.authorization?.status === "pending")
       tags.push(["fa-hourglass-half", "Autorização pendente", "auth"]);
-    if (t.simulation) tags.push(["fa-flask", "Simulação", "sim"]);
     if (t.participant) tags.push(["fa-user-check", "Teste " + t.participant, "test"]);
     return tags;
   }
@@ -305,7 +310,9 @@
       tag = el("span", undefined, "area-tag");
     tag.dataset.area = t.area;
     tag.append(icon(AREA_ICONS[t.area] || "fa-circle"), document.createTextNode(" " + t.area));
-    top.append(el("span", t.number, "ticket-number"), tag);
+    const id = el("span", undefined, "ticket-number");
+    id.append(el("span", undefined, "stage-dot"), document.createTextNode(t.number));
+    top.append(id, tag);
     const meta = el("p", [t.name, t.sector].filter(Boolean).join(" · "), "ticket-meta");
     node.append(top, el("h4", t.subject), meta);
     const tags = cardTags(t);
@@ -318,14 +325,21 @@
       }
       node.append(row);
     }
-    const opened = Date.parse(t.createdAt);
-    node.append(
+    const opened = Date.parse(t.createdAt),
+      foot = el("div", undefined, "ticket-foot");
+    foot.append(
       el(
-        "p",
+        "span",
         Number.isNaN(opened) ? "Data não informada" : new Date(opened).toLocaleDateString("pt-BR"),
         "ticket-date",
       ),
     );
+    if (t.simulation) {
+      const sim = el("span", undefined, "ticket-sim");
+      sim.append(icon("fa-flask"), document.createTextNode(" Simulação"));
+      foot.append(sim);
+    }
+    node.append(foot);
     return node;
   }
 
@@ -448,17 +462,39 @@
   }
   function open(t) {
     current = t;
-    $("detail-number").textContent = t.number + (t.simulation ? " · SIMULAÇÃO" : "");
+    const dialog = $("ticket-dialog"),
+      opened = Date.parse(t.createdAt);
+    dialog.dataset.tone = stageKey(t.status);
+    $("detail-number").textContent = t.number;
+    $("detail-stage-badge").replaceChildren(
+      el("span", undefined, "stage-dot"),
+      document.createTextNode(t.status),
+    );
+    $("detail-area").dataset.area = t.area;
+    $("detail-area").replaceChildren(
+      icon(AREA_ICONS[t.area] || "fa-circle"),
+      document.createTextNode(" " + t.area),
+    );
+    $("detail-sim").hidden = !t.simulation;
     $("detail-title").textContent = t.subject;
-    $("detail-data").replaceChildren();
+    $("detail-opened").textContent = Number.isNaN(opened)
+      ? "Data de abertura não informada"
+      : "Aberto em " +
+        new Date(opened).toLocaleDateString("pt-BR") +
+        " às " +
+        new Date(opened).toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
+    $("detail-person").replaceChildren();
     for (const [label, value] of [
-      ["Solicitante", t.name],
+      ["Nome", t.name],
       ["E-mail", t.email || "Não informado"],
       ["Setor", t.sector],
-      ["Área", t.area],
+      ...(t.participant ? [["Participante do teste", t.participant]] : []),
+    ])
+      $("detail-person").append(el("dt", label), el("dd", value));
+    $("detail-data").replaceChildren();
+    for (const [label, value] of [
       ["Necessidade", t.need],
       ["Descrição", t.description],
-      ...(t.participant ? [["Participante do teste", t.participant]] : []),
       ...(t.authorization
         ? [
             [
@@ -478,31 +514,55 @@
             : value,
       ]),
     ])
-      $("detail-data").append(el("dt", label), el("dd", value));
+      $("detail-data").append(
+        el("dt", label),
+        el("dd", value, label === "Descrição" ? "detail-text" : undefined),
+      );
     $("detail-files").replaceChildren();
     for (const [i, url] of (t.attachments || []).entries()) {
       try {
         const u = new URL(url);
         if (u.protocol !== "https:" || u.hostname !== "drive.google.com") continue;
-        const link = el("a", "Abrir anexo " + (i + 1));
+        const link = el("a", undefined, "detail-file");
+        link.append(icon("fa-paperclip"), document.createTextNode(" Abrir anexo " + (i + 1)));
         link.href = u.href;
         link.target = "_blank";
         link.rel = "noopener noreferrer";
         $("detail-files").append(link);
       } catch {}
     }
-    $("detail-stage").replaceChildren();
+    // Etapas como opções com a cor de cada coluna; a atual vem marcada.
+    $("detail-stages").replaceChildren();
     for (const stage of stages) {
-      const o = el("option", stage);
-      o.value = stage;
-      $("detail-stage").append(o);
+      const option = el("label", undefined, "stage-option"),
+        radio = el("input");
+      option.dataset.tone = stageKey(stage);
+      radio.type = "radio";
+      radio.name = "detail-stage";
+      radio.value = stage;
+      radio.checked = stage === t.status;
+      option.append(radio, el("span", undefined, "stage-dot"), el("span", stage));
+      if (stage === t.status) option.append(el("small", "atual"));
+      $("detail-stages").append(option);
     }
-    $("detail-stage").value = t.status;
-    $("save-stage").disabled = t.status === "Recebendo";
+    chooseStage();
     $("detail-error").textContent = "";
-    $("ticket-dialog").showModal();
-    $("close-dialog").focus();
+    dialog.showModal();
+    // Foco no título (o leitor de tela anuncia o chamado) e sem anel no botão de fechar.
+    $("detail-title").focus();
   }
+  const chosenStage = () =>
+    document.querySelector('#detail-stages input[name="detail-stage"]:checked')?.value || "";
+  // O botão diz para onde o chamado vai e só libera quando a etapa muda.
+  function chooseStage() {
+    const stage = chosenStage(),
+      changed = !!current && !!stage && stage !== current.status;
+    $("save-stage").disabled = !changed || current.status === "Recebendo";
+    $("save-stage").querySelector("span").textContent = changed
+      ? "Mover para " + stage
+      : "Salvar etapa";
+  }
+  $("detail-stages").addEventListener("change", chooseStage);
   async function update(t, status) {
     if (busy || status === t.status) return;
     busy = true;
@@ -546,9 +606,8 @@
         lastMoved = "";
         document.querySelector(".ticket-card.just-moved")?.classList.remove("just-moved");
       }, 1600);
-      $("save-stage").disabled = current?.status === "Recebendo";
       $("save-stage").classList.remove("is-loading");
-      $("save-stage").querySelector("span").textContent = "Salvar etapa";
+      chooseStage();
       $("ticket-dialog").setAttribute("aria-busy", "false");
     }
   }
@@ -565,9 +624,10 @@
   });
   $("save-stage").addEventListener(
     "click",
-    () => current && update(current, $("detail-stage").value),
+    () => current && chosenStage() && update(current, chosenStage()),
   );
   $("close-dialog").addEventListener("click", () => $("ticket-dialog").close());
+  $("cancel-dialog").addEventListener("click", () => $("ticket-dialog").close());
   $("refresh").addEventListener("click", load);
   for (const id of ["search", "area-filter", "sector-filter"])
     $(id).addEventListener("input", () => renderBoard(false));
@@ -579,7 +639,7 @@
       mode === "demo"
         ? "Simulações separadas dos chamados reais."
         : window.smartdeskRemote
-          ? "Somente chamados enviados nesta sessão de avaliação."
+          ? "Só os chamados enviados nesta aba, por até 1 hora (privacidade)."
           : "Leitura e atualização da planilha conectada ao SmartDesk.";
   }
   $("data-mode").addEventListener("change", () => {

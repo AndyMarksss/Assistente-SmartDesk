@@ -597,4 +597,18 @@ Próxima evidência: EVID-205.
 
 - EVID-263: [painel-profundidade-0-12-12](EVID-263_painel-profundidade-0-12-12.jpg) — Painel 0.12.12 (1864×958), escuro à esquerda e claro à direita: indicadores e cartões de leitura com poços internos; quadro em painel com colunas rebaixadas, cartões elevados e cor só para etapa. Estado anterior em EVID-261.
 
-Próxima evidência: EVID-264.
+## 2026-10-21 — SmartDesk 0.12.13: cartões, modal e chamados de teste
+
+- EVID-264: [quadro-escuro-01212](EVID-264_quadro-escuro-01212.webp) — Print do usuário do quadro no tema escuro (0.12.12): cartões cinza-azulados com faixa colorida e duas etiquetas contornadas.
+
+- EVID-265: [modal-detalhes-01212](EVID-265_modal-detalhes-01212.png) — Print do usuário do modal de detalhes (0.12.12): lista simples de campos, menu de etapa e anel grosso no botão de fechar.
+
+- EVID-266: [painel-avaliacao-vazio-01212](EVID-266_painel-avaliacao-vazio-01212.webp) — Print do usuário do painel publicado em "Chamados desta avaliação" sem nenhum chamado, depois de abrir chamados de teste.
+
+- EVID-267: [planilha-chamados-ate-015](EVID-267_planilha-chamados-ate-015.png) — Print do usuário da aba Chamados: o último chamado gravado é o #015 (19/10); os chamados de teste não chegaram à planilha.
+
+- EVID-268: [quadro-e-modal-0-12-13](EVID-268_quadro-e-modal-0-12-13.jpg) — Quadro 0.12.13 nos dois temas (cabeçalho da coluna tingido pela etapa, cartões neutros com ponto da etapa) e modal de detalhes (escuro com "Finalizado" escolhido; claro antes e depois da escolha).
+
+- EVID-269: [modal-celular-0-12-13](EVID-269_modal-celular-0-12-13.png) — Modal 0.12.13 no celular (390×844): blocos empilhados e rodapé com "Fechar" e "Salvar etapa" preso na base.
+
+Próxima evidência: EVID-270.

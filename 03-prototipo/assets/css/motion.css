@@ -970,3 +970,13 @@
       background-color 160ms ease;
   }
 }
+
+/* 0.12.13 — opções de etapa do modal respondem ao mouse. */
+@media (prefers-reduced-motion: no-preference) {
+  .stage-option {
+    transition:
+      border-color 160ms ease,
+      background-color 160ms ease,
+      box-shadow 220ms ease;
+  }
+}
