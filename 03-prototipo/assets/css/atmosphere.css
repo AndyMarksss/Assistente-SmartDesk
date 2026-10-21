@@ -3745,13 +3745,6 @@ body.is-dragging {
     #ffffff 72%
   );
 }
-#ticket-dialog .dialog-header::before {
-  content: "";
-  position: absolute;
-  inset: 0 0 auto;
-  height: 4px;
-  background: var(--tone, var(--accent));
-}
 .dialog-heading {
   min-width: 0;
 }

@@ -118,3 +118,6 @@ Painel com profundidade (quadro em painel, colunas rebaixadas, cartões elevados
 
 ## 0.12.13
 Cartões do quadro neutros com a etapa no cabeçalho da coluna, modal de detalhes redesenhado e aviso no painel publicado de que ele mostra só os chamados enviados naquela aba. Os chamados de teste não chegaram à planilha (o último é o #015). Verificação em 03-prototipo/verificacao-v0.12.13.md.
+
+## 0.12.14
+Modal de detalhes sem a faixa colorida no topo. Verificação em 03-prototipo/verificacao-v0.12.14.md.

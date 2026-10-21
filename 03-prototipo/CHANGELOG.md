@@ -429,3 +429,10 @@ Pedido do usuário (prints do quadro, do modal, do painel vazio e da planilha): 
 - **Modal de detalhes:** cabeçalho com a cor da etapa atual (faixa no topo e degradê), selos de número, etapa, área e simulação, e "Aberto em … às …"; dados em dois blocos rebaixados ("Solicitante" e "Pedido", com anexos como botões); a etapa é escolhida por opções coloridas, com a atual marcada ("atual"), e o botão diz o destino ("Mover para Finalizado") e só liga quando a etapa muda; rodapé com "Fechar" e o botão, preso na base (no celular não some ao rolar). Ao abrir, o foco vai para o título — sem o anel grosso no botão de fechar. No tema claro, o botão desligado aparecia ativo (a regra do gradiente vencia a de desligado); corrigido no modal.
 - **Chamados que não apareciam:** a aba Chamados da planilha termina no #015 (19/10); nenhum chamado de teste posterior foi gravado, então o painel não tinha o que mostrar. No Pages, os dois caminhos testados chegam ao resumo sem erro (o envio não foi feito, para não gravar na planilha sem autorização). Além disso, "Chamados desta avaliação" mostra por privacidade só os chamados enviados naquela aba do navegador, por até 1 hora; o painel agora diz isso quando está vazio ("Nenhum chamado enviado nesta aba") e na nota da origem.
 - Apps Script republicado só para alinhar a versão. Verificação em verificacao-v0.12.13.md.
+
+## 0.12.14 — 2026-10-21
+
+Pedido do usuário (recorte do topo do modal): "Quero que remova essas linhas na parte de cima do modal".
+
+- A faixa de 4 px na cor da etapa, no topo do modal de detalhes, saiu. A cor da etapa continua no selo e no degradê suave do cabeçalho.
+- Apps Script republicado só para alinhar a versão. Verificação em verificacao-v0.12.14.md.

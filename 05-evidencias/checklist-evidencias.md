@@ -580,4 +580,10 @@ Próxima evidência: EVID-205.
 
 - EVID-269: [modal-celular-0-12-13](EVID-269_modal-celular-0-12-13.png) — Modal 0.12.13 no celular (390×844): blocos empilhados e rodapé com "Fechar" e "Salvar etapa" preso na base.
 
-Próxima evidência: EVID-270.
+## 2026-10-21 — SmartDesk 0.12.14: modal sem faixa
+
+- EVID-270: [modal-faixa-topo-01213](EVID-270_modal-faixa-topo-01213.png) — Recorte do usuário do topo do modal (0.12.13) com a faixa colorida que ele pediu para remover.
+
+- EVID-271: [modal-sem-faixa-0-12-14](EVID-271_modal-sem-faixa-0-12-14.png) — Topo do modal 0.12.14 nos temas escuro e claro, sem a faixa.
+
+Próxima evidência: EVID-272.
