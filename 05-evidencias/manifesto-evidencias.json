@@ -2,7 +2,7 @@
   "versao": 1,
   "projeto": "SmartDesk",
   "atualizado_em": "2026-10-21",
-  "proximo_numero": 263,
+  "proximo_numero": 264,
   "evidencias": [
     {
       "numero": "EVID-001",
@@ -3152,6 +3152,18 @@
       "data_inclusao": "2026-10-21",
       "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com envio ao Google desativado",
       "sha256": "6965F43FCD804A25E18C039B301AE9F499722AA15A627DC3CAEC023F99ED49F4",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-263",
+      "arquivo": "EVID-263_painel-profundidade-0-12-12.jpg",
+      "etapa": "SmartDesk 0.12.12 — profundidade e cor no painel",
+      "descricao": "Painel 0.12.12 (1864×958), escuro à esquerda e claro à direita: indicadores e cartões de leitura com poços internos; quadro em painel com colunas rebaixadas, cartões elevados e cor só para etapa. Estado anterior em EVID-261.",
+      "data_aproximada": "2026-10-21",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-21",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com envio ao Google desativado",
+      "sha256": "357E9D4D8A05E7C6F09F4C8DC38B139D73B3EAAB66DA5F8AEBE855EE88F242D8",
       "status": "verificação técnica; não é validação com usuários"
     }
   ]

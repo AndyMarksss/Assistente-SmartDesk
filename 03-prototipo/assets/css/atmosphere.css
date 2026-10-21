@@ -3082,7 +3082,6 @@ body.is-dragging {
   margin: 8px 0 12px;
 }
 .metric-meter {
-  grid-column: 1 / -1;
   display: block;
   height: 5px;
   border-radius: 999px;
@@ -3096,11 +3095,17 @@ body.is-dragging {
   border-radius: inherit;
   background: color-mix(in srgb, var(--muted) 45%, transparent);
 }
-:root[data-theme] .metrics article > small {
+/* 0.12.12: barra e descrição ficam num poço interno (.metric-foot) no pé do cartão. */
+.metric-foot {
   grid-column: 1 / -1;
   align-self: end;
-  margin-top: 10px;
+}
+.metric-foot small {
+  display: block;
   line-height: 1.45;
+}
+.metric-meter + small {
+  margin-top: 8px;
 }
 .metrics small em {
   font-style: normal;
@@ -3282,7 +3287,7 @@ body.is-dragging {
   font-variant-numeric: tabular-nums;
 }
 :root[data-theme] .selfhelp-card .selfhelp-track {
-  margin: 0 0 12px;
+  margin: 0 0 10px;
 }
 
 /* Quadro: coluna vazia com ícone e coluna destacada ao chegar pela fila ou pelo pulso. */
@@ -3348,7 +3353,7 @@ body.is-dragging {
   }
 }
 @media (max-width: 420px) {
-  :root[data-theme] .metrics article > small {
+  :root[data-theme] .metric-foot small {
     font-size: 11px;
   }
   :root[data-theme] .admin-sidebar nav a.nav-active {
@@ -3367,4 +3372,205 @@ body.is-dragging {
   #selfhelp-rate {
     font-size: 28px;
   }
+}
+
+/* 0.12.12 — Painel com profundidade e cor com um significado só. Medido na 0.12.11: no tema
+   escuro o cartão do quadro era mais escuro que a coluna (afundava em vez de saltar) e, no
+   claro, branco sobre quase branco; toda etiqueta de área e de simulação usava o lilás da marca,
+   o mesmo de "Novos chamados"; "Novos chamados" e "Agendado" tinham quase o mesmo violeta; e
+   cada coluna era tingida com a sua cor. Agora: cor = etapa (só na linha do topo da coluna, no
+   ponto, no contador e na borda do cartão), áreas e etiquetas em neutro, e camadas claras —
+   quadro num painel, colunas rebaixadas, cartões elevados; nos cartões de cima, poços internos. */
+:root {
+  --stage-scheduled: #c2417f;
+}
+:root[data-theme="dark"] {
+  --stage-scheduled: #f49ac8;
+}
+.admin-main {
+  --panel-shadow: var(--depth-2), var(--highlight);
+  --well-bg: rgb(4 9 16 / 0.3);
+  --well-line: rgb(255 255 255 / 0.05);
+  --well-shadow: inset 0 2px 6px rgb(0 0 0 / 0.32);
+  --lane-bg: color-mix(in srgb, var(--scene) 62%, transparent);
+  --lane-line: rgb(255 255 255 / 0.05);
+  --lane-shadow: inset 0 2px 10px rgb(0 0 0 / 0.38);
+  --card-surface: color-mix(in srgb, var(--bot) 90%, #ffffff);
+  --card-edge: rgb(255 255 255 / 0.08);
+  --card-lift:
+    inset 0 1px 0 rgb(255 255 255 / 0.07), 0 1px 2px rgb(0 0 0 / 0.4),
+    0 10px 22px -12px rgb(0 0 0 / 0.85);
+  --card-lift-hover:
+    inset 0 1px 0 rgb(255 255 255 / 0.09), 0 2px 4px rgb(0 0 0 / 0.4),
+    0 18px 30px -14px rgb(0 0 0 / 0.9);
+}
+:root[data-theme="light"] .admin-main {
+  --panel-shadow:
+    0 1px 2px rgb(31 41 72 / 0.05), 0 18px 36px -24px rgb(46 36 120 / 0.34), inset 0 1px 0 #ffffff;
+  --well-bg: #f4f5fa;
+  --well-line: #e8eaf2;
+  --well-shadow: inset 0 1px 2px rgb(31 41 72 / 0.07);
+  --lane-bg: #eceef5;
+  --lane-line: #e0e3ed;
+  --lane-shadow: inset 0 1px 3px rgb(31 41 72 / 0.08);
+  --card-surface: #ffffff;
+  --card-edge: #e1e4ee;
+  --card-lift: 0 1px 2px rgb(31 41 72 / 0.08), 0 8px 18px -10px rgb(46 36 120 / 0.32);
+  --card-lift-hover: 0 2px 4px rgb(31 41 72 / 0.08), 0 16px 28px -12px rgb(46 36 120 / 0.4);
+}
+/* Painéis do topo: no claro, brancos de verdade com sombra em camadas (antes vidro acinzentado). */
+:root[data-theme="light"] .data-toolbar,
+:root[data-theme="light"] .metrics article,
+:root[data-theme="light"] .insights article {
+  background-color: #ffffff;
+  border-color: #e3e5f0;
+  box-shadow: var(--panel-shadow);
+}
+/* Poços internos: o pé dos indicadores, o gráfico de áreas, o detalhe do pulso e o
+   autoatendimento ficam numa superfície rebaixada dentro do cartão. */
+.metric-foot,
+:root[data-theme] .insights .area-chart,
+.pulse-card #queue-insight,
+.selfhelp-well {
+  padding: 10px 12px;
+  border: 1px solid var(--well-line);
+  border-radius: 12px;
+  background: var(--well-bg);
+  box-shadow: var(--well-shadow);
+}
+:root[data-theme] .insights .area-chart {
+  padding: 12px 14px;
+}
+.metric-foot {
+  margin-top: 4px;
+}
+:root[data-theme] .metrics article > strong {
+  margin-bottom: 10px;
+}
+.selfhelp-well #selfhelp-insight {
+  margin: 0;
+}
+:root[data-theme] .chart-track,
+.metric-meter,
+:root[data-theme] .selfhelp-card .selfhelp-track {
+  background: color-mix(in srgb, var(--muted) 16%, transparent);
+}
+/* Ícones dos indicadores com relevo próprio. */
+.metric-icon {
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.35),
+    0 6px 14px -8px color-mix(in srgb, var(--metric-tone, var(--muted)) 70%, transparent);
+}
+
+/* Quadro: painel → colunas rebaixadas → cartões elevados. */
+:root[data-theme] .kanban {
+  padding: 12px;
+  border: 1px solid var(--edge);
+  border-radius: 22px;
+  background: color-mix(in srgb, var(--chrome) 72%, transparent);
+  box-shadow: var(--panel-shadow);
+}
+:root[data-theme="light"] .kanban {
+  border-color: #e3e5f0;
+  background: rgb(255 255 255 / 0.78);
+}
+:root[data-theme] .kanban-column {
+  border: 1px solid var(--lane-line);
+  border-top: 3px solid var(--tone, var(--accent));
+  background: var(--lane-bg);
+  box-shadow: var(--lane-shadow);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+:root[data-theme] .kanban-column.drop-active {
+  background: color-mix(in srgb, var(--tone, var(--accent)) 12%, var(--lane-bg));
+}
+:root[data-theme] .column-count {
+  border: 0;
+  font-weight: 700;
+  background: color-mix(in srgb, var(--tone, var(--accent)) 20%, transparent);
+}
+:root[data-theme] .ticket-card {
+  border: 1px solid var(--card-edge);
+  border-left: 3px solid var(--tone, var(--accent));
+  background: var(--card-surface);
+  box-shadow: var(--card-lift);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+:root[data-theme] .ticket-card:hover {
+  border-color: color-mix(in srgb, var(--tone, var(--accent)) 55%, var(--card-edge));
+  border-left-color: var(--tone, var(--accent));
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--tone, var(--accent)) 14%, transparent),
+    var(--card-lift-hover);
+}
+/* A luz do mouse no cartão usa a cor da etapa, não o lilás da marca. */
+.ticket-card::before {
+  background: radial-gradient(
+    200px circle at var(--mx, 50%) var(--my, 50%),
+    color-mix(in srgb, var(--tone, var(--accent)) 12%, transparent),
+    transparent 70%
+  );
+}
+:root[data-theme] .ticket-card.drag-ghost {
+  box-shadow:
+    0 24px 50px -20px rgb(0 0 0 / 0.6),
+    0 0 0 2px var(--tone, var(--accent));
+}
+/* Dentro do cartão: número discreto, título forte, área e etiquetas em neutro. */
+:root[data-theme] .ticket-card .ticket-number {
+  font-size: 11px;
+  font-weight: 650;
+  color: var(--muted);
+}
+:root[data-theme] .area-tag,
+.area-tag[data-area="Impressora"],
+.area-tag[data-area="Google"],
+.area-tag[data-area="TI"] {
+  border: 1px solid color-mix(in srgb, var(--muted) 20%, transparent);
+  background: color-mix(in srgb, var(--muted) 10%, transparent);
+  color: var(--ink);
+}
+:root[data-theme] .area-tag .fa-solid,
+.ticket-tag .fa-solid {
+  color: var(--muted);
+}
+.ticket-tag,
+.ticket-tag.date,
+.ticket-tag.auth,
+.ticket-tag.sim,
+.ticket-tag.files {
+  border: 1px solid color-mix(in srgb, var(--muted) 18%, transparent);
+  background: color-mix(in srgb, var(--muted) 9%, transparent);
+  color: var(--ink);
+}
+/* Autorização pendente pede ação: borda tracejada e texto forte, sem roubar as cores das etapas. */
+.ticket-tag.auth {
+  border-style: dashed;
+  border-color: color-mix(in srgb, var(--ink) 45%, transparent);
+  font-weight: 700;
+}
+:root[data-theme] .ticket-card .ticket-date {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 9px;
+  padding-top: 8px;
+  border-top: 1px solid color-mix(in srgb, var(--muted) 16%, transparent);
+}
+:root[data-theme] .ticket-card .ticket-date::before {
+  content: "\f133";
+  font-family: "Font Awesome 6 Free";
+  font-size: 10px;
+  font-weight: 900;
+  color: var(--muted);
+  opacity: 0.8;
+}
+:root[data-theme] .empty-column {
+  border: 1px dashed color-mix(in srgb, var(--muted) 32%, transparent);
+  background: transparent;
+}
+.ticket-tag.test .fa-solid {
+  color: inherit;
 }

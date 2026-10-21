@@ -593,4 +593,8 @@ Próxima evidência: EVID-205.
 
 - EVID-262: [fila-leva-a-coluna-0-12-11](EVID-262_fila-leva-a-coluna-0-12-11.png) — Clique em "Finalizado" na fila por etapa (mouse real): a página rola até o quadro e a coluna acende.
 
-Próxima evidência: EVID-263.
+## 2026-10-21 — SmartDesk 0.12.12: profundidade e cor no painel
+
+- EVID-263: [painel-profundidade-0-12-12](EVID-263_painel-profundidade-0-12-12.jpg) — Painel 0.12.12 (1864×958), escuro à esquerda e claro à direita: indicadores e cartões de leitura com poços internos; quadro em painel com colunas rebaixadas, cartões elevados e cor só para etapa. Estado anterior em EVID-261.
+
+Próxima evidência: EVID-264.

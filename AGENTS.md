@@ -160,3 +160,6 @@ Na barra lateral, todo bloco é um cartão elevado (`--card-bg`, `--card-line`, 
 
 ## 0.12.11 — painel de gestão
 O painel segue o Storytelling com Dados: título-conclusão nos cartões de leitura (recalculado no `render()` do admin.js), cinza como padrão e cor só no que pede ação (um destaque por bloco: "Chamados abertos", a área líder, o botão do pulso). A barra lateral do painel usa os mesmos `--card-bg`, `--card-line` e `--card-shadow` da barra do chat. Linhas de lista dentro de cartões estreitos precisam de `grid-template-columns: minmax(0, 1fr)`; sem isso o texto em uma linha empurra o conteúdo para fora do cartão. Indicadores e cartões que não são clicáveis não sobem no hover.
+
+## 0.12.12 — cor e profundidade no painel
+No painel, cor de etapa (`--stage-*`) é exclusiva das etapas: linha do topo da coluna, ponto, contador, borda do cartão e fila da barra. Áreas, etiquetas e datas ficam em neutro. Camadas: painel do quadro → coluna rebaixada (`--lane-*`) → cartão elevado (`--card-surface`, `--card-lift`); nos cartões de cima, conteúdo secundário em poço (`--well-*`). Ao mexer em fundos, conferir que o cartão continua mais claro que a coluna no tema escuro.

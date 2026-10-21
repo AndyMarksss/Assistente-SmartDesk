@@ -960,3 +960,13 @@
       var(--depth-2);
   }
 }
+
+/* 0.12.12 — cartão do quadro: a sombra cresce no hover em vez de mudar de lugar. */
+@media (prefers-reduced-motion: no-preference) {
+  .ticket-card {
+    transition:
+      border-color 160ms ease,
+      box-shadow 220ms ease,
+      background-color 160ms ease;
+  }
+}

@@ -112,3 +112,6 @@ Barra lateral com profundidade e cartões no mesmo padrão, dicas com setas e ar
 
 ## 0.12.11
 Painel de gestão redesenhado: barra lateral em cartão com a fila por etapa (atalho para as colunas), indicadores com ícone e parte no total, áreas em ordem com a líder em destaque e títulos que já dizem a conclusão. No chat, as dicas trocam sem sobrepor o texto. Verificação em 03-prototipo/verificacao-v0.12.11.md.
+
+## 0.12.12
+Painel com profundidade (quadro em painel, colunas rebaixadas, cartões elevados) e cor só para etapa; áreas e etiquetas em neutro e "Agendado" com tom próprio. Verificação em 03-prototipo/verificacao-v0.12.12.md.

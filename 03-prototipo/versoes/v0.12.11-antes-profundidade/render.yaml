@@ -1,0 +1,27 @@
+# Blueprint path: 03-prototipo/render.yaml. Somente plano gratuito.
+services:
+  - type: web
+    name: smartdesk-prototipo
+    runtime: node
+    plan: free
+    rootDir: 03-prototipo
+    buildCommand: npm ci --omit=dev
+    startCommand: npm start
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_VERSION
+        value: 22.16.0
+      - key: NODE_ENV
+        value: production
+      - key: GEMINI_MODEL
+        value: gemini-3.5-flash-lite
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: SMARTDESK_APPS_SCRIPT_URL
+        sync: false
+      - key: SMARTDESK_APPS_SCRIPT_TOKEN
+        sync: false
+      - key: SMARTDESK_ACCESS_USER
+        value: avaliador
+      - key: SMARTDESK_ACCESS_PASSWORD
+        sync: false

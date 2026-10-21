@@ -107,28 +107,35 @@
           <article data-metric="total">
             <span>Total de chamados</span
             ><b class="metric-icon" aria-hidden="true"><i class="fa-solid fa-layer-group"></i></b
-            ><strong id="metric-total">0</strong><small>Na origem selecionada</small>
+            ><strong id="metric-total">0</strong>
+            <div class="metric-foot"><small>Na origem selecionada</small></div>
           </article>
           <article data-metric="open">
             <span>Chamados abertos</span
             ><b class="metric-icon" aria-hidden="true"><i class="fa-solid fa-inbox"></i></b
-            ><strong id="metric-open">0</strong
-            ><b class="metric-meter" aria-hidden="true"><i id="meter-open"></i></b
-            ><small>Etapas ainda em andamento<em id="share-open"></em></small>
+            ><strong id="metric-open">0</strong>
+            <div class="metric-foot">
+              <b class="metric-meter" aria-hidden="true"><i id="meter-open"></i></b
+              ><small>Etapas ainda em andamento<em id="share-open"></em></small>
+            </div>
           </article>
           <article data-metric="active">
             <span>Em atendimento</span
             ><b class="metric-icon" aria-hidden="true"><i class="fa-solid fa-headset"></i></b
-            ><strong id="metric-active">0</strong
-            ><b class="metric-meter" aria-hidden="true"><i id="meter-active"></i></b
-            ><small>Suporte trabalhando agora<em id="share-active"></em></small>
+            ><strong id="metric-active">0</strong>
+            <div class="metric-foot">
+              <b class="metric-meter" aria-hidden="true"><i id="meter-active"></i></b
+              ><small>Suporte trabalhando agora<em id="share-active"></em></small>
+            </div>
           </article>
           <article data-metric="done">
             <span>Finalizados</span
             ><b class="metric-icon" aria-hidden="true"><i class="fa-solid fa-circle-check"></i></b
-            ><strong id="metric-done">0</strong
-            ><b class="metric-meter" aria-hidden="true"><i id="meter-done"></i></b
-            ><small>Atendimentos concluídos<em id="share-done"></em></small>
+            ><strong id="metric-done">0</strong>
+            <div class="metric-foot">
+              <b class="metric-meter" aria-hidden="true"><i id="meter-done"></i></b
+              ><small>Atendimentos concluídos<em id="share-done"></em></small>
+            </div>
           </article>
         </section>
         <section class="insights">
@@ -156,10 +163,12 @@
               IA
             </p>
             <h2><strong id="selfhelp-rate">—</strong> resolvidos sem abrir chamado</h2>
-            <div class="selfhelp-track" aria-hidden="true">
-              <div id="selfhelp-bar" class="selfhelp-bar"></div>
+            <div class="selfhelp-well">
+              <div class="selfhelp-track" aria-hidden="true">
+                <div id="selfhelp-bar" class="selfhelp-bar"></div>
+              </div>
+              <p id="selfhelp-insight">Carregando registros de autoatendimento…</p>
             </div>
-            <p id="selfhelp-insight">Carregando registros de autoatendimento…</p>
           </article>
         </section>
         <section class="board-shell">
@@ -195,7 +204,7 @@
         </section>
         <div id="toast" class="toast" role="status" aria-live="polite"></div>
         <footer class="project-version" aria-label="Versão do projeto">
-          SmartDesk · v<span data-project-version>0.12.11</span>
+          SmartDesk · v<span data-project-version>0.12.12</span>
         </footer>
       </main>
     </div>

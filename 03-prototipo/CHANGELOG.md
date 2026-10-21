@@ -408,3 +408,15 @@ Pedido do usuário (prints do chat e do painel nos dois temas): "Agora melhore o
 - **Chat — dicas sem sobreposição:** na troca, as duas dicas cruzavam a meia opacidade e o texto se misturava (visto no print do tema claro). Agora a que sai some em 160 ms, parada, e a nova entra depois, vinda do lado da navegação.
 - O anel no botão "Tema escuro" do print não é falha: após o clique com o mouse não há anel; ele aparece quando alguma tecla é pressionada com o botão em foco (por exemplo, o atalho de captura de tela) — é o indicador de foco do teclado.
 - Apps Script republicado só para alinhar a versão. Verificação em verificacao-v0.12.11.md.
+
+## 0.12.12 — 2026-10-21
+
+Pedido do usuário: "dentro dos cards e no kanban principalmente, estou sentindo falta de profundidade, as colorações não estão intuitivas, acabam se misturando e confundindo o usuário".
+
+Medido no navegador antes de mudar (0.12.11): no tema escuro o cartão do quadro era mais escuro que a coluna onde fica (afundava em vez de saltar); no claro, branco sobre quase branco; toda etiqueta de área e toda "Simulação" usavam o lilás da marca, o mesmo de "Novos chamados", em todos os cartões; "Novos chamados" e "Agendado" tinham quase o mesmo violeta (#6a4fd8 e #7a52c7); e cada coluna era tingida com a sua cor.
+
+- **Cor = etapa, e só etapa.** Cada etapa tem um tom distinto ("Agendado" passou a rosa: #c2417f no claro, #f49ac8 no escuro) e a cor aparece só na linha do topo da coluna, no ponto, no contador e na borda esquerda do cartão — também na fila da barra lateral e na luz do mouse sobre o cartão. Etiquetas de área, "Simulação" e data ficaram neutras (cinza com ícone); "Autorização pendente" se destaca pela borda tracejada e pelo texto forte, sem usar cor de etapa.
+- **Profundidade no quadro:** três camadas — o quadro num painel, as colunas rebaixadas (sombra interna; no escuro, a camada mais escura) e os cartões elevados (no escuro, a camada mais clara, com brilho na borda de cima e sombra; no claro, brancos com sombra lilás). No hover a sombra cresce e a borda pega a cor da etapa.
+- **Dentro do cartão do quadro:** número discreto, título forte, área e etiquetas neutras e a data num rodapé com divisória e ícone de calendário.
+- **Cartões de cima:** no claro, brancos de verdade com sombra em camadas (antes vidro acinzentado). O pé de cada indicador, o gráfico de áreas, o detalhe do pulso e o autoatendimento ficam num poço interno (superfície rebaixada); os ícones dos indicadores ganharam relevo.
+- Estado anterior: EVID-261 (0.12.11). Apps Script republicado só para alinhar a versão. Verificação em verificacao-v0.12.12.md.
