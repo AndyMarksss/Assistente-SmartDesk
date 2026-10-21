@@ -240,7 +240,6 @@
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
   .panel-link:hover,
   .new-conversation:hover,
-  .metrics article:hover,
   .receipt-copy:hover {
     transform: translateY(-2px);
   }
@@ -660,19 +659,19 @@
   .context-step.is-current .step-icon {
     animation: step-pulse 2400ms ease-in-out infinite;
   }
+  /* 0.12.11 — Na 0.12.10 as duas dicas cruzavam a 50% e o texto se sobrepunha. Agora a que
+     sai some em 160 ms sem se mover; a nova começa depois disso, vindo do lado da navegação
+     (o atmosphere.js posiciona o ponto de partida). */
   .tip-slide {
-    transform: translateX(14px);
     transition:
-      opacity 500ms ease,
-      visibility 500ms,
-      transform 500ms var(--motion-ease);
+      opacity 160ms ease,
+      visibility 0s linear 160ms;
   }
   .tip-slide.is-active {
-    transform: none;
-  }
-  /* 0.12.10 — a dica entra pelo lado da navegação (seta da esquerda: vem da esquerda). */
-  .sidebar-tip[data-direction="prev"] .tip-slide:not(.is-active) {
-    transform: translateX(-14px);
+    transition:
+      opacity 320ms ease 150ms,
+      visibility 0s linear 0s,
+      transform 420ms var(--motion-ease) 150ms;
   }
   .tip-arrow,
   .tip-dots button::before,
@@ -921,5 +920,43 @@
   }
   50% {
     opacity: 1;
+  }
+}
+
+/* 0.12.11 — Painel de gestão: navegação e fila respondem ao mouse; os medidores crescem até a
+   parte de cada indicador; a coluna escolhida na fila (ou no pulso) acende e apaga. */
+@media (prefers-reduced-motion: no-preference) {
+  .admin-sidebar nav a,
+  .queue-item,
+  .insight-action,
+  .nav-arrow {
+    transition:
+      color 180ms ease,
+      background-color 180ms ease,
+      border-color 180ms ease,
+      box-shadow 220ms ease;
+  }
+  .metric-meter i {
+    transition: width 700ms var(--motion-ease);
+  }
+  .kanban-column.is-spotlit {
+    animation: column-spot 1700ms ease-out;
+  }
+}
+@keyframes column-spot {
+  0% {
+    box-shadow:
+      0 0 0 0 color-mix(in srgb, var(--tone, var(--accent)) 55%, transparent),
+      var(--depth-2);
+  }
+  25% {
+    box-shadow:
+      0 0 0 6px color-mix(in srgb, var(--tone, var(--accent)) 35%, transparent),
+      var(--depth-2);
+  }
+  100% {
+    box-shadow:
+      0 0 0 3px color-mix(in srgb, var(--tone, var(--accent)) 0%, transparent),
+      var(--depth-2);
   }
 }

@@ -1,8 +1,8 @@
 {
   "versao": 1,
   "projeto": "SmartDesk",
-  "atualizado_em": "2026-10-20",
-  "proximo_numero": 256,
+  "atualizado_em": "2026-10-21",
+  "proximo_numero": 263,
   "evidencias": [
     {
       "numero": "EVID-001",
@@ -3068,6 +3068,90 @@
       "data_inclusao": "2026-10-20",
       "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com envio ao Google desativado",
       "sha256": "FB81D334011388ABC61BEF499EABD8EA3957E4E10A7969E34FF258E30BDB4A03",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-256",
+      "arquivo": "EVID-256_painel-claro-topo-01210.webp",
+      "etapa": "SmartDesk 0.12.11 — painel de gestão",
+      "descricao": "Print do usuário do painel de gestão no tema claro (0.12.10), parte de cima: barra lateral vazia abaixo da navegação, indicadores e cartões de leitura sem hierarquia.",
+      "data_aproximada": "2026-10-21",
+      "fundamento_data": "Captura do usuário em 2026-10-21",
+      "data_inclusao": "2026-10-21",
+      "origem": "Print enviado pelo usuário na conversa com o assistente",
+      "sha256": "626187CD2B84BED8CDE9DA116921B293055A8D668F20DF53B2CC66665B447936",
+      "status": "registro do pedido; estado anterior (0.12.10)"
+    },
+    {
+      "numero": "EVID-257",
+      "arquivo": "EVID-257_painel-claro-quadro-01210.webp",
+      "etapa": "SmartDesk 0.12.11 — painel de gestão",
+      "descricao": "O mesmo painel no tema claro rolado até o quadro de atendimento (0.12.10).",
+      "data_aproximada": "2026-10-21",
+      "fundamento_data": "Captura do usuário em 2026-10-21",
+      "data_inclusao": "2026-10-21",
+      "origem": "Print enviado pelo usuário na conversa com o assistente",
+      "sha256": "8B652BF46E40DB1D3BE0B74C9F3487B762D14166AAA4EF827CF03509CAA49590",
+      "status": "registro do pedido; estado anterior (0.12.10)"
+    },
+    {
+      "numero": "EVID-258",
+      "arquivo": "EVID-258_painel-escuro-topo-01210.webp",
+      "etapa": "SmartDesk 0.12.11 — painel de gestão",
+      "descricao": "Painel de gestão no tema escuro (0.12.10), parte de cima.",
+      "data_aproximada": "2026-10-21",
+      "fundamento_data": "Captura do usuário em 2026-10-21",
+      "data_inclusao": "2026-10-21",
+      "origem": "Print enviado pelo usuário na conversa com o assistente",
+      "sha256": "90758483D37B7EB81374BC1C07C315C5ADAEEB8D28D4DBC3B3F5230C099CB190",
+      "status": "registro do pedido; estado anterior (0.12.10)"
+    },
+    {
+      "numero": "EVID-259",
+      "arquivo": "EVID-259_painel-escuro-quadro-01210.webp",
+      "etapa": "SmartDesk 0.12.11 — painel de gestão",
+      "descricao": "Painel de gestão no tema escuro (0.12.10) rolado até o quadro.",
+      "data_aproximada": "2026-10-21",
+      "fundamento_data": "Captura do usuário em 2026-10-21",
+      "data_inclusao": "2026-10-21",
+      "origem": "Print enviado pelo usuário na conversa com o assistente",
+      "sha256": "D7A2BFF452AFD46A52B24A6DB723A89A713294364FAD5AACF976A68A1177D750",
+      "status": "registro do pedido; estado anterior (0.12.10)"
+    },
+    {
+      "numero": "EVID-260",
+      "arquivo": "EVID-260_dicas-sobrepostas-01210.webp",
+      "etapa": "SmartDesk 0.12.11 — painel de gestão",
+      "descricao": "Print do usuário do chat no tema claro (0.12.10): a dica da barra lateral aparece com dois textos sobrepostos no meio da troca.",
+      "data_aproximada": "2026-10-21",
+      "fundamento_data": "Captura do usuário em 2026-10-21",
+      "data_inclusao": "2026-10-21",
+      "origem": "Print enviado pelo usuário na conversa com o assistente",
+      "sha256": "92109B858C164D1C99B6049CAA0CE93740E67A282D6BB795533139CAC3CCE820",
+      "status": "registro do defeito (0.12.10)"
+    },
+    {
+      "numero": "EVID-261",
+      "arquivo": "EVID-261_painel-0-12-11.jpg",
+      "etapa": "SmartDesk 0.12.11 — painel de gestão",
+      "descricao": "Painel 0.12.11 na tela do usuário (1864×958), temas escuro e claro: barra lateral em cartão com a fila por etapa, indicadores com ícone e parte no total (destaque só em \"Chamados abertos\"), áreas em ordem com a líder colorida e títulos-conclusão.",
+      "data_aproximada": "2026-10-21",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-21",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com envio ao Google desativado",
+      "sha256": "C36A09FB2E3B864DA8A138AAE9189D34BFA84C689F66369175D3BD03FDBD366F",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-262",
+      "arquivo": "EVID-262_fila-leva-a-coluna-0-12-11.png",
+      "etapa": "SmartDesk 0.12.11 — painel de gestão",
+      "descricao": "Clique em \"Finalizado\" na fila por etapa (mouse real): a página rola até o quadro e a coluna acende.",
+      "data_aproximada": "2026-10-21",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-21",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com envio ao Google desativado",
+      "sha256": "6965F43FCD804A25E18C039B301AE9F499722AA15A627DC3CAEC023F99ED49F4",
       "status": "verificação técnica; não é validação com usuários"
     }
   ]

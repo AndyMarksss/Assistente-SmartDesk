@@ -157,3 +157,6 @@ O tema claro tem papéis por área (página cinza-azulada, boas-vindas e cabeça
 
 ## 0.12.10 — barra lateral, dicas e hover
 Na barra lateral, todo bloco é um cartão elevado (`--card-bg`, `--card-line`, `--card-shadow` em `.sidebar`); itens novos seguem esse padrão. Nunca trocar `background` entre gradiente e cor no hover (gradiente não interpola e o botão pisca): mude brilho, sombra ou borda. Para checar hover, use mouse real no CDP (`page.mouse`) e leia `getAnimations()` — capturas de tela são lentas demais para pegar 160 ms.
+
+## 0.12.11 — painel de gestão
+O painel segue o Storytelling com Dados: título-conclusão nos cartões de leitura (recalculado no `render()` do admin.js), cinza como padrão e cor só no que pede ação (um destaque por bloco: "Chamados abertos", a área líder, o botão do pulso). A barra lateral do painel usa os mesmos `--card-bg`, `--card-line` e `--card-shadow` da barra do chat. Linhas de lista dentro de cartões estreitos precisam de `grid-template-columns: minmax(0, 1fr)`; sem isso o texto em uma linha empurra o conteúdo para fora do cartão. Indicadores e cartões que não são clicáveis não sobem no hover.

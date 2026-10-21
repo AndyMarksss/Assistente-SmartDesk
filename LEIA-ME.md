@@ -109,3 +109,6 @@ Tema claro redesenhado, cartão "Seu chamado" na barra lateral e ícones do fund
 
 ## 0.12.10
 Barra lateral com profundidade e cartões no mesmo padrão, dicas com setas e arrastar, e hover do botão principal sem piscar. Verificação em 03-prototipo/verificacao-v0.12.10.md.
+
+## 0.12.11
+Painel de gestão redesenhado: barra lateral em cartão com a fila por etapa (atalho para as colunas), indicadores com ícone e parte no total, áreas em ordem com a líder em destaque e títulos que já dizem a conclusão. No chat, as dicas trocam sem sobrepor o texto. Verificação em 03-prototipo/verificacao-v0.12.11.md.

@@ -77,6 +77,14 @@
       ...[0, 1, 2, 3].map(() => el("div", undefined, "skeleton-line")),
     );
     $("selfhelp-bar").style.width = "0%";
+    $("selfhelp-rate").textContent = "—";
+    $("area-headline").textContent = "Chamados por área";
+    $("pulse-headline").textContent = "Carregando a fila…";
+    $("pulse-action").hidden = true;
+    for (const key of ["open", "active", "done"]) share(key, 0, 0);
+    $("queue-list").replaceChildren(
+      ...[0, 1, 2, 3].map(() => el("li", undefined, "skeleton-line")),
+    );
     $("kanban").replaceChildren();
     for (let c = 0; c < 4; c++) {
       const column = el("section", undefined, "kanban-column skeleton-column");
@@ -94,29 +102,48 @@
     }
   }
 
+  // Parte de cada indicador no total: barra fina e porcentagem ao lado da descrição.
+  function share(key, value, total) {
+    const rate = total ? Math.round((value / total) * 100) : 0;
+    $("meter-" + key).style.width = rate + "%";
+    $("share-" + key).textContent = total ? " · " + rate + "% do total" : "";
+  }
+  const joinNames = (names) =>
+    names.length > 1 ? names.slice(0, -1).join(", ") + " e " + names.at(-1) : names[0];
   function render() {
     document.querySelector(".admin-main").classList.remove("is-skeleton");
     const total = tickets.length,
-      closed = tickets.filter((t) => ["Finalizado", "Cancelado"].includes(t.status)).length;
+      count = (stage) => tickets.filter((t) => t.status === stage).length,
+      closed = tickets.filter((t) => ["Finalizado", "Cancelado"].includes(t.status)).length,
+      active = count("Em atendimento"),
+      done = count("Finalizado"),
+      freshStage = stages.find((stage) => stageKey(stage) === "new") || "Novos chamados",
+      fresh = count(freshStage);
     $("metric-total").textContent = total;
     $("metric-open").textContent = total - closed;
-    $("metric-active").textContent = tickets.filter((t) => t.status === "Em atendimento").length;
-    $("metric-done").textContent = tickets.filter((t) => t.status === "Finalizado").length;
+    $("metric-active").textContent = active;
+    $("metric-done").textContent = done;
+    share("open", total - closed, total);
+    share("active", active, total);
+    share("done", done, total);
+    // Pulso: a conclusão primeiro (o que pede ação agora) e o detalhe logo abaixo.
+    $("pulse-headline").textContent = !total
+      ? "Nenhum chamado nesta origem"
+      : fresh
+        ? fresh === 1
+          ? "1 chamado novo espera a primeira resposta"
+          : fresh + " chamados novos esperam a primeira resposta"
+        : total - closed
+          ? "Nenhum chamado novo parado na fila"
+          : "Todos os chamados foram encerrados";
+    $("pulse-action").hidden = !fresh;
+    $("pulse-action").dataset.stage = freshStage;
     $("queue-insight").textContent = total
-      ? `${plural(total - closed, "chamado segue", "chamados seguem")} em andamento. ${plural(tickets.filter((t) => t.status === "Aguardando terceiros").length, "aguarda", "aguardam")} terceiros e ${plural(tickets.filter((t) => t.status === "Agendado").length, "está agendado", "estão agendados")}.`
-      : "Nenhum chamado nesta origem. Crie simulações ou carregue os dados do Google.";
+      ? `${plural(total - closed, "chamado segue", "chamados seguem")} em andamento. ${plural(count("Aguardando terceiros"), "aguarda", "aguardam")} terceiros e ${plural(count("Agendado"), "está agendado", "estão agendados")}.`
+      : "Crie simulações ou carregue os dados do Google.";
     renderSelfHelp();
-    $("area-chart").replaceChildren();
-    for (const area of ["Audiovisual", "Impressora", "Google", "TI"]) {
-      const count = tickets.filter((t) => t.area === area).length,
-        row = el("div", undefined, "chart-row"),
-        track = el("div", undefined, "chart-track"),
-        bar = el("div", undefined, "chart-bar");
-      bar.style.width = (total ? (count / total) * 100 : 0) + "%";
-      track.append(bar);
-      row.append(el("span", area), track, el("span", String(count)));
-      $("area-chart").append(row);
-    }
+    renderAreas();
+    renderQueue();
     const prev = $("sector-filter").value,
       sectors = [...new Set(tickets.map((t) => t.sector))].sort();
     $("sector-filter").replaceChildren(el("option", "Todos os setores"));
@@ -129,11 +156,84 @@
     $("sector-filter").value = sectors.includes(prev) ? prev : "";
     renderBoard(true);
   }
+  // Áreas em ordem (maior no topo); só a líder ganha cor e o título diz a conclusão.
+  function renderAreas() {
+    const areas = Object.keys(AREA_ICONS)
+        .map((area) => ({ area, count: tickets.filter((t) => t.area === area).length }))
+        .sort((a, b) => b.count - a.count),
+      top = areas[0].count,
+      leaders = top ? areas.filter((entry) => entry.count === top).map((entry) => entry.area) : [];
+    $("area-headline").textContent = !top
+      ? "Nenhum chamado por área ainda"
+      : leaders.length === 1
+        ? `${leaders[0]} lidera com ${plural(top, "chamado", "chamados")}`
+        : leaders.length === areas.length
+          ? `Áreas empatadas, com ${plural(top, "chamado", "chamados")} cada`
+          : `${joinNames(leaders)} empatam com ${plural(top, "chamado", "chamados")}`;
+    $("area-chart").replaceChildren();
+    for (const { area, count } of areas) {
+      const row = el("div", undefined, "chart-row"),
+        label = el("span", undefined, "chart-label"),
+        track = el("div", undefined, "chart-track"),
+        bar = el("div", undefined, "chart-bar");
+      if (leaders.includes(area)) row.classList.add("is-lead");
+      label.append(icon(AREA_ICONS[area]), document.createTextNode(area));
+      bar.style.width = (top ? (count / top) * 100 : 0) + "%";
+      track.append(bar);
+      row.append(label, track, el("strong", String(count), "chart-count"));
+      $("area-chart").append(row);
+    }
+  }
+  // Fila por etapa na barra lateral: cada linha leva à coluna do quadro.
+  function renderQueue() {
+    const list = $("queue-list"),
+      extra = [...new Set(tickets.map((t) => t.status))].filter((s) => !stages.includes(s));
+    list.replaceChildren();
+    for (const stage of [...stages, ...extra]) {
+      const n = tickets.filter((t) => t.status === stage).length,
+        item = el("button", undefined, "queue-item" + (n ? "" : " is-empty"));
+      item.type = "button";
+      item.dataset.stage = stage;
+      item.dataset.tone = stageKey(stage);
+      item.setAttribute(
+        "aria-label",
+        `${stage}: ${plural(n, "chamado", "chamados")}. Ir para a coluna`,
+      );
+      item.append(
+        el("span", undefined, "stage-dot"),
+        el("span", stage, "queue-name"),
+        el("strong", String(n), "queue-count"),
+      );
+      const li = el("li");
+      li.append(item);
+      list.append(li);
+    }
+  }
+  function goToStage(stage) {
+    const column = [...document.querySelectorAll(".kanban-column")].find(
+      (node) => node.dataset.stage === stage,
+    );
+    if (!column) return;
+    const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    column.scrollIntoView({ behavior: still ? "auto" : "smooth", block: "start" });
+    column.setAttribute("tabindex", "-1");
+    column.focus({ preventScroll: true });
+    column.classList.remove("is-spotlit");
+    void column.offsetWidth;
+    column.classList.add("is-spotlit");
+    setTimeout(() => column.classList.remove("is-spotlit"), 1800);
+  }
+  $("queue-list").addEventListener("click", (event) => {
+    const item = event.target.closest(".queue-item");
+    if (item) goToStage(item.dataset.stage);
+  });
+  $("pulse-action").addEventListener("click", () => goToStage($("pulse-action").dataset.stage));
   function renderSelfHelp() {
     const box = $("selfhelp-insight");
     if (!selfHelp) {
       box.textContent = "Os registros de autoatendimento aparecem com os dados do Google.";
       $("selfhelp-bar").style.width = "0%";
+      $("selfhelp-rate").textContent = "—";
       return;
     }
     const total = selfHelp.resolved + selfHelp.continued,
@@ -143,6 +243,7 @@
         (selfHelp.simulation ? " Valores de demonstração." : "")
       : "Ainda não há atendimentos com dicas da IA registrados.";
     $("selfhelp-bar").style.width = rate + "%";
+    $("selfhelp-rate").textContent = total ? rate + "%" : "—";
   }
   function cardTags(t) {
     const tags = [];

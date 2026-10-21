@@ -393,3 +393,18 @@ Pedido do usuário (prints e um vídeo de 6 s): melhorar a profundidade da barra
 - **Foco:** o botão principal continua o elemento mais forte da área de botões; na barra, o destaque fica na etapa atual do cartão; a rede do pé ficou mais discreta no claro.
 - A barra continua sem rolar: espaços entre cartões ajustados para "O que a TI atende" caber na tela do usuário (1864 × 958); onde não cabe, a proteção o retira.
 - Apps Script republicado só para alinhar a versão. Verificação em verificacao-v0.12.10.md.
+
+## 0.12.11 — 2026-10-21
+
+Pedido do usuário (prints do chat e do painel nos dois temas): "Agora melhore o painel de gestão também".
+
+- **Barra lateral do painel:** virou um cartão flutuante, como a do chat (claro: branco com degradê lilás e sombra; escuro: vidro). "Visão geral" e "Abrir chamado" são itens de navegação com ícone, nome e descrição; o item atual fica em cartão elevado com ícone em gradiente.
+- **Fila por etapa (novo):** na barra, as sete etapas com a cor de cada coluna e quantos chamados há em cada uma. Tocar numa etapa rola até a coluna do quadro e a acende por um instante; etapas vazias ficam apagadas. Funciona como legenda do quadro e atalho. A mesma rede discreta do pé da barra do chat ocupa o espaço livre.
+- **Indicadores:** ícone em cada cartão, barra fina com a parte no total ("83% do total") e um destaque só — "Chamados abertos", o número que pede ação (borda, ícone em gradiente e número na cor da marca). Os outros ficam neutros, com o ícone na cor da coluna correspondente. Os cartões não sobem mais no hover (não são clicáveis).
+- **Distribuição por área:** áreas em ordem (maior no topo), barras em cinza e só a líder colorida; o título diz a conclusão ("TI lidera com 4 chamados"; empates citam as áreas). As barras são proporcionais à líder.
+- **Pulso do atendimento:** o título diz o que pede ação ("2 chamados novos esperam a primeira resposta") e o botão "Ver novos chamados" leva à coluna. A etiqueta "Equipe conectada", que não informava nada, saiu.
+- **Autoatendimento com IA:** o número primeiro (30% resolvidos sem abrir chamado), depois a barra e o detalhe.
+- **Quadro:** coluna vazia com ícone; a coluna escolhida pela fila ou pelo pulso acende e apaga (e recebe o foco, para quem usa teclado).
+- **Chat — dicas sem sobreposição:** na troca, as duas dicas cruzavam a meia opacidade e o texto se misturava (visto no print do tema claro). Agora a que sai some em 160 ms, parada, e a nova entra depois, vinda do lado da navegação.
+- O anel no botão "Tema escuro" do print não é falha: após o clique com o mouse não há anel; ele aparece quando alguma tecla é pressionada com o botão em foco (por exemplo, o atalho de captura de tela) — é o indicador de foco do teclado.
+- Apps Script republicado só para alinhar a versão. Verificação em verificacao-v0.12.11.md.

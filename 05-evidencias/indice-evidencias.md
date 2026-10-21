@@ -577,4 +577,20 @@ Próxima evidência: EVID-205.
 
 - EVID-255: [barra-lateral-0-12-10](EVID-255_barra-lateral-0-12-10.jpg) — Barra lateral 0.12.10 na tela do usuário (1864×958), temas escuro e claro, na abertura (0/4) e com dados (4/4): cartões elevados, dica com setas e pontinhos, "O que a TI atende" em cartão e "Painel de gestão" como item de navegação.
 
-Próxima evidência: EVID-256.
+## 2026-10-21 — SmartDesk 0.12.11: painel de gestão
+
+- EVID-256: [painel-claro-topo-01210](EVID-256_painel-claro-topo-01210.webp) — Print do usuário do painel de gestão no tema claro (0.12.10), parte de cima: barra lateral vazia abaixo da navegação, indicadores e cartões de leitura sem hierarquia.
+
+- EVID-257: [painel-claro-quadro-01210](EVID-257_painel-claro-quadro-01210.webp) — O mesmo painel no tema claro rolado até o quadro de atendimento (0.12.10).
+
+- EVID-258: [painel-escuro-topo-01210](EVID-258_painel-escuro-topo-01210.webp) — Painel de gestão no tema escuro (0.12.10), parte de cima.
+
+- EVID-259: [painel-escuro-quadro-01210](EVID-259_painel-escuro-quadro-01210.webp) — Painel de gestão no tema escuro (0.12.10) rolado até o quadro.
+
+- EVID-260: [dicas-sobrepostas-01210](EVID-260_dicas-sobrepostas-01210.webp) — Print do usuário do chat no tema claro (0.12.10): a dica da barra lateral aparece com dois textos sobrepostos no meio da troca.
+
+- EVID-261: [painel-0-12-11](EVID-261_painel-0-12-11.jpg) — Painel 0.12.11 na tela do usuário (1864×958), temas escuro e claro: barra lateral em cartão com a fila por etapa, indicadores com ícone e parte no total (destaque só em "Chamados abertos"), áreas em ordem com a líder colorida e títulos-conclusão.
+
+- EVID-262: [fila-leva-a-coluna-0-12-11](EVID-262_fila-leva-a-coluna-0-12-11.png) — Clique em "Finalizado" na fila por etapa (mouse real): a página rola até o quadro e a coluna acende.
+
+Próxima evidência: EVID-263.

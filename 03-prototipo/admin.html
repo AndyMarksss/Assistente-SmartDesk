@@ -30,10 +30,45 @@
         >
         <p class="workspace-label">CENTRAL DE ATENDIMENTO</p>
         <nav aria-label="Navegação de gestão">
-          <a class="nav-active" href="admin.html"
-            ><i class="fa-solid fa-table-columns"></i> Visão geral</a
-          ><a href="index.html"><i class="fa-solid fa-comments"></i> Abrir chamado</a>
+          <a class="nav-active" href="admin.html" aria-current="page"
+            ><span class="nav-icon" aria-hidden="true"
+              ><i class="fa-solid fa-table-columns"></i></span
+            ><span class="nav-text"
+              ><strong>Visão geral</strong><small>Indicadores e quadro</small></span
+            ></a
+          ><a href="index.html"
+            ><span class="nav-icon" aria-hidden="true"><i class="fa-solid fa-comments"></i></span
+            ><span class="nav-text"
+              ><strong>Abrir chamado</strong><small>Conversa guiada</small></span
+            ><i class="fa-solid fa-chevron-right nav-arrow" aria-hidden="true"></i
+          ></a>
         </nav>
+        <section class="queue-card" aria-labelledby="queue-title">
+          <h2 id="queue-title" class="queue-kicker">Fila por etapa</h2>
+          <ul id="queue-list" class="queue-list"></ul>
+          <p class="queue-hint">Toque numa etapa para ir até a coluna.</p>
+        </section>
+        <svg
+          class="sidebar-net"
+          viewBox="0 0 240 150"
+          preserveAspectRatio="xMidYMax slice"
+          aria-hidden="true"
+        >
+          <path
+            class="net-line"
+            d="M10 120L60 80L110 105L160 60L215 90M60 80L80 30L160 60M110 105L150 140"
+          />
+          <path class="net-signal" pathLength="100" d="M10 120L60 80L110 105L160 60L215 90" />
+          <g class="net-nodes">
+            <circle cx="10" cy="120" r="2.5" />
+            <circle cx="60" cy="80" r="3.5" />
+            <circle cx="110" cy="105" r="2.5" />
+            <circle cx="160" cy="60" r="3.5" />
+            <circle cx="215" cy="90" r="2.5" />
+            <circle cx="80" cy="30" r="2.5" />
+            <circle cx="150" cy="140" r="2.5" />
+          </g>
+        </svg>
         <div class="admin-foot">
           <i class="fa-solid fa-shield-halved"></i>
           <p>Protótipo acadêmico<small>Acompanhe cada chamado por aqui.</small></p>
@@ -69,41 +104,62 @@
         <p id="admin-error" role="alert" class="error"></p>
         <p id="sync-status" class="sync-status" role="status"></p>
         <section class="metrics" aria-label="Indicadores de chamados">
-          <article>
-            <span>Total de chamados</span><strong id="metric-total">0</strong
-            ><small>Na origem selecionada</small>
+          <article data-metric="total">
+            <span>Total de chamados</span
+            ><b class="metric-icon" aria-hidden="true"><i class="fa-solid fa-layer-group"></i></b
+            ><strong id="metric-total">0</strong><small>Na origem selecionada</small>
           </article>
-          <article>
-            <span>Chamados abertos</span><strong id="metric-open">0</strong
-            ><small>Etapas ainda em andamento</small>
+          <article data-metric="open">
+            <span>Chamados abertos</span
+            ><b class="metric-icon" aria-hidden="true"><i class="fa-solid fa-inbox"></i></b
+            ><strong id="metric-open">0</strong
+            ><b class="metric-meter" aria-hidden="true"><i id="meter-open"></i></b
+            ><small>Etapas ainda em andamento<em id="share-open"></em></small>
           </article>
-          <article>
-            <span>Em atendimento</span><strong id="metric-active">0</strong
-            ><small>Suporte trabalhando agora</small>
+          <article data-metric="active">
+            <span>Em atendimento</span
+            ><b class="metric-icon" aria-hidden="true"><i class="fa-solid fa-headset"></i></b
+            ><strong id="metric-active">0</strong
+            ><b class="metric-meter" aria-hidden="true"><i id="meter-active"></i></b
+            ><small>Suporte trabalhando agora<em id="share-active"></em></small>
           </article>
-          <article>
-            <span>Finalizados</span><strong id="metric-done">0</strong
-            ><small>Atendimentos concluídos</small>
+          <article data-metric="done">
+            <span>Finalizados</span
+            ><b class="metric-icon" aria-hidden="true"><i class="fa-solid fa-circle-check"></i></b
+            ><strong id="metric-done">0</strong
+            ><b class="metric-meter" aria-hidden="true"><i id="meter-done"></i></b
+            ><small>Atendimentos concluídos<em id="share-done"></em></small>
           </article>
         </section>
         <section class="insights">
-          <article>
-            <h2>Distribuição por área</h2>
+          <article class="area-card">
+            <p class="card-kicker">
+              <i class="fa-solid fa-chart-simple" aria-hidden="true"></i> Distribuição por área
+            </p>
+            <h2 id="area-headline">Chamados por área</h2>
             <div id="area-chart" class="area-chart"></div>
           </article>
-          <article>
-            <h2>Pulso do atendimento</h2>
+          <article class="pulse-card">
+            <p class="card-kicker">
+              <i class="fa-solid fa-wave-square" aria-hidden="true"></i> Pulso do atendimento
+            </p>
+            <h2 id="pulse-headline">Carregando a fila…</h2>
             <p id="queue-insight">Os chamados aparecerão aqui após carregar os dados.</p>
-            <span class="insight-tag"
-              ><i class="fa-solid fa-network-wired"></i> Equipe conectada</span
-            >
+            <button id="pulse-action" class="insight-action" type="button" hidden>
+              <span>Ver novos chamados</span
+              ><i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
+            </button>
           </article>
           <article class="selfhelp-card">
-            <h2><i class="fa-solid fa-wand-magic-sparkles"></i> Autoatendimento com IA</h2>
-            <p id="selfhelp-insight">Carregando registros de autoatendimento…</p>
+            <p class="card-kicker">
+              <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i> Autoatendimento com
+              IA
+            </p>
+            <h2><strong id="selfhelp-rate">—</strong> resolvidos sem abrir chamado</h2>
             <div class="selfhelp-track" aria-hidden="true">
               <div id="selfhelp-bar" class="selfhelp-bar"></div>
             </div>
+            <p id="selfhelp-insight">Carregando registros de autoatendimento…</p>
           </article>
         </section>
         <section class="board-shell">
@@ -139,7 +195,7 @@
         </section>
         <div id="toast" class="toast" role="status" aria-live="polite"></div>
         <footer class="project-version" aria-label="Versão do projeto">
-          SmartDesk · v<span data-project-version>0.12.10</span>
+          SmartDesk · v<span data-project-version>0.12.11</span>
         </footer>
       </main>
     </div>

@@ -175,6 +175,13 @@
     const show = (next, direction = 1) => {
       index = (next + slides.length) % slides.length;
       tip.dataset.direction = direction > 0 ? "next" : "prev";
+      // Ponto de partida da dica nova: do lado da navegação, aplicado sem transição.
+      const incoming = slides[index];
+      incoming.style.transition = "none";
+      incoming.style.transform = "translateX(" + (direction > 0 ? 14 : -14) + "px)";
+      void incoming.offsetWidth;
+      incoming.style.transition = "";
+      incoming.style.transform = "";
       slides.forEach((slide, i) => {
         slide.classList.toggle("is-active", i === index);
         slide.setAttribute("aria-hidden", i === index ? "false" : "true");

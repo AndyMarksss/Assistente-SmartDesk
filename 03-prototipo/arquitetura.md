@@ -1,4 +1,4 @@
-# Estrutura do SmartDesk — 0.12.10
+# Estrutura do SmartDesk — 0.12.11
 
 ## Cliente
 Os scripts são carregados com defer na ordem declarada em index.html. Não há ferramenta de compilação: os arquivos continuam funcionando no servidor local e a apresentação estática no GitHub Pages.

@@ -1,0 +1,200 @@
+[
+  {
+    "tema": "claro",
+    "elemento": "Texto das mensagens",
+    "frente": "#202b3b",
+    "fundo": "#ffffff",
+    "contraste": 14.28,
+    "minimo": 4.5,
+    "passou": true
+  },
+  {
+    "tema": "claro",
+    "elemento": "Texto do usuário",
+    "frente": "#263956",
+    "fundo": "#e3e8f8",
+    "contraste": 9.52,
+    "minimo": 4.5,
+    "passou": true
+  },
+  {
+    "tema": "claro",
+    "elemento": "Texto secundário",
+    "frente": "#536176",
+    "fundo": "#f2f5f9",
+    "contraste": 5.75,
+    "minimo": 4.5,
+    "passou": true
+  },
+  {
+    "tema": "claro",
+    "elemento": "Campo digitável",
+    "frente": "#202b3b",
+    "fundo": "#f9fbff",
+    "contraste": 13.79,
+    "minimo": 4.5,
+    "passou": true
+  },
+  {
+    "tema": "claro",
+    "elemento": "Placeholder",
+    "frente": "#536176",
+    "fundo": "#f9fbff",
+    "contraste": 6.07,
+    "minimo": 4.5,
+    "passou": true
+  },
+  {
+    "tema": "claro",
+    "elemento": "Ação principal",
+    "frente": "#ffffff",
+    "fundo": "#6240ca",
+    "contraste": 6.76,
+    "minimo": 4.5,
+    "passou": true
+  },
+  {
+    "tema": "claro",
+    "elemento": "Opções",
+    "frente": "#202b3b",
+    "fundo": "#f3f5fb",
+    "contraste": 13.1,
+    "minimo": 4.5,
+    "passou": true
+  },
+  {
+    "tema": "claro",
+    "elemento": "Descrição das opções",
+    "frente": "#536176",
+    "fundo": "#f3f5fb",
+    "contraste": 5.77,
+    "minimo": 4.5,
+    "passou": true
+  },
+  {
+    "tema": "claro",
+    "elemento": "Borda do campo",
+    "frente": "#748298",
+    "fundo": "#f9fbff",
+    "contraste": 3.76,
+    "minimo": 3,
+    "passou": true
+  },
+  {
+    "tema": "claro",
+    "elemento": "Foco do campo",
+    "frente": "#6240ca",
+    "fundo": "#f9fbff",
+    "contraste": 6.53,
+    "minimo": 3,
+    "passou": true
+  },
+  {
+    "tema": "claro",
+    "elemento": "Erro no campo",
+    "frente": "#a6294c",
+    "fundo": "#f9fbff",
+    "contraste": 6.66,
+    "minimo": 4.5,
+    "passou": true
+  },
+  {
+    "tema": "escuro",
+    "elemento": "Texto das mensagens",
+    "frente": "#edf2fa",
+    "fundo": "#263140",
+    "contraste": 11.71,
+    "minimo": 4.5,
+    "passou": true
+  },
+  {
+    "tema": "escuro",
+    "elemento": "Texto do usuário",
+    "frente": "#e4edff",
+    "fundo": "#31445f",
+    "contraste": 8.41,
+    "minimo": 4.5,
+    "passou": true
+  },
+  {
+    "tema": "escuro",
+    "elemento": "Texto secundário",
+    "frente": "#b4c0d1",
+    "fundo": "#171e28",
+    "contraste": 9.1,
+    "minimo": 4.5,
+    "passou": true
+  },
+  {
+    "tema": "escuro",
+    "elemento": "Campo digitável",
+    "frente": "#edf2fa",
+    "fundo": "#101722",
+    "contraste": 16,
+    "minimo": 4.5,
+    "passou": true
+  },
+  {
+    "tema": "escuro",
+    "elemento": "Placeholder",
+    "frente": "#b4c0d1",
+    "fundo": "#101722",
+    "contraste": 9.76,
+    "minimo": 4.5,
+    "passou": true
+  },
+  {
+    "tema": "escuro",
+    "elemento": "Ação principal",
+    "frente": "#211444",
+    "fundo": "#b9a6ff",
+    "contraste": 7.98,
+    "minimo": 4.5,
+    "passou": true
+  },
+  {
+    "tema": "escuro",
+    "elemento": "Opções",
+    "frente": "#edf2fa",
+    "fundo": "#303e50",
+    "contraste": 9.68,
+    "minimo": 4.5,
+    "passou": true
+  },
+  {
+    "tema": "escuro",
+    "elemento": "Descrição das opções",
+    "frente": "#b4c0d1",
+    "fundo": "#303e50",
+    "contraste": 5.91,
+    "minimo": 4.5,
+    "passou": true
+  },
+  {
+    "tema": "escuro",
+    "elemento": "Borda do campo",
+    "frente": "#8391a8",
+    "fundo": "#101722",
+    "contraste": 5.64,
+    "minimo": 3,
+    "passou": true
+  },
+  {
+    "tema": "escuro",
+    "elemento": "Foco do campo",
+    "frente": "#cdbfff",
+    "fundo": "#101722",
+    "contraste": 10.7,
+    "minimo": 3,
+    "passou": true
+  },
+  {
+    "tema": "escuro",
+    "elemento": "Erro no campo",
+    "frente": "#ffb4c7",
+    "fundo": "#101722",
+    "contraste": 10.8,
+    "minimo": 4.5,
+    "passou": true
+  }
+]
