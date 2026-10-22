@@ -79,6 +79,7 @@
     $("selfhelp-bar").style.width = "0%";
     $("selfhelp-rate").textContent = "—";
     $("area-headline").textContent = "Chamados por área";
+    $("area-trail").replaceChildren();
     $("pulse-headline").textContent = "Carregando a fila…";
     $("pulse-action").hidden = true;
     for (const key of ["open", "active", "done"]) share(key, 0, 0);
@@ -110,46 +111,44 @@
   }
   const joinNames = (names) =>
     names.length > 1 ? names.slice(0, -1).join(", ") + " e " + names.at(-1) : names[0];
+
+  // --- Filtros do painel ------------------------------------------------------------------
+  // Indicadores, áreas e categorias filtram tudo (indicadores, pulso, fila e quadro); a faixa
+  // abaixo da origem mostra o que está ativo e Esc volta um nível.
+  const view = { stage: "", area: "", need: "" };
+  const CLOSED = ["Finalizado", "Cancelado"];
+  const STAGE_GROUPS = {
+    open: { label: "Abertos", test: (status) => !CLOSED.includes(status) },
+    active: { label: "Em atendimento", test: (status) => status === "Em atendimento" },
+    done: { label: "Finalizados", test: (status) => status === "Finalizado" },
+  };
+  // Categoria = primeiro nível da necessidade ("COMPUTADOR > Troca de Mouse" → Computador).
+  const category = (need) => {
+    const head =
+      String(need || "")
+        .split(">")[0]
+        .trim() || "Sem categoria";
+    return head === head.toLocaleUpperCase("pt-BR") && /\p{L}{3}/u.test(head)
+      ? head.charAt(0) + head.slice(1).toLocaleLowerCase("pt-BR")
+      : head;
+  };
+  const query = () => $("search").value.trim().toLocaleLowerCase("pt-BR");
+  // Contexto (setor e busca): o gráfico de áreas parte dele para permitir trocar de área.
+  const inContext = (t) =>
+    (!$("sector-filter").value || $("sector-filter").value === t.sector) &&
+    (!query() ||
+      [t.number, t.subject, t.need, t.name, t.sector, t.email, t.participant]
+        .join(" ")
+        .toLocaleLowerCase("pt-BR")
+        .includes(query()));
+  const inScope = (t) =>
+    inContext(t) &&
+    (!view.area || t.area === view.area) &&
+    (!view.need || category(t.need) === view.need);
+  const stageShown = (status) => !view.stage || STAGE_GROUPS[view.stage].test(status);
+
   function render() {
     document.querySelector(".admin-main").classList.remove("is-skeleton");
-    const total = tickets.length,
-      count = (stage) => tickets.filter((t) => t.status === stage).length,
-      closed = tickets.filter((t) => ["Finalizado", "Cancelado"].includes(t.status)).length,
-      active = count("Em atendimento"),
-      done = count("Finalizado"),
-      freshStage = stages.find((stage) => stageKey(stage) === "new") || "Novos chamados",
-      fresh = count(freshStage);
-    $("metric-total").textContent = total;
-    $("metric-open").textContent = total - closed;
-    $("metric-active").textContent = active;
-    $("metric-done").textContent = done;
-    share("open", total - closed, total);
-    share("active", active, total);
-    share("done", done, total);
-    // Pulso: a conclusão primeiro (o que pede ação agora) e o detalhe logo abaixo.
-    // No Pages, "Chamados desta avaliação" só lista o que foi enviado nesta aba (privacidade).
-    const tabOnly = mode === "google" && !!window.smartdeskRemote;
-    $("pulse-headline").textContent = !total
-      ? tabOnly
-        ? "Nenhum chamado enviado nesta aba"
-        : "Nenhum chamado nesta origem"
-      : fresh
-        ? fresh === 1
-          ? "1 chamado novo espera a primeira resposta"
-          : fresh + " chamados novos esperam a primeira resposta"
-        : total - closed
-          ? "Nenhum chamado novo parado na fila"
-          : "Todos os chamados foram encerrados";
-    $("pulse-action").hidden = !fresh;
-    $("pulse-action").dataset.stage = freshStage;
-    $("queue-insight").textContent = total
-      ? `${plural(total - closed, "chamado segue", "chamados seguem")} em andamento. ${plural(count("Aguardando terceiros"), "aguarda", "aguardam")} terceiros e ${plural(count("Agendado"), "está agendado", "estão agendados")}.`
-      : tabOnly
-        ? "Por privacidade, o painel publicado mostra só os chamados enviados nesta aba do navegador, por até 1 hora. Todos os chamados ficam na planilha do Google."
-        : "Crie simulações ou carregue os dados do Google.";
-    renderSelfHelp();
-    renderAreas();
-    renderQueue();
     const prev = $("sector-filter").value,
       sectors = [...new Set(tickets.map((t) => t.sector))].sort();
     $("sector-filter").replaceChildren(el("option", "Todos os setores"));
@@ -160,43 +159,277 @@
       $("sector-filter").append(opt);
     }
     $("sector-filter").value = sectors.includes(prev) ? prev : "";
-    renderBoard(true);
+    if (view.area && !tickets.some((t) => t.area === view.area)) view.area = view.need = "";
+    renderSelfHelp();
+    refresh(true);
   }
-  // Áreas em ordem (maior no topo); só a líder ganha cor e o título diz a conclusão.
-  function renderAreas() {
-    const areas = Object.keys(AREA_ICONS)
-        .map((area) => ({ area, count: tickets.filter((t) => t.area === area).length }))
-        .sort((a, b) => b.count - a.count),
-      top = areas[0].count,
-      leaders = top ? areas.filter((entry) => entry.count === top).map((entry) => entry.area) : [];
+  // Recalcula tudo o que depende dos filtros.
+  function refresh(animate = false) {
+    const context = tickets.filter(inContext),
+      scoped = context.filter(inScope),
+      total = scoped.length,
+      count = (stage) => scoped.filter((t) => t.status === stage).length,
+      closed = scoped.filter((t) => CLOSED.includes(t.status)).length,
+      active = count("Em atendimento"),
+      done = count("Finalizado"),
+      freshStage = stages.find((stage) => stageKey(stage) === "new") || "Novos chamados",
+      fresh = stageShown(freshStage) ? count(freshStage) : 0,
+      filtered = Boolean(view.area || view.need || $("sector-filter").value || query());
+    $("metric-total").textContent = total;
+    $("metric-open").textContent = total - closed;
+    $("metric-active").textContent = active;
+    $("metric-done").textContent = done;
+    share("open", total - closed, total);
+    share("active", active, total);
+    share("done", done, total);
+    document.querySelector('[data-metric="total"] .metric-foot small').textContent = filtered
+      ? "Com os filtros ativos"
+      : "Na origem selecionada";
+    for (const button of document.querySelectorAll(".metric-filter")) {
+      const on = (button.dataset.filter === "total" ? "" : button.dataset.filter) === view.stage;
+      button.setAttribute("aria-pressed", String(on));
+      // Anel só quando há filtro de etapa ("Total" sem filtro é o estado normal).
+      button.closest("article").classList.toggle("is-selected", on && Boolean(view.stage));
+    }
+    // Pulso: a conclusão primeiro (o que pede ação agora) e o detalhe logo abaixo.
+    // No Pages, "Chamados desta avaliação" só lista o que foi enviado nesta aba (privacidade).
+    const tabOnly = mode === "google" && !!window.smartdeskRemote && !tickets.length;
+    $("pulse-headline").textContent = !total
+      ? filtered
+        ? "Nenhum chamado com estes filtros"
+        : tabOnly
+          ? "Nenhum chamado enviado nesta aba"
+          : "Nenhum chamado nesta origem"
+      : fresh
+        ? fresh === 1
+          ? "1 chamado novo espera a primeira resposta"
+          : fresh + " chamados novos esperam a primeira resposta"
+        : total - closed
+          ? "Nenhum chamado novo parado na fila"
+          : "Todos os chamados foram encerrados";
+    $("pulse-action").hidden = !fresh;
+    $("pulse-action").dataset.stage = freshStage;
+    // Só cita o que existe: "0 aguardam terceiros" não informa nada.
+    const waiting = count("Aguardando terceiros"),
+      scheduled = count("Agendado"),
+      extras = [
+        waiting && plural(waiting, "aguarda", "aguardam") + " terceiros",
+        scheduled && plural(scheduled, "está agendado", "estão agendados"),
+      ].filter(Boolean);
+    $("queue-insight").textContent = total
+      ? `${plural(total - closed, "chamado segue", "chamados seguem")} em andamento.` +
+        (extras.length ? " " + joinNames(extras).replace(/^./, (c) => c.toUpperCase()) + "." : "")
+      : filtered
+        ? "Limpe os filtros para ver todos os chamados."
+        : tabOnly
+          ? "Por privacidade, o painel publicado mostra só os chamados enviados nesta aba do navegador, por até 1 hora. Todos os chamados ficam na planilha do Google."
+          : "Crie simulações ou carregue os dados do Google.";
+    $("area-filter").value = view.area;
+    renderAreas(context);
+    renderQueue(scoped);
+    renderViewBar();
+    renderBoard(animate, scoped);
+    // O aviso flutuante diz quantos chamados esperam no quadro (com os filtros).
+    const onBoard = scoped.filter((t) => stageShown(t.status)).length;
+    $("board-cue-text").textContent = onBoard
+      ? plural(onBoard, "chamado", "chamados") + " no quadro"
+      : "Quadro de atendimento";
+  }
+
+  // Áreas em ordem (maior no topo); tocar numa área desce para as categorias dela.
+  function renderAreas(context) {
+    // A trilha (ou a dica) fica na linha do título do cartão, para o gráfico caber mais baixo.
+    const box = $("area-chart"),
+      trail = $("area-trail");
+    box.replaceChildren();
+    trail.replaceChildren();
+    trail.className = "chart-trail";
+    box.dataset.level = view.area ? "category" : "area";
+    let rows;
+    if (!view.area) {
+      rows = Object.keys(AREA_ICONS)
+        .map((area) => ({
+          key: area,
+          glyph: AREA_ICONS[area],
+          count: context.filter((t) => t.area === area).length,
+        }))
+        .sort((a, b) => b.count - a.count);
+      trail.classList.add("is-hint");
+      trail.append(
+        icon("fa-hand-pointer"),
+        document.createTextNode(" Toque numa área para ver as categorias"),
+      );
+    } else {
+      const groups = new Map();
+      for (const t of context.filter((ticket) => ticket.area === view.area))
+        groups.set(category(t.need), (groups.get(category(t.need)) || 0) + 1);
+      rows = [...groups]
+        .map(([key, count]) => ({ key, glyph: "fa-tag", count }))
+        .sort((a, b) => b.count - a.count || a.key.localeCompare(b.key, "pt-BR"));
+      // Até quatro linhas: as três maiores e "Outras" (a selecionada nunca some no agrupamento).
+      if (rows.length > 4) {
+        const keep = rows.slice(0, 3),
+          chosen = rows.find((row) => row.key === view.need);
+        if (chosen && !keep.includes(chosen)) keep[2] = chosen;
+        const rest = rows.filter((row) => !keep.includes(row));
+        rows = [
+          ...keep,
+          {
+            key: "",
+            glyph: "fa-ellipsis",
+            count: rest.reduce((sum, row) => sum + row.count, 0),
+            label: "Outras (" + rest.length + ")",
+            rest: true,
+          },
+        ];
+      }
+      const up = el("button", "Todas as áreas", "chart-up");
+      up.type = "button";
+      up.dataset.up = "1";
+      up.prepend(icon("fa-arrow-left"), document.createTextNode(" "));
+      trail.append(up, el("span", "›", "chart-sep"), el("strong", view.area));
+    }
+    const ranked = rows.filter((row) => !row.rest),
+      top = ranked.reduce((max, row) => Math.max(max, row.count), 0),
+      leaders = top ? ranked.filter((row) => row.count === top).map((row) => row.key) : [],
+      prefix = view.area ? view.area + ": " : "";
     $("area-headline").textContent = !top
-      ? "Nenhum chamado por área ainda"
+      ? view.area
+        ? "Nenhum chamado de " + view.area
+        : "Nenhum chamado por área ainda"
       : leaders.length === 1
-        ? `${leaders[0]} lidera com ${plural(top, "chamado", "chamados")}`
-        : leaders.length === areas.length
+        ? `${prefix}${leaders[0]} lidera com ${plural(top, "chamado", "chamados")}`
+        : leaders.length === ranked.length && !view.area
           ? `Áreas empatadas, com ${plural(top, "chamado", "chamados")} cada`
-          : `${joinNames(leaders)} empatam com ${plural(top, "chamado", "chamados")}`;
-    $("area-chart").replaceChildren();
-    for (const { area, count } of areas) {
-      const row = el("div", undefined, "chart-row"),
+          : `${prefix}${joinNames(leaders)} empatam com ${plural(top, "chamado", "chamados")}`;
+    const max = rows.reduce((m, row) => Math.max(m, row.count), 0);
+    for (const entry of rows) {
+      const row = el(entry.rest ? "div" : "button", undefined, "chart-row"),
         label = el("span", undefined, "chart-label"),
         track = el("div", undefined, "chart-track"),
-        bar = el("div", undefined, "chart-bar");
-      if (leaders.includes(area)) row.classList.add("is-lead");
-      label.append(icon(AREA_ICONS[area]), document.createTextNode(area));
-      bar.style.width = (top ? (count / top) * 100 : 0) + "%";
+        bar = el("div", undefined, "chart-bar"),
+        name = entry.label || entry.key,
+        selected = Boolean(view.area) && entry.key === view.need && !entry.rest;
+      if (!entry.rest) {
+        row.type = "button";
+        row.dataset[view.area ? "need" : "area"] = entry.key;
+        row.setAttribute(
+          "aria-label",
+          `${name}: ${plural(entry.count, "chamado", "chamados")}. ` +
+            (view.area
+              ? selected
+                ? "Remover este filtro"
+                : "Filtrar o quadro"
+              : "Ver categorias"),
+        );
+        if (view.area) row.setAttribute("aria-pressed", String(selected));
+      } else row.classList.add("is-rest");
+      // Cor só no que importa: a categoria escolhida ou, sem escolha, a líder.
+      if (view.need ? selected : leaders.includes(entry.key) && !entry.rest)
+        row.classList.add("is-lead");
+      if (selected) row.classList.add("is-selected");
+      label.append(icon(entry.glyph), el("span", name, "chart-name"));
+      bar.style.width = (max ? (entry.count / max) * 100 : 0) + "%";
       track.append(bar);
-      row.append(label, track, el("strong", String(count), "chart-count"));
-      $("area-chart").append(row);
+      row.append(
+        label,
+        track,
+        el("strong", String(entry.count), "chart-count"),
+        entry.rest
+          ? el("span")
+          : icon(view.area ? (selected ? "fa-xmark" : "fa-filter") : "fa-chevron-right"),
+      );
+      box.append(row);
     }
   }
+  const onChart = (event) => {
+    const target = event.target.closest("[data-up], .chart-row[data-area], .chart-row[data-need]");
+    if (!target) return;
+    if (target.dataset.up) view.area = view.need = "";
+    else if (target.dataset.area) {
+      view.area = target.dataset.area;
+      view.need = "";
+    } else view.need = view.need === target.dataset.need ? "" : target.dataset.need;
+    refresh(false);
+    // O foco continua no gráfico depois de redesenhar (teclado e leitor de tela).
+    (
+      document.querySelector("#area-chart .is-selected") ||
+      document.querySelector("#area-chart .chart-row, #area-trail .chart-up")
+    )?.focus({ preventScroll: true });
+  };
+  $("area-chart").addEventListener("click", onChart);
+  $("area-trail").addEventListener("click", onChart);
+  // Indicadores: "Total" mostra todas as etapas; os outros acendem só as etapas deles.
+  document.querySelector(".metrics").addEventListener("click", (event) => {
+    const button = event.target.closest(".metric-filter");
+    if (!button) return;
+    const key = button.dataset.filter === "total" ? "" : button.dataset.filter;
+    view.stage = view.stage === key ? "" : key;
+    refresh(false);
+  });
+  // Faixa dos filtros ativos: cada filtro sai no "×"; sem filtro, diz o que dá para fazer.
+  function renderViewBar() {
+    const bar = $("view-bar"),
+      chips = [];
+    if (view.stage) chips.push(["Etapas", STAGE_GROUPS[view.stage].label, () => (view.stage = "")]);
+    if (view.area) chips.push(["Área", view.area, () => (view.area = view.need = "")]);
+    if (view.need) chips.push(["Categoria", view.need, () => (view.need = "")]);
+    if ($("sector-filter").value)
+      chips.push(["Setor", $("sector-filter").value, () => ($("sector-filter").value = "")]);
+    if (query())
+      chips.push(["Busca", "“" + $("search").value.trim() + "”", () => ($("search").value = "")]);
+    bar.replaceChildren();
+    bar.classList.toggle("has-filters", chips.length > 0);
+    if (!chips.length) {
+      bar.append(
+        icon("fa-filter"),
+        el(
+          "span",
+          "Sem filtros. Toque num indicador, numa área ou numa categoria para filtrar.",
+          "view-empty",
+        ),
+      );
+      return;
+    }
+    bar.append(el("span", "Filtros:", "view-label"));
+    for (const [kind, value, clear] of chips) {
+      const chip = el("button", undefined, "view-chip");
+      chip.type = "button";
+      chip.setAttribute("aria-label", `Remover filtro ${kind}: ${value}`);
+      chip.append(el("span", kind + ": ", "view-kind"), el("strong", value), icon("fa-xmark"));
+      chip.addEventListener("click", () => {
+        clear();
+        refresh(false);
+      });
+      bar.append(chip);
+    }
+    const all = el("button", "Limpar tudo", "view-clear");
+    all.type = "button";
+    all.addEventListener("click", () => {
+      view.stage = view.area = view.need = "";
+      $("sector-filter").value = $("search").value = "";
+      refresh(false);
+    });
+    bar.append(all);
+  }
+  // Esc volta um nível: categoria → área → etapas → setor → busca.
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape" || $("ticket-dialog").open) return;
+    if (view.need) view.need = "";
+    else if (view.area) view.area = "";
+    else if (view.stage) view.stage = "";
+    else if ($("sector-filter").value) $("sector-filter").value = "";
+    else if (query() && document.activeElement !== $("search")) $("search").value = "";
+    else return;
+    refresh(false);
+  });
   // Fila por etapa na barra lateral: cada linha leva à coluna do quadro.
-  function renderQueue() {
+  function renderQueue(scoped) {
     const list = $("queue-list"),
-      extra = [...new Set(tickets.map((t) => t.status))].filter((s) => !stages.includes(s));
+      extra = [...new Set(scoped.map((t) => t.status))].filter((s) => !stages.includes(s));
     list.replaceChildren();
     for (const stage of [...stages, ...extra]) {
-      const n = tickets.filter((t) => t.status === stage).length,
+      const n = scoped.filter((t) => t.status === stage).length,
         item = el("button", undefined, "queue-item" + (n ? "" : " is-empty"));
       item.type = "button";
       item.dataset.stage = stage;
@@ -234,6 +467,21 @@
     if (item) goToStage(item.dataset.stage);
   });
   $("pulse-action").addEventListener("click", () => goToStage($("pulse-action").dataset.stage));
+  // Aviso de que há mais abaixo: aparece só enquanto o quadro está abaixo da tela.
+  const cue = $("board-cue");
+  // Os 140 px de baixo contam como "fora": só uma beirada do quadro à vista ainda mostra o aviso.
+  new IntersectionObserver(
+    ([entry]) => {
+      cue.hidden = entry.isIntersecting || entry.boundingClientRect.top < 0;
+    },
+    { rootMargin: "0px 0px -140px 0px" },
+  ).observe($("kanban"));
+  cue.addEventListener("click", () =>
+    document.querySelector(".board-shell").scrollIntoView({
+      behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+      block: "start",
+    }),
+  );
   function renderSelfHelp() {
     const box = $("selfhelp-insight");
     if (!selfHelp) {
@@ -245,7 +493,7 @@
     const total = selfHelp.resolved + selfHelp.continued,
       rate = total ? Math.round((selfHelp.resolved / total) * 100) : 0;
     box.textContent = total
-      ? `${plural(selfHelp.resolved, "atendimento resolvido", "atendimentos resolvidos")} com as dicas da IA, sem abrir chamado; ${plural(selfHelp.continued, "seguiu", "seguiram")} para o chamado (${rate}% resolvidos).` +
+      ? `${plural(selfHelp.resolved, "resolvido", "resolvidos")} com as dicas da IA, sem abrir chamado; ${plural(selfHelp.continued, "seguiu", "seguiram")} para o chamado.` +
         (selfHelp.simulation ? " Valores de demonstração." : "")
       : "Ainda não há atendimentos com dicas da IA registrados.";
     $("selfhelp-bar").style.width = rate + "%";
@@ -263,35 +511,27 @@
     if (t.participant) tags.push(["fa-user-check", "Teste " + t.participant, "test"]);
     return tags;
   }
-  function renderBoard(animate = false) {
-    const search = $("search").value.toLocaleLowerCase("pt-BR"),
-      area = $("area-filter").value,
-      sector = $("sector-filter").value;
-    const filtered = tickets.filter(
-      (t) =>
-        (!area || area === t.area) &&
-        (!sector || sector === t.sector) &&
-        [t.number, t.subject, t.name, t.sector, t.email, t.participant]
-          .join(" ")
-          .toLocaleLowerCase("pt-BR")
-          .includes(search),
-    );
+  function renderBoard(animate = false, scoped = tickets.filter(inScope)) {
     $("kanban").replaceChildren();
     for (const stage of [
       ...stages,
-      ...new Set(filtered.map((t) => t.status).filter((s) => !stages.includes(s))),
+      ...new Set(scoped.map((t) => t.status).filter((s) => !stages.includes(s))),
     ]) {
       const column = el("section", undefined, "kanban-column"),
         head = el("header", undefined, "column-head"),
-        list = filtered.filter((t) => t.status === stage);
+        out = !stageShown(stage),
+        list = out ? [] : scoped.filter((t) => t.status === stage);
       column.dataset.stage = stage;
       column.dataset.tone = stageKey(stage);
+      // Etapa fora do filtro de indicadores: a coluna fica apagada e vazia.
+      column.classList.toggle("is-out", out);
       const title = el("h3");
       title.append(el("span", undefined, "stage-dot"), document.createTextNode(stage));
       head.append(title, el("span", String(list.length), "column-count"));
       column.append(head);
       for (const t of list) column.append(card(t, animate, list.indexOf(t)));
-      if (!list.length) column.append(el("p", "Solte um cartão aqui", "empty-column"));
+      if (out) column.append(el("p", "Fora do filtro", "empty-column out-note"));
+      else if (!list.length) column.append(el("p", "Solte um cartão aqui", "empty-column"));
       $("kanban").append(column);
     }
   }
@@ -570,7 +810,7 @@
     // Movimento otimista: o cartão muda de coluna na hora e volta se o Google recusar.
     t.status = status;
     lastMoved = t.requestId;
-    renderBoard(false);
+    refresh(false);
     $("save-stage").disabled = true;
     $("save-stage").classList.add("is-loading");
     $("save-stage").querySelector("span").textContent = "Salvando…";
@@ -629,8 +869,13 @@
   $("close-dialog").addEventListener("click", () => $("ticket-dialog").close());
   $("cancel-dialog").addEventListener("click", () => $("ticket-dialog").close());
   $("refresh").addEventListener("click", load);
-  for (const id of ["search", "area-filter", "sector-filter"])
-    $(id).addEventListener("input", () => renderBoard(false));
+  $("area-filter").addEventListener("input", () => {
+    view.area = $("area-filter").value;
+    view.need = "";
+    refresh(false);
+  });
+  for (const id of ["search", "sector-filter"])
+    $(id).addEventListener("input", () => refresh(false));
   function showMode(value) {
     mode = value;
     $("data-mode").value = value;

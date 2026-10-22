@@ -586,4 +586,10 @@ Próxima evidência: EVID-205.
 
 - EVID-271: [modal-sem-faixa-0-12-14](EVID-271_modal-sem-faixa-0-12-14.png) — Topo do modal 0.12.14 nos temas escuro e claro, sem a faixa.
 
-Próxima evidência: EVID-272.
+## 2026-10-22 — SmartDesk 0.12.15: painel interativo
+
+- EVID-272: [painel-abertura-01214](EVID-272_painel-abertura-01214.webp) — Print do usuário do painel ao abrir (0.12.14, 1864×958): o quadro fica todo abaixo da dobra.
+
+- EVID-273: [painel-interativo-0-12-15](EVID-273_painel-interativo-0-12-15.jpg) — Painel 0.12.15: abertura em 1864×958 com o quadro à vista; filtros Abertos › TI › Computador nos temas escuro e claro (faixa de filtros, gráfico descendo para categorias, colunas fora do filtro apagadas); e 1280×720 com o aviso "12 chamados no quadro".
+
+Próxima evidência: EVID-274.

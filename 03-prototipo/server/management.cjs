@@ -67,6 +67,20 @@ function createManagement({ root, json, storage = require("./google-storage.cjs"
         const job = serial.then(async () => {
           let rows = await demo();
           if (!rows.length) {
+            const DEMO_NEEDS = {
+              "Projetor sem imagem": "Projetor",
+              "Impressora não imprime": "Não imprime",
+              "Acesso ao Gmail": "Gmail",
+              "Conexão instável": "INTERNET > Problemas com Wi-Fi",
+              "Reserva de microfone": "Microfone",
+              "Toner magenta": "Solicitação de Toner / Tinta",
+              "Computador lento": "COMPUTADOR > Problemas com lentidão",
+              "Acesso ao Drive": "Drive",
+              "Notebook para apresentação": "COMPUTADOR > Reserva de Notebook",
+              "Projetor para evento": "Projetor",
+              "Papel atolado": "Papel Atolado",
+              "Dúvida no sistema": "Dúvidas",
+            };
             const subjects = [
               "Projetor sem imagem",
               "Impressora não imprime",
@@ -90,7 +104,8 @@ function createManagement({ root, json, storage = require("./google-storage.cjs"
               area: ["Audiovisual", "Impressora", "Google", "TI"][
                 [0, 1, 2, 3, 0, 1, 3, 2, 3, 0, 1, 3][i]
               ],
-              need: subject,
+              // Categoria real do catálogo: o painel agrupa por área › categoria.
+              need: DEMO_NEEDS[subject] || subject,
               subject,
               description: "Chamado simulado para demonstração do painel: " + subject + ".",
               status: STAGES[i % 7],

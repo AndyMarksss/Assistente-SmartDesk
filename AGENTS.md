@@ -166,3 +166,6 @@ No painel, cor de etapa (`--stage-*`) é exclusiva das etapas: linha do topo da 
 
 ## 0.12.13 — cartões e modal do painel
 No quadro, a cor da etapa fica no cabeçalho da coluna e no ponto ao lado do número; cartões, áreas e etiquetas são neutros (`[data-tone]` define `--tone` para qualquer elemento do painel). O modal escolhe a etapa por rádios (`#detail-stages`), e `chooseStage()` controla o texto e o estado do botão. No Pages, "Chamados desta avaliação" é limitado à aba (cache de 1 hora por sessão); para ver todos os chamados, use a planilha ou o painel local.
+
+## 0.12.15 — painel interativo
+Os filtros do painel moram em `view` (admin.js): `stage` (grupo de etapas dos indicadores), `area` e `need` (categoria = primeiro nível da necessidade); setor e busca vêm dos campos do quadro. `refresh()` recalcula indicadores, pulso, gráfico, fila, faixa de filtros e quadro; `render()` é só para dados novos. O gráfico de áreas parte do contexto (setor e busca) para permitir trocar de área. Ao mexer no topo do painel, medir onde o quadro começa em 1864 × 958 (meta: primeiro cartão inteiro à vista).

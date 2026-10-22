@@ -121,3 +121,6 @@ Cartões do quadro neutros com a etapa no cabeçalho da coluna, modal de detalhe
 
 ## 0.12.14
 Modal de detalhes sem a faixa colorida no topo. Verificação em 03-prototipo/verificacao-v0.12.14.md.
+
+## 0.12.15
+Painel interativo e compacto: indicadores, áreas e categorias filtram tudo, o gráfico desce de área para categoria e o quadro aparece na primeira tela. Verificação em 03-prototipo/verificacao-v0.12.15.md.

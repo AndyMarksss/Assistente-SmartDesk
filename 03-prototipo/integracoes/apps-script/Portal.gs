@@ -332,6 +332,20 @@ function portalTicket_(body, item) {
   } // Limites de arquivos e matriz.
   return ticket;
 }
+var PORTAL_DEMO_NEEDS = {
+      "Projetor sem imagem": "Projetor",
+      "Impressora não imprime": "Não imprime",
+      "Acesso ao Gmail": "Gmail",
+      "Conexão instável": "INTERNET > Problemas com Wi-Fi",
+      "Reserva de microfone": "Microfone",
+      "Toner magenta": "Solicitação de Toner / Tinta",
+      "Computador lento": "COMPUTADOR > Problemas com lentidão",
+      "Acesso ao Drive": "Drive",
+      "Notebook para apresentação": "COMPUTADOR > Reserva de Notebook",
+      "Projetor para evento": "Projetor",
+      "Papel atolado": "Papel Atolado",
+      "Dúvida no sistema": "Dúvidas",
+};
 function portalDemo_(token, route, body) {
   var cache = CacheService.getScriptCache(),
     key = "portal:demo:" + token;
@@ -357,7 +371,8 @@ function portalDemo_(token, route, body) {
       email: "pessoa" + (i + 1) + "@example.com",
       sector: ["Secretaria", "Financeiro", "TI", "Marketing"][i % 4],
       area: ["Audiovisual", "Impressora", "Google", "TI"][[0, 1, 2, 3, 0, 1, 3, 2, 3, 0, 1, 3][i]],
-      need: subject,
+      // Categoria real do catálogo: o painel agrupa por área › categoria.
+      need: PORTAL_DEMO_NEEDS[subject] || subject,
       subject: subject,
       description: "Chamado simulado para demonstração: " + subject + ".",
       status: PORTAL_STAGES[i % 7],

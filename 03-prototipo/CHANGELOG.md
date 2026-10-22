@@ -436,3 +436,14 @@ Pedido do usuário (recorte do topo do modal): "Quero que remova essas linhas na
 
 - A faixa de 4 px na cor da etapa, no topo do modal de detalhes, saiu. A cor da etapa continua no selo e no degradê suave do cabeçalho.
 - Apps Script republicado só para alinhar a versão. Verificação em verificacao-v0.12.14.md.
+
+## 0.12.15 — 2026-10-22
+
+Pedido do usuário (print do painel em 1864 × 958): "Vamos tentar fazer caber as coisas aqui, ao abrir, não parece ter coisas pra baixo, vamos melhorar esse dashboard também, vamos deixar ele interativo e ver as categorias dentro das áreas".
+
+- **Cabe na tela:** cabeçalho, faixa da origem e indicadores mais baixos; o estado da sincronização entrou na faixa da origem; a dica do quadro virou o subtítulo; a dica e a trilha do gráfico subiram para a linha do título do cartão. Na tela do usuário o quadro começa em 692 px (antes 1037 px) e o primeiro cartão de cada coluna aparece inteiro ao abrir. Onde o quadro ainda fica abaixo (notebooks de 1280 × 720, 1366 × 768, 1536 × 864), um aviso flutuante "12 chamados no quadro ↓" leva até ele e some quando o quadro aparece. Até 1500 px a faixa de filtros desce para uma linha própria e a busca encolhe; em telas baixas o subtítulo do cabeçalho sai.
+- **Interativo:** os quatro indicadores são botões (o cartão inteiro): "Abertos", "Em atendimento" e "Finalizados" acendem só as colunas dessas etapas (as outras ficam apagadas, "Fora do filtro"); "Total" volta a todas. Tocar numa área filtra o painel e desce para as categorias dela; tocar numa categoria filtra o quadro. Indicadores, pulso, fila por etapa e quadro se recalculam com os filtros; o seletor de área do quadro acompanha o gráfico. A faixa da origem mostra os filtros ativos (cada um sai no "×", "Limpar tudo") ou, sem filtro, como filtrar. Esc volta um nível (categoria → área → etapas → setor → busca).
+- **Categorias dentro das áreas:** o gráfico desce de área para categoria ("TI: Computador lidera com 2 chamados"), com trilha "← Todas as áreas › TI"; até quatro linhas (as três maiores e "Outras"). Categoria = primeiro nível da necessidade ("COMPUTADOR > Troca de Mouse" → Computador). As simulações passaram a usar categorias reais do catálogo (Projetor, Microfone, Computador, Internet, Gmail, Drive…), no servidor local e no Apps Script; as simulações já gravadas no servidor local tiveram só a categoria atualizada.
+- **Textos:** o pulso não cita partes zeradas ("0 aguardam terceiros"); o Total diz "Com os filtros ativos" quando há filtro; descrições dos indicadores e do autoatendimento mais curtas.
+- **Correção:** a fila e o botão do pulso estavam com o clique registrado duas vezes depois da refatoração; agora uma vez só.
+- Apps Script republicado (Portal.gs com as categorias das simulações). Verificação em verificacao-v0.12.15.md.

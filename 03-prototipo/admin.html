@@ -96,53 +96,91 @@
               <option value="google">Chamados do Google</option>
             </select>
           </div>
-          <p id="source-note">Simulações separadas dos chamados reais.</p>
+          <div class="source-text">
+            <p id="source-note">Simulações separadas dos chamados reais.</p>
+            <p id="sync-status" class="sync-status" role="status"></p>
+          </div>
           <button class="choice" id="seed">
             <i class="fa-solid fa-wand-magic-sparkles"></i> Criar simulações</button
           ><button class="choice" id="refresh"><i class="fa-solid fa-rotate"></i> Atualizar</button>
+          <div id="view-bar" class="view-bar" aria-live="polite"></div>
         </section>
         <p id="admin-error" role="alert" class="error"></p>
-        <p id="sync-status" class="sync-status" role="status"></p>
         <section class="metrics" aria-label="Indicadores de chamados">
           <article data-metric="total">
-            <span>Total de chamados</span
+            <span class="metric-label">Total de chamados</span
+            ><button
+              type="button"
+              class="metric-filter"
+              data-filter="total"
+              aria-pressed="false"
+              aria-label="Total de chamados"
+              aria-describedby="metric-total"
+            ></button
             ><b class="metric-icon" aria-hidden="true"><i class="fa-solid fa-layer-group"></i></b
             ><strong id="metric-total">0</strong>
             <div class="metric-foot"><small>Na origem selecionada</small></div>
           </article>
           <article data-metric="open">
-            <span>Chamados abertos</span
+            <span class="metric-label">Chamados abertos</span
+            ><button
+              type="button"
+              class="metric-filter"
+              data-filter="open"
+              aria-pressed="false"
+              aria-label="Chamados abertos"
+              aria-describedby="metric-open"
+            ></button
             ><b class="metric-icon" aria-hidden="true"><i class="fa-solid fa-inbox"></i></b
             ><strong id="metric-open">0</strong>
             <div class="metric-foot">
               <b class="metric-meter" aria-hidden="true"><i id="meter-open"></i></b
-              ><small>Etapas ainda em andamento<em id="share-open"></em></small>
+              ><small>Ainda em andamento<em id="share-open"></em></small>
             </div>
           </article>
           <article data-metric="active">
-            <span>Em atendimento</span
+            <span class="metric-label">Em atendimento</span
+            ><button
+              type="button"
+              class="metric-filter"
+              data-filter="active"
+              aria-pressed="false"
+              aria-label="Em atendimento"
+              aria-describedby="metric-active"
+            ></button
             ><b class="metric-icon" aria-hidden="true"><i class="fa-solid fa-headset"></i></b
             ><strong id="metric-active">0</strong>
             <div class="metric-foot">
               <b class="metric-meter" aria-hidden="true"><i id="meter-active"></i></b
-              ><small>Suporte trabalhando agora<em id="share-active"></em></small>
+              ><small>Com o suporte agora<em id="share-active"></em></small>
             </div>
           </article>
           <article data-metric="done">
-            <span>Finalizados</span
+            <span class="metric-label">Finalizados</span
+            ><button
+              type="button"
+              class="metric-filter"
+              data-filter="done"
+              aria-pressed="false"
+              aria-label="Finalizados"
+              aria-describedby="metric-done"
+            ></button
             ><b class="metric-icon" aria-hidden="true"><i class="fa-solid fa-circle-check"></i></b
             ><strong id="metric-done">0</strong>
             <div class="metric-foot">
               <b class="metric-meter" aria-hidden="true"><i id="meter-done"></i></b
-              ><small>Atendimentos concluídos<em id="share-done"></em></small>
+              ><small>Concluídos<em id="share-done"></em></small>
             </div>
           </article>
         </section>
         <section class="insights">
           <article class="area-card">
-            <p class="card-kicker">
-              <i class="fa-solid fa-chart-simple" aria-hidden="true"></i> Distribuição por área
-            </p>
+            <div class="card-head">
+              <p class="card-kicker">
+                <i class="fa-solid fa-chart-simple" aria-hidden="true"></i> Distribuição por área
+              </p>
+              <div id="area-trail" class="chart-trail"></div>
+            </div>
             <h2 id="area-headline">Chamados por área</h2>
             <div id="area-chart" class="area-chart"></div>
           </article>
@@ -175,7 +213,10 @@
           <header class="board-toolbar">
             <div>
               <h2>Quadro de atendimento</h2>
-              <p>Abra um cartão para ver detalhes e atualizar a etapa.</p>
+              <p>
+                <i class="fa-solid fa-hand-pointer" aria-hidden="true"></i> Arraste um cartão para
+                outra etapa ou toque nele para ver os detalhes.
+              </p>
             </div>
             <div class="filters">
               <label class="search"
@@ -196,15 +237,15 @@
               </select>
             </div>
           </header>
-          <p class="board-hint">
-            <i class="fa-solid fa-hand-pointer" aria-hidden="true"></i> Arraste um cartão para outra
-            etapa ou toque nele para ver os detalhes e mudar a etapa.
-          </p>
           <div id="kanban" class="kanban" aria-label="Kanban de chamados"></div>
         </section>
+        <button id="board-cue" class="board-cue" type="button" hidden>
+          <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
+          <span id="board-cue-text">Quadro de atendimento</span>
+        </button>
         <div id="toast" class="toast" role="status" aria-live="polite"></div>
         <footer class="project-version" aria-label="Versão do projeto">
-          SmartDesk · v<span data-project-version>0.12.14</span>
+          SmartDesk · v<span data-project-version>0.12.15</span>
         </footer>
       </main>
     </div>

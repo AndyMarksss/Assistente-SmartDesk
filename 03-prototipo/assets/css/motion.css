@@ -980,3 +980,41 @@
       box-shadow 220ms ease;
   }
 }
+
+/* 0.12.15 — filtros do painel: indicadores, linhas do gráfico e etiquetas respondem ao mouse;
+   colunas fora do filtro apagam devagar. */
+@media (prefers-reduced-motion: no-preference) {
+  .chart-row,
+  .chart-up,
+  .view-chip {
+    transition:
+      background-color 160ms ease,
+      border-color 160ms ease,
+      color 160ms ease;
+  }
+  .kanban-column {
+    transition:
+      background 160ms ease,
+      outline-color 160ms ease,
+      opacity 220ms ease;
+  }
+}
+
+/* 0.12.15 — o aviso do quadro entra subindo de leve e pulsa a seta. */
+@media (prefers-reduced-motion: no-preference) {
+  .board-cue:not([hidden]) {
+    animation: surface-enter 320ms var(--motion-ease);
+  }
+  .board-cue .fa-solid {
+    animation: cue-nudge 1800ms ease-in-out infinite;
+  }
+}
+@keyframes cue-nudge {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(3px);
+  }
+}

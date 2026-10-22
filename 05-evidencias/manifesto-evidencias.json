@@ -1,8 +1,8 @@
 {
   "versao": 1,
   "projeto": "SmartDesk",
-  "atualizado_em": "2026-10-21",
-  "proximo_numero": 272,
+  "atualizado_em": "2026-10-22",
+  "proximo_numero": 274,
   "evidencias": [
     {
       "numero": "EVID-001",
@@ -3260,6 +3260,30 @@
       "data_inclusao": "2026-10-21",
       "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com envio ao Google desativado",
       "sha256": "CADFC4B07EE67664023810AE3D3BCC36CBC310CBA2B6255FDD976E0E3C3B8C95",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-272",
+      "arquivo": "EVID-272_painel-abertura-01214.webp",
+      "etapa": "SmartDesk 0.12.15 — painel interativo",
+      "descricao": "Print do usuário do painel ao abrir (0.12.14, 1864×958): o quadro fica todo abaixo da dobra.",
+      "data_aproximada": "2026-10-22",
+      "fundamento_data": "Captura do usuário em 2026-10-22",
+      "data_inclusao": "2026-10-22",
+      "origem": "Print enviado pelo usuário na conversa com o assistente",
+      "sha256": "40B4C6057C3A9685D092FDCE22D6275A7A586680FE0691DBED769980CFDC017C",
+      "status": "registro do pedido; estado anterior (0.12.14)"
+    },
+    {
+      "numero": "EVID-273",
+      "arquivo": "EVID-273_painel-interativo-0-12-15.jpg",
+      "etapa": "SmartDesk 0.12.15 — painel interativo",
+      "descricao": "Painel 0.12.15: abertura em 1864×958 com o quadro à vista; filtros Abertos › TI › Computador nos temas escuro e claro (faixa de filtros, gráfico descendo para categorias, colunas fora do filtro apagadas); e 1280×720 com o aviso \"12 chamados no quadro\".",
+      "data_aproximada": "2026-10-22",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-22",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com envio ao Google desativado",
+      "sha256": "7A53FA35C69FC93418810A5549174C64404B20AF566221AEED0D1A666A166422",
       "status": "verificação técnica; não é validação com usuários"
     }
   ]
