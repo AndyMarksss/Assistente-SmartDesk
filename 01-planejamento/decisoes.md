@@ -120,3 +120,11 @@ Recebimento planejado: Apps Script cria planilha separada SmartDesk — Chamados
 - Origem: atendimento do usuário em que "preciso de microfone também" não mudou o tipo e o evento ficou "Não" com o relato falando em evento.
 - Decisão: regras locais e testáveis no navegador (lista fechada de equipamentos do Audiovisual e a palavra "evento"), que perguntam e deixam a pessoa decidir. Não alterar a instrução da revisão da IA, já avaliada (0 alertas falsos em 57 caminhos), nem gastar cota em uma nova rodada.
 - Limite: cobre as combinações do Audiovisual; em outras áreas, pedidos acumulados continuam só na descrição.
+
+## 2026-10-28 — Parte teórica e Lean Canvas (rascunho)
+
+- Origem: pedido do usuário depois da 0.12.17 ("Pode preparar o Canvas e a parte teórica").
+- Status: proposta, aguardando revisão do usuário.
+- Arquivos: `06-documentacao/parte-teorica-hipoteses-e-validacao.md` e `06-documentacao/canvas/` (Lean Canvas em texto, HTML e PNG).
+- Base: hipótese e metas escritas pelo usuário na aba *Validação — Resumo* (EVID-216), roteiro das sessões, Matriz Mestre e este registro de decisões. Nenhum resultado de usuário foi usado ou inventado.
+- Pendente do usuário antes da primeira sessão: aprovar ou ajustar a regra de decisão (perseverar, ajustar, pivotar ou abandonar) e o critério proposto para a hipótese de problema; completar os trechos marcados com "⚠ Confirmar" (canais atuais de pedido, o que foi feito na conversa de planejamento com o ChatGPT, setores que mais abrem chamados).

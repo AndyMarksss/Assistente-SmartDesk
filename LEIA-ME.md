@@ -130,3 +130,6 @@ Painel publicado com todos os chamados da planilha (dados de outras pessoas abre
 
 ## 0.12.17
 IA verificada nas requisições dos 57 caminhos: sem perguntas repetidas, local só quando faz sentido, assunto igual no Pages e no servidor local; quadro com colunas que rolam e cabem na janela; primeira tela do chat sem rolagem. Verificação em 03-prototipo/verificacao-v0.12.17.md e 04-validacao/avaliacao-ia/relatorio-requisicoes-v0.12.17.md.
+
+## 2026-10-28 — Parte teórica e Canvas (rascunho)
+Rascunho da parte teórica em 06-documentacao/parte-teorica-hipoteses-e-validacao.md e Lean Canvas em 06-documentacao/canvas/ (lean-canvas.png para a entrega). A regra de decisão precisa ser aprovada antes da primeira sessão com usuários.

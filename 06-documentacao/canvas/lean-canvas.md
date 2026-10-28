@@ -1,0 +1,15 @@
+# SmartDesk — Lean Canvas
+
+Versão de 28/10/2026, antes das sessões com usuários: cada bloco é uma **hipótese**, não um resultado. O SmartDesk é um produto interno de uma escola. Por isso, o bloco "Fontes de receita" virou "Valor gerado", porque não há venda. Imagem para a entrega: [`lean-canvas.png`](lean-canvas.png) (gerada de [`lean-canvas.html`](lean-canvas.html)).
+
+| Bloco | Conteúdo |
+|---|---|
+| **1. Segmentos de clientes** | Funcionários dos 25 setores da escola que pedem ajuda à TI, com níveis bem diferentes de familiaridade com tecnologia. Também a equipe de TI, que recebe os chamados. **Adotantes iniciais:** setores que pedem ajuda com frequência, como Secretaria, Coordenações e quem reserva equipamentos de audiovisual para eventos. **⚠ Confirmar** quais setores mais abrem chamados. |
+| **2. Problema** | (1) A pessoa não sabe em qual dos quatro formulários pedir ajuda (Audiovisual, Impressora, Google, TI). (2) Os pedidos chegam sem os dados de que a TI precisa (data, local, modelo da impressora, mensagem de erro), e a TI precisa voltar a falar com a pessoa. (3) Problemas simples, que a própria pessoa resolveria, viram chamado. **Alternativas atuais:** os quatro formulários por área. **⚠ Confirmar:** pedidos por WhatsApp, e-mail ou pessoalmente. |
+| **3. Proposta única de valor** | **Peça ajuda à TI conversando: o SmartDesk entende o que você precisa, pergunta só o que falta e entrega um chamado completo em até 3 minutos.** Em uma frase: um formulário que conversa. |
+| **4. Solução** | Chat guiado pelos 57 caminhos da Matriz Mestre, com regras por setor. Relato livre que a IA transforma em rascunho para a pessoa confirmar. Uma pergunta da IA sobre o que falta e passos seguros para tentar antes de abrir o chamado. Resumo revisável e número para acompanhar o chamado. |
+| **5. Canais** | Link do site (celular ou computador), divulgado pela equipe de TI. Futuro: atalho na Intranet e QR Code nas salas e nos equipamentos. |
+| **6. Valor gerado** (no lugar de "Fontes de receita") | Para quem pede: menos tempo para pedir ajuda e menos idas e voltas. Para a TI: chamados completos e na área certa, menos interrupções e dados para priorizar o atendimento. |
+| **7. Estrutura de custos** | Plano gratuito do Gemini (com cota diária), Google Planilhas, Drive e Apps Script e GitHub Pages, todos sem custo. O custo real é o tempo para construir e para manter a Matriz Mestre atualizada. |
+| **8. Métricas-chave** | No experimento: % das tarefas concluídas sem ajuda (meta ≥ 80%), % no caminho certo (≥ 80%), tempo médio até enviar (≤ 180 s), facilidade de 1 a 5 (≥ 4) e % que usariam de novo (≥ 80%). Em uso real: % de chamados que não precisaram de complemento da TI e % de problemas resolvidos com as dicas ("Resolvi sozinho"). |
+| **9. Vantagem injusta** | A Matriz Mestre com os 57 caminhos e as regras reais da escola, montada por quem atende a TI no dia a dia. Uma ferramenta genérica não conhece os sistemas da escola (Mentor Web, QuickBooks, Intranet) nem as regras por setor. |
