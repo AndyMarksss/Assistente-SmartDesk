@@ -27,7 +27,7 @@ Direção explicitamente escolhida: tecnológico e preciso, grafite, neutros fri
 
 ## Verificação de contraste
 
-22 pares calculados pela luminância relativa WCAG: textos ≥4,5:1 e borda/foco ≥3:1. Bot claro 14,28:1, bot escuro 11,71:1; botão principal claro 6,76:1 e escuro 7,98:1. Resultado detalhado em contraste-v0.8.6.json. Isto verifica esses pares, não equivale a auditoria completa de conformidade WCAG. Estados de hover, componentes externos e dispositivo real têm limites de verificação distintos.
+22 pares calculados pela luminância relativa WCAG: textos ≥4,5:1 e borda/foco ≥3:1. Bot claro 14,28:1, bot escuro 11,71:1; botão principal claro 6,76:1 e escuro 7,98:1. Resultado detalhado em verificacoes/contraste-v0.8.6.json. Isto verifica esses pares, não equivale a auditoria completa de conformidade WCAG. Estados de hover, componentes externos e dispositivo real têm limites de verificação distintos.
 
 ## Referências consultadas
 
@@ -60,7 +60,7 @@ Corrigido título local: separadores > do caminho canônico viram travessões no
 211 verificações de integração passaram, incluindo validade do assunto local nos 57 caminhos e ida de Wi-Fi até o adaptador fictício. 34 pares de cores medidos com limites 4,5:1 para texto e 3:1 para borda de opção, todos aprovados; não representa auditoria WCAG completa. Conferência visual nos dois temas em 1280×720 e chat escuro em 390×844 sem overflow lateral. Falha 502, aviso de envio imediato, nova tentativa e confirmação #TESTE-LOCAL conferidos pelo navegador em servidor isolado 4174, sem chamado real no Google. Painel escuro conferido com simulações. Servidor local 4173 reiniciado para carregar a correção. Teclado real e contraste de todos os pixels transparentes não retestados.
 
 ## 0.10.0 — Atmosfera
-Pedido direto por mais profundidade, vidro, efeitos e animação. Mantidos os papéis: azul orienta, violeta age, mensagens neutras. Novidades: aurora violeta/azul/rosa desfocada atrás do vidro; gradiente de ação (violeta → azul) em botões principais, ícones de resumo e etapas concluídas; selo "IA" em violeta sólido; bordas em gradiente apenas no cartão de IA e no comprovante, sempre com fundo sólido por dentro. Pares novos medidos (≥ 4,5:1) em verificacao-v0.10.0.md. `prefers-reduced-transparency` volta às superfícies sólidas.
+Pedido direto por mais profundidade, vidro, efeitos e animação. Mantidos os papéis: azul orienta, violeta age, mensagens neutras. Novidades: aurora violeta/azul/rosa desfocada atrás do vidro; gradiente de ação (violeta → azul) em botões principais, ícones de resumo e etapas concluídas; selo "IA" em violeta sólido; bordas em gradiente apenas no cartão de IA e no comprovante, sempre com fundo sólido por dentro. Pares novos medidos (≥ 4,5:1) em verificacoes/verificacao-v0.10.0.md. `prefers-reduced-transparency` volta às superfícies sólidas.
 
 ## 0.11.0 — Etapas do kanban
 Cada etapa tem um tom próprio, usado só na barra da coluna, no ponto do título e na borda esquerda do cartão; o texto continua neutro. Claro: novo #6a4fd8, em atendimento #2f6fd1, aguardando terceiros #b7791f, empréstimos #0f8f7f, agendado #7a52c7, finalizado #2f8f4e, cancelado #6b7383. Escuro: #b9a6ff, #7fb4ff, #f2c46b, #5fd3c2, #d2a8ff, #7ed39a, #a3acbb. O texto de busca usa `--muted` (antes ficava quase invisível). Tags dos cartões usam fundo translúcido com texto `--ink`.

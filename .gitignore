@@ -1,0 +1,13 @@
+# Cópias de segurança de cada versão do protótipo, feitas antes de mexer no código.
+# Ficam só no computador: o histórico do Git já guarda todas as versões.
+03-prototipo/versoes/
+
+# Saída do build do GitHub Pages (gerada pelo workflow)
+pages-dist/
+
+# Arquivos do sistema e temporários do Office
+desktop.ini
+Thumbs.db
+.DS_Store
+~$*
+*.tmp

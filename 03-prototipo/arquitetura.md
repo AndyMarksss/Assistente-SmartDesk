@@ -26,7 +26,7 @@ As camadas de CSS visual foram preservadas para não alterar o layout aprovado. 
 ## Manutenção
 Node 22 ou superior. A partir desta pasta: npm start inicia o servidor; npm test executa sete suítes. npm ci instala somente a ferramenta de formatação necessária aos comandos npm run format e npm run format:check. Prettier tem versão fixada e ignora fornecedor, histórico e dados locais. Arquivos de configuração privada e dados do servidor nunca devem entrar no Git.
 
-A cópia anterior está em versoes/v0.8.10-antes-refatoracao, sem credenciais ou dados locais. Mudanças de fluxo devem executar testes de integração/autorização/data/anexos e verificar navegador. Alterações de animação devem conferir foco, cliques, cancelamento e preferência de movimento reduzido. Viewport reduzido não comprova teclado físico de celular.
+Os dados da versão anterior à refatoração ficam em server/tests/fixtures/v0.8.10-dados (catálogo, regras e fluxos usados pelo teste de equivalência); as cópias completas de versões em versoes/ são locais e não vão para o repositório. Mudanças de fluxo devem executar testes de integração/autorização/data/anexos e verificar navegador. Alterações de animação devem conferir foco, cliques, cancelamento e preferência de movimento reduzido. Viewport reduzido não comprova teclado físico de celular.
 
 ## Versão visível e documentação
 A fonte única é package.json. Use npm run version:update -- NOVA_VERSAO em toda entrega que alterar código/interface; o comando sincroniza pacote, lock, rodapés e VERSAO.md. Execute npm run version:check antes do commit. Atualize também CHANGELOG.md e o relatório da entrega, preservando documentos históricos.

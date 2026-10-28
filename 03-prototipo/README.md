@@ -1,77 +1,89 @@
-> Atualização 0.12.17: a IA não pergunta de novo o que já foi respondido (data, horário, programa, relatório, mensagem de erro…), não pergunta o setor nem "qual equipamento" e só pergunta o local quando a equipe precisa ir até lá; assunto com acentos, que resume o pedido, igual no Pages e no servidor local; a descrição automática acompanha o tipo quando ele muda; colunas do quadro rolam com quatro cartões e meio à vista e o quadro cabe na altura da janela; a primeira tela do chat não rola em nenhum tamanho. 0.12.16: o painel publicado mostra todos os chamados da planilha (nome e e-mail de outras pessoas abreviados) e muda a etapa de qualquer um; esqueleto de carregamento com a forma da tela (também no "Atualizar"); quadro com colunas e cartões da mesma altura; abertura do chat sem cortar o quadro de boas-vindas (uma saudação só para quem volta, quadro compacto no celular); no resumo, "Corrigir um dado" escolhe o campo e traz o valor atual. 0.12.15: painel interativo e mais compacto — indicadores, áreas e categorias filtram o painel inteiro (faixa de filtros ativos, Esc volta um nível), o gráfico de áreas desce para as categorias, e o quadro aparece na primeira tela (com aviso "chamados no quadro" onde ainda ficar abaixo). 0.12.14: modal de detalhes sem a faixa colorida no topo. 0.12.13: cartões do quadro neutros (a etapa fica no cabeçalho tingido da coluna e num ponto junto ao número) e modal de detalhes redesenhado, com blocos, selos e escolha da etapa por opções coloridas; o painel publicado explica que mostra só os chamados enviados naquela aba. 0.12.12: painel com profundidade (quadro em painel, colunas rebaixadas, cartões elevados e poços internos nos cartões de cima) e cor com um significado só: cada etapa tem um tom próprio, e áreas e etiquetas ficam em neutro. 0.12.11: painel de gestão na linguagem do chat e com o método do Storytelling com Dados — barra lateral em cartão com a fila por etapa (cada linha leva à coluna), indicadores com ícone e parte no total (só "Chamados abertos" em destaque), áreas em ordem com a líder colorida e títulos que já dizem a conclusão; dicas do chat trocam sem sobrepor o texto. 0.12.10: barra lateral com profundidade e uma linguagem só (cartões elevados; "O que a TI atende" e "Painel de gestão" no mesmo padrão), dicas com setas, pontinhos e arrastar, e o hover do botão principal sem piscar. 0.12.9: tema claro redesenhado (boas-vindas em gradiente roxo e azul, balões da pessoa em roxo, etapa atual em roxo), barra lateral com o cartão "Seu chamado" (anel de progresso, picote de ticket e número do chamado enviado) e ícones do fundo fora da coluna das mensagens. 0.12.8: tema claro com cores limpas (fundo quase branco, painéis brancos, balões da pessoa em lilás) e "O que a TI atende" como lista informativa com a descrição de cada área. 0.12.7: barra lateral sem rolagem em nenhum tamanho, com "O que a TI atende" e uma pequena rede no espaço livre. 0.12.6: luz do cursor menor; barra lateral com trilha de progresso do atendimento (ícones, linha até a etapa atual e contagem), dicas que se revezam e luz suave no fundo. 0.12.5: fundo do chat com vida — rede de conexões com sinais correndo, ícones de TI em contorno flutuando e duas luzes que passeiam, só atrás da conversa. 0.12.4: o quadro da abertura não inclina mais com o mouse; só os olhos do robô acompanham o cursor. 0.12.3: conferências do pedido antes da revisão da IA — quem pede caixa de som e depois cita microfone recebe a sugestão de mudar para Caixa de Som / Microfone; "evento" no relato com resposta "Não" é confirmado; ao corrigir o rascunho, a opção entendida pela IA vem destacada. 0.12.2: responsividade revisada em 12 tamanhos de tela — a animação da cena de abertura encaixa em qualquer formato, o celular deitado mostra a pergunta e todas as opções, textos pequenos e botões de toque aumentados. 0.12.1: o robozinho ao lado das mensagens ganhou vida — chega com um pulinho e mexe a boca, pisca, acende a antena, acena na primeira mensagem e procura a resposta com os olhos enquanto a IA pensa. 0.12.0: pronto para o teste com usuários — métricas anônimas de cada atendimento (aba Sessões), código do participante pelo link `?p=P01`, nota de facilidade no fim do chat e kit das sessões em `04-validacao`. 0.11.4: avaliação da IA concluída — 99% de caminho certo na 1ª sugestão, extração 99%, revisão sem alertas falsos e sem perguntas de dados pessoais. 0.11.3: avaliação técnica da IA com 186 relatos fictícios (04-validacao/avaliacao-ia), instrução de identificação ajustada e, sem IA, o relato livre vira opções em vez de um rascunho incerto. 0.11.2: a luz do cursor fica só no fundo do chat, atrás de cards, etapas e botões, e cobre o fundo inteiro. 0.11.1: o robô da abertura acompanha o cursor com os olhos. 0.11.0: a IA monta o rascunho do chamado a partir do relato, acompanhamento de chamado por número e e-mail, painel com skeleton e kanban de arrastar e soltar, e revisão de todos os fluxos. Apps Script 0.11.0 publicado (versão 10 da implantação existente). Avaliação: basta abrir o GitHub Pages. Uso local: `npm start` e http://127.0.0.1:4173/.
+# 03 · Protótipo do SmartDesk
 
-# SmartDesk — protótipo 0.12.17
+Código do chat de atendimento, do painel de gestão, do servidor local e da integração com o Google. A versão atual está em [`VERSAO.md`](VERSAO.md) e aparece no rodapé do chat e do painel. O que mudou em cada versão fica no [`CHANGELOG.md`](CHANGELOG.md), e como cada uma foi conferida, em [`verificacoes/`](verificacoes/README.md).
 
-Chat guiado com poucas digitações, 25 setores, quatro áreas e 57 caminhos da Matriz Mestre. Identidade grafite/violeta, temas claro/escuro e Font Awesome local.
+- **Chat:** <https://andymarksss.github.io/Assistente-SmartDesk/>
+- **Painel:** <https://andymarksss.github.io/Assistente-SmartDesk/admin.html>
 
-## Entrega para avaliação
+## Como funciona
 
-Chat e painel completos no GitHub Pages, com Apps Script somente para IA, planilha, anexos e gestão. Sem redirecionamento ou servidor local para o professor. Seguir [correção 0.9.2](integracoes/apps-script/AVALIAR-SEM-SENHA-v0.9.2.md). Endpoint público registrado; implantação Google e teste real pendentes.
+| Camada | Onde roda | O que faz |
+|---|---|---|
+| Interface (`index.html`, `admin.html`, `assets/`) | GitHub Pages ou servidor local | Chat, painel, temas claro e escuro, sem etapa de compilação |
+| API | Apps Script (`integracoes/apps-script`) no Pages; `server/` no local | IA, envio do chamado, anexos, acompanhamento, gestão e métricas |
+| Dados | Planilha *SmartDesk — Chamados* e pasta de anexos no Drive | Um chamado por linha (#001, #002…), abas *Sessões* e *Validação* |
 
-## Desenvolvimento local
+Regras, instruções da IA e validação são escritas uma vez, em `assets/js` e `server/`, e copiadas para o Apps Script por `scripts/build-apps-script.cjs` (gera `PortalShared.gs`). Assim, o Pages e o servidor local se comportam igual.
 
-Use Node.js 22 ou superior. Dentro de 03-prototipo, execute `node server/server.cjs` e abra **http://127.0.0.1:4173/**. Live Server na porta 5500 mostra a interface, mas não executa o servidor de IA e recebimento. A configuração fica no .env, nunca no navegador ou nos prints.
+## Estrutura
 
-## Fluxo atual
+| Caminho | Conteúdo |
+|---|---|
+| `index.html`, `admin.html` | Chat e painel de gestão |
+| `assets/js` | `app.js` (atendimento), `admin.js` (painel), `knowledge-base.js` (Matriz Mestre), `classifier.js` e `request-policy.js` (regras), `chat-view.js`, `form-controls.js`, `attachments.js`, `client-api.js`, `pages-transport.js` e os demais módulos descritos em [`arquitetura.md`](arquitetura.md) |
+| `assets/css` | Camadas carregadas em ordem. No chat: `style`, `responsive`, `visual-depth`, `personality`, `identity`, `atmosphere` e `motion`; no painel, `admin` entra no lugar de `responsive` e `personality`. `motion.css` vem por último e concentra todas as animações |
+| `server/` | Servidor local (`server.cjs`), recebimento (`ticket-service.cjs`), validação (`ticket-validation.cjs`), IA (`ai-provider.cjs`), Google (`google-storage.cjs`), gestão (`management.cjs`) e o [contrato da IA](server/contrato-ia.md) |
+| `server/tests/` | Suítes de teste (`npm test`); `fixtures/v0.8.10-dados` guarda os dados da versão anterior à refatoração, usados no teste de equivalência |
+| `integracoes/apps-script/` | Código do Apps Script (`*.gs`) e guias de instalação e publicação |
+| `scripts/` | `build-pages.cjs` (monta o site do Pages sem arquivos privados), `build-apps-script.cjs` e `update-version.cjs` |
+| `verificacoes/` | Um relatório por versão e auditorias de contraste e layout |
+| [`sistema-de-cores.md`](sistema-de-cores.md), [`estrategia-retorno-cliente.md`](estrategia-retorno-cliente.md) | Papéis das cores e proposta de retorno ao solicitante |
+| [`hospedagem.md`](hospedagem.md), `render.yaml` | Histórico: hospedagem Node no Render (0.8.15), substituída pelo GitHub Pages com Apps Script na 0.9.1 |
 
-Iniciar (ou "Continuar como…" se os dados foram lembrados neste dispositivo) → nome → e-mail institucional → setor (busca em grade) → área, atalho ou "Descrever com minhas palavras" → necessidade → dados necessários → descrição → pergunta de complemento da IA (opcional) → dicas da IA nos defeitos (opcional, com "Resolveu!") → anexos opcionais → revisão → Enviar chamado → comprovante numerado → Novo atendimento.
+## Rodar localmente
 
-Nome destacado no cumprimento. Mensagens uma por vez, com digitação e animação suave; preferência de movimento reduzido respeitada. Campo de texto pausado nas escolhas. **Voltar uma etapa**, acima dos controles, restaura o passo anterior; corrigir área não repete setor.
+Requisitos: Node.js 22 ou superior. Nesta pasta:
 
-Não há destaque automático da primeira área. Local retirado por instrução direta do usuário, prevalecendo sobre a matriz. QuickBooks permanece exclusivo de Financeiro; câmeras, de Coordenação EI (Infantil). Demais campos e condicionais continuam específicos da escolha.
+```bash
+npm ci
+npm start
+```
 
-## IA e revisão
+- Chat: <http://127.0.0.1:4173/> · painel: <http://127.0.0.1:4173/admin.html>. O Live Server (porta 5500) mostra a tela, mas não tem a API.
+- Configuração no `.env` (modelo em `.env.example`; nunca vai para o Git):
+  - `GEMINI_API_KEY` e `GEMINI_MODEL`: IA. Sem a chave, o chat segue pelos botões.
+  - `SMARTDESK_APPS_SCRIPT_URL` e `SMARTDESK_APPS_SCRIPT_TOKEN`: envio para a planilha.
+- O painel local abre com 12 chamados fictícios de demonstração, separados dos chamados reais.
 
-Gemini adapta a pergunta da descrição e gera um assunto interno. A descrição é preservada literalmente como dado do chamado, sem conversa livre ou execução de instruções. Assunto sem confirmação ou exibição no cartão; fica na planilha.
+## Testes e conferências
 
-Nome, e-mails dos campos, demais textos complementares e anexos não vão ao Gemini. A descrição é transmitida ao modelo; use dados fictícios. Sem resposta válida, assunto padrão. Revisão com **Enviar chamado**, **Editar descrição** e **Revisar anexos** apenas se houver arquivos. Novo atendimento após recebimento confirmado.
+```bash
+npm test
+```
 
-## Recebimento Google
+Roda todas as suítes em `server/tests` (integração, Apps Script simulado, portal do Pages, gestão, autorização, datas, hospedagem, refatoração e experiência), com Google e IA simulados, sem criar chamados reais. Antes de cada commit:
 
-O receptor existente é preservado. Para esta entrega, seguir somente o guia 0.9.2 e não executar configuração novamente.
+```bash
+npm run format:check
+```
 
-No .env: SMARTDESK_APPS_SCRIPT_URL e SMARTDESK_APPS_SCRIPT_TOKEN. Token obrigatório, somente no servidor/propriedades do script. Confirmação com número #001, #002 etc. Um chamado por linha e links de arquivos do Drive. Trava de numeração e ID do envio permitem retomar sem duplicatas. Falha parcial pode deixar uma linha Recebendo até a retomada.
+```bash
+npm run version:check
+```
 
-Sem configuração ou confirmação, o atendimento fica na tela com mensagem do problema. Recarregar/fechar antes de enviar perde o conteúdo em memória. O código não configura faturamento; serviços sujeitos às quotas da conta. Anexos não se tornam públicos: exigem permissão no Drive.
+## Publicar
 
-## Anexos e limites
+- **Site (GitHub Pages):** todo push na `main` que muda `03-prototipo/` dispara o workflow `.github/workflows/pages.yml`, que roda `build-pages.cjs` e publica.
+- **Apps Script:** `npm run build:apps-script`, depois copiar os `.gs` para a pasta do `clasp`, rodar `clasp push` e `clasp deploy` na **mesma implantação**, para o endereço `/exec` não mudar. Conferir em `/exec?api=health`.
+- **Nova versão:** `npm run version:update -- X.Y.Z`, registrar no `CHANGELOG.md` e criar `verificacoes/verificacao-vX.Y.Z.md`.
 
-Até cinco arquivos, 10 MB cada, 20 MB somados. PNG, JPG/JPEG, WEBP, GIF, PDF, TXT, DOCX e XLSX. MVP sem autenticação de usuários, antivírus, gestão completa de chamados, triagem para resolução ou avaliação posterior. Use dados fictícios; confirme tamanhos máximos no Google real antes de considerá-los validados.
+## IA
 
-API de rascunhos locais mantida como histórico, sem ação no fluxo atual. Versões em versoes, sem .env. Evidências/manifestos em 05-evidencias do projeto.
+| Rota | Para quê |
+|---|---|
+| `/api/analyze` | Sugere até 3 caminhos para um relato livre (a pessoa confirma) |
+| `/api/extract` | Preenche o rascunho com o que a pessoa já disse (data, horário, opções, textos) |
+| `/api/assist` | No máximo uma pergunta sobre o que falta, alerta de incoerência e até 3 dicas seguras |
+| `/api/subject` | Assunto curto do chamado (fica só na planilha) |
 
-## Verificar
+As instruções ficam em `server/ai-provider.cjs`, e o que entra e sai do modelo, em [`server/contrato-ia.md`](server/contrato-ia.md). Nome, e-mail, textos livres dos campos e anexos não vão para a IA. A avaliação técnica está em [`../04-validacao/avaliacao-ia`](../04-validacao/avaliacao-ia/README.md).
 
-Execute `node server/tests/integration.cjs` e `node server/tests/apps-script.cjs`. Google/IA simulados, sem criar chamados reais. Fonte/exportações em 02-matriz-e-regras. Testes técnicos não substituem validação acadêmica com usuários.
+## Limites
 
-## Recebimento verificado em 2026-10-01
+- **Site público:** até 5 chamados por janela e 60 por dia; IA com 40 pedidos por sessão e 600 por dia; até 3 anexos com 5 MB no total, com o conteúdo conferido pela extensão.
+- **Servidor local:** até 5 anexos, 10 MB cada e 20 MB no total (PNG, JPG, WEBP, GIF, PDF, TXT, DOCX e XLSX).
+- **Fora do MVP:** login, avisos por e-mail ao solicitante, antivírus nos anexos e integração com o sistema oficial de chamados da escola.
 
-A ativação deixou de estar pendente: após o usuário configurar/publicar o Apps Script e preencher .env, o servidor confirmou o chamado técnico fictício #001 com um anexo. Repetir o mesmo ID retornou o mesmo número. Não é necessário executar o diagnóstico novamente agora. O arquivo de diagnóstico foi corrigido localmente para completar os rótulos área/necessidade. Próxima conferência: linha #001, link do TXT e status Recebido no Google. Essas verificações técnicas não são validação acadêmica com usuários.
+## Cópias de versões
 
-## Versão 0.7 — Gestão
-
-Cliente: http://127.0.0.1:4173/; painel: http://127.0.0.1:4173/admin.html. Usar o servidor SmartDesk; Live Server 5500 não oferece API. Demonstração com 12 chamados fictícios separados dos dados Google, dashboard, filtros, detalhes e mudança de etapa persistente. E-mail institucional após o nome; nenhum envio automático de e-mail.
-
-Para gestão real e gravação de e-mail, seguir integracoes/apps-script/ATUALIZAR-GESTAO.md, publicando Código.gs + Gestao.gs juntos. O novo servidor impede envio com e-mail para implantação anterior, evitando perda silenciosa do contato. Resposta ao cliente: proposta em estrategia-retorno-cliente.md.
-
-Indicador: verde após resposta válida do Gemini nos últimos dois minutos; vermelho quando ausente ou sem resposta recente. Chave configurada, sozinha, não comprova conexão.
-
-## Versão 0.11.0 — fluxos revisados
-
-- **Rascunho pela IA:** em "Descrever com minhas palavras", `POST /api/analyze` identifica o tipo e `POST /api/extract` preenche os dados que a pessoa já disse (data, horário, opções). O cartão de rascunho mostra o que foi entendido; só o que falta é perguntado.
-- **Pergunta e dicas:** `POST /api/assist` devolve no máximo uma pergunta (com dica de onde achar a resposta), um alerta quando o relato não combina com o tipo escolhido e, em defeitos, até três passos para tentar antes de enviar. Perguntas e respostas entram na descrição.
-- **Acompanhar um chamado:** `POST /api/track` com número e e-mail da abertura devolve só a etapa, área, necessidade e data.
-- **Autoatendimento:** `POST /api/selfhelp` registra, sem dados pessoais, se as dicas resolveram; o painel mostra o resultado.
-- **Painel:** skeleton, kanban com tags e cores por etapa, arrastar e soltar (mouse e caneta; no toque, o cartão abre os detalhes).
-- **Chamado de teste:** `removerChamadoDeTeste` (Diagnostico.gs) é executada pelo dono no editor do Apps Script.
-
-Verificação em `verificacao-v0.11.0.md`.
-
-## Versão 0.10.0 — atmosfera, IA e fluxo
-
-- **Aparência:** `assets/css/atmosphere.css` (vidro, aurora, luz sob o cursor, cartões novos) e animações em `motion.css`; `assets/js/atmosphere.js` cuida da luz, da inclinação da cena e da ondulação, só com mouse. Movimento reduzido e transparência reduzida do sistema são respeitados.
-- **IA:** `POST /api/analyze` sugere caminhos para um relato livre (sempre confirmados pela pessoa); `POST /api/assist` faz no máximo uma pergunta de complemento e até três dicas seguras. Regras em `server/contrato-ia.md`.
-- **Fluxo:** seletor de setor com busca, atalhos dos cenários da matriz, nomes legíveis nas opções, comprovante com cópia do número e "Lembrar meus dados neste dispositivo" (opcional, só no navegador).
-- **Avaliação pública:** cotas por sessão e por dia, 3 anexos/5 MB e checagem do conteúdo dos arquivos no Apps Script.
-
-Verificação em `verificacao-v0.10.0.md`.
+Antes de cada versão, uma cópia do protótipo é salva em `versoes/`, só no computador do autor (a pasta está no `.gitignore`). O histórico completo está no Git.

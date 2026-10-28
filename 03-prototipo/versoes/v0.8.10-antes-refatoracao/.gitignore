@@ -1,6 +1,0 @@
-.env
-.env.*
-!.env.example
-
-# Rascunhos e anexos locais de atendimento
-server/data/

@@ -188,7 +188,9 @@ const { api, attachments } = context.window.SmartDesk;
       vm.runInContext(fs.readFileSync(path.join(folder, "assets/js", n + ".js"), "utf8"), c);
     return c.window.SmartDesk;
   }
-  const before = base(path.join(proto, "versoes/v0.8.10-antes-refatoracao")),
+  // Os quatro arquivos de dados da 0.8.10 ficam como fixture: as cópias de versões em versoes/
+  // são locais e não vão para o repositório.
+  const before = base(path.join(__dirname, "fixtures/v0.8.10-dados")),
     after = base(proto);
   assert.equal(JSON.stringify(before.knowledgeBase), JSON.stringify(after.knowledgeBase));
   assert.equal(JSON.stringify(before.flows), JSON.stringify(after.flows));

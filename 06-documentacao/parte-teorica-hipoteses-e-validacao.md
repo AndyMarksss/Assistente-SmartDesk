@@ -5,7 +5,7 @@
 **Aluno:** Anderson Barbosa Marques da Silva — RA 16732
 **Entrega:** Parte teórica (rascunho de 28/10/2026, escrito antes das sessões com usuários)
 
-> **Rascunho.** Os trechos marcados com **⚠ Confirmar** dependem de informação que não está registrada no projeto. A regra de decisão (seção 7) precisa ser revisada e aprovada **antes** da primeira sessão com usuários, para valer como critério definido previamente.
+> **Rascunho.** Os trechos marcados com **⚠ Confirmar** dependem de informação que não está registrada no projeto. A regra de decisão (seção 7) foi aprovada em 28/10/2026, antes da primeira sessão com usuários.
 
 ## 1. Problema, público e oportunidade
 
@@ -93,7 +93,7 @@ Metas definidas na aba *Validação — Resumo* antes dos testes (EVID-216):
 
 ## 7. Regra de decisão (definida antes das sessões)
 
-**⚠ Confirmar antes da primeira sessão.** Proposta:
+**Aprovada em 28/10/2026**, antes da primeira sessão com usuários:
 
 | Resultado | Decisão |
 |---|---|

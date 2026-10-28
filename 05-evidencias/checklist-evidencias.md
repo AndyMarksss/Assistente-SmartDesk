@@ -159,7 +159,7 @@ Próxima coleta sugerida: confirmação de envio no próprio chat, com dados fic
 - [ ] Atualizar implantação Google e conferir gestão/e-mail reais.
 
 - [x] EVID-039: painel de demonstração capturado e verificado.
-- [x] Medidas responsivas registradas em 03-prototipo/verificacao-v0.7.md.
+- [x] Medidas responsivas registradas em 03-prototipo/verificacoes/verificacao-v0.7.md.
 - [ ] Publicar atualização Google e conferir leitura/etapa/e-mail reais.
 
 ## Correção do acesso 0.7.1

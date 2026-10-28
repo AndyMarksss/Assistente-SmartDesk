@@ -36,7 +36,7 @@ Registre mudanças do protótipo e da organização do projeto, com data e evid�
 - Preservadas as pastas src, assets e versoes; arquivos da interface organizados conforme o Passo 4.
 - Perguntas complementares, triagem, resumo e avaliação permanecem na próxima etapa.
 
-- Verificação técnica concluída: dez cenários de classificação, percurso no navegador e layout em largura de celular. Detalhes em verificacao-v0.1.0.md.
+- Verificação técnica concluída: dez cenários de classificação, percurso no navegador e layout em largura de celular. Detalhes em verificacoes/verificacao-v0.1.0.md.
 - Corrigida a exibição da confirmação anterior ao reabrir a correção manual.
 - Salvas EVID-004 e EVID-005; índices e checklist atualizados. Próximo número: EVID-006.
 
@@ -47,7 +47,7 @@ Registre mudanças do protótipo e da organização do projeto, com data e evid�
 - Versão anterior preservada em versoes/v0.1.0-antes-chat, incluindo a base e o classificador.
 - Criados motor de conversa, servidor local, adaptador de IA desativado e contrato da integração.
 - Serviço de IA adiado por escolha explícita do usuário; não houve chamadas externas.
-- Conferidos percurso no navegador, layout de celular e doze verificações do servidor. Limite do download no navegador integrado registrado em verificacao-v0.2.0.md.
+- Conferidos percurso no navegador, layout de celular e doze verificações do servidor. Limite do download no navegador integrado registrado em verificacoes/verificacao-v0.2.0.md.
 - Salvas EVID-006 a EVID-008, índices e checklist atualizados. Próximo número: EVID-009.
 
 ## 2026-10-01 — Versão 0.3.0
@@ -59,7 +59,7 @@ Registre mudanças do protótipo e da organização do projeto, com data e evid�
 - Adaptador Gemini com resposta estruturada, confirmação humana e fallback identificado. Chave em .env, bloqueado no servidor e ignorado no Git. Sem chave real ou chamada externa nesta verificação.
 - Corrigida rolagem após renderização das escolhas no celular.
 - Preservados 11 arquivos da versão 0.2.0 em versoes/v0.2.0-antes-temas-gemini.
-- 21 verificações automatizadas e percurso visual desktop/celular documentados em verificacao-v0.3.0.md.
+- 21 verificações automatizadas e percurso visual desktop/celular documentados em verificacoes/verificacao-v0.3.0.md.
 - EVID-009 a EVID-011 registradas; próximo número: EVID-012.
 
 ## 2026-10-01 — Versão 0.4.0, identidade lavanda
@@ -210,7 +210,7 @@ Pedido direto do usuário: mais profundidade, efeitos, animações, hover, vidro
 - Fluxo: seletor de setor com busca em grade, atalhos dos cenários da matriz, opções com ícones e nomes legíveis (Computador em vez de COMPUTADOR, só na tela), comprovante com botão de copiar e próximos passos, e opção de lembrar nome, e-mail e setor neste dispositivo (com "Esquecer").
 - Avaliação pública (Apps Script): cotas por sessão (5 chamados, 40 chamadas de IA) e por dia (60 chamados, 600 chamadas de IA), limite de 3 anexos e 5 MB com conferência do conteúdo pelo tipo do arquivo, e limitador de sessões por minuto que não trava mais com tráfego contínuo.
 - Correção: teste de integração usava a data fixa 2026-10-05 e falhava após essa data.
-- Verificação: dez suítes aprovadas, incluindo 223 verificações de integração. Fluxo conferido no navegador com o Gemini real e o envio ao Google desligado. Detalhes em verificacao-v0.10.0.md; evidências EVID-179 a EVID-188.
+- Verificação: dez suítes aprovadas, incluindo 223 verificações de integração. Fluxo conferido no navegador com o Gemini real e o envio ao Google desligado. Detalhes em verificacoes/verificacao-v0.10.0.md; evidências EVID-179 a EVID-188.
 - Pendente: aplicar Portal.gs e PortalShared.gs no Apps Script (guia ATUALIZAR-v0.10.0.md) antes de publicar no Pages; conferir em aparelho real.
 
 ## 0.10.1 — 2026-10-14
@@ -238,7 +238,7 @@ Revisão pedida pelo usuário depois de testar a 0.10.x: robô parado, painel se
 - **Acompanhar um chamado:** número + e-mail usado na abertura mostram só a etapa (Recebido, Em andamento, Finalizado), área, necessidade e data. "Lembrar nome, e-mail e setor" ganhou explicação; "Novo atendimento" com dados lembrados volta a rolar a tela.
 - **Painel:** skeleton durante o carregamento; texto de busca legível; kanban com cor por etapa, tags nos cartões (área, data, anexos, autorização pendente, simulação), arrastar e soltar com cartão-fantasma, coluna de destino destacada, aviso de confirmação e desfazer em caso de erro; sem rolagem lateral (7 colunas numa linha a partir de 1280 px, quebram abaixo disso). Novo cartão "IA no autoatendimento" (resolvidos pelas dicas × seguiram para o chamado).
 - **Apps Script:** rotas de rascunho, acompanhamento (10 por sessão) e autoatendimento (20 por sessão); `trackTicket`, `selfHelp` e `selfHelpStats` em Gestao.gs; link "Ainda não informado" aceito; `removerChamadoDeTeste` em Diagnostico.gs para o dono apagar o chamado de teste #010. Publicado pelo clasp nas versões 9 e 10 da mesma implantação.
-- Verificação: dez suítes aprovadas; fluxos conferidos com o Gemini real e o envio ao Google desligado. Detalhes em verificacao-v0.11.0.md.
+- Verificação: dez suítes aprovadas; fluxos conferidos com o Gemini real e o envio ao Google desligado. Detalhes em verificacoes/verificacao-v0.11.0.md.
 
 ## 0.11.1 — 2026-10-14
 
@@ -246,7 +246,7 @@ Pedido do usuário: o robô deve olhar para o cursor, e o efeito de luz do fundo
 
 - **Olhar do robô:** os olhos (grupo `.robot-gaze`) se deslocam na direção do cursor em qualquer ponto da página, até 8 × 7 unidades do desenho, com a boca acompanhando pela metade; a piscada continua em cada olho. Quando o cursor sai da janela, o robô volta a olhar para frente. Só com mouse; com movimento reduzido, os olhos ficam parados.
 - **Luz do cursor:** a camada herdava de `visual-depth.css` 380×380 px no canto superior esquerdo e um desfoque de 65 px, e ficava atrás do cabeçalho, das etapas e da área de resposta — por isso o efeito só aparecia num pedaço. Agora ocupa o chat inteiro, por cima das faixas (mistura `screen` no escuro e `multiply` no claro), acende quando o cursor entra no chat e apaga quando sai. O brilho fixo do alto passou para o fundo do próprio chat. Desligada em cores forçadas.
-- Apps Script republicado só para alinhar a versão (implantação versão 11). Verificação em verificacao-v0.11.1.md.
+- Apps Script republicado só para alinhar a versão (implantação versão 11). Verificação em verificacoes/verificacao-v0.11.1.md.
 
 ## 0.11.2 — 2026-10-14
 
@@ -254,7 +254,7 @@ Correção pedida pelo usuário: na 0.11.1 a luz do cursor passou a ficar por ci
 
 - `.chat-shell::after` voltou para trás do conteúdo (`z-index: 0`, sem mistura de cores), mantendo o tamanho do chat inteiro — o defeito original era só a camada de 380×380 px no canto.
 - Medido com as cores reais (tema escuro): fundo abaixo do card vai de (17, 24, 40) para (53, 56, 89) com o cursor perto; área de botões não muda; dentro do card, pelo vidro, a variação é mínima ((34, 52, 72) → (42, 56, 82)).
-- Apps Script republicado só para alinhar a versão. Verificação em verificacao-v0.11.2.md.
+- Apps Script republicado só para alinhar a versão. Verificação em verificacoes/verificacao-v0.11.2.md.
 
 ## 0.11.3 — 2026-10-14
 
@@ -266,7 +266,7 @@ Pedido do usuário: conferir se todos os fluxos foram avaliados, inclusive a int
 - **Sem IA:** o relato livre não vira mais um rascunho incerto. O chat avisa que a IA está indisponível, mostra as possibilidades da base local como opções e "Escolher pelas opções", e mantém o texto como descrição.
 - **Limite da IA:** o plano gratuito do Gemini permite 500 pedidos por dia por projeto. A avaliação esgotou a cota da chave local (`.env`) em 2026-10-14; o site público seguiu com IA, porque o Apps Script usa outra chave. A rodada completa da instrução nova, o controle com ela e o percurso dos 57 caminhos (2 feitos) ficam pendentes até a cota local renovar.
 - **Pages:** Apps Script na versão 13 da implantação. Com a instrução nova, "o programa da contabilidade não abre o arquivo da empresa" (Financeiro) virou rascunho de TI › QuickBooks › Erro no sistema; antes, no mesmo site, a base local sugeria Google › Drive. Numa das tentativas a IA não respondeu e o modo sem IA apareceu como previsto.
-- Verificação em verificacao-v0.11.3.md; relatório em 04-validacao/avaliacao-ia/relatorio-avaliacao-ia.md.
+- Verificação em verificacoes/verificacao-v0.11.3.md; relatório em 04-validacao/avaliacao-ia/relatorio-avaliacao-ia.md.
 
 ## 0.11.4 — 2026-10-15
 
@@ -277,7 +277,7 @@ Avaliação da IA concluída depois que a cota do Gemini renovou (pedido do usu�
 - **Percurso pelos botões:** os 57 caminhos chegaram ao resumo, sem travar. A revisão da IA deu 2 alertas falsos (Lâmpada da Estufa e Câmeras) e uma pergunta pedindo o nome do aluno.
 - **Revisão da IA:** o mesmo glossário passou a valer na revisão (com Câmeras do Infantil); alerta só quando a descrição trata claramente de outra coisa, na dúvida segue; motivo em português correto. Conferida direto na rota nos 57 caminhos: 0 alertas falsos, 16 perguntas, 18 caminhos com dicas.
 - **Filtro do servidor:** perguntas que pedem nome de pessoas ou endereço de e-mail são descartadas (pegou "o nome completo e o e-mail institucional da professora"). Reaplicado às 39 perguntas coletadas: descartou só as 2 indevidas.
-- `revisar-ia.cjs` (revisão direto na rota) e `--so-extracao sim` em `avaliar-ia.cjs` para conferir mudanças sem gastar cota com o resto. Apps Script republicado. Verificação em verificacao-v0.11.4.md.
+- `revisar-ia.cjs` (revisão direto na rota) e `--so-extracao sim` em `avaliar-ia.cjs` para conferir mudanças sem gastar cota com o resto. Apps Script republicado. Verificação em verificacoes/verificacao-v0.11.4.md.
 
 ## 0.12.0 — 2026-10-19
 
@@ -288,7 +288,7 @@ Pedido do usuário: preparar o protótipo e o material para o teste com pelo men
 - **Satisfação:** depois do comprovante, "Quão fácil foi abrir este chamado?" (1 a 5, ou não responder) e "O que faltou?" (opcional, sem nomes), guardados só nas métricas.
 - **Kit das sessões:** `04-validacao/roteiros/roteiro-sessao-usuarios.md` (preparação, fala de abertura, rodízio dos cenários CT-01 a CT-11 da Matriz Mestre com os links P01–P05, conversa final e cuidados), `04-validacao/registros/ficha-observacao.md` e `prepararPlanilhaDeValidacao` (Validacao.gs), que cria as abas *Validação — Tarefas* (rodízio já preenchido; o número do chamado puxa as métricas da aba Sessões), *Validação — Participantes* e *Validação — Resumo* (indicadores e quadro de critérios com metas em branco).
 - **Correção:** o servidor local recusava enviar chamados para o Apps Script desde a 0.10, porque a checagem de versão aceitava só 0.7 a 0.9. O Pages não era afetado.
-- Apps Script publicado na versão 15 da mesma implantação. Verificação em verificacao-v0.12.0.md.
+- Apps Script publicado na versão 15 da mesma implantação. Verificação em verificacoes/verificacao-v0.12.0.md.
 
 ## 0.12.1 — 2026-10-19
 
@@ -297,7 +297,7 @@ Pedido do usuário: animar o robozinho que aparece ao lado das mensagens do Smar
 - O avatar deixou de ser a imagem `assistente.svg` e passou a ser o mesmo desenho inline (`miniRobot` em `chat-view.js`), com classes nas partes e IDs próprios para os gradientes de cada cópia.
 - Só o robô da mensagem mais recente se mexe, para não encher a conversa de movimento: ao chegar dá um pulinho e mexe a boca como se falasse; depois pisca a cada ~4,6 s e a antena acende e apaga. Na primeira mensagem, acena com a orelha direita. Enquanto a IA pensa, os olhos procuram de um lado para o outro (além do balanço que já existia). Os robôs das mensagens anteriores ficam parados.
 - Animações em `motion.css`, desligadas com movimento reduzido; tamanhos e pontos de giro em `atmosphere.css`.
-- Apps Script republicado só para alinhar a versão. Verificação em verificacao-v0.12.1.md.
+- Apps Script republicado só para alinhar a versão. Verificação em verificacoes/verificacao-v0.12.1.md.
 
 ## 0.12.2 — 2026-10-19
 
@@ -313,7 +313,7 @@ Varredura automática (Edge sem janela) do chat inteiro — abertura, Como funci
 - **Toque:** atalhos de data com 40 px de altura (eram 30), "Voltar uma etapa", "Recomeçar" e "Remover" anexo com 40 px.
 - **Textos pequenos:** a abertura chegava a 7–8 px no celular; selo, etiquetas, cena e rótulo da área de botões passaram a 9–10 px.
 - O painel de gestão não precisou de ajuste: sem rolagem lateral, sem elementos fora da tela e com o quadro em duas colunas no celular.
-- Apps Script republicado só para alinhar a versão (versão 17 da implantação). Verificação em verificacao-v0.12.2.md.
+- Apps Script republicado só para alinhar a versão (versão 17 da implantação). Verificação em verificacoes/verificacao-v0.12.2.md.
 
 ## 0.12.3 — 2026-10-20
 
@@ -323,7 +323,7 @@ Origem: prints do usuário de um atendimento no Pages. Relato: "Teremos um event
 - **Evento contraditório:** em Corrigir os dados, a mensagem dizia "deixei os valores preenchidos", mas as perguntas de Sim/Não apareciam sem marcar o valor entendido. Agora a opção da IA vem destacada. E se o relato fala em evento e a resposta foi "Não" (`eventMismatch`), o chat confirma uma vez antes de seguir.
 - As conferências rodam antes da revisão da IA e depois de cada resposta a ela, sem gastar cota da IA.
 - "IA pronta para ajudar" no fim do print não era falha: o topo mostra "IA conectada" até 2 minutos depois da última resposta da IA e volta para "pronta" quando ela fica ociosa.
-- Apps Script republicado para alinhar a versão (as regras de `request-policy.js` também vão para o `PortalShared.gs`). Verificação em verificacao-v0.12.3.md.
+- Apps Script republicado para alinhar a versão (as regras de `request-policy.js` também vão para o `PortalShared.gs`). Verificação em verificacoes/verificacao-v0.12.3.md.
 
 ## 0.12.4 — 2026-10-20
 
@@ -331,7 +331,7 @@ Pedido do usuário (com prints): ao mexer o mouse, o quadro da abertura inclinav
 
 - Removida a inclinação do quadro: o cálculo de `--tilt-x`/`--tilt-y` em `atmosphere.js`, a rotação com perspectiva em `atmosphere.css` e as regras de transição e de movimento reduzido que só existiam para ela em `motion.css`.
 - Os olhos do robô continuam seguindo o cursor (0.11.1), e as linhas da cena continuam encaixadas nos cartões (0.12.2).
-- Apps Script republicado só para alinhar a versão. Verificação em verificacao-v0.12.4.md.
+- Apps Script republicado só para alinhar a versão. Verificação em verificacoes/verificacao-v0.12.4.md.
 
 ## 0.12.5 — 2026-10-20
 
@@ -341,7 +341,7 @@ Pedido do usuário: o fundo do chat estava "meio morto"; colocar elementos no fu
 - Fica só na faixa da conversa: `atmosphere.js` acompanha a posição e a altura dela, então nada passa por trás do topo, das etapas ou da área de botões. Está abaixo das mensagens e não recebe cliques.
 - Bem transparente (linhas a 22% da cor de destaque, ícones a 20%) e com ciclos longos e defasados (5,6 s a 46 s). No tablet e no celular ficam só quatro ícones, menores e encostados nas bordas, e a rede mais apagada. Some com o teclado aberto no celular e em cores forçadas; com movimento reduzido fica parada.
 - Animações em `motion.css`; estilos em `atmosphere.css` (seção 0.12.5).
-- Apps Script republicado só para alinhar a versão. Verificação em verificacao-v0.12.5.md.
+- Apps Script republicado só para alinhar a versão. Verificação em verificacoes/verificacao-v0.12.5.md.
 
 ## 0.12.6 — 2026-10-20
 
@@ -352,7 +352,7 @@ Pedido do usuário: "a luz do cursor está muito grande" e "melhore a barra late
 - **Dicas que se revezam:** o cartão "Sem complicação" agora alterna três dicas a cada 9 s ("Sem complicação", "Uma pergunta por vez", "Guarde o número"), com pontinhos indicando qual está à vista. Pausa com o mouse em cima; com movimento reduzido fica só a primeira.
 - **Fundo da barra:** luz suave roxa e azul na parte de baixo, que respira devagar, no mesmo estilo do fundo do chat.
 - Animações em `motion.css`; estilos em `atmosphere.css` (seção 0.12.6).
-- Apps Script republicado só para alinhar a versão. Verificação em verificacao-v0.12.6.md.
+- Apps Script republicado só para alinhar a versão. Verificação em verificacoes/verificacao-v0.12.6.md.
 
 ## 0.12.7 — 2026-10-20
 
@@ -363,7 +363,7 @@ Pedido do usuário (com prints): "eu disse para melhorar, e não aumentar" — a
 - **Alturas medidas:** a dica só aparece acima de 860 px de altura (em 821–860 ela já não cabia); com altura até 560 px (celular grande deitado, 932×430) a barra sai e fica o layout do celular, com o botão "+" de novo atendimento no topo.
 - **"O que a TI atende":** as quatro áreas com os ícones das opções do chat (Audiovisual, Impressora, Google, TI), em duas colunas. Aparece onde cabe com folga — com a dica, a partir de 955 px de altura; sem ela, de 740 a 860 px — e não aparece na barra estreita (telas até 1100 px de largura).
 - **Rede no pé da barra:** o mesmo desenho do fundo do chat, com pontos que respiram e um sinal correndo; ocupa só o espaço livre entre o Painel de gestão e o rodapé e some quando não sobra espaço.
-- Apps Script republicado só para alinhar a versão. Verificação em verificacao-v0.12.7.md.
+- Apps Script republicado só para alinhar a versão. Verificação em verificacoes/verificacao-v0.12.7.md.
 
 ## 0.12.8 — 2026-10-20
 
@@ -372,7 +372,7 @@ Pedido do usuário (com prints): "O que a TI atende" parecia botões e induzia a
 - **"O que a TI atende" como lista informativa:** sem caixa, borda ou fundo; cada linha tem o ícone, o nome da área e uma descrição curta (Audiovisual · som e projetor; Impressora · papel e toner; Google · e-mail e Drive; TI · computador e internet). Continua aparecendo só onde cabe; a proteção da barra (sem tolerância de 1 px agora) a retira se o conteúdo não couber.
 - **Tema claro:** antes o fundo da página era cinza-azulado (#c9d4e3), o do chat outro cinza parecido (#e0e7f0) e uma névoa colorida a 42% com rosa deixava tudo lavado. Agora: fundo #eef1f8 com névoa suave a 26% (lilás e azul, sem rosa), barra lateral, topo, área de botões e balões do assistente brancos, balões da pessoa lilás (#ebe5ff, texto #2f1f6b), texto principal #1b2233, secundário #56607a, linhas #dce1eb, azul de informação #245d96, e as linhas do fundo do chat mais discretas no claro. O tema escuro não mudou.
 - **Contraste (WCAG) da paleta clara:** todos os pares de texto do relatório da 0.8.10 passam (de 5,3:1 a 15,9:1); a borda das opções ficou em 3,2:1 (mínimo 3:1).
-- Apps Script republicado só para alinhar a versão. Verificação em verificacao-v0.12.8.md.
+- Apps Script republicado só para alinhar a versão. Verificação em verificacoes/verificacao-v0.12.8.md.
 
 ## 0.12.9 — 2026-10-20
 
@@ -381,7 +381,7 @@ Pedido do usuário (com prints): o tema claro "ficou horrível" — ser mais cri
 - **Tema claro redesenhado:** a 0.12.8 deixou tudo branco, e barra, chat, fundo e cartão de boas-vindas se confundiam. Agora cada área tem um papel: página em cinza-azulado suave (#e7eaf4) com aurora lilás e azul, para os painéis brancos saltarem; cartão de boas-vindas em gradiente roxo→azul com texto branco e a cena com cartões brancos (ponto focal da abertura); conversa num lilás bem claro (#f4f3fa); balões da pessoa em roxo sólido com texto branco, como nos apps de mensagem; balões do assistente brancos; etapa atual da trilha em roxo; área de botões branca; cabeçalho do painel de gestão no mesmo gradiente. O tema escuro não mudou, fora a barra lateral.
 - **Barra lateral (os dois temas):** "Seu atendimento" virou o cartão "Seu chamado": cabeçalho em gradiente roxo e azul profundo, anel de progresso (0/4 a 4/4), título que acompanha o momento ("Vamos começar", "Em andamento", "Quase pronto" e, depois do envio, "Chamado #NNN enviado", com o anel verde) e o picote de ticket entre o cabeçalho e a trilha. A dica ganhou a lâmpada num selo âmbar ao lado do título e ocupa menos altura. A barra continua sem rolar em nenhum tamanho: a proteção agora também pode tirar o rodapé e, até 600 px de altura, a barra dá lugar ao layout do celular.
 - **Elemento atrás do robozinho:** os ícones do fundo eram posicionados por porcentagem da largura e, em telas largas, o balão de conversa caía na coluna dos avatares. Agora o atmosphere.js mede a lateral livre de cada lado da coluna de mensagens e os ícones ficam no meio dela; com lateral estreita (celular, tablet) ficam só os da direita. A rede de conexões fica forte nas laterais e suave (25%) dentro da coluna das mensagens. Medido: nenhum ícone encosta em robozinho.
-- Apps Script republicado só para alinhar a versão. Verificação em verificacao-v0.12.9.md.
+- Apps Script republicado só para alinhar a versão. Verificação em verificacoes/verificacao-v0.12.9.md.
 
 ## 0.12.10 — 2026-10-20
 
@@ -392,7 +392,7 @@ Pedido do usuário (prints e um vídeo de 6 s): melhorar a profundidade da barra
 - **Dicas navegáveis:** setas de anterior e próxima, pontinhos clicáveis (com destaque no atual) e arrastar para o lado com o dedo ou o mouse (mais de 40 px). A dica entra pelo lado da navegação. Quando a pessoa navega, a troca automática para e o leitor de tela passa a anunciar a dica nova.
 - **Foco:** o botão principal continua o elemento mais forte da área de botões; na barra, o destaque fica na etapa atual do cartão; a rede do pé ficou mais discreta no claro.
 - A barra continua sem rolar: espaços entre cartões ajustados para "O que a TI atende" caber na tela do usuário (1864 × 958); onde não cabe, a proteção o retira.
-- Apps Script republicado só para alinhar a versão. Verificação em verificacao-v0.12.10.md.
+- Apps Script republicado só para alinhar a versão. Verificação em verificacoes/verificacao-v0.12.10.md.
 
 ## 0.12.11 — 2026-10-21
 
@@ -407,7 +407,7 @@ Pedido do usuário (prints do chat e do painel nos dois temas): "Agora melhore o
 - **Quadro:** coluna vazia com ícone; a coluna escolhida pela fila ou pelo pulso acende e apaga (e recebe o foco, para quem usa teclado).
 - **Chat — dicas sem sobreposição:** na troca, as duas dicas cruzavam a meia opacidade e o texto se misturava (visto no print do tema claro). Agora a que sai some em 160 ms, parada, e a nova entra depois, vinda do lado da navegação.
 - O anel no botão "Tema escuro" do print não é falha: após o clique com o mouse não há anel; ele aparece quando alguma tecla é pressionada com o botão em foco (por exemplo, o atalho de captura de tela) — é o indicador de foco do teclado.
-- Apps Script republicado só para alinhar a versão. Verificação em verificacao-v0.12.11.md.
+- Apps Script republicado só para alinhar a versão. Verificação em verificacoes/verificacao-v0.12.11.md.
 
 ## 0.12.12 — 2026-10-21
 
@@ -419,7 +419,7 @@ Medido no navegador antes de mudar (0.12.11): no tema escuro o cartão do quadro
 - **Profundidade no quadro:** três camadas — o quadro num painel, as colunas rebaixadas (sombra interna; no escuro, a camada mais escura) e os cartões elevados (no escuro, a camada mais clara, com brilho na borda de cima e sombra; no claro, brancos com sombra lilás). No hover a sombra cresce e a borda pega a cor da etapa.
 - **Dentro do cartão do quadro:** número discreto, título forte, área e etiquetas neutras e a data num rodapé com divisória e ícone de calendário.
 - **Cartões de cima:** no claro, brancos de verdade com sombra em camadas (antes vidro acinzentado). O pé de cada indicador, o gráfico de áreas, o detalhe do pulso e o autoatendimento ficam num poço interno (superfície rebaixada); os ícones dos indicadores ganharam relevo.
-- Estado anterior: EVID-261 (0.12.11). Apps Script republicado só para alinhar a versão. Verificação em verificacao-v0.12.12.md.
+- Estado anterior: EVID-261 (0.12.11). Apps Script republicado só para alinhar a versão. Verificação em verificacoes/verificacao-v0.12.12.md.
 
 ## 0.12.13 — 2026-10-21
 
@@ -428,14 +428,14 @@ Pedido do usuário (prints do quadro, do modal, do painel vazio e da planilha): 
 - **Cartões do quadro:** na 0.12.12 o cartão escuro ficou num cinza-azulado apagado, com faixa colorida em todos os cartões e duas etiquetas contornadas em cada um. Agora a etapa aparece no cabeçalho tingido da coluna (a legenda do quadro, com altura igual em todas) e num ponto ao lado do número; o cartão é neutro — azul-marinho com degradê suave no escuro, branco no claro; a área é uma etiqueta cheia e discreta; "Simulação" foi para o rodapé, em texto, ao lado da data. Etiquetas e datas passaram de 10 para 11 px.
 - **Modal de detalhes:** cabeçalho com a cor da etapa atual (faixa no topo e degradê), selos de número, etapa, área e simulação, e "Aberto em … às …"; dados em dois blocos rebaixados ("Solicitante" e "Pedido", com anexos como botões); a etapa é escolhida por opções coloridas, com a atual marcada ("atual"), e o botão diz o destino ("Mover para Finalizado") e só liga quando a etapa muda; rodapé com "Fechar" e o botão, preso na base (no celular não some ao rolar). Ao abrir, o foco vai para o título — sem o anel grosso no botão de fechar. No tema claro, o botão desligado aparecia ativo (a regra do gradiente vencia a de desligado); corrigido no modal.
 - **Chamados que não apareciam:** a aba Chamados da planilha termina no #015 (19/10); nenhum chamado de teste posterior foi gravado, então o painel não tinha o que mostrar. No Pages, os dois caminhos testados chegam ao resumo sem erro (o envio não foi feito, para não gravar na planilha sem autorização). Além disso, "Chamados desta avaliação" mostra por privacidade só os chamados enviados naquela aba do navegador, por até 1 hora; o painel agora diz isso quando está vazio ("Nenhum chamado enviado nesta aba") e na nota da origem.
-- Apps Script republicado só para alinhar a versão. Verificação em verificacao-v0.12.13.md.
+- Apps Script republicado só para alinhar a versão. Verificação em verificacoes/verificacao-v0.12.13.md.
 
 ## 0.12.14 — 2026-10-21
 
 Pedido do usuário (recorte do topo do modal): "Quero que remova essas linhas na parte de cima do modal".
 
 - A faixa de 4 px na cor da etapa, no topo do modal de detalhes, saiu. A cor da etapa continua no selo e no degradê suave do cabeçalho.
-- Apps Script republicado só para alinhar a versão. Verificação em verificacao-v0.12.14.md.
+- Apps Script republicado só para alinhar a versão. Verificação em verificacoes/verificacao-v0.12.14.md.
 
 ## 0.12.15 — 2026-10-22
 
@@ -446,7 +446,7 @@ Pedido do usuário (print do painel em 1864 × 958): "Vamos tentar fazer caber a
 - **Categorias dentro das áreas:** o gráfico desce de área para categoria ("TI: Computador lidera com 2 chamados"), com trilha "← Todas as áreas › TI"; até quatro linhas (as três maiores e "Outras"). Categoria = primeiro nível da necessidade ("COMPUTADOR > Troca de Mouse" → Computador). As simulações passaram a usar categorias reais do catálogo (Projetor, Microfone, Computador, Internet, Gmail, Drive…), no servidor local e no Apps Script; as simulações já gravadas no servidor local tiveram só a categoria atualizada.
 - **Textos:** o pulso não cita partes zeradas ("0 aguardam terceiros"); o Total diz "Com os filtros ativos" quando há filtro; descrições dos indicadores e do autoatendimento mais curtas.
 - **Correção:** a fila e o botão do pulso estavam com o clique registrado duas vezes depois da refatoração; agora uma vez só.
-- Apps Script republicado (Portal.gs com as categorias das simulações). Verificação em verificacao-v0.12.15.md.
+- Apps Script republicado (Portal.gs com as categorias das simulações). Verificação em verificacoes/verificacao-v0.12.15.md.
 
 ## 0.12.16 — 2026-10-28
 
@@ -458,7 +458,7 @@ Pedidos do usuário (27/10 e 28/10, com prints do painel, do chat no desktop e d
 - **Quadro alinhado:** as colunas têm a altura da mais alta e todos os cartões a do mais alto (o admin.js mede e aplica; refeito quando o quadro muda de largura), com o rodapé embaixo.
 - **Abertura do chat:** quem tem dados salvos recebe uma saudação só ("Olá, Andy! Que bom te ver de novo…"); antes eram duas e a segunda rolava a conversa e cortava o quadro. No celular (até 600 px) o quadro de boas-vindas fica compacto, sem a ilustração e as etiquetas, para ele e a primeira mensagem caberem juntos — inclusive no Chrome com a barra de endereço em cima. A conversa só rola até a mensagem se ela não couber.
 - **Corrigir um dado no resumo:** no lugar de "Editar descrição", "Corrigir um dado" lista nome, e-mail, setor, cada campo do pedido, descrição e as respostas às perguntas do assistente. Texto vem preenchido para ajustar; escolhas mostram a atual em destaque; data e hora vêm preenchidas. Se a resposta muda um campo dependente (ex.: "É para um evento?" de Sim para Não), o dependente sai ou é perguntado. Depois o resumo volta, com o assunto refeito.
-- Apps Script republicado (Portal.gs: lista completa e dados abreviados). Verificação em verificacao-v0.12.16.md.
+- Apps Script republicado (Portal.gs: lista completa e dados abreviados). Verificação em verificacoes/verificacao-v0.12.16.md.
 
 ## 0.12.17 — 2026-10-28
 
@@ -470,4 +470,4 @@ Pedidos do usuário (28/10, com prints do painel e do chat no desktop): "Corrige
 - **Descrição automática acompanha o tipo:** o #017 ficou com "INTERNET > Problemas com Wi-Fi…" depois de a pessoa trocar para "Computador não está conectado à rede" no alerta da IA. A descrição montada pelo "Sem mais detalhes" agora é refeita com o tipo e as respostas atuais (ou perguntada de novo, se o tipo novo pede descrição) e acompanha a correção de um campo no resumo.
 - **Quadro na altura da janela:** os cartões de cada coluna ficam numa área própria que rola, com o cabeçalho da etapa parado. Quando alguma etapa passa de quatro cartões, a área mostra quatro inteiros e metade do quinto; em janelas mais baixas, menos inteiros e sempre a metade, para o quadro caber na altura da janela (1366 × 768: três e meio). O cartão recém-movido fica à vista. Colunas e cartões continuam com a mesma altura.
 - **Primeira tela do chat sem rolagem:** o quadro de boas-vindas se ajusta em níveis à altura que sobra (menos respiro → ilustração menor → sem etiquetas → sem ilustração → sem o parágrafo) até ele e a primeira mensagem caberem; refeito quando a altura muda (barra do navegador no celular, janela). Na tela do usuário (1920 × 912) sobravam 11 px; bastou o primeiro nível.
-- Apps Script republicado (Portal.gs e PortalShared.gs). Verificação em verificacao-v0.12.17.md.
+- Apps Script republicado (Portal.gs e PortalShared.gs). Verificação em verificacoes/verificacao-v0.12.17.md.

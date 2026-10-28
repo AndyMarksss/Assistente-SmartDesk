@@ -32,7 +32,7 @@ Use este arquivo para registrar escolhas feitas, o motivo e o efeito sobre o MVP
 - Organização: index.html na raiz de 03-prototipo; CSS e JavaScript separados em assets. A pasta src anterior foi preservada. Esta escolha substitui a localização inicial em src.
 - Base parcial de demonstração: 14 necessidades; exemplos de setores com campo livre. Importação da matriz e dos setores oficiais ainda pendente.
 - Motivo: seguir o desenvolvimento por etapas definido no planejamento, sem inventar os dados ausentes da planilha.
-- Evidências: EVID-004 e EVID-005; verificação técnica em 03-prototipo/verificacao-v0.1.0.md. Nenhuma sessão com usuário realizada nesta etapa.
+- Evidências: EVID-004 e EVID-005; verificação técnica em 03-prototipo/verificacoes/verificacao-v0.1.0.md. Nenhuma sessão com usuário realizada nesta etapa.
 
 ## 2026-10-01 — Experiência conversacional e IA
 
@@ -127,4 +127,12 @@ Recebimento planejado: Apps Script cria planilha separada SmartDesk — Chamados
 - Status: proposta, aguardando revisão do usuário.
 - Arquivos: `06-documentacao/parte-teorica-hipoteses-e-validacao.md` e `06-documentacao/canvas/` (Lean Canvas em texto, HTML e PNG).
 - Base: hipótese e metas escritas pelo usuário na aba *Validação — Resumo* (EVID-216), roteiro das sessões, Matriz Mestre e este registro de decisões. Nenhum resultado de usuário foi usado ou inventado.
-- Pendente do usuário antes da primeira sessão: aprovar ou ajustar a regra de decisão (perseverar, ajustar, pivotar ou abandonar) e o critério proposto para a hipótese de problema; completar os trechos marcados com "⚠ Confirmar" (canais atuais de pedido, o que foi feito na conversa de planejamento com o ChatGPT, setores que mais abrem chamados).
+- Regra de decisão (perseverar, ajustar, pivotar ou abandonar) **aprovada pelo usuário em 28/10/2026**, antes das sessões. Ainda pendente: o critério proposto para a hipótese de problema (3 de 5 relatam dificuldade) e completar os trechos marcados com "⚠ Confirmar" (canais atuais de pedido, o que foi feito na conversa de planejamento com o ChatGPT, setores que mais abrem chamados).
+
+## 2026-10-28 — Organização do repositório
+
+- Origem: pedido do usuário ("suba só o que faz sentido para o projeto e ignore o que não for", README.md nas pastas e um README de explicação do projeto, diferente do README de entrega).
+- Fora do repositório (continuam no computador): `03-prototipo/versoes/`, 52 cópias completas do protótipo (3.956 arquivos). O histórico do Git já guarda cada versão. O único uso em teste (dados da 0.8.10) virou fixture em `03-prototipo/server/tests/fixtures/v0.8.10-dados`.
+- Organizado: relatórios de verificação e auditorias JSON em `03-prototipo/verificacoes/`; diário da raiz em `01-planejamento/diario-do-projeto.md`; LEIA-ME de `04-validacao` renomeados para README.md. Menções aos caminhos antigos foram corrigidas.
+- Criados: README.md da raiz (apresentação do projeto) e de cada pasta; README técnico do protótipo reescrito com o estado atual.
+- Nada foi apagado.
