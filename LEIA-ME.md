@@ -127,3 +127,6 @@ Painel interativo e compacto: indicadores, áreas e categorias filtram tudo, o g
 
 ## 0.12.16
 Painel publicado com todos os chamados da planilha (dados de outras pessoas abreviados), esqueleto de carregamento fiel à tela, quadro alinhado, abertura do chat que não corta o quadro de boas-vindas e correção de qualquer dado no resumo. Verificação em 03-prototipo/verificacao-v0.12.16.md.
+
+## 0.12.17
+IA verificada nas requisições dos 57 caminhos: sem perguntas repetidas, local só quando faz sentido, assunto igual no Pages e no servidor local; quadro com colunas que rolam e cabem na janela; primeira tela do chat sem rolagem. Verificação em 03-prototipo/verificacao-v0.12.17.md e 04-validacao/avaliacao-ia/relatorio-requisicoes-v0.12.17.md.

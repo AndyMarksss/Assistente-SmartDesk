@@ -1,0 +1,128 @@
+analyze AV-001      ok
+extract AV-001      {"data":"2026-10-29","horario":"10:00"}
+assist  AV-001      pergunta: Para qual sala ou local será o uso do som?
+subject AV-001      Solicitação de Caixa de Som
+analyze AV-002      ok
+extract AV-002      {"data":"2026-10-30","horario":"08:00","evento":"Sim"}
+assist  AV-002      pergunta: Em qual local do pátio será utilizado o microfone?
+subject AV-002      Solicitacao de caixa de som e microfone
+analyze AV-003      ok
+extract AV-003      {"data":"2026-11-20","horario":"19:00","evento":"Sim"}
+assist  AV-003      (sem pergunta)
+subject AV-003      Solicitacao de Projetor e Microfone
+analyze AV-004      ok
+extract AV-004      {"data":"2026-10-29","horario":"13:30"}
+assist  AV-004      pergunta: Em qual sala ou local será utilizado o equipamento?
+subject AV-004      Solicitação de Caixa de Som / Projetor
+analyze AV-005      ok
+extract AV-005      {"data":"2026-10-30","horario":"17:00"}
+assist  AV-005      pergunta: Em qual sala ou local da escola você precisará do microfone?
+subject AV-005      Solicitação de microfone
+analyze AV-006      ok
+extract AV-006      {"data":"2026-11-03","horario":"10:00"}
+assist  AV-006      pergunta: Em qual sala ou local será utilizado o projetor?
+subject AV-006      Solicitação de projetor
+analyze AV-007      ok
+  IA indisponível em /api/extract (tentativa 1); aguardando…
+  IA indisponível em /api/extract (tentativa 2); aguardando…
+  IA indisponível em /api/extract (tentativa 3); aguardando…
+  IA indisponível em /api/extract (tentativa 4); aguardando…
+  IA indisponível em /api/extract (tentativa 5); aguardando…
+extract AV-007      {} [falha-ia]
+assist  AV-007      pergunta: Em qual sala está acontecendo?
+subject AV-007      Troca de cabo HDMI
+analyze IMP-001     ok
+extract IMP-001     {"modelo":"Brother DCP-L5652"}
+assist  IMP-001     pergunta: Em qual sala ou local a impressora está instalada?
+subject IMP-001     Configurar Scanner
+analyze IMP-002     ok
+extract IMP-002     {"modelo":"Ricoh do 2º andar"}
+assist  IMP-002     pergunta: Em qual sala está essa impressora?
+subject IMP-002     Grampo da impressora com defeito
+analyze IMP-003     ok
+extract IMP-003     {"modelo":"HP LaserJet M428"}
+assist  IMP-003     pergunta: Em qual sala ou local a impressora deve ser instalada?
+subject IMP-003     Instalação de impressora
+analyze IMP-004     ok
+extract IMP-004     {"modelo":"Kyocera","erro-apresentado":"erro na lâmpada da estufa (fusor)"}
+assist  IMP-004     pergunta: Em qual sala ou local está essa impressora?
+subject IMP-004     Troca de lâmpada da estufa da impressora
+analyze IMP-005     ok
+extract IMP-005     {"modelo":"Samsung"}
+assist  IMP-005     pergunta: Em qual sala ou local fica esta impressora?
+subject IMP-005     Impressora manchando folhas
+analyze IMP-006     ok
+extract IMP-006     {"modelo":"HP","mensagem-de-erro":"impressora offline"}
+assist  IMP-006     pergunta: Em qual sala a impressora está localizada?
+subject IMP-006     Impressora não imprime documentos
+analyze IMP-007     ok
+extract IMP-007     {"modelo":"Epson L3250"}
+assist  IMP-007     (sem pergunta)
+subject IMP-007     Impressora não liga
+analyze IMP-008     ok
+extract IMP-008     {"modelo":"Brother","mensagem-do-visor":"Atolamento bandeja 2"}
+assist  IMP-008     (sem pergunta)
+subject IMP-008     Papel Atolado na Impressora
+analyze IMP-009     ok
+extract IMP-009     {"modelo":"Canon","erro":"erro de comunicação com o computador"}
+assist  IMP-009     pergunta: Qual é a sala ou o local onde está essa impressora?
+subject IMP-009     Scanner da impressora não funciona
+analyze IMP-010     ok
+extract IMP-010     {"cor":"Preto","modelo":"HP M428"}
+assist  IMP-010     pergunta: Em qual sala ou local está a impressora?
+subject IMP-010     Solicitação de Toner Preto
+analyze GOO-001     ok
+  IA indisponível em /api/extract (tentativa 1); aguardando…
+  IA indisponível em /api/extract (tentativa 2); aguardando…
+  IA indisponível em /api/extract (tentativa 3); aguardando…
+  IA indisponível em /api/extract (tentativa 4); aguardando…
+  IA indisponível em /api/extract (tentativa 5); aguardando…
+extract GOO-001     {} [falha-ia]
+assist  GOO-001     pergunta: Em qual sala ou local você está tentando visualizar ou sincronizar essas agendas?
+subject GOO-001     Compromissos não aparecem para a equipe
+analyze GOO-002     ok
+extract GOO-002     {"link-ou-nome-do-arquivo":"Feira de Ciências"}
+assist  GOO-002     (sem pergunta)
+subject GOO-002     Recuperar Apresentações do Google
+analyze GOO-003     ok
+extract GOO-003     {"turma":"7º B"}
+assist  GOO-003     (sem pergunta)
+subject GOO-003     Atividade do Classroom não visível para os alunos
+analyze GOO-004     ok
+extract GOO-004     {"arquivo":"Ata de reunião"}
+assist  GOO-004     pergunta: Em qual computador ou navegador isso aconteceu?
+subject GOO-004     Documentos do Google não salvos
+analyze GOO-005     ok
+extract GOO-005     {"link-ou-nome-do-recurso":"Planejamento 2026"}
+assist  GOO-005     (sem pergunta)
+subject GOO-005     Arquivos sumidos do Google Drive
+analyze GOO-006     ok
+  IA indisponível em /api/extract (tentativa 1); aguardando…
+  IA indisponível em /api/extract (tentativa 2); aguardando…
+  IA indisponível em /api/extract (tentativa 3); aguardando…
+  IA indisponível em /api/extract (tentativa 4); aguardando…
+  IA indisponível em /api/extract (tentativa 5); aguardando…
+extract GOO-006     {} [falha-ia]
+assist  GOO-006     pergunta: Qual ferramenta do Google você gostaria de saber usar?
+subject GOO-006     Dúvidas sobre o uso do Google Workspace
+analyze GOO-007     ok
+extract GOO-007     {"erro-apresentado":"não está recebendo e-mails desde ontem"}
+  IA indisponível em /api/assist (tentativa 1); aguardando…
+assist  GOO-007     (sem pergunta)
+subject GOO-007     Problema no recebimento de e-mails
+analyze GOO-008     ok
+extract GOO-008     {"grupo":"professores@"}
+assist  GOO-008     (sem pergunta)
+subject GOO-008     Não recebo e-mails do grupo
+analyze GOO-009     ok
+extract GOO-009     {"link-ou-nome-da-planilha":"Controle de frequência"}
+assist  GOO-009     (sem pergunta)
+subject GOO-009     Erro na soma de planilha Google
+analyze GOO-010     ok
+  IA indisponível em /api/extract (tentativa 1); aguardando…
+extract GOO-010     {"data":"2026-10-29","horario-periodo":"3º e 4º horário"}
+assist  GOO-010     pergunta: Em qual sala os Chromebooks serão utilizados?
+subject GOO-010     Reserva de Chromebook
+analyze GOO-011     ok
+  IA indisponível em /api/extract (tentativa 1); aguardando…
+  IA indisponível em /api/extract (tentativa 2); aguardando…

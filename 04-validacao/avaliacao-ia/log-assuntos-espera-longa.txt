@@ -1,0 +1,55 @@
+subject AV-003      10010ms  Reserva de Caixa de Som, Microfone e Projetor para palestra
+subject AV-004      16781ms  Reserva de Caixa de Som e Projetor
+subject AV-005      28007ms  Solicitação de microfone para reuniões
+subject AV-006      18144ms  Solicitação de projetor para slides
+subject AV-007      14645ms  Imagem da TV da sala não aparece com o notebook
+subject IMP-001     10395ms  Solicitação para configurar scanner da impressora
+subject IMP-002     24438ms  Grampo da impressora com defeito
+subject IMP-003     9676ms   Instalar impressora no computador da sala
+subject IMP-004     31639ms  Troca da peça que aquece o papel na impressora
+subject IMP-005     15201ms  Impressora manchando folhas
+subject IMP-006     23276ms  Documento na fila da impressora e não sai
+subject IMP-007     18171ms  Impressora não liga
+subject IMP-008     18656ms  Papel atolado na impressora
+subject IMP-009     20427ms  Scanner da impressora não envia documentos para o computador
+subject IMP-010     20445ms  Solicitação de Toner Preto para Impressora
+subject GOO-001     18229ms  Compromissos da agenda do Google não aparecem para a equipe
+subject GOO-002     17197ms  Slides do Google Apresentações sumiram
+subject GOO-003     2404ms   Alunos não veem atividade postada no Google Classroom
+subject GOO-004     24599ms  Documentos do Google não salvou o texto
+subject GOO-005     14001ms  Arquivos sumiram do Google Drive
+subject GOO-006     17847ms  Dúvidas sobre o uso do Google na escola
+subject GOO-007     32716ms  Mensagens não chegam na caixa de entrada do Gmail
+subject GOO-008     8634ms   Não recebo os e-mails enviados para o grupo da equipe
+subject GOO-009     10838ms  Planilha do Google parou de somar
+subject GOO-010     19896ms  Solicitação de reserva de Chromebook
+subject GOO-011     14387ms  Solicitação de reset de senha da conta Google
+subject GOO-012     17651ms  Site do projeto da turma no Google Sites saiu do ar
+subject TI-001      15482ms  Dúvida sobre instalação de programas no computador
+subject TI-002      12785ms  Sugestão de melhoria para solicitação de equipamentos
+subject TI-003      7569ms   TV da recepção sem sinal de canais
+subject TI-COMP-001 7837ms   Headset não funciona nas chamadas de vídeo
+subject TI-COMP-002 18365ms  Computador não lê o disco
+subject TI-COMP-003 16668ms  Computador da Secretaria não liga
+subject TI-COMP-004 13350ms  Computador da secretaria com lentidão e travamentos
+subject TI-COMP-005 11245ms  Programa parou de abrir
+subject TI-COMP-006 10120ms  Reserva de Notebook para a Secretaria
+subject TI-COMP-007 17879ms  Computador com problema no mouse
+subject TI-COMP-008 17100ms  Teclado com falha nas teclas
+subject TI-NET-001  15769ms  Computador sem rede e sem acesso à internet
+subject TI-NET-002  1159ms   Criação de login de acesso à internet para visitante
+subject TI-NET-003  14838ms  Wi-Fi da secretaria instável
+subject TI-INT-001  16192ms  Atualização de informação desatualizada no portal interno
+subject TI-INT-002  23259ms  Solicitação de espaço na Intranet para formulários
+subject TI-INT-003  11742ms  Sugestão de melhoria na navegação da Intranet
+subject TI-MENT-001 1412ms   Criação de login no Mentor Web
+subject TI-MENT-002 13701ms  Relatório em branco no Mentor Web
+subject TI-MENT-003 1302ms   Correção de nota lançada errada no Mentor Web
+subject TI-MENT-004 12891ms  Solicitação de encerramento de diário no Mentor Web
+subject TI-MENT-005 16386ms  Erro e desconexão no Mentor Web
+subject TI-MENT-006 20208ms  Remanejamento de aluno no Mentor Web
+subject TI-MENT-007 22128ms  Solicitação de relatório de alunos no Mentor Web
+subject TI-MENT-008 30106ms  Solicitação de acesso a relatório no Mentor Web
+subject TI-QB-001   13561ms  Erro ao abrir arquivo da empresa no QuickBooks
+subject TI-QB-002   16964ms  Instalação do QuickBooks no computador novo
+subject TI-CAM-001  18780ms  Solicitação de acesso às câmeras para os pais

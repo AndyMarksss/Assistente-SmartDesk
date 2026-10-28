@@ -1,0 +1,70 @@
+  IA indisponível em /api/assist (tentativa 1); aguardando…
+assist  AV-001      pergunta: Em qual sala ou local será realizada a atividade?
+assist  AV-002      pergunta: Em qual local do pátio a caixa de som e o microfone devem ser montados?
+assist  AV-003      (sem pergunta)
+assist  AV-004      pergunta: Em qual sala ou local o equipamento será utilizado?
+assist  AV-005      pergunta: Para qual sala ou local você precisa do microfone?
+  IA indisponível em /api/assist (tentativa 1); aguardando…
+assist  AV-006      pergunta: Em qual sala será utilizado o projetor?
+assist  AV-007      (sem pergunta)
+  IA indisponível em /api/assist (tentativa 1); aguardando…
+assist  IMP-001     pergunta: Qual pasta do seu computador deve receber os documentos digitalizados?
+assist  IMP-002     (sem pergunta)
+assist  IMP-003     pergunta: Em qual sala a impressora deve ser instalada?
+assist  IMP-004     (sem pergunta)
+assist  IMP-005     (sem pergunta)
+  IA indisponível em /api/assist (tentativa 1); aguardando…
+assist  IMP-006     (sem pergunta)
+assist  IMP-007     (sem pergunta)
+assist  IMP-008     (sem pergunta)
+  IA indisponível em /api/assist (tentativa 1); aguardando…
+assist  IMP-009     (sem pergunta)
+  IA indisponível em /api/assist (tentativa 1); aguardando…
+assist  IMP-010     (sem pergunta)
+assist  GOO-001     (sem pergunta)
+assist  GOO-002     (sem pergunta)
+assist  GOO-003     (sem pergunta)
+  IA indisponível em /api/assist (tentativa 1); aguardando…
+assist  GOO-004     (sem pergunta)
+assist  GOO-005     (sem pergunta)
+assist  GOO-006     pergunta: Qual ferramenta ou recurso específico do Google você gostaria de saber como usar?
+assist  GOO-007     (sem pergunta)
+assist  GOO-008     (sem pergunta)
+assist  GOO-009     (sem pergunta)
+assist  GOO-010     pergunta: Em qual sala ou local os Chromebooks serão utilizados?
+assist  GOO-011     (sem pergunta)
+assist  GOO-012     (sem pergunta)
+assist  TI-001      (sem pergunta)
+assist  TI-002      pergunta: Poderia detalhar qual melhoria você sugere para facilitar o processo de pedido de equipamentos?
+assist  TI-003      pergunta: Poderia informar qual canal ou entrada de vídeo a TV está tentando sintonizar?
+assist  TI-COMP-001 pergunta: O microfone está devidamente conectado e ativado nas configurações de som do computador?
+assist  TI-COMP-002 pergunta: Qual é a mensagem de erro que aparece ao tentar ler o disco?
+assist  TI-COMP-003 (sem pergunta)
+assist  TI-COMP-004 pergunta: Quais programas ou telas ficam mais lentos durante o uso?
+assist  TI-COMP-005 (sem pergunta)
+assist  TI-COMP-006 pergunta: Em qual sala ou local os notebooks serão utilizados?
+assist  TI-COMP-007 (sem pergunta)
+assist  TI-COMP-008 (sem pergunta)
+assist  TI-NET-001  (sem pergunta)
+assist  TI-NET-002  (sem pergunta)
+assist  TI-NET-003  pergunta: Em qual sala ou local da secretaria a instabilidade do Wi-Fi está ocorrendo?
+assist  TI-INT-001  (sem pergunta)
+assist  TI-INT-002  (sem pergunta)
+assist  TI-INT-003  (sem pergunta)
+assist  TI-MENT-001 (sem pergunta)
+assist  TI-MENT-002 (sem pergunta)
+assist  TI-MENT-003 pergunta: Qual é a nota correta que deve ser lançada?
+assist  TI-MENT-004 pergunta: Qual mensagem de erro aparece ao tentar fechar o diário?
+assist  TI-MENT-005 (sem pergunta)
+assist  TI-MENT-006 (sem pergunta)
+assist  TI-MENT-007 pergunta: Quais campos ou informações específicas devem constar nesse relatório?
+assist  TI-MENT-008 (sem pergunta)
+assist  TI-QB-001   (sem pergunta)
+assist  TI-QB-002   (sem pergunta)
+assist  TI-CAM-001  (sem pergunta)
+assist  AV-003      (relato sem sentido) pergunta: Em qual sala ou local o equipamento será utilizado?
+assist  AV-003      (item de outra área) ALERTA: A descrição menciona micro-ondas, que não é um equipamento audiovisual. (sem pergunta)
+assist  IMP-003     (relato de uma palavra) pergunta: Em qual sala ou local a impressora deve ser instalada?
+assist  AV-002      (evento sem roteiro) pergunta: Em qual sala ou local a caixa de som e o microfone serão utilizados?
+assist  GOO-010     (reserva com período) pergunta: Em qual sala ou local os Chromebooks serão utilizados?
+Resumo: 23 perguntas em 62 revisões; 0 repetem dado já respondido; 1 alertas.

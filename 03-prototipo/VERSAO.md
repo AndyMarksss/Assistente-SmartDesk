@@ -1,6 +1,6 @@
 # Versão atual do SmartDesk
 
-**0.12.16**
+**0.12.17**
 
 A fonte da versão é package.json. Os rodapés do chat e do painel, package-lock.json e este documento são sincronizados por npm run version:update -- NOVA_VERSAO.
 

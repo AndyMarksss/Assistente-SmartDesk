@@ -523,21 +523,60 @@
     if (t.participant) tags.push(["fa-user-check", "Teste " + t.participant, "test"]);
     return tags;
   }
-  // Todos os cartões do quadro com a altura do mais alto (rodapés alinhados); refeito quando o
-  // quadro muda de largura.
-  let boardWidth = 0;
+  // Todos os cartões do quadro com a altura do mais alto (rodapés alinhados) e, quando alguma
+  // etapa passa de quatro cartões, a área de cartões de cada coluna rola: quatro inteiros e metade
+  // do quinto à vista (menos inteiros, sempre com a metade, se o quadro passaria da altura da
+  // janela). Refeito quando o quadro muda de largura ou a janela muda de altura.
+  let boardWidth = 0,
+    windowHeight = innerHeight;
   function equalizeCards() {
     const board = $("kanban"),
-      cards = [...board.querySelectorAll(".ticket-card")];
-    board.style.removeProperty("--card-h");
-    if (cards.length)
-      board.style.setProperty("--card-h", Math.max(...cards.map((c) => c.offsetHeight)) + "px");
+      cards = [...board.querySelectorAll(".ticket-card")],
+      lanes = [...board.querySelectorAll(".column-cards")];
+    const measure = () => {
+      board.style.removeProperty("--card-h");
+      if (cards.length)
+        board.style.setProperty("--card-h", Math.max(...cards.map((c) => c.offsetHeight)) + "px");
+    };
+    board.style.removeProperty("--lane-h");
+    board.classList.remove("has-scroll");
+    measure();
+    if (!cards.length || !lanes.length) return;
+    const limit = () => {
+      const card = cards[0].offsetHeight,
+        gap = parseFloat(getComputedStyle(cards[0]).marginBottom) || 0,
+        lane = lanes[0],
+        padding =
+          lane.offsetHeight - lane.clientHeight + parseFloat(getComputedStyle(lane).paddingTop),
+        tallest = Math.max(...lanes.map((l) => l.scrollHeight)),
+        step = card + gap;
+      // Com todas as colunas numa só linha, o quadro inteiro cabe na janela (16 px de folga).
+      const oneRow = new Set(lanes.map((l) => l.parentNode.offsetTop)).size === 1;
+      const room = oneRow
+        ? innerHeight - 32 - (board.offsetHeight - Math.max(...lanes.map((l) => l.offsetHeight)))
+        : Infinity;
+      const whole = Math.max(1, Math.min(4, Math.floor((room - padding - card / 2) / step))),
+        height = padding + whole * step + card / 2;
+      return tallest > height + 1 ? Math.floor(height) : 0;
+    };
+    if (!limit()) return;
+    // A barra de rolagem estreita os cartões: mede de novo com o espaço dela reservado.
+    board.classList.add("has-scroll");
+    measure();
+    const height = limit();
+    if (height) board.style.setProperty("--lane-h", height + "px");
+    else board.classList.remove("has-scroll");
   }
   new ResizeObserver(([entry]) => {
     if (Math.round(entry.contentRect.width) === boardWidth) return;
     boardWidth = Math.round(entry.contentRect.width);
     equalizeCards();
   }).observe($("kanban"));
+  addEventListener("resize", () => {
+    if (innerHeight === windowHeight) return;
+    windowHeight = innerHeight;
+    equalizeCards();
+  });
   function renderBoard(animate = false, scoped = tickets.filter(inScope)) {
     $("kanban").replaceChildren();
     for (const stage of [
@@ -555,13 +594,22 @@
       const title = el("h3");
       title.append(el("span", undefined, "stage-dot"), document.createTextNode(stage));
       head.append(title, el("span", String(list.length), "column-count"));
-      column.append(head);
-      for (const t of list) column.append(card(t, animate, list.indexOf(t)));
-      if (out) column.append(el("p", "Fora do filtro", "empty-column out-note"));
-      else if (!list.length) column.append(el("p", "Solte um cartão aqui", "empty-column"));
+      // Só os cartões rolam; o cabeçalho da etapa fica parado em cima.
+      const lane = el("div", undefined, "column-cards");
+      for (const t of list) lane.append(card(t, animate, list.indexOf(t)));
+      if (out) lane.append(el("p", "Fora do filtro", "empty-column out-note"));
+      else if (!list.length) lane.append(el("p", "Solte um cartão aqui", "empty-column"));
+      column.append(head, lane);
       $("kanban").append(column);
     }
     equalizeCards();
+    // O cartão recém-movido fica à vista, mesmo no fim de uma coluna que rola.
+    const moved = $("kanban").querySelector(".ticket-card.just-moved");
+    if (moved) {
+      const lane = moved.parentNode,
+        below = moved.getBoundingClientRect().bottom - lane.getBoundingClientRect().bottom;
+      if (below > 0) lane.scrollTop += below + 8;
+    }
   }
   function card(t, animate, index) {
     const node = el("button", undefined, "ticket-card");

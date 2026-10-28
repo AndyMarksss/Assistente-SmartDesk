@@ -237,13 +237,45 @@ const sampleAnswers = (item) =>
     adapter.assist = async () => ({ pergunta: "Qual é o nome do arquivo?", dicas: [] });
     check((await post("/api/assist", jamBody)).body.question === "Qual é o nome do arquivo?");
     adapter.assist = async () => ({
-      pergunta: "Qual mensagem de erro aparece ao abrir o e-mail?",
+      pergunta: "A falha também acontece ao imprimir um e-mail?",
       dicas: [],
     });
     check(
       (await post("/api/assist", jamBody)).body.question ===
-        "Qual mensagem de erro aparece ao abrir o e-mail?",
+        "A falha também acontece ao imprimir um e-mail?",
     );
+    // 0.12.17: a IA recebe o que já foi respondido (data, horário e opções com o valor; textos
+    // só pelo rótulo) e a pergunta que volta a um desses dados é descartada.
+    adapter.assist = async (input) => {
+      record = input;
+      return { pergunta: "Qual mensagem aparece no visor?", dicas: [] };
+    };
+    check((await post("/api/assist", jamBody)).body.question === "");
+    check(
+      record.answeredLabels.includes("Mensagem do visor (respondido)") &&
+        record.answeredLabels.includes("Modelo da impressora (respondido)"),
+    );
+    const sound = items.find((i) => i.id === "AV-003"),
+      soundBody = {
+        sector: "Secretaria",
+        selectionId: sound.id,
+        description: "Para a reunião de pais.",
+        answers: sampleAnswers(sound),
+      };
+    adapter.assist = async (input) => {
+      record = input;
+      return { pergunta: "Em qual horário exato os equipamentos serão necessários?", dicas: [] };
+    };
+    check((await post("/api/assist", soundBody)).body.question === "");
+    check(
+      record.answeredLabels.some((label) =>
+        /^Data do atendimento: \d\d\/\d\d\/\d{4} \(/.test(label),
+      ),
+    );
+    adapter.assist = async () => ({ pergunta: "Qual equipamento você precisa?", dicas: [] });
+    check((await post("/api/assist", soundBody)).body.question === "");
+    adapter.assist = async () => ({ pergunta: "Em qual sala será a reunião?", dicas: [] });
+    check((await post("/api/assist", soundBody)).body.question === "Em qual sala será a reunião?");
     adapter.assist = async () => {
       throw Error("Offline");
     };

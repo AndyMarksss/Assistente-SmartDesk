@@ -1,0 +1,870 @@
+[
+  {
+    "chave": "assist|AV-001|",
+    "etapa": "assist",
+    "id": "AV-001",
+    "nota": "",
+    "relato": "Vou precisar de som para uma atividade com os alunos.",
+    "respondido": {
+      "data": "2026-10-31",
+      "horario": "14:00",
+      "evento": "Não"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Para qual sala ou local será o uso do som?",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "subject|AV-001|",
+    "etapa": "subject",
+    "id": "AV-001",
+    "nota": "",
+    "relato": "Vou precisar de som para uma atividade com os alunos.",
+    "respondido": {
+      "data": "2026-10-31",
+      "horario": "14:00",
+      "evento": "Não"
+    },
+    "source": "ai",
+    "assunto": "Solicitação de Caixa de Som"
+  },
+  {
+    "chave": "assist|AV-002|",
+    "etapa": "assist",
+    "id": "AV-002",
+    "nota": "",
+    "relato": "Vamos falar com os pais no pátio e precisamos que todo mundo escute quem estiver no microfone.",
+    "respondido": {
+      "data": "2026-10-31",
+      "horario": "14:00",
+      "evento": "Não"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Em qual local do pátio será utilizado o microfone?",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "subject|AV-002|",
+    "etapa": "subject",
+    "id": "AV-002",
+    "nota": "",
+    "relato": "Vamos falar com os pais no pátio e precisamos que todo mundo escute quem estiver no microfone.",
+    "respondido": {
+      "data": "2026-10-31",
+      "horario": "14:00",
+      "evento": "Não"
+    },
+    "source": "ai",
+    "assunto": "Solicitacao de caixa de som e microfone"
+  },
+  {
+    "chave": "assist|AV-003|",
+    "etapa": "assist",
+    "id": "AV-003",
+    "nota": "",
+    "relato": "Vai ter palestra no auditório com slides e uma pessoa falando para muita gente.",
+    "respondido": {
+      "data": "2026-10-31",
+      "horario": "14:00",
+      "evento": "Não"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "subject|AV-003|",
+    "etapa": "subject",
+    "id": "AV-003",
+    "nota": "",
+    "relato": "Vai ter palestra no auditório com slides e uma pessoa falando para muita gente.",
+    "respondido": {
+      "data": "2026-10-31",
+      "horario": "14:00",
+      "evento": "Não"
+    },
+    "source": "ai",
+    "assunto": "Solicitacao de Projetor e Microfone"
+  },
+  {
+    "chave": "assist|AV-004|",
+    "etapa": "assist",
+    "id": "AV-004",
+    "nota": "",
+    "relato": "Vou passar um vídeo com áudio para a turma e preciso do equipamento.",
+    "respondido": {
+      "data": "2026-10-31",
+      "horario": "14:00",
+      "evento": "Não"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Em qual sala ou local será utilizado o equipamento?",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "subject|AV-004|",
+    "etapa": "subject",
+    "id": "AV-004",
+    "nota": "",
+    "relato": "Vou passar um vídeo com áudio para a turma e preciso do equipamento.",
+    "respondido": {
+      "data": "2026-10-31",
+      "horario": "14:00",
+      "evento": "Não"
+    },
+    "source": "ai",
+    "assunto": "Solicitação de Caixa de Som / Projetor"
+  },
+  {
+    "chave": "assist|AV-005|",
+    "etapa": "assist",
+    "id": "AV-005",
+    "nota": "",
+    "relato": "Minha voz não alcança o fundo da sala nas reuniões, tem algo que ajude?",
+    "respondido": {
+      "data": "2026-10-31",
+      "horario": "14:00",
+      "evento": "Não"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Em qual sala ou local da escola você precisará do microfone?",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "subject|AV-005|",
+    "etapa": "subject",
+    "id": "AV-005",
+    "nota": "",
+    "relato": "Minha voz não alcança o fundo da sala nas reuniões, tem algo que ajude?",
+    "respondido": {
+      "data": "2026-10-31",
+      "horario": "14:00",
+      "evento": "Não"
+    },
+    "source": "ai",
+    "assunto": "Solicitação de microfone"
+  },
+  {
+    "chave": "assist|AV-006|",
+    "etapa": "assist",
+    "id": "AV-006",
+    "nota": "",
+    "relato": "Quero mostrar uns slides na parede da sala para os alunos.",
+    "respondido": {
+      "data": "2026-10-31",
+      "horario": "14:00",
+      "evento": "Não"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Em qual sala ou local será utilizado o projetor?",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "subject|AV-006|",
+    "etapa": "subject",
+    "id": "AV-006",
+    "nota": "",
+    "relato": "Quero mostrar uns slides na parede da sala para os alunos.",
+    "respondido": {
+      "data": "2026-10-31",
+      "horario": "14:00",
+      "evento": "Não"
+    },
+    "source": "ai",
+    "assunto": "Solicitação de projetor"
+  },
+  {
+    "chave": "assist|AV-007|",
+    "etapa": "assist",
+    "id": "AV-007",
+    "nota": "",
+    "relato": "A imagem do notebook não chega na TV da sala, acho que é o fio.",
+    "respondido": {
+      "descricao-do-problema": "Informação de teste 01"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Em qual sala está acontecendo?",
+    "ajuda": "",
+    "dicas": [
+      "Desconecte o cabo HDMI das duas pontas e conecte novamente firmemente.",
+      "Pressione as teclas Windows mais P e verifique se a opção Duplicar está selecionada."
+    ],
+    "repete": []
+  },
+  {
+    "chave": "subject|AV-007|",
+    "etapa": "subject",
+    "id": "AV-007",
+    "nota": "",
+    "relato": "A imagem do notebook não chega na TV da sala, acho que é o fio.",
+    "respondido": {
+      "descricao-do-problema": "Informação de teste 01"
+    },
+    "source": "ai",
+    "assunto": "Troca de cabo HDMI"
+  },
+  {
+    "chave": "assist|IMP-001|",
+    "etapa": "assist",
+    "id": "IMP-001",
+    "nota": "",
+    "relato": "Quero digitalizar documentos e mandar para o meu computador, como faço?",
+    "respondido": {
+      "modelo": "Ricoh MP 3055",
+      "computador": "PC-SEC-04"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Em qual sala ou local a impressora está instalada?",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "subject|IMP-001|",
+    "etapa": "subject",
+    "id": "IMP-001",
+    "nota": "",
+    "relato": "Quero digitalizar documentos e mandar para o meu computador, como faço?",
+    "respondido": {
+      "modelo": "Ricoh MP 3055",
+      "computador": "PC-SEC-04"
+    },
+    "source": "ai",
+    "assunto": "Configurar Scanner"
+  },
+  {
+    "chave": "assist|IMP-002|",
+    "etapa": "assist",
+    "id": "IMP-002",
+    "nota": "",
+    "relato": "As folhas saem soltas da impressora, ela não está mais prendendo as páginas.",
+    "respondido": {
+      "modelo": "Ricoh MP 3055"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Em qual sala está essa impressora?",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "subject|IMP-002|",
+    "etapa": "subject",
+    "id": "IMP-002",
+    "nota": "",
+    "relato": "As folhas saem soltas da impressora, ela não está mais prendendo as páginas.",
+    "respondido": {
+      "modelo": "Ricoh MP 3055"
+    },
+    "source": "ai",
+    "assunto": "Grampo da impressora com defeito"
+  },
+  {
+    "chave": "assist|IMP-003|",
+    "etapa": "assist",
+    "id": "IMP-003",
+    "nota": "",
+    "relato": "Meu computador não encontra a impressora da sala para mandar imprimir.",
+    "respondido": {
+      "modelo": "Ricoh MP 3055",
+      "computador": "PC-SEC-04"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Em qual sala ou local a impressora deve ser instalada?",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "subject|IMP-003|",
+    "etapa": "subject",
+    "id": "IMP-003",
+    "nota": "",
+    "relato": "Meu computador não encontra a impressora da sala para mandar imprimir.",
+    "respondido": {
+      "modelo": "Ricoh MP 3055",
+      "computador": "PC-SEC-04"
+    },
+    "source": "ai",
+    "assunto": "Instalação de impressora"
+  },
+  {
+    "chave": "assist|IMP-004|",
+    "etapa": "assist",
+    "id": "IMP-004",
+    "nota": "",
+    "relato": "A impressora avisa que precisa trocar a peça que aquece o papel.",
+    "respondido": {
+      "modelo": "Ricoh MP 3055",
+      "erro-apresentado": "Falha de servidor"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Em qual sala ou local está essa impressora?",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "subject|IMP-004|",
+    "etapa": "subject",
+    "id": "IMP-004",
+    "nota": "",
+    "relato": "A impressora avisa que precisa trocar a peça que aquece o papel.",
+    "respondido": {
+      "modelo": "Ricoh MP 3055",
+      "erro-apresentado": "Falha de servidor"
+    },
+    "source": "ai",
+    "assunto": "Troca de lâmpada da estufa da impressora"
+  },
+  {
+    "chave": "assist|IMP-005|",
+    "etapa": "assist",
+    "id": "IMP-005",
+    "nota": "",
+    "relato": "As impressões estão saindo sujas.",
+    "respondido": {
+      "modelo": "Ricoh MP 3055"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Em qual sala ou local fica esta impressora?",
+    "ajuda": "",
+    "dicas": [
+      "Abra a tampa lateral da impressora e remova o toner com cuidado.",
+      "Verifique se há acúmulo de pó de toner ou sujeira na área interna visível.",
+      "Limpe delicadamente com um pano seco e sem fiapos."
+    ],
+    "repete": []
+  },
+  {
+    "chave": "subject|IMP-005|",
+    "etapa": "subject",
+    "id": "IMP-005",
+    "nota": "",
+    "relato": "As impressões estão saindo sujas.",
+    "respondido": {
+      "modelo": "Ricoh MP 3055"
+    },
+    "source": "ai",
+    "assunto": "Impressora manchando folhas"
+  },
+  {
+    "chave": "assist|IMP-006|",
+    "etapa": "assist",
+    "id": "IMP-006",
+    "nota": "",
+    "relato": "O documento fica parado na fila e não sai.",
+    "respondido": {
+      "modelo": "Ricoh MP 3055",
+      "computador": "PC-SEC-04",
+      "mensagem-de-erro": "Erro de conexão"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Em qual sala a impressora está localizada?",
+    "ajuda": "",
+    "dicas": [
+      "Reinicie o computador e tente imprimir novamente.",
+      "Verifique se o cabo de rede ou USB está bem conectado na impressora.",
+      "Cancele os documentos presos na fila de impressão e envie o arquivo de novo."
+    ],
+    "repete": []
+  },
+  {
+    "chave": "subject|IMP-006|",
+    "etapa": "subject",
+    "id": "IMP-006",
+    "nota": "",
+    "relato": "O documento fica parado na fila e não sai.",
+    "respondido": {
+      "modelo": "Ricoh MP 3055",
+      "computador": "PC-SEC-04",
+      "mensagem-de-erro": "Erro de conexão"
+    },
+    "source": "ai",
+    "assunto": "Impressora não imprime documentos"
+  },
+  {
+    "chave": "assist|IMP-007|",
+    "etapa": "assist",
+    "id": "IMP-007",
+    "nota": "",
+    "relato": "Apertei o botão da impressora e nada acontece.",
+    "respondido": {
+      "modelo": "Ricoh MP 3055"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [
+      "Verifique se o cabo de energia está firmemente conectado na tomada e na impressora.",
+      "Teste ligar a impressora em outra tomada para descartar falha no ponto de energia."
+    ],
+    "repete": []
+  },
+  {
+    "chave": "subject|IMP-007|",
+    "etapa": "subject",
+    "id": "IMP-007",
+    "nota": "",
+    "relato": "Apertei o botão da impressora e nada acontece.",
+    "respondido": {
+      "modelo": "Ricoh MP 3055"
+    },
+    "source": "ai",
+    "assunto": "Impressora não liga"
+  },
+  {
+    "chave": "assist|IMP-008|",
+    "etapa": "assist",
+    "id": "IMP-008",
+    "nota": "",
+    "relato": "A folha ficou enroscada lá dentro e não sai.",
+    "respondido": {
+      "modelo": "Ricoh MP 3055",
+      "mensagem-do-visor": "J012"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [
+      "Desligue a impressora da tomada antes de tentar remover o papel.",
+      "Abra a tampa frontal ou traseira conforme indicado no visor.",
+      "Puxe a folha enroscada com cuidado e de forma uniforme para evitar rasgos."
+    ],
+    "repete": []
+  },
+  {
+    "chave": "subject|IMP-008|",
+    "etapa": "subject",
+    "id": "IMP-008",
+    "nota": "",
+    "relato": "A folha ficou enroscada lá dentro e não sai.",
+    "respondido": {
+      "modelo": "Ricoh MP 3055",
+      "mensagem-do-visor": "J012"
+    },
+    "source": "ai",
+    "assunto": "Papel Atolado na Impressora"
+  },
+  {
+    "chave": "assist|IMP-009|",
+    "etapa": "assist",
+    "id": "IMP-009",
+    "nota": "",
+    "relato": "Tento escanear e não chega nada no computador.",
+    "respondido": {
+      "modelo": "Ricoh MP 3055",
+      "computador": "PC-SEC-04",
+      "erro": "Dispositivo não encontrado"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Qual é a sala ou o local onde está essa impressora?",
+    "ajuda": "",
+    "dicas": [
+      "Verifique se o cabo USB ou de rede está conectado corretamente na impressora e no computador.",
+      "Reinicie a impressora e tente realizar a digitalização novamente."
+    ],
+    "repete": []
+  },
+  {
+    "chave": "subject|IMP-009|",
+    "etapa": "subject",
+    "id": "IMP-009",
+    "nota": "",
+    "relato": "Tento escanear e não chega nada no computador.",
+    "respondido": {
+      "modelo": "Ricoh MP 3055",
+      "computador": "PC-SEC-04",
+      "erro": "Dispositivo não encontrado"
+    },
+    "source": "ai",
+    "assunto": "Scanner da impressora não funciona"
+  },
+  {
+    "chave": "assist|IMP-010|",
+    "etapa": "assist",
+    "id": "IMP-010",
+    "nota": "",
+    "relato": "A impressão está saindo bem fraquinha, acho que está acabando.",
+    "respondido": {
+      "cor": "Preto",
+      "modelo": "Ricoh MP 3055"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Em qual sala ou local está a impressora?",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "subject|IMP-010|",
+    "etapa": "subject",
+    "id": "IMP-010",
+    "nota": "",
+    "relato": "A impressão está saindo bem fraquinha, acho que está acabando.",
+    "respondido": {
+      "cor": "Preto",
+      "modelo": "Ricoh MP 3055"
+    },
+    "source": "ai",
+    "assunto": "Solicitação de Toner Preto"
+  },
+  {
+    "chave": "assist|GOO-001|",
+    "etapa": "assist",
+    "id": "GOO-001",
+    "nota": "",
+    "relato": "Os compromissos que eu marco não aparecem para o resto da equipe.",
+    "respondido": {
+      "conta": "conta.ficticia@exemplo.com"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Em qual sala ou local você está tentando visualizar ou sincronizar essas agendas?",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "subject|GOO-001|",
+    "etapa": "subject",
+    "id": "GOO-001",
+    "nota": "",
+    "relato": "Os compromissos que eu marco não aparecem para o resto da equipe.",
+    "respondido": {
+      "conta": "conta.ficticia@exemplo.com"
+    },
+    "source": "ai",
+    "assunto": "Compromissos não aparecem para a equipe"
+  },
+  {
+    "chave": "assist|GOO-002|",
+    "etapa": "assist",
+    "id": "GOO-002",
+    "nota": "",
+    "relato": "Os slides que eu fiz na internet sumiram.",
+    "respondido": {
+      "conta": "conta.ficticia@exemplo.com",
+      "link-ou-nome-do-arquivo": "Informação de teste 01"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "subject|GOO-002|",
+    "etapa": "subject",
+    "id": "GOO-002",
+    "nota": "",
+    "relato": "Os slides que eu fiz na internet sumiram.",
+    "respondido": {
+      "conta": "conta.ficticia@exemplo.com",
+      "link-ou-nome-do-arquivo": "Informação de teste 01"
+    },
+    "source": "ai",
+    "assunto": "Recuperar Apresentações do Google"
+  },
+  {
+    "chave": "assist|GOO-003|",
+    "etapa": "assist",
+    "id": "GOO-003",
+    "nota": "",
+    "relato": "Os alunos não estão vendo a atividade que eu postei para a turma.",
+    "respondido": {
+      "conta": "conta.ficticia@exemplo.com",
+      "turma": "7º ano B"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [
+      "Verifique se a atividade está programada para ser publicada ou se está como rascunho.",
+      "Confira se os alunos estão logados com a conta institucional correta."
+    ],
+    "repete": []
+  },
+  {
+    "chave": "subject|GOO-003|",
+    "etapa": "subject",
+    "id": "GOO-003",
+    "nota": "",
+    "relato": "Os alunos não estão vendo a atividade que eu postei para a turma.",
+    "respondido": {
+      "conta": "conta.ficticia@exemplo.com",
+      "turma": "7º ano B"
+    },
+    "source": "ai",
+    "assunto": "Atividade do Classroom não visível para os alunos"
+  },
+  {
+    "chave": "assist|GOO-004|",
+    "etapa": "assist",
+    "id": "GOO-004",
+    "nota": "",
+    "relato": "O texto que eu estava escrevendo no navegador não salvou.",
+    "respondido": {
+      "conta": "conta.ficticia@exemplo.com",
+      "arquivo": "Informação de teste 01"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Em qual computador ou navegador isso aconteceu?",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "subject|GOO-004|",
+    "etapa": "subject",
+    "id": "GOO-004",
+    "nota": "",
+    "relato": "O texto que eu estava escrevendo no navegador não salvou.",
+    "respondido": {
+      "conta": "conta.ficticia@exemplo.com",
+      "arquivo": "Informação de teste 01"
+    },
+    "source": "ai",
+    "assunto": "Documentos do Google não salvos"
+  },
+  {
+    "chave": "assist|GOO-005|",
+    "etapa": "assist",
+    "id": "GOO-005",
+    "nota": "",
+    "relato": "Meus arquivos que ficavam na nuvem sumiram.",
+    "respondido": {
+      "conta": "conta.ficticia@exemplo.com",
+      "link-ou-nome-do-recurso": "Informação de teste 01"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "subject|GOO-005|",
+    "etapa": "subject",
+    "id": "GOO-005",
+    "nota": "",
+    "relato": "Meus arquivos que ficavam na nuvem sumiram.",
+    "respondido": {
+      "conta": "conta.ficticia@exemplo.com",
+      "link-ou-nome-do-recurso": "Informação de teste 01"
+    },
+    "source": "ai",
+    "assunto": "Arquivos sumidos do Google Drive"
+  },
+  {
+    "chave": "assist|GOO-006|",
+    "etapa": "assist",
+    "id": "GOO-006",
+    "nota": "",
+    "relato": "Como faço para usar aquela parte do Google que a escola usa?",
+    "respondido": {
+      "conta": "conta.ficticia@exemplo.com"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Qual ferramenta do Google você gostaria de saber usar?",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "subject|GOO-006|",
+    "etapa": "subject",
+    "id": "GOO-006",
+    "nota": "",
+    "relato": "Como faço para usar aquela parte do Google que a escola usa?",
+    "respondido": {
+      "conta": "conta.ficticia@exemplo.com"
+    },
+    "source": "ai",
+    "assunto": "Dúvidas sobre o uso do Google Workspace"
+  },
+  {
+    "chave": "assist|GOO-007|",
+    "etapa": "assist",
+    "id": "GOO-007",
+    "nota": "",
+    "relato": "As mensagens não chegam na minha caixa de entrada.",
+    "respondido": {
+      "conta": "conta.ficticia@exemplo.com",
+      "erro-apresentado": "Falha de servidor"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [
+      "Verifique a pasta de Spam ou Lixeira para ver se os e-mails foram direcionados para lá.",
+      "Confirme se o armazenamento da sua conta está cheio."
+    ],
+    "repete": []
+  },
+  {
+    "chave": "subject|GOO-007|",
+    "etapa": "subject",
+    "id": "GOO-007",
+    "nota": "",
+    "relato": "As mensagens não chegam na minha caixa de entrada.",
+    "respondido": {
+      "conta": "conta.ficticia@exemplo.com",
+      "erro-apresentado": "Falha de servidor"
+    },
+    "source": "ai",
+    "assunto": "Problema no recebimento de e-mails"
+  },
+  {
+    "chave": "assist|GOO-008|",
+    "etapa": "assist",
+    "id": "GOO-008",
+    "nota": "",
+    "relato": "Não recebo os e-mails que mandam para a equipe toda.",
+    "respondido": {
+      "conta": "conta.ficticia@exemplo.com",
+      "grupo": "Informação de teste 01"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "subject|GOO-008|",
+    "etapa": "subject",
+    "id": "GOO-008",
+    "nota": "",
+    "relato": "Não recebo os e-mails que mandam para a equipe toda.",
+    "respondido": {
+      "conta": "conta.ficticia@exemplo.com",
+      "grupo": "Informação de teste 01"
+    },
+    "source": "ai",
+    "assunto": "Não recebo e-mails do grupo"
+  },
+  {
+    "chave": "assist|GOO-009|",
+    "etapa": "assist",
+    "id": "GOO-009",
+    "nota": "",
+    "relato": "A tabela online que a gente usa parou de somar.",
+    "respondido": {
+      "conta": "conta.ficticia@exemplo.com",
+      "link-ou-nome-da-planilha": "Informação de teste 01"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "subject|GOO-009|",
+    "etapa": "subject",
+    "id": "GOO-009",
+    "nota": "",
+    "relato": "A tabela online que a gente usa parou de somar.",
+    "respondido": {
+      "conta": "conta.ficticia@exemplo.com",
+      "link-ou-nome-da-planilha": "Informação de teste 01"
+    },
+    "source": "ai",
+    "assunto": "Erro na soma de planilha Google"
+  },
+  {
+    "chave": "assist|GOO-010|",
+    "etapa": "assist",
+    "id": "GOO-010",
+    "nota": "",
+    "relato": "Preciso dos computadorzinhos para a turma fazer uma pesquisa.",
+    "respondido": {
+      "data": "2026-10-31",
+      "horario-periodo": "3ª e 4ª aula"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Em qual sala os Chromebooks serão utilizados?",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "subject|GOO-010|",
+    "etapa": "subject",
+    "id": "GOO-010",
+    "nota": "",
+    "relato": "Preciso dos computadorzinhos para a turma fazer uma pesquisa.",
+    "respondido": {
+      "data": "2026-10-31",
+      "horario-periodo": "3ª e 4ª aula"
+    },
+    "source": "ai",
+    "assunto": "Reserva de Chromebook"
+  }
+]

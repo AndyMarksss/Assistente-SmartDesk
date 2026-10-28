@@ -1,0 +1,1199 @@
+[
+  {
+    "chave": "assist|AV-001|",
+    "etapa": "assist",
+    "id": "AV-001",
+    "nota": "",
+    "relato": "Vou precisar de som para uma atividade com os alunos.",
+    "respondido": {
+      "data": "2026-10-31",
+      "horario": "14:00",
+      "evento": "Não"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Em qual local da escola será realizada a atividade?",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "assist|AV-002|",
+    "etapa": "assist",
+    "id": "AV-002",
+    "nota": "",
+    "relato": "Vamos falar com os pais no pátio e precisamos que todo mundo escute quem estiver no microfone.",
+    "respondido": {
+      "data": "2026-10-31",
+      "horario": "14:00",
+      "evento": "Não"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Para qual atividade no pátio a caixa de som e o microfone serão utilizados?",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "assist|AV-003|",
+    "etapa": "assist",
+    "id": "AV-003",
+    "nota": "",
+    "relato": "Vai ter palestra no auditório com slides e uma pessoa falando para muita gente.",
+    "respondido": {
+      "data": "2026-10-31",
+      "horario": "14:00",
+      "evento": "Não"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Qual equipamento específico (projetor, caixa de som ou microfone) você precisa?",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "assist|AV-004|",
+    "etapa": "assist",
+    "id": "AV-004",
+    "nota": "",
+    "relato": "Vou passar um vídeo com áudio para a turma e preciso do equipamento.",
+    "respondido": {
+      "data": "2026-10-31",
+      "horario": "14:00",
+      "evento": "Não"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Em qual sala ou local o equipamento será utilizado?",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "assist|AV-005|",
+    "etapa": "assist",
+    "id": "AV-005",
+    "nota": "",
+    "relato": "Minha voz não alcança o fundo da sala nas reuniões, tem algo que ajude?",
+    "respondido": {
+      "data": "2026-10-31",
+      "horario": "14:00",
+      "evento": "Não"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Em qual sala ou local da escola o microfone será utilizado e para qual atividade?",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "assist|AV-006|",
+    "etapa": "assist",
+    "id": "AV-006",
+    "nota": "",
+    "relato": "Quero mostrar uns slides na parede da sala para os alunos.",
+    "respondido": {
+      "data": "2026-10-31",
+      "horario": "14:00",
+      "evento": "Não"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Em qual sala de aula o projetor será utilizado?",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "assist|AV-007|",
+    "etapa": "assist",
+    "id": "AV-007",
+    "nota": "",
+    "relato": "A imagem do notebook não chega na TV da sala, acho que é o fio.",
+    "respondido": {
+      "descricao-do-problema": "Informação de teste 01"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Em qual sala a TV e o cabo estão localizados?",
+    "ajuda": "",
+    "dicas": [
+      "Desconecte o cabo HDMI das duas pontas e conecte novamente com firmeza.",
+      "Teste o notebook em outra porta HDMI da TV, se houver.",
+      "Pressione as teclas de atalho no teclado do notebook para duplicar a tela."
+    ],
+    "repete": []
+  },
+  {
+    "chave": "assist|IMP-001|",
+    "etapa": "assist",
+    "id": "IMP-001",
+    "nota": "",
+    "relato": "Quero digitalizar documentos e mandar para o meu computador, como faço?",
+    "respondido": {
+      "modelo": "Ricoh MP 3055",
+      "computador": "PC-SEC-04"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Para qual pasta ou e-mail os arquivos digitalizados devem ser enviados?",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "assist|IMP-002|",
+    "etapa": "assist",
+    "id": "IMP-002",
+    "nota": "",
+    "relato": "As folhas saem soltas da impressora, ela não está mais prendendo as páginas.",
+    "respondido": {
+      "modelo": "Ricoh MP 3055"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "assist|IMP-003|",
+    "etapa": "assist",
+    "id": "IMP-003",
+    "nota": "",
+    "relato": "Meu computador não encontra a impressora da sala para mandar imprimir.",
+    "respondido": {
+      "modelo": "Ricoh MP 3055",
+      "computador": "PC-SEC-04"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Qual é o nome ou o patrimônio da impressora que deseja instalar?",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "assist|IMP-004|",
+    "etapa": "assist",
+    "id": "IMP-004",
+    "nota": "",
+    "relato": "A impressora avisa que precisa trocar a peça que aquece o papel.",
+    "respondido": {
+      "modelo": "Ricoh MP 3055",
+      "erro-apresentado": "Falha de servidor"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "assist|IMP-005|",
+    "etapa": "assist",
+    "id": "IMP-005",
+    "nota": "",
+    "relato": "As impressões estão saindo sujas.",
+    "respondido": {
+      "modelo": "Ricoh MP 3055"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Em qual impressora o problema está acontecendo?",
+    "ajuda": "",
+    "dicas": [
+      "Abra a tampa lateral da impressora e remova o cartucho de toner com cuidado.",
+      "Verifique se há acúmulo de pó de toner ou sujeira visível nos rolos internos.",
+      "Faça uma impressão de teste após limpar levemente os resíduos com um pano seco."
+    ],
+    "repete": []
+  },
+  {
+    "chave": "assist|IMP-006|",
+    "etapa": "assist",
+    "id": "IMP-006",
+    "nota": "",
+    "relato": "O documento fica parado na fila e não sai.",
+    "respondido": {
+      "modelo": "Ricoh MP 3055",
+      "computador": "PC-SEC-04",
+      "mensagem-de-erro": "Erro de conexão"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [
+      "Reinicie o computador e tente imprimir novamente.",
+      "Verifique se o cabo USB ou de rede está bem conectado.",
+      "Cancele todos os documentos presos na fila de impressão."
+    ],
+    "repete": []
+  },
+  {
+    "chave": "assist|IMP-007|",
+    "etapa": "assist",
+    "id": "IMP-007",
+    "nota": "",
+    "relato": "Apertei o botão da impressora e nada acontece.",
+    "respondido": {
+      "modelo": "Ricoh MP 3055"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [
+      "Verifique se o cabo de força está bem conectado à tomada e à impressora.",
+      "Teste ligar a impressora em outra tomada funcional.",
+      "Pressione firmemente o botão de ligar novamente."
+    ],
+    "repete": []
+  },
+  {
+    "chave": "assist|IMP-008|",
+    "etapa": "assist",
+    "id": "IMP-008",
+    "nota": "",
+    "relato": "A folha ficou enroscada lá dentro e não sai.",
+    "respondido": {
+      "modelo": "Ricoh MP 3055",
+      "mensagem-do-visor": "J012"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [
+      "Desligue a impressora da tomada antes de tentar remover o papel.",
+      "Abra as tampas indicadas no painel e puxe o papel com cuidado para rasgar o menos possível.",
+      "Feche todas as tampas firmemente e religue o equipamento."
+    ],
+    "repete": []
+  },
+  {
+    "chave": "assist|IMP-009|",
+    "etapa": "assist",
+    "id": "IMP-009",
+    "nota": "",
+    "relato": "Tento escanear e não chega nada no computador.",
+    "respondido": {
+      "modelo": "Ricoh MP 3055",
+      "computador": "PC-SEC-04",
+      "erro": "Dispositivo não encontrado"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Em qual pasta ou aplicativo você está tentando localizar o arquivo digitalizado?",
+    "ajuda": "",
+    "dicas": [
+      "Verifique se o cabo USB ou de rede da impressora está bem conectado.",
+      "Reinicie o computador e a impressora para atualizar a conexão."
+    ],
+    "repete": []
+  },
+  {
+    "chave": "assist|IMP-010|",
+    "etapa": "assist",
+    "id": "IMP-010",
+    "nota": "",
+    "relato": "A impressão está saindo bem fraquinha, acho que está acabando.",
+    "respondido": {
+      "cor": "Preto",
+      "modelo": "Ricoh MP 3055"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Em qual impressora da secretaria será feita a troca do toner?",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "assist|GOO-001|",
+    "etapa": "assist",
+    "id": "GOO-001",
+    "nota": "",
+    "relato": "Os compromissos que eu marco não aparecem para o resto da equipe.",
+    "respondido": {
+      "conta": "conta.ficticia@exemplo.com"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Para quais pessoas ou equipes você precisa compartilhar os compromissos da agenda?",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "assist|GOO-002|",
+    "etapa": "assist",
+    "id": "GOO-002",
+    "nota": "",
+    "relato": "Os slides que eu fiz na internet sumiram.",
+    "respondido": {
+      "conta": "conta.ficticia@exemplo.com",
+      "link-ou-nome-do-arquivo": "Informação de teste 01"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "assist|GOO-003|",
+    "etapa": "assist",
+    "id": "GOO-003",
+    "nota": "",
+    "relato": "Os alunos não estão vendo a atividade que eu postei para a turma.",
+    "respondido": {
+      "conta": "conta.ficticia@exemplo.com",
+      "turma": "7º ano B"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [
+      "Verifique se a atividade está programada para ser publicada ou se está apenas como rascunho.",
+      "Confirme se você selecionou a turma correta no momento da postagem da atividade."
+    ],
+    "repete": []
+  },
+  {
+    "chave": "assist|GOO-004|",
+    "etapa": "assist",
+    "id": "GOO-004",
+    "nota": "",
+    "relato": "O texto que eu estava escrevendo no navegador não salvou.",
+    "respondido": {
+      "conta": "conta.ficticia@exemplo.com",
+      "arquivo": "Informação de teste 01"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Qual é o nome do documento ou o link do arquivo?",
+    "ajuda": "",
+    "dicas": [
+      "Atualize a página do navegador e verifique o histórico de versões.",
+      "Abra o Google Drive e confira se há uma cópia na lixeira."
+    ],
+    "repete": []
+  },
+  {
+    "chave": "assist|GOO-005|",
+    "etapa": "assist",
+    "id": "GOO-005",
+    "nota": "",
+    "relato": "Meus arquivos que ficavam na nuvem sumiram.",
+    "respondido": {
+      "conta": "conta.ficticia@exemplo.com",
+      "link-ou-nome-do-recurso": "Informação de teste 01"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [
+      "Verifique se você está conectado com a conta de e-mail correta.",
+      "Acesse a lixeira do Google Drive para checar se os arquivos foram movidos para lá."
+    ],
+    "repete": []
+  },
+  {
+    "chave": "assist|GOO-006|",
+    "etapa": "assist",
+    "id": "GOO-006",
+    "nota": "",
+    "relato": "Como faço para usar aquela parte do Google que a escola usa?",
+    "respondido": {
+      "conta": "conta.ficticia@exemplo.com"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Qual ferramenta ou recurso específico do Google você gostaria de aprender a usar?",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "assist|GOO-007|",
+    "etapa": "assist",
+    "id": "GOO-007",
+    "nota": "",
+    "relato": "As mensagens não chegam na minha caixa de entrada.",
+    "respondido": {
+      "conta": "conta.ficticia@exemplo.com",
+      "erro-apresentado": "Falha de servidor"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [
+      "Verifique a pasta de Spam ou Lixo Eletrônico.",
+      "Confirme se o armazenamento da conta não está cheio.",
+      "Atualize a página do navegador ou reinicie o aplicativo."
+    ],
+    "repete": []
+  },
+  {
+    "chave": "assist|GOO-008|",
+    "etapa": "assist",
+    "id": "GOO-008",
+    "nota": "",
+    "relato": "Não recebo os e-mails que mandam para a equipe toda.",
+    "respondido": {
+      "conta": "conta.ficticia@exemplo.com",
+      "grupo": "Informação de teste 01"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "assist|GOO-009|",
+    "etapa": "assist",
+    "id": "GOO-009",
+    "nota": "",
+    "relato": "A tabela online que a gente usa parou de somar.",
+    "respondido": {
+      "conta": "conta.ficticia@exemplo.com",
+      "link-ou-nome-da-planilha": "Informação de teste 01"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [
+      "Atualize a página do navegador e tente novamente.",
+      "Feche outras abas para liberar memória do computador.",
+      "Verifique se há filtros ativos ocultando os dados."
+    ],
+    "repete": []
+  },
+  {
+    "chave": "assist|GOO-010|",
+    "etapa": "assist",
+    "id": "GOO-010",
+    "nota": "",
+    "relato": "Preciso dos computadorzinhos para a turma fazer uma pesquisa.",
+    "respondido": {
+      "data": "2026-10-31",
+      "horario-periodo": "3ª e 4ª aula"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Em qual sala ou local os Chromebooks serão utilizados?",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "assist|GOO-011|",
+    "etapa": "assist",
+    "id": "GOO-011",
+    "nota": "",
+    "relato": "Não consigo entrar na conta, diz que a senha está errada.",
+    "respondido": {
+      "e-mail-da-conta": "conta.ficticia@exemplo.com"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "assist|GOO-012|",
+    "etapa": "assist",
+    "id": "GOO-012",
+    "nota": "",
+    "relato": "O site que montamos para o projeto da turma saiu do ar.",
+    "respondido": {
+      "conta": "conta.ficticia@exemplo.com",
+      "link-ou-nome-do-site": "Informação de teste 01"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "assist|TI-001|",
+    "etapa": "assist",
+    "id": "TI-001",
+    "nota": "",
+    "relato": "Posso instalar programas por conta própria no computador da escola?",
+    "respondido": {},
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "assist|TI-002|",
+    "etapa": "assist",
+    "id": "TI-002",
+    "nota": "",
+    "relato": "Acho que dava para deixar o processo de pedir equipamento mais fácil.",
+    "respondido": {
+      "sistema-processo": "Informação de teste 01"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Poderia detalhar qual melhoria gostaria de sugerir para o processo de pedido de equipamentos?",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "assist|TI-003|",
+    "etapa": "assist",
+    "id": "TI-003",
+    "nota": "",
+    "relato": "A TV da recepção não pega os canais.",
+    "respondido": {},
+    "source": "ai",
+    "coerente": false,
+    "motivo": "A necessidade escolhida não corresponde ao problema relatado com a TV.",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "assist|TI-COMP-001|",
+    "etapa": "assist",
+    "id": "TI-COMP-001",
+    "nota": "",
+    "relato": "Ninguém me ouve nas chamadas de vídeo.",
+    "respondido": {
+      "computador": "PC-SEC-04"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Qual é o modelo ou marca do headset que está apresentando falha no microfone?",
+    "ajuda": "",
+    "dicas": [
+      "Verifique se o cabo ou conector do headset está firmemente conectado à porta correta do computador.",
+      "Confirme nas configurações de som do sistema se o headset está selecionado como o dispositivo padrão de gravação.",
+      "Teste o headset em outra porta USB ou P3 para descartar problemas na conexão atual."
+    ],
+    "repete": []
+  },
+  {
+    "chave": "assist|TI-COMP-002|",
+    "etapa": "assist",
+    "id": "TI-COMP-002",
+    "nota": "",
+    "relato": "O computador não lê o disco que eu coloquei.",
+    "respondido": {
+      "computador": "PC-SEC-04"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Qual é a mensagem de erro que aparece ao tentar ler o disco?",
+    "ajuda": "",
+    "dicas": [
+      "Retire o disco e limpe suavemente a parte inferior com um pano limpo e seco.",
+      "Teste com outro CD ou DVD para verificar se o problema ocorre com todos os discos.",
+      "Reinicie o computador e tente inserir o disco novamente."
+    ],
+    "repete": []
+  },
+  {
+    "chave": "assist|TI-COMP-003|",
+    "etapa": "assist",
+    "id": "TI-COMP-003",
+    "nota": "",
+    "relato": "A máquina da minha mesa está apagada e não volta.",
+    "respondido": {
+      "equipamento": "PC-SEC-04"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [
+      "Verifique se o cabo de energia está firmemente conectado na tomada e na parte de trás do computador.",
+      "Confirme se a régua de tomadas ou o estabilizador está ligado."
+    ],
+    "repete": []
+  },
+  {
+    "chave": "assist|TI-COMP-004|",
+    "etapa": "assist",
+    "id": "TI-COMP-004",
+    "nota": "",
+    "relato": "Tudo trava e demora demais para responder.",
+    "respondido": {
+      "computador": "PC-SEC-04"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Em quais aplicativos ou sistemas a lentidão é mais frequente?",
+    "ajuda": "",
+    "dicas": [
+      "Reinicie o computador para liberar memória.",
+      "Feche programas e abas do navegador que não estiverem em uso."
+    ],
+    "repete": []
+  },
+  {
+    "chave": "assist|TI-COMP-005|",
+    "etapa": "assist",
+    "id": "TI-COMP-005",
+    "nota": "",
+    "relato": "Um programa que eu uso todo dia parou de abrir.",
+    "respondido": {
+      "programa": "GeoGebra",
+      "computador": "PC-SEC-04"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Qual é o nome do programa que está apresentando o erro ao abrir?",
+    "ajuda": "",
+    "dicas": [
+      "Reinicie o computador para tentar novamente.",
+      "Verifique se há atualizações pendentes para o sistema."
+    ],
+    "repete": [
+      "Nome do programa"
+    ]
+  },
+  {
+    "chave": "assist|TI-COMP-006|",
+    "etapa": "assist",
+    "id": "TI-COMP-006",
+    "nota": "",
+    "relato": "Vou precisar de um computador portátil emprestado na semana que vem.",
+    "respondido": {
+      "data": "2026-10-31",
+      "periodo": "Manhã"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Para qual atividade e em qual local o notebook será utilizado?",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "assist|TI-COMP-007|",
+    "etapa": "assist",
+    "id": "TI-COMP-007",
+    "nota": "",
+    "relato": "A setinha da tela não se mexe mais.",
+    "respondido": {
+      "computador": "PC-SEC-04"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [
+      "Desconecte o mouse e conecte-o em outra porta USB do computador.",
+      "Se o mouse for sem fio, verifique e substitua as pilhas.",
+      "Reinicie o computador para testar a resposta do dispositivo."
+    ],
+    "repete": []
+  },
+  {
+    "chave": "assist|TI-COMP-008|",
+    "etapa": "assist",
+    "id": "TI-COMP-008",
+    "nota": "",
+    "relato": "Algumas letras não saem quando eu digito.",
+    "respondido": {
+      "computador": "PC-SEC-04"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [
+      "Desconecte o teclado e conecte-o novamente em outra porta USB.",
+      "Reinicie o computador para verificar se o problema persiste."
+    ],
+    "repete": []
+  },
+  {
+    "chave": "assist|TI-NET-001|",
+    "etapa": "assist",
+    "id": "TI-NET-001",
+    "nota": "",
+    "relato": "Meu computador aparece sem rede e não abre nenhum site.",
+    "respondido": {
+      "computador": "PC-SEC-04",
+      "tipo-de-conexao": "Cabo"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [
+      "Verifique se o cabo de rede está firmemente conectado na parte de trás do computador e na tomada de rede da parede.",
+      "Reinicie o computador para atualizar as configurações de rede.",
+      "Teste o cabo de rede em outra porta ou tente outro cabo, se possível."
+    ],
+    "repete": []
+  },
+  {
+    "chave": "assist|TI-NET-002|",
+    "etapa": "assist",
+    "id": "TI-NET-002",
+    "nota": "",
+    "relato": "Uma visita vai precisar usar a internet da escola.",
+    "respondido": {
+      "finalidade": "Informação de teste 01",
+      "periodo": "Manhã"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Para qual dia e horário o visitante precisará do acesso?",
+    "ajuda": "",
+    "dicas": [],
+    "repete": [
+      "Período solicitado"
+    ]
+  },
+  {
+    "chave": "assist|TI-NET-003|",
+    "etapa": "assist",
+    "id": "TI-NET-003",
+    "nota": "",
+    "relato": "A internet sem fio está muito instável aqui.",
+    "respondido": {
+      "dispositivo": "Notebook",
+      "rede": "Rede dos professores"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Em qual ambiente da secretaria a conexão está instável e se isso ocorre em mais de um aparelho?",
+    "ajuda": "",
+    "dicas": [
+      "Desconecte-se da rede Wi-Fi e conecte-se novamente.",
+      "Reinicie o dispositivo que você está usando.",
+      "Aproxime-se do ponto de acesso de rede mais próximo."
+    ],
+    "repete": []
+  },
+  {
+    "chave": "assist|TI-INT-001|",
+    "etapa": "assist",
+    "id": "TI-INT-001",
+    "nota": "",
+    "relato": "A informação que está no portal interno está desatualizada.",
+    "respondido": {
+      "pagina-secao": "Informação de teste 01",
+      "conteudo-novo": "Informação de teste 01"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "assist|TI-INT-002|",
+    "etapa": "assist",
+    "id": "TI-INT-002",
+    "nota": "",
+    "relato": "Precisamos de um espaço no portal interno para colocar nossos formulários.",
+    "respondido": {
+      "secao": "Informação de teste 01",
+      "arquivos-links": "Informação de teste 01"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "assist|TI-INT-003|",
+    "etapa": "assist",
+    "id": "TI-INT-003",
+    "nota": "",
+    "relato": "O portal interno poderia ser mais fácil de navegar.",
+    "respondido": {},
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Quais melhorias específicas você sugere para facilitar a navegação no portal?",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "assist|TI-MENT-001|",
+    "etapa": "assist",
+    "id": "TI-MENT-001",
+    "nota": "",
+    "relato": "A funcionária nova ainda não tem acesso ao sistema acadêmico.",
+    "respondido": {
+      "perfil": "Informação de teste 01"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "assist|TI-MENT-002|",
+    "etapa": "assist",
+    "id": "TI-MENT-002",
+    "nota": "",
+    "relato": "O relatório do sistema acadêmico sai em branco.",
+    "respondido": {
+      "relatorio": "Informação de teste 01",
+      "mensagem-de-erro": "Erro de conexão"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Qual é o nome exato do relatório que está saindo em branco?",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "assist|TI-MENT-003|",
+    "etapa": "assist",
+    "id": "TI-MENT-003",
+    "nota": "",
+    "relato": "Lancei uma nota errada no sistema e não consigo corrigir.",
+    "respondido": {
+      "aluno-turma": "7º ano B",
+      "disciplina": "Matemática"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Qual é a nota correta e o motivo da alteração?",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "assist|TI-MENT-004|",
+    "etapa": "assist",
+    "id": "TI-MENT-004",
+    "nota": "",
+    "relato": "Não consigo fechar o diário da minha turma.",
+    "respondido": {
+      "turma": "7º ano B",
+      "disciplina": "Matemática",
+      "periodo": "Manhã"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Qual é a mensagem de erro que aparece ao tentar fechar o diário?",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "assist|TI-MENT-005|",
+    "etapa": "assist",
+    "id": "TI-MENT-005",
+    "nota": "",
+    "relato": "O sistema acadêmico fica dando erro e me desconecta.",
+    "respondido": {
+      "usuario": "Informação de teste 01",
+      "mensagem-de-erro": "Erro de conexão"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Em qual tela ou relatório o sistema cai e qual a mensagem exata de erro que aparece?",
+    "ajuda": "",
+    "dicas": [
+      "Limpe o cache e os cookies do seu navegador.",
+      "Feche todas as abas do sistema e tente acessar novamente em uma aba anônima.",
+      "Reinicie o navegador e verifique se a conexão com a internet está estável."
+    ],
+    "repete": [
+      "Mensagem de erro"
+    ]
+  },
+  {
+    "chave": "assist|TI-MENT-006|",
+    "etapa": "assist",
+    "id": "TI-MENT-006",
+    "nota": "",
+    "relato": "Um aluno precisa mudar de turma no sistema.",
+    "respondido": {
+      "aluno": "Informação de teste 01",
+      "turma-atual": "Informação de teste 01",
+      "turma-destino": "Informação de teste 01"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "assist|TI-MENT-007|",
+    "etapa": "assist",
+    "id": "TI-MENT-007",
+    "nota": "",
+    "relato": "A direção pediu uns dados dos alunos tirados do sistema.",
+    "respondido": {
+      "descricao-do-relatorio": "Informação de teste 01"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Quais dados específicos e filtros devem constar nesse relatório?",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "assist|TI-MENT-008|",
+    "etapa": "assist",
+    "id": "TI-MENT-008",
+    "nota": "",
+    "relato": "Não tenho permissão para ver um relatório do sistema.",
+    "respondido": {
+      "relatorio": "Informação de teste 01",
+      "usuario": "Informação de teste 01"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Qual é o nome exato do relatório que você precisa acessar?",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "assist|TI-QB-001|",
+    "etapa": "assist",
+    "id": "TI-QB-001",
+    "nota": "",
+    "relato": "O programa da contabilidade não abre o arquivo da empresa.",
+    "respondido": {
+      "usuario": "Informação de teste 01",
+      "mensagem-de-erro": "Erro de conexão"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Qual é a mensagem de erro que aparece ao tentar abrir o arquivo no QuickBooks?",
+    "ajuda": "",
+    "dicas": [
+      "Feche o QuickBooks e abra novamente.",
+      "Reinicie o computador.",
+      "Verifique se há conexão com a rede."
+    ],
+    "repete": [
+      "Mensagem de erro"
+    ]
+  },
+  {
+    "chave": "assist|TI-QB-002|",
+    "etapa": "assist",
+    "id": "TI-QB-002",
+    "nota": "",
+    "relato": "O programa de contabilidade precisa ir para o computador novo.",
+    "respondido": {
+      "usuario": "Informação de teste 01",
+      "computador": "PC-SEC-04"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Em qual sala ou local o novo computador está instalado?",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "assist|TI-CAM-001|",
+    "etapa": "assist",
+    "id": "TI-CAM-001",
+    "nota": "",
+    "relato": "Os pais querem ver os filhos pela câmera durante a aula.",
+    "respondido": {
+      "aluno": "Informação de teste 01",
+      "turma": "7º ano B",
+      "responsavel": "Informação de teste 01",
+      "email-responsavel": "conta.ficticia@exemplo.com",
+      "contato-responsavel": "11 99999-0000"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "assist|AV-003|relato sem sentido",
+    "etapa": "assist",
+    "id": "AV-003",
+    "nota": "relato sem sentido",
+    "relato": "Uujj",
+    "respondido": {
+      "data": "2026-10-31",
+      "horario": "14:00",
+      "evento": "Não"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Poderia especificar qual equipamento de som ou projeção você precisa e em qual sala será utilizado?",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "assist|AV-003|item de outra área",
+    "etapa": "assist",
+    "id": "AV-003",
+    "nota": "item de outra área",
+    "relato": "Microondas",
+    "respondido": {
+      "data": "2026-10-31",
+      "horario": "14:00",
+      "evento": "Não"
+    },
+    "source": "ai",
+    "coerente": false,
+    "motivo": "A descrição do item difere completamente do equipamento de áudio ou vídeo selecionado.",
+    "pergunta": "",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "assist|IMP-003|relato de uma palavra",
+    "etapa": "assist",
+    "id": "IMP-003",
+    "nota": "relato de uma palavra",
+    "relato": "Instalar",
+    "respondido": {
+      "modelo": "Ricoh MP 3055",
+      "computador": "PC-SEC-04"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Em qual sala ou setor a impressora deve ser instalada?",
+    "ajuda": "",
+    "dicas": [],
+    "repete": [
+      "Setor"
+    ]
+  },
+  {
+    "chave": "assist|AV-002|evento sem roteiro",
+    "etapa": "assist",
+    "id": "AV-002",
+    "nota": "evento sem roteiro",
+    "relato": "Para a reunião de pais",
+    "respondido": {
+      "data": "2026-10-31",
+      "horario": "14:00",
+      "evento": "Não"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Em qual local da escola será utilizada a caixa de som e o microfone?",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  },
+  {
+    "chave": "assist|GOO-010|reserva com período",
+    "etapa": "assist",
+    "id": "GOO-010",
+    "nota": "reserva com período",
+    "relato": "Para a aula de pesquisa",
+    "respondido": {
+      "data": "2026-10-31",
+      "horario-periodo": "3ª e 4ª aula"
+    },
+    "source": "ai",
+    "coerente": true,
+    "motivo": "",
+    "pergunta": "Em qual sala os Chromebooks serão utilizados?",
+    "ajuda": "",
+    "dicas": [],
+    "repete": []
+  }
+]

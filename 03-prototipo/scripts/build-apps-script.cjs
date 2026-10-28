@@ -23,6 +23,7 @@ function build({ check = false } = {}) {
   const ai = require("../server/ai-provider.cjs");
   for (const [name, value] of [
     ["SMARTDESK_ASSIST_INSTRUCTION", ai.ASSIST_INSTRUCTION],
+    ["SMARTDESK_SUBJECT_INSTRUCTION", ai.SUBJECT_INSTRUCTION],
     ["SMARTDESK_ASSIST_SCHEMA", ai.ASSIST_SCHEMA],
     ["SMARTDESK_EXTRACT_INSTRUCTION", ai.EXTRACT_INSTRUCTION],
     ["SMARTDESK_EXTRACT_SCHEMA", ai.EXTRACT_SCHEMA],
@@ -50,6 +51,8 @@ function build({ check = false } = {}) {
     "validateAnswers",
     "safeSubject",
     "safeAssist",
+    "answeredForAI",
+    "repeatsAnswered",
     "safeExtract",
     "extractableFields",
     "weekdayName",

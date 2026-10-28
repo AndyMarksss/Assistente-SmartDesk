@@ -40,7 +40,104 @@ function safeSubject(value) {
     return null;
   return subject;
 }
-function safeAssist(result, allowTips) {
+// O que a pessoa já respondeu, para a revisão da IA não perguntar de novo. Data, horário e
+// opções vão com o valor (não são dados pessoais); dos textos livres, só o rótulo.
+function answeredForAI(item, answers) {
+  return (item.fields || [])
+    .filter((field) => answers[field.id])
+    .map((field) => {
+      const value = answers[field.id];
+      if (value === PENDING_LINK) return field.label + ": a pessoa vai enviar depois";
+      if (field.type === "date")
+        return (
+          field.label +
+          ": " +
+          value.split("-").reverse().join("/") +
+          " (" +
+          weekdayName(value) +
+          ")"
+        );
+      if (field.type === "time" || field.type === "choice") return field.label + ": " + value;
+      return field.label + " (respondido)";
+    });
+}
+// Rede de segurança da revisão: pergunta que volta a um dado já respondido, mesmo com outras
+// palavras, é descartada. A verificação 0.12.17 pegou o horário de novo no Audiovisual, o nome
+// do programa, a mensagem de erro, o nome do relatório ou do arquivo e "qual equipamento" num
+// pedido que já diz os três.
+const asksFor = (nouns) =>
+  new RegExp(
+    "\\b(qual|quais|que)\\s+(é\\s+|são\\s+|seria\\s+)?((o|a|os|as)\\s+)?((nome|endereço|link)\\s+(exato\\s+)?(do|da|de|dos|das)\\s+)?(" +
+      nouns +
+      ")\\b|\\bnome\\s+(exato\\s+)?(do|da)\\s+(" +
+      nouns +
+      ")\\b",
+  );
+const DATE_ASK = /\b(data|dia|dias)\b|\bquando\b/;
+const TIME_ASK = /hor[áa]rio|que horas|\bhoras?\b|\bturno\b|per[íi]odo/;
+const TIME_END = /at[ée] que horas|t[ée]rmino|termin|dura[çc][ãa]o|quanto tempo/;
+const ERROR_ASK = asksFor("mensagem|erro|c[óo]digo|aviso");
+const FILE_ASK = asksFor("arquivo|documento|planilha|site|apresenta[çc][ãa]o|pasta|recurso|link");
+const CLASS_ASK = asksFor("turma|s[ée]rie");
+const MACHINE_ASK = asksFor(
+  "computador|m[áa]quina|equipamento|identifica[çc][ãa]o|patrim[ôo]nio|etiqueta",
+);
+const ASKED_AGAIN = {
+  modelo: asksFor("modelo|marca"),
+  computador: MACHINE_ASK,
+  equipamento: MACHINE_ASK,
+  "mensagem-de-erro": ERROR_ASK,
+  "erro-apresentado": ERROR_ASK,
+  erro: ERROR_ASK,
+  "mensagem-do-visor": ERROR_ASK,
+  programa: asksFor("programa|software|aplicativo"),
+  relatorio: asksFor("relat[óo]rio"),
+  "link-ou-nome-do-arquivo": FILE_ASK,
+  arquivo: FILE_ASK,
+  "link-ou-nome-do-recurso": FILE_ASK,
+  "link-ou-nome-da-planilha": FILE_ASK,
+  "link-ou-nome-do-site": FILE_ASK,
+  "arquivos-links": FILE_ASK,
+  turma: CLASS_ASK,
+  "aluno-turma": CLASS_ASK,
+  "turma-atual": CLASS_ASK,
+  "turma-destino": CLASS_ASK,
+  disciplina: asksFor("disciplina|mat[ée]ria"),
+  grupo: asksFor("grupo"),
+  dispositivo: asksFor("dispositivo|aparelho"),
+  rede: asksFor("rede"),
+  usuario: asksFor("usu[áa]rio|login"),
+  perfil: asksFor("perfil"),
+  "pagina-secao": asksFor("p[áa]gina|se[çc][ãa]o"),
+  secao: asksFor("se[çc][ãa]o"),
+  finalidade: /finalidade|objetivo|para (que|qu[êe]) (ser[áa]|vai|v[ãa]o|serve)/,
+  "sistema-processo": asksFor("sistema|processo"),
+  evento: /\b(é|será|se trata de) (para )?um evento\b/,
+  "tipo-de-conexao": /\bcabo\b|wi-?fi|tipo de conex/,
+  cor: /\bcor\b|\bpreto\b|colorid|ciano|magenta|amarel/,
+  roteiro: /roteiro/,
+};
+function repeatsAnswered(question, item, answers) {
+  const q = question.toLowerCase();
+  // O setor vem da identificação; a pergunta certa é a sala ou o local.
+  if (/\bqual\s+(é\s+)?(o\s+)?(seu\s+)?setor\b/.test(q)) return true;
+  // A necessidade já diz o equipamento (ex.: Caixa de Som / Microfone / Projetor).
+  if (
+    item.area === "Audiovisual" &&
+    /\b(qual|quais)\s+(equipamentos?|itens|item|aparelhos?)\b/.test(q)
+  )
+    return true;
+  return (item.fields || []).some((field) => {
+    if (!answers[field.id]) return false;
+    if (field.type === "date") return DATE_ASK.test(q);
+    // Horário ou período já informado: só vale perguntar até que horas ou quanto tempo.
+    if (field.type === "time" || field.id === "periodo" || field.id === "horario-periodo")
+      return (TIME_ASK.test(q) || (field.type !== "time" && DATE_ASK.test(q))) && !TIME_END.test(q);
+    const rule = ASKED_AGAIN[field.id];
+    return !!rule && rule.test(q);
+  });
+}
+function safeAssist(result, allowTips, item, answers) {
   // A IA só sugere: uma pergunta de complemento (com dica de onde achar a resposta),
   // até três passos seguros e um alerta quando o relato não combina com o caminho.
   const clean = (value) =>
@@ -63,7 +160,8 @@ function safeAssist(result, allowTips) {
       /alun|respons|\bpai\b|m[ãa]e\b|pessoa|professor|funcion|usu[áa]ri|colaborador|estagi/i.test(
         question,
       )) ||
-    /e-?mail (institucional|d[aeo]s?\s|para contato)|endere[çc]o de e-?mail/i.test(question)
+    /e-?mail (institucional|d[aeo]s?\s|para contato)|endere[çc]o de e-?mail/i.test(question) ||
+    (item && repeatsAnswered(question, item, answers || {}))
   )
     question = "";
   let help = question ? clean(result && result.ajuda) : "";
@@ -279,6 +377,8 @@ module.exports = {
   validateDescription,
   safeSubject,
   safeAssist,
+  answeredForAI,
+  repeatsAnswered,
   safeExtract,
   extractableFields,
   weekdayName,

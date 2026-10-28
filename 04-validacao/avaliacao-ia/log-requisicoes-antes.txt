@@ -1,0 +1,63 @@
+assist  AV-001      pergunta: Em qual local da escola será realizada a atividade?
+assist  AV-002      pergunta: Para qual atividade no pátio a caixa de som e o microfone serão utilizados?
+assist  AV-003      pergunta: Qual equipamento específico (projetor, caixa de som ou microfone) você precisa?
+assist  AV-004      pergunta: Em qual sala ou local o equipamento será utilizado?
+assist  AV-005      pergunta: Em qual sala ou local da escola o microfone será utilizado e para qual atividade?
+assist  AV-006      pergunta: Em qual sala de aula o projetor será utilizado?
+assist  AV-007      pergunta: Em qual sala a TV e o cabo estão localizados?
+assist  IMP-001     pergunta: Para qual pasta ou e-mail os arquivos digitalizados devem ser enviados?
+assist  IMP-002     (sem pergunta)
+assist  IMP-003     pergunta: Qual é o nome ou o patrimônio da impressora que deseja instalar?
+assist  IMP-004     (sem pergunta)
+assist  IMP-005     pergunta: Em qual impressora o problema está acontecendo?
+assist  IMP-006     (sem pergunta)
+assist  IMP-007     (sem pergunta)
+assist  IMP-008     (sem pergunta)
+assist  IMP-009     pergunta: Em qual pasta ou aplicativo você está tentando localizar o arquivo digitalizado?
+assist  IMP-010     pergunta: Em qual impressora da secretaria será feita a troca do toner?
+assist  GOO-001     pergunta: Para quais pessoas ou equipes você precisa compartilhar os compromissos da agenda?
+assist  GOO-002     (sem pergunta)
+assist  GOO-003     (sem pergunta)
+assist  GOO-004     pergunta: Qual é o nome do documento ou o link do arquivo?
+assist  GOO-005     (sem pergunta)
+assist  GOO-006     pergunta: Qual ferramenta ou recurso específico do Google você gostaria de aprender a usar?
+assist  GOO-007     (sem pergunta)
+assist  GOO-008     (sem pergunta)
+assist  GOO-009     (sem pergunta)
+assist  GOO-010     pergunta: Em qual sala ou local os Chromebooks serão utilizados?
+assist  GOO-011     (sem pergunta)
+assist  GOO-012     (sem pergunta)
+assist  TI-001      (sem pergunta)
+assist  TI-002      pergunta: Poderia detalhar qual melhoria gostaria de sugerir para o processo de pedido de equipamentos?
+assist  TI-003      ALERTA: A necessidade escolhida não corresponde ao problema relatado com a TV. (sem pergunta)
+assist  TI-COMP-001 pergunta: Qual é o modelo ou marca do headset que está apresentando falha no microfone?
+assist  TI-COMP-002 pergunta: Qual é a mensagem de erro que aparece ao tentar ler o disco?
+assist  TI-COMP-003 (sem pergunta)
+assist  TI-COMP-004 pergunta: Em quais aplicativos ou sistemas a lentidão é mais frequente?
+assist  TI-COMP-005 pergunta: Qual é o nome do programa que está apresentando o erro ao abrir?  <<REPETE Nome do programa>>
+assist  TI-COMP-006 pergunta: Para qual atividade e em qual local o notebook será utilizado?
+assist  TI-COMP-007 (sem pergunta)
+assist  TI-COMP-008 (sem pergunta)
+assist  TI-NET-001  (sem pergunta)
+assist  TI-NET-002  pergunta: Para qual dia e horário o visitante precisará do acesso?  <<REPETE Período solicitado>>
+assist  TI-NET-003  pergunta: Em qual ambiente da secretaria a conexão está instável e se isso ocorre em mais de um aparelho?
+assist  TI-INT-001  (sem pergunta)
+assist  TI-INT-002  (sem pergunta)
+assist  TI-INT-003  pergunta: Quais melhorias específicas você sugere para facilitar a navegação no portal?
+assist  TI-MENT-001 (sem pergunta)
+assist  TI-MENT-002 pergunta: Qual é o nome exato do relatório que está saindo em branco?
+assist  TI-MENT-003 pergunta: Qual é a nota correta e o motivo da alteração?
+assist  TI-MENT-004 pergunta: Qual é a mensagem de erro que aparece ao tentar fechar o diário?
+assist  TI-MENT-005 pergunta: Em qual tela ou relatório o sistema cai e qual a mensagem exata de erro que aparece?  <<REPETE Mensagem de erro>>
+assist  TI-MENT-006 (sem pergunta)
+assist  TI-MENT-007 pergunta: Quais dados específicos e filtros devem constar nesse relatório?
+assist  TI-MENT-008 pergunta: Qual é o nome exato do relatório que você precisa acessar?
+assist  TI-QB-001   pergunta: Qual é a mensagem de erro que aparece ao tentar abrir o arquivo no QuickBooks?  <<REPETE Mensagem de erro>>
+assist  TI-QB-002   pergunta: Em qual sala ou local o novo computador está instalado?
+assist  TI-CAM-001  (sem pergunta)
+assist  AV-003      (relato sem sentido) pergunta: Poderia especificar qual equipamento de som ou projeção você precisa e em qual sala será utilizado?
+assist  AV-003      (item de outra área) ALERTA: A descrição do item difere completamente do equipamento de áudio ou vídeo selecionado. (sem pergunta)
+assist  IMP-003     (relato de uma palavra) pergunta: Em qual sala ou setor a impressora deve ser instalada?  <<REPETE Setor>>
+assist  AV-002      (evento sem roteiro) pergunta: Em qual local da escola será utilizada a caixa de som e o microfone?
+assist  GOO-010     (reserva com período) pergunta: Em qual sala os Chromebooks serão utilizados?
+Resumo: 37 perguntas em 62 revisões; 5 repetem dado já respondido; 2 alertas.

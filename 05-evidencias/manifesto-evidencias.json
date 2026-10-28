@@ -2,7 +2,7 @@
   "versao": 1,
   "projeto": "SmartDesk",
   "atualizado_em": "2026-10-28",
-  "proximo_numero": 285,
+  "proximo_numero": 293,
   "evidencias": [
     {
       "numero": "EVID-001",
@@ -3416,6 +3416,102 @@
       "data_inclusao": "2026-10-28",
       "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com envio ao Google desativado",
       "sha256": "A7B072E87B23B4BCD0533F03253C511744163596D3E460936F2A32F6245F8E63",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-285",
+      "arquivo": "EVID-285_kanban-coluna-longa-01216.webp",
+      "etapa": "SmartDesk 0.12.17 — IA verificada, quadro na altura da janela, abertura sem rolagem",
+      "descricao": "Print do usuário do painel publicado (0.12.16): 14 chamados em \"Novos chamados\" esticam a coluna e a página.",
+      "data_aproximada": "2026-10-28",
+      "fundamento_data": "Captura do usuário em 2026-10-28",
+      "data_inclusao": "2026-10-28",
+      "origem": "Print enviado pelo usuário na conversa com o assistente",
+      "sha256": "F0DA0B950CB0B403EFA5B7A3907BD1CD3223A6E822844591CDD1627EBA5CEFF6",
+      "status": "registro do pedido; estado anterior (0.12.16)"
+    },
+    {
+      "numero": "EVID-286",
+      "arquivo": "EVID-286_kanban-fim-da-coluna-01216.webp",
+      "etapa": "SmartDesk 0.12.17 — IA verificada, quadro na altura da janela, abertura sem rolagem",
+      "descricao": "O mesmo quadro rolado até o fim da coluna: as outras colunas vazias acompanham a altura até embaixo.",
+      "data_aproximada": "2026-10-28",
+      "fundamento_data": "Captura do usuário em 2026-10-28",
+      "data_inclusao": "2026-10-28",
+      "origem": "Print enviado pelo usuário na conversa com o assistente",
+      "sha256": "2C1981D1D71675DE66080A4FF63C8937722762F58E68D27D2295A21EB19E0FC5",
+      "status": "registro do pedido; estado anterior (0.12.16)"
+    },
+    {
+      "numero": "EVID-287",
+      "arquivo": "EVID-287_kanban-topo-01216.webp",
+      "etapa": "SmartDesk 0.12.17 — IA verificada, quadro na altura da janela, abertura sem rolagem",
+      "descricao": "O mesmo quadro no topo, com os cartões da coluna longa passando da janela.",
+      "data_aproximada": "2026-10-28",
+      "fundamento_data": "Captura do usuário em 2026-10-28",
+      "data_inclusao": "2026-10-28",
+      "origem": "Print enviado pelo usuário na conversa com o assistente",
+      "sha256": "639BA80CE9AA1720D67497C92E73C2BEB9D086ACE90B349490912A46A9D12AD3",
+      "status": "registro do pedido; estado anterior (0.12.16)"
+    },
+    {
+      "numero": "EVID-288",
+      "arquivo": "EVID-288_chat-abertura-com-rolagem-01216.webp",
+      "etapa": "SmartDesk 0.12.17 — IA verificada, quadro na altura da janela, abertura sem rolagem",
+      "descricao": "Print do usuário do chat no desktop (0.12.16): primeira tela com barra de rolagem na conversa.",
+      "data_aproximada": "2026-10-28",
+      "fundamento_data": "Captura do usuário em 2026-10-28",
+      "data_inclusao": "2026-10-28",
+      "origem": "Print enviado pelo usuário na conversa com o assistente",
+      "sha256": "94C81227C9DD0AB6B704C29A3775DECB10759B53692BAC51C5471F8DD82805BA",
+      "status": "registro do defeito (0.12.16)"
+    },
+    {
+      "numero": "EVID-289",
+      "arquivo": "EVID-289_kanban-coluna-rola-0-12-17.png",
+      "etapa": "SmartDesk 0.12.17 — IA verificada, quadro na altura da janela, abertura sem rolagem",
+      "descricao": "Painel 0.12.17 em 1920 × 912 com 14 chamados fictícios em \"Novos chamados\": quatro cartões inteiros e metade do quinto, a coluna rola e o quadro cabe na janela.",
+      "data_aproximada": "2026-10-28",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-28",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com envio ao Google desativado",
+      "sha256": "DA94368A78E9EC3A9D6869B8E875312034A874BFAB4C78B5951D78D8909726DB",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-290",
+      "arquivo": "EVID-290_abertura-chat-1920x912-0-12-17.png",
+      "etapa": "SmartDesk 0.12.17 — IA verificada, quadro na altura da janela, abertura sem rolagem",
+      "descricao": "Chat 0.12.17 em 1920 × 912 com dados salvos: quadro de boas-vindas e primeira mensagem sem rolagem.",
+      "data_aproximada": "2026-10-28",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-28",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com envio ao Google desativado",
+      "sha256": "9B962E1A54018D249DD61636FCF480D21F195AB0C10D73CD5BDDAC48D5838A6D",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-291",
+      "arquivo": "EVID-291_abertura-chat-384x700-0-12-17.png",
+      "etapa": "SmartDesk 0.12.17 — IA verificada, quadro na altura da janela, abertura sem rolagem",
+      "descricao": "Chat 0.12.17 no celular (384 × 700) com dados salvos: sem rolagem na primeira tela.",
+      "data_aproximada": "2026-10-28",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-28",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com envio ao Google desativado",
+      "sha256": "385D7F1C28CA544D464471A6E8072988DBF0A6CF696CD65724EEF1880A8FF258",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-292",
+      "arquivo": "EVID-292_descricao-apos-troca-de-tipo-0-12-17.png",
+      "etapa": "SmartDesk 0.12.17 — IA verificada, quadro na altura da janela, abertura sem rolagem",
+      "descricao": "Resumo depois de trocar de Wi-Fi para \"Computador não está conectado à rede\" no alerta da IA (simulado): descrição automática do tipo novo (caso do #017). Capturado antes da troca do número de versão no rodapé.",
+      "data_aproximada": "2026-10-28",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-28",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com envio ao Google desativado",
+      "sha256": "F56D65937734400BDA5984D74D383694F38A58228C93DCDA870751967B08686D",
       "status": "verificação técnica; não é validação com usuários"
     }
   ]

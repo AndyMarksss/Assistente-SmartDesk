@@ -4544,3 +4544,69 @@ button.chart-row:hover > .fa-solid {
 :root[data-theme] .ticket-card > :not(.ticket-foot):nth-last-child(2) {
   margin-bottom: 9px;
 }
+
+/* 0.12.17 — Quadro na altura da janela: cada coluna tem uma área de cartões que rola quando
+   alguma etapa passa de quatro cartões (quatro inteiros e metade do quinto à vista; o admin.js
+   mede e aplica --lane-h). O cabeçalho da etapa fica parado em cima. */
+:root[data-theme] .kanban-column {
+  display: flex;
+  flex-direction: column;
+}
+:root[data-theme] .column-cards {
+  box-sizing: border-box;
+  max-height: var(--lane-h, none);
+  margin: 0 -8px -8px;
+  padding: 2px 8px 8px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--muted) 45%, transparent) transparent;
+}
+:root[data-theme] .kanban.has-scroll .column-cards {
+  scrollbar-gutter: stable;
+}
+
+/* 0.12.17 — A primeira tela do chat não rola: o app.js sobe o nível (data-fit) até o quadro de
+   boas-vindas e a primeira mensagem caberem na conversa. 1: menos respiro; 2: ilustração menor;
+   3: sem as etiquetas e ilustração ainda menor; 4: sem a ilustração; 5: sem o parágrafo. */
+:root[data-theme] #welcome[data-fit] {
+  margin-top: 6px;
+  margin-bottom: 14px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+:root[data-theme] #welcome[data-fit] .eyebrow {
+  margin-bottom: 12px;
+}
+:root[data-theme] #welcome[data-fit] h2 {
+  margin-bottom: 12px;
+}
+:root[data-theme] #welcome[data-fit] p:not(.eyebrow) {
+  margin-bottom: 14px;
+  line-height: 1.6;
+}
+:root[data-theme] #welcome[data-fit="2"] .support-scene {
+  zoom: 0.84;
+}
+:root[data-theme] #welcome[data-fit="3"] .support-scene {
+  zoom: 0.7;
+}
+:root[data-theme] #welcome[data-fit="3"] .welcome-tags,
+:root[data-theme] #welcome[data-fit="4"] .welcome-tags,
+:root[data-theme] #welcome[data-fit="5"] .welcome-tags,
+:root[data-theme] #welcome[data-fit="4"] .support-scene,
+:root[data-theme] #welcome[data-fit="5"] .support-scene,
+:root[data-theme] #welcome[data-fit="5"] p:not(.eyebrow) {
+  display: none;
+}
+:root[data-theme] #welcome[data-fit="3"] p:not(.eyebrow),
+:root[data-theme] #welcome[data-fit="4"] p:not(.eyebrow) {
+  margin-bottom: 0;
+}
+:root[data-theme] #welcome[data-fit="4"],
+:root[data-theme] #welcome[data-fit="5"] {
+  grid-template-columns: minmax(0, 1fr);
+}
+:root[data-theme] #welcome[data-fit="5"] h2 {
+  margin-bottom: 0;
+}

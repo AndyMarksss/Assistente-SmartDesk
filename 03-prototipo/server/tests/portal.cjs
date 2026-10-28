@@ -340,7 +340,7 @@ const helped = call("/api/assist", jamBody).body;
 assert(helped.help.includes("visor") && helped.coherent === true);
 const sent = JSON.parse(remote[0].contents[0].parts[0].text);
 assert.equal(sent.tipo, "problema");
-assert(sent.jaInformado.includes("Modelo da impressora"));
+assert(sent.jaInformado.includes("Modelo da impressora (respondido)"));
 assert(!JSON.stringify(sent).includes("Informação fictícia"));
 remote = [];
 call("/api/assist", {

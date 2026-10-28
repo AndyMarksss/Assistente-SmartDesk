@@ -1,0 +1,731 @@
+[
+  {
+    "chave": "subject|AV-001|",
+    "etapa": "subject",
+    "id": "AV-001",
+    "nota": "",
+    "relato": "Vou precisar de som para uma atividade com os alunos.",
+    "respondido": {
+      "data": "2026-10-31",
+      "horario": "14:00",
+      "evento": "Não"
+    },
+    "source": "ai",
+    "assunto": "Solicitação de Caixa de Som"
+  },
+  {
+    "chave": "subject|AV-002|",
+    "etapa": "subject",
+    "id": "AV-002",
+    "nota": "",
+    "relato": "Vamos falar com os pais no pátio e precisamos que todo mundo escute quem estiver no microfone.",
+    "respondido": {
+      "data": "2026-10-31",
+      "horario": "14:00",
+      "evento": "Não"
+    },
+    "source": "ai",
+    "assunto": "Manutenção em Caixa de Som e Microfone"
+  },
+  {
+    "chave": "subject|AV-003|",
+    "etapa": "subject",
+    "id": "AV-003",
+    "nota": "",
+    "relato": "Vai ter palestra no auditório com slides e uma pessoa falando para muita gente.",
+    "respondido": {
+      "data": "2026-10-31",
+      "horario": "14:00",
+      "evento": "Não"
+    },
+    "source": "ai",
+    "assunto": "Caixa de Som, Microfone e Projetor"
+  },
+  {
+    "chave": "subject|AV-004|",
+    "etapa": "subject",
+    "id": "AV-004",
+    "nota": "",
+    "relato": "Vou passar um vídeo com áudio para a turma e preciso do equipamento.",
+    "respondido": {
+      "data": "2026-10-31",
+      "horario": "14:00",
+      "evento": "Não"
+    },
+    "source": "ai",
+    "assunto": "Solicitação de Caixa de Som e Projetor"
+  },
+  {
+    "chave": "subject|AV-005|",
+    "etapa": "subject",
+    "id": "AV-005",
+    "nota": "",
+    "relato": "Minha voz não alcança o fundo da sala nas reuniões, tem algo que ajude?",
+    "respondido": {
+      "data": "2026-10-31",
+      "horario": "14:00",
+      "evento": "Não"
+    },
+    "source": "ai",
+    "assunto": "Solicitação de microfone para reuniões"
+  },
+  {
+    "chave": "subject|AV-006|",
+    "etapa": "subject",
+    "id": "AV-006",
+    "nota": "",
+    "relato": "Quero mostrar uns slides na parede da sala para os alunos.",
+    "respondido": {
+      "data": "2026-10-31",
+      "horario": "14:00",
+      "evento": "Não"
+    },
+    "source": "ai",
+    "assunto": "Projetor para Secretaria"
+  },
+  {
+    "chave": "subject|AV-007|",
+    "etapa": "subject",
+    "id": "AV-007",
+    "nota": "",
+    "relato": "A imagem do notebook não chega na TV da sala, acho que é o fio.",
+    "respondido": {
+      "descricao-do-problema": "Informação de teste 01"
+    },
+    "source": "ai",
+    "assunto": "Troca de cabo HDMI"
+  },
+  {
+    "chave": "subject|IMP-001|",
+    "etapa": "subject",
+    "id": "IMP-001",
+    "nota": "",
+    "relato": "Quero digitalizar documentos e mandar para o meu computador, como faço?",
+    "respondido": {
+      "modelo": "Ricoh MP 3055",
+      "computador": "PC-SEC-04"
+    },
+    "source": "ai",
+    "assunto": "Impressora - Configurar Scanner"
+  },
+  {
+    "chave": "subject|IMP-002|",
+    "etapa": "subject",
+    "id": "IMP-002",
+    "nota": "",
+    "relato": "As folhas saem soltas da impressora, ela não está mais prendendo as páginas.",
+    "respondido": {
+      "modelo": "Ricoh MP 3055"
+    },
+    "source": "ai",
+    "assunto": "Grampo da Impressora"
+  },
+  {
+    "chave": "subject|IMP-003|",
+    "etapa": "subject",
+    "id": "IMP-003",
+    "nota": "",
+    "relato": "Meu computador não encontra a impressora da sala para mandar imprimir.",
+    "respondido": {
+      "modelo": "Ricoh MP 3055",
+      "computador": "PC-SEC-04"
+    },
+    "source": "ai",
+    "assunto": "Instalar Impressora"
+  },
+  {
+    "chave": "subject|IMP-004|",
+    "etapa": "subject",
+    "id": "IMP-004",
+    "nota": "",
+    "relato": "A impressora avisa que precisa trocar a peça que aquece o papel.",
+    "respondido": {
+      "modelo": "Ricoh MP 3055",
+      "erro-apresentado": "Falha de servidor"
+    },
+    "source": "ai",
+    "assunto": "Impressora: Lâmpada da Estufa"
+  },
+  {
+    "chave": "subject|IMP-005|",
+    "etapa": "subject",
+    "id": "IMP-005",
+    "nota": "",
+    "relato": "As impressões estão saindo sujas.",
+    "respondido": {
+      "modelo": "Ricoh MP 3055"
+    },
+    "source": "ai",
+    "assunto": "Impressora manchando folhas"
+  },
+  {
+    "chave": "subject|IMP-006|",
+    "etapa": "subject",
+    "id": "IMP-006",
+    "nota": "",
+    "relato": "O documento fica parado na fila e não sai.",
+    "respondido": {
+      "modelo": "Ricoh MP 3055",
+      "computador": "PC-SEC-04",
+      "mensagem-de-erro": "Erro de conexão"
+    },
+    "source": "ai",
+    "assunto": "Impressora: Não imprime"
+  },
+  {
+    "chave": "subject|IMP-007|",
+    "etapa": "subject",
+    "id": "IMP-007",
+    "nota": "",
+    "relato": "Apertei o botão da impressora e nada acontece.",
+    "respondido": {
+      "modelo": "Ricoh MP 3055"
+    },
+    "source": "ai",
+    "assunto": "Impressora não liga"
+  },
+  {
+    "chave": "subject|IMP-008|",
+    "etapa": "subject",
+    "id": "IMP-008",
+    "nota": "",
+    "relato": "A folha ficou enroscada lá dentro e não sai.",
+    "respondido": {
+      "modelo": "Ricoh MP 3055",
+      "mensagem-do-visor": "J012"
+    },
+    "source": "ai",
+    "assunto": "Papel Atolado na Impressora"
+  },
+  {
+    "chave": "subject|IMP-009|",
+    "etapa": "subject",
+    "id": "IMP-009",
+    "nota": "",
+    "relato": "Tento escanear e não chega nada no computador.",
+    "respondido": {
+      "modelo": "Ricoh MP 3055",
+      "computador": "PC-SEC-04",
+      "erro": "Dispositivo não encontrado"
+    },
+    "source": "ai",
+    "assunto": "Impressora: Scanner não funciona"
+  },
+  {
+    "chave": "subject|IMP-010|",
+    "etapa": "subject",
+    "id": "IMP-010",
+    "nota": "",
+    "relato": "A impressão está saindo bem fraquinha, acho que está acabando.",
+    "respondido": {
+      "cor": "Preto",
+      "modelo": "Ricoh MP 3055"
+    },
+    "source": "ai",
+    "assunto": "Solicitação de Toner / Tinta Preto"
+  },
+  {
+    "chave": "subject|GOO-001|",
+    "etapa": "subject",
+    "id": "GOO-001",
+    "nota": "",
+    "relato": "Os compromissos que eu marco não aparecem para o resto da equipe.",
+    "respondido": {
+      "conta": "conta.ficticia@exemplo.com"
+    },
+    "source": "ai",
+    "assunto": "Problema com compartilhamento de Agendas no Google"
+  },
+  {
+    "chave": "subject|GOO-002|",
+    "etapa": "subject",
+    "id": "GOO-002",
+    "nota": "",
+    "relato": "Os slides que eu fiz na internet sumiram.",
+    "respondido": {
+      "conta": "conta.ficticia@exemplo.com",
+      "link-ou-nome-do-arquivo": "Informação de teste 01"
+    },
+    "source": "ai",
+    "assunto": "Google Apresentações - Slides sumidos"
+  },
+  {
+    "chave": "subject|GOO-003|",
+    "etapa": "subject",
+    "id": "GOO-003",
+    "nota": "",
+    "relato": "Os alunos não estão vendo a atividade que eu postei para a turma.",
+    "respondido": {
+      "conta": "conta.ficticia@exemplo.com",
+      "turma": "7º ano B"
+    },
+    "source": "ai",
+    "assunto": "Google Classroom"
+  },
+  {
+    "chave": "subject|GOO-004|",
+    "etapa": "subject",
+    "id": "GOO-004",
+    "nota": "",
+    "relato": "O texto que eu estava escrevendo no navegador não salvou.",
+    "respondido": {
+      "conta": "conta.ficticia@exemplo.com",
+      "arquivo": "Informação de teste 01"
+    },
+    "source": "ai",
+    "assunto": "Documentos Google: Texto não salvo"
+  },
+  {
+    "chave": "subject|GOO-005|",
+    "etapa": "subject",
+    "id": "GOO-005",
+    "nota": "",
+    "relato": "Meus arquivos que ficavam na nuvem sumiram.",
+    "respondido": {
+      "conta": "conta.ficticia@exemplo.com",
+      "link-ou-nome-do-recurso": "Informação de teste 01"
+    },
+    "source": "ai",
+    "assunto": "Google Drive"
+  },
+  {
+    "chave": "subject|GOO-006|",
+    "etapa": "subject",
+    "id": "GOO-006",
+    "nota": "",
+    "relato": "Como faço para usar aquela parte do Google que a escola usa?",
+    "respondido": {
+      "conta": "conta.ficticia@exemplo.com"
+    },
+    "source": "ai",
+    "assunto": "Dúvidas sobre o Google"
+  },
+  {
+    "chave": "subject|GOO-007|",
+    "etapa": "subject",
+    "id": "GOO-007",
+    "nota": "",
+    "relato": "As mensagens não chegam na minha caixa de entrada.",
+    "respondido": {
+      "conta": "conta.ficticia@exemplo.com",
+      "erro-apresentado": "Falha de servidor"
+    },
+    "source": "ai",
+    "assunto": "Gmail: Mensagens não chegam na caixa de entrada"
+  },
+  {
+    "chave": "subject|GOO-008|",
+    "etapa": "subject",
+    "id": "GOO-008",
+    "nota": "",
+    "relato": "Não recebo os e-mails que mandam para a equipe toda.",
+    "respondido": {
+      "conta": "conta.ficticia@exemplo.com",
+      "grupo": "Informação de teste 01"
+    },
+    "source": "ai",
+    "assunto": "Grupos do Google: não recebo e-mails da equipe"
+  },
+  {
+    "chave": "subject|GOO-009|",
+    "etapa": "subject",
+    "id": "GOO-009",
+    "nota": "",
+    "relato": "A tabela online que a gente usa parou de somar.",
+    "respondido": {
+      "conta": "conta.ficticia@exemplo.com",
+      "link-ou-nome-da-planilha": "Informação de teste 01"
+    },
+    "source": "ai",
+    "assunto": "Problema no somatório das Planilhas do Google"
+  },
+  {
+    "chave": "subject|GOO-010|",
+    "etapa": "subject",
+    "id": "GOO-010",
+    "nota": "",
+    "relato": "Preciso dos computadorzinhos para a turma fazer uma pesquisa.",
+    "respondido": {
+      "data": "2026-10-31",
+      "horario-periodo": "3ª e 4ª aula"
+    },
+    "source": "ai",
+    "assunto": "Reserva de Chromebook"
+  },
+  {
+    "chave": "subject|GOO-011|",
+    "etapa": "subject",
+    "id": "GOO-011",
+    "nota": "",
+    "relato": "Não consigo entrar na conta, diz que a senha está errada.",
+    "respondido": {
+      "e-mail-da-conta": "conta.ficticia@exemplo.com"
+    },
+    "source": "ai",
+    "assunto": "Resetar senha Google"
+  },
+  {
+    "chave": "subject|GOO-012|",
+    "etapa": "subject",
+    "id": "GOO-012",
+    "nota": "",
+    "relato": "O site que montamos para o projeto da turma saiu do ar.",
+    "respondido": {
+      "conta": "conta.ficticia@exemplo.com",
+      "link-ou-nome-do-site": "Informação de teste 01"
+    },
+    "source": "ai",
+    "assunto": "Problema no Google Sites do projeto"
+  },
+  {
+    "chave": "subject|TI-001|",
+    "etapa": "subject",
+    "id": "TI-001",
+    "nota": "",
+    "relato": "Posso instalar programas por conta própria no computador da escola?",
+    "respondido": {},
+    "source": "ai",
+    "assunto": "Dúvidas sobre instalação de programas"
+  },
+  {
+    "chave": "subject|TI-002|",
+    "etapa": "subject",
+    "id": "TI-002",
+    "nota": "",
+    "relato": "Acho que dava para deixar o processo de pedir equipamento mais fácil.",
+    "respondido": {
+      "sistema-processo": "Informação de teste 01"
+    },
+    "source": "ai",
+    "assunto": "Sugestão de melhoria no pedido de equipamento"
+  },
+  {
+    "chave": "subject|TI-003|",
+    "etapa": "subject",
+    "id": "TI-003",
+    "nota": "",
+    "relato": "A TV da recepção não pega os canais.",
+    "respondido": {},
+    "source": "ai",
+    "assunto": "Outros na Secretaria"
+  },
+  {
+    "chave": "subject|TI-COMP-001|",
+    "etapa": "subject",
+    "id": "TI-COMP-001",
+    "nota": "",
+    "relato": "Ninguém me ouve nas chamadas de vídeo.",
+    "respondido": {
+      "computador": "PC-SEC-04"
+    },
+    "source": "ai",
+    "assunto": "Problema no headset ou fone de ouvido"
+  },
+  {
+    "chave": "subject|TI-COMP-002|",
+    "etapa": "subject",
+    "id": "TI-COMP-002",
+    "nota": "",
+    "relato": "O computador não lê o disco que eu coloquei.",
+    "respondido": {
+      "computador": "PC-SEC-04"
+    },
+    "source": "ai",
+    "assunto": "COMPUTADOR: Leitor de CD/DVD não lê disco"
+  },
+  {
+    "chave": "subject|TI-COMP-003|",
+    "etapa": "subject",
+    "id": "TI-COMP-003",
+    "nota": "",
+    "relato": "A máquina da minha mesa está apagada e não volta.",
+    "respondido": {
+      "equipamento": "PC-SEC-04"
+    },
+    "source": "ai",
+    "assunto": "Computador não liga"
+  },
+  {
+    "chave": "subject|TI-COMP-004|",
+    "etapa": "subject",
+    "id": "TI-COMP-004",
+    "nota": "",
+    "relato": "Tudo trava e demora demais para responder.",
+    "respondido": {
+      "computador": "PC-SEC-04"
+    },
+    "source": "falha-ia",
+    "assunto": ""
+  },
+  {
+    "chave": "subject|TI-COMP-005|",
+    "etapa": "subject",
+    "id": "TI-COMP-005",
+    "nota": "",
+    "relato": "Um programa que eu uso todo dia parou de abrir.",
+    "respondido": {
+      "programa": "GeoGebra",
+      "computador": "PC-SEC-04"
+    },
+    "source": "ai",
+    "assunto": "Problema com programa"
+  },
+  {
+    "chave": "subject|TI-COMP-006|",
+    "etapa": "subject",
+    "id": "TI-COMP-006",
+    "nota": "",
+    "relato": "Vou precisar de um computador portátil emprestado na semana que vem.",
+    "respondido": {
+      "data": "2026-10-31",
+      "periodo": "Manhã"
+    },
+    "source": "ai",
+    "assunto": "Reserva de Notebook"
+  },
+  {
+    "chave": "subject|TI-COMP-007|",
+    "etapa": "subject",
+    "id": "TI-COMP-007",
+    "nota": "",
+    "relato": "A setinha da tela não se mexe mais.",
+    "respondido": {
+      "computador": "PC-SEC-04"
+    },
+    "source": "ai",
+    "assunto": "Troca de Mouse"
+  },
+  {
+    "chave": "subject|TI-COMP-008|",
+    "etapa": "subject",
+    "id": "TI-COMP-008",
+    "nota": "",
+    "relato": "Algumas letras não saem quando eu digito.",
+    "respondido": {
+      "computador": "PC-SEC-04"
+    },
+    "source": "ai",
+    "assunto": "Troca de Teclado de Computador"
+  },
+  {
+    "chave": "subject|TI-NET-001|",
+    "etapa": "subject",
+    "id": "TI-NET-001",
+    "nota": "",
+    "relato": "Meu computador aparece sem rede e não abre nenhum site.",
+    "respondido": {
+      "computador": "PC-SEC-04",
+      "tipo-de-conexao": "Cabo"
+    },
+    "source": "ai",
+    "assunto": "Computador não está conectado à rede"
+  },
+  {
+    "chave": "subject|TI-NET-002|",
+    "etapa": "subject",
+    "id": "TI-NET-002",
+    "nota": "",
+    "relato": "Uma visita vai precisar usar a internet da escola.",
+    "respondido": {
+      "finalidade": "Informação de teste 01",
+      "periodo": "Manhã"
+    },
+    "source": "ai",
+    "assunto": "INTERNET: Criar Login de acesso Internet"
+  },
+  {
+    "chave": "subject|TI-NET-003|",
+    "etapa": "subject",
+    "id": "TI-NET-003",
+    "nota": "",
+    "relato": "A internet sem fio está muito instável aqui.",
+    "respondido": {
+      "dispositivo": "Notebook",
+      "rede": "Rede dos professores"
+    },
+    "source": "ai",
+    "assunto": "Problemas com Wi-Fi na Secretaria"
+  },
+  {
+    "chave": "subject|TI-INT-001|",
+    "etapa": "subject",
+    "id": "TI-INT-001",
+    "nota": "",
+    "relato": "A informação que está no portal interno está desatualizada.",
+    "respondido": {
+      "pagina-secao": "Informação de teste 01",
+      "conteudo-novo": "Informação de teste 01"
+    },
+    "source": "ai",
+    "assunto": "Atualização da Intranet"
+  },
+  {
+    "chave": "subject|TI-INT-002|",
+    "etapa": "subject",
+    "id": "TI-INT-002",
+    "nota": "",
+    "relato": "Precisamos de um espaço no portal interno para colocar nossos formulários.",
+    "respondido": {
+      "secao": "Informação de teste 01",
+      "arquivos-links": "Informação de teste 01"
+    },
+    "source": "ai",
+    "assunto": "Solicitação na Intranet"
+  },
+  {
+    "chave": "subject|TI-INT-003|",
+    "etapa": "subject",
+    "id": "TI-INT-003",
+    "nota": "",
+    "relato": "O portal interno poderia ser mais fácil de navegar.",
+    "respondido": {},
+    "source": "ai",
+    "assunto": "Sugestão para a Intranet"
+  },
+  {
+    "chave": "subject|TI-MENT-001|",
+    "etapa": "subject",
+    "id": "TI-MENT-001",
+    "nota": "",
+    "relato": "A funcionária nova ainda não tem acesso ao sistema acadêmico.",
+    "respondido": {
+      "perfil": "Informação de teste 01"
+    },
+    "source": "ai",
+    "assunto": "Criação de Login no Mentor Web"
+  },
+  {
+    "chave": "subject|TI-MENT-002|",
+    "etapa": "subject",
+    "id": "TI-MENT-002",
+    "nota": "",
+    "relato": "O relatório do sistema acadêmico sai em branco.",
+    "respondido": {
+      "relatorio": "Informação de teste 01",
+      "mensagem-de-erro": "Erro de conexão"
+    },
+    "source": "ai",
+    "assunto": "Erro no relatório do Mentor Web"
+  },
+  {
+    "chave": "subject|TI-MENT-003|",
+    "etapa": "subject",
+    "id": "TI-MENT-003",
+    "nota": "",
+    "relato": "Lancei uma nota errada no sistema e não consigo corrigir.",
+    "respondido": {
+      "aluno-turma": "7º ano B",
+      "disciplina": "Matemática"
+    },
+    "source": "ai",
+    "assunto": "Alteração de notas no Mentor Web"
+  },
+  {
+    "chave": "subject|TI-MENT-004|",
+    "etapa": "subject",
+    "id": "TI-MENT-004",
+    "nota": "",
+    "relato": "Não consigo fechar o diário da minha turma.",
+    "respondido": {
+      "turma": "7º ano B",
+      "disciplina": "Matemática",
+      "periodo": "Manhã"
+    },
+    "source": "ai",
+    "assunto": "MENTOR WEB - Encerramento de diário"
+  },
+  {
+    "chave": "subject|TI-MENT-005|",
+    "etapa": "subject",
+    "id": "TI-MENT-005",
+    "nota": "",
+    "relato": "O sistema acadêmico fica dando erro e me desconecta.",
+    "respondido": {
+      "usuario": "Informação de teste 01",
+      "mensagem-de-erro": "Erro de conexão"
+    },
+    "source": "ai",
+    "assunto": "Erro no Mentor Web e desconexão"
+  },
+  {
+    "chave": "subject|TI-MENT-006|",
+    "etapa": "subject",
+    "id": "TI-MENT-006",
+    "nota": "",
+    "relato": "Um aluno precisa mudar de turma no sistema.",
+    "respondido": {
+      "aluno": "Informação de teste 01",
+      "turma-atual": "Informação de teste 01",
+      "turma-destino": "Informação de teste 01"
+    },
+    "source": "ai",
+    "assunto": "Remanejamento de aluno no Mentor Web"
+  },
+  {
+    "chave": "subject|TI-MENT-007|",
+    "etapa": "subject",
+    "id": "TI-MENT-007",
+    "nota": "",
+    "relato": "A direção pediu uns dados dos alunos tirados do sistema.",
+    "respondido": {
+      "descricao-do-relatorio": "Informação de teste 01"
+    },
+    "source": "ai",
+    "assunto": "Solicitação de Relatório Mentor Web"
+  },
+  {
+    "chave": "subject|TI-MENT-008|",
+    "etapa": "subject",
+    "id": "TI-MENT-008",
+    "nota": "",
+    "relato": "Não tenho permissão para ver um relatório do sistema.",
+    "respondido": {
+      "relatorio": "Informação de teste 01",
+      "usuario": "Informação de teste 01"
+    },
+    "source": "falha-ia",
+    "assunto": ""
+  },
+  {
+    "chave": "subject|TI-QB-001|",
+    "etapa": "subject",
+    "id": "TI-QB-001",
+    "nota": "",
+    "relato": "O programa da contabilidade não abre o arquivo da empresa.",
+    "respondido": {
+      "usuario": "Informação de teste 01",
+      "mensagem-de-erro": "Erro de conexão"
+    },
+    "source": "ai",
+    "assunto": "Erro no sistema QUICKBOOKS"
+  },
+  {
+    "chave": "subject|TI-QB-002|",
+    "etapa": "subject",
+    "id": "TI-QB-002",
+    "nota": "",
+    "relato": "O programa de contabilidade precisa ir para o computador novo.",
+    "respondido": {
+      "usuario": "Informação de teste 01",
+      "computador": "PC-SEC-04"
+    },
+    "source": "ai",
+    "assunto": "Instalação do QuickBooks"
+  },
+  {
+    "chave": "subject|TI-CAM-001|",
+    "etapa": "subject",
+    "id": "TI-CAM-001",
+    "nota": "",
+    "relato": "Os pais querem ver os filhos pela câmera durante a aula.",
+    "respondido": {
+      "aluno": "Informação de teste 01",
+      "turma": "7º ano B",
+      "responsavel": "Informação de teste 01",
+      "email-responsavel": "conta.ficticia@exemplo.com",
+      "contato-responsavel": "11 99999-0000"
+    },
+    "source": "ai",
+    "assunto": "Acesso às Câmeras"
+  }
+]

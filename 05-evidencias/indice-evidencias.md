@@ -647,4 +647,22 @@ Próxima evidência: EVID-205.
 
 - EVID-284: [painel-alturas-esqueleto-0-12-16](EVID-284_painel-alturas-esqueleto-0-12-16.jpg) — Painel 0.12.16: quadro com colunas e cartões da mesma altura e o esqueleto de sete colunas ao clicar em "Atualizar".
 
-Próxima evidência: EVID-285.
+## 2026-10-28 — SmartDesk 0.12.17: IA verificada, quadro na altura da janela e abertura sem rolagem
+
+- EVID-285: [kanban-coluna-longa-01216](EVID-285_kanban-coluna-longa-01216.webp) — Print do usuário do painel publicado (0.12.16): 14 chamados em "Novos chamados" esticam a coluna e a página.
+
+- EVID-286: [kanban-fim-da-coluna-01216](EVID-286_kanban-fim-da-coluna-01216.webp) — O mesmo quadro rolado até o fim da coluna: as outras colunas vazias acompanham a altura até embaixo.
+
+- EVID-287: [kanban-topo-01216](EVID-287_kanban-topo-01216.webp) — O mesmo quadro no topo, com os cartões da coluna longa passando da janela.
+
+- EVID-288: [chat-abertura-com-rolagem-01216](EVID-288_chat-abertura-com-rolagem-01216.webp) — Print do usuário do chat no desktop (0.12.16): primeira tela com barra de rolagem na conversa.
+
+- EVID-289: [kanban-coluna-rola-0-12-17](EVID-289_kanban-coluna-rola-0-12-17.png) — Painel 0.12.17 em 1920 × 912 com 14 chamados fictícios em "Novos chamados": quatro cartões inteiros e metade do quinto, a coluna rola e o quadro cabe na janela.
+
+- EVID-290: [abertura-chat-1920x912-0-12-17](EVID-290_abertura-chat-1920x912-0-12-17.png) — Chat 0.12.17 em 1920 × 912 com dados salvos: quadro de boas-vindas e primeira mensagem sem rolagem.
+
+- EVID-291: [abertura-chat-384x700-0-12-17](EVID-291_abertura-chat-384x700-0-12-17.png) — Chat 0.12.17 no celular (384 × 700) com dados salvos: sem rolagem na primeira tela.
+
+- EVID-292: [descricao-apos-troca-de-tipo-0-12-17](EVID-292_descricao-apos-troca-de-tipo-0-12-17.png) — Resumo depois de trocar de Wi-Fi para "Computador não está conectado à rede" no alerta da IA (simulado): descrição automática do tipo novo (caso do #017). Capturado antes da troca do número de versão no rodapé.
+
+Próxima evidência: EVID-293.

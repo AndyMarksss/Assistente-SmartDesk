@@ -21,6 +21,7 @@ const {
   validateDescription,
   safeSubject,
   safeAssist,
+  answeredForAI,
   safeExtract,
   extractableFields,
   weekdayName,
@@ -217,12 +218,12 @@ function createTicketService({
                 need: item.need,
                 kind: policy.requestKind(item, body.equipmentIntent || ""),
                 optionAnswers,
-                answeredLabels: (item.fields || [])
-                  .filter((field) => answers[field.id])
-                  .map((field) => field.label),
+                answeredLabels: answeredForAI(item, answers),
                 allowTips,
               }),
               allowTips,
+              item,
+              answers,
             );
             source = "ai";
           } catch {
@@ -242,6 +243,7 @@ function createTicketService({
               sector: body.sector,
               area: item.area,
               need: item.need,
+              kind: policy.requestKind(item, body.equipmentIntent || ""),
               optionAnswers,
             });
             const candidate = safeSubject(result.subject);

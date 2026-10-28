@@ -376,6 +376,24 @@
   }
 
   // --- Início, identificação e acompanhamento --------------------------------------------
+  // A primeira tela não rola: enquanto só há a saudação, o quadro de boas-vindas sobe de nível
+  // (data-fit, atmosphere.css) até ele e a mensagem caberem na conversa. Refeito quando a
+  // conversa muda de altura (barra do navegador no celular, opções da saudação, janela). Se nem
+  // o nível mais enxuto couber, a conversa desce até a mensagem.
+  function fitWelcome() {
+    const welcome = byId("welcome"),
+      log = byId("conversation");
+    if (welcome.hidden || byId("messages").querySelectorAll(".message").length > 1) return;
+    for (let level = 0; level <= 5; level++) {
+      if (level) welcome.dataset.fit = level;
+      else delete welcome.dataset.fit;
+      if (log.scrollHeight <= log.clientHeight) return;
+    }
+    follower.follow();
+  }
+  const opening = new ResizeObserver(() => fitWelcome());
+  opening.observe(byId("conversation"));
+  opening.observe(byId("messages"));
   function start() {
     if (saving) return;
     metrics.reset();
@@ -400,6 +418,7 @@
       source: "local",
       review: null,
       fromDescribe: false,
+      autoDescribed: false,
       selfHelp: "",
       declined: [],
       keepAnswered: false,
@@ -423,15 +442,7 @@
         ),
       );
     } else message("Olá! Sou o assistente do SmartDesk. Vamos organizar seu atendimento juntos?");
-    // O quadro de boas-vindas fica inteiro; só rola até a mensagem se ela não couber na tela.
-    messages.whenReady(() =>
-      requestAnimationFrame(() => {
-        const log = byId("conversation"),
-          last = byId("messages").lastElementChild;
-        if (last && last.getBoundingClientRect().bottom > log.getBoundingClientRect().bottom + 2)
-          follower.follow();
-      }),
-    );
+    messages.whenReady(() => requestAnimationFrame(fitWelcome));
     offerStart();
   }
   function offerStart() {
@@ -1159,6 +1170,7 @@
             "Conte aqui o que você precisa…",
             (text) => {
               setDescription(text);
+              state.autoDescribed = false;
               updated(true);
             },
             state.item.fields.some((f) => f.id === "descricao-do-problema") ? 1000 : 2000,
@@ -1203,6 +1215,7 @@
         (other) => value === other.when.equals && !state.answers[other.id],
       );
       if (next) return editField(next);
+      if (state.autoDescribed) setDescription(copy.autoDescription(state.item, state.answers));
       message("Pronto, atualizei o resumo.");
       makeSubject();
     });
@@ -1212,6 +1225,17 @@
     if (describedField && state.answers["descricao-do-problema"]) {
       state.description = state.answers["descricao-do-problema"];
       return reviewWithAI();
+    }
+    // A descrição montada pelo "Sem mais detalhes" acompanha o tipo e as respostas atuais: a
+    // pessoa pode ter trocado o tipo depois do alerta da IA (o #017 ficou com o texto do tipo
+    // anterior). Se o tipo novo pede descrição, ela é perguntada de novo.
+    if (state.autoDescribed) {
+      if (copy.detailsOptional(state.item, state.equipmentIntent)) {
+        setDescription(copy.autoDescription(state.item, state.answers));
+        return reviewWithAI();
+      }
+      state.autoDescribed = false;
+      state.description = "";
     }
     // Quem contou com as próprias palavras não precisa escrever de novo.
     if (state.fromDescribe && state.description) return reviewWithAI();
@@ -1230,6 +1254,7 @@
       optional ? "Algum detalhe a mais? (opcional)" : "Conte aqui o que você precisa…",
       (text) => {
         setDescription(text === "__none" ? copy.autoDescription(state.item, state.answers) : text);
+        state.autoDescribed = text === "__none";
         state.review = null;
         reviewWithAI();
       },
@@ -1383,7 +1408,11 @@
         metrics.update({ coherence: value === "keep" ? "manteve" : "trocou o tipo" });
         if (value === "keep") return afterReview();
         state.fromDescribe = true;
-        message("Tudo bem. Escolha o tipo certo; seu relato continua guardado como descrição.");
+        message(
+          state.autoDescribed
+            ? "Tudo bem. Escolha o tipo certo e eu refaço a descrição com as novas respostas."
+            : "Tudo bem. Escolha o tipo certo; seu relato continua guardado como descrição.",
+        );
         askArea();
       },
       "O RELATO COMBINA COM O PEDIDO?",

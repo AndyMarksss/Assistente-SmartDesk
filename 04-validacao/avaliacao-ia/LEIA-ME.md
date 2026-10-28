@@ -30,3 +30,11 @@ node gerar-relatorio.cjs antes,depois controle-antes,controle-depois tentativa-s
 ```
 
 Os pedidos são espaçados (4,5 s) para respeitar o limite gratuito do Gemini (500 pedidos por dia por projeto); quando a IA não responde, o script espera e tenta de novo, e uma nova execução retoma de onde parou. Custo aproximado: rodada completa ~250 pedidos e 30 minutos; controle ~36; percurso ~115; só extração 57; só revisão 57.
+
+## Verificação de todas as requisições (0.12.17, 2026-10-28)
+
+`verificar-requisicoes.cjs` chama a IA como a conversa faz, nos 57 caminhos: identificar (`/api/analyze`) e extrair (`/api/extract`) com o relato claro; revisar (`/api/assist`) e dar assunto (`/api/subject`) como no percurso pelos botões — campos já respondidos e o relato vago, que não repete esses dados —, mais cinco casos-limite vistos na planilha (relato sem sentido, item de outra área, relato de uma palavra). Marca "REPETE" quando a pergunta volta a um dado já respondido. Resultado em `relatorio-requisicoes-v0.12.17.md`; dados em `requisicoes-antes.json`, `requisicoes-depois.json` e nas rodadas intermediárias `requisicoes-parcial-*.json`.
+
+```bash
+node verificar-requisicoes.cjs --rodada depois --etapas assist,subject --intervalo 7000
+```
