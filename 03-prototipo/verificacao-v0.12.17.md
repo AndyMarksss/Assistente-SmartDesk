@@ -38,4 +38,10 @@ Arrastar um cartão de "Em atendimento" para a coluna que rola: "#SIM-002 movido
 
 Painel nos 12 tamanhos, dois temas, comparado com a 0.12.16: nenhum achado novo. Chat (36 medições por tema): nenhum achado novo no claro; no escuro, o rótulo "SmartDesk" (10 px) da primeira mensagem passou a ser medido em três celulares deitados, porque agora a mensagem aparece na primeira tela.
 
+## Pages (depois de publicar; Apps Script @32, `/exec?api=health` → 0.12.17)
+
+- Abertura do chat em 1920 × 912, 1366 × 768, 384 × 700 e 390 × 664, sem e com dados salvos: nenhuma rolagem (8 de 8).
+- Quadro com os chamados reais da planilha em 1920 × 912: "Novos chamados" (14) com 4 cartões inteiros e metade do 5º, quadro de 866 px na janela de 912 px; em 1366 × 768, 2 e meio (cartões reais de 198 px).
+- IA pelo Apps Script (sem envio): TI-COMP-005 com o nome do programa respondido, TI-MENT-002 com o relatório respondido e Audiovisual com data e horário (relato parecido com o do #014) — nenhuma pergunta repetida; Agendas do Google perguntou a mensagem de erro, não o local. Assuntos: "TV da recepção não pega os canais"; "Solicitação de Caixa de Som e Microfone para evento" (com "Não" em "É para um evento?" — o modelo ainda chama a reunião de pais de evento). Respostas em 4–22 s; o Gemini seguia lento.
+
 Evidências EVID-285 a EVID-292.
