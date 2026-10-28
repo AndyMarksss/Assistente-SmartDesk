@@ -1,0 +1,9 @@
+assets/vendor/
+server/data/
+versoes/
+.env*
+
+# Artefatos do Apps Script gerados a partir das fontes.
+integracoes/apps-script/PortalChat.html
+integracoes/apps-script/PortalAdmin.html
+integracoes/apps-script/PortalShared.gs

@@ -623,4 +623,28 @@ Próxima evidência: EVID-205.
 
 - EVID-273: [painel-interativo-0-12-15](EVID-273_painel-interativo-0-12-15.jpg) — Painel 0.12.15: abertura em 1864×958 com o quadro à vista; filtros Abertos › TI › Computador nos temas escuro e claro (faixa de filtros, gráfico descendo para categorias, colunas fora do filtro apagadas); e 1280×720 com o aviso "12 chamados no quadro".
 
-Próxima evidência: EVID-274.
+## 2026-10-28 — SmartDesk 0.12.16: planilha no painel, abertura do chat e correção por campo
+
+- EVID-274: [painel-esqueleto-01215](EVID-274_painel-esqueleto-01215.webp) — Print do usuário do esqueleto de carregamento da 0.12.15: número antigo de "Chamados abertos" à vista, barras largas e quatro colunas.
+
+- EVID-275: [painel-avaliacao-vazio-01215](EVID-275_painel-avaliacao-vazio-01215.webp) — Print do usuário do painel publicado em "Chamados desta avaliação" vazio, com chamados na planilha.
+
+- EVID-276: [chat-desktop-dados-salvos-01215](EVID-276_chat-desktop-dados-salvos-01215.webp) — Print do usuário do chat no desktop com dados salvos: duas mensagens e o quadro de boas-vindas cortado em cima.
+
+- EVID-277: [chat-celular-chrome-01215](EVID-277_chat-celular-chrome-01215.jpg) — Print do usuário no celular (Chrome): o quadro de boas-vindas ocupa a área e a mensagem inicial fica abaixo.
+
+- EVID-278: [chat-celular-samsung-01215](EVID-278_chat-celular-samsung-01215.jpg) — O mesmo no Samsung Internet, onde quadro e mensagem cabiam.
+
+- EVID-279: [resumo-so-editar-descricao-01215](EVID-279_resumo-so-editar-descricao-01215.webp) — Print do usuário do resumo com apenas "Editar descrição" para corrigir.
+
+- EVID-280: [pages-envio-p99-016](EVID-280_pages-envio-p99-016.jpg) — Envio técnico P99 pelo GitHub Pages: o chat confirmou o chamado #016, gravado na aba Chamados (removível com removerChamadosDosParticipantes).
+
+- EVID-281: [pages-acompanhar-016](EVID-281_pages-acompanhar-016.jpg) — Consulta pelo chat no Pages: "Acompanhar um chamado" com #016 e o e-mail usado mostrou etapa, área e categoria.
+
+- EVID-282: [abertura-chat-0-12-16](EVID-282_abertura-chat-0-12-16.png) — Abertura do chat 0.12.16: celular 384×700 sem e com dados salvos (quadro compacto e mensagem à vista) e desktop 1864×958 com dados salvos (quadro inteiro, uma saudação).
+
+- EVID-283: [corrigir-um-dado-0-12-16](EVID-283_corrigir-um-dado-0-12-16.jpg) — Resumo 0.12.16: "Corrigir um dado" com a lista de campos e a descrição voltando preenchida para ajuste.
+
+- EVID-284: [painel-alturas-esqueleto-0-12-16](EVID-284_painel-alturas-esqueleto-0-12-16.jpg) — Painel 0.12.16: quadro com colunas e cartões da mesma altura e o esqueleto de sete colunas ao clicar em "Atualizar".
+
+Próxima evidência: EVID-285.

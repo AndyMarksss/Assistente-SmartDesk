@@ -46,7 +46,7 @@ function build(destination, address = "") {
         '<body><p role="status">A conexão Google ainda não está pronta para avaliação.</p>',
       );
     html = html
-      .replace("Chamados do Google", "Chamados desta avaliação")
+      .replace("Chamados do Google", "Chamados reais (planilha)")
       .replace(
         "Abra o SmartDesk pelo servidor local para usar a IA e enviar chamados.",
         "Conectando às integrações Google…",

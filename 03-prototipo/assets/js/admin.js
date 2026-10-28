@@ -70,33 +70,46 @@
   }
 
   // --- Esqueleto enquanto os dados chegam --------------------------------------------------
+  // Mesma forma da tela pronta: números pequenos, linhas do gráfico, sete colunas com cartões.
   function skeleton() {
     document.querySelector(".admin-main").classList.add("is-skeleton");
+    const line = (kind = "") => el("span", undefined, "skeleton-line" + (kind ? " " + kind : "")),
+      row = (cls, ...parts) => {
+        const node = el(cls === "queue" ? "li" : "div", undefined, "skeleton-row " + cls);
+        node.append(...parts);
+        return node;
+      };
     // Nada dos dados anteriores fica à vista enquanto a nova origem carrega.
-    $("area-chart").replaceChildren(
-      ...[0, 1, 2, 3].map(() => el("div", undefined, "skeleton-line")),
-    );
-    $("selfhelp-bar").style.width = "0%";
-    $("selfhelp-rate").textContent = "—";
-    $("area-headline").textContent = "Chamados por área";
-    $("area-trail").replaceChildren();
-    $("pulse-headline").textContent = "Carregando a fila…";
-    $("pulse-action").hidden = true;
+    for (const id of ["metric-total", "metric-open", "metric-active", "metric-done"])
+      $(id).textContent = "";
     for (const key of ["open", "active", "done"]) share(key, 0, 0);
+    for (const button of document.querySelectorAll(".metric-filter"))
+      button.closest("article").classList.remove("is-selected");
+    $("area-headline").replaceChildren(line("title"));
+    $("area-trail").replaceChildren();
+    $("area-chart").replaceChildren(
+      ...[0, 1, 2, 3].map(() =>
+        row("chart", el("span", undefined, "skeleton-dot"), line("label"), line("bar")),
+      ),
+    );
+    $("pulse-headline").replaceChildren(line("title"));
+    $("pulse-action").hidden = true;
+    $("queue-insight").replaceChildren(line(), line("short"));
+    $("selfhelp-rate").replaceChildren(line("rate"));
+    $("selfhelp-bar").style.width = "0%";
+    $("selfhelp-insight").replaceChildren(line(), line("short"));
     $("queue-list").replaceChildren(
-      ...[0, 1, 2, 3].map(() => el("li", undefined, "skeleton-line")),
+      ...Array.from({ length: 7 }, () =>
+        row("queue", el("span", undefined, "skeleton-dot small"), line("label")),
+      ),
     );
     $("kanban").replaceChildren();
-    for (let c = 0; c < 4; c++) {
+    for (let c = 0; c < 7; c++) {
       const column = el("section", undefined, "kanban-column skeleton-column");
-      column.append(el("div", undefined, "skeleton-line short"));
-      for (let i = 0; i < 2; i++) {
+      column.append(line("cap"));
+      for (let i = 0; i < (c % 3 === 1 ? 1 : 2); i++) {
         const card = el("div", undefined, "skeleton-card");
-        card.append(
-          el("div", undefined, "skeleton-line tiny"),
-          el("div", undefined, "skeleton-line"),
-          el("div", undefined, "skeleton-line short"),
-        );
+        card.append(line("tiny"), line(), line("short"));
         column.append(card);
       }
       $("kanban").append(column);
@@ -192,13 +205,12 @@
       button.closest("article").classList.toggle("is-selected", on && Boolean(view.stage));
     }
     // Pulso: a conclusão primeiro (o que pede ação agora) e o detalhe logo abaixo.
-    // No Pages, "Chamados desta avaliação" só lista o que foi enviado nesta aba (privacidade).
-    const tabOnly = mode === "google" && !!window.smartdeskRemote && !tickets.length;
+    const sheetEmpty = mode === "google" && !tickets.length;
     $("pulse-headline").textContent = !total
       ? filtered
         ? "Nenhum chamado com estes filtros"
-        : tabOnly
-          ? "Nenhum chamado enviado nesta aba"
+        : sheetEmpty
+          ? "Nenhum chamado na planilha ainda"
           : "Nenhum chamado nesta origem"
       : fresh
         ? fresh === 1
@@ -221,8 +233,8 @@
         (extras.length ? " " + joinNames(extras).replace(/^./, (c) => c.toUpperCase()) + "." : "")
       : filtered
         ? "Limpe os filtros para ver todos os chamados."
-        : tabOnly
-          ? "Por privacidade, o painel publicado mostra só os chamados enviados nesta aba do navegador, por até 1 hora. Todos os chamados ficam na planilha do Google."
+        : sheetEmpty
+          ? "Os chamados enviados pelo chat aparecem aqui."
           : "Crie simulações ou carregue os dados do Google.";
     $("area-filter").value = view.area;
     renderAreas(context);
@@ -511,6 +523,21 @@
     if (t.participant) tags.push(["fa-user-check", "Teste " + t.participant, "test"]);
     return tags;
   }
+  // Todos os cartões do quadro com a altura do mais alto (rodapés alinhados); refeito quando o
+  // quadro muda de largura.
+  let boardWidth = 0;
+  function equalizeCards() {
+    const board = $("kanban"),
+      cards = [...board.querySelectorAll(".ticket-card")];
+    board.style.removeProperty("--card-h");
+    if (cards.length)
+      board.style.setProperty("--card-h", Math.max(...cards.map((c) => c.offsetHeight)) + "px");
+  }
+  new ResizeObserver(([entry]) => {
+    if (Math.round(entry.contentRect.width) === boardWidth) return;
+    boardWidth = Math.round(entry.contentRect.width);
+    equalizeCards();
+  }).observe($("kanban"));
   function renderBoard(animate = false, scoped = tickets.filter(inScope)) {
     $("kanban").replaceChildren();
     for (const stage of [
@@ -534,6 +561,7 @@
       else if (!list.length) column.append(el("p", "Solte um cartão aqui", "empty-column"));
       $("kanban").append(column);
     }
+    equalizeCards();
   }
   function card(t, animate, index) {
     const node = el("button", undefined, "ticket-card");
@@ -664,7 +692,7 @@
     $("kanban").setAttribute("aria-busy", "true");
     $("admin-error").textContent = "";
     $("sync-status").textContent = "Carregando chamados…";
-    if (!loaded) skeleton();
+    skeleton();
     try {
       const result = await api("/api/admin/tickets?mode=" + selected);
       if (id !== loadId) return;
@@ -731,6 +759,7 @@
       ...(t.participant ? [["Participante do teste", t.participant]] : []),
     ])
       $("detail-person").append(el("dt", label), el("dd", value));
+    $("detail-masked").hidden = !t.masked;
     $("detail-data").replaceChildren();
     for (const [label, value] of [
       ["Necessidade", t.need],
@@ -884,7 +913,7 @@
       mode === "demo"
         ? "Simulações separadas dos chamados reais."
         : window.smartdeskRemote
-          ? "Só os chamados enviados nesta aba, por até 1 hora (privacidade)."
+          ? "Todos os chamados da planilha; nomes e e-mails de outras pessoas abreviados."
           : "Leitura e atualização da planilha conectada ao SmartDesk.";
   }
   $("data-mode").addEventListener("change", () => {
@@ -905,7 +934,8 @@
   });
   // Quem acabou de enviar um chamado nesta aba abre o painel direto nele.
   try {
-    if (sessionStorage.getItem("smartdesk-sent")) showMode("google");
+    // No Pages o painel abre nos chamados reais; localmente, depois de enviar um chamado.
+    if (window.smartdeskRemote || sessionStorage.getItem("smartdesk-sent")) showMode("google");
   } catch {}
   load();
 })();

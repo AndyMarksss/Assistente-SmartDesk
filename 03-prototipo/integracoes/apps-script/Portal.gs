@@ -333,18 +333,18 @@ function portalTicket_(body, item) {
   return ticket;
 }
 var PORTAL_DEMO_NEEDS = {
-      "Projetor sem imagem": "Projetor",
-      "Impressora não imprime": "Não imprime",
-      "Acesso ao Gmail": "Gmail",
-      "Conexão instável": "INTERNET > Problemas com Wi-Fi",
-      "Reserva de microfone": "Microfone",
-      "Toner magenta": "Solicitação de Toner / Tinta",
-      "Computador lento": "COMPUTADOR > Problemas com lentidão",
-      "Acesso ao Drive": "Drive",
-      "Notebook para apresentação": "COMPUTADOR > Reserva de Notebook",
-      "Projetor para evento": "Projetor",
-      "Papel atolado": "Papel Atolado",
-      "Dúvida no sistema": "Dúvidas",
+  "Projetor sem imagem": "Projetor",
+  "Impressora não imprime": "Não imprime",
+  "Acesso ao Gmail": "Gmail",
+  "Conexão instável": "INTERNET > Problemas com Wi-Fi",
+  "Reserva de microfone": "Microfone",
+  "Toner magenta": "Solicitação de Toner / Tinta",
+  "Computador lento": "COMPUTADOR > Problemas com lentidão",
+  "Acesso ao Drive": "Drive",
+  "Notebook para apresentação": "COMPUTADOR > Reserva de Notebook",
+  "Projetor para evento": "Projetor",
+  "Papel atolado": "Papel Atolado",
+  "Dúvida no sistema": "Dúvidas",
 };
 function portalDemo_(token, route, body) {
   var cache = CacheService.getScriptCache(),
@@ -401,6 +401,35 @@ var PORTAL_STAGES = [
   "Finalizado",
   "Cancelado",
 ];
+// O Pages é público: nos chamados de outras pessoas, só o primeiro nome com a inicial do último,
+// e-mail com o começo e o domínio, e anexos sem endereço (a contagem continua). A planilha
+// guarda tudo.
+function portalShortName_(name) {
+  var parts = String(name || "")
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean);
+  if (!parts.length) return "";
+  return parts.length > 1
+    ? parts[0] + " " + parts[parts.length - 1].charAt(0).toUpperCase() + "."
+    : parts[0];
+}
+function portalMaskEmail_(email) {
+  var match = /^([^@\s]+)@([^@\s]+)$/.exec(String(email || "").trim());
+  return match ? match[1].slice(0, 2) + "•••@" + match[2] : "";
+}
+function portalPublicTicket_(ticket) {
+  var copy = JSON.parse(JSON.stringify(ticket));
+  copy.name = portalShortName_(copy.name);
+  copy.email = portalMaskEmail_(copy.email);
+  copy.attachments = (copy.attachments || []).map(function () {
+    return "";
+  });
+  if (copy.authorization && copy.authorization.by)
+    copy.authorization.by = portalShortName_(copy.authorization.by);
+  copy.masked = true;
+  return copy;
+}
 function smartdeskCall(session, route, body) {
   try {
     var state = portalSession_(session);
@@ -442,9 +471,9 @@ function smartdeskCall(session, route, body) {
       }
       if (!listing && route !== "/api/admin/status")
         throw new InvalidRequest("Simulações são separadas dos dados reais.");
+      // 0.12.16: o painel publicado mostra todos os chamados da planilha e muda a etapa de
+      // qualquer um; nome e e-mail de quem não abriu o chamado nesta aba chegam abreviados.
       var owned = JSON.parse(CacheService.getScriptCache().get("portal:owned:" + session) || "[]");
-      if (!listing && !owned.includes(body.requestId))
-        throw new InvalidRequest("Este chamado não pertence a esta sessão de avaliação.", 403);
       var response = portalResult_(
         doPost({
           postData: {
@@ -459,7 +488,9 @@ function smartdeskCall(session, route, body) {
         }),
       );
       if (listing) {
-        response.tickets = response.tickets.filter((ticket) => owned.includes(ticket.requestId));
+        response.tickets = response.tickets.map((ticket) =>
+          owned.includes(ticket.requestId) ? ticket : portalPublicTicket_(ticket),
+        );
         response.stages = PORTAL_STAGES; // o painel monta as colunas a partir desta lista
         try {
           // Totais anônimos de autoatendimento (sem nomes): mostram se as dicas da IA ajudam.

@@ -1,8 +1,8 @@
 {
   "versao": 1,
   "projeto": "SmartDesk",
-  "atualizado_em": "2026-10-22",
-  "proximo_numero": 274,
+  "atualizado_em": "2026-10-28",
+  "proximo_numero": 285,
   "evidencias": [
     {
       "numero": "EVID-001",
@@ -3284,6 +3284,138 @@
       "data_inclusao": "2026-10-22",
       "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com envio ao Google desativado",
       "sha256": "7A53FA35C69FC93418810A5549174C64404B20AF566221AEED0D1A666A166422",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-274",
+      "arquivo": "EVID-274_painel-esqueleto-01215.webp",
+      "etapa": "SmartDesk 0.12.16 — planilha no painel, abertura e correção",
+      "descricao": "Print do usuário do esqueleto de carregamento da 0.12.15: número antigo de \"Chamados abertos\" à vista, barras largas e quatro colunas.",
+      "data_aproximada": "2026-10-28",
+      "fundamento_data": "Captura do usuário em 2026-10-27/28",
+      "data_inclusao": "2026-10-28",
+      "origem": "Print enviado pelo usuário na conversa com o assistente",
+      "sha256": "E724A15E980F9DDFE07D618F30FBE50CBFDE55BA3CCBE85CFDA2D7A760D28B5E",
+      "status": "registro do pedido; estado anterior (0.12.15)"
+    },
+    {
+      "numero": "EVID-275",
+      "arquivo": "EVID-275_painel-avaliacao-vazio-01215.webp",
+      "etapa": "SmartDesk 0.12.16 — planilha no painel, abertura e correção",
+      "descricao": "Print do usuário do painel publicado em \"Chamados desta avaliação\" vazio, com chamados na planilha.",
+      "data_aproximada": "2026-10-28",
+      "fundamento_data": "Captura do usuário em 2026-10-27/28",
+      "data_inclusao": "2026-10-28",
+      "origem": "Print enviado pelo usuário na conversa com o assistente",
+      "sha256": "437FFE683BEFBF7BD063A64E0A3C987CCBE623F1009477033254908848FED4A0",
+      "status": "registro do pedido; estado anterior (0.12.15)"
+    },
+    {
+      "numero": "EVID-276",
+      "arquivo": "EVID-276_chat-desktop-dados-salvos-01215.webp",
+      "etapa": "SmartDesk 0.12.16 — planilha no painel, abertura e correção",
+      "descricao": "Print do usuário do chat no desktop com dados salvos: duas mensagens e o quadro de boas-vindas cortado em cima.",
+      "data_aproximada": "2026-10-28",
+      "fundamento_data": "Captura do usuário em 2026-10-27/28",
+      "data_inclusao": "2026-10-28",
+      "origem": "Print enviado pelo usuário na conversa com o assistente",
+      "sha256": "D53A96A386BD9BE6EBCFA76E9DF6D9B3DB6CB47C3ACD916E308C18587A8D2E56",
+      "status": "registro do defeito (0.12.15)"
+    },
+    {
+      "numero": "EVID-277",
+      "arquivo": "EVID-277_chat-celular-chrome-01215.jpg",
+      "etapa": "SmartDesk 0.12.16 — planilha no painel, abertura e correção",
+      "descricao": "Print do usuário no celular (Chrome): o quadro de boas-vindas ocupa a área e a mensagem inicial fica abaixo.",
+      "data_aproximada": "2026-10-28",
+      "fundamento_data": "Captura do usuário em 2026-10-27/28",
+      "data_inclusao": "2026-10-28",
+      "origem": "Print enviado pelo usuário na conversa com o assistente",
+      "sha256": "D810B727E1F44D40B91997E4A8F69758D7D74294444763635B0E54970A68A657",
+      "status": "registro do defeito (0.12.15)"
+    },
+    {
+      "numero": "EVID-278",
+      "arquivo": "EVID-278_chat-celular-samsung-01215.jpg",
+      "etapa": "SmartDesk 0.12.16 — planilha no painel, abertura e correção",
+      "descricao": "O mesmo no Samsung Internet, onde quadro e mensagem cabiam.",
+      "data_aproximada": "2026-10-28",
+      "fundamento_data": "Captura do usuário em 2026-10-27/28",
+      "data_inclusao": "2026-10-28",
+      "origem": "Print enviado pelo usuário na conversa com o assistente",
+      "sha256": "29D10179FEF599210C92C4610E336709287DD52F67B452CAD1C22C0F5D4D5ACB",
+      "status": "registro do defeito (0.12.15)"
+    },
+    {
+      "numero": "EVID-279",
+      "arquivo": "EVID-279_resumo-so-editar-descricao-01215.webp",
+      "etapa": "SmartDesk 0.12.16 — planilha no painel, abertura e correção",
+      "descricao": "Print do usuário do resumo com apenas \"Editar descrição\" para corrigir.",
+      "data_aproximada": "2026-10-28",
+      "fundamento_data": "Captura do usuário em 2026-10-27/28",
+      "data_inclusao": "2026-10-28",
+      "origem": "Print enviado pelo usuário na conversa com o assistente",
+      "sha256": "0E47FCDA5F66F78472862620CDAD6C4EC2A4BC7CC4E3479665AAE930FFA9DF7A",
+      "status": "registro do pedido; estado anterior (0.12.15)"
+    },
+    {
+      "numero": "EVID-280",
+      "arquivo": "EVID-280_pages-envio-p99-016.jpg",
+      "etapa": "SmartDesk 0.12.16 — planilha no painel, abertura e correção",
+      "descricao": "Envio técnico P99 pelo GitHub Pages: o chat confirmou o chamado #016, gravado na aba Chamados (removível com removerChamadosDosParticipantes).",
+      "data_aproximada": "2026-10-28",
+      "fundamento_data": "Captura do assistente em 2026-10-27",
+      "data_inclusao": "2026-10-28",
+      "origem": "Edge sem janela controlado pelo assistente (CDP) no GitHub Pages; envio técnico autorizado pelo usuário",
+      "sha256": "8324F3942690B0FEFEA787346DBF84D4E3DF963AAE666A0C3443D195F9A5C2A3",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-281",
+      "arquivo": "EVID-281_pages-acompanhar-016.jpg",
+      "etapa": "SmartDesk 0.12.16 — planilha no painel, abertura e correção",
+      "descricao": "Consulta pelo chat no Pages: \"Acompanhar um chamado\" com #016 e o e-mail usado mostrou etapa, área e categoria.",
+      "data_aproximada": "2026-10-28",
+      "fundamento_data": "Captura do assistente em 2026-10-27",
+      "data_inclusao": "2026-10-28",
+      "origem": "Edge sem janela controlado pelo assistente (CDP) no GitHub Pages; envio técnico autorizado pelo usuário",
+      "sha256": "4D299683A47F1DDC31BB1597A2D66B84E67C157326E27935DEF341770D40655E",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-282",
+      "arquivo": "EVID-282_abertura-chat-0-12-16.png",
+      "etapa": "SmartDesk 0.12.16 — planilha no painel, abertura e correção",
+      "descricao": "Abertura do chat 0.12.16: celular 384×700 sem e com dados salvos (quadro compacto e mensagem à vista) e desktop 1864×958 com dados salvos (quadro inteiro, uma saudação).",
+      "data_aproximada": "2026-10-28",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-28",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com envio ao Google desativado",
+      "sha256": "D8770799F1A570D10E96AB042D9B064388ACB79FF43462E325670F0E21933C46",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-283",
+      "arquivo": "EVID-283_corrigir-um-dado-0-12-16.jpg",
+      "etapa": "SmartDesk 0.12.16 — planilha no painel, abertura e correção",
+      "descricao": "Resumo 0.12.16: \"Corrigir um dado\" com a lista de campos e a descrição voltando preenchida para ajuste.",
+      "data_aproximada": "2026-10-28",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-28",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com envio ao Google desativado",
+      "sha256": "DEA7C3B4EF6E52985B2B92975A70616C769271B46ED92A922390F497938D4922",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-284",
+      "arquivo": "EVID-284_painel-alturas-esqueleto-0-12-16.jpg",
+      "etapa": "SmartDesk 0.12.16 — planilha no painel, abertura e correção",
+      "descricao": "Painel 0.12.16: quadro com colunas e cartões da mesma altura e o esqueleto de sete colunas ao clicar em \"Atualizar\".",
+      "data_aproximada": "2026-10-28",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-28",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com envio ao Google desativado",
+      "sha256": "A7B072E87B23B4BCD0533F03253C511744163596D3E460936F2A32F6245F8E63",
       "status": "verificação técnica; não é validação com usuários"
     }
   ]

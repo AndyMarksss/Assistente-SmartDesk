@@ -412,23 +412,30 @@
     context();
     stage("context");
     refreshStatus();
-    message("Olá! Sou o assistente do SmartDesk. Vamos organizar seu atendimento juntos?");
+    const saved = F.profile.read();
+    if (saved) {
+      const bubble = message("");
+      bubble.append(document.createTextNode("Olá, "));
+      bubble.append(el("strong", "", saved.name.split(/\s+/)[0]));
+      bubble.append(
+        document.createTextNode(
+          "! Que bom te ver de novo. Seus dados estão salvos neste dispositivo: quer usá-los para pular nome, e-mail e setor?",
+        ),
+      );
+    } else message("Olá! Sou o assistente do SmartDesk. Vamos organizar seu atendimento juntos?");
+    // O quadro de boas-vindas fica inteiro; só rola até a mensagem se ela não couber na tela.
+    messages.whenReady(() =>
+      requestAnimationFrame(() => {
+        const log = byId("conversation"),
+          last = byId("messages").lastElementChild;
+        if (last && last.getBoundingClientRect().bottom > log.getBoundingClientRect().bottom + 2)
+          follower.follow();
+      }),
+    );
     offerStart();
   }
   function offerStart() {
     const known = F.profile.read();
-    if (known && !state.name) {
-      const bubble = message("");
-      bubble.append(document.createTextNode("Que bom te ver de novo, "));
-      bubble.append(el("strong", "", known.name.split(/\s+/)[0]));
-      bubble.append(
-        document.createTextNode(
-          "! Seus dados estão salvos neste dispositivo. Quer usá-los para pular as perguntas de nome, e-mail e setor?",
-        ),
-      );
-      // Mostra a pergunta mesmo com a abertura grande na tela.
-      follower.follow();
-    }
     choose(
       [
         ...(known && !state.name
@@ -978,10 +985,14 @@
     if ((state.prefilled[field.id] || state.keepAnswered) && state.answers[field.id])
       return askField(index + 1);
     checkpoint(() => askField(index));
-    const done = (value) => {
+    askFieldValue(field, (value) => {
       state.answers[field.id] = value;
       askField(index + 1);
-    };
+    });
+  }
+  // Pergunta um campo do chamado; a resposta atual vem preenchida (texto, data e hora) ou em
+  // destaque (escolhas), para corrigir sem apagar.
+  function askFieldValue(field, done) {
     if (field.id === "computador") {
       const hardware = policy.asksEquipmentIntent(state.item);
       message(
@@ -1055,6 +1066,146 @@
         (field.id === "descricao-do-problema" && state.fromDescribe ? state.description : ""),
       copy.quickReplies(state.item, field, { email: state.email }),
     );
+  }
+  // --- Correção pontual no resumo ------------------------------------------------------------
+  // A pessoa escolhe o dado; texto vem preenchido para ajustar e escolhas mostram as opções com
+  // a atual em destaque. Depois volta ao resumo (com o assunto refeito quando o pedido muda).
+  function askCorrection() {
+    checkpoint(askCorrection);
+    message(
+      "Qual dado você quer corrigir? O que já está preenchido vem junto, para você só ajustar.",
+    );
+    const fields = (state.item.fields || []).filter(
+      (field) =>
+        field.id !== "descricao-do-problema" &&
+        (!field.when || state.answers[field.when.field] === field.when.equals),
+    );
+    const followUps = state.followUps.filter((entry) => entry.answer);
+    const short = (text) => (text.length > 34 ? text.slice(0, 33).trim() + "…" : text);
+    const updated = (refreshSubject) => {
+      message("Pronto, atualizei o resumo.");
+      return refreshSubject ? makeSubject() : showSummary();
+    };
+    choose(
+      [
+        { label: "Nome", value: "name", icon: "fa-user" },
+        { label: "E-mail", value: "email", icon: "fa-envelope" },
+        { label: "Setor", value: "sector", icon: "fa-building" },
+        ...fields.map((field) => ({
+          label: field.id === "computador" ? "Quem utiliza" : field.label,
+          value: "field:" + field.id,
+          icon: "fa-pen-to-square",
+        })),
+        { label: "Descrição", value: "description", icon: "fa-align-left" },
+        ...followUps.map((entry, index) => ({
+          label: "Resposta: " + short(entry.question),
+          value: "follow:" + index,
+          icon: "fa-comment",
+        })),
+        { label: "Voltar ao resumo", value: "back", icon: "fa-arrow-left" },
+      ],
+      (choice) => {
+        if (choice === "back") return showSummary();
+        if (choice === "name") {
+          message("Qual é o nome e sobrenome certo?");
+          return freeText(
+            "Seu nome e sobrenome…",
+            (name) => {
+              state.name = name.trim();
+              context();
+              updated(false);
+            },
+            100,
+            (value) =>
+              policy.fullName(value)
+                ? null
+                : "Informe seu nome e sobrenome, como você usa no trabalho.",
+            state.name,
+          );
+        }
+        if (choice === "email") {
+          message("Qual é o e-mail certo para o retorno?");
+          return freeText(
+            "Seu e-mail institucional…",
+            (email) => {
+              state.email = email.trim().toLowerCase();
+              context();
+              updated(false);
+            },
+            160,
+            (value) =>
+              EMAIL.test(value.trim())
+                ? null
+                : "Esse e-mail parece incompleto. Confira o nome, o @ e o domínio.",
+            state.email,
+          );
+        }
+        if (choice === "sector") {
+          message("Em qual setor você trabalha? Hoje está " + state.sector + ".");
+          return comboBox(
+            "Seu setor",
+            desk.flows.sectors.map((value) => ({ value, icon: F.sectorIcon(value) })),
+            (sector) => {
+              state.sector = sector;
+              context();
+              updated(true);
+            },
+            { placeholder: "Digite ou escolha seu setor, ex.: secretaria" },
+          );
+        }
+        if (choice === "description") {
+          message("Ajuste a descrição como preferir:");
+          return freeText(
+            "Conte aqui o que você precisa…",
+            (text) => {
+              setDescription(text);
+              updated(true);
+            },
+            state.item.fields.some((f) => f.id === "descricao-do-problema") ? 1000 : 2000,
+            (value) =>
+              policy.usefulDescription(value)
+                ? null
+                : "Conte o que acontece ou o que você precisa. Só um número ou símbolo não explica o chamado.",
+            state.description,
+          );
+        }
+        if (choice.startsWith("follow:")) {
+          const entry = followUps[Number(choice.slice(7))];
+          message(entry.question);
+          return freeText(
+            "Sua resposta…",
+            (answer) => {
+              entry.answer = answer.trim();
+              updated(true);
+            },
+            500,
+            null,
+            entry.answer,
+          );
+        }
+        editField(fields.find((field) => "field:" + field.id === choice));
+      },
+      "QUAL DADO VOCÊ QUER CORRIGIR?",
+    );
+  }
+  // Corrige um campo; se a resposta muda quem depende dele (ex.: evento → roteiro), pergunta o
+  // que passou a valer e descarta o que deixou de valer.
+  function editField(field) {
+    askFieldValue(field, (value) => {
+      state.answers[field.id] = value;
+      delete state.prefilled[field.id];
+      const dependents = (state.item.fields || []).filter(
+        (other) => other.when && other.when.field === field.id,
+      );
+      for (const other of dependents)
+        if (value !== other.when.equals) delete state.answers[other.id];
+      const next = dependents.find(
+        (other) => value === other.when.equals && !state.answers[other.id],
+      );
+      if (next) return editField(next);
+      message("Pronto, atualizei o resumo.");
+      makeSubject();
+    });
   }
   function afterFields() {
     const describedField = state.item.fields.some((f) => f.id === "descricao-do-problema");
@@ -1687,16 +1838,13 @@
           icon: "fa-paper-plane",
           primary: true,
         },
-        { label: "Editar descrição", value: "edit", icon: "fa-pen" },
+        { label: "Corrigir um dado", value: "edit", icon: "fa-pen" },
         ...(state.attachments.length
           ? [{ label: "Revisar anexos", value: "files", icon: "fa-paperclip" }]
           : []),
       ],
       (action) => {
-        if (action === "edit") {
-          state.fromDescribe = false;
-          return askDescription();
-        }
+        if (action === "edit") return askCorrection();
         if (action === "files") return askAttachments();
         sendTicket();
       },

@@ -169,3 +169,6 @@ No quadro, a cor da etapa fica no cabeçalho da coluna e no ponto ao lado do nú
 
 ## 0.12.15 — painel interativo
 Os filtros do painel moram em `view` (admin.js): `stage` (grupo de etapas dos indicadores), `area` e `need` (categoria = primeiro nível da necessidade); setor e busca vêm dos campos do quadro. `refresh()` recalcula indicadores, pulso, gráfico, fila, faixa de filtros e quadro; `render()` é só para dados novos. O gráfico de áreas parte do contexto (setor e busca) para permitir trocar de área. Ao mexer no topo do painel, medir onde o quadro começa em 1864 × 958 (meta: primeiro cartão inteiro à vista).
+
+## 0.12.16 — painel com a planilha toda e correção por campo
+No Pages, `/api/admin/tickets?mode=google` devolve todos os chamados; `portalPublicTicket_` (Portal.gs) abrevia nome e e-mail e tira os endereços dos anexos de quem não enviou na sessão — nunca mande dados completos de outras pessoas ao navegador público. No chat, `askFieldValue(field, done)` pergunta um campo com o valor atual (usada no fluxo e na correção do resumo); `editField` cuida dos campos dependentes (`when`). A abertura tem uma saudação só; meça com perfil salvo e sem, no celular e no desktop, se o quadro de boas-vindas e a primeira mensagem cabem.

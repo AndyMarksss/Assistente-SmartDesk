@@ -382,9 +382,8 @@
 /* 0.11 — painel: esqueleto, cartão que acabou de mudar de etapa e aviso. */
 @media (prefers-reduced-motion: no-preference) {
   .skeleton-line,
-  .is-skeleton .metrics strong,
-  .is-skeleton #queue-insight,
-  .is-skeleton #selfhelp-insight {
+  .skeleton-dot,
+  .is-skeleton .metrics strong {
     animation: skeleton-sweep 1300ms ease-in-out infinite;
   }
   .ticket-card.just-moved {

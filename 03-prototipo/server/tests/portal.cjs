@@ -100,7 +100,9 @@ const session = ctx.smartdeskStartSession_().session;
 assert.equal(session.length, 64);
 const call = (route, body) => ctx.smartdeskCall(session, route, body);
 assert.equal(call("/api/status").body.aiState, "standby");
-assert.equal(call("/api/admin/tickets?mode=google").body.tickets.length, 0);
+// Chamados já gravados por outras pessoas aparecem, sempre abreviados para esta sessão.
+const earlier = call("/api/admin/tickets?mode=google").body.tickets;
+assert(earlier.every((t) => t.masked && !/^[^•]+@/.test(t.email || "")));
 assert.equal(call("/api/admin/seed", { mode: "google" }).status, 400);
 assert.equal(call("/api/admin/seed", { mode: "demo" }).body.tickets.length, 12);
 assert.equal(call("/api/admin/seed", { mode: "demo" }).body.tickets.length, 12);
@@ -207,11 +209,16 @@ assert.equal(
   JSON.parse(ctx.doGet({ parameter: { page: "chat" } }).getContent()).service,
   "SmartDesk",
 );
+// 0.12.16: outra aba vê todos os chamados, com nome e e-mail abreviados e anexos sem endereço,
+// e pode mudar a etapa; quem enviou continua vendo os dados completos.
 const isolated = ctx.smartdeskStartSession_().session;
-assert.equal(
-  ctx.smartdeskCall(isolated, "/api/admin/tickets?mode=google", null).body.tickets.length,
-  0,
-);
+const publicList = ctx.smartdeskCall(isolated, "/api/admin/tickets?mode=google", null).body.tickets;
+assert.equal(publicList.length, earlier.length + 1);
+const seen = publicList.find((t) => t.requestId === body.requestId);
+assert.equal(seen.masked, true);
+assert.equal(seen.name, "Pessoa F.");
+assert.equal(seen.email, "fi•••@example.com");
+assert(seen.attachments.length && !seen.attachments.some(Boolean));
 assert.equal(
   ctx.smartdeskCall(isolated, "/api/admin/status", {
     mode: "google",
@@ -219,9 +226,22 @@ assert.equal(
     status: "Finalizado",
     expectedStatus: "Em atendimento",
   }).status,
-  403,
+  200,
 );
-assert.equal(call("/api/admin/tickets?mode=google").body.tickets.length, 1);
+const mine = call("/api/admin/tickets?mode=google").body.tickets.find(
+  (t) => t.requestId === body.requestId,
+);
+assert.equal(mine.email, body.email);
+assert(!mine.masked);
+assert.equal(
+  call("/api/admin/status", {
+    mode: "google",
+    requestId: body.requestId,
+    status: "Em atendimento",
+    expectedStatus: "Finalizado",
+  }).status,
+  200,
+);
 // A listagem pública traz as etapas: sem elas o painel não monta as colunas.
 assert.equal(call("/api/admin/tickets?mode=google").body.stages.length, 7);
 // 0.10: revisão da IA, sugestão de caminho, cotas e conferência do conteúdo dos anexos.
