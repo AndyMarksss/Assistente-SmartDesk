@@ -2,7 +2,7 @@
   "versao": 1,
   "projeto": "SmartDesk",
   "atualizado_em": "2026-10-29",
-  "proximo_numero": 299,
+  "proximo_numero": 301,
   "evidencias": [
     {
       "numero": "EVID-001",
@@ -3584,6 +3584,30 @@
       "data_inclusao": "2026-10-29",
       "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com Gemini real e envio ao Google desativado",
       "sha256": "DD036611319D5C0BF7D9CF9EFEDD5BF229661494C6B062EB2B4C572BB851E179",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-299",
+      "arquivo": "EVID-299_pages-rascunho-ia-entendi-0-12-18.png",
+      "etapa": "SmartDesk 0.12.18 no Pages — Apps Script @34",
+      "descricao": "Pages 0.12.18 com o Apps Script @34: relato fictício \"Preciso de projetor e caixa de som na sexta às 14h\" e rascunho com \"Entendi: você precisa de projetor e caixa de som na sexta às 14h\", data e horário preenchidos, \"É para um evento?\" e \"Mais detalhes\" como \"Vou perguntar\". Nenhum chamado enviado.",
+      "data_aproximada": "2026-10-29",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-29",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com Gemini real e envio ao Google desativado",
+      "sha256": "4DBA42F6F7EDC63FCD5ADC560748BAB996827133E3D99C2F70C917D3D2E627F4",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-300",
+      "arquivo": "EVID-300_pages-dicas-antes-dos-dados-0-12-18.png",
+      "etapa": "SmartDesk 0.12.18 no Pages — Apps Script @34",
+      "descricao": "Pages 0.12.18: relato fictício de mouse falhando e, logo depois do rascunho, dois passos seguros da IA antes de qualquer dado. Nenhum chamado enviado.",
+      "data_aproximada": "2026-10-29",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-29",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com Gemini real e envio ao Google desativado",
+      "sha256": "3D323E81666B575E0330AF1ED32BEB42DC2448BEF84CE885F188F60D3940E020",
       "status": "verificação técnica; não é validação com usuários"
     }
   ]

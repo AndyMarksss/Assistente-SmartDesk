@@ -681,4 +681,12 @@ Capturas do assistente na verificação técnica local da 0.12.18, com dados fic
 
 - EVID-298: [orienta-outra-equipe-0-12-18](EVID-298_orienta-outra-equipe-0-12-18.png) — Relato fictício de ar-condicionado pingando: "Pelo que você contou, isso parece ser assunto da manutenção do prédio, não da TI: vale procurar essa equipe…" e volta às áreas.
 
-Próxima evidência: EVID-299.
+## 2026-10-29 — SmartDesk 0.12.18 no Pages — Apps Script @34
+
+Capturas do assistente no GitHub Pages publicado (0.12.18, Apps Script @34), com dados fictícios, em 1920 × 912 e sem envio de chamado. Nenhuma captura é sessão com usuário.
+
+- EVID-299: [pages-rascunho-ia-entendi-0-12-18](EVID-299_pages-rascunho-ia-entendi-0-12-18.png) — Pages 0.12.18 com o Apps Script @34: relato fictício "Preciso de projetor e caixa de som na sexta às 14h" e rascunho com "Entendi: você precisa de projetor e caixa de som na sexta às 14h", data e horário preenchidos, "É para um evento?" e "Mais detalhes" como "Vou perguntar". Nenhum chamado enviado.
+
+- EVID-300: [pages-dicas-antes-dos-dados-0-12-18](EVID-300_pages-dicas-antes-dos-dados-0-12-18.png) — Pages 0.12.18: relato fictício de mouse falhando e, logo depois do rascunho, dois passos seguros da IA antes de qualquer dado. Nenhum chamado enviado.
+
+Próxima evidência: EVID-301.

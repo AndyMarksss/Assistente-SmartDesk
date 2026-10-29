@@ -99,11 +99,28 @@ Os envios abaixo foram simulados no navegador.
 
 Evidências EVID-293 a EVID-298 (servidor local, 1920 × 912).
 
-## A conferir no Pages depois de publicar
+## Pages (depois de publicar)
 
-Apps Script com o Portal.gs e o PortalShared.gs novos, `/exec?api=health` → 0.12.18. Repetir no Pages:
+Apps Script @34, `/exec?api=health` → 0.12.18. Nenhum chamado enviado.
 
-- a reserva com complemento;
-- o mouse com dicas antes dos dados;
-- o relato com dois pedidos (sem enviar);
-- o ar-condicionado.
+**1ª tentativa, logo depois do deploy:** o rascunho da reserva veio sem o "Entendi" e com os dados como "Vou perguntar". A chamada passou dos 20 s que o chat espera, provavelmente porque o Apps Script ainda estava frio. É o comportamento previsto sem IA, e o chamado segue normalmente.
+
+**Medição direta, com o Apps Script já aquecido:** identificar levou 7,6 s, e o rascunho 8,0 a 8,5 s, sempre com o entendimento, o relato completo/incompleto e as dicas.
+
+**Os quatro cenários, em seguida** (tempo do relato ao rascunho):
+
+| Cenário | Tempo | Resultado |
+|---|---|---|
+| Reserva | 25 s | "Entendi: …", data e horário preenchidos, "Mais detalhes: Vou perguntar" e, depois do "Não", o complemento |
+| Mouse | 22 s | dois passos seguros antes de qualquer dado |
+| Dois pedidos | 17 s | aviso "Você também contou outro pedido" |
+| Ar-condicionado | 9 s | orientação para a manutenção do prédio |
+
+**O que ficou impreciso no cenário de dois pedidos:**
+
+- o entendimento citou os dois pedidos;
+- a extração pôs "secretaria" em "Modelo da impressora" (de "a impressora da secretaria") e "Papel Atolado" em "Mensagem do visor".
+
+Os dois dados aparecem no rascunho para a pessoa conferir ("Corrigir os dados"). No teste local, o mesmo relato deixou o modelo para perguntar: a extração varia de uma chamada para outra.
+
+Evidências do Pages: EVID-299 e EVID-300.
