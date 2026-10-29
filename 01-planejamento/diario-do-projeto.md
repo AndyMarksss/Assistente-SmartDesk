@@ -133,3 +133,6 @@ IA verificada nas requisições dos 57 caminhos: sem perguntas repetidas, local 
 
 ## 2026-10-28 — Parte teórica e Canvas (rascunho)
 Rascunho da parte teórica em 06-documentacao/parte-teorica-hipoteses-e-validacao.md e Lean Canvas em 06-documentacao/canvas/ (lean-canvas.png para a entrega). A regra de decisão precisa ser aprovada antes da primeira sessão com usuários.
+
+## 0.12.18
+Correções da análise de coerência da árvore de decisões e IA que interpreta o relato, pergunta o que falta com as mesmas perguntas do caminho pelos botões, dá as dicas antes dos dados em defeito simples e orienta (dois pedidos, assunto de outra equipe, atendimento de outro setor). Desenhos do fluxo atualizados. Verificação em 03-prototipo/verificacoes/verificacao-v0.12.18.md e evidências EVID-293 a EVID-298.

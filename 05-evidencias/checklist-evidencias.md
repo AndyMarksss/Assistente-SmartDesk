@@ -634,4 +634,20 @@ Próxima evidência: EVID-205.
 
 - EVID-292: [descricao-apos-troca-de-tipo-0-12-17](EVID-292_descricao-apos-troca-de-tipo-0-12-17.png) — Resumo depois de trocar de Wi-Fi para "Computador não está conectado à rede" no alerta da IA (simulado): descrição automática do tipo novo (caso do #017). Capturado antes da troca do número de versão no rodapé.
 
-Próxima evidência: EVID-293.
+## 2026-10-29 — SmartDesk 0.12.18 — IA que interpreta, pergunta o que falta e orienta
+
+Capturas do assistente na verificação técnica local da 0.12.18, com dados fictícios, em 1920 × 912. O servidor usou o Gemini real e teve o envio ao Google desligado; o envio da EVID-297 foi simulado no navegador. Nenhuma captura é sessão com usuário.
+
+- EVID-293: [rascunho-ia-entendi-0-12-18](EVID-293_rascunho-ia-entendi-0-12-18.png) — Relato fictício "Preciso de projetor e caixa de som na sexta às 14h": rascunho com "Entendi: você precisa de projetor e caixa de som na sexta às 14h", data e horário preenchidos pela IA, "É para um evento?" e "Mais detalhes" como "Vou perguntar".
+
+- EVID-294: [complemento-do-relato-0-12-18](EVID-294_complemento-do-relato-0-12-18.png) — Depois dos dados, a pergunta de descrição do caminho pelos botões como complemento ("Como vai ser o uso? Conte o local, a atividade e para quantas pessoas…"), com "Já contei tudo".
+
+- EVID-295: [dicas-antes-dos-dados-0-12-18](EVID-295_dicas-antes-dos-dados-0-12-18.png) — Relato fictício de mouse falhando: logo depois de confirmar o rascunho, dois passos seguros da IA antes de qualquer dado, com "Não resolveu, completar o chamado" e "Resolveu! Não preciso do chamado".
+
+- EVID-296: [dois-pedidos-aviso-0-12-18](EVID-296_dois-pedidos-aviso-0-12-18.png) — Relato fictício com papel atolado e pedido de mouse novo: rascunho de Papel Atolado e o aviso "Você também contou outro pedido. Cada pedido vira um chamado…".
+
+- EVID-297: [abrir-o-outro-pedido-0-12-18](EVID-297_abrir-o-outro-pedido-0-12-18.png) — Depois do envio simulado no navegador (número #999, sem gravar no Google): botão "Abrir o outro pedido que você contou" ao lado de "Novo atendimento".
+
+- EVID-298: [orienta-outra-equipe-0-12-18](EVID-298_orienta-outra-equipe-0-12-18.png) — Relato fictício de ar-condicionado pingando: "Pelo que você contou, isso parece ser assunto da manutenção do prédio, não da TI: vale procurar essa equipe…" e volta às áreas.
+
+Próxima evidência: EVID-299.

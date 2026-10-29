@@ -167,8 +167,16 @@ function createTicketService({
       }
       const description = validateDescription(body.description);
       if (url.pathname === "/api/extract") {
-        // Rascunho a partir do relato livre: só campos válidos; o resto será perguntado.
-        let result = { answers: {}, intent: "" },
+        // Rascunho a partir do relato livre: só campos válidos; o resto será perguntado. Mesmo
+        // sem campos a preencher, a IA diz o que entendeu, confere o relato e pode dar dicas.
+        let result = {
+            answers: {},
+            intent: "",
+            understanding: "",
+            complete: null,
+            otherRequest: false,
+            tips: [],
+          },
           source = "local";
         const fields = extractableFields(item).map((field) => ({
           id: field.id,
@@ -176,7 +184,8 @@ function createTicketService({
           tipo: field.type,
           ...(field.options ? { opcoes: field.options } : {}),
         }));
-        if (fields.length && provider.ready() && typeof provider.extract === "function")
+        const allowTips = policy.selfHelpEligible(item, "");
+        if (provider.ready() && typeof provider.extract === "function")
           try {
             const today = policy.localDay();
             result = safeExtract(
@@ -188,7 +197,14 @@ function createTicketService({
                 need: item.need,
                 fields,
                 description,
+                flowQuestion: desk.conversationCopy.flowQuestion(
+                  item,
+                  policy.asksEquipmentIntent(item) ? "purchase" : "",
+                ),
+                allowTips,
               }),
+              allowTips,
+              description,
             );
             source = "ai";
           } catch {

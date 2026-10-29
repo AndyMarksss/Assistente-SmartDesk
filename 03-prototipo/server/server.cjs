@@ -9,7 +9,15 @@ const provider = require("./ai-provider.cjs");
 const { analyzeCategories } = provider;
 function loadBase() {
   const context = vm.createContext({ window: {} });
-  for (const file of ["knowledge-base.js", "classifier.js", "flows.js"])
+  // request-policy e conversation-copy: o rascunho da IA confere o relato com a pergunta de
+  // descrição do caminho pelos botões (0.12.18).
+  for (const file of [
+    "knowledge-base.js",
+    "classifier.js",
+    "flows.js",
+    "request-policy.js",
+    "conversation-copy.js",
+  ])
     vm.runInContext(fs.readFileSync(path.join(root, "assets/js", file), "utf8"), context);
   return context.window.SmartDesk;
 }

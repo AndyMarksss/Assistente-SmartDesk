@@ -65,7 +65,9 @@ const sampleAnswers = (item) =>
                   ? "ficticio@example.com"
                   : field.type === "url"
                     ? "https://example.com/roteiro"
-                    : "Dado fictício",
+                    : field.type === "tel"
+                      ? "(11) 90000-0000"
+                      : "Dado fictício",
       ]),
   );
 (async () => {

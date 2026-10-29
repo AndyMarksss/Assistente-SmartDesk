@@ -13,9 +13,15 @@
   const isRoutineMaintenance = (item) => item.id === "AV-007" || /cabo\s+hdmi/i.test(item.need);
   const asksEquipmentIntent = (item) =>
     ["TI-COMP-001", "TI-COMP-007", "TI-COMP-008"].includes(item.id);
+  // Toner e tinta são reposição de rotina: "comprar toner" no relato não pede aval da liderança.
+  const ROUTINE_SUPPLY = ["IMP-010"];
   const needsAuthorization = (item, description = "", intent = "") => {
-    if (isRoutineMaintenance(item) || intent === "repair") return false;
+    if (isRoutineMaintenance(item) || ROUTINE_SUPPLY.includes(item.id) || intent === "repair")
+      return false;
     if (intent === "purchase") return true;
+    // Defeito não é compra: um relato com dois pedidos ("papel atolado e preciso de um mouse
+    // novo") pedia aval no chamado da impressora. O item novo vai no chamado dele.
+    if (requestKind(item, intent) === "problema" && !asksEquipmentIntent(item)) return false;
     const text = description
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "")
@@ -40,6 +46,20 @@
       String(now.getDate()).padStart(2, "0"),
     ].join("-");
   }
+  function localTime(now = new Date()) {
+    return (
+      String(now.getHours()).padStart(2, "0") + ":" + String(now.getMinutes()).padStart(2, "0")
+    );
+  }
+  // Horário de um atendimento marcado para hoje: não pode ser um horário que já passou.
+  const pastTimeToday = (date, time, today = localDay(), now = localTime()) =>
+    !!date && !!time && date === today && time < now;
+  // Telefone com DDD: só dígitos, espaços, parênteses, hífen, ponto e +, com 10 a 13 dígitos.
+  const phoneValue = (raw) => {
+    const v = String(raw || "").trim(),
+      digits = v.replace(/\D/g, "");
+    return /^[+()\d\s.-]+$/.test(v) && digits.length >= 10 && digits.length <= 13 ? v : null;
+  };
   function dateValue(raw) {
     const v = String(raw).trim();
     let m = v.match(/^(\d{2})[/. -](\d{2})[/. -](\d{4})$/) || v.match(/^(\d{2})(\d{2})(\d{4})$/);
@@ -119,10 +139,12 @@
     "TI-QB-002",
     "TI-CAM-001",
   ];
+  // Dúvidas da TI e do Google são perguntas, não defeitos.
+  const QUESTIONS = ["TI-001", "GOO-006"];
   const requestKind = (item, intent = "") =>
     !item
       ? "outro"
-      : item.id === "TI-001"
+      : QUESTIONS.includes(item.id)
         ? "dúvida"
         : item.id === "TI-003"
           ? "outro"
@@ -187,7 +209,29 @@
     (item.fields || []).some((field) => field.id === "evento") &&
     answers.evento === "Não" &&
     /\beventos?\b/.test(plain(texts.join("\n")).replace(NOT_EVENT, " "));
+  // Relato livre que a IA não ligou a nenhum caminho: assuntos de outras equipes da escola,
+  // para orientar a pessoa em vez de só voltar às opções.
+  const OTHER_TEAMS = [
+    [
+      /\b(ar[- ]?condicionado|lampadas? (da sala|do teto|queimad\w*)|vazamento|goteira|torneira|descarga|encanamento|moveis|cadeiras?|armarios?|limpeza|pintura|disjuntor|fiacao)\b/,
+      "da manutenção do prédio",
+    ],
+    [
+      /\b(ferias|holerite|contracheque|salario|folha de ponto|bater ponto|beneficios?|rh)\b/,
+      "do RH",
+    ],
+    [
+      /\b(matriculas?|rematriculas?|mensalidades?|boletos?|historico escolar|declaracao escolar|uniformes?)\b/,
+      "da Secretaria ou do Financeiro",
+    ],
+  ];
+  const otherTeam = (text) =>
+    (OTHER_TEAMS.find(([pattern]) => pattern.test(plain(text))) || [])[1] || "";
   desk.requestPolicy = {
+    otherTeam,
+    localTime,
+    pastTimeToday,
+    phoneValue,
     fullerItem,
     eventMismatch,
     selfHelpEligible,

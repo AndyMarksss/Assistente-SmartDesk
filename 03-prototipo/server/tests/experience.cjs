@@ -19,8 +19,15 @@ for (const name of ["Andy", "de da", "Ana 123", "<Ana Silva>", ""]) assert(!p.fu
 assert(!p.needsAuthorization({ id: "AV-007", need: "Troca de cabo HDMI" }, "Quero um cabo novo"));
 assert(!p.needsAuthorization({ need: "COMPUTADOR > Troca de Mouse" }, "Trocar mouse", "repair"));
 assert(p.needsAuthorization({ need: "COMPUTADOR > Troca de Mouse" }, "", "purchase"));
-assert(p.needsAuthorization({ need: "Outros" }, "Quero um headset novo"));
+assert(p.needsAuthorization({ id: "TI-003", need: "Outros" }, "Quero um headset novo"));
 assert(!p.needsAuthorization({ need: "Não imprime" }, "Parou de imprimir ontem"));
+// 0.12.18: defeito com um segundo pedido de compra no relato não pede aval.
+assert(
+  !p.needsAuthorization(
+    { id: "IMP-008", need: "Papel Atolado" },
+    "Papel atolado e também preciso de um mouse novo",
+  ),
+);
 // 0.12.3 — conferências locais: equipamento a mais no relato e evento respondido "Não".
 vm.runInContext(fs.readFileSync(path.join(proto, "assets/js/knowledge-base.js"), "utf8"), ctx);
 const kbItems = ctx.window.SmartDesk.knowledgeBase.items,

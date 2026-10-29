@@ -471,3 +471,38 @@ Pedidos do usuário (28/10, com prints do painel e do chat no desktop): "Corrige
 - **Quadro na altura da janela:** os cartões de cada coluna ficam numa área própria que rola, com o cabeçalho da etapa parado. Quando alguma etapa passa de quatro cartões, a área mostra quatro inteiros e metade do quinto; em janelas mais baixas, menos inteiros e sempre a metade, para o quadro caber na altura da janela (1366 × 768: três e meio). O cartão recém-movido fica à vista. Colunas e cartões continuam com a mesma altura.
 - **Primeira tela do chat sem rolagem:** o quadro de boas-vindas se ajusta em níveis à altura que sobra (menos respiro → ilustração menor → sem etiquetas → sem ilustração → sem o parágrafo) até ele e a primeira mensagem caberem; refeito quando a altura muda (barra do navegador no celular, janela). Na tela do usuário (1920 × 912) sobravam 11 px; bastou o primeiro nível.
 - Apps Script republicado (Portal.gs e PortalShared.gs). Verificação em verificacoes/verificacao-v0.12.17.md.
+
+## 0.12.18 — 2026-10-29
+
+Pedidos do usuário (29/10): aplicar as correções da análise de coerência da árvore de decisões; e "quero que a IA deixe este fluxo o mais eficiente possível interpretando o que a pessoa quer quando ela abre com a IA, questionando informações precisas de acordo com o fluxo sem IA […] e oriente a pessoa a abrir o chamado corretamente de acordo com o que ela quer, e claro, com aquelas pequenas orientações básicas se for algo simples".
+
+- **A IA interpreta o relato:** o rascunho abre com "Entendi: {o que a pessoa precisa}", escrito pela IA com os dados que a pessoa deu.
+- **Perguntas do caminho pelos botões:** a IA confere se o relato já responde à pergunta de descrição do caminho (ex.: numa reserva, local, atividade e quantas pessoas). Se não responde, o rascunho mostra "Mais detalhes: Vou perguntar" e o chat faz a mesma pergunta dos botões depois dos dados, com "Já contei tudo" para pular. Os dados do caminho já eram perguntados quando faltavam.
+- **Dicas antes dos dados:** em defeito simples, os passos seguros vêm logo depois de confirmar o rascunho. Se resolver, ninguém preenche nada; se não, a revisão não repete as dicas.
+- **Orientação:**
+  - relato com dois pedidos: um chamado para cada, com "Abrir o outro pedido que você contou" depois do envio, aproveitando o relato e os dados;
+  - relato que não é da TI: indica a equipe certa (manutenção do prédio, RH, Secretaria ou Financeiro);
+  - relato de um atendimento exclusivo de outro setor (ex.: QuickBooks): oferece "Corrigir meu setor".
+- **Correções da análise da árvore:**
+  - "Corrigir um dado → Setor" não aceita mais um setor que não tem o pedido; antes, o envio era recusado.
+  - Quem resolve pelas dicas também dá a nota de facilidade, uma vez por conversa.
+  - "Dúvidas" do Google é tratado como dúvida.
+  - Pedidos não falam mais em "desde quando acontece".
+  - A reserva de notebook pede local, atividade e pessoas, como a do Chromebook.
+  - Aberturas do Google com o produto certo ("no Google Drive", "no Gmail"), de dúvida, de senha e de reserva.
+  - Encerramento de diário pergunta o período letivo.
+  - Sem "para quando" quando o pedido já tem data ou período.
+  - Sem "algumas perguntas" em caminhos sem dados.
+  - Ao abrir um chamado depois de acompanhar outro, pergunta se usa os dados salvos.
+  - Toner e defeitos não pedem aval da liderança. Um relato com "papel atolado e preciso de um mouse novo" pedia aval no chamado da impressora.
+  - O assunto não é refeito quando o pedido não mudou.
+  - Em "Computador não está conectado à rede" com Wi-Fi, os detalhes sugerem o nome da rede.
+  - Telefone com DDD validado.
+  - Para hoje, só horário que ainda não passou: relógio, rascunho da IA e servidor, este com 30 minutos de folga.
+- **Rede de segurança na extração:**
+  - "É para um evento?" só é preenchido quando o relato fala em evento. A verificação pegou "Não" para "aula de educação física".
+  - O horário só é preenchido quando o relato diz a hora. A verificação pegou 07:00 para "na primeira aula".
+  - Extração: 79 de 80 campos na rodada final, como na 0.11.4.
+- Testes novos em `server/tests/fluxo-ia.cjs`.
+- Desenhos do fluxo atualizados em `06-documentacao/fluxo`: árvore com 613 nós, passo a passo com 353 passos, e imagens.
+- Apps Script a republicar (Portal.gs e PortalShared.gs). Verificação em verificacoes/verificacao-v0.12.18.md; evidências EVID-293 a EVID-298.

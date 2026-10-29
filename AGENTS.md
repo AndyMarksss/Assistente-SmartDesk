@@ -178,3 +178,15 @@ A revisão da IA recebe `answeredForAI(item, answers)` (valor de data, horário 
 
 ## Organização do repositório — 2026-10-28
 Pedido do usuário: subir só o que faz sentido e pôr README.md nas pastas. `03-prototipo/versoes/` (cópias de segurança de cada versão) continua sendo feita antes de cada versão, mas fica fora do Git (`.gitignore` da raiz); o teste de equivalência usa `server/tests/fixtures/v0.8.10-dados`. Relatórios de verificação ficam em `03-prototipo/verificacoes/verificacao-vX.Y.Z.md`. O diário que era o `LEIA-ME.md` da raiz agora é `01-planejamento/diario-do-projeto.md`; os LEIA-ME de `04-validacao` viraram README.md. Cada pasta tem um README.md: o da raiz apresenta o projeto no GitHub e é **diferente** do README de entrega do case, que será criado em `06-documentacao` depois das sessões. O README do protótipo é técnico e atual: não acumular mais o histórico de versões nele, que fica no CHANGELOG.
+
+## 0.12.18 — caminho da IA que interpreta, pergunta o que falta e orienta
+Pedido do usuário (29/10): a IA deve interpretar o que a pessoa quer, perguntar o que falta com as mesmas perguntas do caminho pelos botões, orientar a abrir o chamado certo e dar orientações básicas em defeitos simples. Regras:
+- `/api/extract` devolve `understanding`, `complete`, `otherRequest` e `tips`, na mesma chamada, para não somar espera.
+- A pergunta de complemento é sempre o texto fixo de `conversationCopy.flowQuestion` (a mesma dos botões), nunca escrita pela IA: continua valendo no máximo uma pergunta da IA (a da revisão).
+- Na dúvida, `relatoCompleto` é true: a pergunta extra custa tempo, e a revisão ainda pode pedir um detalhe essencial.
+- Dicas em dois momentos, nunca repetidas: no relato com IA, logo depois do rascunho, antes dos dados (`offerTips(tips, next, early)`); nos botões, na revisão.
+- A nota de facilidade vale também depois de "Resolveu!", uma vez por conversa.
+- Nunca pedir aval da liderança em defeito nem em toner: o texto do relato pode trazer a compra de outro pedido.
+- "É para um evento?" só é extraído quando o relato fala em evento (`safeExtract` recebe o relato).
+- Ao mudar uma instrução da IA, rodar `node avaliar-ia.cjs --rodada NOME --so-extracao sim` em `04-validacao/avaliacao-ia`, sem outros testes de IA ao mesmo tempo: chamadas em paralelo estouram o limite por minuto do Gemini gratuito e viram "IA indisponível".
+- Os desenhos do fluxo (`06-documentacao/fluxo`) acompanham o chat: `arvore-estrutura.js`, as partes escritas à mão do `fluxo-detalhado.html`, `node gerar-caminhos.cjs` e as imagens.

@@ -72,7 +72,7 @@ npm run version:check
 | Rota | Para quê |
 |---|---|
 | `/api/analyze` | Sugere até 3 caminhos para um relato livre (a pessoa confirma) |
-| `/api/extract` | Preenche o rascunho com o que a pessoa já disse (data, horário, opções, textos) |
+| `/api/extract` | Preenche o rascunho com o que a pessoa já disse (data, horário, opções, textos), diz o que entendeu, confere se o relato responde à pergunta de descrição do caminho, avisa de outro pedido e, em defeito simples, dá até 3 dicas antes dos dados |
 | `/api/assist` | No máximo uma pergunta sobre o que falta, alerta de incoerência e até 3 dicas seguras |
 | `/api/subject` | Assunto curto do chamado (fica só na planilha) |
 

@@ -23,9 +23,12 @@ Na escola, os pedidos à TI chegam por quatro formulários separados: Audiovisua
 flowchart LR
   A[Identificação<br/>nome, e-mail e setor] --> B{Como pedir?}
   B -->|Botões| C[Área → necessidade<br/>57 caminhos da Matriz Mestre]
-  B -->|Com minhas palavras| D[IA monta o rascunho<br/>a pessoa confirma]
-  C --> E[Só os dados que faltam]
+  B -->|Com minhas palavras| D[IA entende o pedido e monta o rascunho<br/>a pessoa confirma]
+  D -->|Defeito simples| T[Dicas seguras<br/>antes dos dados]
+  T -->|Resolveu sozinho| G
+  C --> E[Só os dados que faltam<br/>as mesmas perguntas nos dois caminhos]
   D --> E
+  T --> E
   E --> F[Revisão da IA<br/>uma pergunta e dicas seguras]
   F -->|Resolveu sozinho| G[Fim, sem chamado]
   F --> H[Resumo revisável] --> I[Chamado numerado<br/>na planilha da TI]
@@ -33,9 +36,11 @@ flowchart LR
 ```
 
 - **Matriz Mestre:** 25 setores, 4 áreas, 57 caminhos de atendimento e 10 regras condicionais, montados a partir dos formulários reais. Por exemplo, só o Financeiro vê o QuickBooks.
-- **IA (Gemini):** sugere o caminho a partir do relato livre, preenche o rascunho, faz no máximo uma pergunta sobre o que falta, sugere passos seguros em defeitos simples e escreve o assunto do chamado.
+- **IA (Gemini):** sugere o caminho a partir do relato livre, diz o que entendeu, preenche o rascunho e confere se o relato responde ao que o caminho pelos botões perguntaria (se não, o chat faz a mesma pergunta). Orienta quando o relato traz dois pedidos ou não é assunto da TI, faz no máximo uma pergunta sobre o que falta, sugere passos seguros em defeitos simples e escreve o assunto do chamado.
 - **Limites da IA:** não conversa livremente, não muda a escolha da pessoa e não recebe nome, e-mail nem anexos. Toda sugestão passa por confirmação humana. Sem IA, o atendimento continua pelos botões.
 - **Painel de gestão:** quadro por etapa (arrastar e soltar), indicadores e filtros por área e categoria, para a equipe de TI acompanhar os chamados.
+
+Todos os caminhos possíveis, do início ao fim, estão na [árvore de decisões completa e no passo a passo do atendimento](06-documentacao/fluxo/README.md), com os pontos de IA destacados.
 
 ## Arquitetura
 
@@ -70,7 +75,7 @@ Lean Canvas: [`06-documentacao/canvas`](06-documentacao/canvas/README.md). Rotei
 | [`03-prototipo`](03-prototipo/README.md) | Código do chat, do painel, do servidor local e do Apps Script; CHANGELOG e relatórios de verificação |
 | [`04-validacao`](04-validacao/README.md) | Roteiro das sessões, fichas, resultados e avaliação técnica da IA |
 | [`05-evidencias`](05-evidencias/README.md) | Prints e registros numerados (EVID-###) de cada etapa |
-| [`06-documentacao`](06-documentacao/README.md) | Parte teórica, Lean Canvas e, ao final, o README de entrega do case |
+| [`06-documentacao`](06-documentacao/README.md) | Parte teórica, Lean Canvas, árvore de decisões do atendimento e, ao final, o README de entrega do case |
 | [`07-pitch`](07-pitch/README.md) | Roteiro e materiais do vídeo pitch |
 | [`08-referencias`](08-referencias/README.md) | Fontes e referências usadas |
 

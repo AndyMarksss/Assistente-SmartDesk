@@ -1,0 +1,860 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>SmartDesk — Árvore de decisões</title>
+    <!--
+      Árvore de decisões do atendimento do SmartDesk 0.12.18, tirada do código do protótipo
+      (03-prototipo/assets/js/app.js e request-policy.js). Os 57 caminhos vêm do catálogo:
+      para atualizar, rode node gerar-caminhos.cjs nesta pasta.
+      Cor só onde a IA intervém (violeta); todo o resto em cinza.
+    -->
+    <style>
+      :root {
+        --ink: #1d2033;
+        --muted: #5d6278;
+        --soft: #8a8fa6;
+        --line: #d7d9e4;
+        --band: #f6f6fa;
+        --paper: #ffffff;
+        --bg: #eef0f5;
+        --ai: #6a4bd6;
+        --ai-ink: #43279f;
+        --ai-soft: #f1ecff;
+        --ai-line: #b9a6f2;
+        --edge: #a3a8bb;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font: 14px/1.45 "Segoe UI", system-ui, -apple-system, sans-serif;
+      }
+      .page {
+        width: 1920px;
+        margin: 0 auto;
+        padding: 36px 40px 48px;
+      }
+      header.top {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 24px;
+        margin-bottom: 18px;
+      }
+      h1 {
+        margin: 0;
+        font-size: 34px;
+        letter-spacing: -0.6px;
+      }
+      h1 span {
+        color: var(--ai);
+      }
+      .lead {
+        margin: 6px 0 0;
+        max-width: 980px;
+        color: var(--muted);
+        font-size: 16px;
+      }
+      .meta {
+        color: var(--soft);
+        font-size: 13px;
+        text-align: right;
+      }
+      .facts {
+        display: flex;
+        gap: 10px;
+        margin: 0 0 16px;
+        flex-wrap: wrap;
+      }
+      .fact {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 10px 16px;
+        min-width: 150px;
+      }
+      .fact b {
+        display: block;
+        font-size: 24px;
+        line-height: 1.1;
+      }
+      .fact small {
+        color: var(--muted);
+        font-size: 12.5px;
+      }
+      .fact.ai {
+        background: var(--ai-soft);
+        border-color: var(--ai-line);
+      }
+      .fact.ai b {
+        color: var(--ai-ink);
+      }
+      .legend {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        flex-wrap: wrap;
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 10px 16px;
+        margin-bottom: 22px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .legend i {
+        display: inline-block;
+        width: 26px;
+        height: 16px;
+        border-radius: 5px;
+        vertical-align: -3px;
+        margin-right: 6px;
+        border: 1px solid var(--line);
+        background: var(--paper);
+      }
+      .legend i.ai {
+        background: var(--ai-soft);
+        border: 1.5px solid var(--ai);
+      }
+      .legend i.rule {
+        border: 1.5px dashed var(--soft);
+      }
+      .legend i.end {
+        background: var(--ink);
+        border-color: var(--ink);
+      }
+      .legend i.dec {
+        border-left: 4px solid var(--soft);
+      }
+      .legend .always {
+        margin-left: auto;
+        color: var(--ink);
+      }
+      section.block {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 22px 24px 26px;
+        margin-bottom: 24px;
+      }
+      section.block > h2 {
+        margin: 0 0 4px;
+        font-size: 22px;
+        letter-spacing: -0.3px;
+      }
+      section.block > p.sub {
+        margin: 0 0 18px;
+        color: var(--muted);
+      }
+
+      /* Árvore da conversa: passos posicionados numa grade e ligações desenhadas em SVG. */
+      .flow {
+        position: relative;
+        width: 1760px;
+      }
+      .flow svg {
+        position: absolute;
+        inset: 0;
+        overflow: visible;
+        pointer-events: none;
+      }
+      .band {
+        position: absolute;
+        left: 0;
+        right: 0;
+        border-radius: 14px;
+        background: var(--band);
+      }
+      .band.alt {
+        background: transparent;
+      }
+      .band span {
+        position: absolute;
+        left: 16px;
+        top: 14px;
+        width: 140px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+        color: var(--soft);
+      }
+      .band span em {
+        display: block;
+        margin-top: 4px;
+        font-style: normal;
+        font-size: 26px;
+        letter-spacing: 0;
+        color: var(--line);
+      }
+      .band.ai-band span {
+        color: var(--ai);
+      }
+      .node {
+        position: absolute;
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 10px 12px 11px;
+        box-shadow: 0 1px 2px rgb(29 32 51 / 0.06);
+      }
+      .node h3 {
+        margin: 0;
+        font-size: 14.5px;
+        line-height: 1.3;
+      }
+      .node p {
+        margin: 4px 0 0;
+        font-size: 12.5px;
+        color: var(--muted);
+      }
+      .node.dec {
+        border-left: 4px solid var(--soft);
+      }
+      .node.rule {
+        border: 1.5px dashed var(--soft);
+        background: #fbfbfd;
+      }
+      .node.ai {
+        background: var(--ai-soft);
+        border: 1.5px solid var(--ai);
+        box-shadow: 0 6px 16px -10px rgb(106 75 214 / 0.55);
+      }
+      .node.ai.dec {
+        border-left-width: 4px;
+      }
+      .node.ai h3 {
+        color: var(--ai-ink);
+      }
+      .node.end {
+        background: var(--ink);
+        border-color: var(--ink);
+      }
+      .node.end h3,
+      .node.end p {
+        color: #fff;
+      }
+      .node.end p {
+        opacity: 0.8;
+      }
+      .tag {
+        display: inline-block;
+        margin-right: 6px;
+        padding: 1px 7px;
+        border-radius: 999px;
+        font-size: 10.5px;
+        font-weight: 700;
+        letter-spacing: 0.6px;
+        vertical-align: 2px;
+        background: var(--band);
+        color: var(--soft);
+        border: 1px solid var(--line);
+      }
+      .node.ai .tag,
+      .tag.ai {
+        background: var(--ai);
+        color: #fff;
+        border-color: var(--ai);
+      }
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        margin-top: 7px;
+      }
+      .chips span {
+        padding: 2px 8px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: var(--paper);
+        font-size: 11.5px;
+        color: var(--ink);
+      }
+      .node.ai .chips span {
+        border-color: var(--ai-line);
+      }
+      .edge {
+        fill: none;
+        stroke: var(--edge);
+        stroke-width: 1.6;
+      }
+      .edge.loop {
+        stroke-dasharray: 5 4;
+      }
+      .elabel {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        padding: 1px 7px;
+        border-radius: 6px;
+        background: var(--paper);
+        border: 1px solid var(--line);
+        font-size: 11.5px;
+        color: var(--muted);
+        white-space: nowrap;
+      }
+
+      /* Os 57 caminhos */
+      .areas {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 2fr;
+        gap: 14px;
+        align-items: start;
+      }
+      .area {
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 14px 14px 10px;
+        background: var(--paper);
+      }
+      .area > h3 {
+        margin: 0 0 2px;
+        font-size: 18px;
+      }
+      .area > h3 small {
+        color: var(--soft);
+        font-weight: 600;
+        font-size: 13px;
+      }
+      .area .groups {
+        columns: 2;
+        column-gap: 18px;
+      }
+      .group {
+        break-inside: avoid;
+        margin-top: 10px;
+      }
+      .group h4 {
+        margin: 0 0 2px;
+        font-size: 12px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: var(--soft);
+      }
+      ul.tree {
+        list-style: none;
+        margin: 6px 0 0;
+        padding: 0 0 0 14px;
+        border-left: 1.5px solid var(--line);
+      }
+      ul.tree li {
+        position: relative;
+        padding: 5px 0 6px 10px;
+      }
+      ul.tree li::before {
+        content: "";
+        position: absolute;
+        left: -14px;
+        top: 15px;
+        width: 18px;
+        border-top: 1.5px solid var(--line);
+      }
+      ul.tree li b {
+        font-size: 13.5px;
+      }
+      ul.tree li .ask {
+        display: block;
+        font-size: 12px;
+        color: var(--muted);
+      }
+      ul.tree li .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        margin-top: 3px;
+      }
+      ul.tree li .tags span {
+        padding: 0 6px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        font-size: 10.5px;
+        color: var(--muted);
+      }
+      ul.tree li .tags span.ai {
+        background: var(--ai-soft);
+        border-color: var(--ai-line);
+        color: var(--ai-ink);
+        font-weight: 700;
+      }
+      .note {
+        margin: 14px 0 0;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      /* Onde a IA intervém */
+      table.ia {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13.5px;
+      }
+      table.ia th,
+      table.ia td {
+        text-align: left;
+        vertical-align: top;
+        padding: 10px 12px;
+        border-bottom: 1px solid var(--line);
+      }
+      table.ia th {
+        font-size: 12px;
+        letter-spacing: 0.8px;
+        text-transform: uppercase;
+        color: var(--soft);
+      }
+      table.ia td:first-child b {
+        color: var(--ai-ink);
+      }
+      table.ia code {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      footer {
+        color: var(--soft);
+        font-size: 12.5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header class="top">
+        <div>
+          <h1>SmartDesk · Árvore de decisões <span>do atendimento</span></h1>
+          <p class="lead">
+            Todos os caminhos de um atendimento, das boas-vindas ao comprovante, e os 57 tipos de
+            pedido. <strong style="color: var(--ai-ink)">Em violeta, os pontos em que a IA intervém</strong>;
+            todo o resto é escolha da pessoa ou regra fixa do sistema.
+          </p>
+        </div>
+        <div class="meta">Protótipo 0.12.18 · 29/10/2026<br />Fonte: código do protótipo (app.js, request-policy.js e catálogo)</div>
+      </header>
+
+      <div class="facts" id="facts"></div>
+
+      <div class="legend">
+        <span><i></i>Pessoa responde ou escolhe</span>
+        <span><i class="dec"></i>Decisão (o caminho se divide)</span>
+        <span><i class="ai"></i>A IA intervém</span>
+        <span><i class="rule"></i>Regra fixa do sistema, sem IA</span>
+        <span><i class="end"></i>Início ou fim</span>
+        <span>- - - volta a um passo anterior</span>
+        <span class="always">Em qualquer passo: <b>Voltar uma etapa</b> · <b>Recomeçar</b></span>
+      </div>
+
+      <section class="block">
+        <h2>1. O atendimento, passo a passo</h2>
+        <p class="sub">
+          Cada caixa é um passo da conversa; as setas mostram para onde cada resposta leva. A IA nunca decide
+          sozinha: tudo o que ela sugere passa pela pessoa, e sem IA o atendimento continua pelos botões.
+        </p>
+        <div class="flow" id="flow"><svg id="edges"></svg></div>
+      </section>
+
+      <section class="block">
+        <h2>2. Os 57 caminhos (tipos de pedido)</h2>
+        <p class="sub" id="paths-sub"></p>
+        <div class="areas" id="areas"></div>
+        <p class="note">
+          Em <strong>todos</strong> os caminhos a IA revisa o chamado antes do envio (alerta e no máximo uma
+          pergunta) e escreve o assunto. Os marcados com <span class="tag ai">✦ DICAS DA IA</span> são defeitos
+          simples em que a IA também sugere passos seguros para a pessoa tentar antes de abrir o chamado.
+        </p>
+      </section>
+
+      <section class="block">
+        <h2>3. Onde a IA intervém</h2>
+        <p class="sub">
+          Quatro pontos, sempre com confirmação da pessoa. Nome, e-mail e anexos nunca vão para a IA.
+        </p>
+        <table class="ia">
+          <thead>
+            <tr>
+              <th style="width: 15%">Ponto</th>
+              <th style="width: 19%">Quando</th>
+              <th style="width: 22%">O que a IA faz</th>
+              <th style="width: 23%">Proteções</th>
+              <th style="width: 21%">Sem IA</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>✦ Identificar o tipo</b><br /><code>/api/analyze</code></td>
+              <td>A pessoa escolhe "Descrever com minhas palavras" e conta o que precisa.</td>
+              <td>Sugere até 3 tipos de atendimento, do mais provável ao menos provável.</td>
+              <td>Só pode devolver tipos permitidos ao setor da pessoa; o relato é tratado como dado, nunca como instrução.</td>
+              <td>Sugestões pelas palavras-chave da Matriz Mestre, ou escolha pelos botões.</td>
+            </tr>
+            <tr>
+              <td><b>✦ Montar o rascunho</b><br /><code>/api/extract</code></td>
+              <td>Logo depois de identificar o tipo.</td>
+              <td>Preenche o que a pessoa já disse (data, horário, opções, modelo…) e escreve o que entendeu (“Entendi: …”). Confere se o relato responde à pergunta de descrição do caminho pelos botões, avisa se há outro pedido e, em defeito simples, dá até 3 passos seguros antes dos dados. A pessoa confere no cartão de rascunho.</td>
+              <td>Datas passadas, horários e opções inválidos são descartados; nunca preenche computador, contas, e-mails nem nomes de alunos e responsáveis.</td>
+              <td>Cada dado é perguntado normalmente.</td>
+            </tr>
+            <tr>
+              <td><b>✦ Revisar antes de enviar</b><br /><code>/api/assist</code></td>
+              <td>Depois dos dados e da descrição, em todos os caminhos.</td>
+              <td>Alerta se o relato não combina com o tipo; faz no máximo uma pergunta sobre o que falta; em defeitos simples, sugere até 3 passos seguros.</td>
+              <td>Recebe o que já foi respondido (data, horário e opções com o valor). O servidor descarta pergunta que repita dado respondido, peça senha, CPF, telefone, nome de pessoas ou e-mail, ou traga link.</td>
+              <td>Segue sem alerta, pergunta ou dicas.</td>
+            </tr>
+            <tr>
+              <td><b>✦ Escrever o assunto</b><br /><code>/api/subject</code></td>
+              <td>Antes do resumo, sem aparecer na conversa.</td>
+              <td>Escreve um assunto curto, com acentos, que resume o pedido; ele vai só para a planilha da equipe de TI.</td>
+              <td>Até 80 caracteres, sem links nem marcação; não muda o tipo nem a descrição.</td>
+              <td>Assunto padrão com a área e a necessidade.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <footer>
+        Desenho feito a partir do código do protótipo; os 57 caminhos são lidos do catálogo por
+        <code>gerar-caminhos.cjs</code>. Projeto acadêmico — Metodologias Ágeis e Validação de Produtos, UniFECAF.
+      </footer>
+    </div>
+
+    <script id="caminhos" type="application/json">
+[{"id":"AV-001","area":"Audiovisual","grupo":"","nome":"Caixa de Som","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"campos":[{"rotulo":"Data do atendimento","tipo":"date"},{"rotulo":"Horário do atendimento","tipo":"time"},{"rotulo":"É para um evento?","tipo":"choice"},{"rotulo":"Link do roteiro do evento","tipo":"url","se":"Sim"}]},{"id":"AV-002","area":"Audiovisual","grupo":"","nome":"Caixa de Som / Microfone","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"campos":[{"rotulo":"Data do atendimento","tipo":"date"},{"rotulo":"Horário do atendimento","tipo":"time"},{"rotulo":"É para um evento?","tipo":"choice"},{"rotulo":"Link do roteiro do evento","tipo":"url","se":"Sim"}]},{"id":"AV-003","area":"Audiovisual","grupo":"","nome":"Caixa de Som / Microfone / Projetor","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"campos":[{"rotulo":"Data do atendimento","tipo":"date"},{"rotulo":"Horário do atendimento","tipo":"time"},{"rotulo":"É para um evento?","tipo":"choice"},{"rotulo":"Link do roteiro do evento","tipo":"url","se":"Sim"}]},{"id":"AV-004","area":"Audiovisual","grupo":"","nome":"Caixa de Som / Projetor","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"campos":[{"rotulo":"Data do atendimento","tipo":"date"},{"rotulo":"Horário do atendimento","tipo":"time"},{"rotulo":"É para um evento?","tipo":"choice"},{"rotulo":"Link do roteiro do evento","tipo":"url","se":"Sim"}]},{"id":"AV-005","area":"Audiovisual","grupo":"","nome":"Microfone","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"campos":[{"rotulo":"Data do atendimento","tipo":"date"},{"rotulo":"Horário do atendimento","tipo":"time"},{"rotulo":"É para um evento?","tipo":"choice"},{"rotulo":"Link do roteiro do evento","tipo":"url","se":"Sim"}]},{"id":"AV-006","area":"Audiovisual","grupo":"","nome":"Projetor","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"campos":[{"rotulo":"Data do atendimento","tipo":"date"},{"rotulo":"Horário do atendimento","tipo":"time"},{"rotulo":"É para um evento?","tipo":"choice"},{"rotulo":"Link do roteiro do evento","tipo":"url","se":"Sim"}]},{"id":"AV-007","area":"Audiovisual","grupo":"","nome":"Troca de cabo HDMI","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":true,"campos":[{"rotulo":"Descrição do problema","tipo":"text"}]},{"id":"IMP-001","area":"Impressora","grupo":"","nome":"Configurar Scanner","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"campos":[{"rotulo":"Modelo da impressora","tipo":"text"},{"rotulo":"Identificação do computador","tipo":"text"}]},{"id":"IMP-002","area":"Impressora","grupo":"","nome":"Grampo da Impressora","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":true,"manutencao":false,"campos":[{"rotulo":"Modelo da impressora","tipo":"text"}]},{"id":"IMP-003","area":"Impressora","grupo":"","nome":"Instalar Impressora","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"campos":[{"rotulo":"Modelo da impressora","tipo":"text"},{"rotulo":"Identificação do computador","tipo":"text"}]},{"id":"IMP-004","area":"Impressora","grupo":"","nome":"Lâmpada da Estufa","setores":null,"tipo":"problema","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":true,"manutencao":false,"campos":[{"rotulo":"Modelo da impressora","tipo":"text"},{"rotulo":"Erro apresentado","tipo":"text"}]},{"id":"IMP-005","area":"Impressora","grupo":"","nome":"Manchando folhas","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":true,"manutencao":false,"campos":[{"rotulo":"Modelo da impressora","tipo":"text"}]},{"id":"IMP-006","area":"Impressora","grupo":"","nome":"Não imprime","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":true,"manutencao":false,"campos":[{"rotulo":"Modelo da impressora","tipo":"text"},{"rotulo":"Identificação do computador","tipo":"text"},{"rotulo":"Mensagem de erro","tipo":"text"}]},{"id":"IMP-007","area":"Impressora","grupo":"","nome":"Não liga","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":true,"manutencao":false,"campos":[{"rotulo":"Modelo da impressora","tipo":"text"}]},{"id":"IMP-008","area":"Impressora","grupo":"","nome":"Papel Atolado","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":true,"manutencao":false,"campos":[{"rotulo":"Modelo da impressora","tipo":"text"},{"rotulo":"Mensagem do visor","tipo":"text"}]},{"id":"IMP-009","area":"Impressora","grupo":"","nome":"Scanner não funciona","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":true,"manutencao":false,"campos":[{"rotulo":"Modelo da impressora","tipo":"text"},{"rotulo":"Identificação do computador","tipo":"text"},{"rotulo":"Erro","tipo":"text"}]},{"id":"IMP-010","area":"Impressora","grupo":"","nome":"Solicitação de Toner / Tinta","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":true,"manutencao":false,"campos":[{"rotulo":"Cor do toner / tinta","tipo":"choice"},{"rotulo":"Modelo da impressora","tipo":"text"}]},{"id":"GOO-001","area":"Google","grupo":"","nome":"Agendas","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"campos":[{"rotulo":"E-mail da conta envolvida","tipo":"email"}]},{"id":"GOO-002","area":"Google","grupo":"","nome":"Apresentações","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"campos":[{"rotulo":"E-mail da conta envolvida","tipo":"email"},{"rotulo":"Link ou nome do arquivo","tipo":"text"}]},{"id":"GOO-003","area":"Google","grupo":"","nome":"Classroom","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"campos":[{"rotulo":"E-mail da conta envolvida","tipo":"email"},{"rotulo":"Turma","tipo":"text"}]},{"id":"GOO-004","area":"Google","grupo":"","nome":"Documentos","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"campos":[{"rotulo":"E-mail da conta envolvida","tipo":"email"},{"rotulo":"Arquivo","tipo":"text"}]},{"id":"GOO-005","area":"Google","grupo":"","nome":"Drive","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"campos":[{"rotulo":"E-mail da conta envolvida","tipo":"email"},{"rotulo":"Link ou nome do recurso","tipo":"text"}]},{"id":"GOO-006","area":"Google","grupo":"","nome":"Dúvidas","setores":null,"tipo":"dúvida","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"campos":[{"rotulo":"E-mail da conta envolvida","tipo":"email"}]},{"id":"GOO-007","area":"Google","grupo":"","nome":"Gmail","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"campos":[{"rotulo":"E-mail da conta envolvida","tipo":"email"},{"rotulo":"Erro apresentado","tipo":"text"}]},{"id":"GOO-008","area":"Google","grupo":"","nome":"Grupos","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"campos":[{"rotulo":"E-mail da conta envolvida","tipo":"email"},{"rotulo":"Grupo","tipo":"text"}]},{"id":"GOO-009","area":"Google","grupo":"","nome":"Planilhas","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"campos":[{"rotulo":"E-mail da conta envolvida","tipo":"email"},{"rotulo":"Link ou nome da planilha","tipo":"text"}]},{"id":"GOO-010","area":"Google","grupo":"","nome":"Reserva de Chromebook","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"campos":[{"rotulo":"Data do atendimento","tipo":"date"},{"rotulo":"Horário/período","tipo":"text"}]},{"id":"GOO-011","area":"Google","grupo":"","nome":"Resetar senha","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":true,"manutencao":false,"campos":[{"rotulo":"E-mail da conta envolvida","tipo":"email"}]},{"id":"GOO-012","area":"Google","grupo":"","nome":"Sites","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"campos":[{"rotulo":"E-mail da conta envolvida","tipo":"email"},{"rotulo":"Link ou nome do site","tipo":"text"}]},{"id":"TI-001","area":"TI","grupo":"","nome":"Dúvidas","setores":null,"tipo":"dúvida","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"campos":[]},{"id":"TI-002","area":"TI","grupo":"","nome":"Sugestão de melhoria","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"campos":[{"rotulo":"Sistema/processo","tipo":"text"}]},{"id":"TI-003","area":"TI","grupo":"","nome":"Outros","setores":null,"tipo":"outro","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"campos":[]},{"id":"TI-COMP-001","area":"TI","grupo":"Computador","nome":"Headset / Fone de Ouvido","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":true,"descricaoOpcional":true,"manutencao":false,"campos":[{"rotulo":"Identificação do computador","tipo":"text"}]},{"id":"TI-COMP-002","area":"TI","grupo":"Computador","nome":"Leitor de CD/DVD","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":true,"manutencao":false,"campos":[{"rotulo":"Identificação do computador","tipo":"text"}]},{"id":"TI-COMP-003","area":"TI","grupo":"Computador","nome":"Não liga","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":true,"manutencao":false,"campos":[{"rotulo":"Identificação do equipamento","tipo":"text"}]},{"id":"TI-COMP-004","area":"TI","grupo":"Computador","nome":"Problemas com lentidão","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":true,"manutencao":false,"campos":[{"rotulo":"Identificação do computador","tipo":"text"}]},{"id":"TI-COMP-005","area":"TI","grupo":"Computador","nome":"Programas (software)","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"campos":[{"rotulo":"Nome do programa","tipo":"text"},{"rotulo":"Identificação do computador","tipo":"text"}]},{"id":"TI-COMP-006","area":"TI","grupo":"Computador","nome":"Reserva de Notebook","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"campos":[{"rotulo":"Data do atendimento","tipo":"date"},{"rotulo":"Período solicitado","tipo":"text"}]},{"id":"TI-COMP-007","area":"TI","grupo":"Computador","nome":"Troca de Mouse","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":true,"descricaoOpcional":true,"manutencao":false,"campos":[{"rotulo":"Identificação do computador","tipo":"text"}]},{"id":"TI-COMP-008","area":"TI","grupo":"Computador","nome":"Troca de Teclado","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":true,"descricaoOpcional":true,"manutencao":false,"campos":[{"rotulo":"Identificação do computador","tipo":"text"}]},{"id":"TI-NET-001","area":"TI","grupo":"Internet","nome":"Computador não está conectado à rede","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":true,"manutencao":false,"campos":[{"rotulo":"Identificação do computador","tipo":"text"},{"rotulo":"Tipo de conexão","tipo":"choice"}]},{"id":"TI-NET-002","area":"TI","grupo":"Internet","nome":"Criar Login de acesso Internet","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"campos":[{"rotulo":"Finalidade","tipo":"text"},{"rotulo":"Período solicitado","tipo":"text"}]},{"id":"TI-NET-003","area":"TI","grupo":"Internet","nome":"Problemas com Wi-Fi","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":true,"manutencao":false,"campos":[{"rotulo":"Dispositivo","tipo":"text"},{"rotulo":"Rede","tipo":"text"}]},{"id":"TI-INT-001","area":"TI","grupo":"Intranet","nome":"Atualização","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"campos":[{"rotulo":"Página/seção","tipo":"text"},{"rotulo":"Conteúdo novo","tipo":"text"}]},{"id":"TI-INT-002","area":"TI","grupo":"Intranet","nome":"Solicitação","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"campos":[{"rotulo":"Seção","tipo":"text"},{"rotulo":"Arquivos/links","tipo":"text"}]},{"id":"TI-INT-003","area":"TI","grupo":"Intranet","nome":"Sugestão","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"campos":[]},{"id":"TI-MENT-001","area":"TI","grupo":"Mentor Web","nome":"Criação de Login","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"campos":[{"rotulo":"Perfil","tipo":"text"}]},{"id":"TI-MENT-002","area":"TI","grupo":"Mentor Web","nome":"Erro no relatório","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"campos":[{"rotulo":"Relatório","tipo":"text"},{"rotulo":"Mensagem de erro","tipo":"text"}]},{"id":"TI-MENT-003","area":"TI","grupo":"Mentor Web","nome":"Alteração de notas","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"campos":[{"rotulo":"Aluno/turma","tipo":"text"},{"rotulo":"Disciplina","tipo":"text"}]},{"id":"TI-MENT-004","area":"TI","grupo":"Mentor Web","nome":"Encerramento de diário","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"campos":[{"rotulo":"Turma","tipo":"text"},{"rotulo":"Disciplina","tipo":"text"},{"rotulo":"Período solicitado","tipo":"text"}]},{"id":"TI-MENT-005","area":"TI","grupo":"Mentor Web","nome":"Erro no sistema","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"campos":[{"rotulo":"Usuário","tipo":"text"},{"rotulo":"Mensagem de erro","tipo":"text"}]},{"id":"TI-MENT-006","area":"TI","grupo":"Mentor Web","nome":"Remanejamento de aluno","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"campos":[{"rotulo":"Aluno","tipo":"text"},{"rotulo":"Turma atual","tipo":"text"},{"rotulo":"Turma destino","tipo":"text"}]},{"id":"TI-MENT-007","area":"TI","grupo":"Mentor Web","nome":"Solicitação de Relatório","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"campos":[{"rotulo":"Descrição do relatório","tipo":"text"}]},{"id":"TI-MENT-008","area":"TI","grupo":"Mentor Web","nome":"Solicitação de acesso a relatório","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"campos":[{"rotulo":"Relatório","tipo":"text"},{"rotulo":"Usuário","tipo":"text"}]},{"id":"TI-QB-001","area":"TI","grupo":"QuickBooks","nome":"Erro no sistema","setores":["Financeiro"],"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"campos":[{"rotulo":"Usuário","tipo":"text"},{"rotulo":"Mensagem de erro","tipo":"text"}]},{"id":"TI-QB-002","area":"TI","grupo":"QuickBooks","nome":"Instalação","setores":["Financeiro"],"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"campos":[{"rotulo":"Usuário","tipo":"text"},{"rotulo":"Identificação do computador","tipo":"text"}]},{"id":"TI-CAM-001","area":"TI","grupo":"Câmeras","nome":"Acesso às Câmeras","setores":["Coordenação EI (Infantil)"],"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"campos":[{"rotulo":"Nome do aluno","tipo":"text"},{"rotulo":"Turma do aluno","tipo":"text"},{"rotulo":"Nome do responsável","tipo":"text"},{"rotulo":"E-mail do responsável","tipo":"email"},{"rotulo":"Contato do responsável","tipo":"tel"}]}]
+</script>
+    <script>
+      "use strict";
+      const caminhos = JSON.parse(document.getElementById("caminhos").textContent);
+      const count = (fn) => caminhos.filter(fn).length;
+      const optionalCount = count((c) => c.descricaoOpcional);
+      const tipsCount = count((c) => c.dicas);
+
+      // ---------------------------------------------------------------- 1. Árvore da conversa
+      // Grade de 6 colunas; cada passo diz coluna, largura (em colunas) e linha.
+      const COL = 236,
+        GAP = 30,
+        LEFT = 180,
+        ROW_GAP = 60,
+        BAND_GAP = 34;
+      const colX = (c) => LEFT + c * (COL + GAP);
+      const BANDS = [
+        { from: 0, to: 1, title: "Início", n: "1" },
+        { from: 2, to: 5, title: "Identificação e acompanhamento", n: "2" },
+        { from: 6, to: 10, title: "Tipo de ajuda", n: "3", ai: true },
+        { from: 11, to: 14, title: "Detalhes do pedido", n: "4" },
+        { from: 15, to: 18, title: "Revisão da IA", n: "5", ai: true },
+        { from: 19, to: 22, title: "Aval, anexos e resumo", n: "6", ai: true },
+        { from: 23, to: 26, title: "Envio", n: "7" },
+      ];
+      const N = (id, col, row, kind, title, text, chips, span = 1) => ({ id, col, row, kind, title, text, chips, span });
+      const NODES = [
+        N("start", 2, 0, "end", "Boas-vindas", "Quadro de boas-vindas e saudação. Quem tem dados salvos recebe “Que bom te ver de novo”.", [], 2),
+        N("how", 0, 1, "", "Como funciona?", "Três mensagens explicam o atendimento; as opções voltam."),
+        N("other", 1, 1, "", "Sou outra pessoa", "Apaga os dados salvos neste dispositivo."),
+        N("known", 3, 1, "", "Continuar como Andy", "Usa nome, e-mail e setor salvos neste dispositivo."),
+        N("track", 5, 1, "", "Acompanhar um chamado", "Consulta a etapa de um chamado já aberto."),
+
+        N("id1", 2, 2, "", "Nome e sobrenome", "Aceita acentos, hífen e apóstrofo."),
+        N("id2", 2, 3, "", "E-mail institucional", "Guardado para o retorno do chamado."),
+        N("id3", 2, 4, "", "Setor", "25 setores, com busca. Define quais tipos de pedido aparecem."),
+        N("tr1", 5, 2, "", "Número do chamado", "Ex.: #012, como no comprovante."),
+        N("tr2", 5, 3, "", "E-mail usado na abertura", "Confirma que o chamado é da pessoa."),
+        N("tr3", 5, 4, "dec", "Encontrou o chamado?", "", ["Sim: etapa, área e categoria", "Não: confira número e e-mail"]),
+        N("tr4", 5, 5, "dec", "E agora?", "", ["Abrir um novo chamado", "Consultar outro"]),
+
+        N("area", 2, 6, "dec", "Qual tipo de ajuda você precisa?", "Escolher a área pelos botões ou contar com as próprias palavras.", [], 2),
+        N("b1", 1, 7, "dec", "Área", "", ["Audiovisual", "Impressora", "Google", "TI"]),
+        N("b2", 1, 8, "dec", "Grupo (só em TI)", "", ["Computador", "Internet", "Intranet", "Mentor Web", "QuickBooks", "Câmeras"]),
+        N("b3", 1, 9, "dec", "Necessidade", "57 no total. Aparecem só as permitidas ao setor (QuickBooks: Financeiro · Câmeras: Coordenação do Infantil)."),
+        N("d1", 3, 7, "", "Descrever com minhas palavras", "A pessoa conta o que aconteceu ou o que vai acontecer, quando e onde."),
+        N("d2", 3, 8, "ai dec", "IA identifica o tipo", "Sugere até 3 tipos, só entre os permitidos ao setor."),
+        N("d3", 3, 9, "ai", "IA monta o rascunho", "Preenche o que a pessoa disse e escreve o que entendeu (“Entendi: …”); confere a descrição, avisa de outro pedido e, em defeito simples, traz dicas."),
+        N("d3b", 4, 9, "rule", "IA indisponível", "Sugestões pelas palavras-chave da matriz; a pessoa escolhe uma ou volta aos botões."),
+        N("d3c", 5, 9, "", "Não identificou", "Orienta: assunto de outra equipe (manutenção, RH…) ou de outro setor (QuickBooks, com “Corrigir meu setor”); senão volta às áreas com o relato guardado."),
+        N("d4", 3, 10, "dec", "Rascunho para conferir", "O que faltar aparece como “Vou perguntar”. Em defeito simples, as dicas vêm logo depois, antes dos dados: se resolver, nada é preenchido.", ["Está certo, continuar", "Corrigir os dados", "Na verdade é… (outra sugestão)", "Escolher pelas opções"]),
+
+        N("x1", 2, 11, "rule dec", "Headset, mouse ou teclado?", "Só nesses três: é defeito no item que a pessoa usa ou um item novo?", ["Meu item está com defeito", "Quero um item novo ou diferente"]),
+        N("x2", 2, 12, "", "Dados do pedido", "Só o que falta (o que veio do rascunho não é perguntado de novo): data e horário, “É para um evento?” → link do roteiro, modelo, quem usa o computador, mensagem de erro…", [], 2),
+        N("x3", 2, 13, "", "Descrição", "Obrigatória na maioria dos caminhos; em " + optionalCount + " defeitos simples é opcional (“Sem mais detalhes” monta uma automática). Quem já contou o relato não escreve de novo: só responde à pergunta de descrição se a IA viu que faltou algo (“Já contei tudo” pula).", [], 2),
+        N("l1", 2, 14, "rule dec", "Conferências do pedido", "Citou outro equipamento de audiovisual? Sugere a combinação certa. Falou em evento com “Não” em “É para um evento?”? Pede para confirmar.", ["Mudar ou confirmar", "Manter"], 2),
+
+        N("r1", 2, 15, "ai", "IA confere o chamado", "Recebe área, necessidade, tipo do pedido, descrição e o que já foi respondido. Nunca recebe nome, e-mail ou anexos.", [], 2),
+        N("noai", 5, 15, "rule", "Sem IA", "Segue sem alerta, pergunta ou dicas."),
+        N("r2", 2, 16, "ai dec", "O relato combina com o tipo?", "Se não combinar, mostra um alerta curto.", ["Escolher outro tipo", "Está certo assim"], 2),
+        N("r3", 2, 17, "ai", "Uma pergunta sobre o que falta", "Só se faltar algo essencial. Nunca repete o que já foi respondido nem pede senha, nome de pessoas ou e-mail.", ["Responder", "Não sei", "Pular"], 2),
+        N("r4", 2, 18, "ai dec", "Passos seguros para tentar antes", "Só em " + tipsCount + " caminhos de defeito simples: sem ferramentas e sem abrir equipamentos. Não repete as dicas já vistas no rascunho.", ["Não resolveu, seguir", "Resolveu!"], 2),
+        N("end1", 5, 18, "end", "Fim sem chamado", "Registrado como “Resolvi sozinho” no painel, com a nota de facilidade. Se voltar a acontecer, o chamado continua de onde parou.", []),
+
+        N("a1", 2, 19, "rule dec", "Compra ou item novo?", "Item novo, ou pedido que fala em comprar: pede o aval da liderança. Nunca em defeito nem em toner. O sistema nunca aprova sozinho.", ["Já foi autorizado → nome de quem autorizou", "Ainda não → fica pendente"], 2),
+        N("att", 2, 20, "", "Anexos (opcional)", "Foto ou arquivo; no site, até 3 (5 MB no total).", ["Adicionar anexo", "Continuar sem anexo"], 2),
+        N("s1", 2, 21, "ai", "IA escreve o assunto", "Resumo curto do pedido; vai só para a planilha da TI. Sem IA: assunto padrão da área. Não é refeito se o pedido não mudou.", [], 2),
+        N("sum", 2, 22, "dec", "Resumo para conferir", "", ["Enviar chamado", "Corrigir um dado", "Revisar anexos"], 2),
+        N("cor", 0, 22, "", "Corrigir um dado", "Nome, e-mail, setor (avisa se o pedido não vale para o setor novo), cada campo, descrição ou resposta ao assistente. Texto vem preenchido; escolhas, com a atual em destaque.", [], 1),
+
+        N("send", 2, 23, "dec", "Envio confirmado?", "Só confirma com o número devolvido pela planilha.", [], 2),
+        N("fail", 5, 23, "", "Não confirmado", "Os dados continuam na tela: “Tentar enviar novamente”."),
+        N("rec", 2, 24, "", "Comprovante", "Número do chamado (ex.: #024) para acompanhar depois.", [], 2),
+        N("ease", 2, 25, "", "Quão fácil foi abrir o chamado?", "Nota de 1 a 5 (ou “Prefiro não responder”) e, se quiser, o que faltou. Uma vez por conversa; também depois de “Resolveu!”.", [], 2),
+        N("end2", 2, 26, "end", "Fim", "Abrir o outro pedido do relato (se a IA viu dois) · novo atendimento · lembrar ou esquecer os dados neste dispositivo.", [], 2),
+      ];
+      // Ligações: v = desce (com cotovelo no meio); side = sai pela lateral até uma faixa (lane)
+      // e entra pela lateral do destino; h = na mesma linha; vh = desce e entra pela lateral.
+      const E = (from, to, label, opts = {}) => ({ from, to, label, ...opts });
+      const EDGES = [
+        E("start", "how", "Como funciona?"),
+        E("how", "start", "volta às opções", { route: "side", side: "L", lane: -16, loop: true, lx: "left", ly: "source" }),
+        E("start", "other", "Sou outra pessoa"),
+        E("other", "id1", ""),
+        E("start", "id1", "Sim, vamos começar", { alignTarget: true }),
+        E("start", "known", "Continuar como…", { alignTarget: true }),
+        E("start", "track", "Acompanhar"),
+        E("known", "area", "pula a identificação", { alignSource: true }),
+        E("id1", "id2", ""),
+        E("id2", "id3", ""),
+        E("id3", "area", "", { alignSource: true }),
+        E("track", "tr1", ""),
+        E("tr1", "tr2", ""),
+        E("tr2", "tr3", ""),
+        E("tr3", "tr4", ""),
+        E("tr4", "tr1", "", { route: "side", side: "R", lane: 10, loop: true }),
+        E("tr4", "area", "Abrir um novo chamado · confirma quem é", { route: "vh" }),
+
+        E("area", "b1", "Pelos botões"),
+        E("area", "d1", "Com minhas palavras"),
+        E("b1", "b2", "TI"),
+        E("b1", "b3", "outras áreas", { route: "side", side: "L", lane: -16, lx: "left" }),
+        E("b2", "b3", ""),
+        E("d1", "d2", ""),
+        E("d2", "d3", "identificou"),
+        E("d2", "d3b", "IA indisponível"),
+        E("d2", "d3c", "não identificou"),
+        E("d3c", "area", "relato guardado", { route: "vh", up: true, loop: true }),
+        E("d3", "d4", ""),
+        E("d4", "d3", "Na verdade é…", { route: "side", side: "R", lane: 14, loop: true, lx: "right", ly: "source" }),
+        E("b3", "x1", ""),
+        E("d4", "x1", "Está certo · Corrigir"),
+        E("d3b", "x1", "escolheu uma sugestão", { lpos: "start" }),
+
+        E("x1", "x2", ""),
+        E("x2", "x3", ""),
+        E("x3", "l1", ""),
+        E("l1", "x2", "mudou o tipo ou o evento", { route: "side", side: "L", lane: -16, loop: true, lx: "left" }),
+        E("l1", "r1", "Manter / nada a conferir"),
+        E("r1", "noai", "IA indisponível", { route: "h" }),
+        E("r1", "r2", ""),
+        E("r2", "area", "Escolher outro tipo", { route: "side", side: "L", laneAbs: 166, loop: true, lx: "right" }),
+        E("r2", "r3", "Está certo assim"),
+        E("r3", "r4", ""),
+        E("r4", "end1", "Resolveu!", { route: "h" }),
+        E("r4", "a1", "Não resolveu / sem dicas"),
+        E("noai", "a1", "", { route: "side", side: "R", lane: 8 }),
+        E("a1", "att", ""),
+        E("att", "s1", ""),
+        E("s1", "sum", ""),
+        E("sum", "cor", "Corrigir um dado", { route: "h", dy: -12 }),
+        E("cor", "sum", "volta ao resumo", { route: "h", dy: 12, loop: true }),
+        E("sum", "send", "Enviar chamado"),
+        E("send", "fail", "Não", { route: "h" }),
+        E("fail", "sum", "tentar de novo", { route: "side", side: "R", lane: 8, loop: true, lx: "left", ly: "target" }),
+        E("send", "rec", "Sim"),
+        E("rec", "ease", ""),
+        E("ease", "end2", ""),
+      ];
+
+      const flow = document.getElementById("flow");
+      const svg = document.getElementById("edges");
+      const el = (tag, cls, text) => {
+        const n = document.createElement(tag);
+        if (cls) n.className = cls;
+        if (text) n.textContent = text;
+        return n;
+      };
+      const nodes = {};
+      for (const n of NODES) {
+        const box = el("div", "node " + n.kind);
+        const h = el("h3");
+        if (n.kind.includes("ai")) h.append(el("span", "tag", "✦ IA"));
+        else if (n.kind.includes("rule")) h.append(el("span", "tag", "REGRA"));
+        h.append(document.createTextNode(n.title));
+        box.append(h);
+        if (n.text) box.append(el("p", "", n.text));
+        if (n.chips && n.chips.length) {
+          const chips = el("div", "chips");
+          n.chips.forEach((c) => chips.append(el("span", "", c)));
+          box.append(chips);
+        }
+        box.style.left = colX(n.col) + "px";
+        box.style.width = n.span * COL + (n.span - 1) * GAP + "px";
+        flow.append(box);
+        nodes[n.id] = { ...n, box };
+      }
+      // Altura de cada linha = maior caixa da linha; bandas separam as etapas.
+      const rows = Math.max(...NODES.map((n) => n.row)) + 1;
+      const rowH = Array(rows).fill(0);
+      for (const n of Object.values(nodes)) rowH[n.row] = Math.max(rowH[n.row], n.box.offsetHeight);
+      const rowY = [];
+      let y = 26;
+      for (let r = 0; r < rows; r++) {
+        if (BANDS.some((b) => b.from === r) && r > 0) y += BAND_GAP;
+        rowY[r] = y;
+        y += rowH[r] + ROW_GAP;
+      }
+      const height = y - ROW_GAP + 26;
+      flow.style.height = height + "px";
+      svg.setAttribute("width", flow.offsetWidth);
+      svg.setAttribute("height", height);
+      BANDS.forEach((b, i) => {
+        const top = rowY[b.from] - 22,
+          bottom = rowY[b.to] + rowH[b.to] + 22;
+        const band = el("div", "band" + (i % 2 ? " alt" : "") + (b.ai ? " ai-band" : ""));
+        band.style.top = top + "px";
+        band.style.height = bottom - top + "px";
+        const label = el("span", "", b.title);
+        const num = el("em", "", b.n);
+        label.prepend(num);
+        band.append(label);
+        flow.prepend(band);
+      });
+      for (const n of Object.values(nodes)) {
+        n.box.style.top = rowY[n.row] + "px";
+      }
+      const rect = (id) => {
+        const b = nodes[id].box;
+        const x = b.offsetLeft,
+          yy = b.offsetTop,
+          w = b.offsetWidth,
+          h = b.offsetHeight;
+        return { l: x, r: x + w, t: yy, b: yy + h, cx: x + w / 2, cy: yy + h / 2 };
+      };
+      const NS = "http://www.w3.org/2000/svg";
+      const defs = document.createElementNS(NS, "defs");
+      defs.innerHTML =
+        '<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#a3a8bb"/></marker>';
+      svg.append(defs);
+      const labelAt = (x, yy, text, side) => {
+        if (!text) return;
+        const l = el("div", "elabel", text);
+        l.style.left = x + "px";
+        l.style.top = yy + "px";
+        // left: termina 6 px antes da linha; right: começa 6 px depois.
+        if (side === "left") l.style.transform = "translate(calc(-100% - 6px), -50%)";
+        if (side === "right") l.style.transform = "translate(6px, -50%)";
+        flow.append(l);
+      };
+      for (const e of EDGES) {
+        const s = rect(e.from),
+          t = rect(e.to);
+        let d, lx, ly;
+        if (e.route === "side") {
+          const left = e.side === "L";
+          const lane = e.laneAbs ?? (left ? Math.min(s.l, t.l) : Math.max(s.r, t.r)) + e.lane;
+          const sx = left ? s.l : s.r,
+            tx = left ? t.l : t.r;
+          d = `M${sx} ${s.cy}H${lane}V${t.cy}H${tx}`;
+          lx = lane;
+          ly = e.ly === "source" ? s.cy : e.ly === "target" ? t.cy : (s.cy + t.cy) / 2;
+        } else if (e.route === "h") {
+          // Linha reta na altura em que as duas caixas se sobrepõem; dy separa ida e volta.
+          const yy = (Math.max(s.t, t.t) + Math.min(s.b, t.b)) / 2 + (e.dy || 0);
+          const leftward = t.cx < s.cx;
+          const sx = leftward ? s.l : s.r,
+            tx = leftward ? t.r : t.l;
+          d = `M${sx} ${yy}H${tx}`;
+          lx = (sx + tx) / 2;
+          ly = yy + (e.dy > 0 ? 13 : -13);
+        } else if (e.route === "vh") {
+          // Desce (ou sobe) pela coluna da origem e entra pela lateral do destino.
+          const sy = e.up ? s.t : s.b;
+          const tx = t.cx < s.cx ? t.r : t.l;
+          d = `M${s.cx} ${sy}V${t.cy}H${tx}`;
+          lx = s.cx;
+          ly = (sy + t.cy) / 2;
+        } else {
+          let sx = s.cx,
+            tx = t.cx;
+          if (e.alignTarget) sx = Math.min(Math.max(t.cx, s.l + 20), s.r - 20);
+          if (e.alignSource) tx = Math.min(Math.max(s.cx, t.l + 20), t.r - 20);
+          if (e.alignTarget && sx === t.cx) tx = sx;
+          const rowBottom = rowY[nodes[e.from].row] + rowH[nodes[e.from].row];
+          const elbow = rowBottom + 18;
+          const ym = elbow < t.t - 24 ? elbow : (s.b + t.t) / 2;
+          d = Math.abs(sx - tx) < 1 ? `M${sx} ${s.b}V${t.t}` : `M${sx} ${s.b}V${ym}H${tx}V${t.t}`;
+          lx = tx;
+          ly = Math.abs(sx - tx) < 1 ? (s.b + t.t) / 2 : (ym + t.t) / 2;
+          // lpos start: rótulo no trecho horizontal, perto da origem (quando várias setas se juntam).
+          if (e.lpos === "start") {
+            lx = sx + Math.sign(tx - sx) * 90;
+            ly = ym;
+          }
+        }
+        const p = document.createElementNS(NS, "path");
+        p.setAttribute("d", d);
+        p.setAttribute("class", "edge" + (e.loop ? " loop" : ""));
+        p.setAttribute("marker-end", "url(#arrow)");
+        svg.append(p);
+        labelAt(lx, ly, e.label, e.lx);
+      }
+
+      // ---------------------------------------------------------------- 2. Os 57 caminhos
+      document.getElementById("facts").innerHTML = [
+        ["57", "tipos de pedido"],
+        ["4", "áreas"],
+        ["25", "setores"],
+        [String(count((c) => c.setores)), "com setor restrito"],
+        ["4", "pontos de IA", true],
+        [String(tipsCount), "caminhos com dicas da IA", true],
+      ]
+        .map(([n, t, ai]) => `<div class="fact${ai ? " ai" : ""}"><b>${n}</b><small>${t}</small></div>`)
+        .join("");
+      document.getElementById("paths-sub").textContent =
+        "Depois da área (e do grupo, em TI), a pessoa escolhe a necessidade. Cada uma pede só os dados de que a equipe precisa. " +
+        count((c) => c.tipo === "solicitação") +
+        " são solicitações (reservas, acessos, instalações), " +
+        count((c) => c.tipo === "problema") +
+        " são problemas, 1 é dúvida e 1 é “outros”.";
+      const fieldText = (c) => {
+        const parts = [];
+        for (const f of c.campos) {
+          if (f.se) {
+            parts[parts.length - 1] += " (Sim → " + f.rotulo.toLowerCase() + ")";
+            continue;
+          }
+          parts.push(f.rotulo);
+        }
+        return parts.length ? "Pede: " + parts.join(" · ") : "Só a descrição";
+      };
+      const SHORT = { "Coordenação EI (Infantil)": "Coordenação do Infantil" };
+      const leaf = (c) => {
+        const li = el("li");
+        li.append(el("b", "", c.nome), el("span", "ask", fieldText(c)));
+        const tags = el("div", "tags");
+        if (c.dicas) tags.append(el("span", "ai", "✦ dicas da IA"));
+        if (c.setores) tags.append(el("span", "", "só " + c.setores.map((s) => SHORT[s] || s).join(", ")));
+        if (c.defeitoOuNovo) tags.append(el("span", "", "defeito ou item novo"));
+        if (c.descricaoOpcional) tags.append(el("span", "", "descrição opcional"));
+        tags.append(el("span", "", c.tipo));
+        li.append(tags);
+        return li;
+      };
+      const areasBox = document.getElementById("areas");
+      for (const area of ["Audiovisual", "Impressora", "Google", "TI"]) {
+        const list = caminhos.filter((c) => c.area === area);
+        const box = el("div", "area");
+        const h = el("h3", "", area + " ");
+        h.append(el("small", "", list.length + " caminhos"));
+        box.append(h);
+        const groups = [...new Set(list.map((c) => c.grupo))];
+        const holder = area === "TI" ? el("div", "groups") : box;
+        for (const g of groups) {
+          const wrap = el("div", "group");
+          if (g || area === "TI") wrap.append(el("h4", "", g || "Geral"));
+          const ul = el("ul", "tree");
+          list.filter((c) => c.grupo === g).forEach((c) => ul.append(leaf(c)));
+          wrap.append(ul);
+          holder.append(wrap);
+        }
+        if (holder !== box) box.append(holder);
+        areasBox.append(box);
+      }
+    </script>
+  </body>
+</html>

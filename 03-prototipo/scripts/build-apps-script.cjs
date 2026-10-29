@@ -34,12 +34,19 @@ function build({ check = false } = {}) {
     ai.analyzeCategories
       .toString()
       .replace("function analyzeCategories", "function analyzeCategories_") + "\n";
-  for (const name of ["knowledge-base", "classifier", "flows", "request-policy"])
+  // conversation-copy: o rascunho da IA confere o relato com a pergunta de descrição (0.12.18).
+  for (const name of [
+    "knowledge-base",
+    "classifier",
+    "flows",
+    "request-policy",
+    "conversation-copy",
+  ])
     shared += read("assets/js/" + name + ".js") + "\n";
   shared +=
     "\nclass InvalidRequest extends Error { constructor(message, status = 400) { super(message); this.status = status; } }\n";
   shared +=
-    'var policy = window.SmartDesk.requestPolicy;\npolicy.localDay = () => Utilities.formatDate(new Date(), "America/Sao_Paulo", "yyyy-MM-dd");\n';
+    'var policy = window.SmartDesk.requestPolicy;\npolicy.localDay = () => Utilities.formatDate(new Date(), "America/Sao_Paulo", "yyyy-MM-dd");\npolicy.localTime = () => Utilities.formatDate(new Date(), "America/Sao_Paulo", "HH:mm");\n';
   let validation = read("server/ticket-validation.cjs");
   validation = validation.slice(
     validation.indexOf("function validateSelection"),
@@ -51,6 +58,8 @@ function build({ check = false } = {}) {
     "validateAnswers",
     "safeSubject",
     "safeAssist",
+    "safeTips",
+    "cleanAIText",
     "answeredForAI",
     "repeatsAnswered",
     "safeExtract",

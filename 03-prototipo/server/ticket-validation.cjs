@@ -137,17 +137,28 @@ function repeatsAnswered(question, item, answers) {
     return !!rule && rule.test(q);
   });
 }
+// Texto da IA mostrado na conversa: uma linha, sem marcação; links nunca entram.
+const cleanAIText = (value) =>
+  typeof value === "string"
+    ? value
+        .replace(/[\x00-\x1f<>]+/g, " ")
+        .replace(/\s+/g, " ")
+        .trim()
+    : "";
+const AI_LINKS = /https?:\/\/|www\./i;
+// Até três passos seguros, curtos e sem links (revisão e rascunho usam a mesma regra).
+const safeTips = (list) =>
+  Array.isArray(list)
+    ? list
+        .map(cleanAIText)
+        .filter((tip) => tip.length >= 6 && tip.length <= 160 && !AI_LINKS.test(tip))
+        .slice(0, 3)
+    : [];
 function safeAssist(result, allowTips, item, answers) {
   // A IA só sugere: uma pergunta de complemento (com dica de onde achar a resposta),
   // até três passos seguros e um alerta quando o relato não combina com o caminho.
-  const clean = (value) =>
-    typeof value === "string"
-      ? value
-          .replace(/[\x00-\x1f<>]+/g, " ")
-          .replace(/\s+/g, " ")
-          .trim()
-      : "";
-  const links = /https?:\/\/|www\./i;
+  const clean = cleanAIText,
+    links = AI_LINKS;
   let question = clean(result && result.pergunta);
   if (
     question.length < 8 ||
@@ -166,13 +177,7 @@ function safeAssist(result, allowTips, item, answers) {
     question = "";
   let help = question ? clean(result && result.ajuda) : "";
   if (help.length < 8 || help.length > 180 || links.test(help)) help = "";
-  const tips =
-    allowTips && result && Array.isArray(result.dicas)
-      ? result.dicas
-          .map(clean)
-          .filter((tip) => tip.length >= 6 && tip.length <= 160 && !links.test(tip))
-          .slice(0, 3)
-      : [];
+  const tips = allowTips && result ? safeTips(result.dicas) : [];
   const coherent = !(result && result.coerente === false);
   let reason = coherent ? "" : clean(result && result.motivo);
   if (reason.length > 160 || links.test(reason)) reason = reason.slice(0, 157) + "…";
@@ -207,17 +212,24 @@ function weekdayName(iso) {
     "sábado",
   ][new Date(iso + "T12:00:00Z").getUTCDay()];
 }
-function safeExtract(item, result) {
+function safeExtract(item, result, allowTips = false, story = "") {
   // Só valores no formato do campo entram no rascunho; o resto será perguntado.
   const answers = {},
     allowed = extractableFields(item),
-    list = result && Array.isArray(result.campos) ? result.campos : [];
+    list = result && Array.isArray(result.campos) ? result.campos : [],
+    told = String(story).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase(),
+    // "É para um evento?" só sai do relato quando ele fala em evento, e o horário, quando ele diz
+    // a hora: a verificação 0.12.18 pegou "Não" para "aula de educação física" e 07:00 para
+    // "na primeira aula".
+    mentionsEvent = /\beventos?\b/.test(told),
+    saysTime = /\b\d{1,2}\s*(?:h\d{0,2}|hrs?|horas?|:\d{2})\b|\bmeio[- ]?dia\b/.test(told);
   for (const entry of list) {
     const field = allowed.find((f) => f.id === (entry && entry.id));
     if (!field || answers[field.id] !== undefined) continue;
     const value = typeof entry.valor === "string" ? entry.valor.trim() : "";
     if (!value || value.length > 200 || /[<>]/.test(value)) continue;
     if (field.type === "choice" && !field.options.includes(value)) continue;
+    if (field.id === "evento" && !mentionsEvent) continue;
     if (field.type === "date") {
       if (
         !/^\d{4}-\d{2}-\d{2}$/.test(value) ||
@@ -226,7 +238,7 @@ function safeExtract(item, result) {
       )
         continue;
     }
-    if (field.type === "time" && !/^([01]\d|2[0-3]):[0-5]\d$/.test(value)) continue;
+    if (field.type === "time" && (!/^([01]\d|2[0-3]):[0-5]\d$/.test(value) || !saysTime)) continue;
     if (field.type === "url" && !/^https?:\/\/[^\s/?#]+(?:[/?#][^\s]*)?$/.test(value)) continue;
     answers[field.id] = value;
   }
@@ -237,12 +249,38 @@ function safeExtract(item, result) {
       answers[field.when.field] !== field.when.equals
     )
       delete answers[field.id];
+  // Horário de hoje que já passou não entra: a conversa pergunta de novo.
+  const day = (item.fields || []).find((field) => field.type === "date"),
+    hour = (item.fields || []).find((field) => field.type === "time");
+  if (
+    day &&
+    hour &&
+    policy.pastTimeToday(answers[day.id], answers[hour.id], policy.localDay(), policy.localTime())
+  )
+    delete answers[hour.id];
   // Defeito x item novo só existe nos periféricos; em reservas e outros pedidos é ignorado.
   const intent =
     policy.asksEquipmentIntent(item) && result && ["repair", "purchase"].includes(result.intencao)
       ? result.intencao
       : "";
-  return { answers, intent };
+  // 0.12.18 — o que a IA entendeu (mostrado à pessoa no rascunho), se o relato já responde à
+  // pergunta de descrição do caminho, se trouxe outro pedido e dicas seguras para tentar antes.
+  let understanding = cleanAIText(result && result.entendimento);
+  if (understanding.length < 8 || AI_LINKS.test(understanding)) understanding = "";
+  if (understanding.length > 200) understanding = understanding.slice(0, 199).trim() + "…";
+  const complete =
+    result && typeof result.relatoCompleto === "boolean" ? result.relatoCompleto : null;
+  // Nos periféricos, dicas só quando a IA entendeu que é defeito (nunca em item novo).
+  const tipsAllowed =
+    allowTips && (!policy.asksEquipmentIntent(item) || intent === "repair") && !!result;
+  return {
+    answers,
+    intent,
+    understanding,
+    complete,
+    otherRequest: !!result && result.outroPedido === true,
+    tips: tipsAllowed ? safeTips(result.dicas) : [],
+  };
 }
 function localSubject(item) {
   return (
@@ -289,7 +327,20 @@ function validateAnswers(input, item) {
         throw new InvalidRequest("Informe um link válido.");
       }
     }
+    if (field.type === "tel" && !policy.phoneValue(value))
+      throw new InvalidRequest("Informe o telefone com DDD: " + field.label);
     result[field.id] = value;
+  }
+  // Atendimento para hoje com horário que já passou. Folga de 30 minutos para quem escolheu o
+  // horário e demorou a enviar; perto da meia-noite não há o que conferir.
+  const day = (item.fields || []).find((field) => field.type === "date"),
+    hour = (item.fields || []).find((field) => field.type === "time");
+  if (day && hour && result[day.id] === policy.localDay() && result[hour.id]) {
+    const minutes = (hhmm) => Number(hhmm.slice(0, 2)) * 60 + Number(hhmm.slice(3, 5));
+    if (minutes(result[hour.id]) < minutes(policy.localTime()) - 30)
+      throw new InvalidRequest(
+        "Esse horário já passou. Escolha um horário mais tarde ou outra data.",
+      );
   }
   return result;
 }

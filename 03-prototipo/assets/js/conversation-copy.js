@@ -1,7 +1,10 @@
 "use strict";
 (function (desk) {
   const tool = (item) => item.path?.[item.path.length - 1] || item.need;
+  // "no Gmail", "no Google Drive": o nome do produto pede o artigo certo.
+  const googleProduct = (item) => (tool(item) === "Gmail" ? "Gmail" : "Google " + tool(item));
   function opening(item) {
+    const policy = desk.requestPolicy;
     if (item.id === "AV-007")
       return "Entendi. Vamos registrar o problema com o cabo HDMI para a equipe verificar.";
     if (item.area === "Audiovisual")
@@ -10,16 +13,25 @@
       return item.id === "IMP-010"
         ? "Vamos separar as informações do toner ou da tinta que você precisa."
         : "Vamos olhar essa questão da impressora. Primeiro, preciso de alguns detalhes para a equipe saber por onde começar.";
-    if (item.area === "Google")
-      return (
-        "Vamos ver essa questão no " +
-        tool(item) +
-        ". Me passe alguns detalhes para a equipe encontrar o que está acontecendo."
-      );
-    if (desk.requestPolicy.asksEquipmentIntent(item))
-      return "Certo. Antes dos detalhes, me ajuda a entender o que você precisa com esse equipamento.";
     if (item.need.includes("Reserva"))
       return "Vamos organizar essa reserva. Me diga quando você vai precisar do equipamento.";
+    if (item.id === "GOO-011")
+      return "Vamos cuidar do acesso à sua conta Google. Você nunca precisa me dizer a senha.";
+    if (policy.requestKind(item) === "dúvida")
+      return item.area === "Google"
+        ? "Vamos ver sua dúvida sobre o Google."
+        : "Entendi. Vamos registrar sua dúvida para a equipe responder.";
+    if (item.area === "Google")
+      return (
+        "Vamos ver o que está acontecendo no " +
+        googleProduct(item) +
+        ". Me passe alguns detalhes para a equipe saber por onde começar."
+      );
+    if (policy.asksEquipmentIntent(item))
+      return "Certo. Antes dos detalhes, me ajuda a entender o que você precisa com esse equipamento.";
+    if (item.need.includes("Sugestão"))
+      return "Boa! Vamos registrar sua sugestão para a equipe avaliar.";
+    if (!(item.fields || []).length) return "Entendi. Vamos registrar isso para a equipe.";
     return "Entendi. Vou te fazer algumas perguntas para a equipe conseguir avaliar isso com você.";
   }
   const prompts = {
@@ -78,6 +90,11 @@
   function field(item, f) {
     if (f.id === "data" && item.area === "Audiovisual")
       return "Para qual dia vamos preparar os equipamentos? Digite a data ou toque no calendário.";
+    // No encerramento de diário, período é o bimestre ou trimestre, não um horário.
+    if (f.id === "periodo" && item.id === "TI-MENT-004")
+      return "Qual período letivo vai ser encerrado? Por exemplo, 3º bimestre.";
+    if (f.id === "conta" && desk.requestPolicy.requestKind(item) === "dúvida")
+      return "Sua dúvida é sobre qual conta Google?";
     return (
       prompts[f.id] ||
       "Pode me informar " + f.label.charAt(0).toLowerCase() + f.label.slice(1) + "?"
@@ -128,7 +145,6 @@
     "TI-COMP-002",
     "TI-COMP-003",
     "TI-COMP-004",
-    "TI-COMP-006",
     "TI-COMP-007",
     "TI-COMP-008",
     "TI-NET-001",
@@ -136,22 +152,42 @@
   ];
   const detailsOptional = (item, intent = "") =>
     OPTIONAL_DETAILS.includes(item.id) && intent !== "purchase";
-  function description(item, intent = "") {
+  // Pedidos que já perguntam a data ou o período não repetem "para quando" na descrição.
+  const WHEN_FIELDS = ["data", "periodo", "horario-periodo"];
+  function description(item, intent = "", answers = {}) {
+    const kind = desk.requestPolicy.requestKind(item, intent);
     if (intent === "purchase")
       return "Qual item você quer solicitar e para qual atividade? Conte o que ele precisa ter para te ajudar no trabalho.";
     if (detailsOptional(item, intent))
-      return "Quer acrescentar algum detalhe para a equipe? Por exemplo, desde quando acontece ou se já tentou algo. Se não tiver, toque em “Sem mais detalhes”.";
+      return kind === "solicitação"
+        ? "Quer acrescentar algum detalhe para a equipe? Se não tiver, toque em “Sem mais detalhes”."
+        : "Quer acrescentar algum detalhe para a equipe? Por exemplo, " +
+            (answers["tipo-de-conexao"] === "Wi-Fi" ? "o nome da rede Wi-Fi, " : "") +
+            "desde quando acontece ou se já tentou algo. Se não tiver, toque em “Sem mais detalhes”.";
     if (item.id === "AV-007")
       return "Quer ajustar o relato? Conte o que acontece com o cabo HDMI e onde ele está conectado.";
     if (item.need.includes("Reserva") || item.area === "Audiovisual")
       return "Como vai ser o uso? Conte o local, a atividade e para quantas pessoas, para a equipe preparar tudo.";
+    if (kind === "dúvida")
+      return "Qual é a sua dúvida? Conte o que você quer fazer e em que parte travou; não precisa usar termos técnicos.";
+    if (item.need.includes("Sugestão"))
+      return "Qual é a sua sugestão? Conte o que pode melhorar e como isso ajudaria no dia a dia.";
     if (item.area === "Impressora")
       return "Me conta o que você precisa com a impressora e onde ela fica.";
     if (item.area === "Google")
       return "O que você está tentando fazer e o que acontece nessa hora? Conte com suas palavras; não precisa usar termos técnicos.";
-    if (desk.requestPolicy.requestKind(item, intent) === "solicitação")
-      return "Conte o que você precisa e para quando, com os detalhes que ajudam a equipe a atender.";
+    if (kind === "solicitação")
+      return (item.fields || []).some((f) => WHEN_FIELDS.includes(f.id))
+        ? "Conte o que você precisa, com os detalhes que ajudam a equipe a atender."
+        : "Conte o que você precisa e para quando, com os detalhes que ajudam a equipe a atender.";
     return "Agora, me conta um pouco mais: o que aconteceu ou o que você precisa? Se puder, diga desde quando e como isso afeta seu trabalho.";
+  }
+  // Caminho da IA: a pergunta de descrição que o caminho pelos botões faria, para conferir se o
+  // relato já responde a ela. Vazia quando os detalhes são opcionais ou quando o campo do caminho
+  // já é a descrição (cabo HDMI).
+  function flowQuestion(item, intent = "") {
+    if ((item.fields || []).some((f) => f.id === "descricao-do-problema")) return "";
+    return detailsOptional(item, intent) ? "" : description(item, intent);
   }
   // Texto montado quando a pessoa não quer acrescentar nada: necessidade + dados informados.
   function autoDescription(item, answers) {
@@ -164,6 +200,7 @@
     opening,
     field,
     description,
+    flowQuestion,
     quickReplies,
     detailsOptional,
     autoDescription,

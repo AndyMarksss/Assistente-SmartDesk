@@ -568,39 +568,63 @@ function smartdeskCall(session, route, body) {
     }
     if (route === "/api/extract") {
       // Rascunho a partir do relato livre: só valores no formato certo; o resto é perguntado.
+      // Mesmo sem campos a preencher, a IA diz o que entendeu, confere o relato e pode dar dicas.
       var told = validateDescription_(body.description),
-        draft = { answers: {}, intent: "" },
+        draft = {
+          answers: {},
+          intent: "",
+          understanding: "",
+          complete: null,
+          otherRequest: false,
+          tips: [],
+        },
         from = "local",
+        allowTips = policy.selfHelpEligible(item, ""),
         fields = extractableFields_(item).map(function (field) {
           var entry = { id: field.id, rotulo: field.label, tipo: field.type };
           if (field.options) entry.opcoes = field.options;
           return entry;
         });
-      if (fields.length)
-        try {
-          var today = policy.localDay();
-          draft = safeExtract_(
-            item,
-            portalAIJson_(
-              session,
-              SMARTDESK_EXTRACT_INSTRUCTION,
-              {
-                hoje: today + " (" + weekdayName_(today) + ")",
-                setor: body.sector,
-                area: item.area,
-                necessidade: item.need,
-                campos: fields,
-                relato: told,
-              },
-              SMARTDESK_EXTRACT_SCHEMA,
-              0,
-            ),
-          );
-          from = "ai";
-        } catch (error) {}
+      try {
+        var today = policy.localDay();
+        draft = safeExtract_(
+          item,
+          portalAIJson_(
+            session,
+            SMARTDESK_EXTRACT_INSTRUCTION,
+            {
+              hoje: today + " (" + weekdayName_(today) + ")",
+              setor: body.sector,
+              area: item.area,
+              necessidade: item.need,
+              campos: fields,
+              relato: told,
+              perguntaDoFluxo: desk.conversationCopy.flowQuestion(
+                item,
+                policy.asksEquipmentIntent(item) ? "purchase" : "",
+              ),
+              dicasPermitidas: allowTips,
+            },
+            SMARTDESK_EXTRACT_SCHEMA,
+            0,
+          ),
+          allowTips,
+          told,
+        );
+        from = "ai";
+      } catch (error) {}
       return {
         status: 200,
-        body: { answers: draft.answers, intent: draft.intent, source: from, selectionId: item.id },
+        body: {
+          answers: draft.answers,
+          intent: draft.intent,
+          understanding: draft.understanding,
+          complete: draft.complete,
+          otherRequest: draft.otherRequest,
+          tips: draft.tips,
+          source: from,
+          selectionId: item.id,
+        },
       };
     }
     if (route === "/api/tickets") {

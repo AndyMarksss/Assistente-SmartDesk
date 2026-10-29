@@ -38,3 +38,16 @@ Os pedidos são espaçados (4,5 s) para respeitar o limite gratuito do Gemini (5
 ```bash
 node verificar-requisicoes.cjs --rodada depois --etapas assist,subject --intervalo 7000
 ```
+
+## Rascunho que interpreta o relato (0.12.18, 2026-10-29)
+
+`avaliar-ia.cjs` passou a gravar, na extração, o que a IA entendeu (`entendimento`), se o relato responde à pergunta de descrição do caminho (`completo`), se há outro pedido (`outroPedido`) e as dicas (`dicas`).
+
+- **1ª rodada** (`resultados-extracao-0-12-18.json`): 80 de 80 campos. Mostrou "Não" inventado em "É para um evento?".
+- **Rodada final** (`resultados-extracao-0-12-18-final.json`): 79 de 80 campos. Mostrou 07:00 inventado para "na primeira aula".
+- **As duas invenções** passaram a ser descartadas por `safeExtract`, conferido reaplicando a regra às respostas já coletadas.
+- **Nunca rode duas avaliações** (ou uma avaliação e testes no navegador) ao mesmo tempo: o limite por minuto do Gemini gratuito devolve "IA indisponível".
+
+```bash
+node avaliar-ia.cjs --rodada extracao-0-12-18-final --so-extracao sim
+```

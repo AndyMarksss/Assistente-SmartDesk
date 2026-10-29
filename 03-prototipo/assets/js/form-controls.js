@@ -35,7 +35,8 @@
       }
       return list;
     }
-    function structured(label, type, options, callback, { prefill = "" } = {}) {
+    // notBefore: horário mínimo (HH:MM) quando a data escolhida é hoje.
+    function structured(label, type, options, callback, { prefill = "", notBefore = "" } = {}) {
       const temporal = ["date", "time"].includes(type);
       lock(temporal ? "PREENCHA PARA CONTINUAR" : "ESCOLHA NA LISTA PARA CONTINUAR");
       readyControls(() => {
@@ -97,7 +98,9 @@
             : type === "time"
               ? !read()
                 ? "Confira o horário. Use horas e minutos, como 09:30."
-                : ""
+                : notBefore && read() < notBefore
+                  ? "Esse horário já passou hoje. Escolha um horário a partir de " + notBefore + "."
+                  : ""
               : !field.value
                 ? "Escolha uma opção da lista."
                 : "";

@@ -1,0 +1,2837 @@
+{
+  "rodada": "extracao-0-12-18-final",
+  "hoje": "2026-10-29",
+  "casos": [
+    {
+      "n": 1,
+      "tipo": "claro",
+      "setor": "Esporte",
+      "relato": "Preciso de uma caixa de som na quadra amanhã às 10h para a aula de educação física.",
+      "esperado": "AV-001",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [
+          "AV-001",
+          "AV-002",
+          "AV-003",
+          "AV-004"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "data": "2026-10-30",
+          "horario": "10:00"
+        },
+        "intent": "",
+        "entendimento": "Você precisa de uma caixa de som na quadra amanhã às 10h para a aula de educação física.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [],
+        "campos": {
+          "data": {
+            "esperado": "@+1",
+            "obtido": "2026-10-30",
+            "resultado": "ok"
+          },
+          "horario": {
+            "esperado": "=10:00",
+            "obtido": "10:00",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 3,
+      "tipo": "informal",
+      "setor": "Esporte",
+      "relato": "mds preciso d caixinha de som pra sexta de manha, pode ser?",
+      "esperado": "AV-001",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [
+          "AV-001"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "data": "2026-10-30"
+        },
+        "intent": "",
+        "entendimento": "Você precisa de caixa de som na sexta-feira de manhã.",
+        "completo": false,
+        "outroPedido": false,
+        "dicas": [],
+        "campos": {
+          "data": {
+            "esperado": "@dow:5",
+            "obtido": "2026-10-30",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 4,
+      "tipo": "claro",
+      "setor": "Coordenação EFAI (Fundamental I)",
+      "relato": "Preciso de caixa de som e microfone no pátio na sexta-feira às 8h para a abertura da gincana, que é um evento.",
+      "esperado": "AV-002",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [
+          "AV-001",
+          "AV-002",
+          "AV-003",
+          "AV-004",
+          "AV-005"
+        ],
+        "pontos": {
+          "top1": false,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "data": "2026-10-30",
+          "horario": "08:00",
+          "evento": "Sim"
+        },
+        "intent": "",
+        "entendimento": "Você precisa de caixa de som e microfone no pátio na sexta-feira às 8h para a abertura da gincana, que é um evento.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [],
+        "campos": {
+          "data": {
+            "esperado": "@dow:5",
+            "obtido": "2026-10-30",
+            "resultado": "ok"
+          },
+          "horario": {
+            "esperado": "=08:00",
+            "obtido": "08:00",
+            "resultado": "ok"
+          },
+          "evento": {
+            "esperado": "=Sim",
+            "obtido": "Sim",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 6,
+      "tipo": "informal",
+      "setor": "Coordenação EFAI (Fundamental I)",
+      "relato": "precisa d som c microfone pra apresentacao amanha 14h",
+      "esperado": "AV-002",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [
+          "AV-001",
+          "AV-002",
+          "AV-003",
+          "AV-004",
+          "AV-005",
+          "AV-006"
+        ],
+        "pontos": {
+          "top1": false,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "data": "2026-10-30",
+          "horario": "14:00"
+        },
+        "intent": "",
+        "entendimento": "Você precisa de som com microfone para apresentação amanhã às 14h.",
+        "completo": false,
+        "outroPedido": false,
+        "dicas": [],
+        "campos": {
+          "data": {
+            "esperado": "@+1",
+            "obtido": "2026-10-30",
+            "resultado": "ok"
+          },
+          "horario": {
+            "esperado": "=14:00",
+            "obtido": "14:00",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 7,
+      "tipo": "claro",
+      "setor": "Direção",
+      "relato": "Para a palestra no auditório no dia 20, às 19h, vou precisar de projetor, microfone e caixa de som. É um evento com os pais.",
+      "esperado": "AV-003",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [
+          "AV-001",
+          "AV-002",
+          "AV-003",
+          "AV-004",
+          "AV-005",
+          "AV-006"
+        ],
+        "pontos": {
+          "top1": false,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "data": "2026-11-20",
+          "horario": "19:00",
+          "evento": "Sim"
+        },
+        "intent": "",
+        "entendimento": "Você precisa de projetor, microfone e caixa de som no auditório no dia 20 às 19h para uma palestra com os pais.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [],
+        "campos": {
+          "data": {
+            "esperado": "@dia:20",
+            "obtido": "2026-11-20",
+            "resultado": "ok"
+          },
+          "horario": {
+            "esperado": "=19:00",
+            "obtido": "19:00",
+            "resultado": "ok"
+          },
+          "evento": {
+            "esperado": "=Sim",
+            "obtido": "Sim",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 9,
+      "tipo": "informal",
+      "setor": "Direção",
+      "relato": "preciso do kit completo projetor microfone e som pro auditorio na segunda q vem",
+      "esperado": "AV-003",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [
+          "AV-001",
+          "AV-002",
+          "AV-003",
+          "AV-004",
+          "AV-005",
+          "AV-006"
+        ],
+        "pontos": {
+          "top1": false,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "data": "2026-11-02"
+        },
+        "intent": "",
+        "entendimento": "Você precisa do kit completo projetor microfone e som pro auditório na segunda que vem.",
+        "completo": false,
+        "outroPedido": false,
+        "dicas": [],
+        "campos": {
+          "data": {
+            "esperado": "@dow:1",
+            "obtido": "2026-11-02",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 10,
+      "tipo": "claro",
+      "setor": "Coordenação EFAF (Fundamental II)",
+      "relato": "Preciso de projetor e caixa de som na sala 12 amanhã às 13h30 para passar um filme para a turma.",
+      "esperado": "AV-004",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [
+          "AV-001",
+          "AV-002",
+          "AV-003",
+          "AV-004",
+          "AV-006",
+          "GOO-003"
+        ],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "data": "2026-10-30",
+          "horario": "13:30"
+        },
+        "intent": "",
+        "entendimento": "Você precisa de projetor e caixa de som na sala 12 amanhã às 13h30 para passar um filme para a turma.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [],
+        "campos": {
+          "data": {
+            "esperado": "@+1",
+            "obtido": "2026-10-30",
+            "resultado": "ok"
+          },
+          "horario": {
+            "esperado": "=13:30",
+            "obtido": "13:30",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 12,
+      "tipo": "informal",
+      "setor": "Coordenação EFAF (Fundamental II)",
+      "relato": "projetor + som pra sala 5 quinta 9h",
+      "esperado": "AV-004",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [
+          "AV-001",
+          "AV-003",
+          "AV-004",
+          "AV-006"
+        ],
+        "pontos": {
+          "top1": false,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "data": "2026-11-05",
+          "horario": "09:00"
+        },
+        "intent": "",
+        "entendimento": "Você precisa de projetor e som na sala 5 na quinta-feira às 09:00.",
+        "completo": false,
+        "outroPedido": false,
+        "dicas": [],
+        "campos": {
+          "data": {
+            "esperado": "@dow:4",
+            "obtido": "2026-11-05",
+            "resultado": "ok"
+          },
+          "horario": {
+            "esperado": "=09:00",
+            "obtido": "09:00",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 13,
+      "tipo": "claro",
+      "setor": "Orientação EM (Médio)",
+      "relato": "Preciso de um microfone sem fio para a reunião de professores na sexta às 17h.",
+      "esperado": "AV-005",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [
+          "AV-002",
+          "AV-003",
+          "AV-005"
+        ],
+        "pontos": {
+          "top1": false,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "data": "2026-10-30",
+          "horario": "17:00"
+        },
+        "intent": "",
+        "entendimento": "Você precisa de um microfone sem fio na sexta às 17h para a reunião de professores.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [],
+        "campos": {
+          "data": {
+            "esperado": "@dow:5",
+            "obtido": "2026-10-30",
+            "resultado": "ok"
+          },
+          "horario": {
+            "esperado": "=17:00",
+            "obtido": "17:00",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 15,
+      "tipo": "informal",
+      "setor": "Orientação EM (Médio)",
+      "relato": "microfone pra amanha cedo 7h30 na entrada",
+      "esperado": "AV-005",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [
+          "AV-002",
+          "AV-003",
+          "AV-005"
+        ],
+        "pontos": {
+          "top1": false,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "data": "2026-10-30",
+          "horario": "07:30"
+        },
+        "intent": "",
+        "entendimento": "Você precisa de um microfone amanhã cedo às 07:30 na entrada.",
+        "completo": false,
+        "outroPedido": false,
+        "dicas": [],
+        "campos": {
+          "data": {
+            "esperado": "@+1",
+            "obtido": "2026-10-30",
+            "resultado": "ok"
+          },
+          "horario": {
+            "esperado": "=07:30",
+            "obtido": "07:30",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 16,
+      "tipo": "claro",
+      "setor": "Coordenação EM (Médio)",
+      "relato": "Preciso reservar um projetor para a sala 8 na terça-feira às 10h para apresentar slides.",
+      "esperado": "AV-006",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [
+          "AV-003",
+          "AV-004",
+          "AV-006",
+          "GOO-002"
+        ],
+        "pontos": {
+          "top1": false,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "data": "2026-11-03",
+          "horario": "10:00"
+        },
+        "intent": "",
+        "entendimento": "Você precisa de um projetor na sala 8 na terça-feira às 10h para apresentar slides.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [],
+        "campos": {
+          "data": {
+            "esperado": "@dow:2",
+            "obtido": "2026-11-03",
+            "resultado": "ok"
+          },
+          "horario": {
+            "esperado": "=10:00",
+            "obtido": "10:00",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 18,
+      "tipo": "informal",
+      "setor": "Coordenação EM (Médio)",
+      "relato": "datashow pra sala 3 amanha na primeira aula",
+      "esperado": "AV-006",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "data": "2026-10-30",
+          "horario": "07:00"
+        },
+        "intent": "",
+        "entendimento": "Você precisa de um datashow para a sala 3 amanhã na primeira aula.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [],
+        "campos": {
+          "data": {
+            "esperado": "@+1",
+            "obtido": "2026-10-30",
+            "resultado": "ok"
+          }
+        },
+        "extras": [
+          "horario"
+        ]
+      }
+    },
+    {
+      "n": 22,
+      "tipo": "claro",
+      "setor": "Secretaria",
+      "relato": "Preciso configurar o scanner da impressora Brother DCP-L5652 para digitalizar direto no meu computador.",
+      "esperado": "IMP-001",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [
+          "IMP-001"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "modelo": "Brother DCP-L5652"
+        },
+        "intent": "",
+        "entendimento": "Você precisa configurar o scanner da impressora para digitalizar direto no seu computador.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [],
+        "campos": {
+          "modelo": {
+            "esperado": "~L5652",
+            "obtido": "Brother DCP-L5652",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 25,
+      "tipo": "claro",
+      "setor": "Setor de Provas",
+      "relato": "A impressora Ricoh do 2º andar está com o grampo travado e não grampeia as provas.",
+      "esperado": "IMP-002",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [
+          "IMP-002"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "modelo": "Ricoh"
+        },
+        "intent": "",
+        "entendimento": "Você relata que a impressora Ricoh do 2º andar está com o grampo travado e não grampeia as provas.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [],
+        "campos": {
+          "modelo": {
+            "esperado": "~Ricoh",
+            "obtido": "Ricoh",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 28,
+      "tipo": "claro",
+      "setor": "Recursos Humanos",
+      "relato": "Preciso instalar a impressora HP LaserJet M428 no meu notebook novo.",
+      "esperado": "IMP-003",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "modelo": "HP LaserJet M428"
+        },
+        "intent": "",
+        "entendimento": "Você precisa instalar a impressora HP LaserJet M428 no seu notebook novo.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [],
+        "campos": {
+          "modelo": {
+            "esperado": "~M428",
+            "obtido": "HP LaserJet M428",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 31,
+      "tipo": "claro",
+      "setor": "Financeiro",
+      "relato": "A impressora Kyocera está mostrando erro na lâmpada da estufa (fusor) e parou de imprimir.",
+      "esperado": "IMP-004",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [
+          "IMP-004"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "modelo": "Kyocera",
+          "erro-apresentado": "erro na lâmpada da estufa (fusor) e parou de imprimir"
+        },
+        "intent": "",
+        "entendimento": "Você relata que a impressora Kyocera apresenta erro na lâmpada da estufa e parou de imprimir.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [],
+        "campos": {
+          "modelo": {
+            "esperado": "~Kyocera",
+            "obtido": "Kyocera",
+            "resultado": "ok"
+          }
+        },
+        "extras": [
+          "erro-apresentado"
+        ]
+      }
+    },
+    {
+      "n": 33,
+      "tipo": "informal",
+      "setor": "Financeiro",
+      "relato": "deu erro C6000 na kyocera, acho q é a estufa",
+      "esperado": "IMP-004",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [
+          "IMP-004"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "modelo": "kyocera",
+          "erro-apresentado": "C6000"
+        },
+        "intent": "",
+        "entendimento": "Você relata erro C6000 na impressora kyocera, indicando problema na estufa.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [],
+        "campos": {
+          "modelo": {
+            "esperado": "~kyocera",
+            "obtido": "kyocera",
+            "resultado": "ok"
+          },
+          "erro-apresentado": {
+            "esperado": "~C6000",
+            "obtido": "C6000",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 34,
+      "tipo": "claro",
+      "setor": "Secretaria",
+      "relato": "A impressora Samsung da secretaria está manchando todas as folhas com uma faixa preta.",
+      "esperado": "IMP-005",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [
+          "IMP-005"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "modelo": "Samsung"
+        },
+        "intent": "",
+        "entendimento": "Você relata que a impressora Samsung da secretaria está manchando todas as folhas com uma faixa preta.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [
+          "Verifique se há acúmulo de toner ou sujeira nos roletes internos visíveis sem desmontar a máquina."
+        ],
+        "campos": {
+          "modelo": {
+            "esperado": "~Samsung",
+            "obtido": "Samsung",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 37,
+      "tipo": "claro",
+      "setor": "Coordenação",
+      "relato": "Mando imprimir e nada sai na impressora HP da coordenação; aparece a mensagem 'impressora offline'.",
+      "esperado": "IMP-006",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [
+          "GOO-007"
+        ],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "modelo": "HP",
+          "mensagem-de-erro": "impressora offline"
+        },
+        "intent": "",
+        "entendimento": "Você relata que a impressora HP da coordenação não imprime e exibe a mensagem 'impressora offline'.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [
+          "Verifique se o cabo USB ou de rede está bem conectado.",
+          "Desligue a impressora, aguarde 10 segundos e ligue novamente.",
+          "Confirme se a impressora correta está selecionada no computador."
+        ],
+        "campos": {
+          "modelo": {
+            "esperado": "~HP",
+            "obtido": "HP",
+            "resultado": "ok"
+          },
+          "mensagem-de-erro": {
+            "esperado": "~offline",
+            "obtido": "impressora offline",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 40,
+      "tipo": "claro",
+      "setor": "Portaria",
+      "relato": "A impressora Epson L3250 da portaria não liga, nenhuma luz acende.",
+      "esperado": "IMP-007",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [
+          "IMP-007"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "modelo": "Epson L3250"
+        },
+        "intent": "",
+        "entendimento": "Você relata que a impressora Epson L3250 da portaria não liga e nenhuma luz acende.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [
+          "Verifique se o cabo de alimentação está firmemente conectado na parte traseira da impressora e na tomada da parede.",
+          "Teste a tomada com outro aparelho para confirmar se há energia."
+        ],
+        "campos": {
+          "modelo": {
+            "esperado": "~L3250",
+            "obtido": "Epson L3250",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 43,
+      "tipo": "claro",
+      "setor": "Coordenação EFAF (Fundamental II)",
+      "relato": "Papel preso na impressora Brother da sala dos professores; o visor mostra 'Atolamento bandeja 2'.",
+      "esperado": "IMP-008",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [
+          "IMP-008"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "modelo": "Brother",
+          "mensagem-do-visor": "Atolamento bandeja 2"
+        },
+        "intent": "",
+        "entendimento": "Você relata que o papel está preso na impressora da sala dos professores com a mensagem Atolamento bandeja 2 no visor.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [
+          "Abra a tampa traseira ou a gaveta da bandeja 2 indicada no visor.",
+          "Puxe o papel preso suavemente e sem força para não rasgar.",
+          "Feche todas as tampas e bandejas firmemente e tente imprimir de novo."
+        ],
+        "campos": {
+          "modelo": {
+            "esperado": "~Brother",
+            "obtido": "Brother",
+            "resultado": "ok"
+          },
+          "mensagem-do-visor": {
+            "esperado": "~bandeja 2",
+            "obtido": "Atolamento bandeja 2",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 46,
+      "tipo": "claro",
+      "setor": "Secretaria",
+      "relato": "O scanner da multifuncional Canon não digitaliza, aparece 'erro de comunicação com o computador'.",
+      "esperado": "IMP-009",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [
+          "IMP-009"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "modelo": "Canon",
+          "erro": "erro de comunicação com o computador"
+        },
+        "intent": "",
+        "entendimento": "Você relata que o scanner da multifuncional Canon não digitaliza e exibe a mensagem erro de comunicação com o computador.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [
+          "Verifique se o cabo USB ou de rede está firmemente conectado à impressora e ao computador.",
+          "Reinicie a impressora e o computador para reestabelecer a conexão."
+        ],
+        "campos": {
+          "modelo": {
+            "esperado": "~Canon",
+            "obtido": "Canon",
+            "resultado": "ok"
+          },
+          "erro": {
+            "esperado": "~comunica",
+            "obtido": "erro de comunicação com o computador",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 49,
+      "tipo": "claro",
+      "setor": "Secretaria",
+      "relato": "Preciso de toner preto para a impressora HP M428 da secretaria.",
+      "esperado": "IMP-010",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [
+          "IMP-010"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "cor": "Preto",
+          "modelo": "HP M428"
+        },
+        "intent": "",
+        "entendimento": "Você precisa de toner preto para a impressora HP M428 da secretaria.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [],
+        "campos": {
+          "cor": {
+            "esperado": "=Preto",
+            "obtido": "Preto",
+            "resultado": "ok"
+          },
+          "modelo": {
+            "esperado": "~M428",
+            "obtido": "HP M428",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 51,
+      "tipo": "informal",
+      "setor": "Secretaria",
+      "relato": "acabou a tinta magenta da epson",
+      "esperado": "IMP-010",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [
+          "IMP-010"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "cor": "Magenta",
+          "modelo": "epson"
+        },
+        "intent": "",
+        "entendimento": "Você precisa de toner ou tinta cor Magenta para a impressora modelo epson.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [],
+        "campos": {
+          "cor": {
+            "esperado": "=Magenta",
+            "obtido": "Magenta",
+            "resultado": "ok"
+          },
+          "modelo": {
+            "esperado": "~epson",
+            "obtido": "epson",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 55,
+      "tipo": "claro",
+      "setor": "Coordenação EFAI (Fundamental I)",
+      "relato": "Minha apresentação do Google Slides 'Feira de Ciências' não abre, fica carregando.",
+      "esperado": "GOO-002",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [
+          "AV-002",
+          "AV-003",
+          "AV-004",
+          "AV-005",
+          "AV-006",
+          "GOO-002"
+        ],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "link-ou-nome-do-arquivo": "Feira de Ciências"
+        },
+        "intent": "",
+        "entendimento": "Você relata que a apresentação do Google Slides Feira de Ciências não abre e fica carregando.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [
+          "Feche as outras abas do navegador para liberar memória.",
+          "Atualize a página do navegador."
+        ],
+        "campos": {
+          "link-ou-nome-do-arquivo": {
+            "esperado": "~Feira de Ci",
+            "obtido": "Feira de Ciências",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 58,
+      "tipo": "claro",
+      "setor": "Coordenação EFAF (Fundamental II)",
+      "relato": "Não consigo adicionar alunos na turma 7º B do Google Classroom.",
+      "esperado": "GOO-003",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [
+          "GOO-003"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "turma": "7º B"
+        },
+        "intent": "",
+        "entendimento": "Você relata que não consegue adicionar alunos na turma 7º B do Google Classroom.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [],
+        "campos": {
+          "turma": {
+            "esperado": "~7",
+            "obtido": "7º B",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 60,
+      "tipo": "informal",
+      "setor": "Coordenação EFAF (Fundamental II)",
+      "relato": "classroom n deixa eu entrar na sala do 9A",
+      "esperado": "GOO-003",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [
+          "GOO-003"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "turma": "9A"
+        },
+        "intent": "",
+        "entendimento": "Você não consegue entrar na sala do 9A no Classroom.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [
+          "Verifique se você está conectado com a conta institucional correta.",
+          "Tente acessar o Classroom através de uma aba anônima do navegador.",
+          "Limpe o cache e os cookies do seu navegador e tente novamente."
+        ],
+        "campos": {
+          "turma": {
+            "esperado": "~9",
+            "obtido": "9A",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 61,
+      "tipo": "claro",
+      "setor": "Direção",
+      "relato": "O Google Docs 'Ata de reunião' não salva as alterações que faço.",
+      "esperado": "GOO-004",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [
+          "GOO-004"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "arquivo": "Ata de reunião"
+        },
+        "intent": "",
+        "entendimento": "Você relata que o Google Docs Ata de reunião não salva as alterações que faz.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [
+          "Recarregue a página do navegador e tente fazer a alteração novamente.",
+          "Verifique sua conexão com a internet."
+        ],
+        "campos": {
+          "arquivo": {
+            "esperado": "~Ata",
+            "obtido": "Ata de reunião",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 64,
+      "tipo": "claro",
+      "setor": "Coordenação",
+      "relato": "Preciso de acesso à pasta 'Planejamento 2026' no Google Drive da coordenação.",
+      "esperado": "GOO-005",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [
+          "GOO-005"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "link-ou-nome-do-recurso": "Planejamento 2026"
+        },
+        "intent": "",
+        "entendimento": "Você precisa de acesso à pasta Planejamento 2026 no Google Drive da coordenação.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [],
+        "campos": {
+          "link-ou-nome-do-recurso": {
+            "esperado": "~Planejamento",
+            "obtido": "Planejamento 2026",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 73,
+      "tipo": "claro",
+      "setor": "Coordenação EM (Médio)",
+      "relato": "Preciso ser incluída no grupo de e-mail professores@ do Google Grupos.",
+      "esperado": "GOO-008",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [
+          "GOO-008"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "grupo": "professores@"
+        },
+        "intent": "",
+        "entendimento": "Você precisa ser incluída no grupo de e-mail professores@ do Google Grupos.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [],
+        "campos": {
+          "grupo": {
+            "esperado": "~professores",
+            "obtido": "professores@",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 76,
+      "tipo": "claro",
+      "setor": "Financeiro",
+      "relato": "A planilha 'Controle de frequência' no Google Sheets está com as fórmulas quebradas.",
+      "esperado": "GOO-009",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [
+          "GOO-009"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "link-ou-nome-da-planilha": "Controle de frequência"
+        },
+        "intent": "",
+        "entendimento": "Você relata que a planilha Controle de frequência no Google Sheets está com as fórmulas quebradas.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [],
+        "campos": {
+          "link-ou-nome-da-planilha": {
+            "esperado": "~Controle",
+            "obtido": "Controle de frequência",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 79,
+      "tipo": "claro",
+      "setor": "Coordenação EFAF (Fundamental II)",
+      "relato": "Quero reservar 30 Chromebooks para o 6º ano na quinta-feira, no 3º e 4º horário.",
+      "esperado": "GOO-010",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "data": "2026-11-05",
+          "horario-periodo": "3º e 4º horário"
+        },
+        "intent": "",
+        "entendimento": "Você quer reservar 30 Chromebooks para o 6º ano na quinta-feira, no 3º e 4º horário.",
+        "completo": false,
+        "outroPedido": false,
+        "dicas": [],
+        "campos": {
+          "data": {
+            "esperado": "@dow:4",
+            "obtido": "2026-11-05",
+            "resultado": "ok"
+          },
+          "horario-periodo": {
+            "esperado": "~3",
+            "obtido": "3º e 4º horário",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 81,
+      "tipo": "informal",
+      "setor": "Coordenação EFAF (Fundamental II)",
+      "relato": "chromebooks pra amanha de manha",
+      "esperado": "GOO-010",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "data": "2026-10-30",
+          "horario-periodo": "manhã"
+        },
+        "intent": "",
+        "entendimento": "Você precisa de reserva de Chromebook para amanhã de manhã.",
+        "completo": false,
+        "outroPedido": false,
+        "dicas": [],
+        "campos": {
+          "data": {
+            "esperado": "@+1",
+            "obtido": "2026-10-30",
+            "resultado": "ok"
+          },
+          "horario-periodo": {
+            "esperado": "~manh",
+            "obtido": "manhã",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 85,
+      "tipo": "claro",
+      "setor": "Sala Maker",
+      "relato": "Preciso atualizar a página do Google Sites do projeto 'Horta Escolar'.",
+      "esperado": "GOO-012",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [
+          "GOO-012"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "link-ou-nome-do-site": "Horta Escolar"
+        },
+        "intent": "",
+        "entendimento": "Você precisa atualizar a página do Google Sites do projeto Horta Escolar.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [],
+        "campos": {
+          "link-ou-nome-do-site": {
+            "esperado": "~Horta",
+            "obtido": "Horta Escolar",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 91,
+      "tipo": "claro",
+      "setor": "Marketing",
+      "relato": "Tenho uma sugestão de melhoria: o sistema de reservas poderia mandar lembrete por e-mail.",
+      "esperado": "TI-002",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [
+          "TI-002"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "sistema-processo": "sistema de reservas"
+        },
+        "intent": "",
+        "entendimento": "Você sugere que o sistema de reservas envie lembrete por e-mail.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [],
+        "campos": {
+          "sistema-processo": {
+            "esperado": "~reserva",
+            "obtido": "sistema de reservas",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 103,
+      "tipo": "claro",
+      "setor": "Portaria",
+      "relato": "O computador da recepção não liga; aperto o botão e nada acontece.",
+      "esperado": "TI-COMP-003",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [
+          "IMP-007"
+        ],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "equipamento": "computador da recepção"
+        },
+        "intent": "",
+        "entendimento": "Você relata que o computador da recepção não liga ao apertar o botão.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [
+          "Verifique se o cabo de energia está firmemente conectado na tomada e na parte de trás do computador."
+        ],
+        "campos": {
+          "equipamento": {
+            "esperado": "~computador",
+            "obtido": "computador da recepção",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 109,
+      "tipo": "claro",
+      "setor": "Secretaria",
+      "relato": "Preciso instalar o Adobe Reader no computador da secretaria.",
+      "esperado": "TI-COMP-005",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "programa": "Adobe Reader"
+        },
+        "intent": "",
+        "entendimento": "Você precisa instalar o Adobe Reader no computador da secretaria.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [],
+        "campos": {
+          "programa": {
+            "esperado": "~Adobe",
+            "obtido": "Adobe Reader",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 111,
+      "tipo": "informal",
+      "setor": "Secretaria",
+      "relato": "instala o zoom no meu pc",
+      "esperado": "TI-COMP-005",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "programa": "zoom"
+        },
+        "intent": "",
+        "entendimento": "Você precisa instalar o zoom no seu pc.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [],
+        "campos": {
+          "programa": {
+            "esperado": "~zoom",
+            "obtido": "zoom",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 112,
+      "tipo": "claro",
+      "setor": "Orientação EFAI (Fundamental I)",
+      "relato": "Quero reservar um notebook para a reunião de pais amanhã à tarde.",
+      "esperado": "TI-COMP-006",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "data": "2026-10-30",
+          "periodo": "tarde"
+        },
+        "intent": "",
+        "entendimento": "Você precisa reservar um notebook amanhã à tarde para a reunião de pais.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [],
+        "campos": {
+          "data": {
+            "esperado": "@+1",
+            "obtido": "2026-10-30",
+            "resultado": "ok"
+          },
+          "periodo": {
+            "esperado": "~tarde",
+            "obtido": "tarde",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 114,
+      "tipo": "informal",
+      "setor": "Orientação EFAI (Fundamental I)",
+      "relato": "reserva note pra sexta",
+      "esperado": "TI-COMP-006",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "data": "2026-10-30",
+          "periodo": "sexta"
+        },
+        "intent": "",
+        "entendimento": "Você precisa reservar um notebook para sexta-feira.",
+        "completo": false,
+        "outroPedido": false,
+        "dicas": [],
+        "campos": {
+          "data": {
+            "esperado": "@dow:5",
+            "obtido": "2026-10-30",
+            "resultado": "ok"
+          }
+        },
+        "extras": [
+          "periodo"
+        ]
+      }
+    },
+    {
+      "n": 121,
+      "tipo": "claro",
+      "setor": "Cobrança",
+      "relato": "O computador da minha mesa está sem internet; ele é ligado por cabo de rede.",
+      "esperado": "TI-NET-001",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [
+          "TI-NET-001"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "tipo-de-conexao": "Cabo"
+        },
+        "intent": "",
+        "entendimento": "Você relata que o computador da sua mesa está sem internet e é ligado por cabo de rede.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [
+          "Verifique se o cabo de rede está firmemente conectado atrás do computador e na tomada de rede na parede.",
+          "Desconecte o cabo de rede, aguarde alguns segundos e conecte-o novamente."
+        ],
+        "campos": {
+          "tipo-de-conexao": {
+            "esperado": "=Cabo",
+            "obtido": "Cabo",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 124,
+      "tipo": "claro",
+      "setor": "Recursos Humanos",
+      "relato": "Preciso de um login de acesso à internet para um palestrante convidado na sexta-feira.",
+      "esperado": "TI-NET-002",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [
+          "GOO-011"
+        ],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "finalidade": "palestrante convidado",
+          "periodo": "sexta-feira"
+        },
+        "intent": "",
+        "entendimento": "Você precisa de um login de acesso à internet para um palestrante convidado na sexta-feira.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [],
+        "campos": {
+          "finalidade": {
+            "esperado": "~palestrante",
+            "obtido": "palestrante convidado",
+            "resultado": "ok"
+          }
+        },
+        "extras": [
+          "periodo"
+        ]
+      }
+    },
+    {
+      "n": 126,
+      "tipo": "informal",
+      "setor": "Recursos Humanos",
+      "relato": "cria login de wifi pro estagiario",
+      "esperado": "TI-NET-002",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [
+          "GOO-011",
+          "TI-NET-003"
+        ],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {},
+        "intent": "",
+        "entendimento": "Você precisa criar um login de wifi para o estagiário.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [],
+        "campos": {
+          "finalidade": {
+            "esperado": "~estagi",
+            "resultado": "ausente"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 127,
+      "tipo": "claro",
+      "setor": "Coordenação EM (Médio)",
+      "relato": "O Wi-Fi da sala dos professores cai toda hora no meu celular.",
+      "esperado": "TI-NET-003",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [
+          "TI-NET-003"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "dispositivo": "celular"
+        },
+        "intent": "",
+        "entendimento": "Você relata que o Wi-Fi da sala dos professores cai toda hora no seu celular.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [
+          "Desative e reative o Wi-Fi do seu celular.",
+          "Esqueça a rede Wi-Fi e conecte-se novamente digitando a senha."
+        ],
+        "campos": {
+          "dispositivo": {
+            "esperado": "~celular",
+            "obtido": "celular",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 129,
+      "tipo": "informal",
+      "setor": "Coordenação EM (Médio)",
+      "relato": "wifi n conecta no note",
+      "esperado": "TI-NET-003",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [
+          "TI-NET-003"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "dispositivo": "note"
+        },
+        "intent": "",
+        "entendimento": "Você relata que o wi-fi não conecta no note.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [
+          "Desative e ative novamente o Wi-Fi do seu notebook.",
+          "Reinicie o computador para atualizar a conexão de rede."
+        ],
+        "campos": {
+          "dispositivo": {
+            "esperado": "~note",
+            "obtido": "note",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 130,
+      "tipo": "claro",
+      "setor": "Setor de Provas",
+      "relato": "Preciso atualizar o calendário de provas na página da Coordenação na intranet.",
+      "esperado": "TI-INT-001",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [
+          "GOO-001"
+        ],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "pagina-secao": "página da Coordenação",
+          "conteudo-novo": "calendário de provas"
+        },
+        "intent": "",
+        "entendimento": "Você precisa atualizar o calendário de provas na página da Coordenação na intranet.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [],
+        "campos": {
+          "pagina-secao": {
+            "esperado": "~Coordena",
+            "obtido": "página da Coordenação",
+            "resultado": "ok"
+          }
+        },
+        "extras": [
+          "conteudo-novo"
+        ]
+      }
+    },
+    {
+      "n": 133,
+      "tipo": "claro",
+      "setor": "Recursos Humanos",
+      "relato": "Quero solicitar uma nova seção na intranet para os documentos do RH.",
+      "esperado": "TI-INT-002",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "secao": "RH"
+        },
+        "intent": "",
+        "entendimento": "Você quer solicitar uma nova seção na intranet para os documentos do RH.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [],
+        "campos": {
+          "secao": {
+            "esperado": "~RH",
+            "obtido": "RH",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 139,
+      "tipo": "claro",
+      "setor": "Secretaria",
+      "relato": "Preciso criar o login no Mentor Web para uma professora nova de matemática.",
+      "esperado": "TI-MENT-001",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [
+          "GOO-011"
+        ],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "perfil": "professora nova de matemática"
+        },
+        "intent": "",
+        "entendimento": "Você precisa criar o login no Mentor Web para uma professora nova de matemática.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [],
+        "campos": {
+          "perfil": {
+            "esperado": "~profess",
+            "obtido": "professora nova de matemática",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 142,
+      "tipo": "claro",
+      "setor": "Secretaria",
+      "relato": "O relatório de frequência no Mentor Web dá erro ao gerar o PDF.",
+      "esperado": "TI-MENT-002",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [
+          "TI-MENT-007"
+        ],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "relatorio": "frequência",
+          "mensagem-de-erro": "erro ao gerar o PDF"
+        },
+        "intent": "",
+        "entendimento": "Você relata que o relatório de frequência no Mentor Web dá erro ao gerar o PDF.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [],
+        "campos": {
+          "relatorio": {
+            "esperado": "~frequ",
+            "obtido": "frequência",
+            "resultado": "ok"
+          }
+        },
+        "extras": [
+          "mensagem-de-erro"
+        ]
+      }
+    },
+    {
+      "n": 145,
+      "tipo": "claro",
+      "setor": "Coordenação EFAF (Fundamental II)",
+      "relato": "Preciso alterar a nota de Matemática de um aluno do 8º A no Mentor Web, foi lançada errada.",
+      "esperado": "TI-MENT-003",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "disciplina": "Matemática"
+        },
+        "intent": "",
+        "entendimento": "Você precisa alterar a nota de Matemática de um aluno do 8º A no Mentor Web porque foi lançada errada.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [],
+        "campos": {
+          "disciplina": {
+            "esperado": "~Matem",
+            "obtido": "Matemática",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 148,
+      "tipo": "claro",
+      "setor": "Coordenação EFAF (Fundamental II)",
+      "relato": "Preciso encerrar o diário de Português da turma 6º B referente ao 3º bimestre.",
+      "esperado": "TI-MENT-004",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [
+          "GOO-003"
+        ],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "turma": "6º B",
+          "disciplina": "Português",
+          "periodo": "3º bimestre"
+        },
+        "intent": "",
+        "entendimento": "Você precisa encerrar o diário de Português da turma 6º B referente ao 3º bimestre.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [],
+        "campos": {
+          "disciplina": {
+            "esperado": "~Portugu",
+            "obtido": "Português",
+            "resultado": "ok"
+          },
+          "turma": {
+            "esperado": "~6",
+            "obtido": "6º B",
+            "resultado": "ok"
+          },
+          "periodo": {
+            "esperado": "~3",
+            "obtido": "3º bimestre",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 151,
+      "tipo": "claro",
+      "setor": "Coordenação EM (Médio)",
+      "relato": "O Mentor Web mostra 'erro 500' quando tento entrar na tela de lançamento de notas.",
+      "esperado": "TI-MENT-005",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "mensagem-de-erro": "erro 500"
+        },
+        "intent": "",
+        "entendimento": "Você relata que o Mentor Web mostra 'erro 500' ao tentar entrar na tela de lançamento de notas.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [],
+        "campos": {
+          "mensagem-de-erro": {
+            "esperado": "~500",
+            "obtido": "erro 500",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 154,
+      "tipo": "claro",
+      "setor": "Secretaria",
+      "relato": "Preciso remanejar um aluno do 7º A para o 7º C no Mentor Web.",
+      "esperado": "TI-MENT-006",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "turma-atual": "7º A",
+          "turma-destino": "7º C"
+        },
+        "intent": "",
+        "entendimento": "Você precisa remanejar um aluno do 7º A para o 7º C no Mentor Web.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [],
+        "campos": {
+          "turma-atual": {
+            "esperado": "~7",
+            "obtido": "7º A",
+            "resultado": "ok"
+          },
+          "turma-destino": {
+            "esperado": "~7",
+            "obtido": "7º C",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 157,
+      "tipo": "claro",
+      "setor": "Direção",
+      "relato": "Preciso de um relatório do Mentor Web com as notas de todos os alunos do 9º ano no 2º bimestre.",
+      "esperado": "TI-MENT-007",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [
+          "TI-MENT-007"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "descricao-do-relatorio": "relatório do Mentor Web com as notas de todos os alunos do 9º ano no 2º bimestre"
+        },
+        "intent": "",
+        "entendimento": "Você precisa de um relatório do Mentor Web com as notas de todos os alunos do 9º ano no 2º bimestre.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [],
+        "campos": {
+          "descricao-do-relatorio": {
+            "esperado": "~nota",
+            "obtido": "relatório do Mentor Web com as notas de todos os alunos do 9º ano no 2º bimestre",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 160,
+      "tipo": "claro",
+      "setor": "Cobrança",
+      "relato": "Preciso de acesso ao relatório de inadimplência no Mentor Web.",
+      "esperado": "TI-MENT-008",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [
+          "TI-MENT-007"
+        ],
+        "pontos": {
+          "top1": false,
+          "top3": false
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "relatorio": "relatório de inadimplência"
+        },
+        "intent": "",
+        "entendimento": "Você precisa de acesso ao relatório de inadimplência no Mentor Web.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [],
+        "campos": {
+          "relatorio": {
+            "esperado": "~inadimpl",
+            "obtido": "relatório de inadimplência",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 163,
+      "tipo": "claro",
+      "setor": "Financeiro",
+      "relato": "O QuickBooks está dando erro ao abrir a empresa, aparece o código H202.",
+      "esperado": "TI-QB-001",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [
+          "TI-QB-001"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "mensagem-de-erro": "código H202"
+        },
+        "intent": "",
+        "entendimento": "Você relata que o QuickBooks está dando erro H202 ao abrir a empresa.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [],
+        "campos": {
+          "mensagem-de-erro": {
+            "esperado": "~H202",
+            "obtido": "código H202",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    },
+    {
+      "n": 169,
+      "tipo": "claro",
+      "setor": "Coordenação EI (Infantil)",
+      "relato": "Uma mãe pediu acesso às câmeras da sala do Infantil 2 para acompanhar o filho.",
+      "esperado": "TI-CAM-001",
+      "aceitos": [],
+      "analise": {
+        "source": "nao-avaliado",
+        "ids": [],
+        "tentativas": 0
+      },
+      "pontos": {
+        "top1": false,
+        "top3": false
+      },
+      "local": {
+        "ids": [
+          "TI-CAM-001"
+        ],
+        "pontos": {
+          "top1": true,
+          "top3": true
+        }
+      },
+      "extracao": {
+        "source": "ai",
+        "status": 200,
+        "respostas": {
+          "turma": "Infantil 2"
+        },
+        "intent": "",
+        "entendimento": "Você precisa de acesso às câmeras da sala do Infantil 2 para uma mãe acompanhar o filho.",
+        "completo": true,
+        "outroPedido": false,
+        "dicas": [],
+        "campos": {
+          "turma": {
+            "esperado": "~Infantil 2",
+            "obtido": "Infantil 2",
+            "resultado": "ok"
+          }
+        },
+        "extras": []
+      }
+    }
+  ]
+}

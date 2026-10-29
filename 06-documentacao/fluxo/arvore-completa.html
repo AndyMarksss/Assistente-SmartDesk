@@ -1,0 +1,549 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>SmartDesk — Árvore de decisões completa</title>
+    <!--
+      Árvore de decisões completa do atendimento do SmartDesk 0.12.18: da raiz (boas-vindas) a
+      cada folha, com todas as escolhas. Os 57 tipos de pedido e os seus dados vêm de
+      gerar-caminhos.cjs; o resto foi desenhado a partir de app.js e request-policy.js.
+      Ramos que voltam a um passo anterior ou pulam para adiante terminam numa folha "↺"/"→".
+      Passe o mouse sobre um passo para ver a pergunta exata do chat.
+    -->
+    <style>
+      :root {
+        --ink: #1d2033;
+        --muted: #5d6278;
+        --soft: #8a8fa6;
+        --line: #cfd2df;
+        --band: #f2f3f7;
+        --paper: #ffffff;
+        --bg: #eef0f5;
+        --ai: #6a4bd6;
+        --ai-ink: #43279f;
+        --ai-soft: #f1ecff;
+        --edge: #9ea3b7;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+        background: var(--bg);
+        color: var(--ink);
+        font: 13px/1.35 "Segoe UI", system-ui, -apple-system, sans-serif;
+      }
+      .bar {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        flex-wrap: wrap;
+        padding: 10px 18px;
+        background: var(--paper);
+        border-bottom: 1px solid var(--line);
+      }
+      .bar h1 {
+        margin: 0;
+        font-size: 18px;
+      }
+      .bar h1 span {
+        color: var(--ai);
+      }
+      .legend {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .legend i {
+        display: inline-block;
+        width: 22px;
+        height: 13px;
+        margin-right: 5px;
+        vertical-align: -2px;
+        border-radius: 4px;
+        border: 1px solid var(--line);
+        background: #fff;
+      }
+      .legend i.ai {
+        background: var(--ai-soft);
+        border: 1.5px solid var(--ai);
+      }
+      .legend i.dec {
+        border-left: 4px solid var(--soft);
+      }
+      .legend i.rule {
+        border: 1.5px dashed var(--soft);
+      }
+      .legend i.opt {
+        border-radius: 999px;
+        background: var(--band);
+      }
+      .legend i.ref {
+        border: 1.5px dashed var(--line);
+        border-radius: 999px;
+        background: transparent;
+      }
+      .legend i.end {
+        background: var(--ink);
+        border-color: var(--ink);
+      }
+      .zoom {
+        margin-left: auto;
+        display: flex;
+        gap: 6px;
+      }
+      .zoom button {
+        font: inherit;
+        padding: 4px 10px;
+        border-radius: 8px;
+        border: 1px solid var(--line);
+        background: var(--paper);
+        cursor: pointer;
+      }
+      .zoom button.on {
+        border-color: var(--ink);
+        font-weight: 700;
+      }
+      .viewport {
+        flex: 1;
+        overflow: auto;
+        cursor: grab;
+      }
+      .viewport.drag {
+        cursor: grabbing;
+      }
+      .sizer {
+        position: relative;
+      }
+      .canvas {
+        position: absolute;
+        left: 0;
+        top: 0;
+        transform-origin: 0 0;
+      }
+      .canvas svg {
+        position: absolute;
+        left: 0;
+        top: 0;
+        overflow: visible;
+        pointer-events: none;
+      }
+      .band-title {
+        position: absolute;
+        font-size: 22px;
+        font-weight: 800;
+        letter-spacing: -0.3px;
+        white-space: nowrap;
+      }
+      .band-title small {
+        display: block;
+        font-size: 13px;
+        font-weight: 400;
+        color: var(--muted);
+        letter-spacing: 0;
+      }
+      .band-bg {
+        position: absolute;
+        border-radius: 22px;
+        background: rgb(255 255 255 / 0.55);
+        border: 1px solid #e1e3ec;
+      }
+      .n {
+        position: absolute;
+        width: 196px;
+        padding: 6px 10px 7px;
+        border-radius: 10px;
+        border: 1px solid var(--line);
+        background: var(--paper);
+        box-shadow: 0 1px 2px rgb(29 32 51 / 0.06);
+      }
+      .n b {
+        display: block;
+        font-size: 13px;
+      }
+      .n small {
+        display: block;
+        margin-top: 2px;
+        font-size: 11.5px;
+        color: var(--muted);
+      }
+      .n.dec {
+        border-left: 4px solid var(--soft);
+      }
+      .n.dec b::before {
+        content: "◆ ";
+        color: var(--soft);
+        font-size: 10px;
+        vertical-align: 1px;
+      }
+      .n.ai {
+        background: var(--ai-soft);
+        border: 1.5px solid var(--ai);
+      }
+      .n.ai.dec {
+        border-left: 4px solid var(--ai);
+      }
+      .n.ai b,
+      .n.ai.dec b::before {
+        color: var(--ai-ink);
+      }
+      .n.ai b::after {
+        content: " ✦ IA";
+        font-size: 10px;
+        font-weight: 800;
+        color: var(--ai);
+      }
+      .n.rule {
+        border: 1.5px dashed var(--soft);
+        background: #fbfbfd;
+      }
+      .n.rule.dec {
+        border-left: 4px solid var(--soft);
+      }
+      .n.sys {
+        background: #f3f4f8;
+      }
+      .n.opt {
+        width: max-content;
+        max-width: 200px;
+        padding: 4px 11px;
+        border-radius: 999px;
+        background: var(--band);
+        font-weight: 600;
+        font-size: 12px;
+        white-space: normal;
+      }
+      .n.opt b {
+        font-size: 12px;
+      }
+      .n.ref {
+        width: max-content;
+        max-width: 210px;
+        padding: 4px 11px;
+        border-radius: 999px;
+        border: 1.5px dashed var(--line);
+        background: transparent;
+        box-shadow: none;
+        color: var(--muted);
+        font-style: italic;
+      }
+      .n.ref b {
+        font-size: 12px;
+        font-weight: 600;
+      }
+      .n.start,
+      .n.end {
+        background: var(--ink);
+        border-color: var(--ink);
+        color: #fff;
+      }
+      .n.start small,
+      .n.end small {
+        color: rgb(255 255 255 / 0.75);
+      }
+      .n.need {
+        width: 214px;
+        border: 1.5px solid var(--ink);
+      }
+      .n.need b {
+        font-size: 13.5px;
+      }
+      .n.need code {
+        font-size: 10.5px;
+        color: var(--soft);
+      }
+      .n.need .tips {
+        color: var(--ai-ink);
+        font-weight: 700;
+      }
+      .n[title] {
+        cursor: help;
+      }
+      .e {
+        fill: none;
+        stroke: var(--edge);
+        stroke-width: 1.4;
+      }
+      .e.band-link {
+        stroke: var(--ink);
+        stroke-width: 2.2;
+        stroke-dasharray: 8 6;
+      }
+      .lbl {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        padding: 0 6px;
+        border-radius: 6px;
+        background: var(--paper);
+        border: 1px solid var(--line);
+        font-size: 11px;
+        color: var(--muted);
+        white-space: nowrap;
+      }
+      .lbl.big {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--ink);
+        padding: 3px 10px;
+        border-color: var(--ink);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bar">
+      <h1>SmartDesk · Árvore de decisões <span>completa</span></h1>
+      <div class="legend">
+        <span><i class="dec"></i>Decisão</span>
+        <span><i class="opt"></i>Escolha da pessoa</span>
+        <span><i></i>Passo</span>
+        <span><i class="ai"></i>A IA intervém</span>
+        <span><i class="rule"></i>Regra fixa, sem IA</span>
+        <span><i class="ref"></i>↺ volta · → pula para</span>
+        <span><i class="end"></i>Início ou fim</span>
+        <span>Passe o mouse num passo para ver a pergunta exata · arraste para mover</span>
+      </div>
+      <div class="zoom" id="zoom"></div>
+    </div>
+    <div class="viewport" id="viewport"><div class="sizer" id="sizer"><div class="canvas" id="canvas"><svg id="edges"></svg></div></div></div>
+
+    <script id="passos" type="application/json">
+[{"id":"AV-001","area":"Audiovisual","grupo":"","nome":"Caixa de Som","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"necessidade":"Caixa de Som","abertura":"Vamos combinar os detalhes para a equipe preparar os equipamentos no dia certo.","intencao":null,"campos":[{"id":"data","rotulo":"Data do atendimento","tipo":"date","pergunta":"Para qual dia vamos preparar os equipamentos? Digite a data ou toque no calendário.","controle":"Data: digitar dd/mm/aaaa ou tocar no calendário; atalhos Hoje · Amanhã · próximos 3 dias úteis (ex.: “qui 29/10”)","validacao":["Essa data não existe. Use dia/mês/ano.","Escolha hoje ou uma data futura para o atendimento."]},{"id":"horario","rotulo":"Horário do atendimento","tipo":"time","pergunta":"E a que horas? Digite o horário, por exemplo 09:30, ou toque no relógio.","controle":"Horário: digitar HH:MM ou tocar no relógio","validacao":["Confira o horário. Use horas e minutos, como 09:30.","Esse horário já passou hoje. Escolha um horário a partir de {agora}."]},{"id":"evento","rotulo":"É para um evento?","tipo":"choice","pergunta":"Você vai usar os equipamentos em um evento?","opcoes":[{"botao":"Sim"},{"botao":"Não"}],"validacao":[]},{"id":"roteiro","rotulo":"Link do roteiro do evento","tipo":"url","pergunta":"Tem o link do roteiro do evento? Cole aqui para a equipe se preparar. Se ainda não estiver pronto, pode enviar depois.","se":{"campo":"evento","valor":"Sim"},"controle":"Digitação: “Link do roteiro do evento…”","rapidas":["Enviar o link depois"],"validacao":["Informe um link começando com https:// ou http://."]}],"descricao":{"pergunta":"Como vai ser o uso? Conte o local, a atividade e para quantas pessoas, para a equipe preparar tudo.","opcional":false,"compra":null,"automatica":"Caixa de Som. {dado}: {resposta}; …"}},{"id":"AV-002","area":"Audiovisual","grupo":"","nome":"Caixa de Som / Microfone","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"necessidade":"Caixa de Som / Microfone","abertura":"Vamos combinar os detalhes para a equipe preparar os equipamentos no dia certo.","intencao":null,"campos":[{"id":"data","rotulo":"Data do atendimento","tipo":"date","pergunta":"Para qual dia vamos preparar os equipamentos? Digite a data ou toque no calendário.","controle":"Data: digitar dd/mm/aaaa ou tocar no calendário; atalhos Hoje · Amanhã · próximos 3 dias úteis (ex.: “qui 29/10”)","validacao":["Essa data não existe. Use dia/mês/ano.","Escolha hoje ou uma data futura para o atendimento."]},{"id":"horario","rotulo":"Horário do atendimento","tipo":"time","pergunta":"E a que horas? Digite o horário, por exemplo 09:30, ou toque no relógio.","controle":"Horário: digitar HH:MM ou tocar no relógio","validacao":["Confira o horário. Use horas e minutos, como 09:30.","Esse horário já passou hoje. Escolha um horário a partir de {agora}."]},{"id":"evento","rotulo":"É para um evento?","tipo":"choice","pergunta":"Você vai usar os equipamentos em um evento?","opcoes":[{"botao":"Sim"},{"botao":"Não"}],"validacao":[]},{"id":"roteiro","rotulo":"Link do roteiro do evento","tipo":"url","pergunta":"Tem o link do roteiro do evento? Cole aqui para a equipe se preparar. Se ainda não estiver pronto, pode enviar depois.","se":{"campo":"evento","valor":"Sim"},"controle":"Digitação: “Link do roteiro do evento…”","rapidas":["Enviar o link depois"],"validacao":["Informe um link começando com https:// ou http://."]}],"descricao":{"pergunta":"Como vai ser o uso? Conte o local, a atividade e para quantas pessoas, para a equipe preparar tudo.","opcional":false,"compra":null,"automatica":"Caixa de Som / Microfone. {dado}: {resposta}; …"}},{"id":"AV-003","area":"Audiovisual","grupo":"","nome":"Caixa de Som / Microfone / Projetor","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"necessidade":"Caixa de Som / Microfone / Projetor","abertura":"Vamos combinar os detalhes para a equipe preparar os equipamentos no dia certo.","intencao":null,"campos":[{"id":"data","rotulo":"Data do atendimento","tipo":"date","pergunta":"Para qual dia vamos preparar os equipamentos? Digite a data ou toque no calendário.","controle":"Data: digitar dd/mm/aaaa ou tocar no calendário; atalhos Hoje · Amanhã · próximos 3 dias úteis (ex.: “qui 29/10”)","validacao":["Essa data não existe. Use dia/mês/ano.","Escolha hoje ou uma data futura para o atendimento."]},{"id":"horario","rotulo":"Horário do atendimento","tipo":"time","pergunta":"E a que horas? Digite o horário, por exemplo 09:30, ou toque no relógio.","controle":"Horário: digitar HH:MM ou tocar no relógio","validacao":["Confira o horário. Use horas e minutos, como 09:30.","Esse horário já passou hoje. Escolha um horário a partir de {agora}."]},{"id":"evento","rotulo":"É para um evento?","tipo":"choice","pergunta":"Você vai usar os equipamentos em um evento?","opcoes":[{"botao":"Sim"},{"botao":"Não"}],"validacao":[]},{"id":"roteiro","rotulo":"Link do roteiro do evento","tipo":"url","pergunta":"Tem o link do roteiro do evento? Cole aqui para a equipe se preparar. Se ainda não estiver pronto, pode enviar depois.","se":{"campo":"evento","valor":"Sim"},"controle":"Digitação: “Link do roteiro do evento…”","rapidas":["Enviar o link depois"],"validacao":["Informe um link começando com https:// ou http://."]}],"descricao":{"pergunta":"Como vai ser o uso? Conte o local, a atividade e para quantas pessoas, para a equipe preparar tudo.","opcional":false,"compra":null,"automatica":"Caixa de Som / Microfone / Projetor. {dado}: {resposta}; …"}},{"id":"AV-004","area":"Audiovisual","grupo":"","nome":"Caixa de Som / Projetor","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"necessidade":"Caixa de Som / Projetor","abertura":"Vamos combinar os detalhes para a equipe preparar os equipamentos no dia certo.","intencao":null,"campos":[{"id":"data","rotulo":"Data do atendimento","tipo":"date","pergunta":"Para qual dia vamos preparar os equipamentos? Digite a data ou toque no calendário.","controle":"Data: digitar dd/mm/aaaa ou tocar no calendário; atalhos Hoje · Amanhã · próximos 3 dias úteis (ex.: “qui 29/10”)","validacao":["Essa data não existe. Use dia/mês/ano.","Escolha hoje ou uma data futura para o atendimento."]},{"id":"horario","rotulo":"Horário do atendimento","tipo":"time","pergunta":"E a que horas? Digite o horário, por exemplo 09:30, ou toque no relógio.","controle":"Horário: digitar HH:MM ou tocar no relógio","validacao":["Confira o horário. Use horas e minutos, como 09:30.","Esse horário já passou hoje. Escolha um horário a partir de {agora}."]},{"id":"evento","rotulo":"É para um evento?","tipo":"choice","pergunta":"Você vai usar os equipamentos em um evento?","opcoes":[{"botao":"Sim"},{"botao":"Não"}],"validacao":[]},{"id":"roteiro","rotulo":"Link do roteiro do evento","tipo":"url","pergunta":"Tem o link do roteiro do evento? Cole aqui para a equipe se preparar. Se ainda não estiver pronto, pode enviar depois.","se":{"campo":"evento","valor":"Sim"},"controle":"Digitação: “Link do roteiro do evento…”","rapidas":["Enviar o link depois"],"validacao":["Informe um link começando com https:// ou http://."]}],"descricao":{"pergunta":"Como vai ser o uso? Conte o local, a atividade e para quantas pessoas, para a equipe preparar tudo.","opcional":false,"compra":null,"automatica":"Caixa de Som / Projetor. {dado}: {resposta}; …"}},{"id":"AV-005","area":"Audiovisual","grupo":"","nome":"Microfone","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"necessidade":"Microfone","abertura":"Vamos combinar os detalhes para a equipe preparar os equipamentos no dia certo.","intencao":null,"campos":[{"id":"data","rotulo":"Data do atendimento","tipo":"date","pergunta":"Para qual dia vamos preparar os equipamentos? Digite a data ou toque no calendário.","controle":"Data: digitar dd/mm/aaaa ou tocar no calendário; atalhos Hoje · Amanhã · próximos 3 dias úteis (ex.: “qui 29/10”)","validacao":["Essa data não existe. Use dia/mês/ano.","Escolha hoje ou uma data futura para o atendimento."]},{"id":"horario","rotulo":"Horário do atendimento","tipo":"time","pergunta":"E a que horas? Digite o horário, por exemplo 09:30, ou toque no relógio.","controle":"Horário: digitar HH:MM ou tocar no relógio","validacao":["Confira o horário. Use horas e minutos, como 09:30.","Esse horário já passou hoje. Escolha um horário a partir de {agora}."]},{"id":"evento","rotulo":"É para um evento?","tipo":"choice","pergunta":"Você vai usar os equipamentos em um evento?","opcoes":[{"botao":"Sim"},{"botao":"Não"}],"validacao":[]},{"id":"roteiro","rotulo":"Link do roteiro do evento","tipo":"url","pergunta":"Tem o link do roteiro do evento? Cole aqui para a equipe se preparar. Se ainda não estiver pronto, pode enviar depois.","se":{"campo":"evento","valor":"Sim"},"controle":"Digitação: “Link do roteiro do evento…”","rapidas":["Enviar o link depois"],"validacao":["Informe um link começando com https:// ou http://."]}],"descricao":{"pergunta":"Como vai ser o uso? Conte o local, a atividade e para quantas pessoas, para a equipe preparar tudo.","opcional":false,"compra":null,"automatica":"Microfone. {dado}: {resposta}; …"}},{"id":"AV-006","area":"Audiovisual","grupo":"","nome":"Projetor","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"necessidade":"Projetor","abertura":"Vamos combinar os detalhes para a equipe preparar os equipamentos no dia certo.","intencao":null,"campos":[{"id":"data","rotulo":"Data do atendimento","tipo":"date","pergunta":"Para qual dia vamos preparar os equipamentos? Digite a data ou toque no calendário.","controle":"Data: digitar dd/mm/aaaa ou tocar no calendário; atalhos Hoje · Amanhã · próximos 3 dias úteis (ex.: “qui 29/10”)","validacao":["Essa data não existe. Use dia/mês/ano.","Escolha hoje ou uma data futura para o atendimento."]},{"id":"horario","rotulo":"Horário do atendimento","tipo":"time","pergunta":"E a que horas? Digite o horário, por exemplo 09:30, ou toque no relógio.","controle":"Horário: digitar HH:MM ou tocar no relógio","validacao":["Confira o horário. Use horas e minutos, como 09:30.","Esse horário já passou hoje. Escolha um horário a partir de {agora}."]},{"id":"evento","rotulo":"É para um evento?","tipo":"choice","pergunta":"Você vai usar os equipamentos em um evento?","opcoes":[{"botao":"Sim"},{"botao":"Não"}],"validacao":[]},{"id":"roteiro","rotulo":"Link do roteiro do evento","tipo":"url","pergunta":"Tem o link do roteiro do evento? Cole aqui para a equipe se preparar. Se ainda não estiver pronto, pode enviar depois.","se":{"campo":"evento","valor":"Sim"},"controle":"Digitação: “Link do roteiro do evento…”","rapidas":["Enviar o link depois"],"validacao":["Informe um link começando com https:// ou http://."]}],"descricao":{"pergunta":"Como vai ser o uso? Conte o local, a atividade e para quantas pessoas, para a equipe preparar tudo.","opcional":false,"compra":null,"automatica":"Projetor. {dado}: {resposta}; …"}},{"id":"AV-007","area":"Audiovisual","grupo":"","nome":"Troca de cabo HDMI","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":true,"necessidade":"Troca de cabo HDMI","abertura":"Entendi. Vamos registrar o problema com o cabo HDMI para a equipe verificar.","intencao":null,"campos":[{"id":"descricao-do-problema","rotulo":"Descrição do problema","tipo":"text","pergunta":"O que acontece quando você usa o cabo HDMI? Conte também em qual sala ou equipamento ele está conectado.","controle":"Digitação: “Conte o que acontece com o cabo HDMI…”","validacao":["Me conte o que acontece com o cabo. Só o número da sala não explica o problema."]}],"descricao":null},{"id":"IMP-001","area":"Impressora","grupo":"","nome":"Configurar Scanner","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"necessidade":"Configurar Scanner","abertura":"Vamos olhar essa questão da impressora. Primeiro, preciso de alguns detalhes para a equipe saber por onde começar.","intencao":null,"campos":[{"id":"modelo","rotulo":"Modelo da impressora","tipo":"text","pergunta":"Qual é o modelo da impressora? Costuma estar escrito na frente dela.","controle":"Digitação: “Modelo da impressora…”","rapidas":["Não sei o modelo"],"validacao":["Preencha este dado para continuar."]},{"id":"computador","rotulo":"Quem utiliza","tipo":"computador","pergunta":"Quem usa o computador que precisa de atendimento?","opcoes":[{"botao":"Eu uso este computador","depois":"registra o nome da própria pessoa"},{"botao":"Outra pessoa","depois":"campo “Nome e sobrenome de quem usa…” · se faltar o sobrenome: “Informe o nome e sobrenome de quem usa.”"},{"botao":"Uso compartilhado","depois":"campo “Onde fica o equipamento compartilhado? Ex.: recepção…”"}]}],"descricao":{"pergunta":"Me conta o que você precisa com a impressora e onde ela fica.","opcional":false,"compra":null,"automatica":"Configurar Scanner. {dado}: {resposta}; …"}},{"id":"IMP-002","area":"Impressora","grupo":"","nome":"Grampo da Impressora","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":true,"manutencao":false,"necessidade":"Grampo da Impressora","abertura":"Vamos olhar essa questão da impressora. Primeiro, preciso de alguns detalhes para a equipe saber por onde começar.","intencao":null,"campos":[{"id":"modelo","rotulo":"Modelo da impressora","tipo":"text","pergunta":"Qual é o modelo da impressora? Costuma estar escrito na frente dela.","controle":"Digitação: “Modelo da impressora…”","rapidas":["Não sei o modelo"],"validacao":["Preencha este dado para continuar."]}],"descricao":{"pergunta":"Quer acrescentar algum detalhe para a equipe? Por exemplo, desde quando acontece ou se já tentou algo. Se não tiver, toque em “Sem mais detalhes”.","opcional":true,"compra":null,"automatica":"Grampo da Impressora. {dado}: {resposta}; …"}},{"id":"IMP-003","area":"Impressora","grupo":"","nome":"Instalar Impressora","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"necessidade":"Instalar Impressora","abertura":"Vamos olhar essa questão da impressora. Primeiro, preciso de alguns detalhes para a equipe saber por onde começar.","intencao":null,"campos":[{"id":"modelo","rotulo":"Modelo da impressora","tipo":"text","pergunta":"Qual é o modelo da impressora? Costuma estar escrito na frente dela.","controle":"Digitação: “Modelo da impressora…”","rapidas":["Não sei o modelo"],"validacao":["Preencha este dado para continuar."]},{"id":"computador","rotulo":"Quem utiliza","tipo":"computador","pergunta":"Quem usa o computador que precisa de atendimento?","opcoes":[{"botao":"Eu uso este computador","depois":"registra o nome da própria pessoa"},{"botao":"Outra pessoa","depois":"campo “Nome e sobrenome de quem usa…” · se faltar o sobrenome: “Informe o nome e sobrenome de quem usa.”"},{"botao":"Uso compartilhado","depois":"campo “Onde fica o equipamento compartilhado? Ex.: recepção…”"}]}],"descricao":{"pergunta":"Me conta o que você precisa com a impressora e onde ela fica.","opcional":false,"compra":null,"automatica":"Instalar Impressora. {dado}: {resposta}; …"}},{"id":"IMP-004","area":"Impressora","grupo":"","nome":"Lâmpada da Estufa","setores":null,"tipo":"problema","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":true,"manutencao":false,"necessidade":"Lâmpada da Estufa","abertura":"Vamos olhar essa questão da impressora. Primeiro, preciso de alguns detalhes para a equipe saber por onde começar.","intencao":null,"campos":[{"id":"modelo","rotulo":"Modelo da impressora","tipo":"text","pergunta":"Qual é o modelo da impressora? Costuma estar escrito na frente dela.","controle":"Digitação: “Modelo da impressora…”","rapidas":["Não sei o modelo"],"validacao":["Preencha este dado para continuar."]},{"id":"erro-apresentado","rotulo":"Erro apresentado","tipo":"text","pergunta":"O que acontece quando você tenta usar? Se aparecer um erro, me diga o texto da mensagem.","controle":"Digitação: “Erro apresentado…”","rapidas":["Não aparece mensagem"],"validacao":["Preencha este dado para continuar."]}],"descricao":{"pergunta":"Quer acrescentar algum detalhe para a equipe? Por exemplo, desde quando acontece ou se já tentou algo. Se não tiver, toque em “Sem mais detalhes”.","opcional":true,"compra":null,"automatica":"Lâmpada da Estufa. {dado}: {resposta}; …"}},{"id":"IMP-005","area":"Impressora","grupo":"","nome":"Manchando folhas","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":true,"manutencao":false,"necessidade":"Manchando folhas","abertura":"Vamos olhar essa questão da impressora. Primeiro, preciso de alguns detalhes para a equipe saber por onde começar.","intencao":null,"campos":[{"id":"modelo","rotulo":"Modelo da impressora","tipo":"text","pergunta":"Qual é o modelo da impressora? Costuma estar escrito na frente dela.","controle":"Digitação: “Modelo da impressora…”","rapidas":["Não sei o modelo"],"validacao":["Preencha este dado para continuar."]}],"descricao":{"pergunta":"Quer acrescentar algum detalhe para a equipe? Por exemplo, desde quando acontece ou se já tentou algo. Se não tiver, toque em “Sem mais detalhes”.","opcional":true,"compra":null,"automatica":"Manchando folhas. {dado}: {resposta}; …"}},{"id":"IMP-006","area":"Impressora","grupo":"","nome":"Não imprime","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":true,"manutencao":false,"necessidade":"Não imprime","abertura":"Vamos olhar essa questão da impressora. Primeiro, preciso de alguns detalhes para a equipe saber por onde começar.","intencao":null,"campos":[{"id":"modelo","rotulo":"Modelo da impressora","tipo":"text","pergunta":"Qual é o modelo da impressora? Costuma estar escrito na frente dela.","controle":"Digitação: “Modelo da impressora…”","rapidas":["Não sei o modelo"],"validacao":["Preencha este dado para continuar."]},{"id":"computador","rotulo":"Quem utiliza","tipo":"computador","pergunta":"Quem usa o computador que precisa de atendimento?","opcoes":[{"botao":"Eu uso este computador","depois":"registra o nome da própria pessoa"},{"botao":"Outra pessoa","depois":"campo “Nome e sobrenome de quem usa…” · se faltar o sobrenome: “Informe o nome e sobrenome de quem usa.”"},{"botao":"Uso compartilhado","depois":"campo “Onde fica o equipamento compartilhado? Ex.: recepção…”"}]},{"id":"mensagem-de-erro","rotulo":"Mensagem de erro","tipo":"text","pergunta":"Aparece alguma mensagem de erro? Me diga o que ela diz.","controle":"Digitação: “Mensagem de erro…”","rapidas":["Não aparece mensagem"],"validacao":["Preencha este dado para continuar."]}],"descricao":{"pergunta":"Quer acrescentar algum detalhe para a equipe? Por exemplo, desde quando acontece ou se já tentou algo. Se não tiver, toque em “Sem mais detalhes”.","opcional":true,"compra":null,"automatica":"Não imprime. {dado}: {resposta}; …"}},{"id":"IMP-007","area":"Impressora","grupo":"","nome":"Não liga","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":true,"manutencao":false,"necessidade":"Não liga","abertura":"Vamos olhar essa questão da impressora. Primeiro, preciso de alguns detalhes para a equipe saber por onde começar.","intencao":null,"campos":[{"id":"modelo","rotulo":"Modelo da impressora","tipo":"text","pergunta":"Qual é o modelo da impressora? Costuma estar escrito na frente dela.","controle":"Digitação: “Modelo da impressora…”","rapidas":["Não sei o modelo"],"validacao":["Preencha este dado para continuar."]}],"descricao":{"pergunta":"Quer acrescentar algum detalhe para a equipe? Por exemplo, desde quando acontece ou se já tentou algo. Se não tiver, toque em “Sem mais detalhes”.","opcional":true,"compra":null,"automatica":"Não liga. {dado}: {resposta}; …"}},{"id":"IMP-008","area":"Impressora","grupo":"","nome":"Papel Atolado","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":true,"manutencao":false,"necessidade":"Papel Atolado","abertura":"Vamos olhar essa questão da impressora. Primeiro, preciso de alguns detalhes para a equipe saber por onde começar.","intencao":null,"campos":[{"id":"modelo","rotulo":"Modelo da impressora","tipo":"text","pergunta":"Qual é o modelo da impressora? Costuma estar escrito na frente dela.","controle":"Digitação: “Modelo da impressora…”","rapidas":["Não sei o modelo"],"validacao":["Preencha este dado para continuar."]},{"id":"mensagem-do-visor","rotulo":"Mensagem do visor","tipo":"text","pergunta":"O que o visor da impressora mostra agora? Às vezes ele indica a bandeja ou um código, como “Atolamento bandeja 2”.","controle":"Digitação: “Mensagem do visor…”","rapidas":["Não aparece nada","A impressora não tem visor"],"validacao":["Preencha este dado para continuar."]}],"descricao":{"pergunta":"Quer acrescentar algum detalhe para a equipe? Por exemplo, desde quando acontece ou se já tentou algo. Se não tiver, toque em “Sem mais detalhes”.","opcional":true,"compra":null,"automatica":"Papel Atolado. {dado}: {resposta}; …"}},{"id":"IMP-009","area":"Impressora","grupo":"","nome":"Scanner não funciona","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":true,"manutencao":false,"necessidade":"Scanner não funciona","abertura":"Vamos olhar essa questão da impressora. Primeiro, preciso de alguns detalhes para a equipe saber por onde começar.","intencao":null,"campos":[{"id":"modelo","rotulo":"Modelo da impressora","tipo":"text","pergunta":"Qual é o modelo da impressora? Costuma estar escrito na frente dela.","controle":"Digitação: “Modelo da impressora…”","rapidas":["Não sei o modelo"],"validacao":["Preencha este dado para continuar."]},{"id":"computador","rotulo":"Quem utiliza","tipo":"computador","pergunta":"Quem usa o computador que precisa de atendimento?","opcoes":[{"botao":"Eu uso este computador","depois":"registra o nome da própria pessoa"},{"botao":"Outra pessoa","depois":"campo “Nome e sobrenome de quem usa…” · se faltar o sobrenome: “Informe o nome e sobrenome de quem usa.”"},{"botao":"Uso compartilhado","depois":"campo “Onde fica o equipamento compartilhado? Ex.: recepção…”"}]},{"id":"erro","rotulo":"Erro","tipo":"text","pergunta":"Que erro aparece? Pode descrever com suas palavras.","controle":"Digitação: “Erro…”","rapidas":["Não aparece mensagem"],"validacao":["Preencha este dado para continuar."]}],"descricao":{"pergunta":"Quer acrescentar algum detalhe para a equipe? Por exemplo, desde quando acontece ou se já tentou algo. Se não tiver, toque em “Sem mais detalhes”.","opcional":true,"compra":null,"automatica":"Scanner não funciona. {dado}: {resposta}; …"}},{"id":"IMP-010","area":"Impressora","grupo":"","nome":"Solicitação de Toner / Tinta","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":true,"manutencao":false,"necessidade":"Solicitação de Toner / Tinta","abertura":"Vamos separar as informações do toner ou da tinta que você precisa.","intencao":null,"campos":[{"id":"cor","rotulo":"Cor do toner / tinta","tipo":"choice","pergunta":"Qual cor de toner ou tinta você precisa?","opcoes":[{"botao":"Preto"},{"botao":"Amarelo"},{"botao":"Ciano"},{"botao":"Magenta"}],"validacao":[]},{"id":"modelo","rotulo":"Modelo da impressora","tipo":"text","pergunta":"Qual é o modelo da impressora? Costuma estar escrito na frente dela.","controle":"Digitação: “Modelo da impressora…”","rapidas":["Não sei o modelo"],"validacao":["Preencha este dado para continuar."]}],"descricao":{"pergunta":"Quer acrescentar algum detalhe para a equipe? Se não tiver, toque em “Sem mais detalhes”.","opcional":true,"compra":null,"automatica":"Solicitação de Toner / Tinta. {dado}: {resposta}; …"}},{"id":"GOO-001","area":"Google","grupo":"","nome":"Agendas","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"necessidade":"Agendas","abertura":"Vamos ver o que está acontecendo no Google Agendas. Me passe alguns detalhes para a equipe saber por onde começar.","intencao":null,"campos":[{"id":"conta","rotulo":"E-mail da conta envolvida","tipo":"email","pergunta":"Em qual conta Google isso acontece?","controle":"Digitação: “E-mail da conta envolvida…”","rapidas":["Minha conta (e-mail informado)"],"validacao":["Informe um e-mail válido."]}],"descricao":{"pergunta":"O que você está tentando fazer e o que acontece nessa hora? Conte com suas palavras; não precisa usar termos técnicos.","opcional":false,"compra":null,"automatica":"Agendas. {dado}: {resposta}; …"}},{"id":"GOO-002","area":"Google","grupo":"","nome":"Apresentações","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"necessidade":"Apresentações","abertura":"Vamos ver o que está acontecendo no Google Apresentações. Me passe alguns detalhes para a equipe saber por onde começar.","intencao":null,"campos":[{"id":"conta","rotulo":"E-mail da conta envolvida","tipo":"email","pergunta":"Em qual conta Google isso acontece?","controle":"Digitação: “E-mail da conta envolvida…”","rapidas":["Minha conta (e-mail informado)"],"validacao":["Informe um e-mail válido."]},{"id":"link-ou-nome-do-arquivo","rotulo":"Link ou nome do arquivo","tipo":"text","pergunta":"Qual arquivo está envolvido? Pode mandar o link ou o nome dele.","controle":"Digitação: “Link ou nome do arquivo…”","validacao":["Preencha este dado para continuar."]}],"descricao":{"pergunta":"O que você está tentando fazer e o que acontece nessa hora? Conte com suas palavras; não precisa usar termos técnicos.","opcional":false,"compra":null,"automatica":"Apresentações. {dado}: {resposta}; …"}},{"id":"GOO-003","area":"Google","grupo":"","nome":"Classroom","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"necessidade":"Classroom","abertura":"Vamos ver o que está acontecendo no Google Classroom. Me passe alguns detalhes para a equipe saber por onde começar.","intencao":null,"campos":[{"id":"conta","rotulo":"E-mail da conta envolvida","tipo":"email","pergunta":"Em qual conta Google isso acontece?","controle":"Digitação: “E-mail da conta envolvida…”","rapidas":["Minha conta (e-mail informado)"],"validacao":["Informe um e-mail válido."]},{"id":"turma","rotulo":"Turma","tipo":"text","pergunta":"Qual é a turma?","controle":"Digitação: “Turma…”","validacao":["Preencha este dado para continuar."]}],"descricao":{"pergunta":"O que você está tentando fazer e o que acontece nessa hora? Conte com suas palavras; não precisa usar termos técnicos.","opcional":false,"compra":null,"automatica":"Classroom. {dado}: {resposta}; …"}},{"id":"GOO-004","area":"Google","grupo":"","nome":"Documentos","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"necessidade":"Documentos","abertura":"Vamos ver o que está acontecendo no Google Documentos. Me passe alguns detalhes para a equipe saber por onde começar.","intencao":null,"campos":[{"id":"conta","rotulo":"E-mail da conta envolvida","tipo":"email","pergunta":"Em qual conta Google isso acontece?","controle":"Digitação: “E-mail da conta envolvida…”","rapidas":["Minha conta (e-mail informado)"],"validacao":["Informe um e-mail válido."]},{"id":"arquivo","rotulo":"Arquivo","tipo":"text","pergunta":"Qual documento está envolvido? Me passe o nome ou o link.","controle":"Digitação: “Arquivo…”","validacao":["Preencha este dado para continuar."]}],"descricao":{"pergunta":"O que você está tentando fazer e o que acontece nessa hora? Conte com suas palavras; não precisa usar termos técnicos.","opcional":false,"compra":null,"automatica":"Documentos. {dado}: {resposta}; …"}},{"id":"GOO-005","area":"Google","grupo":"","nome":"Drive","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"necessidade":"Drive","abertura":"Vamos ver o que está acontecendo no Google Drive. Me passe alguns detalhes para a equipe saber por onde começar.","intencao":null,"campos":[{"id":"conta","rotulo":"E-mail da conta envolvida","tipo":"email","pergunta":"Em qual conta Google isso acontece?","controle":"Digitação: “E-mail da conta envolvida…”","rapidas":["Minha conta (e-mail informado)"],"validacao":["Informe um e-mail válido."]},{"id":"link-ou-nome-do-recurso","rotulo":"Link ou nome do recurso","tipo":"text","pergunta":"Qual pasta ou arquivo do Drive está envolvido? Pode informar o nome ou o link.","controle":"Digitação: “Link ou nome do recurso…”","validacao":["Preencha este dado para continuar."]}],"descricao":{"pergunta":"O que você está tentando fazer e o que acontece nessa hora? Conte com suas palavras; não precisa usar termos técnicos.","opcional":false,"compra":null,"automatica":"Drive. {dado}: {resposta}; …"}},{"id":"GOO-006","area":"Google","grupo":"","nome":"Dúvidas","setores":null,"tipo":"dúvida","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"necessidade":"Dúvidas","abertura":"Vamos ver sua dúvida sobre o Google.","intencao":null,"campos":[{"id":"conta","rotulo":"E-mail da conta envolvida","tipo":"email","pergunta":"Sua dúvida é sobre qual conta Google?","controle":"Digitação: “E-mail da conta envolvida…”","rapidas":["Minha conta (e-mail informado)"],"validacao":["Informe um e-mail válido."]}],"descricao":{"pergunta":"Qual é a sua dúvida? Conte o que você quer fazer e em que parte travou; não precisa usar termos técnicos.","opcional":false,"compra":null,"automatica":"Dúvidas. {dado}: {resposta}; …"}},{"id":"GOO-007","area":"Google","grupo":"","nome":"Gmail","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"necessidade":"Gmail","abertura":"Vamos ver o que está acontecendo no Gmail. Me passe alguns detalhes para a equipe saber por onde começar.","intencao":null,"campos":[{"id":"conta","rotulo":"E-mail da conta envolvida","tipo":"email","pergunta":"Em qual conta Google isso acontece?","controle":"Digitação: “E-mail da conta envolvida…”","rapidas":["Minha conta (e-mail informado)"],"validacao":["Informe um e-mail válido."]},{"id":"erro-apresentado","rotulo":"Erro apresentado","tipo":"text","pergunta":"O que acontece quando você tenta usar? Se aparecer um erro, me diga o texto da mensagem.","controle":"Digitação: “Erro apresentado…”","rapidas":["Não aparece mensagem"],"validacao":["Preencha este dado para continuar."]}],"descricao":{"pergunta":"O que você está tentando fazer e o que acontece nessa hora? Conte com suas palavras; não precisa usar termos técnicos.","opcional":false,"compra":null,"automatica":"Gmail. {dado}: {resposta}; …"}},{"id":"GOO-008","area":"Google","grupo":"","nome":"Grupos","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"necessidade":"Grupos","abertura":"Vamos ver o que está acontecendo no Google Grupos. Me passe alguns detalhes para a equipe saber por onde começar.","intencao":null,"campos":[{"id":"conta","rotulo":"E-mail da conta envolvida","tipo":"email","pergunta":"Em qual conta Google isso acontece?","controle":"Digitação: “E-mail da conta envolvida…”","rapidas":["Minha conta (e-mail informado)"],"validacao":["Informe um e-mail válido."]},{"id":"grupo","rotulo":"Grupo","tipo":"text","pergunta":"Qual é o grupo envolvido?","controle":"Digitação: “Grupo…”","validacao":["Preencha este dado para continuar."]}],"descricao":{"pergunta":"O que você está tentando fazer e o que acontece nessa hora? Conte com suas palavras; não precisa usar termos técnicos.","opcional":false,"compra":null,"automatica":"Grupos. {dado}: {resposta}; …"}},{"id":"GOO-009","area":"Google","grupo":"","nome":"Planilhas","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"necessidade":"Planilhas","abertura":"Vamos ver o que está acontecendo no Google Planilhas. Me passe alguns detalhes para a equipe saber por onde começar.","intencao":null,"campos":[{"id":"conta","rotulo":"E-mail da conta envolvida","tipo":"email","pergunta":"Em qual conta Google isso acontece?","controle":"Digitação: “E-mail da conta envolvida…”","rapidas":["Minha conta (e-mail informado)"],"validacao":["Informe um e-mail válido."]},{"id":"link-ou-nome-da-planilha","rotulo":"Link ou nome da planilha","tipo":"text","pergunta":"Qual planilha está envolvida? Me passe o nome ou o link.","controle":"Digitação: “Link ou nome da planilha…”","validacao":["Preencha este dado para continuar."]}],"descricao":{"pergunta":"O que você está tentando fazer e o que acontece nessa hora? Conte com suas palavras; não precisa usar termos técnicos.","opcional":false,"compra":null,"automatica":"Planilhas. {dado}: {resposta}; …"}},{"id":"GOO-010","area":"Google","grupo":"","nome":"Reserva de Chromebook","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"necessidade":"Reserva de Chromebook","abertura":"Vamos organizar essa reserva. Me diga quando você vai precisar do equipamento.","intencao":null,"campos":[{"id":"data","rotulo":"Data do atendimento","tipo":"date","pergunta":"Em qual dia você vai precisar? Digite a data ou toque no calendário.","controle":"Data: digitar dd/mm/aaaa ou tocar no calendário; atalhos Hoje · Amanhã · próximos 3 dias úteis (ex.: “qui 29/10”)","validacao":["Essa data não existe. Use dia/mês/ano.","Escolha hoje ou uma data futura para o atendimento."]},{"id":"horario-periodo","rotulo":"Horário/período","tipo":"text","pergunta":"Em qual horário ou período você vai precisar?","controle":"Digitação: “Horário/período…”","validacao":["Preencha este dado para continuar."]}],"descricao":{"pergunta":"Como vai ser o uso? Conte o local, a atividade e para quantas pessoas, para a equipe preparar tudo.","opcional":false,"compra":null,"automatica":"Reserva de Chromebook. {dado}: {resposta}; …"}},{"id":"GOO-011","area":"Google","grupo":"","nome":"Resetar senha","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":true,"manutencao":false,"necessidade":"Resetar senha","abertura":"Vamos cuidar do acesso à sua conta Google. Você nunca precisa me dizer a senha.","intencao":null,"campos":[{"id":"e-mail-da-conta","rotulo":"E-mail da conta envolvida","tipo":"email","pergunta":"De qual conta você precisa recuperar o acesso? Informe só o e-mail, nunca a senha.","controle":"Digitação: “E-mail da conta envolvida…”","rapidas":["Minha conta (e-mail informado)"],"validacao":["Informe um e-mail válido."]}],"descricao":{"pergunta":"Quer acrescentar algum detalhe para a equipe? Se não tiver, toque em “Sem mais detalhes”.","opcional":true,"compra":null,"automatica":"Resetar senha. {dado}: {resposta}; …"}},{"id":"GOO-012","area":"Google","grupo":"","nome":"Sites","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"necessidade":"Sites","abertura":"Vamos ver o que está acontecendo no Google Sites. Me passe alguns detalhes para a equipe saber por onde começar.","intencao":null,"campos":[{"id":"conta","rotulo":"E-mail da conta envolvida","tipo":"email","pergunta":"Em qual conta Google isso acontece?","controle":"Digitação: “E-mail da conta envolvida…”","rapidas":["Minha conta (e-mail informado)"],"validacao":["Informe um e-mail válido."]},{"id":"link-ou-nome-do-site","rotulo":"Link ou nome do site","tipo":"text","pergunta":"Em qual site isso acontece? Pode informar o nome ou o endereço.","controle":"Digitação: “Link ou nome do site…”","validacao":["Preencha este dado para continuar."]}],"descricao":{"pergunta":"O que você está tentando fazer e o que acontece nessa hora? Conte com suas palavras; não precisa usar termos técnicos.","opcional":false,"compra":null,"automatica":"Sites. {dado}: {resposta}; …"}},{"id":"TI-001","area":"TI","grupo":"","nome":"Dúvidas","setores":null,"tipo":"dúvida","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"necessidade":"Dúvidas","abertura":"Entendi. Vamos registrar sua dúvida para a equipe responder.","intencao":null,"campos":[],"descricao":{"pergunta":"Qual é a sua dúvida? Conte o que você quer fazer e em que parte travou; não precisa usar termos técnicos.","opcional":false,"compra":null,"automatica":"Dúvidas. {dado}: {resposta}; …"}},{"id":"TI-002","area":"TI","grupo":"","nome":"Sugestão de melhoria","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"necessidade":"Sugestão de melhoria","abertura":"Boa! Vamos registrar sua sugestão para a equipe avaliar.","intencao":null,"campos":[{"id":"sistema-processo","rotulo":"Sistema/processo","tipo":"text","pergunta":"Qual sistema ou processo você gostaria de melhorar?","controle":"Digitação: “Sistema/processo…”","validacao":["Preencha este dado para continuar."]}],"descricao":{"pergunta":"Qual é a sua sugestão? Conte o que pode melhorar e como isso ajudaria no dia a dia.","opcional":false,"compra":null,"automatica":"Sugestão de melhoria. {dado}: {resposta}; …"}},{"id":"TI-003","area":"TI","grupo":"","nome":"Outros","setores":null,"tipo":"outro","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"necessidade":"Outros","abertura":"Entendi. Vamos registrar isso para a equipe.","intencao":null,"campos":[],"descricao":{"pergunta":"Agora, me conta um pouco mais: o que aconteceu ou o que você precisa? Se puder, diga desde quando e como isso afeta seu trabalho.","opcional":false,"compra":null,"automatica":"Outros. {dado}: {resposta}; …"}},{"id":"TI-COMP-001","area":"TI","grupo":"Computador","nome":"Headset / Fone de Ouvido","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":true,"descricaoOpcional":true,"manutencao":false,"necessidade":"COMPUTADOR > Headset / Fone de Ouvido","abertura":"Certo. Antes dos detalhes, me ajuda a entender o que você precisa com esse equipamento.","intencao":{"pergunta":"É um problema com o item que você já usa ou você quer solicitar um item novo ou diferente?","opcoes":[{"botao":"Meu item está com defeito","resposta":"Entendi. Vamos registrar o defeito para a equipe avaliar o reparo ou a reposição."},{"botao":"Quero um item novo ou diferente","resposta":"Certo. Vamos registrar o que você precisa e quem autorizou esse pedido."}]},"campos":[{"id":"computador","rotulo":"Quem utiliza","tipo":"computador","pergunta":[{"se":"Defeito","texto":"Quem usa o equipamento que está com defeito?"},{"se":"Item novo","texto":"Quem vai usar esse novo item?"}],"opcoes":[{"botao":"Eu uso esse equipamento (defeito) · É para mim (item novo)","depois":"registra o nome da própria pessoa"},{"botao":"Outra pessoa","depois":"campo “Nome e sobrenome de quem usa…” · se faltar o sobrenome: “Informe o nome e sobrenome de quem usa.”"},{"botao":"Uso compartilhado","depois":"campo “Onde fica o equipamento compartilhado? Ex.: recepção…”"}]}],"descricao":{"pergunta":"Quer acrescentar algum detalhe para a equipe? Por exemplo, desde quando acontece ou se já tentou algo. Se não tiver, toque em “Sem mais detalhes”.","opcional":true,"compra":"Qual item você quer solicitar e para qual atividade? Conte o que ele precisa ter para te ajudar no trabalho.","automatica":"COMPUTADOR > Headset / Fone de Ouvido. {dado}: {resposta}; …"}},{"id":"TI-COMP-002","area":"TI","grupo":"Computador","nome":"Leitor de CD/DVD","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":true,"manutencao":false,"necessidade":"COMPUTADOR > Leitor de CD/DVD","abertura":"Entendi. Vou te fazer algumas perguntas para a equipe conseguir avaliar isso com você.","intencao":null,"campos":[{"id":"computador","rotulo":"Quem utiliza","tipo":"computador","pergunta":"Quem usa o computador que precisa de atendimento?","opcoes":[{"botao":"Eu uso este computador","depois":"registra o nome da própria pessoa"},{"botao":"Outra pessoa","depois":"campo “Nome e sobrenome de quem usa…” · se faltar o sobrenome: “Informe o nome e sobrenome de quem usa.”"},{"botao":"Uso compartilhado","depois":"campo “Onde fica o equipamento compartilhado? Ex.: recepção…”"}]}],"descricao":{"pergunta":"Quer acrescentar algum detalhe para a equipe? Por exemplo, desde quando acontece ou se já tentou algo. Se não tiver, toque em “Sem mais detalhes”.","opcional":true,"compra":null,"automatica":"COMPUTADOR > Leitor de CD/DVD. {dado}: {resposta}; …"}},{"id":"TI-COMP-003","area":"TI","grupo":"Computador","nome":"Não liga","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":true,"manutencao":false,"necessidade":"COMPUTADOR > Não liga","abertura":"Entendi. Vou te fazer algumas perguntas para a equipe conseguir avaliar isso com você.","intencao":null,"campos":[{"id":"equipamento","rotulo":"Identificação do equipamento","tipo":"text","pergunta":"Qual equipamento não liga? Diga onde ele fica e, se souber, o modelo.","controle":"Digitação: “Identificação do equipamento…”","validacao":["Preencha este dado para continuar."]}],"descricao":{"pergunta":"Quer acrescentar algum detalhe para a equipe? Por exemplo, desde quando acontece ou se já tentou algo. Se não tiver, toque em “Sem mais detalhes”.","opcional":true,"compra":null,"automatica":"COMPUTADOR > Não liga. {dado}: {resposta}; …"}},{"id":"TI-COMP-004","area":"TI","grupo":"Computador","nome":"Problemas com lentidão","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":true,"manutencao":false,"necessidade":"COMPUTADOR > Problemas com lentidão","abertura":"Entendi. Vou te fazer algumas perguntas para a equipe conseguir avaliar isso com você.","intencao":null,"campos":[{"id":"computador","rotulo":"Quem utiliza","tipo":"computador","pergunta":"Quem usa o computador que precisa de atendimento?","opcoes":[{"botao":"Eu uso este computador","depois":"registra o nome da própria pessoa"},{"botao":"Outra pessoa","depois":"campo “Nome e sobrenome de quem usa…” · se faltar o sobrenome: “Informe o nome e sobrenome de quem usa.”"},{"botao":"Uso compartilhado","depois":"campo “Onde fica o equipamento compartilhado? Ex.: recepção…”"}]}],"descricao":{"pergunta":"Quer acrescentar algum detalhe para a equipe? Por exemplo, desde quando acontece ou se já tentou algo. Se não tiver, toque em “Sem mais detalhes”.","opcional":true,"compra":null,"automatica":"COMPUTADOR > Problemas com lentidão. {dado}: {resposta}; …"}},{"id":"TI-COMP-005","area":"TI","grupo":"Computador","nome":"Programas (software)","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"necessidade":"COMPUTADOR > Programas (software)","abertura":"Entendi. Vou te fazer algumas perguntas para a equipe conseguir avaliar isso com você.","intencao":null,"campos":[{"id":"programa","rotulo":"Nome do programa","tipo":"text","pergunta":"Qual programa está envolvido?","controle":"Digitação: “Nome do programa…”","validacao":["Preencha este dado para continuar."]},{"id":"computador","rotulo":"Quem utiliza","tipo":"computador","pergunta":"Quem usa o computador que precisa de atendimento?","opcoes":[{"botao":"Eu uso este computador","depois":"registra o nome da própria pessoa"},{"botao":"Outra pessoa","depois":"campo “Nome e sobrenome de quem usa…” · se faltar o sobrenome: “Informe o nome e sobrenome de quem usa.”"},{"botao":"Uso compartilhado","depois":"campo “Onde fica o equipamento compartilhado? Ex.: recepção…”"}]}],"descricao":{"pergunta":"Agora, me conta um pouco mais: o que aconteceu ou o que você precisa? Se puder, diga desde quando e como isso afeta seu trabalho.","opcional":false,"compra":null,"automatica":"COMPUTADOR > Programas (software). {dado}: {resposta}; …"}},{"id":"TI-COMP-006","area":"TI","grupo":"Computador","nome":"Reserva de Notebook","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"necessidade":"COMPUTADOR > Reserva de Notebook","abertura":"Vamos organizar essa reserva. Me diga quando você vai precisar do equipamento.","intencao":null,"campos":[{"id":"data","rotulo":"Data do atendimento","tipo":"date","pergunta":"Em qual dia você vai precisar? Digite a data ou toque no calendário.","controle":"Data: digitar dd/mm/aaaa ou tocar no calendário; atalhos Hoje · Amanhã · próximos 3 dias úteis (ex.: “qui 29/10”)","validacao":["Essa data não existe. Use dia/mês/ano.","Escolha hoje ou uma data futura para o atendimento."]},{"id":"periodo","rotulo":"Período solicitado","tipo":"text","pergunta":"Em qual período você vai precisar?","controle":"Digitação: “Período solicitado…”","validacao":["Preencha este dado para continuar."]}],"descricao":{"pergunta":"Como vai ser o uso? Conte o local, a atividade e para quantas pessoas, para a equipe preparar tudo.","opcional":false,"compra":null,"automatica":"COMPUTADOR > Reserva de Notebook. {dado}: {resposta}; …"}},{"id":"TI-COMP-007","area":"TI","grupo":"Computador","nome":"Troca de Mouse","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":true,"descricaoOpcional":true,"manutencao":false,"necessidade":"COMPUTADOR > Troca de Mouse","abertura":"Certo. Antes dos detalhes, me ajuda a entender o que você precisa com esse equipamento.","intencao":{"pergunta":"É um problema com o item que você já usa ou você quer solicitar um item novo ou diferente?","opcoes":[{"botao":"Meu item está com defeito","resposta":"Entendi. Vamos registrar o defeito para a equipe avaliar o reparo ou a reposição."},{"botao":"Quero um item novo ou diferente","resposta":"Certo. Vamos registrar o que você precisa e quem autorizou esse pedido."}]},"campos":[{"id":"computador","rotulo":"Quem utiliza","tipo":"computador","pergunta":[{"se":"Defeito","texto":"Quem usa o equipamento que está com defeito?"},{"se":"Item novo","texto":"Quem vai usar esse novo item?"}],"opcoes":[{"botao":"Eu uso esse equipamento (defeito) · É para mim (item novo)","depois":"registra o nome da própria pessoa"},{"botao":"Outra pessoa","depois":"campo “Nome e sobrenome de quem usa…” · se faltar o sobrenome: “Informe o nome e sobrenome de quem usa.”"},{"botao":"Uso compartilhado","depois":"campo “Onde fica o equipamento compartilhado? Ex.: recepção…”"}]}],"descricao":{"pergunta":"Quer acrescentar algum detalhe para a equipe? Por exemplo, desde quando acontece ou se já tentou algo. Se não tiver, toque em “Sem mais detalhes”.","opcional":true,"compra":"Qual item você quer solicitar e para qual atividade? Conte o que ele precisa ter para te ajudar no trabalho.","automatica":"COMPUTADOR > Troca de Mouse. {dado}: {resposta}; …"}},{"id":"TI-COMP-008","area":"TI","grupo":"Computador","nome":"Troca de Teclado","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":true,"descricaoOpcional":true,"manutencao":false,"necessidade":"COMPUTADOR > Troca de Teclado","abertura":"Certo. Antes dos detalhes, me ajuda a entender o que você precisa com esse equipamento.","intencao":{"pergunta":"É um problema com o item que você já usa ou você quer solicitar um item novo ou diferente?","opcoes":[{"botao":"Meu item está com defeito","resposta":"Entendi. Vamos registrar o defeito para a equipe avaliar o reparo ou a reposição."},{"botao":"Quero um item novo ou diferente","resposta":"Certo. Vamos registrar o que você precisa e quem autorizou esse pedido."}]},"campos":[{"id":"computador","rotulo":"Quem utiliza","tipo":"computador","pergunta":[{"se":"Defeito","texto":"Quem usa o equipamento que está com defeito?"},{"se":"Item novo","texto":"Quem vai usar esse novo item?"}],"opcoes":[{"botao":"Eu uso esse equipamento (defeito) · É para mim (item novo)","depois":"registra o nome da própria pessoa"},{"botao":"Outra pessoa","depois":"campo “Nome e sobrenome de quem usa…” · se faltar o sobrenome: “Informe o nome e sobrenome de quem usa.”"},{"botao":"Uso compartilhado","depois":"campo “Onde fica o equipamento compartilhado? Ex.: recepção…”"}]}],"descricao":{"pergunta":"Quer acrescentar algum detalhe para a equipe? Por exemplo, desde quando acontece ou se já tentou algo. Se não tiver, toque em “Sem mais detalhes”.","opcional":true,"compra":"Qual item você quer solicitar e para qual atividade? Conte o que ele precisa ter para te ajudar no trabalho.","automatica":"COMPUTADOR > Troca de Teclado. {dado}: {resposta}; …"}},{"id":"TI-NET-001","area":"TI","grupo":"Internet","nome":"Computador não está conectado à rede","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":true,"manutencao":false,"necessidade":"INTERNET > Computador não está conectado à rede","abertura":"Entendi. Vou te fazer algumas perguntas para a equipe conseguir avaliar isso com você.","intencao":null,"campos":[{"id":"computador","rotulo":"Quem utiliza","tipo":"computador","pergunta":"Quem usa o computador que precisa de atendimento?","opcoes":[{"botao":"Eu uso este computador","depois":"registra o nome da própria pessoa"},{"botao":"Outra pessoa","depois":"campo “Nome e sobrenome de quem usa…” · se faltar o sobrenome: “Informe o nome e sobrenome de quem usa.”"},{"botao":"Uso compartilhado","depois":"campo “Onde fica o equipamento compartilhado? Ex.: recepção…”"}]},{"id":"tipo-de-conexao","rotulo":"Tipo de conexão","tipo":"choice","pergunta":"Esse computador usa cabo de rede ou Wi-Fi?","opcoes":[{"botao":"Cabo"},{"botao":"Wi-Fi"}],"validacao":[]}],"descricao":{"pergunta":"Quer acrescentar algum detalhe para a equipe? Por exemplo, desde quando acontece ou se já tentou algo. Se não tiver, toque em “Sem mais detalhes”.","opcional":true,"compra":null,"automatica":"INTERNET > Computador não está conectado à rede. {dado}: {resposta}; …"}},{"id":"TI-NET-002","area":"TI","grupo":"Internet","nome":"Criar Login de acesso Internet","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"necessidade":"INTERNET > Criar Login de acesso Internet","abertura":"Entendi. Vou te fazer algumas perguntas para a equipe conseguir avaliar isso com você.","intencao":null,"campos":[{"id":"finalidade","rotulo":"Finalidade","tipo":"text","pergunta":"Para que você precisa desse acesso?","controle":"Digitação: “Finalidade…”","validacao":["Preencha este dado para continuar."]},{"id":"periodo","rotulo":"Período solicitado","tipo":"text","pergunta":"Em qual período você vai precisar?","controle":"Digitação: “Período solicitado…”","validacao":["Preencha este dado para continuar."]}],"descricao":{"pergunta":"Conte o que você precisa, com os detalhes que ajudam a equipe a atender.","opcional":false,"compra":null,"automatica":"INTERNET > Criar Login de acesso Internet. {dado}: {resposta}; …"}},{"id":"TI-NET-003","area":"TI","grupo":"Internet","nome":"Problemas com Wi-Fi","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":true,"manutencao":false,"necessidade":"INTERNET > Problemas com Wi-Fi","abertura":"Entendi. Vou te fazer algumas perguntas para a equipe conseguir avaliar isso com você.","intencao":null,"campos":[{"id":"dispositivo","rotulo":"Dispositivo","tipo":"text","pergunta":"Em qual dispositivo o Wi-Fi está dando problema?","controle":"Digitação: “Dispositivo…”","rapidas":["Notebook","Celular","Chromebook","Computador"],"validacao":["Preencha este dado para continuar."]},{"id":"rede","rotulo":"Rede","tipo":"text","pergunta":"Qual é o nome da rede Wi-Fi?","controle":"Digitação: “Rede…”","validacao":["Preencha este dado para continuar."]}],"descricao":{"pergunta":"Quer acrescentar algum detalhe para a equipe? Por exemplo, desde quando acontece ou se já tentou algo. Se não tiver, toque em “Sem mais detalhes”.","opcional":true,"compra":null,"automatica":"INTERNET > Problemas com Wi-Fi. {dado}: {resposta}; …"}},{"id":"TI-INT-001","area":"TI","grupo":"Intranet","nome":"Atualização","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"necessidade":"INTRANET > Atualização","abertura":"Entendi. Vou te fazer algumas perguntas para a equipe conseguir avaliar isso com você.","intencao":null,"campos":[{"id":"pagina-secao","rotulo":"Página/seção","tipo":"text","pergunta":"Qual página ou seção precisa ser atualizada?","controle":"Digitação: “Página/seção…”","validacao":["Preencha este dado para continuar."]},{"id":"conteudo-novo","rotulo":"Conteúdo novo","tipo":"text","pergunta":"O que você gostaria de colocar nessa página?","controle":"Digitação: “Conteúdo novo…”","validacao":["Preencha este dado para continuar."]}],"descricao":{"pergunta":"Conte o que você precisa e para quando, com os detalhes que ajudam a equipe a atender.","opcional":false,"compra":null,"automatica":"INTRANET > Atualização. {dado}: {resposta}; …"}},{"id":"TI-INT-002","area":"TI","grupo":"Intranet","nome":"Solicitação","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"necessidade":"INTRANET > Solicitação","abertura":"Entendi. Vou te fazer algumas perguntas para a equipe conseguir avaliar isso com você.","intencao":null,"campos":[{"id":"secao","rotulo":"Seção","tipo":"text","pergunta":"Em qual seção da intranet você precisa de ajuda?","controle":"Digitação: “Seção…”","validacao":["Preencha este dado para continuar."]},{"id":"arquivos-links","rotulo":"Arquivos/links","tipo":"text","pergunta":"Quais arquivos ou links fazem parte dessa solicitação?","controle":"Digitação: “Arquivos/links…”","validacao":["Preencha este dado para continuar."]}],"descricao":{"pergunta":"Conte o que você precisa e para quando, com os detalhes que ajudam a equipe a atender.","opcional":false,"compra":null,"automatica":"INTRANET > Solicitação. {dado}: {resposta}; …"}},{"id":"TI-INT-003","area":"TI","grupo":"Intranet","nome":"Sugestão","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"necessidade":"INTRANET > Sugestão","abertura":"Boa! Vamos registrar sua sugestão para a equipe avaliar.","intencao":null,"campos":[],"descricao":{"pergunta":"Qual é a sua sugestão? Conte o que pode melhorar e como isso ajudaria no dia a dia.","opcional":false,"compra":null,"automatica":"INTRANET > Sugestão. {dado}: {resposta}; …"}},{"id":"TI-MENT-001","area":"TI","grupo":"Mentor Web","nome":"Criação de Login","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"necessidade":"MENTOR WEB > Criação de Login","abertura":"Entendi. Vou te fazer algumas perguntas para a equipe conseguir avaliar isso com você.","intencao":null,"campos":[{"id":"perfil","rotulo":"Perfil","tipo":"text","pergunta":"Qual perfil de acesso essa pessoa precisa?","controle":"Digitação: “Perfil…”","validacao":["Preencha este dado para continuar."]}],"descricao":{"pergunta":"Conte o que você precisa e para quando, com os detalhes que ajudam a equipe a atender.","opcional":false,"compra":null,"automatica":"MENTOR WEB > Criação de Login. {dado}: {resposta}; …"}},{"id":"TI-MENT-002","area":"TI","grupo":"Mentor Web","nome":"Erro no relatório","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"necessidade":"MENTOR WEB > Erro no relatório","abertura":"Entendi. Vou te fazer algumas perguntas para a equipe conseguir avaliar isso com você.","intencao":null,"campos":[{"id":"relatorio","rotulo":"Relatório","tipo":"text","pergunta":"Qual relatório está envolvido?","controle":"Digitação: “Relatório…”","validacao":["Preencha este dado para continuar."]},{"id":"mensagem-de-erro","rotulo":"Mensagem de erro","tipo":"text","pergunta":"Aparece alguma mensagem de erro? Me diga o que ela diz.","controle":"Digitação: “Mensagem de erro…”","rapidas":["Não aparece mensagem"],"validacao":["Preencha este dado para continuar."]}],"descricao":{"pergunta":"Agora, me conta um pouco mais: o que aconteceu ou o que você precisa? Se puder, diga desde quando e como isso afeta seu trabalho.","opcional":false,"compra":null,"automatica":"MENTOR WEB > Erro no relatório. {dado}: {resposta}; …"}},{"id":"TI-MENT-003","area":"TI","grupo":"Mentor Web","nome":"Alteração de notas","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"necessidade":"MENTOR WEB > Alteração de notas","abertura":"Entendi. Vou te fazer algumas perguntas para a equipe conseguir avaliar isso com você.","intencao":null,"campos":[{"id":"aluno-turma","rotulo":"Aluno/turma","tipo":"text","pergunta":"Qual é o aluno e a turma envolvidos?","controle":"Digitação: “Aluno/turma…”","validacao":["Preencha este dado para continuar."]},{"id":"disciplina","rotulo":"Disciplina","tipo":"text","pergunta":"Qual é a disciplina?","controle":"Digitação: “Disciplina…”","validacao":["Preencha este dado para continuar."]}],"descricao":{"pergunta":"Conte o que você precisa e para quando, com os detalhes que ajudam a equipe a atender.","opcional":false,"compra":null,"automatica":"MENTOR WEB > Alteração de notas. {dado}: {resposta}; …"}},{"id":"TI-MENT-004","area":"TI","grupo":"Mentor Web","nome":"Encerramento de diário","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"necessidade":"MENTOR WEB > Encerramento de diário","abertura":"Entendi. Vou te fazer algumas perguntas para a equipe conseguir avaliar isso com você.","intencao":null,"campos":[{"id":"turma","rotulo":"Turma","tipo":"text","pergunta":"Qual é a turma?","controle":"Digitação: “Turma…”","validacao":["Preencha este dado para continuar."]},{"id":"disciplina","rotulo":"Disciplina","tipo":"text","pergunta":"Qual é a disciplina?","controle":"Digitação: “Disciplina…”","validacao":["Preencha este dado para continuar."]},{"id":"periodo","rotulo":"Período solicitado","tipo":"text","pergunta":"Qual período letivo vai ser encerrado? Por exemplo, 3º bimestre.","controle":"Digitação: “Período solicitado…”","validacao":["Preencha este dado para continuar."]}],"descricao":{"pergunta":"Conte o que você precisa, com os detalhes que ajudam a equipe a atender.","opcional":false,"compra":null,"automatica":"MENTOR WEB > Encerramento de diário. {dado}: {resposta}; …"}},{"id":"TI-MENT-005","area":"TI","grupo":"Mentor Web","nome":"Erro no sistema","setores":null,"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"necessidade":"MENTOR WEB > Erro no sistema","abertura":"Entendi. Vou te fazer algumas perguntas para a equipe conseguir avaliar isso com você.","intencao":null,"campos":[{"id":"usuario","rotulo":"Usuário","tipo":"text","pergunta":"Qual usuário está com essa dificuldade? Informe o login, sem enviar a senha.","controle":"Digitação: “Usuário…”","validacao":["Preencha este dado para continuar."]},{"id":"mensagem-de-erro","rotulo":"Mensagem de erro","tipo":"text","pergunta":"Aparece alguma mensagem de erro? Me diga o que ela diz.","controle":"Digitação: “Mensagem de erro…”","rapidas":["Não aparece mensagem"],"validacao":["Preencha este dado para continuar."]}],"descricao":{"pergunta":"Agora, me conta um pouco mais: o que aconteceu ou o que você precisa? Se puder, diga desde quando e como isso afeta seu trabalho.","opcional":false,"compra":null,"automatica":"MENTOR WEB > Erro no sistema. {dado}: {resposta}; …"}},{"id":"TI-MENT-006","area":"TI","grupo":"Mentor Web","nome":"Remanejamento de aluno","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"necessidade":"MENTOR WEB > Remanejamento de aluno","abertura":"Entendi. Vou te fazer algumas perguntas para a equipe conseguir avaliar isso com você.","intencao":null,"campos":[{"id":"aluno","rotulo":"Aluno","tipo":"text","pergunta":"Qual é o nome do aluno?","controle":"Digitação: “Aluno…”","validacao":["Preencha este dado para continuar."]},{"id":"turma-atual","rotulo":"Turma atual","tipo":"text","pergunta":"Em qual turma o aluno está agora?","controle":"Digitação: “Turma atual…”","validacao":["Preencha este dado para continuar."]},{"id":"turma-destino","rotulo":"Turma destino","tipo":"text","pergunta":"Para qual turma ele vai?","controle":"Digitação: “Turma destino…”","validacao":["Preencha este dado para continuar."]}],"descricao":{"pergunta":"Conte o que você precisa e para quando, com os detalhes que ajudam a equipe a atender.","opcional":false,"compra":null,"automatica":"MENTOR WEB > Remanejamento de aluno. {dado}: {resposta}; …"}},{"id":"TI-MENT-007","area":"TI","grupo":"Mentor Web","nome":"Solicitação de Relatório","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"necessidade":"MENTOR WEB > Solicitação de Relatório","abertura":"Entendi. Vou te fazer algumas perguntas para a equipe conseguir avaliar isso com você.","intencao":null,"campos":[{"id":"descricao-do-relatorio","rotulo":"Descrição do relatório","tipo":"text","pergunta":"Que informações você precisa nesse relatório?","controle":"Digitação: “Descrição do relatório…”","validacao":["Preencha este dado para continuar."]}],"descricao":{"pergunta":"Conte o que você precisa e para quando, com os detalhes que ajudam a equipe a atender.","opcional":false,"compra":null,"automatica":"MENTOR WEB > Solicitação de Relatório. {dado}: {resposta}; …"}},{"id":"TI-MENT-008","area":"TI","grupo":"Mentor Web","nome":"Solicitação de acesso a relatório","setores":null,"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"necessidade":"MENTOR WEB > Solicitação de acesso a relatório","abertura":"Entendi. Vou te fazer algumas perguntas para a equipe conseguir avaliar isso com você.","intencao":null,"campos":[{"id":"relatorio","rotulo":"Relatório","tipo":"text","pergunta":"Qual relatório está envolvido?","controle":"Digitação: “Relatório…”","validacao":["Preencha este dado para continuar."]},{"id":"usuario","rotulo":"Usuário","tipo":"text","pergunta":"Qual usuário está com essa dificuldade? Informe o login, sem enviar a senha.","controle":"Digitação: “Usuário…”","validacao":["Preencha este dado para continuar."]}],"descricao":{"pergunta":"Conte o que você precisa e para quando, com os detalhes que ajudam a equipe a atender.","opcional":false,"compra":null,"automatica":"MENTOR WEB > Solicitação de acesso a relatório. {dado}: {resposta}; …"}},{"id":"TI-QB-001","area":"TI","grupo":"QuickBooks","nome":"Erro no sistema","setores":["Financeiro"],"tipo":"problema","dicas":true,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"necessidade":"QUICKBOOKS > Erro no sistema","abertura":"Entendi. Vou te fazer algumas perguntas para a equipe conseguir avaliar isso com você.","intencao":null,"campos":[{"id":"usuario","rotulo":"Usuário","tipo":"text","pergunta":"Qual usuário está com essa dificuldade? Informe o login, sem enviar a senha.","controle":"Digitação: “Usuário…”","validacao":["Preencha este dado para continuar."]},{"id":"mensagem-de-erro","rotulo":"Mensagem de erro","tipo":"text","pergunta":"Aparece alguma mensagem de erro? Me diga o que ela diz.","controle":"Digitação: “Mensagem de erro…”","rapidas":["Não aparece mensagem"],"validacao":["Preencha este dado para continuar."]}],"descricao":{"pergunta":"Agora, me conta um pouco mais: o que aconteceu ou o que você precisa? Se puder, diga desde quando e como isso afeta seu trabalho.","opcional":false,"compra":null,"automatica":"QUICKBOOKS > Erro no sistema. {dado}: {resposta}; …"}},{"id":"TI-QB-002","area":"TI","grupo":"QuickBooks","nome":"Instalação","setores":["Financeiro"],"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"necessidade":"QUICKBOOKS > Instalação","abertura":"Entendi. Vou te fazer algumas perguntas para a equipe conseguir avaliar isso com você.","intencao":null,"campos":[{"id":"usuario","rotulo":"Usuário","tipo":"text","pergunta":"Qual usuário está com essa dificuldade? Informe o login, sem enviar a senha.","controle":"Digitação: “Usuário…”","validacao":["Preencha este dado para continuar."]},{"id":"computador","rotulo":"Quem utiliza","tipo":"computador","pergunta":"Quem usa o computador que precisa de atendimento?","opcoes":[{"botao":"Eu uso este computador","depois":"registra o nome da própria pessoa"},{"botao":"Outra pessoa","depois":"campo “Nome e sobrenome de quem usa…” · se faltar o sobrenome: “Informe o nome e sobrenome de quem usa.”"},{"botao":"Uso compartilhado","depois":"campo “Onde fica o equipamento compartilhado? Ex.: recepção…”"}]}],"descricao":{"pergunta":"Conte o que você precisa e para quando, com os detalhes que ajudam a equipe a atender.","opcional":false,"compra":null,"automatica":"QUICKBOOKS > Instalação. {dado}: {resposta}; …"}},{"id":"TI-CAM-001","area":"TI","grupo":"Câmeras","nome":"Acesso às Câmeras","setores":["Coordenação EI (Infantil)"],"tipo":"solicitação","dicas":false,"defeitoOuNovo":false,"descricaoOpcional":false,"manutencao":false,"necessidade":"CÂMERAS > Acesso às Câmeras","abertura":"Entendi. Vou te fazer algumas perguntas para a equipe conseguir avaliar isso com você.","intencao":null,"campos":[{"id":"aluno","rotulo":"Nome do aluno","tipo":"text","pergunta":"Qual é o nome do aluno?","controle":"Digitação: “Nome do aluno…”","validacao":["Preencha este dado para continuar."]},{"id":"turma","rotulo":"Turma do aluno","tipo":"text","pergunta":"Qual é a turma?","controle":"Digitação: “Turma do aluno…”","validacao":["Preencha este dado para continuar."]},{"id":"responsavel","rotulo":"Nome do responsável","tipo":"text","pergunta":"Qual é o nome do responsável?","controle":"Digitação: “Nome do responsável…”","validacao":["Preencha este dado para continuar."]},{"id":"email-responsavel","rotulo":"E-mail do responsável","tipo":"email","pergunta":"Qual é o e-mail do responsável?","controle":"Digitação: “E-mail do responsável…”","validacao":["Informe um e-mail válido."]},{"id":"contato-responsavel","rotulo":"Contato do responsável","tipo":"tel","pergunta":"Qual telefone a equipe pode usar para falar com o responsável?","controle":"Digitação: “Contato do responsável…”","validacao":["Informe o telefone com DDD, por exemplo (11) 91234-5678."]}],"descricao":{"pergunta":"Conte o que você precisa e para quando, com os detalhes que ajudam a equipe a atender.","opcional":false,"compra":null,"automatica":"CÂMERAS > Acesso às Câmeras. {dado}: {resposta}; …"}}]
+</script>
+    <script src="arvore-estrutura.js"></script>
+    <script>
+      "use strict";
+      // ------------------------------------------------------------ desenho
+      const GAP = 40,
+        JOIN = 70,
+        VGAP = 10;
+      const canvas = document.getElementById("canvas");
+      const svg = document.getElementById("edges");
+      const NS = "http://www.w3.org/2000/svg";
+      const el = (tag, cls, text) => {
+        const x = document.createElement(tag);
+        if (cls) x.className = cls;
+        if (text !== undefined) x.textContent = text;
+        return x;
+      };
+      function makeNodes(b) {
+        if (b.t === "seq") return b.items.forEach(makeNodes);
+        if (b.t === "par") {
+          makeNodes(b.dec);
+          b.branches.forEach((br) => makeNodes(br.block));
+          return;
+        }
+        const box = el("div", "n " + b.kind);
+        if (b.id) box.id = b.id;
+        box.append(el("b", "", b.title));
+        if (b.need) {
+          const n = b.need;
+          const code = el("code", "", n.id);
+          box.querySelector("b").append(" ", code);
+          const s = el("small", "");
+          if (n.dicas) s.append(el("span", "tips", "✦ dicas da IA · "));
+          s.append(b.flags);
+          box.append(s);
+        } else if (b.sub) box.append(el("small", "", b.sub));
+        if (b.tip) box.title = b.tip;
+        canvas.append(box);
+        b.el = box;
+      }
+      const measureLabel = (text) => {
+        const t = el("div", "lbl", text);
+        t.style.visibility = "hidden";
+        canvas.append(t);
+        const w = t.offsetWidth;
+        t.remove();
+        return w;
+      };
+      function measure(b) {
+        if (b.t === "node") {
+          b.w = b.el.offsetWidth;
+          b.h = b.el.offsetHeight;
+        } else if (b.t === "seq") {
+          b.items.forEach(measure);
+          b.w = b.items.reduce((s, it, i) => s + it.w + (i ? (b.items[i - 1].t === "par" ? JOIN : GAP) : 0), 0);
+          b.h = Math.max(...b.items.map((it) => it.h));
+        } else {
+          measure(b.dec);
+          b.branches.forEach((br) => measure(br.block));
+          const vg = b.vgap ?? VGAP;
+          b.H = b.branches.reduce((s, br, i) => s + br.block.h + (i ? vg : 0), 0);
+          const lw = Math.max(0, ...b.branches.map((br) => (br.label ? measureLabel(br.label) : 0)));
+          b.bgap = Math.max(36, lw + 40);
+          b.w = b.dec.w + b.bgap + Math.max(...b.branches.map((br) => br.block.w));
+          b.h = Math.max(b.dec.h, b.H);
+        }
+      }
+      const paths = [];
+      const labels = [];
+      const line = (d, cls = "") => paths.push({ d, cls });
+      function join(exits, entry) {
+        const bus = entry.x - 24;
+        for (const e of exits) line(Math.abs(e.y - entry.y) < 1 ? `M${e.x} ${e.y}H${entry.x}` : `M${e.x} ${e.y}H${bus}V${entry.y}H${entry.x}`);
+      }
+      function place(b, x, yc) {
+        if (b.t === "node") {
+          b.x = x;
+          b.y = yc - b.h / 2;
+          b.el.style.left = x + "px";
+          b.el.style.top = b.y + "px";
+          const stop = b.kind === "ref" || b.stop;
+          return { entry: { x, y: yc }, exits: stop ? [] : [{ x: x + b.w, y: yc }] };
+        }
+        if (b.t === "seq") {
+          let cx = x,
+            prev = null,
+            entry = null;
+          b.items.forEach((it, i) => {
+            const r = place(it, cx, yc);
+            if (prev) join(prev, r.entry);
+            else entry = r.entry;
+            prev = r.exits;
+            cx += it.w + (it.t === "par" ? JOIN : GAP);
+          });
+          return { entry, exits: prev };
+        }
+        const d = place(b.dec, x, yc);
+        const vg = b.vgap ?? VGAP;
+        let top = yc - b.H / 2;
+        const bx = x + b.dec.w + b.bgap,
+          trunk = x + b.dec.w + 16;
+        const exits = [];
+        for (const br of b.branches) {
+          const r = place(br.block, bx, top + br.block.h / 2);
+          line(Math.abs(r.entry.y - yc) < 1 ? `M${x + b.dec.w} ${yc}H${r.entry.x}` : `M${x + b.dec.w} ${yc}H${trunk}V${r.entry.y}H${r.entry.x}`);
+          if (br.label) labels.push({ x: (trunk + r.entry.x) / 2, y: r.entry.y, text: br.label });
+          exits.push(...r.exits);
+          top += br.block.h + vg;
+        }
+        return { entry: d.entry, exits };
+      }
+
+      const faixas = window.ARVORE;
+      faixas.forEach((f) => makeNodes(f.block));
+      faixas.forEach((f) => measure(f.block));
+      const MARGIN = 70,
+        TITLE = 70,
+        BAND_GAP = 150;
+      let y = MARGIN;
+      let width = 0;
+      for (const f of faixas) {
+        const top = y + TITLE;
+        f.result = place(f.block, MARGIN + 30, top + f.block.h / 2);
+        f.top = y;
+        f.bottom = top + f.block.h;
+        f.right = MARGIN + 30 + f.block.w;
+        width = Math.max(width, f.right + 220);
+        const t = el("div", "band-title", f.title);
+        if (f.sub) t.append(el("small", "", f.sub));
+        t.style.left = MARGIN + 30 + "px";
+        t.style.top = y + 6 + "px";
+        canvas.append(t);
+        y = f.bottom + BAND_GAP;
+      }
+      const height = y - BAND_GAP + MARGIN;
+      // Ligação entre as faixas: as saídas da faixa sobem/descem para um corredor e entram na próxima.
+      faixas.forEach((f, i) => {
+        const bg = el("div", "band-bg");
+        bg.style.left = MARGIN + "px";
+        bg.style.top = f.top - 14 + "px";
+        bg.style.width = width - MARGIN * 2 + "px";
+        bg.style.height = f.bottom - f.top + 40 + "px";
+        canvas.prepend(bg);
+        const next = faixas[i + 1];
+        if (!next) return;
+        const exits = f.result.exits,
+          entry = next.result.entry;
+        const bus = Math.max(...exits.map((e) => e.x)) + 40;
+        const corridor = f.bottom + BAND_GAP / 2 + 6;
+        const lane = MARGIN + 12;
+        for (const e of exits) line(`M${e.x} ${e.y}H${bus}`);
+        const ys = exits.map((e) => e.y);
+        line(`M${bus} ${Math.min(...ys)}V${corridor}H${lane}V${entry.y}H${entry.x}`, "band-link");
+        labels.push({ x: (bus + lane) / 2, y: corridor, text: i === 0 ? "todos os caminhos continuam na faixa 2 ↓" : "continua na faixa 3 ↓", big: true });
+      });
+      for (const p of paths) {
+        const path = document.createElementNS(NS, "path");
+        path.setAttribute("d", p.d);
+        path.setAttribute("class", "e " + p.cls);
+        path.setAttribute("marker-end", "url(#arrow)");
+        svg.append(path);
+      }
+      const defs = document.createElementNS(NS, "defs");
+      defs.innerHTML = '<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#9ea3b7"/></marker>';
+      svg.prepend(defs);
+      for (const l of labels) {
+        const t = el("div", "lbl" + (l.big ? " big" : ""), l.text);
+        t.style.left = l.x + "px";
+        t.style.top = l.y + "px";
+        canvas.append(t);
+      }
+      canvas.style.width = width + "px";
+      canvas.style.height = height + "px";
+      svg.setAttribute("width", width);
+      svg.setAttribute("height", height);
+      window.TREE = { width, height, nodes: canvas.querySelectorAll(".n").length, bands: faixas.map((f) => [f.top, f.bottom, f.right]) };
+
+      // ------------------------------------------------------------ zoom e arrastar
+      const viewport = document.getElementById("viewport"),
+        sizer = document.getElementById("sizer");
+      let zoom = 1;
+      function setZoom(z, keep) {
+        const cx = viewport.scrollLeft + viewport.clientWidth / 2,
+          cy = viewport.scrollTop + viewport.clientHeight / 2;
+        const ratio = z / zoom;
+        zoom = z;
+        canvas.style.transform = "scale(" + z + ")";
+        sizer.style.width = width * z + "px";
+        sizer.style.height = height * z + "px";
+        if (keep) {
+          viewport.scrollLeft = cx * ratio - viewport.clientWidth / 2;
+          viewport.scrollTop = cy * ratio - viewport.clientHeight / 2;
+        }
+        document.querySelectorAll("#zoom button").forEach((b) => b.classList.toggle("on", Number(b.dataset.z) === z));
+      }
+      const zoomBox = document.getElementById("zoom");
+      [["Ver tudo", "fit"], ["25%", 0.25], ["50%", 0.5], ["75%", 0.75], ["100%", 1]].forEach(([label, z]) => {
+        const b = el("button", "", label);
+        b.dataset.z = z;
+        b.addEventListener("click", () => setZoom(z === "fit" ? Math.min(viewport.clientWidth / width, viewport.clientHeight / height) : z, z !== "fit"));
+        zoomBox.append(b);
+      });
+      viewport.addEventListener(
+        "wheel",
+        (e) => {
+          if (!e.ctrlKey) return;
+          e.preventDefault();
+          setZoom(Math.min(1.5, Math.max(0.1, zoom * (e.deltaY < 0 ? 1.1 : 0.9))), true);
+        },
+        { passive: false },
+      );
+      let drag = null;
+      viewport.addEventListener("pointerdown", (e) => {
+        drag = { x: e.clientX, y: e.clientY, l: viewport.scrollLeft, t: viewport.scrollTop };
+        viewport.classList.add("drag");
+      });
+      addEventListener("pointermove", (e) => {
+        if (!drag) return;
+        viewport.scrollLeft = drag.l - (e.clientX - drag.x);
+        viewport.scrollTop = drag.t - (e.clientY - drag.y);
+      });
+      addEventListener("pointerup", () => {
+        drag = null;
+        viewport.classList.remove("drag");
+      });
+      setZoom(0.5);
+      viewport.scrollTop = 0;
+    </script>
+  </body>
+</html>

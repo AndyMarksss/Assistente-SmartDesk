@@ -208,6 +208,11 @@ async function main() {
         erro: extracao.json.error,
         respostas,
         intent: extracao.json.intent || "",
+        // 0.12.18: o que a IA entendeu, relato completo, outro pedido e dicas do rascunho.
+        entendimento: extracao.json.understanding || "",
+        completo: extracao.json.complete ?? null,
+        outroPedido: extracao.json.otherRequest === true,
+        dicas: extracao.json.tips || [],
         campos: Object.fromEntries(
           Object.entries(caso.extrair).map(([campo, esperado]) => [
             campo,

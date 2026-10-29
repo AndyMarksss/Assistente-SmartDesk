@@ -48,3 +48,21 @@ O assunto não aparece na conversa ou no cartão de revisão; é enviado ao rece
 - Rede de segurança no servidor e no Apps Script (`repeatsAnswered` em `ticket-validation.cjs`, gerado para `PortalShared.gs`): a pergunta que volta a um campo já respondido é descartada — data (dia, data, quando), horário ou período (exceto até que horas, término ou duração), modelo, identificação, mensagem de erro, programa, relatório, arquivo/link, turma, disciplina, grupo, dispositivo, rede, usuário, perfil, página/seção, finalidade, sistema/processo, evento, tipo de conexão, cor e roteiro; também "qual é o seu setor" e, no Audiovisual, "qual equipamento". Verificação em `04-validacao/avaliacao-ia` (`verificar-requisicoes.cjs`).
 - `POST /api/subject`: uma só instrução (`SUBJECT_INSTRUCTION`) no servidor local e no Apps Script — antes o Pages usava um texto mais curto. O modelo recebe também o tipo do pedido (problema ou solicitação, o mesmo da revisão); o assunto sai em português com acentos, resume o que acontece ou o que é pedido (não só o nome da área, da necessidade ou do setor), não deixa de fora itens da necessidade e, em solicitação, não fala em manutenção, defeito ou conserto. Nenhum dado pessoal novo.
 - A frase "pergunte a sala ou o local" foi restrita a reservas, instalações e equipamentos: na primeira tentativa a IA passou a perguntar o local até em Agendas do Google.
+
+## Atualização 0.12.18
+
+- `POST /api/extract` é chamado em todos os caminhos do relato livre, mesmo sem campos a preencher, e devolve, além de `answers` e `intent`:
+  - `understanding`: uma frase que começa com "Você" e diz o que a pessoa precisa nesta necessidade, com os dados que ela deu. Aparece no rascunho como "Entendi: …". O servidor limpa marcação, recusa links e corta em 200 caracteres.
+  - `complete`: se o relato já responde à pergunta de descrição do caminho pelos botões (`conversationCopy.flowQuestion`, enviada ao modelo como `perguntaDoFluxo`; nos periféricos, a de item novo). Só conta o essencial: o que vem depois de "se puder" ou "por exemplo" é opcional, e na dúvida o relato conta como completo. Quando é `false` (ou a IA não respondeu), o chat faz a mesma pergunta dos botões como complemento, com "Já contei tudo" para pular. A pergunta é fixa, não escrita pela IA; a regra de no máximo uma pergunta da IA continua valendo.
+  - `otherRequest`: o relato traz outro pedido de TI que precisaria de outro chamado (equipamentos de Audiovisual pedidos juntos não contam). O chat avisa no rascunho e, depois do envio, oferece "Abrir o outro pedido que você contou" com o mesmo relato.
+  - `tips`: até 3 passos seguros (a mesma regra `TIPS_RULE` da revisão), só nos caminhos de `selfHelpEligible` e, nos periféricos, só quando a intenção é defeito. Aparecem logo depois de confirmar o rascunho, antes dos dados; se resolver, nada é preenchido, e a revisão não repete as dicas.
+- Dados novos enviados ao modelo: só textos da matriz e do chat (`perguntaDoFluxo`) e `dicasPermitidas`. Nome, e-mail, textos livres dos campos e anexos continuam fora.
+- `safeExtract` ganhou três redes de segurança (recebe o relato):
+  - "É para um evento?" só é preenchido quando o relato fala em evento. A verificação pegou "Não" para "aula de educação física".
+  - O horário só é preenchido quando o relato diz a hora. A verificação pegou 07:00 para "na primeira aula".
+  - Um horário de hoje que já passou é descartado.
+- `POST /api/assist`: o tipo do pedido de "Dúvidas" do Google (GOO-006) passou a ser "dúvida", como o TI-001.
+- Avaliação em `04-validacao/avaliacao-ia`, nos 57 relatos claros:
+  - extração de 80 de 80 campos na 1ª rodada e de 79 de 80 na final (0.11.4: 79 de 80);
+  - as invenções vistas (evento e horário) são descartadas pelas redes acima;
+  - resultados em `resultados-extracao-0-12-18.json` e `resultados-extracao-0-12-18-final.json`.

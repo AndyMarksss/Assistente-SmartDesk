@@ -422,6 +422,11 @@
       selfHelp: "",
       declined: [],
       keepAnswered: false,
+      // 0.12.18 — caminho da IA: o que o rascunho entendeu (entendimento, relato completo,
+      // outro pedido, dicas), perguntas de descrição já feitas e se a nota já foi pedida.
+      draftInfo: null,
+      complemented: [],
+      easeAsked: false,
     };
     byId("new-chat").hidden = true;
     byId("mobile-new-chat").hidden = true;
@@ -479,19 +484,39 @@
         }
         byId("welcome").hidden = true;
         metrics.begin();
-        if (answer === "known") {
-          Object.assign(state, { name: known.name, email: known.email, sector: known.sector });
-          metrics.update({ stage: "identificação" });
-          context();
-          message("Perfeito! Seus dados estão no resumo ao lado.");
-          return askArea();
-        }
-        if (answer === "other") {
-          F.profile.clear();
-          message("Tudo bem! Apaguei os dados salvos neste dispositivo.");
-        }
-        askName();
+        if (answer === "start") return askName();
+        useProfile(answer, known);
       },
+    );
+  }
+  // Dados salvos neste dispositivo: usar ou começar como outra pessoa (na abertura e ao abrir
+  // um chamado depois de acompanhar outro).
+  function useProfile(answer, known) {
+    if (answer === "known") {
+      Object.assign(state, { name: known.name, email: known.email, sector: known.sector });
+      metrics.update({ stage: "identificação" });
+      context();
+      message("Perfeito! Seus dados estão no resumo ao lado.");
+      return askArea();
+    }
+    F.profile.clear();
+    message("Tudo bem! Apaguei os dados salvos neste dispositivo.");
+    askName();
+  }
+  function askProfile(known) {
+    checkpoint(() => askProfile(known));
+    message("Seus dados estão salvos neste dispositivo. Quer usá-los neste chamado?");
+    choose(
+      [
+        {
+          label: "Continuar como " + known.name.split(/\s+/)[0],
+          value: "known",
+          primary: true,
+          icon: "fa-user-check",
+        },
+        { label: "Sou outra pessoa", value: "other", icon: "fa-user-pen" },
+      ],
+      (answer) => useProfile(answer, known),
     );
   }
   function askTrack() {
@@ -593,13 +618,8 @@
       metrics.update({ stage: "identificação" });
       return askArea();
     }
-    if (known) {
-      Object.assign(state, { name: known.name, email: known.email, sector: known.sector });
-      metrics.update({ stage: "identificação" });
-      context();
-      message("Vou usar os dados salvos neste dispositivo.");
-      return askArea();
-    }
+    // Quem acompanhou um chamado pode não ser a mesma pessoa dos dados salvos.
+    if (known) return askProfile(known);
     askName();
   }
   function askName() {
@@ -774,7 +794,10 @@
   }
   async function suggestPaths(text) {
     // Reaproveita a última análise ao voltar uma etapa: sem nova chamada à IA.
-    let result = state.suggestion?.text === text ? state.suggestion.result : null;
+    let result =
+      state.suggestion?.text === text && state.suggestion.sector === state.sector
+        ? state.suggestion.result
+        : null;
     if (!result) {
       setAiStatus("busy");
       lock("A IA ESTÁ LENDO SEU RELATO");
@@ -788,7 +811,7 @@
       }
       messages.dismiss(wait);
       if (token !== generation) return;
-      state.suggestion = { text, result };
+      state.suggestion = { text, sector: state.sector, result };
     }
     state.description = text;
     state.fromDescribe = true;
@@ -798,8 +821,17 @@
       .slice(0, 3);
     if (!items.length) {
       metrics.update({ aiDraft: "não identificou" });
+      // Sem caminho da TI para o relato: orienta para a equipe certa ou para o setor que tem esse
+      // atendimento, em vez de só voltar às opções.
+      const team = result.source === "ai" ? policy.otherTeam(text) : "",
+        restricted = team ? null : desk.classifier.classify(text, state.sector).blocked[0]?.item;
+      if (restricted) return askRestricted(restricted, text);
       message(
-        "Não consegui identificar o tipo de atendimento só pelo relato. Vamos escolher juntos pelas opções — seu texto fica guardado como descrição.",
+        team
+          ? "Pelo que você contou, isso parece ser assunto " +
+              team +
+              ", não da TI: vale procurar essa equipe. Se for algo de TI, escolha pelas opções — seu texto fica guardado como descrição."
+          : "Não consegui identificar o tipo de atendimento só pelo relato. Vamos escolher juntos pelas opções — seu texto fica guardado como descrição.",
       );
       return askArea();
     }
@@ -808,6 +840,41 @@
       return pickLocalGuess(items);
     }
     buildDraft(items[0], items.slice(1), true);
+  }
+  const sectorList = (list) => (list.length > 1 ? "os setores " : "o setor ") + list.join(", ");
+  // O relato fala de um atendimento exclusivo de outro setor (ex.: QuickBooks, do Financeiro).
+  function askRestricted(item, text) {
+    checkpoint(() => askRestricted(item, text));
+    message(
+      "Pelo seu relato, parece ser " +
+        F.needLabel(item) +
+        ", que é atendido só para " +
+        sectorList(item.sectors) +
+        ". Seu setor está como " +
+        state.sector +
+        ".",
+    );
+    choose(
+      [
+        { label: "Corrigir meu setor", value: "sector", icon: "fa-building", primary: true },
+        { label: "Escolher pelas opções", value: "manual", icon: "fa-list" },
+      ],
+      (value) => {
+        if (value === "manual") return askArea();
+        message("Em qual setor você trabalha?");
+        comboBox(
+          "Seu setor",
+          desk.flows.sectors.map((sector) => ({ value: sector, icon: F.sectorIcon(sector) })),
+          (sector) => {
+            state.sector = sector;
+            context();
+            suggestPaths(text);
+          },
+          { placeholder: "Digite ou escolha seu setor, ex.: secretaria" },
+        );
+      },
+      "O SETOR ESTÁ CERTO?",
+    );
   }
   // Sem IA, a base local só acha palavras parecidas (acertou 38% na avaliação): em vez de montar
   // um rascunho como se tivesse certeza, mostra as possibilidades para a pessoa escolher.
@@ -859,7 +926,24 @@
       intent: draft.intent || "",
       prefilled: Object.fromEntries(Object.keys(answers).map((key) => [key, true])),
     });
+    // O que a IA entendeu do relato. `question` é a pergunta de descrição que ela conferiu (nos
+    // periféricos, a de item novo, a única que não é opcional).
+    state.draftInfo = {
+      understanding: typeof draft.understanding === "string" ? draft.understanding : "",
+      complete: typeof draft.complete === "boolean" ? draft.complete : null,
+      question: copy.flowQuestion(item, policy.asksEquipmentIntent(item) ? "purchase" : ""),
+      otherRequest: draft.otherRequest === true,
+      tips: Array.isArray(draft.tips) ? draft.tips.filter((tip) => typeof tip === "string") : [],
+    };
     showDraft(alternatives, fromAI);
+  }
+  // Caminho da IA: a pergunta de descrição do caminho pelos botões, quando ainda não foi feita e
+  // a IA não confirmou que o relato já responde a ela.
+  function complementQuestion() {
+    const question = copy.flowQuestion(state.item, state.equipmentIntent),
+      info = state.draftInfo;
+    if (!question || state.complemented.includes(question)) return "";
+    return info && info.question === question && info.complete === true ? "" : question;
   }
   function draftCard() {
     const item = state.item,
@@ -895,6 +979,7 @@
       const value = state.answers[field.id];
       row(field.label, F.formatValue(field, value), !value);
     }
+    if (complementQuestion()) row("Mais detalhes", "", true);
     const story = el("div", "summary-description");
     story.append(
       el("small", "", "Seu relato (vai como descrição)"),
@@ -906,13 +991,23 @@
   function showDraft(alternatives = [], fromAI = true) {
     checkpoint(() => showDraft(alternatives, fromAI));
     stage("report");
-    const filled = Object.keys(state.answers).length;
+    const filled = Object.keys(state.answers).length,
+      info = state.draftInfo || {},
+      understood = (info.understanding || "").replace(/^Você(?=\s)/, "você");
     aiMessage(
-      filled
-        ? "Montei este rascunho com o que você contou. Confira; o que estiver marcado como “Vou perguntar” eu pergunto em seguida."
-        : "Pelo que você contou, este é o tipo de atendimento. Confira; os dados que faltam eu pergunto em seguida.",
+      (understood ? "Entendi: " + understood + " " : "") +
+        (filled
+          ? "Montei este rascunho com o que você contou. Confira; o que estiver marcado como “Vou perguntar” eu pergunto em seguida."
+          : (understood ? "Este" : "Pelo que você contou, este") +
+            " é o tipo de atendimento. Confira; os dados que faltam eu pergunto em seguida."),
       fromAI,
     ).append(draftCard());
+    // Dois pedidos no mesmo relato: um chamado para cada, o segundo logo depois do envio.
+    if (info.otherRequest && !state.secondRequest)
+      aiMessage(
+        "Você também contou outro pedido. Cada pedido vira um chamado: vamos fechar este primeiro e, depois do envio, eu te ajudo a abrir o outro com o mesmo relato.",
+        fromAI,
+      );
     choose(
       [
         { label: "Está certo, continuar", value: "ok", icon: "fa-check", primary: true },
@@ -948,12 +1043,13 @@
           state.prefilled = {};
           if (policy.asksEquipmentIntent(state.item)) state.equipmentIntent = "";
         }
-        message(
-          value === "fix"
-            ? "Vamos ajustar. Deixei os valores que entendi preenchidos; é só corrigir."
-            : "Ótimo! Só faltam alguns detalhes.",
-        );
-        askEquipmentIntent();
+        // Defeito simples: as dicas vêm antes dos dados — se resolver, ninguém preenche nada.
+        const tips = state.draftInfo?.tips || [],
+          tipsFirst = tips.length && policy.selfHelpEligible(state.item, state.equipmentIntent);
+        if (value === "fix")
+          message("Vamos ajustar. Deixei os valores que entendi preenchidos; é só corrigir.");
+        else if (!tipsFirst) message("Ótimo! Só faltam alguns detalhes.");
+        offerTips(tips, askEquipmentIntent, true);
       },
       "CONFIRA O RASCUNHO",
     );
@@ -1056,8 +1152,17 @@
         })),
         done,
       );
-    if (["date", "time"].includes(field.type))
-      return structured(field.label, field.type, null, done, { prefill: state.answers[field.id] });
+    if (["date", "time"].includes(field.type)) {
+      // Atendimento para hoje: o horário não pode ser um que já passou.
+      const day = state.item.fields.find((other) => other.type === "date");
+      return structured(field.label, field.type, null, done, {
+        prefill: state.answers[field.id],
+        notBefore:
+          field.type === "time" && day && state.answers[day.id] === policy.localDay()
+            ? policy.localTime()
+            : "",
+      });
+    }
     const validate = (value) =>
       field.id === "descricao-do-problema" && !policy.usefulDescription(value)
         ? "Me conte o que acontece com o cabo. Só o número da sala não explica o problema."
@@ -1065,7 +1170,9 @@
           ? "Informe um e-mail válido."
           : field.type === "url" && value !== F.PENDING_LINK && !/^https?:\/\/[^\s]+$/i.test(value)
             ? "Informe um link começando com https:// ou http://."
-            : null;
+            : field.type === "tel" && !policy.phoneValue(value)
+              ? "Informe o telefone com DDD, por exemplo (11) 91234-5678."
+              : null;
     freeText(
       field.id === "descricao-do-problema"
         ? "Conte o que acontece com o cabo HDMI…"
@@ -1157,9 +1264,12 @@
             "Seu setor",
             desk.flows.sectors.map((value) => ({ value, icon: F.sectorIcon(value) })),
             (sector) => {
-              state.sector = sector;
-              context();
-              updated(true);
+              if (desk.classifier.isAllowed(state.item, sector)) {
+                state.sector = sector;
+                context();
+                return updated(true);
+              }
+              sectorConflict(sector);
             },
             { placeholder: "Digite ou escolha seu setor, ex.: secretaria" },
           );
@@ -1200,6 +1310,45 @@
       "QUAL DADO VOCÊ QUER CORRIGIR?",
     );
   }
+  // O setor novo não tem este tipo de atendimento (ex.: QuickBooks é só do Financeiro): antes,
+  // o resumo aceitava e o envio era recusado com "Selecione uma necessidade permitida".
+  function sectorConflict(sector) {
+    const previous = state.sector;
+    checkpoint(() => sectorConflict(sector));
+    message(
+      F.needLabel(state.item) +
+        " é atendido só para " +
+        sectorList(state.item.sectors) +
+        ". Com o setor " +
+        sector +
+        ", este tipo de atendimento não fica disponível.",
+    );
+    choose(
+      [
+        {
+          label: "Mudar para " + sector + " e escolher outro tipo",
+          value: "change",
+          icon: "fa-route",
+          primary: true,
+        },
+        { label: "Manter o setor " + previous, value: "keep", icon: "fa-check" },
+      ],
+      (value) => {
+        if (value === "keep") {
+          message("Certo, mantive o setor " + previous + ".");
+          return showSummary();
+        }
+        state.sector = sector;
+        state.fromDescribe = !!state.description;
+        context();
+        message(
+          "Tudo bem. Escolha o tipo de atendimento; seu relato continua guardado como descrição.",
+        );
+        askArea();
+      },
+      "O SETOR COMBINA COM O PEDIDO?",
+    );
+  }
   // Corrige um campo; se a resposta muda quem depende dele (ex.: evento → roteiro), pergunta o
   // que passou a valer e descarta o que deixou de valer.
   function editField(field) {
@@ -1215,6 +1364,12 @@
         (other) => value === other.when.equals && !state.answers[other.id],
       );
       if (next) return editField(next);
+      // Data trocada para hoje com um horário que já passou: pergunta o horário de novo.
+      const hour = (state.item.fields || []).find((other) => other.type === "time");
+      if (field.type === "date" && hour && policy.pastTimeToday(value, state.answers[hour.id])) {
+        message("Esse horário já passou hoje. Escolha um novo horário.");
+        return editField(hour);
+      }
       if (state.autoDescribed) setDescription(copy.autoDescription(state.item, state.answers));
       message("Pronto, atualizei o resumo.");
       makeSubject();
@@ -1237,9 +1392,34 @@
       state.autoDescribed = false;
       state.description = "";
     }
-    // Quem contou com as próprias palavras não precisa escrever de novo.
-    if (state.fromDescribe && state.description) return reviewWithAI();
+    // Quem contou com as próprias palavras não escreve de novo: só responde ao que faltar.
+    if (state.fromDescribe && state.description) return askComplement();
     askDescription();
+  }
+  // Caminho da IA: o relato é a descrição, mas a pergunta de descrição do caminho pelos botões
+  // (ex.: local, atividade e pessoas numa reserva) ainda é feita quando o relato não responde a
+  // ela. A resposta entra como pergunta do assistente, junto do relato.
+  function askComplement() {
+    const question = complementQuestion();
+    if (!question) return reviewWithAI();
+    checkpoint(askComplement);
+    message("Para completar o chamado, mais um detalhe. " + question);
+    freeText(
+      "Sua resposta…",
+      (answer) => {
+        state.complemented = [...state.complemented, question];
+        if (answer !== "__none")
+          state.followUps.push({ question, answer: answer.trim().slice(0, 400) });
+        reviewWithAI();
+      },
+      400,
+      (value) =>
+        policy.usefulDescription(value)
+          ? null
+          : "Conte com algumas palavras ou toque em “Já contei tudo”.",
+      "",
+      [{ label: "Já contei tudo", value: "__none", icon: "fa-check" }],
+    );
   }
   function setDescription(text) {
     const hasField = state.item.fields.some((f) => f.id === "descricao-do-problema");
@@ -1248,13 +1428,18 @@
   }
   function askDescription() {
     checkpoint(askDescription);
-    message(copy.description(state.item, state.equipmentIntent));
+    message(copy.description(state.item, state.equipmentIntent, state.answers));
     const optional = copy.detailsOptional(state.item, state.equipmentIntent);
     freeText(
       optional ? "Algum detalhe a mais? (opcional)" : "Conte aqui o que você precisa…",
       (text) => {
         setDescription(text === "__none" ? copy.autoDescription(state.item, state.answers) : text);
         state.autoDescribed = text === "__none";
+        // Se o tipo mudar depois para um com a mesma pergunta, ela não é feita de novo.
+        state.complemented = [
+          ...state.complemented,
+          copy.flowQuestion(state.item, state.equipmentIntent),
+        ];
         state.review = null;
         reviewWithAI();
       },
@@ -1461,16 +1646,21 @@
       outcome,
     }).catch(() => {});
   }
-  function offerTips() {
-    const tips = state.review?.tips || [];
+  // Dicas seguras da IA. Na revisão, antes de enviar; no caminho da IA (`early`), logo depois de
+  // confirmar o rascunho, antes de perguntar os dados — se resolver, ninguém preenche nada.
+  function offerTips(tips = state.review?.tips || [], next = askAuthorization, early = false) {
     if (
       !tips.length ||
       !policy.selfHelpEligible(state.item, state.equipmentIntent) ||
       state.selfHelp === "continued"
     )
-      return askAuthorization();
-    checkpoint(offerTips);
-    const bubble = aiMessage("Antes de enviar o chamado, vale tentar estes passos rápidos:");
+      return next();
+    checkpoint(() => offerTips(tips, next, early));
+    const bubble = aiMessage(
+      early
+        ? "Antes de completar o chamado, vale tentar estes passos rápidos:"
+        : "Antes de enviar o chamado, vale tentar estes passos rápidos:",
+    );
     const list = el("ol", "tip-list");
     tips.forEach((tip) => list.append(el("li", "", tip)));
     bubble.append(
@@ -1484,7 +1674,7 @@
     choose(
       [
         {
-          label: "Não resolveu, seguir com o chamado",
+          label: early ? "Não resolveu, completar o chamado" : "Não resolveu, seguir com o chamado",
           value: "go",
           icon: "fa-paper-plane",
           primary: true,
@@ -1493,22 +1683,27 @@
       ],
       (value) => {
         metrics.update({ tips: value === "solved" ? "resolveu" : "seguiu para o chamado" });
-        if (value === "solved") return resolvedBySelf();
+        if (value === "solved") return resolvedBySelf(next);
         logSelfHelp("continued");
-        askAuthorization();
+        if (early) message("Certo, vamos completar o chamado.");
+        next();
       },
       "OS PASSOS RESOLVERAM?",
     );
   }
-  function resolvedBySelf() {
-    checkpoint(resolvedBySelf);
+  // "Resolveu!": nada é enviado. A nota de facilidade também vale aqui (antes só aparecia depois
+  // de um envio, e quem resolvia pelas dicas ficava fora da métrica de facilidade).
+  function resolvedBySelf(next = askAuthorization) {
+    checkpoint(() => resolvedBySelf(next));
     logSelfHelp("resolved");
     metrics.update({ stage: "resolvido sem chamado" });
-    message(
-      "Que ótimo! Registrei que os passos resolveram, sem abrir chamado. Se voltar a acontecer, é só continuar daqui ou abrir um novo atendimento.",
-    );
+    message("Que ótimo! Registrei que os passos resolveram, sem abrir chamado.");
     byId("new-chat").hidden = false;
     byId("mobile-new-chat").hidden = false;
+    askEase(() => afterResolved(next), true);
+  }
+  function afterResolved(next) {
+    message("Se voltar a acontecer, é só continuar daqui ou abrir um novo atendimento.");
     choose(
       [
         { label: "Novo atendimento", value: "new", icon: "fa-plus", primary: true },
@@ -1519,7 +1714,7 @@
         logSelfHelp("continued");
         metrics.update({ tips: "seguiu para o chamado", stage: "caminho" });
         message("Sem problema, vamos continuar o chamado de onde paramos.");
-        askAuthorization();
+        next();
       },
       "TUDO CERTO POR AQUI",
     );
@@ -1620,6 +1815,14 @@
     byId("input-error").textContent = result.error;
   });
   async function makeSubject() {
+    // O assunto só muda quando o pedido muda: revisar anexos ou trocar o nome não chama a IA.
+    const key = [
+      state.item.id,
+      state.equipmentIntent,
+      fullDescription(),
+      JSON.stringify(state.answers),
+    ].join("|");
+    if (state.subject && state.subjectKey === key) return showSummary();
     setAiStatus("busy");
     lock("ORGANIZANDO SEU CHAMADO");
     const token = generation;
@@ -1637,6 +1840,8 @@
       .trim()
       .slice(0, 80);
     state.source = result.source;
+    // Assunto local (IA fora do ar) não fica guardado: a próxima vez tenta a IA de novo.
+    state.subjectKey = result.source === "ai" ? key : "";
     showSummary();
   }
   function summaryRows() {
@@ -1775,8 +1980,15 @@
   }
   // Teste com usuários (0.12): nota de facilidade e comentário opcional, guardados só nas
   // métricas anônimas do atendimento (nunca no chamado nem na IA).
-  function askEase() {
-    message("Antes de terminar, uma pergunta rápida: quão fácil foi abrir este chamado?");
+  // `solved`: a pessoa resolveu pelas dicas, sem chamado. A nota é pedida uma vez por conversa.
+  function askEase(next = afterSent, solved = false) {
+    if (state.easeAsked) return next();
+    state.easeAsked = true;
+    message(
+      solved
+        ? "Uma pergunta rápida: quão fácil foi resolver por aqui?"
+        : "Antes de terminar, uma pergunta rápida: quão fácil foi abrir este chamado?",
+    );
     choose(
       [
         ...[
@@ -1793,14 +2005,14 @@
         { label: "Prefiro não responder", value: "skip", icon: "fa-forward" },
       ],
       (value) => {
-        if (value === "skip") return afterSent();
+        if (value === "skip") return next();
         metrics.update({ ease: Number(value) });
-        askMissing(Number(value));
+        askMissing(Number(value), next);
       },
       "SUA OPINIÃO AJUDA A MELHORAR",
     );
   }
-  function askMissing(ease) {
+  function askMissing(ease, next = afterSent) {
     message(
       ease >= 4
         ? "Obrigado! Algo poderia ser ainda mais fácil?"
@@ -1811,7 +2023,7 @@
       (text) => {
         if (text !== "__none") metrics.update({ comment: text.trim().slice(0, 300) });
         message("Anotado. Obrigado por ajudar a melhorar o SmartDesk!");
-        afterSent();
+        next();
       },
       300,
       null,
@@ -1826,9 +2038,20 @@
       known.email === state.email &&
       known.name === state.name &&
       known.sector === state.sector;
+    const other = otherRequestItem();
     choose(
       [
-        { label: "Novo atendimento", value: "new", icon: "fa-plus", primary: true },
+        ...(other !== undefined
+          ? [
+              {
+                label: "Abrir o outro pedido que você contou",
+                value: "other",
+                icon: "fa-share",
+                primary: true,
+              },
+            ]
+          : []),
+        { label: "Novo atendimento", value: "new", icon: "fa-plus", primary: other === undefined },
         remembered
           ? {
               label: "Esquecer meus dados deste dispositivo",
@@ -1843,6 +2066,7 @@
       ],
       (value) => {
         if (value === "new") return start();
+        if (value === "other") return openOtherRequest(other);
         if (value === "remember")
           message(
             F.profile.save(state)
@@ -1857,6 +2081,65 @@
       },
       "ATENDIMENTO ENVIADO",
     );
+  }
+  // Segundo pedido do mesmo relato (a IA avisou no rascunho): o próximo caminho sugerido para o
+  // relato, ou null para escolher pelas opções; undefined quando não há outro pedido ou quando
+  // este já é o segundo chamado do relato.
+  function otherRequestItem() {
+    if (!state.draftInfo?.otherRequest || !state.receipt || state.secondRequest) return undefined;
+    return (
+      (state.suggestion?.result?.candidates || [])
+        .map((candidate) =>
+          desk.knowledgeBase.items.find((item) => item.id === candidate?.item?.id),
+        )
+        .find(
+          (item) =>
+            item && item.id !== state.item.id && desk.classifier.isAllowed(item, state.sector),
+        ) || null
+    );
+  }
+  // Novo chamado na mesma conversa, com os dados da pessoa e o mesmo relato.
+  function openOtherRequest(item) {
+    metrics.reset();
+    metrics.begin();
+    metrics.update({ stage: "identificação" });
+    metrics.chooseMethod("descrição");
+    Object.assign(state, {
+      requestId: crypto.randomUUID(),
+      area: "",
+      item: null,
+      answers: {},
+      prefilled: {},
+      description: state.suggestion?.text || state.description,
+      followUps: [],
+      attachments: [],
+      subject: "",
+      subjectKey: "",
+      source: "local",
+      review: null,
+      receipt: null,
+      equipmentIntent: "",
+      authorization: null,
+      fromDescribe: true,
+      autoDescribed: false,
+      selfHelp: "",
+      declined: [],
+      keepAnswered: false,
+      switchedDraft: false,
+      draftInfo: null,
+      complemented: [],
+      secondRequest: true,
+    });
+    byId("new-chat").hidden = true;
+    byId("mobile-new-chat").hidden = true;
+    context();
+    stage("report");
+    message("Vamos abrir o outro pedido. Uso o mesmo relato e os seus dados.");
+    if (!item) {
+      message("Escolha o tipo de atendimento pelas opções; seu relato continua guardado.");
+      return askArea();
+    }
+    buildDraft(item, [], true);
   }
   function summaryActions(failure = "") {
     choose(
