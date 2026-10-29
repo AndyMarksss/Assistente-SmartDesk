@@ -12,7 +12,7 @@ Os itens 1 a 3 foram feitos em 19/10/2026 (EVID-212 a EVID-216).
 4. **Recrute 5 pessoas** de setores diferentes, com pelo menos uma que use pouco tecnologia e pelo menos uma que faça o teste no celular. Anote só o código (P01…P05), nunca o nome.
 5. **Imprima** uma [ficha de observação](../registros/ficha-observacao.md) por participante e os cartões de situação (fim deste roteiro).
 6. **Ensaie uma vez** com o link `?p=P00`, parando no resumo (sem enviar), para ver o selo "Teste P00" e o caminho. Os indicadores só contam os códigos da aba *Validação — Participantes*, então o ensaio não entra na conta.
-7. **Aprove o critério da hipótese de problema** na [parte teórica](../../06-documentacao/parte-teorica-hipoteses-e-validacao.md) (seção 6): a regra de decisão começa por ele.
+7. **Critério da hipótese de problema:** pelo menos 3 de 5 relatam dificuldade no jeito atual (aprovado em 29/10/2026; [parte teórica](../../06-documentacao/parte-teorica-hipoteses-e-validacao.md), seção 6). A regra de decisão começa por ele.
 
 ## Antes de cada sessão
 

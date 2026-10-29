@@ -5,7 +5,7 @@
 **Aluno:** Anderson Barbosa Marques da Silva — RA 16732
 **Entrega:** Parte teórica (rascunho de 28/10/2026, escrito antes das sessões com usuários)
 
-> **Rascunho.** Os trechos marcados com **⚠ Confirmar** dependem de informação que não está registrada no projeto. A regra de decisão (seção 7) foi aprovada em 28/10/2026, antes da primeira sessão com usuários.
+> **Rascunho.** A regra de decisão (seção 7) foi aprovada em 28/10/2026 e o critério da hipótese de problema (seção 6), em 29/10/2026, ambos antes da primeira sessão com usuários.
 
 ## 1. Problema, público e oportunidade
 
@@ -89,7 +89,7 @@ Metas definidas na aba *Validação — Resumo* antes dos testes (EVID-216):
 | Facilidade no chat | média ≥ 4 (de 1 a 5) | Nota no fim do chat |
 | Usariam novamente | ≥ 80% | Conversa final |
 
-**⚠ Confirmar (proposta para a hipótese de problema):** pelo menos 3 de 5 participantes relatam alguma dificuldade no jeito atual (não saber o formulário certo, ter de completar informações ou esperar retorno).
+**Hipótese de problema (aprovado em 29/10/2026, antes das sessões):** confirma-se se pelo menos 3 de 5 participantes relatarem alguma dificuldade no jeito atual (não saber o formulário certo, ter de completar informações ou esperar retorno). A pergunta é feita na conversa final, sem sugerir respostas, e marcada na ficha de observação.
 
 ## 7. Regra de decisão (definida antes das sessões)
 
