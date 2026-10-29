@@ -12,7 +12,7 @@ Selo "Teste P__" conferido na tela: ☐
 
 ## Situação 1 — CT-____
 
-- **Chamado nº:** #______ ☐ Não chegou a enviar (parou em: ______________)
+- **Chamado nº:** #______ ☐ Resolveu pelas dicas (sem chamado) ☐ Não chegou a enviar (parou em: ______________)
 - **Como pediu:** ☐ Botões ☐ Contou com as próprias palavras ☐ Os dois
 - **Chegou ao tipo certo?** ☐ Sim ☐ Não → escolheu: ______________________
 - **Concluiu sem ajuda?** ☐ Sim ☐ Com ajuda ☐ Não
@@ -23,7 +23,7 @@ Selo "Teste P__" conferido na tela: ☐
 
 ## Situação 2 — CT-____
 
-- **Chamado nº:** #______ ☐ Não chegou a enviar (parou em: ______________)
+- **Chamado nº:** #______ ☐ Resolveu pelas dicas (sem chamado) ☐ Não chegou a enviar (parou em: ______________)
 - **Como pediu:** ☐ Botões ☐ Contou com as próprias palavras ☐ Os dois
 - **Chegou ao tipo certo?** ☐ Sim ☐ Não → escolheu: ______________________
 - **Concluiu sem ajuda?** ☐ Sim ☐ Com ajuda ☐ Não
@@ -34,7 +34,7 @@ Selo "Teste P__" conferido na tela: ☐
 
 ## Situação 3 — CT-____
 
-- **Chamado nº:** #______ ☐ Não chegou a enviar (parou em: ______________)
+- **Chamado nº:** #______ ☐ Resolveu pelas dicas (sem chamado) ☐ Não chegou a enviar (parou em: ______________)
 - **Como pediu:** ☐ Botões ☐ Contou com as próprias palavras ☐ Os dois
 - **Chegou ao tipo certo?** ☐ Sim ☐ Não → escolheu: ______________________
 - **Concluiu sem ajuda?** ☐ Sim ☐ Com ajuda ☐ Não
@@ -52,6 +52,7 @@ Selo "Teste P__" conferido na tela: ☐
 ## Conversa final
 
 - **Como pede ajuda à TI hoje e quanto tempo leva:** ___________________________
+- **Relatou dificuldade no jeito atual?** ☐ Sim ☐ Não — qual: ☐ não saber o formulário certo ☐ completar informações ☐ esperar retorno ☐ outra: ______________
 - **Comparado ao jeito de hoje:** ☐ Mais fácil ☐ Igual ☐ Mais difícil — por quê: ______________
 - **O que mais gostou:** _______________________________________________________
 - **O que mudaria:** ___________________________________________________________

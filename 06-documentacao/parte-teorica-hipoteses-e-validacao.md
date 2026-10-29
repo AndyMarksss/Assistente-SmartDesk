@@ -116,6 +116,7 @@ O protótipo evoluiu em ciclos curtos de construir, medir e aprender, todos regi
 - **0.11.3 e 0.11.4:** a avaliação técnica com relatos fictícios encontrou erros em relatos vagos e alertas falsos. Corrigi com um glossário dos sistemas da escola, e o resultado chegou a 99%.
 - **0.12.0:** métricas anônimas por sessão, código de participante no link e planilha de validação com as metas.
 - **0.12.17:** os meus próprios testes mostraram a IA perguntando de novo data e horário já respondidos. Uma nova verificação nos 57 caminhos levou essas repetições a zero.
+- **0.12.18:** desenhei a árvore de decisões completa do atendimento e a analisei caminho por caminho. Ela mostrou 15 incoerências, como uma correção de setor que travava o envio e textos de defeito em pedidos, todas corrigidas. No relato livre, a IA passou a dizer o que entendeu, a perguntar o que faltar com as mesmas perguntas dos botões, a dar as dicas antes dos dados e a orientar quando há dois pedidos ou o assunto não é da TI.
 
 Esses ciclos foram feitos com testes meus e avaliações técnicas. **Nenhum deles valida o produto:** a validação começa nas sessões com os funcionários.
 
