@@ -74,6 +74,8 @@ function createStorage({ env = process.env, fetchImpl = globalThis.fetch } = {})
         requestId: output.requestId,
         attachmentCount: Number(output.attachmentCount) || 0,
         status: "enviado",
+        // 0.13.0: o Apps Script mandou o ticket por e-mail (Avisos.gs).
+        emailSent: output.notice === "sent",
       };
     },
   };

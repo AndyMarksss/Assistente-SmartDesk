@@ -680,6 +680,7 @@ function smartdeskCall(session, route, body) {
           number: receipt.number,
           requestId: receipt.requestId,
           attachmentCount: receipt.attachmentCount,
+          emailSent: receipt.notice === "sent",
         },
       };
     }

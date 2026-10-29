@@ -139,13 +139,14 @@ function receberChamado_(e) {
       if (n) max = Math.max(max, Number(n[1]));
       if (String(row[11]) === ticket.requestId) found = index;
     });
-    var number, rowIndex;
+    var number, rowIndex, createdAt;
     if (found >= 0) {
       var previous = rows[found];
       if (String(previous[12]) !== digest)
         throw Error("Este envio já possui outro conteúdo. Confira a planilha.");
       number = String(previous[0]);
       rowIndex = found + 2;
+      createdAt = String(previous[1]);
       if (previous[10] !== "Recebendo")
         return resposta_({
           ok: true,
@@ -156,9 +157,10 @@ function receberChamado_(e) {
     } else {
       number = "#" + String(max + 1).padStart(3, "0");
       rowIndex = sheet.getLastRow() + 1;
+      createdAt = new Date().toISOString();
       var values = [
         number,
-        new Date().toISOString(),
+        createdAt,
         ticket.name,
         ticket.sector,
         ticket.area,
@@ -213,11 +215,26 @@ function receberChamado_(e) {
       .setWrapStrategy(SpreadsheetApp.WrapStrategy.CLIP);
     sheet.setRowHeight(rowIndex, 32);
     SpreadsheetApp.flush();
+    // 0.13.0: ticket por e-mail (Avisos.gs). Só depois de gravado; uma falha não desfaz o chamado.
+    var notice = avisarSolicitante_(
+      book,
+      {
+        number: number,
+        createdAt: createdAt,
+        sector: ticket.sector,
+        area: ticket.area,
+        need: ticket.need,
+        email: body.ticket.email || "",
+      },
+      "Novos chamados",
+      true,
+    );
     return resposta_({
       ok: true,
       number: number,
       requestId: ticket.requestId,
       attachmentCount: links.length,
+      notice: notice,
     });
   } catch (error) {
     // Sem token, chave, conteúdo do chamado ou anexos no registro.

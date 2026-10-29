@@ -1,30 +1,35 @@
-# Estrutura do SmartDesk — 0.12.18
+# Estrutura do SmartDesk — 0.13.0
+
+As seções Cliente, Servidor e Manutenção descrevem o estado atual. As seções com número de versão registram o que cada versão acrescentou; as mais antigas citam soluções já substituídas (a hospedagem no Render da 0.8.15 e o portal da 0.9.0).
 
 ## Cliente
 Os scripts são carregados com defer na ordem declarada em index.html. Não há ferramenta de compilação: os arquivos continuam funcionando no servidor local e a apresentação estática no GitHub Pages.
 
+- runtime: leva ao servidor local quem abre a página pelo Live Server ou como arquivo.
 - knowledge-base, classifier, flows e request-policy: catálogo, elegibilidade e regras compartilhadas; os dados avaliados foram comparados à versão anterior.
-- conversation-copy: textos por contexto.
-- client-api: transporte JSON, limites de espera e erros de resposta; compartilhado pelo chat e gestão.
+- chat-format e conversation-copy: formatação da conversa e textos por contexto, inclusive a pergunta de descrição de cada caminho (`flowQuestion`).
+- client-api: transporte JSON, limites de espera e erros de resposta; compartilhado pelo chat e gestão. No Pages, as operações vão ao Apps Script.
+- session-metrics: métricas anônimas de cada atendimento (aba Sessões).
 - chat-view: fila de mensagens, indicador de digitação e cancelamento por revisão da conversa.
 - form-controls: data/hora, máscaras, validação e alternância do mesmo campo.
 - attachments: validação atômica, limites, deduplicação e leitura de arquivos.
 - app: coordenação do atendimento, navegação, resumo e envio. Continua sendo o controlador central; não se afirma eliminar toda possibilidade de melhoria futura.
 - admin: filtros, quadro e detalhes; animações de entrada somente ao carregar/atualizar dados, sem reiniciar a cada tecla da busca.
 - mobile-viewport e theme: adaptação da área visível e preferência de tema.
+- atmosphere: fundo decorativo do chat e olhar do robô, sem cliques nem foco.
 
 assistant-engine e personality continuam como arquivos legados não carregados na página atual; não foram removidos para preservar compatibilidade e referências anteriores.
 
 ## Servidor
 server coordena rotas e arquivos estáticos. ticket-service coordena recebimento; request-body centraliza limite/leitura JSON; ticket-validation reúne regras de seleção, assunto e respostas. ai-provider, google-storage e management preservam responsabilidades separadas. Erros de validação no painel usam 400, chamado ausente 404 e conflito de etapa 409; falhas externas/local de persistência têm mensagem apropriada à origem.
 
-Dados pessoais, arquivos e autorização não são enviados à IA. Recibo precisa informar status enviado, o mesmo requestId e número não vazio antes de confirmar no chat. O servidor continua sendo necessário para operações reais; GitHub Pages oferece somente a interface estática.
+Dados pessoais, arquivos e autorização não são enviados à IA. Recibo precisa informar status enviado, o mesmo requestId e número não vazio antes de confirmar no chat. No GitHub Pages, as operações reais (IA, envio, anexos, acompanhamento, gestão e métricas) passam pelo Apps Script; o servidor local oferece a mesma API para desenvolvimento e testes.
 
 ## Estilo e movimento
 As camadas de CSS visual foram preservadas para não alterar o layout aprovado. motion.css, carregado por último, reúne todas as transições e os 12 keyframes próprios. Não há mais definições de animação distribuídas nas seis folhas visuais. Movimento usa principalmente opacity/transform, com durações curtas. Robô e traços de conexão completam dois ciclos. Digitação, espera de envio, atualização e salvamento só continuam durante a operação. prefers-reduced-motion desativa animações/transições e remove atrasos da fila de mensagens. Não há botão de pausa.
 
 ## Manutenção
-Node 22 ou superior. A partir desta pasta: npm start inicia o servidor; npm test executa sete suítes. npm ci instala somente a ferramenta de formatação necessária aos comandos npm run format e npm run format:check. Prettier tem versão fixada e ignora fornecedor, histórico e dados locais. Arquivos de configuração privada e dados do servidor nunca devem entrar no Git.
+Node 22 ou superior. A partir desta pasta: npm start inicia o servidor; npm test executa todas as suítes de server/tests (onze na 0.12.18). npm ci instala somente a ferramenta de formatação necessária aos comandos npm run format e npm run format:check. Prettier tem versão fixada e ignora fornecedor, histórico e dados locais. Arquivos de configuração privada e dados do servidor nunca devem entrar no Git.
 
 Os dados da versão anterior à refatoração ficam em server/tests/fixtures/v0.8.10-dados (catálogo, regras e fluxos usados pelo teste de equivalência); as cópias completas de versões em versoes/ são locais e não vão para o repositório. Mudanças de fluxo devem executar testes de integração/autorização/data/anexos e verificar navegador. Alterações de animação devem conferir foco, cliques, cancelamento e preferência de movimento reduzido. Viewport reduzido não comprova teclado físico de celular.
 
@@ -81,3 +86,8 @@ O caminho do relato livre ficou: `suggestPaths` (/api/analyze) → `buildDraft` 
 `offerTips` e `resolvedBySelf` recebem `next` (de onde continuar). `askEase(next, solved)` vale também depois de "Resolveu!" e é pedida uma vez por conversa (`state.easeAsked`). `afterSent` oferece `openOtherRequest` quando a IA viu outro pedido: um novo chamado na mesma conversa, com os mesmos dados e o mesmo relato, só uma vez (`state.secondRequest`). `makeSubject` guarda `state.subjectKey` e não chama a IA quando o pedido não mudou. Na correção do resumo, `sectorConflict` impede escolher um setor que não tem o pedido; `beginTicket` pergunta pelos dados salvos (`askProfile`/`useProfile`, os mesmos da abertura).
 
 Regras novas em `request-policy.js`: `requestKind` trata GOO-006 como dúvida; `needsAuthorization` nunca pede aval em toner (`ROUTINE_SUPPLY`) nem em defeito; `phoneValue` (telefone com DDD); `localTime` e `pastTimeToday` (horário de hoje que já passou: o relógio recusa, `safeExtract` descarta e `validateAnswers` recusa com 30 minutos de folga). `conversation-copy.js`: aberturas do Google com o produto certo ("no Google Drive", "no Gmail"), de dúvida, de sugestão e sem "algumas perguntas" quando não há campos; descrições sem "desde quando" em pedidos e sem "para quando" quando já há data ou período; reserva de notebook igual à do Chromebook; período letivo no encerramento de diário. O servidor local e o Apps Script carregam `conversation-copy.js` para enviar `perguntaDoFluxo` à IA.
+
+## Ticket por e-mail 0.13.0
+`integracoes/apps-script/Avisos.gs` envia os e-mails; o servidor local não envia nada, porque repassa o chamado ao Apps Script. `receberChamado_` (Code.gs) chama `avisarSolicitante_` depois de gravar o chamado como "Recebido", e o `updateStatus` (Gestao.gs), quando a etapa muda de fato. A função nunca lança: devolve "sent", "skipped" ou "failed" e grava na aba Avisos (Data, Chamado, Aviso, Resultado), sem o endereço. O recibo do envio leva `notice`; o portal e `google-storage.cjs` o traduzem em `emailSent`, e o comprovante do chat (`receiptCard`) só diz "Enviamos o comprovante" quando ele é verdadeiro.
+
+Regras: o e-mail só tem número, data, setor, área › necessidade (rótulos de `chat-format.js`) e etapa; domínios de teste (`AVISOS_FICTICIOS`) não recebem; toda mudança de etapa avisa, inclusive as voltas, menos a repetição da última etapa avisada (a abertura conta como "Novos chamados"), com no máximo `AVISOS_LIMITE_24H` (10) avisos do chamado em 24 horas, conferidos na aba Avisos; sem cota ou com falha, o chamado e a etapa continuam gravados. O envio exige a permissão `script.send_mail` (listada no `appsscript.json` daqui; o projeto publicado a detecta sozinho), que o dono autoriza rodando `autorizarAvisosPorEmail` no editor antes de implantar.

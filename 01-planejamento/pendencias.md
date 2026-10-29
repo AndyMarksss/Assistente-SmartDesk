@@ -1,4 +1,52 @@
-# Pendências da próxima etapa
+# Pendências
+
+## O que falta para a entrega (29/10/2026)
+
+O enunciado pede três entregáveis: parte teórica, parte prática e vídeo pitch. A parte teórica, o Lean Canvas e o protótipo estão prontos. O resto segue uma ordem, porque cada etapa depende da anterior:
+
+**sessões → parte prática → roteiro do vídeo → gravação → PDF e envio**
+
+### 1. Antes das sessões
+
+- [ ] Enviar ao GitHub os commits locais (`git push origin main`).
+- [ ] Publicar o Apps Script da 0.13.0: rodar `autorizarAvisosPorEmail` no editor e aceitar o envio de e-mail **antes** do `clasp deploy`.
+- [ ] Conferir o ticket por e-mail: um chamado de teste no Pages com `?p=P99` e o seu e-mail real, uma mudança de etapa no painel e os dois e-mails na caixa de entrada (o chamado P99 sai com `removerChamadosDosParticipantes`).
+- [ ] Ensaiar no celular com `?p=P00` até o resumo, sem enviar.
+- [ ] Recrutar 5 funcionários de setores diferentes: pelo menos 1 que usa pouca tecnologia e 1 que faça o teste no celular.
+- [ ] Imprimir uma ficha de observação por pessoa e os cartões de situação.
+
+### 2. Sessões
+
+- [ ] Fazer as 5 sessões pelo [roteiro](../04-validacao/roteiros/roteiro-sessao-usuarios.md): aquecer a IA antes de cada uma e não mexer no chat nesses dias.
+
+### 3. Parte prática
+
+- [ ] Preencher *Validação — Tarefas* e *Validação — Participantes* a partir das fichas.
+- [ ] Contar a hipótese de problema e aplicar a [regra de decisão](../06-documentacao/parte-teorica-hipoteses-e-validacao.md#7-regra-de-decisão-definida-antes-das-sessões). Com exatamente 2 de 5, fazer a conversa final com mais 3 pessoas antes de seguir.
+- [ ] Escrever a síntese no [diário de validação](../04-validacao/registros/diario-validacao.md): padrões em 2 ou mais pessoas, observado separado de interpretado e comparação entre hipóteses e resultados.
+- [ ] Guardar as evidências das sessões em `05-evidencias` (prints da planilha e fichas, só com os códigos P01…).
+- [ ] Exportar a planilha para `04-validacao/resultados` e só depois rodar `removerChamadosDosParticipantes`.
+- [ ] Marcar no Lean Canvas o que se confirmou.
+- [ ] Fechar a versão 1.0.0 do protótipo, com os ajustes que a decisão pedir, para o vídeo mostrar a versão entregue.
+- [ ] Escrever o README de entrega do case em `06-documentacao` ([roteiro](../06-documentacao/roteiro-readme.md)). O link do vídeo entra depois da gravação.
+
+### 4. Roteiro do vídeo
+
+- [ ] Escrever o roteiro de até 4 minutos a partir dos resultados da parte prática, com os seis pontos do enunciado, e guardar em `07-pitch/roteiro`.
+
+### 5. Gravação
+
+- [ ] Gravar e publicar com link (YouTube não listado, Loom ou Google Drive) e abrir o link numa janela anônima.
+- [ ] Pôr o link do vídeo no README de entrega e no README da raiz.
+
+### 6. PDF e envio
+
+- [ ] Gerar o PDF da entrega, com a parte teórica, a parte prática e os links do sistema e do vídeo, como na entrega anterior do curso.
+- [ ] Enviar.
+
+## Histórico
+
+As seções abaixo são as pendências anotadas em cada etapa, mantidas como estavam. Muitas já foram resolvidas (o [diário do projeto](diario-do-projeto.md) registra quando); o que ainda vale está na lista acima.
 
 ## Antes de implementar
 

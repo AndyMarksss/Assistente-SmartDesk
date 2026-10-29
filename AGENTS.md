@@ -1,5 +1,7 @@
 # Instruções do projeto SmartDesk
 
+> As instruções foram acumuladas em ordem cronológica desde 30/09/2026: quando duas se contradizem, vale a mais recente. Os números de evidência citados nelas (EVID-011, EVID-014…) são históricos; o próximo número está sempre em `05-evidencias/manifesto-evidencias.json`.
+
 - Preserve a estrutura existente e não apague materiais.
 - Crie e edite o MVP somente dentro de 03-prototipo. A localização do código deve seguir a organização definida para a etapa de desenvolvimento.
 - Sempre que o usuário enviar prints relevantes, confira visualmente seu conteúdo e organize-os em 05-evidencias.
@@ -190,3 +192,22 @@ Pedido do usuário (29/10): a IA deve interpretar o que a pessoa quer, perguntar
 - "É para um evento?" só é extraído quando o relato fala em evento (`safeExtract` recebe o relato).
 - Ao mudar uma instrução da IA, rodar `node avaliar-ia.cjs --rodada NOME --so-extracao sim` em `04-validacao/avaliacao-ia`, sem outros testes de IA ao mesmo tempo: chamadas em paralelo estouram o limite por minuto do Gemini gratuito e viram "IA indisponível".
 - Os desenhos do fluxo (`06-documentacao/fluxo`) acompanham o chat: `arvore-estrutura.js`, as partes escritas à mão do `fluxo-detalhado.html`, `node gerar-caminhos.cjs` e as imagens.
+
+## Ordem do fechamento — 2026-10-29
+Definida pelo usuário: sessões → parte prática → roteiro do vídeo → gravação → PDF e envio. Não propor o PDF antes da gravação nem o roteiro antes da parte prática.
+
+## Documentação viva — 2026-10-29
+O usuário encontrou README desatualizados. Ao fechar uma versão ou mudar o que um documento descreve, atualize no mesmo commit:
+- `05-evidencias/README.md` (faixa de evidências e data);
+- `06-documentacao/README.md` (situação de cada entregável e versão do fluxo);
+- `01-planejamento/diario-do-projeto.md` (entrada da versão e "Situação em…" no topo) e `01-planejamento/pendencias.md` (o que falta para a entrega);
+- `03-prototipo/arquitetura.md` e `server/contrato-ia.md` (resumo do estado atual no topo, além da seção da versão);
+- o README da pasta que mudou.
+Os relatórios em `03-prototipo/verificacoes/` e as seções antigas com número de versão são históricos: não reescrever.
+
+## 0.13.0 — ticket por e-mail
+- Só o Apps Script envia (`Avisos.gs`); o servidor local repassa o chamado e não manda e-mail.
+- O e-mail nunca leva texto livre (nome, assunto, descrição, respostas): só número, data, setor, área › necessidade e etapa. O site é público.
+- Domínios de teste (`AVISOS_FICTICIOS`) nunca recebem; os testes e as sessões usam @exemplo.com ou @example.com.
+- Toda mudança de etapa avisa, inclusive as voltas para "Em atendimento" depois de "Aguardando terceiros" ou "Agendado" (o usuário precisa delas: não voltar à regra de um aviso por etapa). Não repetir a última etapa avisada; no máximo 10 avisos do chamado em 24 horas. Falha ou falta de cota nunca impede o chamado nem a mudança de etapa. A aba Avisos não guarda o endereço.
+- Escopo novo no manifesto exige autorizar no editor (`autorizarAvisosPorEmail`) **antes** do `clasp deploy`, ou o app da Web para de responder. O `appsscript.json` do projeto publicado não lista escopos (o Apps Script os detecta) e guarda o acesso do app da Web: nunca copiar o daqui para lá.

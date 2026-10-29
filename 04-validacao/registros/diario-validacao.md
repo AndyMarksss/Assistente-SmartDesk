@@ -31,8 +31,11 @@ Durante as sessões, use a [ficha de observação](ficha-observacao.md) e o [rot
 Preencher somente após as sessões, a partir dos registros reais.
 
 - Sessões consideradas:
+- Hipótese de problema (quantos relataram dificuldade no jeito atual, de quantos):
+- Metas atingidas (das 5, com a fonte de cada número):
 - Padrões observados:
 - Divergências:
 - Evidências que sustentam a conclusão:
 - Limitações:
+- Linha da regra de decisão que valeu:
 - Decisão sobre a hipótese:

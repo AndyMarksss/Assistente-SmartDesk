@@ -1933,7 +1933,8 @@
     bubble.append(card);
     summaryActions();
   }
-  function receiptCard(number) {
+  // `emailSent`: o Apps Script mandou o ticket para o e-mail (0.13.0). Fictícios não recebem.
+  function receiptCard(number, emailSent = false) {
     const card = el("section", "receipt-card");
     card.setAttribute("aria-label", "Comprovante do chamado " + number);
     const top = el("div", "receipt-top"),
@@ -1971,9 +1972,12 @@
       el(
         "p",
         "receipt-note",
-        "A equipe usará " +
-          state.email +
-          " para o retorno. Para ver a situação depois, use “Acompanhar um chamado” com este número.",
+        (emailSent
+          ? "Enviamos o comprovante para " +
+            state.email +
+            ", e você recebe um aviso a cada mudança de etapa."
+          : "A equipe usará " + state.email + " para o retorno.") +
+          " Para ver a situação depois, use “Acompanhar um chamado” com este número.",
       ),
     );
     return card;
@@ -2214,7 +2218,7 @@
         "Chamado " + result.number + " enviado! Seus dados foram registrados com sucesso.",
       );
       confirmation.parentNode.parentNode.classList.add("sent");
-      confirmation.append(receiptCard(result.number));
+      confirmation.append(receiptCard(result.number, result.emailSent === true));
       metrics.sent(result.number);
       saving = false;
       askEase();

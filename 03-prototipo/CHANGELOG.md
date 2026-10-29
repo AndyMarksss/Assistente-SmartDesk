@@ -506,3 +506,16 @@ Pedidos do usuário (29/10): aplicar as correções da análise de coerência da
 - Testes novos em `server/tests/fluxo-ia.cjs`.
 - Desenhos do fluxo atualizados em `06-documentacao/fluxo`: árvore com 613 nós, passo a passo com 353 passos, e imagens.
 - Apps Script a republicar (Portal.gs e PortalShared.gs). Verificação em verificacoes/verificacao-v0.12.18.md; evidências EVID-293 a EVID-298.
+
+## 0.13.0 — 2026-10-29
+
+Pedido do usuário (29/10): "Quando abre um chamado, a pessoa tem que receber um ticket no e-mail que ela preencheu e também sempre que seu chamado mudar de etapa." Decisões dele: e-mail pela conta pessoal que roda o Apps Script, com o nome "SmartDesk — TI"; sem texto livre; e-mails fictícios sem envio; feito antes das sessões.
+
+- **Ticket na abertura:** depois de gravar o chamado, o Apps Script manda "Chamado #NNN recebido — SmartDesk" com número, data, setor, pedido (área › necessidade) e etapa, mais como acompanhar. Repetir o mesmo envio não manda outro e-mail.
+- **Aviso a cada etapa:** ao mudar a etapa no painel, "Chamado #NNN: {etapa} — SmartDesk", com o que a etapa quer dizer. Toda mudança avisa, inclusive a volta para "Em atendimento" depois de "Aguardando terceiros" ou de "Agendado" (pedido do usuário). Não repete a última etapa avisada e manda no máximo 10 avisos do mesmo chamado em 24 horas, contando a abertura, porque qualquer pessoa com o link do painel publicado move cartões.
+- **Sem texto livre:** nome, assunto, descrição e respostas não entram no e-mail. O site é público, e um e-mail com texto livre deixaria qualquer pessoa mandar mensagens desta conta para qualquer endereço.
+- **Domínios de teste não recebem:** exemplo.com, example.com, teste, .test, .invalid e afins. As sessões usam p01@exemplo.com e não mudam.
+- **Falha não perde o chamado:** sem cota do dia (cerca de 100 e-mails na conta gratuita) ou com erro, o chamado e a etapa continuam gravados. Cada tentativa fica na aba *Avisos* (Data, Chamado, Aviso, Resultado), sem o endereço.
+- **Comprovante no chat:** quando o e-mail saiu, "Enviamos o comprovante para {e-mail}, e você recebe um aviso a cada mudança de etapa"; senão, o texto de antes.
+- Testes do Apps Script simulado com e-mail (abertura, repetição, etapas, cota, falha, domínios) e do recibo no portal e no servidor local.
+- Apps Script a republicar com o arquivo novo `Avisos.gs` e o escopo `script.send_mail`: rodar `autorizarAvisosPorEmail` no editor antes do `clasp deploy`. Verificação em verificacoes/verificacao-v0.13.0.md.

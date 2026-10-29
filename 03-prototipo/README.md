@@ -10,7 +10,7 @@ Código do chat de atendimento, do painel de gestão, do servidor local e da int
 | Camada | Onde roda | O que faz |
 |---|---|---|
 | Interface (`index.html`, `admin.html`, `assets/`) | GitHub Pages ou servidor local | Chat, painel, temas claro e escuro, sem etapa de compilação |
-| API | Apps Script (`integracoes/apps-script`) no Pages; `server/` no local | IA, envio do chamado, anexos, acompanhamento, gestão e métricas |
+| API | Apps Script (`integracoes/apps-script`) no Pages; `server/` no local | IA, envio do chamado, anexos, acompanhamento, gestão e métricas; no Apps Script, também o ticket por e-mail |
 | Dados | Planilha *SmartDesk — Chamados* e pasta de anexos no Drive | Um chamado por linha (#001, #002…), abas *Sessões* e *Validação* |
 
 Regras, instruções da IA e validação são escritas uma vez, em `assets/js` e `server/`, e copiadas para o Apps Script por `scripts/build-apps-script.cjs` (gera `PortalShared.gs`). Assim, o Pages e o servidor local se comportam igual.
@@ -24,7 +24,7 @@ Regras, instruções da IA e validação são escritas uma vez, em `assets/js` e
 | `assets/css` | Camadas carregadas em ordem. No chat: `style`, `responsive`, `visual-depth`, `personality`, `identity`, `atmosphere` e `motion`; no painel, `admin` entra no lugar de `responsive` e `personality`. `motion.css` vem por último e concentra todas as animações |
 | `server/` | Servidor local (`server.cjs`), recebimento (`ticket-service.cjs`), validação (`ticket-validation.cjs`), IA (`ai-provider.cjs`), Google (`google-storage.cjs`), gestão (`management.cjs`) e o [contrato da IA](server/contrato-ia.md) |
 | `server/tests/` | Suítes de teste (`npm test`); `fixtures/v0.8.10-dados` guarda os dados da versão anterior à refatoração, usados no teste de equivalência |
-| `integracoes/apps-script/` | Código do Apps Script (`*.gs`) e guias de instalação e publicação |
+| `integracoes/apps-script/` | Código do Apps Script (`*.gs`); o [README](integracoes/apps-script/README.md) diz o que cada arquivo faz e como publicar |
 | `scripts/` | `build-pages.cjs` (monta o site do Pages sem arquivos privados), `build-apps-script.cjs` e `update-version.cjs` |
 | `verificacoes/` | Um relatório por versão e auditorias de contraste e layout |
 | [`sistema-de-cores.md`](sistema-de-cores.md), [`estrategia-retorno-cliente.md`](estrategia-retorno-cliente.md) | Papéis das cores e proposta de retorno ao solicitante |
@@ -51,7 +51,7 @@ npm start
 npm test
 ```
 
-Roda todas as suítes em `server/tests` (integração, Apps Script simulado, portal do Pages, gestão, autorização, datas, hospedagem, refatoração e experiência), com Google e IA simulados, sem criar chamados reais. Antes de cada commit:
+Roda todas as suítes em `server/tests` (integração, Apps Script simulado, portal do Pages, gestão, autorização, datas, hospedagem, refatoração, experiência e caminho da IA), com Google e IA simulados, sem criar chamados reais. Antes de cada commit:
 
 ```bash
 npm run format:check
@@ -64,7 +64,7 @@ npm run version:check
 ## Publicar
 
 - **Site (GitHub Pages):** todo push na `main` que muda `03-prototipo/` dispara o workflow `.github/workflows/pages.yml`, que roda `build-pages.cjs` e publica.
-- **Apps Script:** `npm run build:apps-script`, depois copiar os `.gs` para a pasta do `clasp`, rodar `clasp push` e `clasp deploy` na **mesma implantação**, para o endereço `/exec` não mudar. Conferir em `/exec?api=health`.
+- **Apps Script:** `npm run build:apps-script`, depois copiar os `.gs` para a pasta do `clasp`, rodar `clasp push` e `clasp deploy` na **mesma implantação**, para o endereço `/exec` não mudar. Conferir em `/exec?api=health`. Passo a passo em [`integracoes/apps-script`](integracoes/apps-script/README.md).
 - **Nova versão:** `npm run version:update -- X.Y.Z`, registrar no `CHANGELOG.md` e criar `verificacoes/verificacao-vX.Y.Z.md`.
 
 ## IA
@@ -82,7 +82,8 @@ As instruções ficam em `server/ai-provider.cjs`, e o que entra e sai do modelo
 
 - **Site público:** até 5 chamados por janela e 60 por dia; IA com 40 pedidos por sessão e 600 por dia; até 3 anexos com 5 MB no total, com o conteúdo conferido pela extensão.
 - **Servidor local:** até 5 anexos, 10 MB cada e 20 MB no total (PNG, JPG, WEBP, GIF, PDF, TXT, DOCX e XLSX).
-- **Fora do MVP:** login, avisos por e-mail ao solicitante, antivírus nos anexos e integração com o sistema oficial de chamados da escola.
+- **E-mail:** o ticket e os avisos de etapa saem da conta Google do Apps Script (cerca de 100 por dia na conta gratuita), um aviso a cada mudança de etapa (sem repetir a última avisada e até 10 por chamado em 24 horas), e nunca para domínios de teste (exemplo.com, example.com, teste…). O resultado de cada envio fica na aba *Avisos*, sem o endereço.
+- **Fora do MVP:** login, troca de mensagens entre a equipe e o solicitante, antivírus nos anexos e integração com o sistema oficial de chamados da escola.
 
 ## Cópias de versões
 

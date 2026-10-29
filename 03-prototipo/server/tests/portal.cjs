@@ -185,6 +185,7 @@ assert.equal(receipt.body.number, "#006");
 // O recibo do portal precisa seguir o contrato do chat: status, mesmo ID e número.
 assert.equal(receipt.body.status, "enviado");
 assert.equal(receipt.body.requestId, body.requestId);
+assert.equal(receipt.body.emailSent, false); // 0.13.0: domínio fictício não recebe o ticket
 assert.equal(call("/api/tickets", body).body.number, "#006");
 assert.equal(call("/api/tickets", { ...body, name: "Pessoa" }).status, 400);
 assert.equal(call("/api/tickets", { ...body, email: "invalid" }).status, 400);

@@ -9,6 +9,8 @@ Os dados das sessões ficam na planilha do SmartDesk (Google Planilhas), em quat
 | **Validação — Participantes** | Quem facilita | Perfil, uso de tecnologia, dispositivo, como pede ajuda hoje e as respostas da conversa final. |
 | **Validação — Resumo** | Fórmulas | Indicadores (concluíram sem ajuda, caminho certo, tempo médio, facilidade, clareza, usariam de novo, recomendação, sessões não concluídas) e o quadro *Critérios de decisão*, com as metas escritas antes dos testes. |
 
+A hipótese de problema não está na planilha: conte-a pelas fichas ("Relatou dificuldade no jeito atual?") e aplique a regra de decisão da [parte teórica](../../06-documentacao/parte-teorica-hipoteses-e-validacao.md#7-regra-de-decisão-definida-antes-das-sessões), seção 7.
+
 As abas de validação são criadas pela função `prepararPlanilhaDeValidacao` (arquivo *Validacao* do Apps Script); a aba Sessões aparece no primeiro atendimento.
 
 Ao terminar, baixe a planilha (Arquivo → Fazer download → Microsoft Excel) para esta pasta, com a data no nome, e registre as evidências. O roteiro completo está em [`../roteiros/roteiro-sessao-usuarios.md`](../roteiros/roteiro-sessao-usuarios.md).

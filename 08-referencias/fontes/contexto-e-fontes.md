@@ -2,26 +2,27 @@
 
 ## Conversa de planejamento
 
-- Título: Metodologias Ágeis - Andy.
+- Título: Metodologias Ágeis - Andy (ChatGPT).
 - Identificador: 6abd4d44-5920-83e8-af9d-a7349e8a3812.
-- Consulta nesta etapa: 2026-09-30.
-- Uso: recuperar o contexto e o fluxo proposto para o MVP.
-- Limite: as imagens e a planilha original não foram verificadas nesta organização.
+- Consulta: 30/09/2026, para recuperar o contexto e o fluxo proposto para o MVP.
+- O que veio dela: a divisão do trabalho em etapas, o primeiro fluxo do MVP (registrado em [`fluxo-mvp.md`](../../01-planejamento/fluxos-e-telas/fluxo-mvp.md)) e a referência à planilha Matriz Mestre e às suas abas.
+- Limite: a conversa não fica no repositório, e as imagens citadas nela não foram conferidas.
 
-## Planilha mencionada
+## Matriz Mestre de Chamados
 
-- Nome: SmartDesk - Matriz Mestre de Chamados.
-- Link: a registrar.
-- Abas mencionadas: 01_Matriz_Mestre, 02_Regras_Condicionais, 03_Setores, 04_Cenarios_Teste e 05_Resultados_Validacao.
-- Status: mencionada no histórico; ainda não localizada ou exportada nesta pasta.
-- Conferir a planilha original antes de incorporar regras ao protótipo.
-- Guardar originais ou cópias datadas em 02-matriz-e-regras/planilhas e exportações em 02-matriz-e-regras/exportacoes.
+- Nome: SmartDesk — Matriz Mestre de Chamados (Google Planilhas).
+- Link e forma de leitura: em [`origem.md`](../../02-matriz-e-regras/exportacoes/matriz-mestre-2026-10-01/origem.md). Exportada em 01/10/2026, sem alterar o original.
+- Tabelas: Matriz Mestre, Regras Condicionais, Setores, Cenários Teste, Resultados Validação e Fluxo Telas.
+- Usado no protótipo: 57 caminhos, 10 regras, 25 setores e os cenários CT-01 a CT-11.
 
 ## Enunciado acadêmico
 
-- Arquivo ou link: a registrar.
-- Requisitos da entrega: a confirmar no documento original.
-- Destino para cópia: 08-referencias/enunciado.
+- Título: *Da Hipótese à Evidência: Validando um Produto Digital com IA e Métodos Ágeis* (UniFECAF, disciplina Metodologias Ágeis e Validação de Produtos). O arquivo da faculdade fica fora do repositório.
+- Três entregáveis:
+  - parte teórica: hipóteses e estratégia de validação;
+  - parte prática (3,5 pontos): canvas, experimento, no mínimo 5 potenciais usuários reais, evidências, síntese, comparação entre hipótese e resultado, decisão final e um README ou apresentação do case;
+  - vídeo pitch de até 4 minutos (2,0 pontos), publicado com link acessível.
+- Regra central: a IA apoia o discovery, mas não valida; as conclusões vêm de pessoas reais.
 
 ## Modelo para outras fontes
 

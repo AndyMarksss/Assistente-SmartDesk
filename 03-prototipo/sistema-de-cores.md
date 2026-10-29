@@ -1,4 +1,6 @@
-# Sistema de cores — SmartDesk 0.8.6
+# Sistema de cores
+
+Escrito na 0.8.6 e completado a cada versão, em ordem: quando duas seções divergem, vale a mais recente.
 
 Direção explicitamente escolhida: tecnológico e preciso, grafite, neutros frios e violeta.
 
@@ -64,3 +66,9 @@ Pedido direto por mais profundidade, vidro, efeitos e animação. Mantidos os pa
 
 ## 0.11.0 — Etapas do kanban
 Cada etapa tem um tom próprio, usado só na barra da coluna, no ponto do título e na borda esquerda do cartão; o texto continua neutro. Claro: novo #6a4fd8, em atendimento #2f6fd1, aguardando terceiros #b7791f, empréstimos #0f8f7f, agendado #7a52c7, finalizado #2f8f4e, cancelado #6b7383. Escuro: #b9a6ff, #7fb4ff, #f2c46b, #5fd3c2, #d2a8ff, #7ed39a, #a3acbb. O texto de busca usa `--muted` (antes ficava quase invisível). Tags dos cartões usam fundo translúcido com texto `--ink`.
+
+## 0.12 — Papéis no tema claro e cor só para a etapa no painel
+
+- **0.12.9:** o tema claro todo branco da 0.12.8 foi reprovado, porque barra, chat, fundo e boas-vindas se confundiam. Cada área ganhou um papel: página em cinza-azulado suave (#e7eaf4), boas-vindas e cabeçalho do painel em gradiente roxo→azul com texto branco, conversa em lilás claro e balões da pessoa em roxo. O cartão "Seu chamado" usa gradiente fixo, porque no escuro a cor de destaque é clara demais para texto branco.
+- **0.12.11:** painel pelo método do *Storytelling com Dados*: cinza como padrão e um destaque por bloco (o número que pede ação, a área líder).
+- **0.12.12 e 0.12.13:** no quadro, cor é só etapa. Cada etapa tem um tom ("Agendado" em rosa: #c2417f no claro, #f49ac8 no escuro), que aparece no cabeçalho da coluna e num ponto junto ao número; cartões, áreas e etiquetas ficam neutros. Profundidade em três camadas: o quadro num painel, as colunas rebaixadas e os cartões elevados.

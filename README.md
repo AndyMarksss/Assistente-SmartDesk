@@ -9,13 +9,13 @@ Projeto acadêmico da disciplina **Metodologias Ágeis e Validação de Produtos
 | **Chat** | <https://andymarksss.github.io/Assistente-SmartDesk/> |
 | **Painel de gestão (equipe de TI)** | <https://andymarksss.github.io/Assistente-SmartDesk/admin.html> |
 | **Versão do protótipo** | [`03-prototipo/VERSAO.md`](03-prototipo/VERSAO.md) |
-| **Situação** | Protótipo publicado; hipóteses e critérios definidos; sessões com 5 usuários reais em preparação |
+| **Situação** | Protótipo publicado; hipóteses e critérios definidos; sessões com 5 usuários reais em preparação ([o que falta](01-planejamento/pendencias.md)) |
 
 > Para testar, basta abrir o link do chat. Use dados fictícios: os chamados de teste chegam à planilha real da equipe de TI.
 
 ## O problema
 
-Na escola, os pedidos à TI chegam por quatro formulários separados: Audiovisual, Impressora, Google e TI. A pessoa precisa saber em qual pedir e quais dados informar, como data, horário e local de um evento, ou o modelo da impressora e a mensagem de erro. Quando escolhe o formulário errado ou esquece um dado, a TI precisa voltar a falar com ela antes de começar a atender.
+Na escola, os pedidos à TI chegam por quatro formulários separados (Audiovisual, Impressora, Google e TI) e também por WhatsApp, e-mail e pessoalmente. A pessoa precisa saber em qual pedir e quais dados informar, como data, horário e local de um evento, ou o modelo da impressora e a mensagem de erro. Quando escolhe o formulário errado ou esquece um dado, a TI precisa voltar a falar com ela antes de começar a atender.
 
 ## Como o SmartDesk funciona
 
@@ -32,12 +32,14 @@ flowchart LR
   E --> F[Revisão da IA<br/>uma pergunta e dicas seguras]
   F -->|Resolveu sozinho| G[Fim, sem chamado]
   F --> H[Resumo revisável] --> I[Chamado numerado<br/>na planilha da TI]
+  I --> M[Ticket por e-mail<br/>e aviso a cada etapa]
   I --> J[Acompanhar pelo<br/>número + e-mail]
 ```
 
 - **Matriz Mestre:** 25 setores, 4 áreas, 57 caminhos de atendimento e 10 regras condicionais, montados a partir dos formulários reais. Por exemplo, só o Financeiro vê o QuickBooks.
 - **IA (Gemini):** sugere o caminho a partir do relato livre, diz o que entendeu, preenche o rascunho e confere se o relato responde ao que o caminho pelos botões perguntaria (se não, o chat faz a mesma pergunta). Orienta quando o relato traz dois pedidos ou não é assunto da TI, faz no máximo uma pergunta sobre o que falta, sugere passos seguros em defeitos simples e escreve o assunto do chamado.
 - **Limites da IA:** não conversa livremente, não muda a escolha da pessoa e não recebe nome, e-mail nem anexos. Toda sugestão passa por confirmação humana. Sem IA, o atendimento continua pelos botões.
+- **Ticket por e-mail:** quem abre o chamado recebe o ticket no e-mail informado e um aviso a cada mudança de etapa. O e-mail leva só número, setor, pedido e etapa, nunca o texto do pedido.
 - **Painel de gestão:** quadro por etapa (arrastar e soltar), indicadores e filtros por área e categoria, para a equipe de TI acompanhar os chamados.
 
 Todos os caminhos possíveis, do início ao fim, estão na [árvore de decisões completa e no passo a passo do atendimento](06-documentacao/fluxo/README.md), com os pontos de IA destacados.
@@ -59,7 +61,8 @@ A interface é estática e roda no GitHub Pages. As chaves e o token ficam só n
 
 | | |
 |---|---|
-| **Hipótese** (escrita antes dos testes) | Funcionários da escola conseguem abrir um chamado completo pelo SmartDesk sozinhos, no caminho certo e em até 3 minutos. |
+| **Hipótese de problema** | Os funcionários têm dificuldade para saber onde e como pedir ajuda à TI. Confirma-se se pelo menos 3 de 5 participantes relatarem dificuldade no jeito atual. |
+| **Hipótese de solução** (escrita antes dos testes) | Funcionários da escola conseguem abrir um chamado completo pelo SmartDesk sozinhos, no caminho certo e em até 3 minutos. |
 | **Experimento** | Teste de usabilidade moderado com pelo menos 5 funcionários, 3 situações reais cada uma e uma conversa curta no fim. |
 | **Metas** | Sem ajuda ≥ 80% · caminho certo ≥ 80% · tempo médio ≤ 180 s · facilidade ≥ 4/5 · usariam de novo ≥ 80% |
 | **Regra de decisão** | Perseverar, ajustar, pivotar ou abandonar, definida e aprovada antes das sessões ([parte teórica, seção 7](06-documentacao/parte-teorica-hipoteses-e-validacao.md#7-regra-de-decisão-definida-antes-das-sessões)). |
@@ -97,6 +100,7 @@ Abra <http://127.0.0.1:4173/>. Sem configuração, o chat funciona pelos botões
 
 - Chaves, token e `.env` ficam fora do repositório.
 - No painel publicado, nome e e-mail de outras pessoas aparecem abreviados, e os anexos ficam sem link.
+- O ticket por e-mail não leva o texto do pedido, e e-mails de teste (exemplo.com, example.com…) não recebem nada.
 - As métricas das sessões são anônimas: código do participante (P01…), sem nome, e-mail nem o texto do relato.
 - Os testes usam só dados fictícios.
 
@@ -104,4 +108,4 @@ Abra <http://127.0.0.1:4173/>. Sem configuração, o chat funciona pelos botões
 
 **Anderson Barbosa Marques da Silva** — RA 16732 — Graduação em IA e Automação Digital, UniFECAF, 2026.
 
-Este README apresenta o projeto. O **README de entrega do case** (problema, hipóteses, experimento, evidências, resultados e decisão final) será publicado em [`06-documentacao`](06-documentacao/README.md) depois das sessões com usuários.
+Este README apresenta o projeto. O **README de entrega do case** (problema, hipóteses, experimento, evidências, resultados e decisão final) será publicado em [`06-documentacao`](06-documentacao/README.md) depois das sessões com usuários; o vídeo pitch e o PDF da entrega vêm depois dele.

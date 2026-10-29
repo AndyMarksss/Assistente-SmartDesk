@@ -1,4 +1,21 @@
-# Contrato da IA — chat guiado (0.5.0)
+# Contrato da IA
+
+O que entra e o que sai do modelo (Gemini) em cada rota. O documento começou na 0.5.0 e ganhou uma seção a cada mudança, em ordem: quando duas seções divergem, vale a mais recente. As instruções ficam em `ai-provider.cjs` e são copiadas para o Apps Script pelo build.
+
+## Resumo da versão atual (0.12.18)
+
+| Rota | Quando | A IA recebe | A IA devolve |
+|---|---|---|---|
+| `POST /api/analyze` | Relato livre ("Descrever com minhas palavras") | Setor, relato e os caminhos permitidos ao setor (ID, área e necessidade) | Até 3 IDs dessa lista; fora dela, vale a base local |
+| `POST /api/extract` | Depois de confirmar o caminho do relato | Data de hoje, setor, área, necessidade, campos que podem ser preenchidos, relato, `perguntaDoFluxo` e `dicasPermitidas` | Valores dos campos, intenção (defeito ou item novo), entendimento, relato completo, outro pedido e até 3 dicas |
+| `POST /api/assist` | Revisão antes do envio | Setor, área, necessidade, tipo, descrição, respostas de opções, `jaInformado` e `dicasPermitidas` | Coerência e motivo, no máximo uma pergunta, ajuda e até 3 dicas |
+| `POST /api/subject` | Antes do envio | Setor, área, necessidade, tipo, descrição e respostas de opções | Assunto de até 80 caracteres (fica só na planilha) |
+
+- **Nunca vão ao modelo:** nome, e-mail, textos livres dos campos e anexos. Dados pessoais que a própria pessoa escrever no relato vão junto com ele; os testes usam dados fictícios.
+- **Tudo o que volta é conferido no servidor** (`safeExtract`, `safeAssist` e `safeSubject`, em `ticket-validation.cjs`) e passa pela confirmação da pessoa. Sem IA, o chat segue pelos botões e pelas perguntas fixas.
+- `POST /api/next-prompt` e `POST /api/drafts` vêm da 0.5.0 e só existem no servidor local.
+
+## 0.5.0 — chat guiado
 
 - Fonte de opções: Matriz Mestre fornecida pelo usuário, leitura em 2026-10-01. 25 setores, quatro áreas, 57 caminhos e dez regras cadastradas. A tabela completa é preservada na exportação; o MVP aplica as ramificações, dados necessários e restrições de setor. Triagem automática e avaliação posterior continuam pendentes.
 - `POST /api/next-prompt`: recebe setor e ID permitido; o servidor fornece à IA somente área e necessidade oficiais. Retorna uma frase curta para pedir a descrição, ou uma frase predefinida se a IA falhar.

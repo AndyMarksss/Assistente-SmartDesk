@@ -1,6 +1,6 @@
 # 05 · Evidências
 
-Prints e registros de cada etapa do projeto, numerados em sequência (**EVID-001** a **EVID-292** até 28/10/2026). Eles mostram o que foi construído, testado e decidido, e quando.
+Prints e registros de cada etapa do projeto, numerados em sequência (**EVID-001** a **EVID-300** até 29/10/2026). Eles mostram o que foi construído, testado e decidido, e quando.
 
 | Arquivo | Para que serve |
 |---|---|

@@ -49,9 +49,8 @@ function doPost(e) {
       if (["selfHelp", "selfHelpStats"].indexOf(body.action) >= 0)
         return resposta_(autoatendimento_(props, body));
       if (body.action === "sessionMetrics") return resposta_(metricas_(props, body));
-      var sheet = SpreadsheetApp.openById(props.getProperty("SMARTDESK_SHEET_ID")).getSheetByName(
-        "Chamados",
-      );
+      var book = SpreadsheetApp.openById(props.getProperty("SMARTDESK_SHEET_ID")),
+        sheet = book.getSheetByName("Chamados");
       if (
         !sheet ||
         JSON.stringify(sheet.getRange(1, 1, 1, HEADERS.length).getValues()[0]) !==
@@ -111,7 +110,25 @@ function doPost(e) {
           throw Error("Conflito de etapa");
         texto_(sheet.getRange(index + 2, 11), [body.status]);
         SpreadsheetApp.flush();
-        return resposta_({ ok: true });
+        // 0.13.0: aviso ao solicitante (Avisos.gs), só quando a etapa muda de fato.
+        var row = rows[index],
+          notice =
+            body.status === current
+              ? "skipped"
+              : avisarSolicitante_(
+                  book,
+                  {
+                    number: String(row[0]),
+                    createdAt: String(row[1]),
+                    sector: String(row[3]),
+                    area: String(row[4]),
+                    need: String(row[5]),
+                    email: String(row[13] || ""),
+                  },
+                  body.status,
+                  false,
+                );
+        return resposta_({ ok: true, notice: notice });
       }
       return resposta_({
         ok: true,

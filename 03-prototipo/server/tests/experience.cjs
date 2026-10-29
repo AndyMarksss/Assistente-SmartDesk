@@ -110,14 +110,19 @@ release({
       postedCurrent = true;
       return {
         ok: true,
-        json: async () => ({ ok: true, number: "#001", requestId: "r", attachmentCount: 0 }),
+        json: async () => ({
+          ok: true,
+          number: "#001",
+          requestId: "r",
+          attachmentCount: 0,
+          notice: "sent",
+        }),
       };
     },
   });
-  assert.equal(
-    (await current.submit({ email: "test@example.com", requestId: "r" })).number,
-    "#001",
-  );
+  const sentReceipt = await current.submit({ email: "test@example.com", requestId: "r" });
+  assert.equal(sentReceipt.number, "#001");
+  assert.equal(sentReceipt.emailSent, true); // 0.13.0: o recibo diz se o ticket foi por e-mail
   assert(postedCurrent);
   console.log(
     "Política de nomes Unicode, aquisição/troca, estados da IA e proteção contra perda de autorização em implantação antiga passaram.",

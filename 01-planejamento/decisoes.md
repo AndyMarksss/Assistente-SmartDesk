@@ -136,3 +136,25 @@ Recebimento planejado: Apps Script cria planilha separada SmartDesk — Chamados
 - Organizado: relatórios de verificação e auditorias JSON em `03-prototipo/verificacoes/`; diário da raiz em `01-planejamento/diario-do-projeto.md`; LEIA-ME de `04-validacao` renomeados para README.md. Menções aos caminhos antigos foram corrigidas.
 - Criados: README.md da raiz (apresentação do projeto) e de cada pasta; README técnico do protótipo reescrito com o estado atual.
 - Nada foi apagado.
+
+## 2026-10-29 — Critérios completos e suposições explícitas
+
+- Origem: pedido do usuário para resolver os pontos abertos da parte teórica e revisar a documentação.
+- Critério da hipótese de problema aprovado pelo usuário: confirma-se com pelo menos 3 de 5 participantes relatando dificuldade no jeito atual.
+- Regra de decisão completada antes das sessões e aprovada pelo usuário: caso inconclusivo (exatamente 2 de 5: conversa final com mais 3 funcionários e decisão sobre 8, confirmando com 5 ou mais), ordem de leitura e os casos sem linha (4 metas sem uma das obrigatórias → Ajustar; no máximo 1 meta → Pivotar). Abandonar passou a ser contado pela pergunta da ficha (no máximo 1 de 5 relata dificuldade). Uma falha só de tempo ou de facilidade com 4 metas atingidas deixou de valer para Perseverar e Ajustar ao mesmo tempo: vale Perseverar, corrigindo a meta antes do piloto.
+- Trechos "⚠ Confirmar" da parte teórica e do Canvas: sem medição de outros canais de pedido, da frequência de pedidos incompletos e dos setores que mais pedem, viraram suposições explícitas, conferidas na conversa final. O uso do ChatGPT foi descrito só com o que os registros mostram (`fluxo-mvp.md` e `08-referencias/fontes/contexto-e-fontes.md`).
+- Efeito: nenhuma mudança no protótipo.
+
+## 2026-10-29 — Ordem do fechamento
+
+- Origem: decisão do usuário ("o PDF só vai ser gerado após a gravação do vídeo e para gravar o vídeo precisamos do roteiro e para fazer o roteiro, precisamos da parte prática antes").
+- Decisão: sessões → parte prática → roteiro do vídeo → gravação → PDF e envio. A versão 1.0.0 do protótipo fecha dentro da parte prática, para o vídeo mostrar a versão entregue. O README de entrega é escrito com a parte prática e recebe o link do vídeo depois da gravação.
+- Efeito: lista do que falta em `01-planejamento/pendencias.md`, na mesma ordem; `06-documentacao/README.md` e `07-pitch/README.md` alinhados.
+
+## 2026-10-29 — Ticket por e-mail (0.13.0) e fatos do problema
+
+- Origem: pedido do usuário: "Quando abre um chamado, a pessoa tem que receber um ticket no e-mail que ela preencheu e também sempre que seu chamado mudar de etapa."
+- Decisões do usuário: e-mail pela conta pessoal que roda o Apps Script, com o nome "SmartDesk — TI" (cerca de 100 por dia); ticket sem texto livre (só número, data, setor, pedido e etapa), para o site público não virar um meio de mandar qualquer texto a qualquer endereço; e-mails fictícios sem envio, e as sessões continuam com p01@exemplo.com; feito antes das sessões.
+- Padrões meus, sem pergunta: falha no e-mail nunca impede o chamado; registro na aba Avisos sem o endereço. Propus também um aviso por etapa e por chamado, porque o painel publicado deixa qualquer pessoa mover cartões; o usuário corrigiu: um chamado em "Aguardando terceiros" ou "Agendado" volta para "Em atendimento" quando há retorno ou chega o dia, e a pessoa precisa saber. Regra final: toda mudança de etapa avisa, inclusive a volta para "Em atendimento" depois de aguardar terceiros ou de um agendamento; não repete a última etapa avisada e manda no máximo 10 avisos do mesmo chamado em 24 horas, contando a abertura.
+- Efeito: o e-mail ao solicitante sai de "fora do MVP" na parte teórica e nos README.
+- Fatos informados pelo usuário para a parte teórica e o Canvas: os pedidos chegam pelos formulários e também por WhatsApp, e-mail e pessoalmente; quase todo dia a TI precisa voltar a falar com alguém por falta de dado; Coordenações e Orientações são os setores que mais pedem. Sobre a conversa com o ChatGPT, ele não lembra o que foi feito nela e o que foi feito à mão.

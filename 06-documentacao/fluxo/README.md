@@ -1,6 +1,6 @@
 # Fluxo do atendimento do SmartDesk
 
-Todos os caminhos possíveis dentro do SmartDesk, do início ao fim, com base no protótipo 0.12.18. **Em violeta, os pontos em que a IA intervém**; borda tracejada é regra fixa do sistema, sem IA.
+Todos os caminhos possíveis dentro do SmartDesk, do início ao fim, com base no protótipo 0.13.0 (as árvores são as da 0.12.18: a 0.13.0 só mudou o texto do comprovante, no passo L2 do passo a passo). **Em violeta, os pontos em que a IA intervém**; borda tracejada é regra fixa do sistema, sem IA.
 
 | Arquivo | O que é |
 |---|---|

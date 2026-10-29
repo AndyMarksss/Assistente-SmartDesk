@@ -51,6 +51,10 @@ Iniciar → nome → setor da lista → área → necessidade pelas opções da 
 
 Este percurso substitui, no MVP atual, a classificação inicial a partir de texto livre. Fluxos anteriores permanecem como histórico de planejamento. Triagem para resolução e avaliação posterior ainda não estão implementadas.
 
-## Fluxo atual 0.6.0
+## Fluxo da 0.6.0
 
 Início → nome → setor → área → opções/dados necessários (sem local) → descrição → anexos opcionais → revisão direta → Enviar → confirmação com número → Novo atendimento. Assunto gerado internamente. Voltar restaura uma etapa anterior, sem pergunta de confirmação. Recebimento depende de implantação Google.
+
+## Fluxo atual
+
+O fluxo da versão atual (0.12.18), com todos os caminhos e os textos exatos, está em [`06-documentacao/fluxo`](../../06-documentacao/fluxo/README.md). As seções acima são o histórico do planejamento.

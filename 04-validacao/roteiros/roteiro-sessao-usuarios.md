@@ -12,9 +12,11 @@ Os itens 1 a 3 foram feitos em 19/10/2026 (EVID-212 a EVID-216).
 4. **Recrute 5 pessoas** de setores diferentes, com pelo menos uma que use pouco tecnologia e pelo menos uma que faça o teste no celular. Anote só o código (P01…P05), nunca o nome.
 5. **Imprima** uma [ficha de observação](../registros/ficha-observacao.md) por participante e os cartões de situação (fim deste roteiro).
 6. **Ensaie uma vez** com o link `?p=P00`, parando no resumo (sem enviar), para ver o selo "Teste P00" e o caminho. Os indicadores só contam os códigos da aba *Validação — Participantes*, então o ensaio não entra na conta.
-7. **Critério da hipótese de problema:** pelo menos 3 de 5 relatam dificuldade no jeito atual (aprovado em 29/10/2026; [parte teórica](../../06-documentacao/parte-teorica-hipoteses-e-validacao.md), seção 6). A regra de decisão começa por ele.
+7. **Critério da hipótese de problema:** pelo menos 3 de 5 relatam dificuldade no jeito atual (aprovado em 29/10/2026; [parte teórica](../../06-documentacao/parte-teorica-hipoteses-e-validacao.md), seção 6). A regra de decisão começa por ele; com exatamente 2 de 5, o resultado é inconclusivo (seção 7).
 
 ## Antes de cada sessão
+
+Desde a 0.13.0, quem abre um chamado recebe o ticket por e-mail, mas os e-mails de teste (p01@exemplo.com) nunca recebem: é esperado que nada chegue, e o comprovante diz só que a equipe usará o e-mail para o retorno.
 
 Abra o link de ensaio (`?p=P00`) e conte um relato qualquer em "Descrever com minhas palavras" até aparecer o rascunho, sem enviar. O primeiro pedido à IA depois de um tempo parado pode passar dos 20 s que o chat espera, e o rascunho viria vazio para o participante. Esse aquecimento também não entra na conta.
 
@@ -56,7 +58,7 @@ Mais participantes: P06, P07… com as situações que tiveram mais dificuldade.
 
 1. Passe a ficha para a planilha: aba *Validação — Tarefas* (o número do chamado na coluna F puxa caminho, forma de escolha, rascunho da IA, tempo, voltas e nota) e aba *Validação — Participantes*.
 2. Leia a aba *Sessões*: atendimentos de participantes que pararam antes de enviar mostram em que etapa desistiram (coluna "Última etapa").
-3. Conte, pelas fichas, quantos participantes relataram dificuldade com o jeito atual: é a hipótese de problema, a primeira condição da regra de decisão. Registre no diário de validação.
+3. Conte, pelas fichas, quantos participantes relataram dificuldade com o jeito atual: é a hipótese de problema, a primeira condição da regra de decisão. Registre no diário de validação. Com exatamente 2 de 5, faça só a conversa final com mais 3 funcionários de outros setores antes de decidir (parte teórica, seção 7).
 4. Veja *Validação — Resumo* e o quadro de critérios. Escreva a síntese (padrões que se repetiram em 2 ou mais pessoas) no [diário de validação](../registros/diario-validacao.md).
 5. Baixe a planilha (Arquivo → Fazer download → Microsoft Excel) para `04-validacao/resultados/` e registre as evidências (EVID-###).
 6. Só então rode `removerChamadosDosParticipantes` no editor, para tirar os chamados de teste da fila da TI (a aba *Sessões* fica).

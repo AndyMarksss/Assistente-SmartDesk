@@ -2,6 +2,12 @@
 
 Registro das etapas na ordem em que aconteceram (até 28/10/2026 era o LEIA-ME.md da raiz). Os trechos antigos descrevem o estado *daquele momento*; a visão atual do projeto está no [README da raiz](../README.md) e a lista de mudanças por versão no [CHANGELOG do protótipo](../03-prototipo/CHANGELOG.md).
 
+## Situação em 29/10/2026
+
+Protótipo 0.12.18 publicado (GitHub Pages e Apps Script) e 0.13.0 (ticket por e-mail) pronta para publicar. Parte teórica e Lean Canvas prontos para as sessões, com os critérios de decisão aprovados antes delas, e kit das sessões revisado. Faltam, nesta ordem: as 5 sessões com usuários, a parte prática (síntese, decisão e README de entrega), o roteiro do vídeo, a gravação e o PDF da entrega. A lista está em [`pendencias.md`](pendencias.md).
+
+## Início do projeto (30/09/2026)
+
 A prioridade atual é desenhar e construir o MVP, guardar evidências durante o trabalho e preparar a validação. A versão 0.2.0 já implementa um chat guiado com escolhas, relato, classificação e resumo revisável. A IA real e a validação com usuários ainda estão pendentes.
 
 ## Onde trabalhar
@@ -135,4 +141,10 @@ IA verificada nas requisições dos 57 caminhos: sem perguntas repetidas, local 
 Rascunho da parte teórica em 06-documentacao/parte-teorica-hipoteses-e-validacao.md e Lean Canvas em 06-documentacao/canvas/ (lean-canvas.png para a entrega). A regra de decisão precisa ser aprovada antes da primeira sessão com usuários.
 
 ## 0.12.18
-Correções da análise de coerência da árvore de decisões e IA que interpreta o relato, pergunta o que falta com as mesmas perguntas do caminho pelos botões, dá as dicas antes dos dados em defeito simples e orienta (dois pedidos, assunto de outra equipe, atendimento de outro setor). Desenhos do fluxo atualizados. Verificação em 03-prototipo/verificacoes/verificacao-v0.12.18.md e evidências EVID-293 a EVID-298.
+Correções da análise de coerência da árvore de decisões e IA que interpreta o relato, pergunta o que falta com as mesmas perguntas do caminho pelos botões, dá as dicas antes dos dados em defeito simples e orienta (dois pedidos, assunto de outra equipe, atendimento de outro setor). Desenhos do fluxo atualizados. Verificação em 03-prototipo/verificacoes/verificacao-v0.12.18.md e evidências EVID-293 a EVID-300 (as duas últimas no GitHub Pages, depois da publicação).
+
+## 2026-10-29 — Kit das sessões e critérios completos
+Roteiro e ficha alinhados à 0.12.18: aquecer a IA antes de cada sessão, marcar "Resolveu pelas dicas" e perguntar se a pessoa já teve dificuldade no jeito atual. Critério da hipótese de problema aprovado (3 de 5) e regra de decisão completada com o caso inconclusivo, antes das sessões. Documentação e README revisados, e a lista do que falta para a entrega em 01-planejamento/pendencias.md.
+
+## 0.13.0
+Ticket por e-mail na abertura e um aviso a cada mudança de etapa, só com número, setor, pedido e etapa; domínios de teste não recebem e uma falha no e-mail não perde o chamado. Verificação em 03-prototipo/verificacoes/verificacao-v0.13.0.md.

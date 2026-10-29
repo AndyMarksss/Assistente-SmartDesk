@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>SmartDesk — Fluxo detalhado</title>
     <!--
-      Fluxo completo do atendimento do SmartDesk 0.12.18, passo a passo: cada mensagem com o
+      Fluxo completo do atendimento do SmartDesk 0.13.0, passo a passo: cada mensagem com o
       texto exato do protótipo (app.js, conversation-copy.js, form-controls.js, attachments.js),
       cada botão, campo, resposta rápida e validação, e para onde cada resposta leva.
       As partes A–E e G–Z são escritas à mão a partir do código; a parte F (os 57 caminhos) é
@@ -534,7 +534,7 @@
         <header class="top">
           <h1>SmartDesk · Fluxo detalhado <span>de todos os caminhos</span></h1>
           <p>
-            O atendimento inteiro, passo a passo: cada mensagem com o texto exato do protótipo 0.12.18, cada
+            O atendimento inteiro, passo a passo: cada mensagem com o texto exato do protótipo 0.13.0, cada
             botão e campo de digitação, as validações e para onde cada resposta leva. Os 57 tipos de pedido
             estão na parte F, um por um. <strong style="color: var(--ai-ink)">Em violeta, os passos em que a IA intervém.</strong>
             Visão geral em uma página: <a href="arvore-de-decisoes.html">árvore de decisões</a>.
@@ -556,7 +556,7 @@
         </div>
         <div id="parts"></div>
         <footer>
-          Textos tirados do código do protótipo 0.12.18 (03-prototipo/assets/js). Parte F gerada por
+          Textos tirados do código do protótipo 0.13.0 (03-prototipo/assets/js). Parte F gerada por
           <code>gerar-caminhos.cjs</code> a partir do catálogo e de <code>conversation-copy.js</code>. Projeto
           acadêmico — Metodologias Ágeis e Validação de Produtos, UniFECAF.
         </footer>
@@ -1071,7 +1071,7 @@
             }),
             S("L2", "bot", "Comprovante", {
               diz: "Chamado {#024} enviado! Seus dados foram registrados com sucesso.",
-              nota: "Cartão: “Número do chamado”, a linha Recebido → Em andamento → Finalizado e “A equipe usará {e-mail} para o retorno. Para ver a situação depois, use “Acompanhar um chamado” com este número.” O botão “Novo atendimento” aparece no topo.",
+              nota: "Cartão: “Número do chamado”, a linha Recebido → Em andamento → Finalizado e, se o Apps Script mandou o ticket por e-mail, “Enviamos o comprovante para {e-mail}, e você recebe um aviso a cada mudança de etapa.”; senão (e-mails de teste, sem cota ou falha), “A equipe usará {e-mail} para o retorno.”. Depois, nos dois casos: “Para ver a situação depois, use “Acompanhar um chamado” com este número.” O botão “Novo atendimento” aparece no topo.",
               vai: "M1",
             }),
             S("L3", "bot", "Envio não confirmado", {

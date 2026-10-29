@@ -1,6 +1,6 @@
 # 07 · Vídeo pitch
 
-Vídeo de até **4 minutos**, como se eu apresentasse aos fundadores da startup os resultados de uma rodada de validação. Ainda não foi gravado: depende dos resultados das sessões com usuários.
+Vídeo de até **4 minutos**, como se eu apresentasse aos fundadores da startup os resultados de uma rodada de validação. Ainda não foi gravado. A ordem é: parte prática pronta (sessões, síntese e decisão) → roteiro, guardado em `roteiro/` → gravação → link no README de entrega → PDF da entrega, que leva o link.
 
 ## O que o vídeo precisa mostrar (enunciado)
 

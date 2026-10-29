@@ -9,6 +9,8 @@ let filesCreated = 0,
   locked = false,
   failFile = false;
 const folders = new Map();
+// E-mails simulados (Avisos.gs, 0.13.0): nada sai de verdade.
+const mail = { sent: [], quota: 100, fail: false };
 const iterator = (items) => {
   let n = 0;
   return { hasNext: () => n < items.length, next: () => items[n++] };
@@ -155,7 +157,15 @@ const ctx = vm.createContext({
     },
     getFolderById: (id) => folders.get(id),
   },
+  MailApp: {
+    getRemainingDailyQuota: () => mail.quota,
+    sendEmail: (message) => {
+      if (mail.fail) throw Error("Falha simulada de e-mail");
+      mail.sent.push(message);
+    },
+  },
   Utilities: {
+    formatDate: (date) => date.toISOString(),
     getUuid: () => crypto.randomUUID(),
     DigestAlgorithm: { SHA_256: "sha256" },
     Charset: { UTF_8: "utf8" },
@@ -168,7 +178,7 @@ const ctx = vm.createContext({
     createTextOutput: (text) => ({ setMimeType: () => JSON.parse(text) }),
   },
 });
-for (const file of ["Schema.gs", "Code.gs", "Gestao.gs", "Validacao.gs"])
+for (const file of ["Schema.gs", "Code.gs", "Gestao.gs", "Validacao.gs", "Avisos.gs"])
   vm.runInContext(
     fs.readFileSync(
       require("node:path").join(__dirname, "../../integracoes/apps-script", file),
@@ -302,6 +312,92 @@ assert(!post({ ...testTicket, requestId: crypto.randomUUID(), participant: "Mari
 assert.equal(cells.length, rowsBefore);
 cells.pop(); // devolve a planilha simulada ao estado esperado pelos testes do portal
 console.log("Participante simulado: coluna P, leitura e validação passaram.");
+
+// 0.13.0: ticket por e-mail na abertura e um aviso por etapa (Avisos.gs), sem texto livre.
+assert.equal(mail.sent.length, 0); // até aqui, só chamados sem e-mail ou com domínio fictício
+const avisos = book.getSheetByName("Avisos");
+assert.deepEqual(avisos.getRange(1, 1, 1, 4).getValues()[0], [
+  "Data",
+  "Chamado",
+  "Aviso",
+  "Resultado",
+]);
+assert(
+  avisos
+    .getRange(2, 1, avisos.getLastRow() - 1, 4)
+    .getValues()
+    .every((r) => r[3] === "Não enviado: e-mail fictício"),
+);
+const rowsBeforeMail = cells.length;
+const realTicket = {
+  ...emailTicket,
+  requestId: crypto.randomUUID(),
+  email: "pessoa@colegio-ficticio.com.br",
+};
+result = post(realTicket);
+assert.equal(result.notice, "sent");
+assert.equal(mail.sent.length, 1);
+const opening = mail.sent[0];
+assert.equal(opening.to, realTicket.email);
+assert.equal(opening.name, "SmartDesk — TI");
+assert.equal(opening.subject, "Chamado " + result.number + " recebido — SmartDesk");
+assert(opening.body.includes("Pedido: Impressora › Solicitação de Toner / Tinta"));
+assert(opening.body.includes("Etapa atual: Novos chamados — na fila da equipe de TI"));
+for (const free of [ticket.name, ticket.subject, ticket.description, "Modelo fictício"])
+  assert(!opening.body.includes(free) && !opening.htmlBody.includes(free));
+assert.equal(post(realTicket).number, result.number); // repetir o envio não manda outro e-mail
+assert.equal(mail.sent.length, 1);
+const move = (status) =>
+  manage({ action: "updateStatus", requestId: realTicket.requestId, status });
+assert.equal(move("Em atendimento").notice, "sent");
+assert.equal(mail.sent[1].subject, "Chamado " + result.number + ": Em atendimento — SmartDesk");
+assert(mail.sent[1].body.includes("a equipe de TI está cuidando do seu pedido"));
+assert.equal(move("Em atendimento").notice, "skipped"); // a etapa não mudou
+// A volta para "Em atendimento" depois de aguardar terceiros também avisa.
+assert.equal(move("Aguardando terceiros").notice, "sent");
+assert.equal(move("Em atendimento").notice, "sent");
+assert.equal(mail.sent.length, 4);
+mail.quota = 0;
+assert.equal(move("Agendado").notice, "failed");
+mail.quota = 100;
+mail.fail = true;
+const failedOpening = post({ ...realTicket, requestId: crypto.randomUUID() });
+assert(failedOpening.ok); // o chamado fica gravado mesmo sem o e-mail
+assert.equal(failedOpening.notice, "failed");
+mail.fail = false;
+// O "Agendado" não chegou (sem cota): a pessoa já sabe que está "Em atendimento".
+assert.equal(move("Em atendimento").notice, "skipped");
+assert.equal(move("Agendado").notice, "sent");
+assert.equal(move("Em atendimento").notice, "sent"); // chegou o dia do agendamento
+assert.equal(mail.sent.length, 6);
+// Limite: 10 avisos do mesmo chamado em 24 horas, contando a abertura.
+for (const status of [
+  "Aguardando terceiros",
+  "Em atendimento",
+  "Aguardando terceiros",
+  "Em atendimento",
+])
+  assert.equal(move(status).notice, "sent");
+assert.equal(move("Finalizado").notice, "skipped");
+assert.equal(mail.sent.length, 10);
+for (let row = 2; row <= avisos.getLastRow(); row++)
+  avisos.getRange(row, 1).setValues([["2026-01-01T00:00:00.000Z"]]); // avisos de outro dia
+assert.equal(move("Agendado").notice, "sent");
+assert.equal(mail.sent.length, 11);
+const log = avisos.getRange(2, 1, avisos.getLastRow() - 1, 4).getValues();
+assert(!JSON.stringify(log).includes("@")); // o registro não guarda o endereço
+assert(log.some((r) => r[2] === "Etapa: Agendado" && r[3].includes("cota")));
+assert(log.some((r) => r[2] === "Etapa: Finalizado" && r[3].includes("limite de 10 avisos")));
+assert(log.some((r) => r[2] === "Abertura" && r[3] === "Não enviado: falha no envio"));
+for (const email of ["p01@exemplo.com", "a@teste.com.br", "b@site.test", "c@sub.example.org"])
+  assert(ctx.avisoDominioFicticio_(email), email);
+for (const email of ["ana@gmail.com", "ti@colegio.com.br", "x@contest.com"])
+  assert(!ctx.avisoDominioFicticio_(email), email);
+cells.splice(rowsBeforeMail); // devolve a planilha simulada ao estado esperado pelos testes do portal
+extraSheets.delete("Avisos");
+console.log(
+  "Avisos por e-mail simulados: ticket na abertura sem texto livre, aviso a cada mudança de etapa (inclusive as voltas), limite de 10 em 24 horas, domínios fictícios, cota e falha sem perder o chamado passaram.",
+);
 
 // 0.12: abas de validação criadas uma vez, com o rodízio dos cenários CT-01 a CT-11.
 const created = ctx.prepararPlanilhaDeValidacao();
