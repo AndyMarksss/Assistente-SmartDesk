@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Kit das sessões — SmartDesk</title>
+<!-- Gerado a partir do roteiro e da ficha (04-validacao). Para imprimir: abrir no navegador e Ctrl+P, A4, sem cabeçalho e rodapé. -->
+<style>
+  @page { size: A4; margin: 12mm; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 10.5pt/1.4 "Segoe UI", Arial, sans-serif; color: #1d2230; background: #fff; }
+  .page { page-break-after: always; break-after: page; }
+  .page:last-child { page-break-after: auto; break-after: auto; }
+  .top { border-bottom: 2px solid #6b4fd8; margin-bottom: 8px; padding-bottom: 4px; }
+  .tag { font-size: 8pt; letter-spacing: .08em; text-transform: uppercase; color: #6b4fd8; font-weight: 700; }
+  h1 { font-size: 15pt; margin: 2px 0 0; }
+  h1 small { font-size: 9pt; font-weight: 400; color: #4a5064; }
+  h2 { font-size: 11.5pt; margin: 10px 0 4px; color: #2b2f45; }
+  code { font: 9pt Consolas, monospace; background: #f1eefc; padding: 0 3px; border-radius: 3px; }
+  ul, ol { margin: 0 0 4px; padding-left: 18px; }
+  .tight li { margin: 2px 0; }
+  .check { list-style: none; padding-left: 0; }
+  .check li { margin: 4px 0; }
+  .cb { font-size: 11pt; }
+  .quote { border-left: 3px solid #6b4fd8; background: #f6f4fd; padding: 6px 10px; margin: 4px 0 6px; font-style: italic; }
+  .quote.small { font-size: 9.5pt; }
+  .note { font-size: 9pt; color: #4a5064; }
+  .warn { margin-top: 10px; border: 1.5px solid #c2417f; border-radius: 6px; padding: 6px 10px; font-size: 9.5pt; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  table.grid { width: 100%; border-collapse: collapse; font-size: 9.5pt; }
+  table.grid th, table.grid td { border: 1px solid #b9bccb; padding: 6px; text-align: left; vertical-align: middle; }
+  table.grid td { height: 34px; }
+  table.grid th { background: #f1eefc; }
+  .sit { border: 1px solid #b9bccb; border-radius: 6px; padding: 6px 8px; margin: 6px 0; break-inside: avoid; }
+  .sit-head { font-size: 10.5pt; }
+  .card-text { color: #2b2f45; }
+  .obs { font-size: 8.5pt; color: #5a6075; margin: 1px 0 3px; }
+  .row { margin: 3px 0; }
+  .ln { display: inline-block; min-width: 120px; width: 100%; border-bottom: 1px solid #9aa0b4; height: 14px; vertical-align: bottom; }
+  .row .ln { width: auto; flex: 1; }
+  .row { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 4px 6px; }
+  .q { margin: 6px 0 8px; break-inside: avoid; }
+  .q > .ln { margin-top: 6px; }
+  .cards { display: grid; grid-template-columns: 1fr 1fr; grid-auto-rows: 58mm; gap: 0; border-top: 1px dashed #777; border-left: 1px dashed #777; }
+  .card { border-right: 1px dashed #777; border-bottom: 1px dashed #777; padding: 10mm 8mm; display: flex; flex-direction: column; justify-content: center; }
+  .card .code { font-size: 9pt; color: #6b4fd8; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
+  .card p { font-size: 17pt; line-height: 1.3; margin: 6px 0 0; font-weight: 600; }
+  @media screen { body { background: #e9e8ef; } .page { background: #fff; width: 210mm; min-height: 297mm; margin: 12px auto; padding: 12mm; box-shadow: 0 2px 10px rgba(0,0,0,.15); } }
+</style>
+</head>
+<body>
+
+<section class="page">
+  <header class="top"><span class="tag">SmartDesk · teste com usuários</span><h1>1. Como recrutar os 5 participantes</h1></header>
+  <h2>Quem convidar</h2>
+  <ul class="tight">
+    <li><b>Funcionários que pedem ajuda à TI</b>, não alguém da equipe de TI.</li>
+    <li><b>Um por setor</b>, de 5 setores diferentes. Comece pelas Coordenações e Orientações (os que mais pedem) e complete com outros, como Secretaria, Financeiro, Portaria, Enfermaria ou Professores.</li>
+    <li><b>Pelo menos 1 pessoa que usa pouca tecnologia</b> e <b>pelo menos 1 que faça o teste no próprio celular</b>.</li>
+    <li>Evite quem já viu ou ajudou a montar o SmartDesk.</li>
+  </ul>
+  <h2>Como convidar (WhatsApp ou pessoalmente)</h2>
+  <div class="quote">Oi, [nome]! Tudo bem? Estou fazendo um trabalho da faculdade sobre um jeito novo de pedir ajuda à TI aqui da escola. Você toparia me ajudar por uns 20 minutos? É só tentar abrir 3 pedidos de mentira num sistema, no computador ou no celular, enquanto eu observo. Quem está sendo avaliado é o sistema, não você, e eu não anoto o seu nome. Pode ser [dia] às [hora], aí no seu setor?</div>
+  <ul class="tight">
+    <li><b>Não conte</b> que é você quem fez o sistema nem o que você acha dos formulários de hoje: as pessoas tendem a elogiar para agradar ou a repetir o que ouviram.</li>
+    <li>Marque em horários calmos (fora da entrada, do intervalo e da saída). Dá para fazer as 5 em um ou dois dias.</li>
+    <li>Leve o seu computador ou use o da pessoa. Para quem fizer no celular, mande o link da ficha dela por WhatsApp na hora.</li>
+  </ul>
+  <h2>Agenda</h2>
+  <table class="grid">
+    <thead><tr><th>Código</th><th>Setor</th><th>Uso de tecnologia</th><th>Celular ou computador</th><th>Dia e hora</th><th>Situações</th></tr></thead>
+    <tbody>
+      <tr><td><b>P01</b></td><td></td><td><span class="cb">☐</span> Baixo <span class="cb">☐</span> Médio <span class="cb">☐</span> Alto</td><td><span class="cb">☐</span> Celular <span class="cb">☐</span> PC</td><td></td><td>CT-01, CT-04, CT-09</td></tr><tr><td><b>P02</b></td><td></td><td><span class="cb">☐</span> Baixo <span class="cb">☐</span> Médio <span class="cb">☐</span> Alto</td><td><span class="cb">☐</span> Celular <span class="cb">☐</span> PC</td><td></td><td>CT-02, CT-05, CT-07</td></tr><tr><td><b>P03</b></td><td></td><td><span class="cb">☐</span> Baixo <span class="cb">☐</span> Médio <span class="cb">☐</span> Alto</td><td><span class="cb">☐</span> Celular <span class="cb">☐</span> PC</td><td></td><td>CT-03, CT-08, CT-10</td></tr><tr><td><b>P04</b></td><td></td><td><span class="cb">☐</span> Baixo <span class="cb">☐</span> Médio <span class="cb">☐</span> Alto</td><td><span class="cb">☐</span> Celular <span class="cb">☐</span> PC</td><td></td><td>CT-06, CT-11, CT-01</td></tr><tr><td><b>P05</b></td><td></td><td><span class="cb">☐</span> Baixo <span class="cb">☐</span> Médio <span class="cb">☐</span> Alto</td><td><span class="cb">☐</span> Celular <span class="cb">☐</span> PC</td><td></td><td>CT-04, CT-02, CT-09</td></tr>
+    </tbody>
+  </table>
+  <p class="note">Anote só o código e o setor, nunca o nome. A lista de quem é quem fica com você, fora do trabalho.</p>
+</section>
+
+<section class="page">
+  <header class="top"><span class="tag">SmartDesk · teste com usuários</span><h1>2. Como conduzir cada sessão (cerca de 20 minutos)</h1></header>
+  <div class="cols">
+    <div>
+      <h2>Antes de começar (5 min)</h2>
+      <ul class="check">
+        <li><span class="cb">☐</span> <b>Aquecer a IA:</b> abra <code>andymarksss.github.io/Assistente-SmartDesk/?p=P00</code>, toque em “Descrever com minhas palavras”, escreva um pedido qualquer e espere o rascunho aparecer. <b>Não envie.</b></li>
+        <li><span class="cb">☐</span> <b>Abrir uma janela anônima nova</b> com o link do participante (está na ficha dele). No computador: Ctrl + Shift + N. No celular: menu ⋮ → Nova guia anônima.</li>
+        <li><span class="cb">☐</span> Conferir o selo <b>“Teste P0X”</b> no topo do chat.</li>
+        <li><span class="cb">☐</span> Ficha do participante e os 3 cartões dele separados, na ordem.</li>
+      </ul>
+      <h2>Abertura (2 min) — leia</h2>
+      <div class="quote small">Obrigado por ajudar. Estou testando um sistema para pedir ajuda à TI. Quem está sendo avaliado é o sistema, não você. Vou te dar algumas situações; peça ajuda como faria no dia a dia e vá falando em voz alta o que pensa. Não vou ajudar no começo, porque quero ver onde o sistema confunde. Use o nome “Participante Teste” e o e-mail <b>p0X@exemplo.com</b> (com o seu número). As situações são inventadas: se o sistema sugerir passos para tentar, imagine que não resolveram e siga com o pedido. Tudo bem?</div>
+    </div>
+    <div>
+      <h2>Para cada uma das 3 situações</h2>
+      <ol class="tight">
+        <li>Entregue o cartão e não diga mais nada. A pessoa escolhe se usa os botões ou se conta com as próprias palavras.</li>
+        <li><b>Não ajude no primeiro minuto</b> de dificuldade. Se passar de 1 minuto travada, ajude e marque “Com ajuda”.</li>
+        <li>Anote na ficha enquanto ela faz: número do chamado, se chegou ao tipo certo, o que corrigiu e o que falou.</li>
+        <li>Se ela tocar em “Resolveu! Não preciso do chamado”, não corrija: marque “Resolveu pelas dicas”.</li>
+        <li>No fim, ela responde sozinha “Quão fácil foi…?” na tela. Pergunte em voz alta a clareza (1 a 5) e se usaria de novo.</li>
+        <li>Toque em <b>“Novo atendimento”</b> e entregue o próximo cartão.</li>
+      </ol>
+      <h2>Conversa final (5 min)</h2>
+      <p>Faça as perguntas do fim da ficha, uma por vez, <b>sem sugerir respostas</b>. A pergunta sobre dificuldade no jeito atual decide a hipótese de problema.</p>
+      <h2>Depois</h2>
+      <ul class="tight">
+        <li>Agradeça e feche a janela anônima.</li>
+        <li>Guarde a ficha. Ao fim das 5 sessões, passe as fichas para a planilha e me mande.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="warn"><b>Atenção:</b> use sempre e-mails <b>p01@exemplo.com … p05@exemplo.com</b>, nunca um e-mail real nem algo como a@b.com (b.com é um domínio de verdade e receberia o ticket). Avise a equipe de TI que os chamados “Teste P0X” não devem ser atendidos. Não mexa no SmartDesk nos dias das sessões.</div>
+</section>
+
+<section class="page">
+  <header class="top"><span class="tag">Ficha de observação</span><h1>P01 <small>· link: <code>andymarksss.github.io/Assistente-SmartDesk/?p=P01</code> · e-mail: <code>p01@exemplo.com</code></small></h1></header>
+  <div class="row"><b>Data:</b> ___/___/______ &nbsp; <b>Setor:</b> <span class="ln"></span> &nbsp; <b>Uso de tecnologia:</b> <span class="cb">☐</span> Baixo <span class="cb">☐</span> Médio <span class="cb">☐</span> Alto &nbsp; <b>Dispositivo:</b> <span class="cb">☐</span> Celular <span class="cb">☐</span> Computador &nbsp; <span class="cb">☐</span> Selo “Teste P01” conferido</div>
+  
+  <div class="sit">
+    <div class="sit-head"><b>Situação 1 — CT-01</b> <span class="card-text">“O projetor da sala não mostra a imagem do meu notebook.”</span></div>
+    <div class="obs">Observe: Ambíguo: projetor ou cabo HDMI?</div>
+    <div class="row"><b>Chamado nº</b> #______ &nbsp; <span class="cb">☐</span> Resolveu pelas dicas (sem chamado) &nbsp; <span class="cb">☐</span> Não enviou — parou em: <span class="ln"></span></div>
+    <div class="row"><b>Como pediu:</b> <span class="cb">☐</span> Botões <span class="cb">☐</span> Com as próprias palavras <span class="cb">☐</span> Os dois</div>
+    <div class="row"><b>Chegou ao tipo certo?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Não → escolheu: <span class="ln"></span></div>
+    <div class="row"><b>Concluiu sem ajuda?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Com ajuda <span class="cb">☐</span> Não &nbsp; <b>Precisou corrigir algo?</b> <span class="cb">☐</span> Não <span class="cb">☐</span> Sim: <span class="ln"></span></div>
+    <div class="row"><b>Clareza das perguntas (1 a 5):</b> ____ &nbsp; <b>Usaria de novo?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Talvez <span class="cb">☐</span> Não</div>
+    <div class="row"><b>Hesitações, erros, voltas:</b> <span class="ln"></span></div>
+    <div class="row"><b>Frases ditas em voz alta:</b> <span class="ln"></span></div>
+    <div class="row"><span class="ln"></span></div>
+  </div>
+  <div class="sit">
+    <div class="sit-head"><b>Situação 2 — CT-04</b> <span class="card-text">“A impressora está prendendo as folhas.”</span></div>
+    <div class="obs">Observe: Papel atolado. Dicas: pelo relato, logo depois do rascunho; pelos botões, antes de enviar.</div>
+    <div class="row"><b>Chamado nº</b> #______ &nbsp; <span class="cb">☐</span> Resolveu pelas dicas (sem chamado) &nbsp; <span class="cb">☐</span> Não enviou — parou em: <span class="ln"></span></div>
+    <div class="row"><b>Como pediu:</b> <span class="cb">☐</span> Botões <span class="cb">☐</span> Com as próprias palavras <span class="cb">☐</span> Os dois</div>
+    <div class="row"><b>Chegou ao tipo certo?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Não → escolheu: <span class="ln"></span></div>
+    <div class="row"><b>Concluiu sem ajuda?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Com ajuda <span class="cb">☐</span> Não &nbsp; <b>Precisou corrigir algo?</b> <span class="cb">☐</span> Não <span class="cb">☐</span> Sim: <span class="ln"></span></div>
+    <div class="row"><b>Clareza das perguntas (1 a 5):</b> ____ &nbsp; <b>Usaria de novo?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Talvez <span class="cb">☐</span> Não</div>
+    <div class="row"><b>Hesitações, erros, voltas:</b> <span class="ln"></span></div>
+    <div class="row"><b>Frases ditas em voz alta:</b> <span class="ln"></span></div>
+    <div class="row"><span class="ln"></span></div>
+  </div>
+  <div class="sit">
+    <div class="sit-head"><b>Situação 3 — CT-09</b> <span class="card-text">“Preciso alterar uma nota no Mentor Web.”</span></div>
+    <div class="obs">Observe: Três níveis: TI › Mentor Web › Alteração de notas.</div>
+    <div class="row"><b>Chamado nº</b> #______ &nbsp; <span class="cb">☐</span> Resolveu pelas dicas (sem chamado) &nbsp; <span class="cb">☐</span> Não enviou — parou em: <span class="ln"></span></div>
+    <div class="row"><b>Como pediu:</b> <span class="cb">☐</span> Botões <span class="cb">☐</span> Com as próprias palavras <span class="cb">☐</span> Os dois</div>
+    <div class="row"><b>Chegou ao tipo certo?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Não → escolheu: <span class="ln"></span></div>
+    <div class="row"><b>Concluiu sem ajuda?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Com ajuda <span class="cb">☐</span> Não &nbsp; <b>Precisou corrigir algo?</b> <span class="cb">☐</span> Não <span class="cb">☐</span> Sim: <span class="ln"></span></div>
+    <div class="row"><b>Clareza das perguntas (1 a 5):</b> ____ &nbsp; <b>Usaria de novo?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Talvez <span class="cb">☐</span> Não</div>
+    <div class="row"><b>Hesitações, erros, voltas:</b> <span class="ln"></span></div>
+    <div class="row"><b>Frases ditas em voz alta:</b> <span class="ln"></span></div>
+    <div class="row"><span class="ln"></span></div>
+  </div>
+</section>
+<section class="page">
+  <header class="top"><span class="tag">Ficha de observação</span><h1>P01 <small>· continuação</small></h1></header>
+  <div class="sit">
+    <div class="sit-head"><b>Extra (só se sobrar tempo)</b> <span class="cb">☐</span> X1 — ar-condicionado pingando <span class="cb">☐</span> X2 — acompanhar o chamado</div>
+    <div class="row"><b>O que a pessoa fez:</b> <span class="ln"></span></div>
+    <div class="row"><span class="ln"></span></div>
+  </div>
+  <h2>Conversa final — pergunte sem sugerir respostas</h2>
+  <div class="q"><b>1. Como você pede ajuda à TI hoje? Quanto tempo isso costuma levar?</b><span class="ln"></span><span class="ln"></span></div>
+  <div class="q"><b>2. Já teve alguma dificuldade para pedir ajuda pelos formulários de hoje? Qual?</b>
+    <div class="row"><span class="cb">☐</span> Não relatou dificuldade &nbsp; <span class="cb">☐</span> Relatou: <span class="cb">☐</span> não saber o formulário certo <span class="cb">☐</span> completar informações <span class="cb">☐</span> esperar retorno <span class="cb">☐</span> outra</div><span class="ln"></span></div>
+  <div class="q"><b>3. Comparando com o jeito de hoje, o SmartDesk foi…</b> <span class="cb">☐</span> mais fácil <span class="cb">☐</span> igual <span class="cb">☐</span> mais difícil <b>Por quê?</b><span class="ln"></span></div>
+  <div class="q"><b>4. O que mais gostou?</b><span class="ln"></span></div>
+  <div class="q"><b>5. O que mudaria?</b><span class="ln"></span></div>
+  <div class="q"><b>6. Usaria no dia a dia?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Talvez <span class="cb">☐</span> Não &nbsp; <b>7. De 0 a 10, quanto recomendaria para um colega?</b> ____</div>
+  <h2>Observações de quem facilitou</h2>
+  <span class="ln"></span><span class="ln"></span><span class="ln"></span><span class="ln"></span><span class="ln"></span>
+</section>
+<section class="page">
+  <header class="top"><span class="tag">Ficha de observação</span><h1>P02 <small>· link: <code>andymarksss.github.io/Assistente-SmartDesk/?p=P02</code> · e-mail: <code>p02@exemplo.com</code></small></h1></header>
+  <div class="row"><b>Data:</b> ___/___/______ &nbsp; <b>Setor:</b> <span class="ln"></span> &nbsp; <b>Uso de tecnologia:</b> <span class="cb">☐</span> Baixo <span class="cb">☐</span> Médio <span class="cb">☐</span> Alto &nbsp; <b>Dispositivo:</b> <span class="cb">☐</span> Celular <span class="cb">☐</span> Computador &nbsp; <span class="cb">☐</span> Selo “Teste P02” conferido</div>
+  
+  <div class="sit">
+    <div class="sit-head"><b>Situação 1 — CT-02</b> <span class="card-text">“Preciso de caixa de som e microfone para uma palestra na sexta-feira.”</span></div>
+    <div class="obs">Observe: Data, horário e “é evento?”. Pelo relato: o “Entendi” e o complemento (local, atividade e pessoas).</div>
+    <div class="row"><b>Chamado nº</b> #______ &nbsp; <span class="cb">☐</span> Resolveu pelas dicas (sem chamado) &nbsp; <span class="cb">☐</span> Não enviou — parou em: <span class="ln"></span></div>
+    <div class="row"><b>Como pediu:</b> <span class="cb">☐</span> Botões <span class="cb">☐</span> Com as próprias palavras <span class="cb">☐</span> Os dois</div>
+    <div class="row"><b>Chegou ao tipo certo?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Não → escolheu: <span class="ln"></span></div>
+    <div class="row"><b>Concluiu sem ajuda?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Com ajuda <span class="cb">☐</span> Não &nbsp; <b>Precisou corrigir algo?</b> <span class="cb">☐</span> Não <span class="cb">☐</span> Sim: <span class="ln"></span></div>
+    <div class="row"><b>Clareza das perguntas (1 a 5):</b> ____ &nbsp; <b>Usaria de novo?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Talvez <span class="cb">☐</span> Não</div>
+    <div class="row"><b>Hesitações, erros, voltas:</b> <span class="ln"></span></div>
+    <div class="row"><b>Frases ditas em voz alta:</b> <span class="ln"></span></div>
+    <div class="row"><span class="ln"></span></div>
+  </div>
+  <div class="sit">
+    <div class="sit-head"><b>Situação 2 — CT-05</b> <span class="card-text">“Esqueci a senha do meu e-mail institucional.”</span></div>
+    <div class="obs">Observe: Resetar senha.</div>
+    <div class="row"><b>Chamado nº</b> #______ &nbsp; <span class="cb">☐</span> Resolveu pelas dicas (sem chamado) &nbsp; <span class="cb">☐</span> Não enviou — parou em: <span class="ln"></span></div>
+    <div class="row"><b>Como pediu:</b> <span class="cb">☐</span> Botões <span class="cb">☐</span> Com as próprias palavras <span class="cb">☐</span> Os dois</div>
+    <div class="row"><b>Chegou ao tipo certo?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Não → escolheu: <span class="ln"></span></div>
+    <div class="row"><b>Concluiu sem ajuda?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Com ajuda <span class="cb">☐</span> Não &nbsp; <b>Precisou corrigir algo?</b> <span class="cb">☐</span> Não <span class="cb">☐</span> Sim: <span class="ln"></span></div>
+    <div class="row"><b>Clareza das perguntas (1 a 5):</b> ____ &nbsp; <b>Usaria de novo?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Talvez <span class="cb">☐</span> Não</div>
+    <div class="row"><b>Hesitações, erros, voltas:</b> <span class="ln"></span></div>
+    <div class="row"><b>Frases ditas em voz alta:</b> <span class="ln"></span></div>
+    <div class="row"><span class="ln"></span></div>
+  </div>
+  <div class="sit">
+    <div class="sit-head"><b>Situação 3 — CT-07</b> <span class="card-text">“Meu computador está muito lento e trava quando abro os programas.”</span></div>
+    <div class="obs">Observe: Lentidão; pode ter dicas.</div>
+    <div class="row"><b>Chamado nº</b> #______ &nbsp; <span class="cb">☐</span> Resolveu pelas dicas (sem chamado) &nbsp; <span class="cb">☐</span> Não enviou — parou em: <span class="ln"></span></div>
+    <div class="row"><b>Como pediu:</b> <span class="cb">☐</span> Botões <span class="cb">☐</span> Com as próprias palavras <span class="cb">☐</span> Os dois</div>
+    <div class="row"><b>Chegou ao tipo certo?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Não → escolheu: <span class="ln"></span></div>
+    <div class="row"><b>Concluiu sem ajuda?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Com ajuda <span class="cb">☐</span> Não &nbsp; <b>Precisou corrigir algo?</b> <span class="cb">☐</span> Não <span class="cb">☐</span> Sim: <span class="ln"></span></div>
+    <div class="row"><b>Clareza das perguntas (1 a 5):</b> ____ &nbsp; <b>Usaria de novo?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Talvez <span class="cb">☐</span> Não</div>
+    <div class="row"><b>Hesitações, erros, voltas:</b> <span class="ln"></span></div>
+    <div class="row"><b>Frases ditas em voz alta:</b> <span class="ln"></span></div>
+    <div class="row"><span class="ln"></span></div>
+  </div>
+</section>
+<section class="page">
+  <header class="top"><span class="tag">Ficha de observação</span><h1>P02 <small>· continuação</small></h1></header>
+  <div class="sit">
+    <div class="sit-head"><b>Extra (só se sobrar tempo)</b> <span class="cb">☐</span> X1 — ar-condicionado pingando <span class="cb">☐</span> X2 — acompanhar o chamado</div>
+    <div class="row"><b>O que a pessoa fez:</b> <span class="ln"></span></div>
+    <div class="row"><span class="ln"></span></div>
+  </div>
+  <h2>Conversa final — pergunte sem sugerir respostas</h2>
+  <div class="q"><b>1. Como você pede ajuda à TI hoje? Quanto tempo isso costuma levar?</b><span class="ln"></span><span class="ln"></span></div>
+  <div class="q"><b>2. Já teve alguma dificuldade para pedir ajuda pelos formulários de hoje? Qual?</b>
+    <div class="row"><span class="cb">☐</span> Não relatou dificuldade &nbsp; <span class="cb">☐</span> Relatou: <span class="cb">☐</span> não saber o formulário certo <span class="cb">☐</span> completar informações <span class="cb">☐</span> esperar retorno <span class="cb">☐</span> outra</div><span class="ln"></span></div>
+  <div class="q"><b>3. Comparando com o jeito de hoje, o SmartDesk foi…</b> <span class="cb">☐</span> mais fácil <span class="cb">☐</span> igual <span class="cb">☐</span> mais difícil <b>Por quê?</b><span class="ln"></span></div>
+  <div class="q"><b>4. O que mais gostou?</b><span class="ln"></span></div>
+  <div class="q"><b>5. O que mudaria?</b><span class="ln"></span></div>
+  <div class="q"><b>6. Usaria no dia a dia?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Talvez <span class="cb">☐</span> Não &nbsp; <b>7. De 0 a 10, quanto recomendaria para um colega?</b> ____</div>
+  <h2>Observações de quem facilitou</h2>
+  <span class="ln"></span><span class="ln"></span><span class="ln"></span><span class="ln"></span><span class="ln"></span>
+</section>
+<section class="page">
+  <header class="top"><span class="tag">Ficha de observação</span><h1>P03 <small>· link: <code>andymarksss.github.io/Assistente-SmartDesk/?p=P03</code> · e-mail: <code>p03@exemplo.com</code></small></h1></header>
+  <div class="row"><b>Data:</b> ___/___/______ &nbsp; <b>Setor:</b> <span class="ln"></span> &nbsp; <b>Uso de tecnologia:</b> <span class="cb">☐</span> Baixo <span class="cb">☐</span> Médio <span class="cb">☐</span> Alto &nbsp; <b>Dispositivo:</b> <span class="cb">☐</span> Celular <span class="cb">☐</span> Computador &nbsp; <span class="cb">☐</span> Selo “Teste P03” conferido</div>
+  
+  <div class="sit">
+    <div class="sit-head"><b>Situação 1 — CT-03</b> <span class="card-text">“Acabou o toner magenta da impressora do setor.”</span></div>
+    <div class="obs">Observe: Cor e modelo da impressora.</div>
+    <div class="row"><b>Chamado nº</b> #______ &nbsp; <span class="cb">☐</span> Resolveu pelas dicas (sem chamado) &nbsp; <span class="cb">☐</span> Não enviou — parou em: <span class="ln"></span></div>
+    <div class="row"><b>Como pediu:</b> <span class="cb">☐</span> Botões <span class="cb">☐</span> Com as próprias palavras <span class="cb">☐</span> Os dois</div>
+    <div class="row"><b>Chegou ao tipo certo?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Não → escolheu: <span class="ln"></span></div>
+    <div class="row"><b>Concluiu sem ajuda?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Com ajuda <span class="cb">☐</span> Não &nbsp; <b>Precisou corrigir algo?</b> <span class="cb">☐</span> Não <span class="cb">☐</span> Sim: <span class="ln"></span></div>
+    <div class="row"><b>Clareza das perguntas (1 a 5):</b> ____ &nbsp; <b>Usaria de novo?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Talvez <span class="cb">☐</span> Não</div>
+    <div class="row"><b>Hesitações, erros, voltas:</b> <span class="ln"></span></div>
+    <div class="row"><b>Frases ditas em voz alta:</b> <span class="ln"></span></div>
+    <div class="row"><span class="ln"></span></div>
+  </div>
+  <div class="sit">
+    <div class="sit-head"><b>Situação 2 — CT-08</b> <span class="card-text">“Meu notebook conecta no Wi-Fi mas a internet fica caindo.”</span></div>
+    <div class="obs">Observe: Wi-Fi; pode ter dicas.</div>
+    <div class="row"><b>Chamado nº</b> #______ &nbsp; <span class="cb">☐</span> Resolveu pelas dicas (sem chamado) &nbsp; <span class="cb">☐</span> Não enviou — parou em: <span class="ln"></span></div>
+    <div class="row"><b>Como pediu:</b> <span class="cb">☐</span> Botões <span class="cb">☐</span> Com as próprias palavras <span class="cb">☐</span> Os dois</div>
+    <div class="row"><b>Chegou ao tipo certo?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Não → escolheu: <span class="ln"></span></div>
+    <div class="row"><b>Concluiu sem ajuda?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Com ajuda <span class="cb">☐</span> Não &nbsp; <b>Precisou corrigir algo?</b> <span class="cb">☐</span> Não <span class="cb">☐</span> Sim: <span class="ln"></span></div>
+    <div class="row"><b>Clareza das perguntas (1 a 5):</b> ____ &nbsp; <b>Usaria de novo?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Talvez <span class="cb">☐</span> Não</div>
+    <div class="row"><b>Hesitações, erros, voltas:</b> <span class="ln"></span></div>
+    <div class="row"><b>Frases ditas em voz alta:</b> <span class="ln"></span></div>
+    <div class="row"><span class="ln"></span></div>
+  </div>
+  <div class="sit">
+    <div class="sit-head"><b>Situação 3 — CT-10</b> <span class="card-text">“Sou do Financeiro e o QuickBooks está apresentando erro.”</span></div>
+    <div class="obs">Observe: Nesta situação, o setor é Financeiro.</div>
+    <div class="row"><b>Chamado nº</b> #______ &nbsp; <span class="cb">☐</span> Resolveu pelas dicas (sem chamado) &nbsp; <span class="cb">☐</span> Não enviou — parou em: <span class="ln"></span></div>
+    <div class="row"><b>Como pediu:</b> <span class="cb">☐</span> Botões <span class="cb">☐</span> Com as próprias palavras <span class="cb">☐</span> Os dois</div>
+    <div class="row"><b>Chegou ao tipo certo?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Não → escolheu: <span class="ln"></span></div>
+    <div class="row"><b>Concluiu sem ajuda?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Com ajuda <span class="cb">☐</span> Não &nbsp; <b>Precisou corrigir algo?</b> <span class="cb">☐</span> Não <span class="cb">☐</span> Sim: <span class="ln"></span></div>
+    <div class="row"><b>Clareza das perguntas (1 a 5):</b> ____ &nbsp; <b>Usaria de novo?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Talvez <span class="cb">☐</span> Não</div>
+    <div class="row"><b>Hesitações, erros, voltas:</b> <span class="ln"></span></div>
+    <div class="row"><b>Frases ditas em voz alta:</b> <span class="ln"></span></div>
+    <div class="row"><span class="ln"></span></div>
+  </div>
+</section>
+<section class="page">
+  <header class="top"><span class="tag">Ficha de observação</span><h1>P03 <small>· continuação</small></h1></header>
+  <div class="sit">
+    <div class="sit-head"><b>Extra (só se sobrar tempo)</b> <span class="cb">☐</span> X1 — ar-condicionado pingando <span class="cb">☐</span> X2 — acompanhar o chamado</div>
+    <div class="row"><b>O que a pessoa fez:</b> <span class="ln"></span></div>
+    <div class="row"><span class="ln"></span></div>
+  </div>
+  <h2>Conversa final — pergunte sem sugerir respostas</h2>
+  <div class="q"><b>1. Como você pede ajuda à TI hoje? Quanto tempo isso costuma levar?</b><span class="ln"></span><span class="ln"></span></div>
+  <div class="q"><b>2. Já teve alguma dificuldade para pedir ajuda pelos formulários de hoje? Qual?</b>
+    <div class="row"><span class="cb">☐</span> Não relatou dificuldade &nbsp; <span class="cb">☐</span> Relatou: <span class="cb">☐</span> não saber o formulário certo <span class="cb">☐</span> completar informações <span class="cb">☐</span> esperar retorno <span class="cb">☐</span> outra</div><span class="ln"></span></div>
+  <div class="q"><b>3. Comparando com o jeito de hoje, o SmartDesk foi…</b> <span class="cb">☐</span> mais fácil <span class="cb">☐</span> igual <span class="cb">☐</span> mais difícil <b>Por quê?</b><span class="ln"></span></div>
+  <div class="q"><b>4. O que mais gostou?</b><span class="ln"></span></div>
+  <div class="q"><b>5. O que mudaria?</b><span class="ln"></span></div>
+  <div class="q"><b>6. Usaria no dia a dia?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Talvez <span class="cb">☐</span> Não &nbsp; <b>7. De 0 a 10, quanto recomendaria para um colega?</b> ____</div>
+  <h2>Observações de quem facilitou</h2>
+  <span class="ln"></span><span class="ln"></span><span class="ln"></span><span class="ln"></span><span class="ln"></span>
+</section>
+<section class="page">
+  <header class="top"><span class="tag">Ficha de observação</span><h1>P04 <small>· link: <code>andymarksss.github.io/Assistente-SmartDesk/?p=P04</code> · e-mail: <code>p04@exemplo.com</code></small></h1></header>
+  <div class="row"><b>Data:</b> ___/___/______ &nbsp; <b>Setor:</b> <span class="ln"></span> &nbsp; <b>Uso de tecnologia:</b> <span class="cb">☐</span> Baixo <span class="cb">☐</span> Médio <span class="cb">☐</span> Alto &nbsp; <b>Dispositivo:</b> <span class="cb">☐</span> Celular <span class="cb">☐</span> Computador &nbsp; <span class="cb">☐</span> Selo “Teste P04” conferido</div>
+  
+  <div class="sit">
+    <div class="sit-head"><b>Situação 1 — CT-06</b> <span class="card-text">“Preciso reservar um Chromebook para amanhã.”</span></div>
+    <div class="obs">Observe: Data e período; local, atividade e pessoas.</div>
+    <div class="row"><b>Chamado nº</b> #______ &nbsp; <span class="cb">☐</span> Resolveu pelas dicas (sem chamado) &nbsp; <span class="cb">☐</span> Não enviou — parou em: <span class="ln"></span></div>
+    <div class="row"><b>Como pediu:</b> <span class="cb">☐</span> Botões <span class="cb">☐</span> Com as próprias palavras <span class="cb">☐</span> Os dois</div>
+    <div class="row"><b>Chegou ao tipo certo?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Não → escolheu: <span class="ln"></span></div>
+    <div class="row"><b>Concluiu sem ajuda?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Com ajuda <span class="cb">☐</span> Não &nbsp; <b>Precisou corrigir algo?</b> <span class="cb">☐</span> Não <span class="cb">☐</span> Sim: <span class="ln"></span></div>
+    <div class="row"><b>Clareza das perguntas (1 a 5):</b> ____ &nbsp; <b>Usaria de novo?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Talvez <span class="cb">☐</span> Não</div>
+    <div class="row"><b>Hesitações, erros, voltas:</b> <span class="ln"></span></div>
+    <div class="row"><b>Frases ditas em voz alta:</b> <span class="ln"></span></div>
+    <div class="row"><span class="ln"></span></div>
+  </div>
+  <div class="sit">
+    <div class="sit-head"><b>Situação 2 — CT-11</b> <span class="card-text">“Sou da Coordenação do Infantil e preciso acessar as câmeras.”</span></div>
+    <div class="obs">Observe: Nesta situação, o setor é Coordenação EI (Infantil).</div>
+    <div class="row"><b>Chamado nº</b> #______ &nbsp; <span class="cb">☐</span> Resolveu pelas dicas (sem chamado) &nbsp; <span class="cb">☐</span> Não enviou — parou em: <span class="ln"></span></div>
+    <div class="row"><b>Como pediu:</b> <span class="cb">☐</span> Botões <span class="cb">☐</span> Com as próprias palavras <span class="cb">☐</span> Os dois</div>
+    <div class="row"><b>Chegou ao tipo certo?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Não → escolheu: <span class="ln"></span></div>
+    <div class="row"><b>Concluiu sem ajuda?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Com ajuda <span class="cb">☐</span> Não &nbsp; <b>Precisou corrigir algo?</b> <span class="cb">☐</span> Não <span class="cb">☐</span> Sim: <span class="ln"></span></div>
+    <div class="row"><b>Clareza das perguntas (1 a 5):</b> ____ &nbsp; <b>Usaria de novo?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Talvez <span class="cb">☐</span> Não</div>
+    <div class="row"><b>Hesitações, erros, voltas:</b> <span class="ln"></span></div>
+    <div class="row"><b>Frases ditas em voz alta:</b> <span class="ln"></span></div>
+    <div class="row"><span class="ln"></span></div>
+  </div>
+  <div class="sit">
+    <div class="sit-head"><b>Situação 3 — CT-01</b> <span class="card-text">“O projetor da sala não mostra a imagem do meu notebook.”</span></div>
+    <div class="obs">Observe: Ambíguo: projetor ou cabo HDMI?</div>
+    <div class="row"><b>Chamado nº</b> #______ &nbsp; <span class="cb">☐</span> Resolveu pelas dicas (sem chamado) &nbsp; <span class="cb">☐</span> Não enviou — parou em: <span class="ln"></span></div>
+    <div class="row"><b>Como pediu:</b> <span class="cb">☐</span> Botões <span class="cb">☐</span> Com as próprias palavras <span class="cb">☐</span> Os dois</div>
+    <div class="row"><b>Chegou ao tipo certo?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Não → escolheu: <span class="ln"></span></div>
+    <div class="row"><b>Concluiu sem ajuda?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Com ajuda <span class="cb">☐</span> Não &nbsp; <b>Precisou corrigir algo?</b> <span class="cb">☐</span> Não <span class="cb">☐</span> Sim: <span class="ln"></span></div>
+    <div class="row"><b>Clareza das perguntas (1 a 5):</b> ____ &nbsp; <b>Usaria de novo?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Talvez <span class="cb">☐</span> Não</div>
+    <div class="row"><b>Hesitações, erros, voltas:</b> <span class="ln"></span></div>
+    <div class="row"><b>Frases ditas em voz alta:</b> <span class="ln"></span></div>
+    <div class="row"><span class="ln"></span></div>
+  </div>
+</section>
+<section class="page">
+  <header class="top"><span class="tag">Ficha de observação</span><h1>P04 <small>· continuação</small></h1></header>
+  <div class="sit">
+    <div class="sit-head"><b>Extra (só se sobrar tempo)</b> <span class="cb">☐</span> X1 — ar-condicionado pingando <span class="cb">☐</span> X2 — acompanhar o chamado</div>
+    <div class="row"><b>O que a pessoa fez:</b> <span class="ln"></span></div>
+    <div class="row"><span class="ln"></span></div>
+  </div>
+  <h2>Conversa final — pergunte sem sugerir respostas</h2>
+  <div class="q"><b>1. Como você pede ajuda à TI hoje? Quanto tempo isso costuma levar?</b><span class="ln"></span><span class="ln"></span></div>
+  <div class="q"><b>2. Já teve alguma dificuldade para pedir ajuda pelos formulários de hoje? Qual?</b>
+    <div class="row"><span class="cb">☐</span> Não relatou dificuldade &nbsp; <span class="cb">☐</span> Relatou: <span class="cb">☐</span> não saber o formulário certo <span class="cb">☐</span> completar informações <span class="cb">☐</span> esperar retorno <span class="cb">☐</span> outra</div><span class="ln"></span></div>
+  <div class="q"><b>3. Comparando com o jeito de hoje, o SmartDesk foi…</b> <span class="cb">☐</span> mais fácil <span class="cb">☐</span> igual <span class="cb">☐</span> mais difícil <b>Por quê?</b><span class="ln"></span></div>
+  <div class="q"><b>4. O que mais gostou?</b><span class="ln"></span></div>
+  <div class="q"><b>5. O que mudaria?</b><span class="ln"></span></div>
+  <div class="q"><b>6. Usaria no dia a dia?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Talvez <span class="cb">☐</span> Não &nbsp; <b>7. De 0 a 10, quanto recomendaria para um colega?</b> ____</div>
+  <h2>Observações de quem facilitou</h2>
+  <span class="ln"></span><span class="ln"></span><span class="ln"></span><span class="ln"></span><span class="ln"></span>
+</section>
+<section class="page">
+  <header class="top"><span class="tag">Ficha de observação</span><h1>P05 <small>· link: <code>andymarksss.github.io/Assistente-SmartDesk/?p=P05</code> · e-mail: <code>p05@exemplo.com</code></small></h1></header>
+  <div class="row"><b>Data:</b> ___/___/______ &nbsp; <b>Setor:</b> <span class="ln"></span> &nbsp; <b>Uso de tecnologia:</b> <span class="cb">☐</span> Baixo <span class="cb">☐</span> Médio <span class="cb">☐</span> Alto &nbsp; <b>Dispositivo:</b> <span class="cb">☐</span> Celular <span class="cb">☐</span> Computador &nbsp; <span class="cb">☐</span> Selo “Teste P05” conferido</div>
+  
+  <div class="sit">
+    <div class="sit-head"><b>Situação 1 — CT-04</b> <span class="card-text">“A impressora está prendendo as folhas.”</span></div>
+    <div class="obs">Observe: Papel atolado. Dicas: pelo relato, logo depois do rascunho; pelos botões, antes de enviar.</div>
+    <div class="row"><b>Chamado nº</b> #______ &nbsp; <span class="cb">☐</span> Resolveu pelas dicas (sem chamado) &nbsp; <span class="cb">☐</span> Não enviou — parou em: <span class="ln"></span></div>
+    <div class="row"><b>Como pediu:</b> <span class="cb">☐</span> Botões <span class="cb">☐</span> Com as próprias palavras <span class="cb">☐</span> Os dois</div>
+    <div class="row"><b>Chegou ao tipo certo?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Não → escolheu: <span class="ln"></span></div>
+    <div class="row"><b>Concluiu sem ajuda?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Com ajuda <span class="cb">☐</span> Não &nbsp; <b>Precisou corrigir algo?</b> <span class="cb">☐</span> Não <span class="cb">☐</span> Sim: <span class="ln"></span></div>
+    <div class="row"><b>Clareza das perguntas (1 a 5):</b> ____ &nbsp; <b>Usaria de novo?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Talvez <span class="cb">☐</span> Não</div>
+    <div class="row"><b>Hesitações, erros, voltas:</b> <span class="ln"></span></div>
+    <div class="row"><b>Frases ditas em voz alta:</b> <span class="ln"></span></div>
+    <div class="row"><span class="ln"></span></div>
+  </div>
+  <div class="sit">
+    <div class="sit-head"><b>Situação 2 — CT-02</b> <span class="card-text">“Preciso de caixa de som e microfone para uma palestra na sexta-feira.”</span></div>
+    <div class="obs">Observe: Data, horário e “é evento?”. Pelo relato: o “Entendi” e o complemento (local, atividade e pessoas).</div>
+    <div class="row"><b>Chamado nº</b> #______ &nbsp; <span class="cb">☐</span> Resolveu pelas dicas (sem chamado) &nbsp; <span class="cb">☐</span> Não enviou — parou em: <span class="ln"></span></div>
+    <div class="row"><b>Como pediu:</b> <span class="cb">☐</span> Botões <span class="cb">☐</span> Com as próprias palavras <span class="cb">☐</span> Os dois</div>
+    <div class="row"><b>Chegou ao tipo certo?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Não → escolheu: <span class="ln"></span></div>
+    <div class="row"><b>Concluiu sem ajuda?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Com ajuda <span class="cb">☐</span> Não &nbsp; <b>Precisou corrigir algo?</b> <span class="cb">☐</span> Não <span class="cb">☐</span> Sim: <span class="ln"></span></div>
+    <div class="row"><b>Clareza das perguntas (1 a 5):</b> ____ &nbsp; <b>Usaria de novo?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Talvez <span class="cb">☐</span> Não</div>
+    <div class="row"><b>Hesitações, erros, voltas:</b> <span class="ln"></span></div>
+    <div class="row"><b>Frases ditas em voz alta:</b> <span class="ln"></span></div>
+    <div class="row"><span class="ln"></span></div>
+  </div>
+  <div class="sit">
+    <div class="sit-head"><b>Situação 3 — CT-09</b> <span class="card-text">“Preciso alterar uma nota no Mentor Web.”</span></div>
+    <div class="obs">Observe: Três níveis: TI › Mentor Web › Alteração de notas.</div>
+    <div class="row"><b>Chamado nº</b> #______ &nbsp; <span class="cb">☐</span> Resolveu pelas dicas (sem chamado) &nbsp; <span class="cb">☐</span> Não enviou — parou em: <span class="ln"></span></div>
+    <div class="row"><b>Como pediu:</b> <span class="cb">☐</span> Botões <span class="cb">☐</span> Com as próprias palavras <span class="cb">☐</span> Os dois</div>
+    <div class="row"><b>Chegou ao tipo certo?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Não → escolheu: <span class="ln"></span></div>
+    <div class="row"><b>Concluiu sem ajuda?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Com ajuda <span class="cb">☐</span> Não &nbsp; <b>Precisou corrigir algo?</b> <span class="cb">☐</span> Não <span class="cb">☐</span> Sim: <span class="ln"></span></div>
+    <div class="row"><b>Clareza das perguntas (1 a 5):</b> ____ &nbsp; <b>Usaria de novo?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Talvez <span class="cb">☐</span> Não</div>
+    <div class="row"><b>Hesitações, erros, voltas:</b> <span class="ln"></span></div>
+    <div class="row"><b>Frases ditas em voz alta:</b> <span class="ln"></span></div>
+    <div class="row"><span class="ln"></span></div>
+  </div>
+</section>
+<section class="page">
+  <header class="top"><span class="tag">Ficha de observação</span><h1>P05 <small>· continuação</small></h1></header>
+  <div class="sit">
+    <div class="sit-head"><b>Extra (só se sobrar tempo)</b> <span class="cb">☐</span> X1 — ar-condicionado pingando <span class="cb">☐</span> X2 — acompanhar o chamado</div>
+    <div class="row"><b>O que a pessoa fez:</b> <span class="ln"></span></div>
+    <div class="row"><span class="ln"></span></div>
+  </div>
+  <h2>Conversa final — pergunte sem sugerir respostas</h2>
+  <div class="q"><b>1. Como você pede ajuda à TI hoje? Quanto tempo isso costuma levar?</b><span class="ln"></span><span class="ln"></span></div>
+  <div class="q"><b>2. Já teve alguma dificuldade para pedir ajuda pelos formulários de hoje? Qual?</b>
+    <div class="row"><span class="cb">☐</span> Não relatou dificuldade &nbsp; <span class="cb">☐</span> Relatou: <span class="cb">☐</span> não saber o formulário certo <span class="cb">☐</span> completar informações <span class="cb">☐</span> esperar retorno <span class="cb">☐</span> outra</div><span class="ln"></span></div>
+  <div class="q"><b>3. Comparando com o jeito de hoje, o SmartDesk foi…</b> <span class="cb">☐</span> mais fácil <span class="cb">☐</span> igual <span class="cb">☐</span> mais difícil <b>Por quê?</b><span class="ln"></span></div>
+  <div class="q"><b>4. O que mais gostou?</b><span class="ln"></span></div>
+  <div class="q"><b>5. O que mudaria?</b><span class="ln"></span></div>
+  <div class="q"><b>6. Usaria no dia a dia?</b> <span class="cb">☐</span> Sim <span class="cb">☐</span> Talvez <span class="cb">☐</span> Não &nbsp; <b>7. De 0 a 10, quanto recomendaria para um colega?</b> ____</div>
+  <h2>Observações de quem facilitou</h2>
+  <span class="ln"></span><span class="ln"></span><span class="ln"></span><span class="ln"></span><span class="ln"></span>
+</section>
+
+<section class="page cards-page">
+  <header class="top"><span class="tag">Cartões de situação</span><h1>3. Recorte na linha tracejada </h1></header>
+  <div class="cards"><div class="card"><span class="code">Situação CT-01</span><p>O projetor da sala não mostra a imagem do meu notebook.</p></div><div class="card"><span class="code">Situação CT-02</span><p>Preciso de caixa de som e microfone para uma palestra na sexta-feira.</p></div><div class="card"><span class="code">Situação CT-03</span><p>Acabou o toner magenta da impressora do setor.</p></div><div class="card"><span class="code">Situação CT-04</span><p>A impressora está prendendo as folhas.</p></div><div class="card"><span class="code">Situação CT-05</span><p>Esqueci a senha do meu e-mail institucional.</p></div><div class="card"><span class="code">Situação CT-06</span><p>Preciso reservar um Chromebook para amanhã.</p></div><div class="card"><span class="code">Situação CT-07</span><p>Meu computador está muito lento e trava quando abro os programas.</p></div><div class="card"><span class="code">Situação CT-08</span><p>Meu notebook conecta no Wi-Fi mas a internet fica caindo.</p></div></div>
+</section>
+<section class="page cards-page">
+  <header class="top"><span class="tag">Cartões de situação</span><h1>3. Recorte na linha tracejada (continuação)</h1></header>
+  <div class="cards"><div class="card"><span class="code">Situação CT-09</span><p>Preciso alterar uma nota no Mentor Web.</p></div><div class="card"><span class="code">Situação CT-10</span><p>Sou do Financeiro e o QuickBooks está apresentando erro.</p></div><div class="card"><span class="code">Situação CT-11</span><p>Sou da Coordenação do Infantil e preciso acessar as câmeras.</p></div><div class="card"><span class="code">Extra X1</span><p>O ar-condicionado da sala está pingando.</p></div><div class="card"><span class="code">Extra X2</span><p>Veja em que pé está o chamado que você acabou de abrir.</p></div></div>
+</section>
+</body>
+</html>

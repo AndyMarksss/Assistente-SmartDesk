@@ -518,4 +518,12 @@ Pedido do usuário (29/10): "Quando abre um chamado, a pessoa tem que receber um
 - **Falha não perde o chamado:** sem cota do dia (cerca de 100 e-mails na conta gratuita) ou com erro, o chamado e a etapa continuam gravados. Cada tentativa fica na aba *Avisos* (Data, Chamado, Aviso, Resultado), sem o endereço.
 - **Comprovante no chat:** quando o e-mail saiu, "Enviamos o comprovante para {e-mail}, e você recebe um aviso a cada mudança de etapa"; senão, o texto de antes.
 - Testes do Apps Script simulado com e-mail (abertura, repetição, etapas, cota, falha, domínios) e do recibo no portal e no servidor local.
-- Apps Script a republicar com o arquivo novo `Avisos.gs` e o escopo `script.send_mail`: rodar `autorizarAvisosPorEmail` no editor antes do `clasp deploy`. Verificação em verificacoes/verificacao-v0.13.0.md.
+- Apps Script a republicar com o arquivo novo `Avisos.gs` e o escopo `script.send_mail`: rodar `autorizarAvisosPorEmail` no editor antes do `clasp deploy`. Publicada em 29/10 (@35) e conferida com e-mails reais. Verificação em verificacoes/verificacao-v0.13.0.md; evidências EVID-301 a EVID-306.
+
+## 0.13.1 — 2026-10-29
+
+Pedido do usuário, no ensaio no celular: "Senti falta do Robo no card de boas-vindas no mobile".
+
+- **Robô no quadro de boas-vindas do celular:** até 600 px, a ilustração continua escondida (a 0.12.16 a tirou para o quadro e a primeira mensagem caberem juntos), mas o robô volta, com 52 px, no canto de cima do quadro, ao lado do título, sem somar altura. Medido de 360 a 600 px, nos dois temas: o título termina antes do robô (folga mínima de 3 px) e a primeira tela não rola. Abaixo de 340 px ele continua escondido, para não cobrir o título.
+- **Kit de impressão das sessões** em `04-validacao/registros/kit-impressao-sessoes.pdf` (fonte `.html`): recrutamento e agenda, guia da sessão, fichas P01 a P05 com link, e-mail fictício e as 3 situações de cada um, e cartões para recortar. O roteiro ganhou a seção "Recrutamento", com o texto do convite.
+- Só interface: o Apps Script não muda e continua na implantação @35 (0.13.0). Verificação em verificacoes/verificacao-v0.13.1.md.

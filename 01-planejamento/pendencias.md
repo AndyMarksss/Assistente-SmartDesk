@@ -8,12 +8,12 @@ O enunciado pede três entregáveis: parte teórica, parte prática e vídeo pit
 
 ### 1. Antes das sessões
 
-- [ ] Enviar ao GitHub os commits locais (`git push origin main`).
-- [ ] Publicar o Apps Script da 0.13.0: rodar `autorizarAvisosPorEmail` no editor e aceitar o envio de e-mail **antes** do `clasp deploy`.
-- [ ] Conferir o ticket por e-mail: um chamado de teste no Pages com `?p=P99` e o seu e-mail real, uma mudança de etapa no painel e os dois e-mails na caixa de entrada (o chamado P99 sai com `removerChamadosDosParticipantes`).
-- [ ] Ensaiar no celular com `?p=P00` até o resumo, sem enviar.
+- [x] Enviar ao GitHub os commits locais (feito em 29/10).
+- [x] (29/10, implantação @35) Publicar o Apps Script da 0.13.0: rodar `autorizarAvisosPorEmail` no editor e aceitar o envio de e-mail **antes** do `clasp deploy`.
+- [x] (29/10, chamado #030, EVID-301 a EVID-306) Conferir o ticket por e-mail: um chamado de teste no Pages com `?p=P99` e o seu e-mail real, uma mudança de etapa no painel e os dois e-mails na caixa de entrada (o chamado P99 sai com `removerChamadosDosParticipantes`).
+- [x] (29/10) Ensaiar no celular com `?p=P00` até o resumo, sem enviar. O ensaio pediu o robô de volta no celular (0.13.1).
 - [ ] Recrutar 5 funcionários de setores diferentes: pelo menos 1 que usa pouca tecnologia e 1 que faça o teste no celular.
-- [ ] Imprimir uma ficha de observação por pessoa e os cartões de situação.
+- [ ] Imprimir o kit das sessões: `04-validacao/registros/kit-impressao-sessoes.pdf` (A4, 14 páginas, com as fichas P01 a P05 já preenchidas com link, e-mail e situações, e os cartões para recortar).
 
 ### 2. Sessões
 

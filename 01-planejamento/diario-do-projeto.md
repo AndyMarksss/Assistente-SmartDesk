@@ -4,7 +4,7 @@ Registro das etapas na ordem em que aconteceram (até 28/10/2026 era o LEIA-ME.m
 
 ## Situação em 29/10/2026
 
-Protótipo 0.12.18 publicado (GitHub Pages e Apps Script) e 0.13.0 (ticket por e-mail) pronta para publicar. Parte teórica e Lean Canvas prontos para as sessões, com os critérios de decisão aprovados antes delas, e kit das sessões revisado. Faltam, nesta ordem: as 5 sessões com usuários, a parte prática (síntese, decisão e README de entrega), o roteiro do vídeo, a gravação e o PDF da entrega. A lista está em [`pendencias.md`](pendencias.md).
+Protótipo 0.12.18 publicado (GitHub Pages e Apps Script) e 0.13.0 (ticket por e-mail) publicadas. Parte teórica e Lean Canvas prontos para as sessões, com os critérios de decisão aprovados antes delas, e kit das sessões revisado. Faltam, nesta ordem: as 5 sessões com usuários, a parte prática (síntese, decisão e README de entrega), o roteiro do vídeo, a gravação e o PDF da entrega. A lista está em [`pendencias.md`](pendencias.md).
 
 ## Início do projeto (30/09/2026)
 
@@ -147,4 +147,7 @@ Correções da análise de coerência da árvore de decisões e IA que interpret
 Roteiro e ficha alinhados à 0.12.18: aquecer a IA antes de cada sessão, marcar "Resolveu pelas dicas" e perguntar se a pessoa já teve dificuldade no jeito atual. Critério da hipótese de problema aprovado (3 de 5) e regra de decisão completada com o caso inconclusivo, antes das sessões. Documentação e README revisados, e a lista do que falta para a entrega em 01-planejamento/pendencias.md.
 
 ## 0.13.0
-Ticket por e-mail na abertura e um aviso a cada mudança de etapa, só com número, setor, pedido e etapa; domínios de teste não recebem e uma falha no e-mail não perde o chamado. Verificação em 03-prototipo/verificacoes/verificacao-v0.13.0.md.
+Ticket por e-mail na abertura e um aviso a cada mudança de etapa, só com número, setor, pedido e etapa; domínios de teste não recebem e uma falha no e-mail não perde o chamado. Publicada em 29/10 (Apps Script @35) e conferida com um chamado de teste real (#030): o ticket e os avisos de duas etapas chegaram ao e-mail. Verificação em 03-prototipo/verificacoes/verificacao-v0.13.0.md; evidências EVID-301 a EVID-306.
+
+## 0.13.1
+O ensaio no celular (P00) correu bem e pediu o robô de volta no quadro de boas-vindas: ele volta pequeno, no canto, sem tirar a primeira mensagem da tela. Kit de impressão das sessões (recrutamento, guia, fichas P01 a P05 e cartões) em 04-validacao/registros. Verificação em 03-prototipo/verificacoes/verificacao-v0.13.1.md.

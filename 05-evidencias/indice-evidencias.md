@@ -689,4 +689,15 @@ Capturas do assistente no GitHub Pages publicado (0.12.18, Apps Script @34), com
 
 - EVID-300: [pages-dicas-antes-dos-dados-0-12-18](EVID-300_pages-dicas-antes-dos-dados-0-12-18.png) — Pages 0.12.18: relato fictício de mouse falhando e, logo depois do rascunho, dois passos seguros da IA antes de qualquer dado. Nenhum chamado enviado.
 
-Próxima evidência: EVID-301.
+## 2026-10-29 — SmartDesk 0.13.0 — ticket por e-mail (teste real no GitHub Pages)
+
+Prints do usuário no teste real da 0.13.0: chamado de teste #030 aberto no GitHub Pages com `?p=P99` e o e-mail real do autor, e etapas mudadas no painel publicado. Os e-mails não trazem o endereço; o painel e o acompanhamento foram recortados para tirar a barra do navegador e o e-mail real. O chamado sai da planilha com `removerChamadosDosParticipantes`.
+
+- EVID-301: [email-ticket-abertura-0-13-0](EVID-301_email-ticket-abertura-0-13-0.png) — E-mail real "Chamado #030 recebido — SmartDesk" (remetente SmartDesk — TI): número, data de abertura, setor, pedido Audiovisual › Caixa de Som, etapa "Novos chamados — na fila da equipe de TI" e como acompanhar. Sem o texto do pedido.
+- EVID-302: [painel-030-em-atendimento-0-13-0](EVID-302_painel-030-em-atendimento-0-13-0.webp) — Painel publicado 0.13.0: chamado de teste #030 (Teste P99) movido para Em atendimento ("#030 movido para Em atendimento").
+- EVID-303: [email-aviso-em-atendimento-0-13-0](EVID-303_email-aviso-em-atendimento-0-13-0.png) — E-mail real "Chamado #030: Em atendimento — SmartDesk": "O seu chamado mudou de etapa" e "Em atendimento — a equipe de TI está cuidando do seu pedido".
+- EVID-304: [painel-030-agendado-0-13-0](EVID-304_painel-030-agendado-0-13-0.webp) — Painel publicado 0.13.0: o mesmo #030 movido para Agendado ("#030 movido para Agendado").
+- EVID-305: [email-aviso-agendado-0-13-0](EVID-305_email-aviso-agendado-0-13-0.png) — E-mail real "Chamado #030: Agendado — SmartDesk": "Agendado — o atendimento tem data marcada".
+- EVID-306: [acompanhamento-030-agendado-0-13-0](EVID-306_acompanhamento-030-agendado-0-13-0.webp) — Acompanhamento no chat 0.13.0: "Encontrei seu chamado" com #030, Audiovisual · Caixa de Som, etapa Agendado e a linha Recebido → Em andamento.
+
+Próxima evidência: EVID-307.

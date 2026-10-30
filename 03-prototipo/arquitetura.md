@@ -1,4 +1,4 @@
-# Estrutura do SmartDesk — 0.13.0
+# Estrutura do SmartDesk — 0.13.1
 
 As seções Cliente, Servidor e Manutenção descrevem o estado atual. As seções com número de versão registram o que cada versão acrescentou; as mais antigas citam soluções já substituídas (a hospedagem no Render da 0.8.15 e o portal da 0.9.0).
 

@@ -2,7 +2,7 @@
   "versao": 1,
   "projeto": "SmartDesk",
   "atualizado_em": "2026-10-29",
-  "proximo_numero": 301,
+  "proximo_numero": 307,
   "evidencias": [
     {
       "numero": "EVID-001",
@@ -3609,6 +3609,78 @@
       "origem": "Edge sem janela controlado pelo assistente (CDP), servidor local 4173 com Gemini real e envio ao Google desativado",
       "sha256": "3D323E81666B575E0330AF1ED32BEB42DC2448BEF84CE885F188F60D3940E020",
       "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-301",
+      "arquivo": "EVID-301_email-ticket-abertura-0-13-0.png",
+      "etapa": "SmartDesk 0.13.0 — ticket por e-mail (teste real no GitHub Pages)",
+      "descricao": "E-mail real \"Chamado #030 recebido — SmartDesk\" (remetente SmartDesk — TI): número, data de abertura, setor, pedido Audiovisual › Caixa de Som, etapa \"Novos chamados — na fila da equipe de TI\" e como acompanhar. Sem o texto do pedido.",
+      "data_aproximada": "2026-10-29",
+      "fundamento_data": "Print enviado pelo usuário nesta sessão, logo depois do teste",
+      "data_inclusao": "2026-10-29",
+      "origem": "Print do usuário",
+      "sha256": "EC3D77B0CCC7957BE537BA39D8B3801B9406BEB96929D065286F1FE5CA924D38",
+      "status": "verificação técnica com o e-mail real do autor (chamado de teste P99); não é validação com usuários"
+    },
+    {
+      "numero": "EVID-302",
+      "arquivo": "EVID-302_painel-030-em-atendimento-0-13-0.webp",
+      "etapa": "SmartDesk 0.13.0 — ticket por e-mail (teste real no GitHub Pages)",
+      "descricao": "Painel publicado 0.13.0: chamado de teste #030 (Teste P99) movido para Em atendimento (\"#030 movido para Em atendimento\").",
+      "data_aproximada": "2026-10-29",
+      "fundamento_data": "Print enviado pelo usuário nesta sessão, logo depois do teste",
+      "data_inclusao": "2026-10-29",
+      "origem": "Print do usuário (recortado pelo assistente: sem a barra do navegador)",
+      "sha256": "9188FDCFB93E6996CD1727421AF340D50A77B4F2E873A216DA0DB4E62D73B1FE",
+      "status": "verificação técnica com o e-mail real do autor (chamado de teste P99); não é validação com usuários"
+    },
+    {
+      "numero": "EVID-303",
+      "arquivo": "EVID-303_email-aviso-em-atendimento-0-13-0.png",
+      "etapa": "SmartDesk 0.13.0 — ticket por e-mail (teste real no GitHub Pages)",
+      "descricao": "E-mail real \"Chamado #030: Em atendimento — SmartDesk\": \"O seu chamado mudou de etapa\" e \"Em atendimento — a equipe de TI está cuidando do seu pedido\".",
+      "data_aproximada": "2026-10-29",
+      "fundamento_data": "Print enviado pelo usuário nesta sessão, logo depois do teste",
+      "data_inclusao": "2026-10-29",
+      "origem": "Print do usuário",
+      "sha256": "A91705F2C3465798E149D228267F6F15BB248F10F72AE518D36FC5BA918C0F42",
+      "status": "verificação técnica com o e-mail real do autor (chamado de teste P99); não é validação com usuários"
+    },
+    {
+      "numero": "EVID-304",
+      "arquivo": "EVID-304_painel-030-agendado-0-13-0.webp",
+      "etapa": "SmartDesk 0.13.0 — ticket por e-mail (teste real no GitHub Pages)",
+      "descricao": "Painel publicado 0.13.0: o mesmo #030 movido para Agendado (\"#030 movido para Agendado\").",
+      "data_aproximada": "2026-10-29",
+      "fundamento_data": "Print enviado pelo usuário nesta sessão, logo depois do teste",
+      "data_inclusao": "2026-10-29",
+      "origem": "Print do usuário (recortado pelo assistente: sem a barra do navegador)",
+      "sha256": "494F29EEF97529E74E231E309CB0F6264D299BEB1DDD92AE91260A5260AF704B",
+      "status": "verificação técnica com o e-mail real do autor (chamado de teste P99); não é validação com usuários"
+    },
+    {
+      "numero": "EVID-305",
+      "arquivo": "EVID-305_email-aviso-agendado-0-13-0.png",
+      "etapa": "SmartDesk 0.13.0 — ticket por e-mail (teste real no GitHub Pages)",
+      "descricao": "E-mail real \"Chamado #030: Agendado — SmartDesk\": \"Agendado — o atendimento tem data marcada\".",
+      "data_aproximada": "2026-10-29",
+      "fundamento_data": "Print enviado pelo usuário nesta sessão, logo depois do teste",
+      "data_inclusao": "2026-10-29",
+      "origem": "Print do usuário",
+      "sha256": "21DA738E35CEBB1672BCCE35E34E729043ABD88DB8A1C8B9CCF705FAA5CF1257",
+      "status": "verificação técnica com o e-mail real do autor (chamado de teste P99); não é validação com usuários"
+    },
+    {
+      "numero": "EVID-306",
+      "arquivo": "EVID-306_acompanhamento-030-agendado-0-13-0.webp",
+      "etapa": "SmartDesk 0.13.0 — ticket por e-mail (teste real no GitHub Pages)",
+      "descricao": "Acompanhamento no chat 0.13.0: \"Encontrei seu chamado\" com #030, Audiovisual · Caixa de Som, etapa Agendado e a linha Recebido → Em andamento.",
+      "data_aproximada": "2026-10-29",
+      "fundamento_data": "Print enviado pelo usuário nesta sessão, logo depois do teste",
+      "data_inclusao": "2026-10-29",
+      "origem": "Print do usuário (recortado pelo assistente: sem a barra do navegador e sem o balão com o e-mail real)",
+      "sha256": "398FA497B75474738CB9B5E05EE8D012F2920CE6ECBDBB83E0676C0796EAB5A2",
+      "status": "verificação técnica com o e-mail real do autor (chamado de teste P99); não é validação com usuários"
     }
   ]
 }

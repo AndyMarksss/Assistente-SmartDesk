@@ -20,7 +20,14 @@ Data: 2026-10-29. `npm test` com todas as suítes aprovadas, e `version:check` e
 
 Envio simulado no navegador (número #999, sem gravar no Google), com o recibo dizendo que o e-mail saiu: o comprovante mostra "Enviamos o comprovante para {e-mail}, e você recebe um aviso a cada mudança de etapa. Para ver a situação depois, use “Acompanhar um chamado” com este número." Rodapé 0.13.0, nenhum erro no console.
 
-## Pendente
+## Publicação e teste real (29/10/2026)
 
-- `clasp push` feito em 29/10 às 15:03 (10 arquivos, com o novo `Avisos`), sobre um projeto remoto idêntico à 0.12.18; o manifesto publicado ficou como estava. Falta autorizar o envio no editor (`autorizarAvisosPorEmail`) e só depois rodar o `clasp deploy`.
-- Conferir um e-mail real: um chamado de teste no Pages com um e-mail verdadeiro do usuário e uma mudança de etapa no painel.
+- O usuário rodou `autorizarAvisosPorEmail` no editor ("Avisos por e-mail autorizados. Envios restantes hoje: 100") e só depois implantou a @35. `/exec?api=health` → 0.13.0, depois de alguns segundos ainda mostrando 0.12.18.
+- Depois do `git push` (1feed22), o Pages serve o `app.js` com o texto novo do comprovante.
+- Chamado de teste #030 (`?p=P99`, e-mail real do autor, Audiovisual › Caixa de Som):
+  - chegou "Chamado #030 recebido — SmartDesk", com o remetente "SmartDesk — TI", número, data, setor, pedido e etapa, sem o texto do pedido (EVID-301);
+  - no painel publicado, Em atendimento e depois Agendado: chegaram os dois avisos (EVID-302 a EVID-305);
+  - o acompanhamento no chat mostra Agendado (EVID-306).
+- O chamado foi aberto numa aba que ainda tinha o chat 0.12.18: o comprovante mostrou o texto antigo. O e-mail saiu do mesmo jeito, porque quem envia é o Apps Script. O texto novo do comprovante foi conferido no servidor local.
+- A volta para "Em atendimento" depois de "Aguardando terceiros" ou "Agendado" e o limite de 10 avisos em 24 horas foram conferidos nos testes automáticos, não no teste real.
+- O chamado #030 sai da planilha com `removerChamadosDosParticipantes`, junto com os das sessões.

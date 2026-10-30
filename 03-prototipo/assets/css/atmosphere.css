@@ -4520,10 +4520,38 @@ button.chart-row:hover > .fa-solid {
 
 /* 0.12.16 — Abertura do chat no celular: o quadro de boas-vindas fica compacto (sem a
    ilustração e as etiquetas, que as dicas já trazem) para ele e a primeira mensagem caberem
-   juntos na área visível, inclusive no Chrome com a barra de endereço em cima. */
+   juntos na área visível, inclusive no Chrome com a barra de endereço em cima.
+   0.13.1 — O robô volta (o usuário sentiu falta dele), sem o resto da ilustração: pequeno, no
+   canto de cima do quadro, ao lado do título, sem somar altura. A cena vira `display: contents`
+   para o robô se posicionar pelo quadro; nos níveis 4 e 5 do fitWelcome ele some com a cena. */
 @media (max-width: 600px) {
-  :root[data-theme] .welcome .support-scene,
+  :root[data-theme] .welcome {
+    position: relative;
+  }
+  :root[data-theme] .welcome .support-scene {
+    display: contents;
+  }
+  :root[data-theme] .welcome .support-scene > :not(.desk-mascot),
   :root[data-theme] .welcome .welcome-tags {
+    display: none;
+  }
+  :root[data-theme] .welcome .support-scene .desk-mascot {
+    top: 10px;
+    right: 10px;
+    left: auto;
+    width: 52px;
+    height: 52px;
+    transform: none;
+    z-index: 1;
+  }
+  :root[data-theme] .welcome .support-scene .desk-mascot .robot {
+    width: 50px;
+    height: 50px;
+  }
+}
+/* Medido de 360 a 430 px: o título termina antes do robô. Abaixo de 340 px ele cobriria o título. */
+@media (max-width: 340px) {
+  :root[data-theme] .welcome .support-scene .desk-mascot {
     display: none;
   }
 }
