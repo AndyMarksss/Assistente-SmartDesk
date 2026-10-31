@@ -4,10 +4,10 @@
 
 ## Da hipótese à evidência: validando um assistente para pedir ajuda à TI de uma escola
 
-**Curso:** Graduação IA e Automação Digital
-**Disciplina:** Metodologias Ágeis e Validação de Produtos
-**Aluno:** Anderson Barbosa Marques da Silva
-**RA:** 16732
+**Curso:** Graduação IA e Automação Digital<br>
+**Disciplina:** Metodologias Ágeis e Validação de Produtos<br>
+**Aluno:** Anderson Barbosa Marques da Silva<br>
+**RA:** 16732<br>
 **Data:** 31 de outubro de 2026
 
 ## Links de acesso
