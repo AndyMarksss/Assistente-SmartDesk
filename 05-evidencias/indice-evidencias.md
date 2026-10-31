@@ -706,4 +706,13 @@ Primeira evidência de sessão com usuários reais. Os resultados calculados est
 
 - EVID-307: [fichas-sessoes-p01-p05-transcricao](EVID-307_fichas-sessoes-p01-p05-transcricao.md) — Transcrição das cinco fichas das sessões com usuários (P01 a P05), com todas as marcações, os pedidos, as frases e a conversa final. Sessão em grupo, até o resumo, sem enviar chamado; fichas digitadas pelos participantes; PDF original (datado de 28/10 por engano) fora do repositório, com o SHA-256 registrado na transcrição.
 
-Próxima evidência: EVID-308.
+## 2026-10-31 — Telas do README de entrega (0.13.1)
+
+Telas do chat publicado, com dados fictícios, usadas como figuras no README do case. Nenhum chamado foi enviado.
+
+- EVID-308: [abertura-chat-0-13-1](EVID-308_abertura-chat-0-13-1.png) — Tela inicial do chat publicado (0.13.1) para quem chega pela primeira vez: quadro de boas-vindas, "Olá! Sou o assistente do SmartDesk" e os botões Sim, vamos começar, Acompanhar um chamado e Como funciona?
+- EVID-309: [como-pedir-areas-ou-relato-0-13-1](EVID-309_como-pedir-areas-ou-relato-0-13-1.png) — Depois de nome, e-mail e setor: "Qual tipo de ajuda você precisa?" com as quatro áreas (Audiovisual, Impressora, Google, TI) e "Descrever com minhas palavras".
+- EVID-310: [rascunho-ia-evento-0-13-1](EVID-310_rascunho-ia-evento-0-13-1.png) — Relato da demonstração do vídeo (caixa de som e microfone para um evento no auditório na quinta, 5/11, às 14h, para 80 pessoas) e o rascunho da IA: "Entendi: …", Audiovisual › Caixa de Som / Microfone, data 05/11/2026 (quinta), 14:00, evento Sim e o link do roteiro como "Vou perguntar".
+- EVID-311: [resumo-antes-de-enviar-0-13-1](EVID-311_resumo-antes-de-enviar-0-13-1.png) — "Confira seu chamado antes de enviar" com todos os dados do mesmo pedido (os preenchidos pela IA marcados) e os botões Enviar chamado e Corrigir um dado. Nenhum chamado enviado.
+
+Próxima evidência: EVID-312.

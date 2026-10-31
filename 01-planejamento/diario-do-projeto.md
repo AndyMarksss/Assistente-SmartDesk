@@ -160,3 +160,6 @@ A aba *Sessões* não tem registro das sessões, então tempo e facilidade ficar
 
 ## 2026-10-31 — Vídeo pitch e PDF da entrega
 Vídeo de 3 min 58 s gravado e publicado no Google Drive com acesso por link, conferido numa janela anônima. Link no README do case, no README da raiz e em 07-pitch. O README da raiz ganhou o mapa da entrega (onde está cada item do enunciado), o README do case ganhou a imagem do Lean Canvas depois das sessões, e o PDF da entrega (README do case e parte teórica) está em 06-documentacao/case/smartdesk-entrega.pdf.
+
+## 2026-10-31 — Figuras do README de entrega
+O README do case ganhou 10 figuras numeradas: a planilha com as metas antes das sessões, quatro telas do chat publicado (0.13.1, dados fictícios, sem envio; EVID-308 a EVID-311), o ticket por e-mail, o painel, dois gráficos com os resultados das fichas e o Lean Canvas depois das sessões. O script do PDF também gera, na pasta de envio, um README.md autocontido com as imagens embutidas, para mandar junto com o PDF como pede o enunciado. As listas antigas de pendências saíram de pendencias.md.

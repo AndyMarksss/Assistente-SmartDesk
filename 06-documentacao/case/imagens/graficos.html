@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>SmartDesk · gráficos do case</title>
+<!-- Fonte dos gráficos do README do case. Abra com #metas (janela de 1200 × 460) ou #dispositivo (1200 × 384) e capture a tela.
+     Dados: fichas das sessões de 30/10/2026 (05-evidencias/EVID-307). Cinza é o padrão; a cor marca só o dado da mensagem. -->
+<style>
+  :root { --ink: #1d2230; --muted: #5b6172; --context: #8b919d; --accent: #6b4fd8; --rule: #3b4150; }
+  body { margin: 0; background: #ffffff; font-family: "Segoe UI", Arial, sans-serif; color: var(--ink); }
+  .chart { width: 1200px; box-sizing: border-box; padding: 36px 48px 28px; display: none; }
+  .chart:target { display: block; }
+  h1 { font-size: 28px; margin: 0 0 6px; font-weight: 700; }
+  .sub { font-size: 17px; color: var(--muted); margin: 0 0 18px; }
+  .note { font-size: 14px; color: var(--muted); margin: 10px 0 0; line-height: 1.45; }
+  svg text { font-family: "Segoe UI", Arial, sans-serif; }
+</style>
+</head>
+<body>
+<section class="chart" id="metas">
+  <h1>Das 5 metas, só “caminho certo” foi atingida</h1>
+  <p class="sub">Metas definidas antes das sessões × resultado nas 15 tarefas dos 5 participantes</p>
+  <svg id="g-metas" width="1104"></svg>
+  <p class="note">Tempo até enviar e facilidade no chat não foram medidos: as sessões pararam no resumo. A clareza das perguntas, anotada na ficha, ficou em 3,8 de 5 (a meta de facilidade era 4).<br>Fonte: fichas das sessões de 30/10/2026 (EVID-307).</p>
+</section>
+<section class="chart" id="dispositivo">
+  <h1>No computador, todas as tarefas saíram sem ajuda; no celular, 1 de 6</h1>
+  <p class="sub">Tarefas concluídas sem ajuda, por aparelho</p>
+  <svg id="g-dispositivo" width="1104"></svg>
+  <p class="note">As duas pessoas que usaram o celular também são as que usam pouca tecnologia, então não dá para separar os dois efeitos.<br>Fonte: fichas das sessões de 30/10/2026 (EVID-307).</p>
+</section>
+<script>
+  const NS = "http://www.w3.org/2000/svg";
+  function el(parent, tag, attrs, text) {
+    const n = document.createElementNS(NS, tag);
+    for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
+    if (text != null) n.textContent = text;
+    parent.appendChild(n);
+    return n;
+  }
+  // Barras horizontais com 0–100% e a linha da meta de 80%.
+  function bars(id, rows) {
+    const svg = document.getElementById(id);
+    const left = 330, right = 1104 - 150, top = 34, band = 76, bar = 40;
+    svg.setAttribute("height", top + band * rows.length - 10);
+    const x = (v) => left + (right - left) * (v / 100);
+    el(svg, "line", { x1: left, x2: left, y1: top - 8, y2: top + band * rows.length - 20, stroke: "#c9ccd6", "stroke-width": 1 });
+    rows.forEach((r, i) => {
+      const y = top + i * band;
+      el(svg, "text", { x: left - 18, y: y + bar / 2 - 2, "text-anchor": "end", "font-size": 19, fill: "var(--ink)", "font-weight": r.hi ? 700 : 400 }, r.label);
+      el(svg, "text", { x: left - 18, y: y + bar / 2 + 20, "text-anchor": "end", "font-size": 14, fill: "var(--muted)" }, r.detail);
+      const w = Math.max(x(r.value) - left, 6);
+      // ponta arredondada de 4 px só no fim da barra, presa à linha de base
+      el(svg, "path", { d: `M${left},${y} h${w - 4} a4,4 0 0 1 4,4 v${bar - 8} a4,4 0 0 1 -4,4 h${-(w - 4)} z`, fill: r.hi ? "var(--accent)" : "var(--context)" });
+      el(svg, "text", { x: left + w + 12, y: y + bar / 2 + 7, "font-size": 20, "font-weight": 700, fill: "var(--ink)" }, r.text);
+    });
+    const mx = x(80), bottom = top + band * rows.length - 20;
+    el(svg, "line", { x1: mx, x2: mx, y1: top - 14, y2: bottom, stroke: "var(--rule)", "stroke-width": 2, "stroke-dasharray": "6 5" });
+    el(svg, "text", { x: mx, y: top - 20, "text-anchor": "middle", "font-size": 15, fill: "var(--ink)", "font-weight": 600 }, "meta: 80%");
+  }
+  bars("g-metas", [
+    { label: "Chegaram ao caminho certo", detail: "13 de 15 tarefas", value: 87, text: "87%", hi: true },
+    { label: "Concluíram sem ajuda", detail: "10 de 15 tarefas", value: 67, text: "67%" },
+    { label: "Usariam no dia a dia", detail: "3 de 5 pessoas", value: 60, text: "60%" },
+  ]);
+  bars("g-dispositivo", [
+    { label: "Computador", detail: "3 pessoas, 9 tarefas", value: 100, text: "9 de 9" },
+    { label: "Celular", detail: "2 pessoas, 6 tarefas", value: 100 / 6, text: "1 de 6", hi: true },
+  ]);
+  if (!location.hash) document.querySelectorAll(".chart").forEach((c) => (c.style.display = "block"));
+</script>
+</body>
+</html>

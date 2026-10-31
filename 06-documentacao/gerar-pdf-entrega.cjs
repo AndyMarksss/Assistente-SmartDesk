@@ -1,7 +1,8 @@
 "use strict";
 // Gera o PDF da entrega (README do case + parte teórica) pelo Edge, a partir dos Markdown do repositório.
-// Uso, na raiz do repositório: node 06-documentacao/gerar-pdf-entrega.cjs
-// Os links relativos viram endereços do GitHub e as imagens vão embutidas no PDF.
+// Uso, na raiz do repositório: node 06-documentacao/gerar-pdf-entrega.cjs [pasta-de-envio]
+// Os links relativos viram endereços do GitHub e as imagens vão embutidas. Com uma pasta, grava nela
+// a cópia do PDF e um README.md autocontido (imagens embutidas), para enviar junto com o PDF.
 const fs = require("node:fs");
 const os = require("node:os");
 const path = require("node:path");
@@ -112,11 +113,37 @@ table { width: 100%; border-collapse: collapse; margin: 6px 0 10px; font-size: 9
 blockquote { margin: 8px 0; padding: 6px 12px; border-left: 3px solid #6b4fd8; background: #f6f4fd; } code { font: 9pt Consolas, monospace; background: #f1eefc; padding: 0 3px; border-radius: 3px; }
 a { color: #4a33b8; text-decoration: none; } img { max-width: 100%; } .break { page-break-before: always; } hr { border: 0; border-top: 1px solid #ddd; }
 h1, h2, h3 { break-after: avoid; page-break-after: avoid; } img, blockquote { break-inside: avoid; }
+p:not([align]) > img:only-child { display: block; margin: 8px auto 0; border: 1px solid #d9dbe3; } p > em:only-child { display: block; text-align: center; font-size: 9pt; color: #5b6172; }
 </style></head><body>${body}</body></html>`;
 const tmpHtml = path.join(os.tmpdir(), "smartdesk-entrega.html");
 fs.writeFileSync(tmpHtml, html);
 if (fs.existsSync(outPdf)) fs.unlinkSync(outPdf);
 execFileSync(EDGE, ["--headless=new", "--disable-gpu", "--no-pdf-header-footer", "--print-to-pdf=" + path.resolve(outPdf), "file:///" + tmpHtml.replace(/\\/g, "/")], { stdio: "ignore" });
 const t0 = Date.now();
-while (!fs.existsSync(outPdf) && Date.now() - t0 < 30000) execFileSync(process.execPath, ["-e", "setTimeout(()=>{},300)"]);
-console.log(fs.existsSync(outPdf) ? "PDF: " + outPdf : "PDF não apareceu");
+const pause = () => execFileSync(process.execPath, ["-e", "setTimeout(()=>{},300)"]);
+// o Edge devolve antes de terminar de gravar: espera o arquivo existir e parar de crescer
+let size = -1;
+while (Date.now() - t0 < 30000) {
+  pause();
+  const now = fs.existsSync(outPdf) ? fs.statSync(outPdf).size : -1;
+  if (now > 0 && now === size) break;
+  size = now;
+}
+if (!fs.existsSync(outPdf)) throw Error("PDF não apareceu");
+console.log("PDF: " + outPdf);
+
+// README autocontido: as imagens viram data URI e os links relativos apontam para o GitHub.
+function standalone(rel) {
+  return fs
+    .readFileSync(path.join(ROOT, rel), "utf8")
+    .replace(/src="([^"]+)"/g, (m, src) => (/^(https?:|data:)/.test(src) ? m : 'src="' + image(src, rel) + '"'))
+    .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (_, alt, src) => "![" + alt + "](" + image(src, rel) + ")")
+    .replace(/(^|[^!])\[([^\]]+)\]\(([^)]+)\)/g, (_, pre, text, href) => pre + "[" + text + "](" + link(href, rel) + ")");
+}
+const dest = process.argv[2];
+if (dest) {
+  fs.mkdirSync(dest, { recursive: true });
+  fs.copyFileSync(outPdf, path.join(dest, "Documentação Metodologias Ágeis e Validação de Produtos - Anderson Barbosa Marques da Silva (16732).pdf"));
+  fs.writeFileSync(path.join(dest, "README.md"), standalone(inputs[0]));
+  console.log("Envio: " + path.resolve(dest));
+}

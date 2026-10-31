@@ -42,6 +42,10 @@ Na escola onde trabalho no suporte de TI, os pedidos chegam por quatro formulár
 - critério da hipótese de problema e casos que faltavam na regra aprovados em 29/10;
 - sessões em 30/10.
 
+![Figura 1. Hipótese e metas na planilha antes das sessões](../../05-evidencias/EVID-216_hipotese-e-metas-antes-dos-testes.png)
+
+*Figura 1. A hipótese e as metas escritas na planilha em 19/10/2026, antes de qualquer sessão: os indicadores ainda estão zerados (EVID-216).*
+
 **Regra de decisão:**
 
 | Resultado | Decisão |
@@ -63,6 +67,32 @@ Em defeitos simples, aparecem passos seguros para tentar antes de abrir o chamad
 - **Limites da IA:** a IA não conversa livremente, não muda a escolha da pessoa e não recebe nome, e-mail nem anexos. Toda sugestão passa por confirmação.
 - **Fluxo completo:** [árvore de decisões e passo a passo](../fluxo/README.md).
 - **Lean Canvas:** [antes e depois das sessões](../canvas/README.md).
+
+**O SmartDesk em telas** (versão 0.13.1 publicada, com dados fictícios; nenhum chamado foi enviado nessas capturas):
+
+![Figura 2. Tela inicial do chat](../../05-evidencias/EVID-308_abertura-chat-0-13-1.png)
+
+*Figura 2. Tela inicial do chat: a pessoa começa um pedido, acompanha um chamado ou vê como funciona (EVID-308).*
+
+![Figura 3. Como pedir: pelas áreas ou com as próprias palavras](../../05-evidencias/EVID-309_como-pedir-areas-ou-relato-0-13-1.png)
+
+*Figura 3. Depois de nome, e-mail e setor, a pessoa escolhe a área pelos botões ou conta o que precisa com as próprias palavras (EVID-309).*
+
+![Figura 4. Rascunho montado pela IA](../../05-evidencias/EVID-310_rascunho-ia-evento-0-13-1.png)
+
+*Figura 4. A IA diz o que entendeu e monta o rascunho com a data, o horário e o evento. O que ainda falta fica como "Vou perguntar" (EVID-310).*
+
+![Figura 5. Resumo antes de enviar](../../05-evidencias/EVID-311_resumo-antes-de-enviar-0-13-1.png)
+
+*Figura 5. A pessoa confere tudo antes de enviar e pode corrigir qualquer dado. Os campos preenchidos pela IA levam uma marca (EVID-311).*
+
+![Figura 6. Ticket por e-mail](../../05-evidencias/EVID-301_email-ticket-abertura-0-13-0.png)
+
+*Figura 6. O ticket que chega ao e-mail de quem abriu o chamado, num teste real com o chamado #030. O e-mail não leva o texto do pedido (EVID-301).*
+
+![Figura 7. Painel de gestão da TI](../../05-evidencias/EVID-302_painel-030-em-atendimento-0-13-0.webp)
+
+*Figura 7. O painel da equipe de TI: chamados por etapa, com arrastar e soltar. Nomes de outras pessoas aparecem abreviados (EVID-302).*
 
 **O MVP ficou maior que o necessário:** construí um fluxo completo antes de ouvir usuários. Isso custou tempo e, como os resultados mostraram, parte desse esforço foi para uma forma de solução que não passou no teste. Esse é o primeiro aprendizado do case (seção 8).
 
@@ -113,6 +143,10 @@ Números completos em [`resultados-sessoes-2026-10-30.md`](../../04-validacao/re
 | Facilidade ≥ 4 | Não medida pela nota do chat; a clareza das perguntas, na ficha, deu média 3,8 | Não |
 | Usariam de novo ≥ 80% | 3 de 5 (60%) | Não |
 
+![Figura 8. Das 5 metas, só caminho certo foi atingida](imagens/grafico-metas.png)
+
+*Figura 8. As três metas medidas em porcentagem, com a linha da meta de 80%. Tempo e facilidade não foram medidos.*
+
 **Outros dados:**
 - **Comparação com o jeito de hoje:** 2 acharam mais fácil, 2 igual e 1 mais difícil.
 - **Recomendação de 0 a 10:** média 7,4 (notas 9, 9, 8, 6 e 5).
@@ -125,6 +159,10 @@ Números completos em [`resultados-sessoes-2026-10-30.md`](../../04-validacao/re
 | Celular (2 pessoas, 6 tarefas) | 1 de 6 | 5 de 6 | 3,0 | 1 de 6 |
 
 As duas pessoas do celular também são as de pouco uso de tecnologia, então não dá para separar os dois efeitos.
+
+![Figura 9. Tarefas sem ajuda no computador e no celular](imagens/grafico-dispositivo.png)
+
+*Figura 9. Tarefas concluídas sem ajuda, por aparelho: 9 de 9 no computador e 1 de 6 no celular.*
 
 **O que se repetiu em 2 ou mais pessoas:**
 - **Opções exclusivas de um setor não foram encontradas:** QuickBooks e Câmeras. Os dois foram parar em "Outros", e são os dois únicos caminhos errados.
@@ -144,7 +182,9 @@ As duas pessoas do celular também são as de pouco uso de tecnologia, então n�
 
 No Lean Canvas, cada bloco recebeu o resultado das sessões ([versão de antes, só com as hipóteses](../canvas/README.md)):
 
-![Lean Canvas depois das sessões: problema confirmado, solução não passou, decisão pivotar](../canvas/lean-canvas-pos-sessoes.png)
+![Figura 10. Lean Canvas depois das sessões](../canvas/lean-canvas-pos-sessoes.png)
+
+*Figura 10. Lean Canvas depois das sessões: problema confirmado, solução por categorias não passou, decisão de pivotar.*
 
 ## 7. Decisão: pivotar
 

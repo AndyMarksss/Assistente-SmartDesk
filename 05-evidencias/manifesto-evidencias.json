@@ -1,8 +1,8 @@
 {
   "versao": 1,
   "projeto": "SmartDesk",
-  "atualizado_em": "2026-10-30",
-  "proximo_numero": 308,
+  "atualizado_em": "2026-10-31",
+  "proximo_numero": 312,
   "evidencias": [
     {
       "numero": "EVID-001",
@@ -3693,6 +3693,54 @@
       "origem": "PDF das fichas enviado pelo usuário; transcrição pelo assistente, com as marcações lidas da imagem de cada caixinha",
       "sha256": "036D6C990856D2DF3B7E24FBE813D6C9B959A56CF44998C66AB24A2F81E9E150",
       "status": "resultado de sessão com usuários reais (com as limitações registradas)"
+    },
+    {
+      "numero": "EVID-308",
+      "arquivo": "EVID-308_abertura-chat-0-13-1.png",
+      "etapa": "README de entrega — SmartDesk 0.13.1 no Pages (31/10/2026)",
+      "descricao": "Tela inicial do chat publicado (0.13.1) para quem chega pela primeira vez: quadro de boas-vindas, \"Olá! Sou o assistente do SmartDesk\" e os botões Sim, vamos começar, Acompanhar um chamado e Como funciona?",
+      "data_aproximada": "2026-10-31",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-31",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), GitHub Pages 0.13.1 com o Apps Script @35 e o Gemini real; dados fictícios (Ana Teste, ana.teste@exemplo.com)",
+      "sha256": "D3B0EA2E886EAC8C82D528D47227F6413A9846F160911A15217D90C9A604FD0C",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-309",
+      "arquivo": "EVID-309_como-pedir-areas-ou-relato-0-13-1.png",
+      "etapa": "README de entrega — SmartDesk 0.13.1 no Pages (31/10/2026)",
+      "descricao": "Depois de nome, e-mail e setor: \"Qual tipo de ajuda você precisa?\" com as quatro áreas (Audiovisual, Impressora, Google, TI) e \"Descrever com minhas palavras\".",
+      "data_aproximada": "2026-10-31",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-31",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), GitHub Pages 0.13.1 com o Apps Script @35 e o Gemini real; dados fictícios (Ana Teste, ana.teste@exemplo.com)",
+      "sha256": "65612087EBEBCF6FECEFE23834B4A5FFB889747A7FD68E049651A127FDB379DD",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-310",
+      "arquivo": "EVID-310_rascunho-ia-evento-0-13-1.png",
+      "etapa": "README de entrega — SmartDesk 0.13.1 no Pages (31/10/2026)",
+      "descricao": "Relato da demonstração do vídeo (caixa de som e microfone para um evento no auditório na quinta, 5/11, às 14h, para 80 pessoas) e o rascunho da IA: \"Entendi: …\", Audiovisual › Caixa de Som / Microfone, data 05/11/2026 (quinta), 14:00, evento Sim e o link do roteiro como \"Vou perguntar\".",
+      "data_aproximada": "2026-10-31",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-31",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), GitHub Pages 0.13.1 com o Apps Script @35 e o Gemini real; dados fictícios (Ana Teste, ana.teste@exemplo.com)",
+      "sha256": "C68E3053304F255652CF1E38248FC5282F24A285FFD35EFF0417B2A0C7E3368C",
+      "status": "verificação técnica; não é validação com usuários"
+    },
+    {
+      "numero": "EVID-311",
+      "arquivo": "EVID-311_resumo-antes-de-enviar-0-13-1.png",
+      "etapa": "README de entrega — SmartDesk 0.13.1 no Pages (31/10/2026)",
+      "descricao": "\"Confira seu chamado antes de enviar\" com todos os dados do mesmo pedido (os preenchidos pela IA marcados) e os botões Enviar chamado e Corrigir um dado. Nenhum chamado enviado.",
+      "data_aproximada": "2026-10-31",
+      "fundamento_data": "Capturas do assistente nesta sessão",
+      "data_inclusao": "2026-10-31",
+      "origem": "Edge sem janela controlado pelo assistente (CDP), GitHub Pages 0.13.1 com o Apps Script @35 e o Gemini real; dados fictícios (Ana Teste, ana.teste@exemplo.com)",
+      "sha256": "649A24DB5402363F3D1958768EDEACD72C3F241EC601BC56385CB6C28B78E15A",
+      "status": "verificação técnica; não é validação com usuários"
     }
   ]
 }
