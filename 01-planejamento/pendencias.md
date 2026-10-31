@@ -1,8 +1,8 @@
 # Pendências
 
-## O que falta para a entrega (atualizado em 30/10/2026; prazo: 31/10 às 23h59)
+## O que falta para a entrega (atualizado em 31/10/2026; prazo: 31/10 às 23h59)
 
-O enunciado pede três entregáveis: parte teórica, parte prática e vídeo pitch. A parte teórica, o Lean Canvas e o protótipo estão prontos. O resto segue uma ordem, porque cada etapa depende da anterior:
+O enunciado pede três entregáveis: parte teórica, parte prática e vídeo pitch. Os três estão prontos, e o PDF foi gerado; falta só enviar. A ordem seguida foi esta, porque cada etapa dependia da anterior:
 
 **sessões → parte prática → roteiro do vídeo → gravação → PDF e envio**
 
@@ -26,10 +26,10 @@ O enunciado pede três entregáveis: parte teórica, parte prática e vídeo pit
 - [x] (30/10: problema confirmado, 1 meta atingida → **pivotar**, decisão do autor) Contar a hipótese de problema e aplicar a [regra de decisão](../06-documentacao/parte-teorica-hipoteses-e-validacao.md#7-regra-de-decisão-definida-antes-das-sessões). Com exatamente 2 de 5, fazer a conversa final com mais 3 pessoas antes de seguir.
 - [x] (30/10, rascunho; a decisão continua aberta) Escrever a síntese no [diário de validação](../04-validacao/registros/diario-validacao.md): padrões em 2 ou mais pessoas, observado separado de interpretado e comparação entre hipóteses e resultados.
 - [x] (EVID-307) Guardar as evidências das sessões em `05-evidencias` (prints da planilha e fichas, só com os códigos P01…).
-- [ ] Exportar a planilha para `04-validacao/resultados` e só depois rodar `removerChamadosDosParticipantes`.
+- [x] Não se aplica: a planilha fica fora do repositório (a aba *Chamados* tem nomes e e-mails), e as sessões não geraram chamados nem linhas na aba *Sessões*. Rodar `removerChamadosDosParticipantes` (tira o chamado de teste #030) é opcional e pode ficar para depois da avaliação.
 - [x] (30/10, `canvas/lean-canvas-pos-sessoes.png`) Marcar no Lean Canvas o que se confirmou.
 - [x] Não se aplica: com a decisão de pivotar, o protótipo entregue é a versão testada (0.13.1), sem ajustes.
-- [x] (30/10, rascunho em `06-documentacao/case/README.md`; falta só o link do vídeo) Escrever o README de entrega do case.
+- [x] (30/10, `06-documentacao/case/README.md`; link do vídeo em 31/10) Escrever o README de entrega do case.
 
 ### 4. Roteiro do vídeo
 
@@ -37,13 +37,13 @@ O enunciado pede três entregáveis: parte teórica, parte prática e vídeo pit
 
 ### 5. Gravação
 
-- [ ] Gravar e publicar com link (YouTube não listado, Loom ou Google Drive) e abrir o link numa janela anônima.
-- [ ] Pôr o link do vídeo no README de entrega e no README da raiz.
+- [x] (31/10, Google Drive, 3 min 58 s, conferido numa janela anônima) Gravar e publicar com link (YouTube não listado, Loom ou Google Drive) e abrir o link numa janela anônima.
+- [x] (31/10) Pôr o link do vídeo no README de entrega e no README da raiz.
 
 ### 6. PDF e envio
 
-- [ ] Gerar o PDF da entrega, com a parte teórica, a parte prática e os links do sistema e do vídeo, como na entrega anterior do curso.
-- [ ] Enviar.
+- [x] (31/10, `06-documentacao/case/smartdesk-entrega.pdf`) Gerar o PDF da entrega, com a parte teórica, a parte prática e os links do sistema e do vídeo, como na entrega anterior do curso.
+- [ ] Enviar (autor): PDF e links na plataforma da faculdade, até 31/10 às 23h59.
 
 ## Histórico
 

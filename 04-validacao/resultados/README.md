@@ -1,6 +1,6 @@
 # Resultados da validação com usuários
 
-**Sessões de 30/10/2026:** números em [`resultados-sessoes-2026-10-30.md`](resultados-sessoes-2026-10-30.md), a partir das fichas transcritas em [EVID-307](../../05-evidencias/EVID-307_fichas-sessoes-p01-p05-transcricao.md). Ninguém enviou chamado, então as abas *Validação — Tarefas* e *Validação — Resumo* não puxam nada: os números vêm das fichas e, para o tempo, da aba *Sessões*. A planilha inteira não vem para cá, porque a aba *Chamados* tem nomes e e-mails; só os dados anônimos da aba *Sessões*.
+**Sessões de 30/10/2026:** números em [`resultados-sessoes-2026-10-30.md`](resultados-sessoes-2026-10-30.md), a partir das fichas transcritas em [EVID-307](../../05-evidencias/EVID-307_fichas-sessoes-p01-p05-transcricao.md). Ninguém enviou chamado, então as abas *Validação — Tarefas* e *Validação — Resumo* não puxam nada. A aba *Sessões* também não registrou essas sessões (a causa não foi identificada), então todos os números vêm das fichas e o tempo não foi medido. A planilha não vem para cá, porque a aba *Chamados* tem nomes e e-mails.
 
 Os dados das sessões ficam na planilha do SmartDesk (Google Planilhas), em quatro abas:
 
@@ -15,4 +15,4 @@ A hipótese de problema não está na planilha: conte-a pelas fichas ("Relatou d
 
 As abas de validação são criadas pela função `prepararPlanilhaDeValidacao` (arquivo *Validacao* do Apps Script); a aba Sessões aparece no primeiro atendimento.
 
-Ao terminar, baixe a planilha (Arquivo → Fazer download → Microsoft Excel) para esta pasta, com a data no nome, e registre as evidências. O roteiro completo está em [`../roteiros/roteiro-sessao-usuarios.md`](../roteiros/roteiro-sessao-usuarios.md).
+Numa próxima rodada, baixe a planilha (Arquivo → Fazer download → Microsoft Excel) para fora do repositório e traga para cá só os dados anônimos da aba *Sessões*, com a data no nome. O roteiro completo está em [`../roteiros/roteiro-sessao-usuarios.md`](../roteiros/roteiro-sessao-usuarios.md).

@@ -13,6 +13,27 @@ Projeto acadêmico da disciplina **Metodologias Ágeis e Validação de Produtos
 
 > Para testar, basta abrir o link do chat. Use dados fictícios: os chamados de teste chegam à planilha real da equipe de TI.
 
+## Entrega da disciplina
+
+| Entregável do enunciado | Onde está |
+|---|---|
+| **1. Parte teórica:** hipóteses e estratégia de validação | [`parte-teorica-hipoteses-e-validacao.md`](06-documentacao/parte-teorica-hipoteses-e-validacao.md) |
+| **2. Parte prática:** README do case, com problema, hipóteses, experimento, evidências, resultados, aprendizados e decisão final | [`06-documentacao/case/README.md`](06-documentacao/case/README.md) |
+| **3. Vídeo pitch** (3 min 58 s) | <https://drive.google.com/file/d/1hxUTYfH406xa7dd3I3ivs85zVpHdv-Vp/view> |
+| PDF com as partes teórica e prática | [`smartdesk-entrega.pdf`](06-documentacao/case/smartdesk-entrega.pdf) |
+
+Onde está cada item que o enunciado pede na parte prática:
+
+| Item | Onde está |
+|---|---|
+| Canvas de Produto | [Lean Canvas antes e depois das sessões](06-documentacao/canvas/README.md) |
+| Protótipo | O [chat](https://andymarksss.github.io/Assistente-SmartDesk/) publicado e o código em [`03-prototipo`](03-prototipo/README.md) |
+| Validação com 5 usuários reais | [Experimento](06-documentacao/case/README.md#4-experimento), sessões de 30/10/2026 |
+| Evidências e dados coletados | [Fichas das sessões transcritas (EVID-307)](05-evidencias/EVID-307_fichas-sessoes-p01-p05-transcricao.md) e [resultados com os números](04-validacao/resultados/resultados-sessoes-2026-10-30.md) |
+| Síntese dos feedbacks e padrões | [Diário de validação](04-validacao/registros/diario-validacao.md) e a [seção 5 do case](06-documentacao/case/README.md#5-evidências-e-resultados) |
+| Hipótese × resultados | [Seção 6 do case](06-documentacao/case/README.md#6-hipótese--resultado) |
+| Decisão final justificada | [Seção 7 do case](06-documentacao/case/README.md#7-decisão-pivotar): **pivotar** |
+
 ## O problema
 
 Na escola, os pedidos à TI chegam por quatro formulários separados (Audiovisual, Impressora, Google e TI) e também por WhatsApp, e-mail e pessoalmente. A pessoa precisa saber em qual pedir e quais dados informar, como data, horário e local de um evento, ou o modelo da impressora e a mensagem de erro. Quando escolhe o formulário errado ou esquece um dado, a TI precisa voltar a falar com ela antes de começar a atender.
@@ -78,8 +99,8 @@ Lean Canvas: [`06-documentacao/canvas`](06-documentacao/canvas/README.md). Rotei
 | [`03-prototipo`](03-prototipo/README.md) | Código do chat, do painel, do servidor local e do Apps Script; CHANGELOG e relatórios de verificação |
 | [`04-validacao`](04-validacao/README.md) | Roteiro das sessões, fichas, resultados e avaliação técnica da IA |
 | [`05-evidencias`](05-evidencias/README.md) | Prints e registros numerados (EVID-###) de cada etapa |
-| [`06-documentacao`](06-documentacao/README.md) | Parte teórica, Lean Canvas, árvore de decisões do atendimento e, ao final, o README de entrega do case |
-| [`07-pitch`](07-pitch/README.md) | Roteiro e materiais do vídeo pitch |
+| [`06-documentacao`](06-documentacao/README.md) | Parte teórica, Lean Canvas, árvore de decisões do atendimento, README de entrega do case e PDF da entrega |
+| [`07-pitch`](07-pitch/README.md) | Link e roteiro do vídeo pitch |
 | [`08-referencias`](08-referencias/README.md) | Fontes e referências usadas |
 
 `AGENTS.md` traz as instruções de trabalho usadas pelos assistentes de IA que ajudaram a construir o protótipo.

@@ -14,8 +14,10 @@
 
 - **Protótipo (chat):** <https://andymarksss.github.io/Assistente-SmartDesk/>
 - **Painel de gestão da TI:** <https://andymarksss.github.io/Assistente-SmartDesk/admin.html>
-- **Vídeo pitch (até 4 minutos):** *link a incluir depois da gravação*
+- **Repositório (código, evidências e documentação):** <https://github.com/AndyMarksss/Assistente-SmartDesk>
+- **Vídeo pitch (3 min 58 s):** <https://drive.google.com/file/d/1hxUTYfH406xa7dd3I3ivs85zVpHdv-Vp/view>
 - **Parte teórica (hipóteses e estratégia de validação):** [`parte-teorica-hipoteses-e-validacao.md`](../parte-teorica-hipoteses-e-validacao.md)
+- **PDF da entrega (este README e a parte teórica):** [`smartdesk-entrega.pdf`](smartdesk-entrega.pdf)
 
 > Resumo: o problema se confirmou (5 de 5 funcionários relataram dificuldade para pedir ajuda à TI), mas a solução testada, um chat que guia por 57 categorias, só atingiu 1 das 5 metas definidas antes do teste. Pela regra de decisão aprovada antes das sessões, a decisão é **pivotar**: manter o problema e trocar a forma da solução por uma entrada única em que a pessoa conta o que precisa e a IA monta o pedido.
 
@@ -139,6 +141,10 @@ As duas pessoas do celular também são as de pouco uso de tecnologia, então n�
 | Problema | **Confirmada** | 5 de 5 relataram dificuldade, acima do critério de 3 de 5 |
 | Solução | **Não confirmada** | O caminho certo passou (87%), mas sem ajuda ficou em 67% e o tempo não foi medido. Os erros vieram da navegação por categorias, e quase toda a ajuda foi no celular |
 | Valor | **Não confirmada** | Só 60% usariam no dia a dia, e a clareza ficou em 3,8. Mesmo assim, ninguém preferiu claramente o jeito atual: 1 de 5 achou mais difícil |
+
+No Lean Canvas, cada bloco recebeu o resultado das sessões ([versão de antes, só com as hipóteses](../canvas/README.md)):
+
+![Lean Canvas depois das sessões: problema confirmado, solução não passou, decisão pivotar](../canvas/lean-canvas-pos-sessoes.png)
 
 ## 7. Decisão: pivotar
 

@@ -2,6 +2,17 @@
 
 Prints e registros de cada etapa do projeto, numerados em sequência (**EVID-001** a **EVID-307** até 30/10/2026). Eles mostram o que foi construído, testado e decidido, e quando.
 
+## As que importam para a validação
+
+| Evidência | O que mostra |
+|---|---|
+| [EVID-216](EVID-216_hipotese-e-metas-antes-dos-testes.png) | Hipótese e metas escritas na planilha em 19/10/2026, antes de qualquer sessão (indicadores zerados) |
+| [EVID-212](EVID-212_planilha-validacao-criada.png) a [EVID-214](EVID-214_aba-participantes.png) | Planilha de validação preparada: rodízio de 15 tarefas e participantes P01 a P05 |
+| [EVID-307](EVID-307_fichas-sessoes-p01-p05-transcricao.md) | **As cinco fichas das sessões com usuários reais (30/10/2026)**, transcritas com todas as marcações e falas |
+| [EVID-301](EVID-301_email-ticket-abertura-0-13-0.png) a [EVID-306](EVID-306_acompanhamento-030-agendado-0-13-0.webp) | O protótipo testado funcionando de ponta a ponta: ticket por e-mail, mudança de etapa no painel e acompanhamento |
+
+As demais registram a construção do protótipo, versão a versão.
+
 | Arquivo | Para que serve |
 |---|---|
 | [`indice-evidencias.md`](indice-evidencias.md) | Lista de todas as evidências, com etapa, descrição e origem. Comece por aqui. |

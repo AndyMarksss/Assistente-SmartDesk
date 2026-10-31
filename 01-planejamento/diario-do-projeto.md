@@ -2,9 +2,9 @@
 
 Registro das etapas na ordem em que aconteceram (até 28/10/2026 era o LEIA-ME.md da raiz). Os trechos antigos descrevem o estado *daquele momento*; a visão atual do projeto está no [README da raiz](../README.md) e a lista de mudanças por versão no [CHANGELOG do protótipo](../03-prototipo/CHANGELOG.md).
 
-## Situação em 29/10/2026
+## Situação em 31/10/2026
 
-Protótipo 0.12.18 publicado (GitHub Pages e Apps Script) e 0.13.0 (ticket por e-mail) publicadas. Parte teórica e Lean Canvas prontos para as sessões, com os critérios de decisão aprovados antes delas, e kit das sessões revisado. Sessões com 5 usuários feitas em 30/10 (resultados em 04-validacao) e decisão: pivotar. README do case, Canvas depois das sessões e roteiro do vídeo em rascunho. Faltam a gravação do vídeo e o PDF da entrega (prazo: 31/10 às 23h59). A lista está em [`pendencias.md`](pendencias.md).
+Protótipo 0.13.1 publicado (GitHub Pages; Apps Script na 0.13.0, com o ticket por e-mail). Parte teórica e Lean Canvas escritos antes das sessões, com os critérios de decisão aprovados antes delas. Sessões com 5 usuários feitas em 30/10 (resultados em 04-validacao) e decisão: pivotar. README do case, Canvas depois das sessões, vídeo pitch (3 min 58 s) e PDF da entrega prontos; falta só o envio, até 31/10 às 23h59. A lista está em [`pendencias.md`](pendencias.md).
 
 ## Início do projeto (30/09/2026)
 
@@ -153,7 +153,10 @@ Ticket por e-mail na abertura e um aviso a cada mudança de etapa, só com núme
 O ensaio no celular (P00) correu bem e pediu o robô de volta no quadro de boas-vindas: ele volta pequeno, no canto, sem tirar a primeira mensagem da tela. Kit de impressão das sessões (recrutamento, guia, fichas P01 a P05 e cartões) em 04-validacao/registros. Verificação em 03-prototipo/verificacoes/verificacao-v0.13.1.md.
 
 ## 2026-10-30 — Sessões com usuários
-Cinco funcionários de quatro setores testaram o SmartDesk juntos numa sala, cada um com o próprio link, até o resumo e sem enviar o chamado, e digitaram as fichas. A hipótese de problema se confirmou (5 de 5 relataram dificuldade no jeito atual). Das metas, só "caminho certo" foi atingida com certeza (87%); sem ajuda ficou em 67%, a clareza em 3,8 e "usariam de novo" em 60%, e o tempo ficou para a aba *Sessões*. O padrão mais forte: no computador, tudo sem ajuda; no celular, com pouco uso de tecnologia, quase tudo com ajuda. Evidência EVID-307; números em 04-validacao/resultados/resultados-sessoes-2026-10-30.md; síntese em 04-validacao/registros/diario-validacao.md.
+Cinco funcionários de quatro setores testaram o SmartDesk juntos numa sala, pelo link sem código de participante, até o resumo e sem enviar o chamado, e digitaram as fichas. A hipótese de problema se confirmou (5 de 5 relataram dificuldade no jeito atual). Das metas, só "caminho certo" foi atingida com certeza (87%); sem ajuda ficou em 67%, a clareza em 3,8 e "usariam de novo" em 60%, e o tempo ficou para a aba *Sessões*. O padrão mais forte: no computador, tudo sem ajuda; no celular, com pouco uso de tecnologia, quase tudo com ajuda. Evidência EVID-307; números em 04-validacao/resultados/resultados-sessoes-2026-10-30.md; síntese em 04-validacao/registros/diario-validacao.md.
 
 ## 2026-10-30 — Decisão: pivotar
 A aba *Sessões* não tem registro das sessões, então tempo e facilidade ficaram sem medida. Pela regra definida antes, com o problema confirmado e só uma meta atingida, a decisão é pivotar. Rascunhos do README do case (06-documentacao/case), do Lean Canvas depois das sessões e do roteiro do vídeo (07-pitch/roteiro).
+
+## 2026-10-31 — Vídeo pitch e PDF da entrega
+Vídeo de 3 min 58 s gravado e publicado no Google Drive com acesso por link, conferido numa janela anônima. Link no README do case, no README da raiz e em 07-pitch. O README da raiz ganhou o mapa da entrega (onde está cada item do enunciado), o README do case ganhou a imagem do Lean Canvas depois das sessões, e o PDF da entrega (README do case e parte teórica) está em 06-documentacao/case/smartdesk-entrega.pdf.
