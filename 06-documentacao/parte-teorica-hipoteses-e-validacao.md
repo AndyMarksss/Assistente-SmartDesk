@@ -1,8 +1,8 @@
 # SmartDesk — Hipóteses e Estratégia de Validação
 
-**Curso:** Graduação IA e Automação Digital
-**Disciplina:** Metodologias Ágeis e Validação de Produtos
-**Aluno:** Anderson Barbosa Marques da Silva — RA 16732
+**Curso:** Graduação IA e Automação Digital<br>
+**Disciplina:** Metodologias Ágeis e Validação de Produtos<br>
+**Aluno:** Anderson Barbosa Marques da Silva — RA 16732<br>
 **Entrega:** Parte teórica (escrita em 28 e 29/10/2026, antes das sessões com usuários)
 
 > Tudo aqui foi escrito antes da primeira sessão com usuários. A regra de decisão (seção 7) foi aprovada em 28/10/2026; o critério da hipótese de problema (seção 6) e os casos que faltavam na regra foram aprovados em 29/10/2026. O que ainda não foi medido aparece como suposição, junto com a forma de conferir. Os resultados das sessões de 30/10/2026 e a decisão (pivotar) estão no [README do case](case/README.md).

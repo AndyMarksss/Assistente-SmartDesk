@@ -51,7 +51,7 @@ Na escola onde trabalho no suporte de TI, os pedidos chegam por quatro formulár
 | Resultado | Decisão |
 |---|---|
 | Problema confirmado e pelo menos 4 das 5 metas, incluindo "sem ajuda" e "caminho certo" | Perseverar |
-| Problema confirmado, mas só 2 ou 3 metas | Ajustar |
+| Problema confirmado, mas só 2 ou 3 metas, ou 4 sem "sem ajuda" ou sem "caminho certo" | Ajustar |
 | Problema confirmado, mas "usariam" < 50%, a maioria prefere o jeito atual ou no máximo 1 meta | **Pivotar** |
 | No máximo 1 de 5 relata dificuldade | Abandonar |
 | Exatamente 2 de 5 relatam dificuldade | Inconclusivo: mais 3 pessoas |
@@ -178,7 +178,7 @@ As duas pessoas do celular também são as de pouco uso de tecnologia, então n�
 |---|---|---|
 | Problema | **Confirmada** | 5 de 5 relataram dificuldade, acima do critério de 3 de 5 |
 | Solução | **Não confirmada** | O caminho certo passou (87%), mas sem ajuda ficou em 67% e o tempo não foi medido. Os erros vieram da navegação por categorias, e quase toda a ajuda foi no celular |
-| Valor | **Não confirmada** | Só 60% usariam no dia a dia, e a clareza ficou em 3,8. Mesmo assim, ninguém preferiu claramente o jeito atual: 1 de 5 achou mais difícil |
+| Valor | **Não confirmada** | Só 60% usariam no dia a dia, e a clareza ficou em 3,8. Mesmo assim, a maioria não preferiu o jeito atual: só 1 de 5 achou o SmartDesk mais difícil |
 
 No Lean Canvas, cada bloco recebeu o resultado das sessões ([versão de antes, só com as hipóteses](../canvas/README.md)):
 

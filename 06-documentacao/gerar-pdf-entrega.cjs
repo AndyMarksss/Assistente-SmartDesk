@@ -16,7 +16,9 @@ function link(href, base) {
   if (/^(https?:|mailto:|#)/.test(href)) return href;
   const [file, hash] = href.split("#");
   const rel = path.posix.normalize(path.posix.join(path.posix.dirname(base), decodeURI(file)));
-  return REPO + encodeURI(rel) + (hash ? "#" + hash : "");
+  // pastas abrem em /tree/ no GitHub; arquivos, em /blob/
+  const repo = fs.existsSync(path.join(ROOT, rel)) && fs.statSync(path.join(ROOT, rel)).isDirectory() ? REPO.replace("/blob/", "/tree/") : REPO;
+  return repo + encodeURI(rel.replace(/\/$/, "")) + (hash ? "#" + hash : "");
 }
 function image(src, base) {
   if (/^https?:/.test(src)) return src;
