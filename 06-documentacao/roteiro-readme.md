@@ -2,6 +2,8 @@
 
 Esqueleto do README que vai contar o case depois das sessões. Segue o que o enunciado pede ("problema, hipóteses, experimento, evidências, resultados, aprendizados e decisão final") e o formato da entrega anterior do curso: cabeçalho com o logo, os dados do aluno e os links. Nada aqui é resultado: os números só entram depois das sessões.
 
+> Este esqueleto é de 29/10/2026 e fica como registro de como o README foi planejado. O README final, com os resultados, está em [`case/README.md`](case/README.md).
+
 ## Cabeçalho
 
 - Logo da UniFECAF, nome do projeto e a proposta de valor em uma frase.

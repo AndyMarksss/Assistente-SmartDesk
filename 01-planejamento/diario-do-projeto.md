@@ -163,3 +163,6 @@ Vídeo de 3 min 58 s gravado e publicado no Google Drive com acesso por link, co
 
 ## 2026-10-31 — Figuras do README de entrega
 O README do case ganhou 10 figuras numeradas: a planilha com as metas antes das sessões, quatro telas do chat publicado (0.13.1, dados fictícios, sem envio; EVID-308 a EVID-311), o ticket por e-mail, o painel, dois gráficos com os resultados das fichas e o Lean Canvas depois das sessões. O script do PDF também gera, na pasta de envio, um README.md autocontido com as imagens embutidas, para mandar junto com o PDF como pede o enunciado. As listas antigas de pendências saíram de pendencias.md.
+
+## 2026-10-31 — Revisão de coerência
+Todos os README e documentos conferidos contra a entrega final: o README da raiz ganhou o resultado das sessões, o Lean Canvas mostra as versões antes e depois, o roteiro das sessões diz como elas aconteceram de fato, e as referências de versão apontam a 0.13.1 como a final. PDF e README de envio gerados de novo.

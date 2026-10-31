@@ -84,9 +84,10 @@ A interface é estática e roda no GitHub Pages. As chaves e o token ficam só n
 |---|---|
 | **Hipótese de problema** | Os funcionários têm dificuldade para saber onde e como pedir ajuda à TI. Confirma-se se pelo menos 3 de 5 participantes relatarem dificuldade no jeito atual. |
 | **Hipótese de solução** (escrita antes dos testes) | Funcionários da escola conseguem abrir um chamado completo pelo SmartDesk sozinhos, no caminho certo e em até 3 minutos. |
-| **Experimento** | Teste de usabilidade moderado com pelo menos 5 funcionários, 3 situações reais cada uma e uma conversa curta no fim. |
+| **Experimento** | Planejado: teste de usabilidade moderado com pelo menos 5 funcionários, 3 situações reais cada uma e uma conversa curta no fim. Realizado em 30/10/2026 com 5 funcionários, em grupo e até o resumo, sem enviar ([limitações](06-documentacao/case/README.md#4-experimento)). |
 | **Metas** | Sem ajuda ≥ 80% · caminho certo ≥ 80% · tempo médio ≤ 180 s · facilidade ≥ 4/5 · usariam de novo ≥ 80% |
 | **Regra de decisão** | Perseverar, ajustar, pivotar ou abandonar, definida e aprovada antes das sessões ([parte teórica, seção 7](06-documentacao/parte-teorica-hipoteses-e-validacao.md#7-regra-de-decisão-definida-antes-das-sessões)). |
+| **Resultado** | Problema confirmado (5 de 5). Só 1 das 5 metas atingida: caminho certo 87%; sem ajuda 67%; usariam no dia a dia 60%; tempo e facilidade não medidos. Decisão: **pivotar** ([README do case](06-documentacao/case/README.md#7-decisão-pivotar)). |
 
 Lean Canvas: [`06-documentacao/canvas`](06-documentacao/canvas/README.md). Roteiro e instrumentos das sessões: [`04-validacao`](04-validacao/README.md).
 

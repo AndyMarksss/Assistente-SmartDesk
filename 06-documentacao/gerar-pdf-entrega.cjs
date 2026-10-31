@@ -143,7 +143,13 @@ function standalone(rel) {
 const dest = process.argv[2];
 if (dest) {
   fs.mkdirSync(dest, { recursive: true });
-  fs.copyFileSync(outPdf, path.join(dest, "Documentação Metodologias Ágeis e Validação de Produtos - Anderson Barbosa Marques da Silva (16732).pdf"));
   fs.writeFileSync(path.join(dest, "README.md"), standalone(inputs[0]));
+  try {
+    fs.copyFileSync(outPdf, path.join(dest, "Documentação Metodologias Ágeis e Validação de Produtos - Anderson Barbosa Marques da Silva (16732).pdf"));
+  } catch (error) {
+    if (error.code !== "EBUSY") throw error;
+    console.log("A cópia do PDF em " + path.resolve(dest) + " está aberta em outro programa: feche-a e rode de novo.");
+    process.exitCode = 1;
+  }
   console.log("Envio: " + path.resolve(dest));
 }

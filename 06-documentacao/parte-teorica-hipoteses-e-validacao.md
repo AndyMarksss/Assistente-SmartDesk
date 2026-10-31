@@ -31,7 +31,7 @@
 
 **Solução.** O SmartDesk é um chat de atendimento da TI. A pessoa escolhe o tipo de ajuda pelos botões, que seguem a Matriz Mestre, ou conta o problema com as próprias palavras. Em seguida, responde só ao que falta, confere um resumo e envia. Ela recebe um número para acompanhar o chamado depois.
 
-**O MVP testado** (versão 0.13.0) está publicado em <https://andymarksss.github.io/Assistente-SmartDesk/> e tem:
+**O MVP testado** (versão 0.13.0; a 0.13.1, versão final, só acrescentou o robô no quadro de boas-vindas do celular) está publicado em <https://andymarksss.github.io/Assistente-SmartDesk/> e tem:
 - chat guiado com os 25 setores, 4 áreas e 57 caminhos, aplicando as regras por setor;
 - "Descrever com minhas palavras": a IA (Gemini) diz o que entendeu e monta o rascunho do chamado a partir do relato; se faltar algo, o chat faz a mesma pergunta do caminho pelos botões. A pessoa confirma ou corrige. A IA também avisa quando o relato traz dois pedidos ou não é assunto da TI;
 - em defeitos simples, passos seguros para tentar antes de abrir o chamado (no relato, logo depois do rascunho; pelos botões, antes do envio);

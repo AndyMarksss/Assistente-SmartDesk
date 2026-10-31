@@ -214,3 +214,6 @@ Os relatórios em `03-prototipo/verificacoes/` e as seções antigas com número
 
 ## 0.13.1 — robô no celular
 O usuário quer o robô no quadro de boas-vindas também no celular. Até 600 px a cena fica `display: contents` e só o `.desk-mascot` aparece, absoluto no canto (52 px). Ao mexer no título ou no quadro de boas-vindas, medir de 360 a 600 px se o texto não encosta no robô e se a primeira tela não rola (`fitWelcome`). Material das sessões para imprimir: `04-validacao/registros/kit-impressao-sessoes.html` → PDF pelo Edge (`--print-to-pdf`); ao mudar roteiro, ficha ou cartões, gerar de novo.
+
+## Entrega — 31/10/2026
+Entregue: parte teórica, README do case (06-documentacao/case/README.md, com 10 figuras), vídeo (link no Google Drive, 3:58) e PDF. A decisão foi pivotar. `node 06-documentacao/gerar-pdf-entrega.cjs ../Entrega` gera o PDF no repositório e, na pasta-mãe `Entrega/`, a cópia para envio e o README.md autocontido (imagens embutidas): rode de novo sempre que o README do case ou a parte teórica mudarem. Os gráficos do case saem de `06-documentacao/case/imagens/graficos.html`. Não mover pastas nem renomear arquivos citados nos README: a entrega e o PDF apontam para eles no GitHub. Próxima evidência: EVID-312.

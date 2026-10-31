@@ -2,7 +2,7 @@
 
 O que entra e o que sai do modelo (Gemini) em cada rota. O documento começou na 0.5.0 e ganhou uma seção a cada mudança, em ordem: quando duas seções divergem, vale a mais recente. As instruções ficam em `ai-provider.cjs` e são copiadas para o Apps Script pelo build.
 
-## Resumo da versão atual (0.12.18)
+## Resumo da versão atual (0.13.1; a IA é a mesma desde a 0.12.18)
 
 | Rota | Quando | A IA recebe | A IA devolve |
 |---|---|---|---|

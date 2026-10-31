@@ -2,6 +2,8 @@
 
 Teste com pelo menos 5 potenciais usuários reais (funcionários da escola que abrem chamados para a TI). Cada sessão leva cerca de 20 minutos: 3 situações no SmartDesk e uma conversa curta no fim. Este roteiro substitui o `roteiro-teste-base.md`.
 
+> **Como as sessões aconteceram (30/10/2026):** as cinco pessoas fizeram o teste juntas, numa sala, depois de uma apresentação; cada uma usou o próprio aparelho, pelo link sem código de participante, foi até o resumo sem enviar e digitou a própria ficha. As diferenças em relação a este roteiro e o efeito de cada uma estão no [README do case](../../06-documentacao/case/README.md#4-experimento).
+
 ## Antes do primeiro dia
 
 Os itens 1 a 3 foram feitos em 19/10/2026 (EVID-212 a EVID-216).

@@ -25,7 +25,7 @@ O enunciado pede três entregáveis: parte teórica, parte prática e vídeo pit
 - [x] (30/10) Planilha baixada (fora da pasta do SmartDesk). A aba *Sessões* não tem registro das sessões, então o tempo não foi medido.
 - [x] (30/10: problema confirmado, 1 meta atingida → **pivotar**, decisão do autor) Contar a hipótese de problema e aplicar a [regra de decisão](../06-documentacao/parte-teorica-hipoteses-e-validacao.md#7-regra-de-decisão-definida-antes-das-sessões). Com exatamente 2 de 5, fazer a conversa final com mais 3 pessoas antes de seguir.
 - [x] (30/10, rascunho; a decisão continua aberta) Escrever a síntese no [diário de validação](../04-validacao/registros/diario-validacao.md): padrões em 2 ou mais pessoas, observado separado de interpretado e comparação entre hipóteses e resultados.
-- [x] (EVID-307) Guardar as evidências das sessões em `05-evidencias` (prints da planilha e fichas, só com os códigos P01…).
+- [x] (EVID-307) Guardar as evidências das sessões em `05-evidencias`: as fichas transcritas, só com os códigos P01…. A planilha não registrou as sessões, então não há print dela.
 - [x] Não se aplica: a planilha fica fora do repositório (a aba *Chamados* tem nomes e e-mails), e as sessões não geraram chamados nem linhas na aba *Sessões*. Rodar `removerChamadosDosParticipantes` (tira o chamado de teste #030) é opcional e pode ficar para depois da avaliação.
 - [x] (30/10, `canvas/lean-canvas-pos-sessoes.png`) Marcar no Lean Canvas o que se confirmou.
 - [x] Não se aplica: com a decisão de pivotar, o protótipo entregue é a versão testada (0.13.1), sem ajustes.
