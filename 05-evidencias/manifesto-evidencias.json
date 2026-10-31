@@ -1,8 +1,8 @@
 {
   "versao": 1,
   "projeto": "SmartDesk",
-  "atualizado_em": "2026-10-29",
-  "proximo_numero": 307,
+  "atualizado_em": "2026-10-30",
+  "proximo_numero": 308,
   "evidencias": [
     {
       "numero": "EVID-001",
@@ -3681,6 +3681,18 @@
       "origem": "Print do usuário (recortado pelo assistente: sem a barra do navegador e sem o balão com o e-mail real)",
       "sha256": "398FA497B75474738CB9B5E05EE8D012F2920CE6ECBDBB83E0676C0796EAB5A2",
       "status": "verificação técnica com o e-mail real do autor (chamado de teste P99); não é validação com usuários"
+    },
+    {
+      "numero": "EVID-307",
+      "arquivo": "EVID-307_fichas-sessoes-p01-p05-transcricao.md",
+      "etapa": "Sessões com usuários (30/10/2026)",
+      "descricao": "Transcrição das cinco fichas das sessões com usuários (P01 a P05), com todas as marcações, os pedidos, as frases e a conversa final. Sessão em grupo, pelo link sem código, até o resumo e sem enviar chamado; fichas digitadas pelos participantes; a aba Sessões não registrou estas sessões; PDF original (datado de 28/10 por engano) fora do repositório, com o SHA-256 registrado na transcrição.",
+      "data_aproximada": "2026-10-30",
+      "fundamento_data": "Relato do usuário: sessões feitas no dia em que enviou as fichas",
+      "data_inclusao": "2026-10-30",
+      "origem": "PDF das fichas enviado pelo usuário; transcrição pelo assistente, com as marcações lidas da imagem de cada caixinha",
+      "sha256": "036D6C990856D2DF3B7E24FBE813D6C9B959A56CF44998C66AB24A2F81E9E150",
+      "status": "resultado de sessão com usuários reais (com as limitações registradas)"
     }
   ]
 }

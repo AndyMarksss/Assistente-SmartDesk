@@ -13,6 +13,6 @@ Vídeo de até **4 minutos**, como se eu apresentasse aos fundadores da startup 
 
 ## Materiais
 
-- Roteiro e slides: serão guardados aqui (`roteiro/` e `slides/`).
-- Imagens prontas para usar: [Lean Canvas](../06-documentacao/canvas/lean-canvas.png) e prints em [`05-evidencias`](../05-evidencias/README.md).
+- Roteiro: [`roteiro/roteiro-pitch.md`](roteiro/roteiro-pitch.md) (até 4 minutos, com o que mostrar na tela em cada trecho).
+- Imagens prontas para usar: [Lean Canvas depois das sessões](../06-documentacao/canvas/lean-canvas-pos-sessoes.png), tabelas do [README do case](../06-documentacao/case/README.md) e prints em [`05-evidencias`](../05-evidencias/README.md).
 - Publicação: YouTube (não listado) ou Google Drive, conferindo se o link abre numa janela anônima antes de enviar.

@@ -1,6 +1,6 @@
 # 05 · Evidências
 
-Prints e registros de cada etapa do projeto, numerados em sequência (**EVID-001** a **EVID-306** até 29/10/2026). Eles mostram o que foi construído, testado e decidido, e quando.
+Prints e registros de cada etapa do projeto, numerados em sequência (**EVID-001** a **EVID-307** até 30/10/2026). Eles mostram o que foi construído, testado e decidido, e quando.
 
 | Arquivo | Para que serve |
 |---|---|
@@ -13,4 +13,4 @@ Prints e registros de cada etapa do projeto, numerados em sequência (**EVID-001
 
 - **Nome:** `EVID-###_descricao-curta.ext`. A numeração é global e nunca se repete; uma evidência nunca é sobrescrita.
 - **Origem:** cada item diz se é print do autor, captura feita pelo assistente de IA no navegador ou registro de execução.
-- **O que as evidências não são:** até aqui, nenhuma é resultado de sessão com usuários. São registros de construção, testes técnicos e verificações. Os resultados das sessões entram depois, com o código do participante (P01…).
+- **O que as evidências são:** até a EVID-306, registros de construção, testes técnicos e verificações. A EVID-307 é a primeira com sessões de usuários reais (P01 a P05, em 30/10/2026).

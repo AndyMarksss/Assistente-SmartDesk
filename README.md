@@ -9,7 +9,7 @@ Projeto acadêmico da disciplina **Metodologias Ágeis e Validação de Produtos
 | **Chat** | <https://andymarksss.github.io/Assistente-SmartDesk/> |
 | **Painel de gestão (equipe de TI)** | <https://andymarksss.github.io/Assistente-SmartDesk/admin.html> |
 | **Versão do protótipo** | [`03-prototipo/VERSAO.md`](03-prototipo/VERSAO.md) |
-| **Situação** | Protótipo publicado; hipóteses e critérios definidos; sessões com 5 usuários reais em preparação ([o que falta](01-planejamento/pendencias.md)) |
+| **Situação** | Sessões com 5 usuários em 30/10/2026: problema confirmado, solução não; decisão: **pivotar** ([README do case](06-documentacao/case/README.md)) |
 
 > Para testar, basta abrir o link do chat. Use dados fictícios: os chamados de teste chegam à planilha real da equipe de TI.
 
@@ -108,4 +108,4 @@ Abra <http://127.0.0.1:4173/>. Sem configuração, o chat funciona pelos botões
 
 **Anderson Barbosa Marques da Silva** — RA 16732 — Graduação em IA e Automação Digital, UniFECAF, 2026.
 
-Este README apresenta o projeto. O **README de entrega do case** (problema, hipóteses, experimento, evidências, resultados e decisão final) será publicado em [`06-documentacao`](06-documentacao/README.md) depois das sessões com usuários; o vídeo pitch e o PDF da entrega vêm depois dele.
+Este README apresenta o projeto. O **README de entrega do case** (problema, hipóteses, experimento, evidências, resultados, aprendizados e decisão final) está em [`06-documentacao/case`](06-documentacao/case/README.md).

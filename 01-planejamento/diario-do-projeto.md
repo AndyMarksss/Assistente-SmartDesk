@@ -4,7 +4,7 @@ Registro das etapas na ordem em que aconteceram (até 28/10/2026 era o LEIA-ME.m
 
 ## Situação em 29/10/2026
 
-Protótipo 0.12.18 publicado (GitHub Pages e Apps Script) e 0.13.0 (ticket por e-mail) publicadas. Parte teórica e Lean Canvas prontos para as sessões, com os critérios de decisão aprovados antes delas, e kit das sessões revisado. Faltam, nesta ordem: as 5 sessões com usuários, a parte prática (síntese, decisão e README de entrega), o roteiro do vídeo, a gravação e o PDF da entrega. A lista está em [`pendencias.md`](pendencias.md).
+Protótipo 0.12.18 publicado (GitHub Pages e Apps Script) e 0.13.0 (ticket por e-mail) publicadas. Parte teórica e Lean Canvas prontos para as sessões, com os critérios de decisão aprovados antes delas, e kit das sessões revisado. Sessões com 5 usuários feitas em 30/10 (resultados em 04-validacao) e decisão: pivotar. README do case, Canvas depois das sessões e roteiro do vídeo em rascunho. Faltam a gravação do vídeo e o PDF da entrega (prazo: 31/10 às 23h59). A lista está em [`pendencias.md`](pendencias.md).
 
 ## Início do projeto (30/09/2026)
 
@@ -151,3 +151,9 @@ Ticket por e-mail na abertura e um aviso a cada mudança de etapa, só com núme
 
 ## 0.13.1
 O ensaio no celular (P00) correu bem e pediu o robô de volta no quadro de boas-vindas: ele volta pequeno, no canto, sem tirar a primeira mensagem da tela. Kit de impressão das sessões (recrutamento, guia, fichas P01 a P05 e cartões) em 04-validacao/registros. Verificação em 03-prototipo/verificacoes/verificacao-v0.13.1.md.
+
+## 2026-10-30 — Sessões com usuários
+Cinco funcionários de quatro setores testaram o SmartDesk juntos numa sala, cada um com o próprio link, até o resumo e sem enviar o chamado, e digitaram as fichas. A hipótese de problema se confirmou (5 de 5 relataram dificuldade no jeito atual). Das metas, só "caminho certo" foi atingida com certeza (87%); sem ajuda ficou em 67%, a clareza em 3,8 e "usariam de novo" em 60%, e o tempo ficou para a aba *Sessões*. O padrão mais forte: no computador, tudo sem ajuda; no celular, com pouco uso de tecnologia, quase tudo com ajuda. Evidência EVID-307; números em 04-validacao/resultados/resultados-sessoes-2026-10-30.md; síntese em 04-validacao/registros/diario-validacao.md.
+
+## 2026-10-30 — Decisão: pivotar
+A aba *Sessões* não tem registro das sessões, então tempo e facilidade ficaram sem medida. Pela regra definida antes, com o problema confirmado e só uma meta atingida, a decisão é pivotar. Rascunhos do README do case (06-documentacao/case), do Lean Canvas depois das sessões e do roteiro do vídeo (07-pitch/roteiro).

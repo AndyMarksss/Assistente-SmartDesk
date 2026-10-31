@@ -158,3 +158,10 @@ Recebimento planejado: Apps Script cria planilha separada SmartDesk — Chamados
 - Padrões meus, sem pergunta: falha no e-mail nunca impede o chamado; registro na aba Avisos sem o endereço. Propus também um aviso por etapa e por chamado, porque o painel publicado deixa qualquer pessoa mover cartões; o usuário corrigiu: um chamado em "Aguardando terceiros" ou "Agendado" volta para "Em atendimento" quando há retorno ou chega o dia, e a pessoa precisa saber. Regra final: toda mudança de etapa avisa, inclusive a volta para "Em atendimento" depois de aguardar terceiros ou de um agendamento; não repete a última etapa avisada e manda no máximo 10 avisos do mesmo chamado em 24 horas, contando a abertura.
 - Efeito: o e-mail ao solicitante sai de "fora do MVP" na parte teórica e nos README.
 - Fatos informados pelo usuário para a parte teórica e o Canvas: os pedidos chegam pelos formulários e também por WhatsApp, e-mail e pessoalmente; quase todo dia a TI precisa voltar a falar com alguém por falta de dado; Coordenações e Orientações são os setores que mais pedem. Sobre a conversa com o ChatGPT, ele não lembra o que foi feito nela e o que foi feito à mão.
+
+## 2026-10-30 — Resultado das sessões e decisão: pivotar
+
+- Sessões em 30/10 com 5 funcionários, em grupo, pelo link sem código, até o resumo e sem enviar. As fichas foram digitadas pelos participantes (EVID-307). A aba *Sessões* não registrou essas sessões, e a causa não foi identificada; os números vêm só das fichas.
+- O usuário não teve como refazer as sessões antes do prazo (31/10) e pediu para entregar com o que os participantes fizeram e responderam. Os dados entram como estão, com as limitações declaradas no README do case; nada foi completado nem ajustado para bater as metas.
+- Regra aplicada: problema confirmado (5 de 5) e só 1 meta atingida (caminho certo, 87%), então Pivotar. Decisão do usuário: pivotar para uma entrada única por relato e IA, que identifica o formulário certo, primeiro no computador.
+- Versão 1.0.0: não se aplica; a entrega mostra a versão testada.

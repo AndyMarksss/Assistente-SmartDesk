@@ -700,4 +700,10 @@ Prints do usuário no teste real da 0.13.0: chamado de teste #030 aberto no GitH
 - EVID-305: [email-aviso-agendado-0-13-0](EVID-305_email-aviso-agendado-0-13-0.png) — E-mail real "Chamado #030: Agendado — SmartDesk": "Agendado — o atendimento tem data marcada".
 - EVID-306: [acompanhamento-030-agendado-0-13-0](EVID-306_acompanhamento-030-agendado-0-13-0.webp) — Acompanhamento no chat 0.13.0: "Encontrei seu chamado" com #030, Audiovisual · Caixa de Som, etapa Agendado e a linha Recebido → Em andamento.
 
-Próxima evidência: EVID-307.
+## 2026-10-30 — Sessões com usuários (30/10/2026)
+
+Primeira evidência de sessão com usuários reais. Os resultados calculados estão em `04-validacao/resultados/resultados-sessoes-2026-10-30.md`, e a síntese, em `04-validacao/registros/diario-validacao.md`.
+
+- EVID-307: [fichas-sessoes-p01-p05-transcricao](EVID-307_fichas-sessoes-p01-p05-transcricao.md) — Transcrição das cinco fichas das sessões com usuários (P01 a P05), com todas as marcações, os pedidos, as frases e a conversa final. Sessão em grupo, até o resumo, sem enviar chamado; fichas digitadas pelos participantes; PDF original (datado de 28/10 por engano) fora do repositório, com o SHA-256 registrado na transcrição.
+
+Próxima evidência: EVID-308.

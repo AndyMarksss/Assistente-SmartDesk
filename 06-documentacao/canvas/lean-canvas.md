@@ -13,3 +13,19 @@ Versão de 28/10/2026, revisada em 29/10/2026, antes das sessões com usuários:
 | **7. Estrutura de custos** | Plano gratuito do Gemini (com cota diária), Google Planilhas, Drive e Apps Script e GitHub Pages, todos sem custo. O custo real é o tempo para construir e para manter a Matriz Mestre atualizada. |
 | **8. Métricas-chave** | No experimento: % das tarefas concluídas sem ajuda (meta ≥ 80%), % no caminho certo (≥ 80%), tempo médio até enviar (≤ 180 s), facilidade de 1 a 5 (≥ 4) e % que usariam de novo (≥ 80%). Em uso real: % de chamados que não precisaram de complemento da TI e % de problemas resolvidos com as dicas ("Resolvi sozinho"). |
 | **9. Vantagem injusta** | A Matriz Mestre com os 57 caminhos e as regras reais da escola, montada por quem atende a TI no dia a dia. Uma ferramenta genérica não conhece os sistemas da escola (Mentor Web, QuickBooks, Intranet) nem as regras por setor. |
+
+## Depois das sessões (30/10/2026)
+
+| Bloco | Resultado |
+|---|---|
+| 1. Segmentos | Em parte: os 5 participantes, de quatro setores, relataram o problema. Adotantes iniciais: quem pede pelo computador (administrativo e coordenação) |
+| 2. Problema | **Confirmado:** 5 de 5 relataram dificuldade (não saber o formulário certo, completar informações, esperar retorno) |
+| 3. Proposta de valor | Em parte: contar com as próprias palavras e revisar o resumo foram o mais valorizado; "em até 3 minutos" não foi medido |
+| 4. Solução | **Derrubada na forma atual:** o chat por categorias atingiu 1 das 5 metas. Pivô para uma entrada única por relato + IA, que identifica o formulário certo |
+| 5. Canais | Em parte: no computador, 9 de 9 tarefas sem ajuda; o celular, só fora da sala |
+| 6. Valor gerado | Não testado (os chamados não foram enviados) |
+| 7. Estrutura de custos | Não testado |
+| 8. Métricas-chave | Sem ajuda 67% · caminho certo 87% · clareza 3,8 · usariam de novo 60% · tempo não medido |
+| 9. Vantagem injusta | Não testado; a Matriz Mestre continua sendo a base da triagem no pivô |
+
+Imagem: [`lean-canvas-pos-sessoes.png`](lean-canvas-pos-sessoes.png).

@@ -1,5 +1,7 @@
 # Resultados da validação com usuários
 
+**Sessões de 30/10/2026:** números em [`resultados-sessoes-2026-10-30.md`](resultados-sessoes-2026-10-30.md), a partir das fichas transcritas em [EVID-307](../../05-evidencias/EVID-307_fichas-sessoes-p01-p05-transcricao.md). Ninguém enviou chamado, então as abas *Validação — Tarefas* e *Validação — Resumo* não puxam nada: os números vêm das fichas e, para o tempo, da aba *Sessões*. A planilha inteira não vem para cá, porque a aba *Chamados* tem nomes e e-mails; só os dados anônimos da aba *Sessões*.
+
 Os dados das sessões ficam na planilha do SmartDesk (Google Planilhas), em quatro abas:
 
 | Aba | Quem preenche | O que tem |

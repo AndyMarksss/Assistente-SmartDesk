@@ -1,6 +1,6 @@
 # Pendências
 
-## O que falta para a entrega (29/10/2026)
+## O que falta para a entrega (atualizado em 30/10/2026; prazo: 31/10 às 23h59)
 
 O enunciado pede três entregáveis: parte teórica, parte prática e vídeo pitch. A parte teórica, o Lean Canvas e o protótipo estão prontos. O resto segue uma ordem, porque cada etapa depende da anterior:
 
@@ -12,27 +12,28 @@ O enunciado pede três entregáveis: parte teórica, parte prática e vídeo pit
 - [x] (29/10, implantação @35) Publicar o Apps Script da 0.13.0: rodar `autorizarAvisosPorEmail` no editor e aceitar o envio de e-mail **antes** do `clasp deploy`.
 - [x] (29/10, chamado #030, EVID-301 a EVID-306) Conferir o ticket por e-mail: um chamado de teste no Pages com `?p=P99` e o seu e-mail real, uma mudança de etapa no painel e os dois e-mails na caixa de entrada (o chamado P99 sai com `removerChamadosDosParticipantes`).
 - [x] (29/10) Ensaiar no celular com `?p=P00` até o resumo, sem enviar. O ensaio pediu o robô de volta no celular (0.13.1).
-- [ ] Recrutar 5 funcionários de setores diferentes: pelo menos 1 que usa pouca tecnologia e 1 que faça o teste no celular.
-- [ ] Imprimir o kit das sessões: `04-validacao/registros/kit-impressao-sessoes.pdf` (A4, 14 páginas, com as fichas P01 a P05 já preenchidas com link, e-mail e situações, e os cartões para recortar).
+- [x] (30/10) Recrutar 5 funcionários de setores diferentes: pelo menos 1 que usa pouca tecnologia e 1 que faça o teste no celular.
+- [x] (30/10) Imprimir o kit das sessões: `04-validacao/registros/kit-impressao-sessoes.pdf` (A4, 14 páginas, com as fichas P01 a P05 já preenchidas com link, e-mail e situações, e os cartões para recortar).
 
 ### 2. Sessões
 
-- [ ] Fazer as 5 sessões pelo [roteiro](../04-validacao/roteiros/roteiro-sessao-usuarios.md): aquecer a IA antes de cada uma e não mexer no chat nesses dias.
+- [x] (30/10, em grupo e até o resumo, sem enviar: limitações em `04-validacao/registros/diario-validacao.md`) Fazer as 5 sessões pelo [roteiro](../04-validacao/roteiros/roteiro-sessao-usuarios.md): aquecer a IA antes de cada uma e não mexer no chat nesses dias.
 
 ### 3. Parte prática
 
-- [ ] Preencher *Validação — Tarefas* e *Validação — Participantes* a partir das fichas.
-- [ ] Contar a hipótese de problema e aplicar a [regra de decisão](../06-documentacao/parte-teorica-hipoteses-e-validacao.md#7-regra-de-decisão-definida-antes-das-sessões). Com exatamente 2 de 5, fazer a conversa final com mais 3 pessoas antes de seguir.
-- [ ] Escrever a síntese no [diário de validação](../04-validacao/registros/diario-validacao.md): padrões em 2 ou mais pessoas, observado separado de interpretado e comparação entre hipóteses e resultados.
-- [ ] Guardar as evidências das sessões em `05-evidencias` (prints da planilha e fichas, só com os códigos P01…).
+- [x] (30/10) Fichas transcritas (EVID-307) e números calculados em `04-validacao/resultados/resultados-sessoes-2026-10-30.md`. As abas *Validação* não se aplicam: sem chamado, elas não puxam os dados.
+- [x] (30/10) Planilha baixada (fora da pasta do SmartDesk). A aba *Sessões* não tem registro das sessões, então o tempo não foi medido.
+- [x] (30/10: problema confirmado, 1 meta atingida → **pivotar**, decisão do autor) Contar a hipótese de problema e aplicar a [regra de decisão](../06-documentacao/parte-teorica-hipoteses-e-validacao.md#7-regra-de-decisão-definida-antes-das-sessões). Com exatamente 2 de 5, fazer a conversa final com mais 3 pessoas antes de seguir.
+- [x] (30/10, rascunho; a decisão continua aberta) Escrever a síntese no [diário de validação](../04-validacao/registros/diario-validacao.md): padrões em 2 ou mais pessoas, observado separado de interpretado e comparação entre hipóteses e resultados.
+- [x] (EVID-307) Guardar as evidências das sessões em `05-evidencias` (prints da planilha e fichas, só com os códigos P01…).
 - [ ] Exportar a planilha para `04-validacao/resultados` e só depois rodar `removerChamadosDosParticipantes`.
-- [ ] Marcar no Lean Canvas o que se confirmou.
-- [ ] Fechar a versão 1.0.0 do protótipo, com os ajustes que a decisão pedir, para o vídeo mostrar a versão entregue.
-- [ ] Escrever o README de entrega do case em `06-documentacao` ([roteiro](../06-documentacao/roteiro-readme.md)). O link do vídeo entra depois da gravação.
+- [x] (30/10, `canvas/lean-canvas-pos-sessoes.png`) Marcar no Lean Canvas o que se confirmou.
+- [x] Não se aplica: com a decisão de pivotar, o protótipo entregue é a versão testada (0.13.1), sem ajustes.
+- [x] (30/10, rascunho em `06-documentacao/case/README.md`; falta só o link do vídeo) Escrever o README de entrega do case.
 
 ### 4. Roteiro do vídeo
 
-- [ ] Escrever o roteiro de até 4 minutos a partir dos resultados da parte prática, com os seis pontos do enunciado, e guardar em `07-pitch/roteiro`.
+- [x] (30/10, `07-pitch/roteiro/roteiro-pitch.md`) Escrever o roteiro de até 4 minutos a partir dos resultados da parte prática, com os seis pontos do enunciado.
 
 ### 5. Gravação
 
